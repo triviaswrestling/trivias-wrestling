@@ -1,1 +1,12 @@
 
+{
+  "name": "trivias-wrestling",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MI WRESTLING - Plataforma de wrestling y trivias",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-data.js"
+  }
+}
+
