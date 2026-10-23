@@ -1,1 +1,59 @@
 
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MI Wrestling Match",
+  "type": "object",
+  "required": ["id", "participants"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$"
+    },
+    "type": {
+      "type": ["string", "null"]
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["wrestlerId"],
+        "properties": {
+          "wrestlerId": {"type": "string"},
+          "personaId": {"type": ["string", "null"]},
+          "teamId": {"type": ["string", "null"]},
+          "result": {
+            "type": ["string", "null"],
+            "enum": ["win", "loss", "draw", "no-contest", "unknown", null]
+          },
+          "score": {"type": ["number", "null"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "winnerIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "championshipId": {
+      "type": ["string", "null"]
+    },
+    "eventId": {
+      "type": ["string", "null"]
+    },
+    "date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "stipulationIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "notes": {
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": true
+}
