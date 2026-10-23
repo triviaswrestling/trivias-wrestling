@@ -1,1 +1,13 @@
 
+/* MI WRESTLING 2.0 | TIPOGRAFÍA */
+body{font-family:var(--font);font-size:16px;line-height:1.55;color:var(--text);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{line-height:1.15;font-weight:800;letter-spacing:-.025em}
+h1{font-size:clamp(1.8rem,5vw,3.2rem)}
+h2{font-size:clamp(1.35rem,3.5vw,2.1rem)}
+h3{font-size:clamp(1.05rem,2.5vw,1.35rem)}
+p{color:var(--text-soft)}
+small,.text-muted{color:var(--muted)}
+a{text-decoration:none}
+a:hover{color:var(--cyan)}
+button{cursor:pointer}
+::selection{background:var(--blue);color:#fff}
