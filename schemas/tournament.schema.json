@@ -1,1 +1,78 @@
 
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MI Wrestling Tournament",
+  "type": "object",
+  "required": ["id", "title"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brandId": {
+      "type": ["string", "null"]
+    },
+    "promotionId": {
+      "type": ["string", "null"]
+    },
+    "seasonId": {
+      "type": ["string", "null"]
+    },
+    "format": {
+      "type": ["string", "null"]
+    },
+    "startDate": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "endDate": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "participantIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "matchIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "matchIds": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true
+          },
+          "participantIds": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true
+          },
+          "order": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": true
+      }
+    },
+    "finalEventId": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": true
+}
