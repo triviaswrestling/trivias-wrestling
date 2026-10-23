@@ -1,1 +1,82 @@
 
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MI Wrestling Wrestler",
+  "type": "object",
+  "required": ["id", "name", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nickname": {
+      "type": ["string", "null"]
+    },
+    "interpreter": {
+      "type": ["string", "null"]
+    },
+    "image": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "retired", "unknown"]
+    },
+    "division": {
+      "type": ["string", "null"]
+    },
+    "brandIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "stableIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "personaIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "themeSong": {
+      "type": ["string", "null"]
+    },
+    "finisher": {
+      "type": ["string", "null"]
+    },
+    "signature": {
+      "type": ["string", "null"]
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "power": {"type": "number", "minimum": 0, "maximum": 100},
+        "charisma": {"type": "number", "minimum": 0, "maximum": 100},
+        "micSkills": {"type": "number", "minimum": 0, "maximum": 100},
+        "overall": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "achievements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {"type": "string"},
+          "year": {"type": ["integer", "null"]},
+          "details": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": true
+}
