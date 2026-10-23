@@ -1,1 +1,54 @@
 
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MI Wrestling Season",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "year": {
+      "type": ["integer", "null"],
+      "minimum": 1900,
+      "maximum": 2200
+    },
+    "startDate": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "endDate": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "brandIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "eventIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "tournamentIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "order": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "status": {
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": true
+}
