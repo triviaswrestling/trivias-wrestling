@@ -1,4 +1,5 @@
 
+
 /* ==========================================================
    MI WRESTLING 2.0 — HOME / UNIVERSE MODE
    Cinemático • Responsive • Optimizado para móviles
@@ -14,6 +15,10 @@ body.mw-game-home {
   --mw-white: #f5f9ff;
   --mw-muted: #9baabc;
   --mw-line: rgba(190, 220, 255, .15);
+
+  /* Tema dinámico: home.js puede actualizar estas variables */
+  --mw-accent: var(--mw-cyan);
+  --mw-accent-rgb: 32, 207, 255;
 
   margin: 0;
   min-height: 100%;
@@ -46,8 +51,10 @@ body.mw-game-home img {
 
 body.mw-game-home ::selection {
   color: #fff;
-  background: #087dff;
+  background: var(--mw-accent);
 }
+
+/* ======================== CONTENEDOR ======================== */
 
 body.mw-game-home .mw-home {
   position: relative;
@@ -57,7 +64,11 @@ body.mw-game-home .mw-home {
   min-height: 100svh;
   overflow: clip;
   background:
-    radial-gradient(ellipse at 72% 15%, rgba(0, 111, 255, .12), transparent 37%),
+    radial-gradient(
+      ellipse at 78% 15%,
+      rgba(var(--mw-accent-rgb), .13),
+      transparent 37%
+    ),
     var(--mw-bg);
 }
 
@@ -68,7 +79,11 @@ body.mw-game-home .mw-home::before {
   content: "";
   pointer-events: none;
   opacity: .18;
-  background-image: radial-gradient(rgba(160, 210, 255, .22) .65px, transparent .65px);
+  background-image:
+    radial-gradient(
+      rgba(160, 210, 255, .22) .65px,
+      transparent .65px
+    );
   background-size: 5px 5px;
 }
 
@@ -81,7 +96,7 @@ body.mw-game-home .mw-home__top {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  width: min(100% - 64px, 1600px);
+  width: min(calc(100% - 64px), 1600px);
   min-height: 88px;
   margin-inline: auto;
 }
@@ -99,9 +114,14 @@ body.mw-game-home .mw-home__brand-mark {
   width: 43px;
   height: 43px;
   place-items: center;
-  border: 1px solid rgba(32, 207, 255, .8);
-  background: linear-gradient(145deg, rgba(32, 207, 255, .2), rgba(4, 12, 24, .9));
-  box-shadow: 0 0 20px rgba(32, 207, 255, .12);
+  border: 1px solid var(--mw-accent);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(var(--mw-accent-rgb), .2),
+      rgba(4, 12, 24, .9)
+    );
+  box-shadow: 0 0 18px rgba(var(--mw-accent-rgb), .2);
   color: #fff;
   font-family: "Barlow Condensed", Impact, sans-serif;
   font-size: 20px;
@@ -124,7 +144,7 @@ body.mw-game-home .mw-home__brand-copy strong {
 }
 
 body.mw-game-home .mw-home__brand-copy strong i {
-  color: var(--mw-cyan);
+  color: var(--mw-accent);
   font-style: normal;
 }
 
@@ -147,7 +167,7 @@ body.mw-game-home .mw-home__social {
 }
 
 body.mw-game-home .mw-home__social:hover {
-  color: var(--mw-cyan);
+  color: var(--mw-accent);
 }
 
 body.mw-game-home .mw-home__social-dot,
@@ -156,21 +176,20 @@ body.mw-game-home .mw-live-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--mw-cyan);
-  box-shadow: 0 0 12px rgba(32, 207, 255, .8);
+  background: var(--mw-accent);
+  box-shadow: 0 0 10px rgba(var(--mw-accent-rgb), .8);
 }
 
 body.mw-game-home .mw-home__social > span:last-child {
   font-size: 17px;
 }
 
-/* ======================== HERO ======================== */
+/* ======================== HERO / SHOWCASE ======================== */
 
 body.mw-game-home .mw-showcase {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: min(710px, 78vw);
   min-height: clamp(550px, 67vw, 760px);
   isolation: isolate;
   overflow: hidden;
@@ -185,8 +204,12 @@ body.mw-game-home .mw-showcase__backdrop {
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 76% 42%, rgba(0, 139, 255, .3), transparent 37%),
-    linear-gradient(100deg, #05070b 0%, #07101c 50%, #06162b 100%);
+    radial-gradient(
+      ellipse at 76% 42%,
+      rgba(var(--mw-accent-rgb), .22),
+      transparent 42%
+    ),
+    linear-gradient(100deg, #05070b, #07101c 60%, #06101c);
 }
 
 body.mw-game-home .mw-showcase__image {
@@ -206,24 +229,27 @@ body.mw-game-home .mw-showcase__image.is-active {
   transform: scale(1);
 }
 
-/* Sombra cinematográfica para mantener legible el texto */
 body.mw-game-home .mw-showcase__backdrop::after {
   position: absolute;
   inset: 0;
   content: "";
+  pointer-events: none;
   background:
-    linear-gradient(90deg,
+    linear-gradient(
+      90deg,
       #05070b 0%,
       rgba(5, 7, 11, .97) 18%,
       rgba(5, 7, 11, .79) 42%,
       rgba(5, 7, 11, .24) 74%,
-      rgba(5, 7, 11, .38) 100%),
-    linear-gradient(0deg,
+      rgba(5, 7, 11, .38) 100%
+    ),
+    linear-gradient(
+      0deg,
       #05070b 0%,
       transparent 28%,
       rgba(1, 8, 18, .12) 70%,
-      rgba(1, 8, 18, .52) 100%);
-  pointer-events: none;
+      rgba(1, 8, 18, .52) 100%
+    );
 }
 
 body.mw-game-home .mw-showcase__scan {
@@ -243,7 +269,12 @@ body.mw-game-home .mw-showcase__vignette {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at 75% 45%, transparent 10%, rgba(0, 0, 0, .3) 100%);
+  background:
+    radial-gradient(
+      ellipse at 75% 45%,
+      transparent 10%,
+      rgba(0, 0, 0, .3) 100%
+    );
 }
 
 body.mw-game-home .mw-showcase__sweep {
@@ -253,8 +284,12 @@ body.mw-game-home .mw-showcase__sweep {
   left: 60%;
   width: 1px;
   opacity: .3;
-  background: linear-gradient(transparent, var(--mw-cyan), transparent);
-  box-shadow: 0 0 22px rgba(32, 207, 255, .45);
+  background: linear-gradient(
+    transparent,
+    var(--mw-accent),
+    transparent
+  );
+  box-shadow: 0 0 22px rgba(var(--mw-accent-rgb), .45);
   pointer-events: none;
 }
 
@@ -271,6 +306,7 @@ body.mw-game-home .mw-showcase__content {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -283,18 +319,19 @@ body.mw-game-home .mw-menu__eyebrow {
   align-items: center;
   gap: 10px;
   margin: 0 0 20px;
-  color: var(--mw-cyan);
+  color: var(--mw-accent);
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 3px;
+  transition: color .3s ease;
 }
 
 body.mw-game-home .mw-showcase__eyebrow > span {
   display: inline-block;
   width: 28px;
   height: 2px;
-  background: var(--mw-cyan);
-  box-shadow: 0 0 10px rgba(32, 207, 255, .65);
+  background: var(--mw-accent);
+  box-shadow: 0 0 10px rgba(var(--mw-accent-rgb), .65);
 }
 
 body.mw-game-home .mw-showcase__title {
@@ -312,8 +349,9 @@ body.mw-game-home .mw-showcase__title {
 body.mw-game-home .mw-showcase__title > span {
   display: block;
   margin-top: 7px;
-  color: var(--mw-cyan);
-  text-shadow: 0 0 28px rgba(32, 207, 255, .2);
+  color: var(--mw-accent);
+  text-shadow: 0 0 28px rgba(var(--mw-accent-rgb), .2);
+  transition: color .3s ease;
 }
 
 body.mw-game-home .mw-showcase__title small {
@@ -355,7 +393,11 @@ body.mw-game-home .mw-home-button {
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 1px;
-  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease,
+    filter .2s ease;
 }
 
 body.mw-game-home .mw-home-button:hover {
@@ -363,14 +405,14 @@ body.mw-game-home .mw-home-button:hover {
 }
 
 body.mw-game-home .mw-home-button--primary {
-  color: #00111b;
-  background: var(--mw-cyan);
-  border-color: var(--mw-cyan);
-  box-shadow: 0 0 24px rgba(32, 207, 255, .16);
+  color: #05070b;
+  background: var(--mw-accent);
+  border-color: var(--mw-accent);
+  box-shadow: 0 5px 24px rgba(var(--mw-accent-rgb), .17);
 }
 
 body.mw-game-home .mw-home-button--primary:hover {
-  background: #8ceaff;
+  filter: brightness(1.14);
 }
 
 body.mw-game-home .mw-home-button--primary > span {
@@ -384,8 +426,8 @@ body.mw-game-home .mw-home-button--ghost {
 }
 
 body.mw-game-home .mw-home-button--ghost:hover {
-  border-color: var(--mw-cyan);
-  background: rgba(32, 207, 255, .08);
+  border-color: var(--mw-accent);
+  background: rgba(var(--mw-accent-rgb), .08);
 }
 
 body.mw-game-home .mw-showcase__status {
@@ -423,8 +465,8 @@ body.mw-game-home .mw-showcase__progress > span {
   display: block;
   width: 0;
   height: 100%;
-  background: var(--mw-cyan);
-  box-shadow: 0 0 12px var(--mw-cyan);
+  background: var(--mw-accent);
+  box-shadow: 0 0 12px rgba(var(--mw-accent-rgb), .65);
   transition: width .2s linear;
 }
 
@@ -432,14 +474,14 @@ body.mw-game-home .mw-showcase__progress > span {
 
 body.mw-game-home .mw-menu {
   position: relative;
-  width: min(100% - 64px, 1600px);
+  width: min(calc(100% - 64px), 1600px);
   margin: 0 auto;
   padding: 62px 0 54px;
 }
 
 body.mw-game-home .mw-menu__heading {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 22px;
   margin-bottom: 25px;
@@ -488,11 +530,12 @@ body.mw-game-home .mw-menu__arrow {
 }
 
 body.mw-game-home .mw-menu__arrow:hover {
-  border-color: var(--mw-cyan);
-  background: rgba(32, 207, 255, .12);
+  border-color: var(--mw-accent);
+  background: rgba(var(--mw-accent-rgb), .12);
 }
 
-/* Cuatro columnas en PC */
+/* PC: cuatro columnas */
+
 body.mw-game-home .mw-game-menu {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -503,7 +546,7 @@ body.mw-game-home .mw-game-menu {
 /* ======================== TARJETAS ======================== */
 
 body.mw-game-home .mw-mode {
-  --mode-accent: #20cfff;
+  --mode-accent: var(--mw-accent);
 
   position: relative;
   display: flex;
@@ -513,9 +556,10 @@ body.mw-game-home .mw-mode {
   aspect-ratio: 1.28 / 1;
   overflow: hidden;
   isolation: isolate;
-  border: 1px solid rgba(176, 211, 244, .16);
-  background: #0b111b;
+  border: 1px solid rgba(190, 220, 255, .14);
+  background: #080d15;
   color: #fff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .16);
   contain: layout paint;
   transition:
     border-color .22s ease,
@@ -530,9 +574,14 @@ body.mw-game-home .mw-mode::before {
   inset: 0;
   content: "";
   pointer-events: none;
-  border: 1px solid transparent;
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, .08), transparent 35%, rgba(0, 0, 0, .1));
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, .11),
+      transparent 25%,
+      transparent 75%,
+      rgba(var(--mw-accent-rgb), .1)
+    );
 }
 
 body.mw-game-home .mw-mode::after {
@@ -542,8 +591,18 @@ body.mw-game-home .mw-mode::after {
   content: "";
   pointer-events: none;
   background:
-    linear-gradient(0deg, rgba(3, 6, 11, .98) 0%, rgba(3, 6, 11, .8) 30%, rgba(3, 6, 11, .18) 75%, rgba(3, 6, 11, .2) 100%),
-    linear-gradient(90deg, rgba(3, 6, 11, .35), transparent 75%);
+    linear-gradient(
+      0deg,
+      rgba(3, 6, 11, .98) 0%,
+      rgba(3, 6, 11, .8) 30%,
+      rgba(3, 6, 11, .18) 75%,
+      rgba(3, 6, 11, .2) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(3, 6, 11, .35),
+      transparent 75%
+    );
 }
 
 body.mw-game-home .mw-mode__image {
@@ -555,6 +614,7 @@ body.mw-game-home .mw-mode__image {
   background-position: center;
   background-size: cover;
   opacity: .7;
+  filter: saturate(.9) contrast(1.05);
   transform: scale(1.01);
   transition: transform .35s ease, opacity .25s ease;
 }
@@ -595,6 +655,7 @@ body.mw-game-home .mw-mode__copy strong {
   font-weight: 900;
   letter-spacing: .5px;
   line-height: 1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
 }
 
 body.mw-game-home .mw-mode__copy em {
@@ -619,14 +680,21 @@ body.mw-game-home .mw-mode__go {
   background: rgba(3, 7, 13, .55);
   color: #fff;
   font-size: 17px;
-  transition: color .2s ease, background .2s ease, border-color .2s ease;
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease;
 }
+
+/* Hover y teclado */
 
 body.mw-game-home .mw-mode:hover,
 body.mw-game-home .mw-mode:focus-visible {
   z-index: 3;
   border-color: var(--mode-accent);
-  box-shadow: 0 0 0 1px var(--mode-accent), 0 9px 26px rgba(0, 0, 0, .35);
+  box-shadow:
+    0 0 0 1px var(--mode-accent),
+    0 12px 30px rgba(0, 0, 0, .35);
   transform: translateY(-4px);
   outline: none;
 }
@@ -644,32 +712,46 @@ body.mw-game-home .mw-mode:focus-visible .mw-mode__go {
   color: #05070b;
 }
 
-/* La tarjeta elegida siempre destaca en rojo, sin alterar el color ambiente */
-body.mw-game-home .mw-mode.is-active {
-  z-index: 2;
-  border-color: var(--mw-red);
-  box-shadow:
-    0 0 0 1px rgba(255, 48, 79, .85),
-    0 0 23px rgba(255, 48, 79, .17);
-  transform: translateY(-3px);
-}
-
-body.mw-game-home .mw-mode.is-active .mw-mode__copy small {
-  color: #ff647b;
-}
-
-body.mw-game-home .mw-mode.is-active .mw-mode__go {
-  border-color: var(--mw-red);
-  background: var(--mw-red);
-  color: #fff;
-}
-
 body.mw-game-home .mw-mode:focus-visible {
-  outline: 2px solid var(--mw-cyan);
+  outline: 2px solid var(--mw-accent);
   outline-offset: 3px;
 }
 
-/* El JS añade esta clase solo si puede controlar las animaciones */
+/* Tarjeta seleccionada: color dinámico de la sesión */
+
+body.mw-game-home .mw-mode.is-active {
+  z-index: 2;
+  border-color: var(--mw-accent);
+  box-shadow:
+    0 0 0 1px var(--mw-accent),
+    0 0 25px rgba(var(--mw-accent-rgb), .22),
+    0 12px 30px rgba(0, 0, 0, .3);
+  transform: translateY(-3px);
+}
+
+body.mw-game-home .mw-mode.is-active::before {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(var(--mw-accent-rgb), .22),
+      transparent 32%,
+      transparent 75%,
+      rgba(var(--mw-accent-rgb), .12)
+    );
+}
+
+body.mw-game-home .mw-mode.is-active .mw-mode__copy small {
+  color: var(--mw-accent);
+}
+
+body.mw-game-home .mw-mode.is-active .mw-mode__go {
+  border-color: var(--mw-accent);
+  background: var(--mw-accent);
+  color: #05070b;
+}
+
+/* Animación de entrada controlada por home.js */
+
 body.mw-game-home.mw-home-js .mw-mode {
   opacity: 0;
   transform: translateY(22px);
@@ -696,7 +778,7 @@ body.mw-game-home .mw-home__footer {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  width: min(100% - 64px, 1600px);
+  width: min(calc(100% - 64px), 1600px);
   margin-inline: auto;
   padding: 21px 0 25px;
   border-top: 1px solid rgba(190, 220, 255, .12);
@@ -790,22 +872,24 @@ body.mw-game-home .mw-home__footer span:first-child {
   }
 
   body.mw-game-home .mw-home__social-dot {
+    flex-basis: 6px;
     width: 6px;
     height: 6px;
-    flex-basis: 6px;
   }
 
   body.mw-game-home .mw-showcase {
     align-items: flex-end;
-    min-height: 0;
-    min-height: 690px;
     min-height: 76svh;
     max-height: 820px;
   }
 
   body.mw-game-home .mw-showcase__backdrop {
     background:
-      radial-gradient(ellipse at 75% 25%, rgba(0, 126, 255, .25), transparent 42%),
+      radial-gradient(
+        ellipse at 75% 25%,
+        rgba(var(--mw-accent-rgb), .16),
+        transparent 42%
+      ),
       #05070b;
   }
 
@@ -819,13 +903,19 @@ body.mw-game-home .mw-home__footer span:first-child {
 
   body.mw-game-home .mw-showcase__backdrop::after {
     background:
-      linear-gradient(0deg,
+      linear-gradient(
+        0deg,
         #05070b 0%,
         rgba(5, 7, 11, .96) 13%,
         rgba(5, 7, 11, .78) 43%,
         rgba(5, 7, 11, .2) 83%,
-        rgba(5, 7, 11, .32) 100%),
-      linear-gradient(90deg, rgba(5, 7, 11, .45), transparent);
+        rgba(5, 7, 11, .32) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(5, 7, 11, .45),
+        transparent
+      );
   }
 
   body.mw-game-home .mw-showcase__scan {
@@ -927,6 +1017,7 @@ body.mw-game-home .mw-home__footer span:first-child {
   }
 
   /* Dos tarjetas por fila, sin carrusel horizontal */
+
   body.mw-game-home .mw-game-menu {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
@@ -935,6 +1026,7 @@ body.mw-game-home .mw-home__footer span:first-child {
   body.mw-game-home .mw-mode {
     min-height: 0;
     aspect-ratio: .91 / 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
   }
 
   body.mw-game-home .mw-mode__number {
@@ -983,6 +1075,17 @@ body.mw-game-home .mw-home__footer span:first-child {
   }
 
   body.mw-game-home .mw-mode.is-active {
+    box-shadow:
+      0 0 0 1px var(--mw-accent),
+      0 0 15px rgba(var(--mw-accent-rgb), .18);
+    transform: translateY(-2px);
+  }
+
+  body.mw-game-home.mw-home-js .mw-mode.is-visible:hover {
+    transform: none;
+  }
+
+  body.mw-game-home.mw-home-js .mw-mode.is-visible.is-active {
     transform: translateY(-2px);
   }
 
@@ -1058,162 +1161,5 @@ body.mw-game-home .mw-home__footer span:first-child {
 
   body.mw-game-home .mw-showcase__image {
     transform: none;
-  }
-}
-
-/* =====================================================
-   MI WRESTLING 2.0 — DYNAMIC GAME MENU UPGRADE
-   Añadir al final de home.css
-   ===================================================== */
-
-body.mw-game-home {
-  --mw-accent: #20cfff;
-  --mw-accent-rgb: 32, 207, 255;
-}
-
-/* Todas las palabras destacadas usan el color de la sesión */
-body.mw-game-home .mw-home__brand-copy strong i,
-body.mw-game-home .mw-showcase__eyebrow,
-body.mw-game-home .mw-showcase__title > span,
-body.mw-game-home .mw-menu__eyebrow {
-  color: var(--mw-accent);
-  transition: color .3s ease;
-}
-
-body.mw-game-home .mw-home__brand-mark {
-  border-color: var(--mw-accent);
-  box-shadow: 0 0 18px rgba(var(--mw-accent-rgb), .2);
-}
-
-body.mw-game-home .mw-showcase__eyebrow > span,
-body.mw-game-home .mw-showcase__progress > span {
-  background: var(--mw-accent);
-}
-
-body.mw-game-home .mw-showcase__progress > span {
-  box-shadow: 0 0 12px rgba(var(--mw-accent-rgb), .65);
-}
-
-body.mw-game-home .mw-live-dot,
-body.mw-game-home .mw-home__social-dot {
-  background: var(--mw-accent);
-  box-shadow: 0 0 10px rgba(var(--mw-accent-rgb), .8);
-}
-
-body.mw-game-home .mw-home-button--primary {
-  color: #05070b;
-  background: var(--mw-accent);
-  border-color: var(--mw-accent);
-  box-shadow: 0 5px 24px rgba(var(--mw-accent-rgb), .17);
-}
-
-body.mw-game-home .mw-home-button--primary:hover {
-  filter: brightness(1.14);
-  background: var(--mw-accent);
-}
-
-/* Iluminación ambiental más parecida a un videojuego */
-body.mw-game-home .mw-home {
-  background:
-    radial-gradient(
-      ellipse at 78% 15%,
-      rgba(var(--mw-accent-rgb), .13),
-      transparent 37%
-    ),
-    var(--mw-bg);
-}
-
-body.mw-game-home .mw-showcase__backdrop {
-  background:
-    radial-gradient(
-      ellipse at 76% 42%,
-      rgba(var(--mw-accent-rgb), .22),
-      transparent 42%
-    ),
-    linear-gradient(100deg, #05070b, #07101c 60%, #06101c);
-}
-
-/* Más profundidad en las tarjetas del menú */
-body.mw-game-home .mw-mode {
-  border-color: rgba(190, 220, 255, .14);
-  background: #080d15;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .16);
-}
-
-body.mw-game-home .mw-mode::before {
-  border: 0;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, .11),
-      transparent 25%,
-      transparent 75%,
-      rgba(var(--mw-accent-rgb), .1)
-    );
-}
-
-body.mw-game-home .mw-mode__image {
-  filter: saturate(.9) contrast(1.05);
-}
-
-body.mw-game-home .mw-mode__copy strong {
-  text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
-}
-
-/* Selección roja independiente del color que cambia por recarga */
-body.mw-game-home .mw-mode.is-active {
-  border-color: #ff304f;
-  box-shadow:
-    0 0 0 1px rgba(255, 48, 79, .85),
-    0 0 25px rgba(255, 48, 79, .2),
-    0 12px 30px rgba(0, 0, 0, .3);
-}
-
-body.mw-game-home .mw-mode.is-active::after {
-  background:
-    linear-gradient(
-      0deg,
-      rgba(3, 6, 11, .98) 0%,
-      rgba(3, 6, 11, .75) 35%,
-      rgba(3, 6, 11, .12) 100%
-    );
-}
-
-body.mw-game-home .mw-mode.is-active .mw-mode__copy small {
-  color: #ff647b;
-}
-
-/* Esquina luminosa de la tarjeta seleccionada */
-body.mw-game-home .mw-mode.is-active::before {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 48, 79, .22),
-      transparent 32%,
-      transparent 75%,
-      rgba(255, 48, 79, .12)
-    );
-}
-
-/* Un poco más de presencia visual en escritorio */
-@media (min-width: 681px) {
-  body.mw-game-home .mw-mode:hover,
-  body.mw-game-home .mw-mode:focus-visible {
-    box-shadow:
-      0 0 0 1px var(--mode-accent),
-      0 12px 30px rgba(0, 0, 0, .35);
-  }
-}
-
-/* Móvil: efectos más ligeros */
-@media (max-width: 680px) {
-  body.mw-game-home .mw-mode {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
-  }
-
-  body.mw-game-home .mw-mode.is-active {
-    box-shadow:
-      0 0 0 1px #ff304f,
-      0 0 15px rgba(255, 48, 79, .16);
   }
 }
