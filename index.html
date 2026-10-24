@@ -1,130 +1,331 @@
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#05070b">
-  <meta name="description" content="MI WRESTLING 2.0: roster, eventos, torneos, campeonatos y la historia de la liga de trivia WWE.">
+  <meta name="description" content="MI WRESTLING 2.0: el universo de la Trivias WWE Championship.">
   <title>MI WRESTLING 2.0 — Main Menu</title>
 
-  <!-- Se conservan los estilos globales del sitio; home.css solo afecta esta página. -->
+  <!-- CSS existentes -->
   <link rel="stylesheet" href="css/pages/roster-pages.css">
   <link rel="stylesheet" href="css/mi-wrestling.css">
+
+  <!-- CSS exclusivo del inicio -->
   <link rel="stylesheet" href="css/pages/home.css">
 </head>
-<body class="mw-game-home home-catalog-only" data-home-menu="catalog" data-no-global-nav="true">
-  <main class="mw-home" id="mw-home">
-    <div class="mw-home__ambient" aria-hidden="true"></div>
 
+<body class="mw-game-home home-catalog-only"
+      data-home-menu="catalog"
+      data-no-global-nav="true">
+
+  <main class="mw-home" id="mw-home">
+
+    <!-- CABECERA SUPERIOR -->
     <header class="mw-home__top">
-      <a class="mw-home__brand" href="index.html" aria-label="MI WRESTLING 2.0, inicio">
+      <a class="mw-home__brand" href="index.html" aria-label="MI WRESTLING 2.0">
         <span class="mw-home__brand-mark">MW</span>
+
         <span class="mw-home__brand-copy">
           <strong>MI WRESTLING <i>2.0</i></strong>
           <small>THE UNIVERSE IS YOURS</small>
         </span>
       </a>
-      <a class="mw-home__social" href="https://www.instagram.com/triviaswwe/" target="_blank" rel="noopener noreferrer">
-        <span class="mw-home__social-dot" aria-hidden="true"></span>
-        SEGUINOS EN INSTAGRAM
+
+      <a class="mw-home__social"
+         href="https://www.instagram.com/triviaswwe/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="mw-home__social-dot"></span>
+        <span>SEGUINOS EN INSTAGRAM</span>
         <span aria-hidden="true">↗</span>
       </a>
     </header>
 
-    <section class="mw-showcase" aria-label="Presentación de MI WRESTLING">
+    <!-- PRESENTACIÓN CINEMATOGRÁFICA -->
+    <section class="mw-showcase" aria-label="Bienvenido a MI WRESTLING">
+
       <div class="mw-showcase__backdrop" aria-hidden="true">
-        <div class="mw-showcase__image is-active" data-hero-image="0"></div>
-        <div class="mw-showcase__image" data-hero-image="1"></div>
-        <div class="mw-showcase__image" data-hero-image="2"></div>
+
+        <!-- Imágenes genéricas reemplazables -->
+        <div class="mw-showcase__image is-active"
+             data-hero-image="0"></div>
+
+        <div class="mw-showcase__image"
+             data-hero-image="1"></div>
+
+        <div class="mw-showcase__image"
+             data-hero-image="2"></div>
+
         <div class="mw-showcase__scan"></div>
         <div class="mw-showcase__vignette"></div>
         <div class="mw-showcase__sweep"></div>
+
       </div>
 
       <div class="mw-showcase__content">
-        <p class="mw-showcase__eyebrow"><span></span> EL UNIVERSO DE MI WRESTLING 2.0</p>
-        <h1 class="mw-showcase__title">WELCOME TO<br><span>MI WRESTLING</span></h1>
-        <p class="mw-showcase__copy">
-          This is the official page of the Trivias WWE Championship, a competitive tournament where wrestling fans answer questions about wrestlers, historic events, championships, moves, and much more. Represent your favorite wrestler on RAW, SmackDown, or NXT and rack up wins to reach the top of the rankings.
+
+        <p class="mw-showcase__eyebrow">
+          <span></span>
+          EL UNIVERSO DE MI WRESTLING 2.0
         </p>
+
+        <h1 class="mw-showcase__title">
+          WELCOME TO
+          <span>MI WRESTLING</span>
+        </h1>
+
+        <p class="mw-showcase__copy">
+          This is the official page of the Trivias WWE Championship,
+          a competitive tournament where wrestling fans answer
+          questions about wrestlers, historic events, championships,
+          moves, and much more. Represent your favorite wrestler on
+          RAW, SmackDown, or NXT and rack up wins to reach the top
+          of the rankings.
+        </p>
+
         <div class="mw-showcase__actions">
-          <a class="mw-home-button mw-home-button--primary" href="roster.html"><span aria-hidden="true">▶</span> EXPLORAR ROSTER</a>
-          <a class="mw-home-button mw-home-button--ghost" href="#mw-menu">ELEGIR MODO <span aria-hidden="true">↓</span></a>
+          <a class="mw-home-button mw-home-button--primary"
+             href="roster.html">
+            <span aria-hidden="true">▶</span>
+            EXPLORAR ROSTER
+          </a>
+
+          <a class="mw-home-button mw-home-button--ghost"
+             href="#mw-menu">
+            ELEGIR MODO
+            <span aria-hidden="true">↓</span>
+          </a>
         </div>
-        <div class="mw-showcase__status"><span class="mw-live-dot"></span> TU HISTORIA. TU MARCA. TU LEGADO.</div>
+
+        <div class="mw-showcase__status">
+          <span class="mw-live-dot"></span>
+          TU HISTORIA. TU MARCA. TU LEGADO.
+        </div>
+
       </div>
 
-      <div class="mw-showcase__side-label" aria-hidden="true">MIW / 2.0 <span>—</span> UNIVERSE MODE</div>
-      <div class="mw-showcase__progress" aria-hidden="true"><span id="mw-hero-progress"></span></div>
+      <div class="mw-showcase__side-label" aria-hidden="true">
+        MIW / 2.0 — UNIVERSE MODE
+      </div>
+
+      <div class="mw-showcase__progress" aria-hidden="true">
+        <span id="mw-hero-progress"></span>
+      </div>
+
     </section>
 
-    <section class="mw-menu" id="mw-menu" aria-label="Seleccionar sección">
+    <!-- MENÚ HORIZONTAL PRINCIPAL -->
+    <section class="mw-menu" id="mw-menu"
+             aria-label="Seleccionar sección">
+
       <div class="mw-menu__heading">
         <div>
           <p class="mw-menu__eyebrow">SELECT YOUR DESTINATION</p>
           <h2>ENTRÁ AL UNIVERSO</h2>
         </div>
+
         <div class="mw-menu__controls">
           <span class="mw-menu__hint">DESLIZÁ PARA EXPLORAR</span>
-          <button class="mw-menu__arrow" type="button" data-menu-prev aria-label="Ver secciones anteriores">‹</button>
-          <button class="mw-menu__arrow" type="button" data-menu-next aria-label="Ver más secciones">›</button>
+
+          <button class="mw-menu__arrow"
+                  type="button"
+                  data-menu-prev
+                  aria-label="Ver secciones anteriores">
+            ‹
+          </button>
+
+          <button class="mw-menu__arrow"
+                  type="button"
+                  data-menu-next
+                  aria-label="Ver más secciones">
+            ›
+          </button>
         </div>
       </div>
 
-      <nav class="mw-game-menu" aria-label="Menú principal de MI WRESTLING">
-        <a class="mw-mode is-active" href="roster.html" data-mode="roster"
-           data-hero="images/home/roster.webp" data-kicker="THE SUPERSTARS" style="--mode-accent:#20cfff">
-          <span class="mw-mode__number">01</span><span class="mw-mode__image mw-mode__image--roster"></span>
-          <span class="mw-mode__copy"><small>SUPERSTARS</small><strong>ROSTER</strong><em>Conocé a cada competidor</em></span><span class="mw-mode__go">↗</span>
+      <nav class="mw-game-menu" aria-label="Menú principal">
+
+        <a class="mw-mode is-active"
+           href="roster.html"
+           data-mode="roster"
+           data-hero="images/home/roster.webp"
+           style="--mode-accent:#20cfff">
+
+          <span class="mw-mode__number">01</span>
+          <span class="mw-mode__image mw-mode__image--roster"></span>
+
+          <span class="mw-mode__copy">
+            <small>SUPERSTARS</small>
+            <strong>ROSTER</strong>
+            <em>Conocé a cada competidor</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="alumni.html" data-mode="alumni"
-           data-hero="images/home/alumni.webp" data-kicker="LEGENDS NEVER DIE" style="--mode-accent:#b5c5d8">
-          <span class="mw-mode__number">02</span><span class="mw-mode__image mw-mode__image--alumni"></span>
-          <span class="mw-mode__copy"><small>HALL OF LEGENDS</small><strong>ALUMNI</strong><em>Las huellas que dejaron</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="alumni.html"
+           data-mode="alumni"
+           data-hero="images/home/alumni.webp"
+           style="--mode-accent:#b5c5d8">
+
+          <span class="mw-mode__number">02</span>
+          <span class="mw-mode__image mw-mode__image--alumni"></span>
+
+          <span class="mw-mode__copy">
+            <small>HALL OF LEGENDS</small>
+            <strong>ALUMNI</strong>
+            <em>Las huellas que dejaron</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="events.html" data-mode="events"
-           data-hero="images/home/events.webp" data-kicker="EVERY NIGHT IS HISTORY" style="--mode-accent:#ff355d">
-          <span class="mw-mode__number">03</span><span class="mw-mode__image mw-mode__image--events"></span>
-          <span class="mw-mode__copy"><small>LIVE FROM THE ARENA</small><strong>EVENTOS</strong><em>Shows y noches históricas</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="events.html"
+           data-mode="events"
+           data-hero="images/home/events.webp"
+           style="--mode-accent:#ff355d">
+
+          <span class="mw-mode__number">03</span>
+          <span class="mw-mode__image mw-mode__image--events"></span>
+
+          <span class="mw-mode__copy">
+            <small>LIVE FROM THE ARENA</small>
+            <strong>EVENTOS</strong>
+            <em>Shows y noches históricas</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="tournaments.html" data-mode="tournaments"
-           data-hero="images/home/tournaments.webp" data-kicker="ONLY ONE CAN WIN" style="--mode-accent:#ffc94a">
-          <span class="mw-mode__number">04</span><span class="mw-mode__image mw-mode__image--tournaments"></span>
-          <span class="mw-mode__copy"><small>PROVE YOURSELF</small><strong>TORNEOS</strong><em>El camino hacia la cima</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="tournaments.html"
+           data-mode="tournaments"
+           data-hero="images/home/tournaments.webp"
+           style="--mode-accent:#ffc94a">
+
+          <span class="mw-mode__number">04</span>
+          <span class="mw-mode__image mw-mode__image--tournaments"></span>
+
+          <span class="mw-mode__copy">
+            <small>PROVE YOURSELF</small>
+            <strong>TORNEOS</strong>
+            <em>El camino hacia la cima</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="championships.html" data-mode="championships"
-           data-hero="images/home/championships.webp" data-kicker="GOLD IS THE GOAL" style="--mode-accent:#e9b94f">
-          <span class="mw-mode__number">05</span><span class="mw-mode__image mw-mode__image--championships"></span>
-          <span class="mw-mode__copy"><small>THE GOLD STANDARD</small><strong>CAMPEONATOS</strong><em>Reinados y títulos</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="championships.html"
+           data-mode="championships"
+           data-hero="images/home/championships.webp"
+           style="--mode-accent:#e9b94f">
+
+          <span class="mw-mode__number">05</span>
+          <span class="mw-mode__image mw-mode__image--championships"></span>
+
+          <span class="mw-mode__copy">
+            <small>THE GOLD STANDARD</small>
+            <strong>CAMPEONATOS</strong>
+            <em>Reinados y títulos</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="rankings.html" data-mode="rankings"
-           data-hero="images/home/rankings.webp" data-kicker="CLIMB THE LADDER" style="--mode-accent:#8c72ff">
-          <span class="mw-mode__number">06</span><span class="mw-mode__image mw-mode__image--rankings"></span>
-          <span class="mw-mode__copy"><small>WHO'S ON TOP?</small><strong>RANKINGS</strong><em>Escalá posiciones</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="rankings.html"
+           data-mode="rankings"
+           data-hero="images/home/rankings.webp"
+           style="--mode-accent:#8c72ff">
+
+          <span class="mw-mode__number">06</span>
+          <span class="mw-mode__image mw-mode__image--rankings"></span>
+
+          <span class="mw-mode__copy">
+            <small>WHO'S ON TOP?</small>
+            <strong>RANKINGS</strong>
+            <em>Escalá posiciones</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="records.html" data-mode="records"
-           data-hero="images/home/records.webp" data-kicker="NUMBERS NEVER LIE" style="--mode-accent:#43e6b1">
-          <span class="mw-mode__number">07</span><span class="mw-mode__image mw-mode__image--records"></span>
-          <span class="mw-mode__copy"><small>BREAK THE RECORD</small><strong>RÉCORDS</strong><em>Estadísticas y marcas</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="records.html"
+           data-mode="records"
+           data-hero="images/home/records.webp"
+           style="--mode-accent:#43e6b1">
+
+          <span class="mw-mode__number">07</span>
+          <span class="mw-mode__image mw-mode__image--records"></span>
+
+          <span class="mw-mode__copy">
+            <small>BREAK THE RECORD</small>
+            <strong>RÉCORDS</strong>
+            <em>Estadísticas y marcas</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="recaps.html" data-mode="recaps"
-           data-hero="images/home/recaps.webp" data-kicker="RELIVE THE MOMENT" style="--mode-accent:#f4f6ff">
-          <span class="mw-mode__number">08</span><span class="mw-mode__image mw-mode__image--recaps"></span>
-          <span class="mw-mode__copy"><small>THE STORY SO FAR</small><strong>RECAPS</strong><em>Volvé a vivir cada show</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="recaps.html"
+           data-mode="recaps"
+           data-hero="images/home/recaps.webp"
+           style="--mode-accent:#f4f6ff">
+
+          <span class="mw-mode__number">08</span>
+          <span class="mw-mode__image mw-mode__image--recaps"></span>
+
+          <span class="mw-mode__copy">
+            <small>RELIVE THE MOMENT</small>
+            <strong>RECAPS</strong>
+            <em>Volvé a vivir cada show</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
-        <a class="mw-mode" href="promotions.html" data-mode="promotions"
-           data-hero="images/home/promotions.webp" data-kicker="BRANDS THAT MATTER" style="--mode-accent:#ff8d44">
-          <span class="mw-mode__number">09</span><span class="mw-mode__image mw-mode__image--promotions"></span>
-          <span class="mw-mode__copy"><small>THE WRESTLING WORLD</small><strong>PROMOCIONES</strong><em>Marcas y universos</em></span><span class="mw-mode__go">↗</span>
+
+        <a class="mw-mode"
+           href="promotions.html"
+           data-mode="promotions"
+           data-hero="images/home/promotions.webp"
+           style="--mode-accent:#ff8d44">
+
+          <span class="mw-mode__number">09</span>
+          <span class="mw-mode__image mw-mode__image--promotions"></span>
+
+          <span class="mw-mode__copy">
+            <small>BRANDS THAT MATTER</small>
+            <strong>PROMOCIONES</strong>
+            <em>Marcas y universos</em>
+          </span>
+
+          <span class="mw-mode__go">↗</span>
         </a>
+
       </nav>
     </section>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="mw-home__footer">
-      <span>MI WRESTLING 2.0</span><span>BUILT BY THE FANS · FOR THE FANS</span><span>NO ONE WRITES YOUR STORY FOR YOU.</span>
+      <span>MI WRESTLING 2.0</span>
+      <span>BUILT BY THE FANS · FOR THE FANS</span>
+      <span>NO ONE WRITES YOUR STORY FOR YOU.</span>
     </footer>
+
   </main>
+
+  <!-- JavaScript global existente -->
   <script src="js/mi-wrestling.js" defer></script>
+
+  <!-- JavaScript exclusivo de la página principal -->
   <script src="js/home.js" defer></script>
+
 </body>
 </html>
