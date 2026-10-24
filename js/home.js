@@ -1,4 +1,10 @@
 
+/* ==========================================================
+   MI WRESTLING 2.0 — HOME CONTROLLER
+   Fondo dinámico • Tarjetas • Reveal al hacer scroll
+   Archivo: js/home.js
+   ========================================================== */
+
 (() => {
   "use strict";
 
@@ -10,171 +16,172 @@
 
     const showcase = home.querySelector(".mw-showcase");
     const backdrop = home.querySelector(".mw-showcase__backdrop");
-    const menu = home.querySelector(".mw-home-menu");
-    const cards = [...home.querySelectorAll("[data-hero]")];
+    const menu = home.querySelector(".mw-game-menu");
+    const cards = Array.from(home.querySelectorAll(".mw-mode[data-hero]"));
+    const heroLayers = Array.from(
+      home.querySelectorAll(".mw-showcase__image[data-hero-image]")
+    );
+    const progress = home.querySelector("#mw-hero-progress");
     const previousButton = home.querySelector("[data-menu-prev]");
     const nextButton = home.querySelector("[data-menu-next]");
 
-    if (!showcase || !backdrop) return;
-
-    const layers = [
-      ...backdrop.querySelectorAll("[data-hero-image]")
-    ];
-
-    const slides = [
-      "images/home/hero-main.webp",
-      "images/home/hero-arena.webp",
-      "images/home/hero-action.webp"
-    ];
-
-    const ROTATION_DELAY = 7000;
-    const TRANSITION_DURATION = 900;
+    if (!showcase || !backdrop || !menu || !cards.length) return;
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
-    );
+    ).matches;
+
+    const rotationDelay = 7000;
+    const ambientColors = [
+      "#087dff",
+      "#20cfff",
+      "#684dff",
+      "#1479cf",
+      "#13a9d6"
+    ];
 
     let currentSlide = 0;
+    let activeCard = -1;
     let rotationTimer = null;
-    let transitionTimer = null;
-    let previewActive = false;
+    let progressFrame = null;
+    let rotationStartedAt = 0;
+    let paused = false;
     let destroyed = false;
 
-    /*
-     * Prepara las imágenes sin bloquear la carga inicial.
-     * Si una imagen todavía no existe, se conserva el fondo CSS.
-     */
-    const preloadImage = (src) => {
-      if (!src) return;
+    /* ------------------------------------------------------
+       Utilidades
+    ------------------------------------------------------ */
 
-      const image = new Image();
-      image.decoding = "async";
-      image.src = src;
+    const getImageURL = (element) => {
+      if (!element) return "";
 
-      if (typeof image.decode === "function") {
-        image.decode().catch(() => {});
-      }
+      const inline = element.style.backgroundImage;
+      const match = inline && inline.match(/url\(["']?(.*?)["']?\)/);
+
+      return match ? match[1] : "";
     };
 
-    slides.forEach(preloadImage);
+    const setHeroImage = (layer, url) => {
+      if (!layer || !url) return;
 
-    const setLayerImage = (layer, src) => {
-      if (!layer || !src) return;
-
-      layer.style.backgroundImage = `url("${src}")`;
+      layer.style.backgroundImage = `url("${url.replace(/"/g, '\\"')}")`;
     };
 
-    const showSlide = (index) => {
-      if (!layers.length) return;
+    const setAmbientColor = (color) => {
+      if (!color) return;
 
-      currentSlide = (index + slides.length) % slides.length;
+      home.style.setProperty("--mw-ambient", color);
+      backdrop.style.backgroundColor = color;
+    };
 
-      layers.forEach((layer, layerIndex) => {
-        const active = layerIndex === 0;
+    const getRandomColor = () => {
+      const current = home.dataset.ambientColor;
+      const options = ambientColors.filter((color) => color !== current);
+      const color = options[Math.floor(Math.random() * options.length)];
 
-        layer.classList.toggle("is-active", active);
-        layer.setAttribute("aria-hidden", String(!active));
+      home.dataset.ambientColor = color;
+      return color;
+    };
+
+    /* ------------------------------------------------------
+       Iluminación ambiente inicial
+       El color ambiente es independiente del borde rojo
+       de la tarjeta seleccionada.
+    ------------------------------------------------------ */
+
+    setAmbientColor(getRandomColor());
+
+    /* ------------------------------------------------------
+       Sincronizar tarjetas con el hero
+       Lee las URL directamente desde el HTML existente.
+    ------------------------------------------------------ */
+
+    const heroImages = heroLayers
+      .map((layer) => ({
+        layer,
+        index: Number(layer.dataset.heroImage),
+        url: getImageURL(layer)
+      }))
+      .filter((item) => Number.isFinite(item.index))
+      .sort((a, b) => a.index - b.index);
+
+    const setSlide = (index) => {
+      if (!heroImages.length) return;
+
+      currentSlide = (index + heroImages.length) % heroImages.length;
+
+      heroImages.forEach((item, position) => {
+        item.layer.classList.toggle("is-active", position === currentSlide);
+        item.layer.setAttribute(
+          "aria-hidden",
+          position === currentSlide ? "false" : "true"
+        );
       });
 
-      setLayerImage(layers[0], slides[currentSlide]);
-
-      if (layers[1]) {
-        setLayerImage(
-          layers[1],
-          slides[(currentSlide + 1) % slides.length]
-        );
+      if (progress) {
+        progress.style.width = "0%";
       }
 
-      if (layers[2]) {
-        setLayerImage(
-          layers[2],
-          slides[(currentSlide + 2) % slides.length]
-        );
-      }
-
-      showcase.dataset.activeSlide = String(currentSlide);
+      rotationStartedAt = performance.now();
     };
 
-    const stopRotation = () => {
-      if (rotationTimer !== null) {
-        window.clearInterval(rotationTimer);
-        rotationTimer = null;
-      }
-    };
+    const showCardImage = (card) => {
+      if (!card || !heroImages.length) return;
 
-    const startRotation = () => {
-      stopRotation();
+      const url = getImageURL(card.querySelector(".mw-mode__image"));
+      if (!url) return;
 
-      if (
-        destroyed ||
-        previewActive ||
-        document.hidden ||
-        reducedMotion.matches ||
-        slides.length < 2
-      ) {
-        return;
-      }
+      const layer = heroImages.find(
+        (item) => item.index === currentSlide
+      )?.layer || heroImages[0].layer;
 
-      rotationTimer = window.setInterval(() => {
-        showSlide(currentSlide + 1);
-      }, ROTATION_DELAY);
-    };
+      setHeroImage(layer, url);
+      layer.classList.add("is-active");
 
-    /*
-     * Selecciona una tarjeta sin interferir con su navegación.
-     */
-    const selectCard = (card, preview = true) => {
-      cards.forEach((item) => {
-        const selected = item === card;
-
-        item.classList.toggle("is-active", selected);
-
-        if (selected) {
-          item.setAttribute("aria-current", "true");
-        } else {
-          item.removeAttribute("aria-current");
+      heroImages.forEach((item) => {
+        if (item.layer !== layer) {
+          item.layer.classList.remove("is-active");
         }
       });
+    };
 
-      if (!preview || !card) return;
+    /* ------------------------------------------------------
+       Selección de tarjetas
+    ------------------------------------------------------ */
 
-      const image = card.dataset.hero;
+    const selectCard = (card, options = {}) => {
+      const { updateHero = true, updateColor = true } = options;
 
-      if (!image) return;
+      const index = cards.indexOf(card);
+      if (index < 0) return;
 
-      previewActive = true;
-      stopRotation();
+      activeCard = index;
 
-      if (layers.length) {
-        setLayerImage(layers[0], image);
+      cards.forEach((item, itemIndex) => {
+        const selected = itemIndex === index;
 
-        layers.forEach((layer, index) => {
-          layer.classList.toggle("is-active", index === 0);
-          layer.setAttribute(
-            "aria-hidden",
-            String(index !== 0)
-          );
-        });
+        item.classList.toggle("is-active", selected);
+        item.setAttribute("aria-current", selected ? "true" : "false");
+      });
+
+      if (updateColor) {
+        const accent = getComputedStyle(card)
+          .getPropertyValue("--mode-accent")
+          .trim();
+
+        setAmbientColor(accent || getRandomColor());
       }
 
-      showcase.dataset.activeMode = image;
+      if (updateHero) {
+        showCardImage(card);
+      }
     };
 
-    const clearPreview = () => {
-      previewActive = false;
-      delete showcase.dataset.activeMode;
-
-      showSlide(currentSlide);
-      startRotation();
-    };
-
-    /*
-     * Eventos de las tarjetas.
-     */
     cards.forEach((card) => {
-      card.addEventListener("pointerenter", (event) => {
-        if (event.pointerType === "touch") return;
-        selectCard(card);
+      card.addEventListener("pointerenter", () => {
+        if (window.matchMedia("(hover: hover)").matches) {
+          selectCard(card);
+        }
       });
 
       card.addEventListener("focus", () => {
@@ -182,83 +189,93 @@
       });
 
       card.addEventListener("click", () => {
-        /*
-         * No se cancela el clic:
-         * los enlaces siguen llevando a sus páginas.
-         */
-        cards.forEach((item) => {
-          item.classList.toggle("is-active", item === card);
-        });
+        selectCard(card);
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+
+        /* Los enlaces conservan su navegación normal. */
+        if (event.key === " ") {
+          event.preventDefault();
+          selectCard(card);
+        }
       });
     });
 
-    if (menu) {
-      menu.addEventListener("pointerleave", (event) => {
-        if (event.pointerType === "touch") return;
-
-        const focusedCard = cards.find(
-          (card) => card === document.activeElement
-        );
-
-        if (focusedCard) {
-          selectCard(focusedCard);
-          return;
-        }
-
-        const activeCard = cards.find(
-          (card) => card.classList.contains("is-active")
-        );
-
-        if (activeCard) {
-          cards.forEach((card) => {
-            card.classList.toggle("is-active", card === activeCard);
-          });
-        }
-
-        clearPreview();
-      });
-
-      menu.addEventListener("focusout", () => {
-        window.setTimeout(() => {
-          if (menu.contains(document.activeElement)) return;
-          if (previewActive) clearPreview();
-        }, 0);
-      });
+    /* Seleccionar una tarjeta inicial sin forzar el foco. */
+    if (cards.length) {
+      selectCard(cards[0], { updateHero: false, updateColor: false });
     }
 
-    /*
-     * Flechas del catálogo: desplazan varias tarjetas
-     * sin cambiar el tamaño ni la distribución del menú.
-     */
-    const scrollMenu = (direction) => {
-      if (!menu) return;
+    /* ------------------------------------------------------
+       Rotación del hero
+       Conserva las imágenes definidas directamente en HTML.
+    ------------------------------------------------------ */
 
-      const firstCard = cards[0];
-      const cardWidth = firstCard
-        ? firstCard.getBoundingClientRect().width
-        : 220;
+    const advanceSlide = () => {
+      if (destroyed || paused || heroImages.length < 2) return;
 
-      const gap = parseFloat(
-        window.getComputedStyle(menu).columnGap
-      ) || 16;
-
-      menu.scrollBy({
-        left: direction * (cardWidth + gap) * 2,
-        behavior: reducedMotion.matches ? "auto" : "smooth"
-      });
+      setSlide(currentSlide + 1);
     };
 
-    previousButton?.addEventListener("click", () => {
-      scrollMenu(-1);
-    });
+    const stopRotation = () => {
+      if (rotationTimer) {
+        window.clearInterval(rotationTimer);
+        rotationTimer = null;
+      }
 
-    nextButton?.addEventListener("click", () => {
-      scrollMenu(1);
-    });
+      if (progressFrame) {
+        window.cancelAnimationFrame(progressFrame);
+        progressFrame = null;
+      }
+    };
 
-    /*
-     * Pausa el movimiento cuando la pestaña no está visible.
-     */
+    const updateProgress = () => {
+      if (destroyed || paused || !progress || reducedMotion) return;
+
+      const elapsed = performance.now() - rotationStartedAt;
+      const percentage = Math.min(100, (elapsed / rotationDelay) * 100);
+
+      progress.style.width = `${percentage}%`;
+      progressFrame = window.requestAnimationFrame(updateProgress);
+    };
+
+    const startRotation = () => {
+      stopRotation();
+
+      if (
+        reducedMotion ||
+        heroImages.length < 2 ||
+        document.hidden ||
+        paused
+      ) {
+        return;
+      }
+
+      rotationStartedAt = performance.now();
+
+      rotationTimer = window.setInterval(() => {
+        advanceSlide();
+      }, rotationDelay);
+
+      progressFrame = window.requestAnimationFrame(updateProgress);
+    };
+
+    if (heroImages.length) {
+      const activeLayer = heroImages.find((item) =>
+        item.layer.classList.contains("is-active")
+      );
+
+      currentSlide = activeLayer
+        ? heroImages.indexOf(activeLayer)
+        : 0;
+
+      setSlide(currentSlide);
+      startRotation();
+    }
+
+    /* Pausar la rotación si el usuario deja de ver la página. */
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         stopRotation();
@@ -267,47 +284,114 @@
       }
     });
 
-    const onMotionPreferenceChange = () => {
-      if (reducedMotion.matches) {
-        stopRotation();
-        clearPreview();
-      } else {
+    showcase.addEventListener("mouseenter", () => {
+      paused = true;
+      stopRotation();
+    });
+
+    showcase.addEventListener("mouseleave", () => {
+      paused = false;
+      startRotation();
+    });
+
+    showcase.addEventListener("focusin", () => {
+      paused = true;
+      stopRotation();
+    });
+
+    showcase.addEventListener("focusout", (event) => {
+      if (!showcase.contains(event.relatedTarget)) {
+        paused = false;
         startRotation();
       }
-    };
+    });
 
-    if (reducedMotion.addEventListener) {
-      reducedMotion.addEventListener(
-        "change",
-        onMotionPreferenceChange
+    /* ------------------------------------------------------
+       Animación progresiva al desplazarse
+    ------------------------------------------------------ */
+
+    home.classList.add("mw-home-js");
+
+    if ("IntersectionObserver" in window && !reducedMotion) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -35px 0px",
+          threshold: 0.08
+        }
       );
+
+      cards.forEach((card, index) => {
+        card.style.transitionDelay = `${(index % 4) * 65}ms`;
+        revealObserver.observe(card);
+      });
     } else {
-      reducedMotion.addListener(onMotionPreferenceChange);
+      cards.forEach((card) => {
+        card.classList.add("is-visible");
+      });
     }
 
-    /*
-     * Inicio.
-     */
-    showSlide(0);
-    startRotation();
+    /* ------------------------------------------------------
+       Controles del menú
+       Desplazan la vista por bloques, sin convertir el grid
+       en un carrusel horizontal.
+    ------------------------------------------------------ */
 
-    /*
-     * Limpieza si el documento se descarga.
-     */
+    const scrollToMenu = (direction) => {
+      const firstRow = cards.slice(0, 4);
+      const lastRow = cards.slice(-4);
+      const targets = direction < 0 ? firstRow : lastRow;
+      const target = targets[0];
+
+      if (!target) return;
+
+      target.scrollIntoView({
+        behavior: reducedMotion ? "auto" : "smooth",
+        block: direction < 0 ? "start" : "end"
+      });
+    };
+
+    if (previousButton) {
+      previousButton.addEventListener("click", () => {
+        scrollToMenu(-1);
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        scrollToMenu(1);
+      });
+    }
+
+    /* Si el navegador no soporta hover, evitamos cambios
+       involuntarios de tarjeta mientras se toca la pantalla. */
+    if (!window.matchMedia("(hover: hover)").matches) {
+      cards.forEach((card) => {
+        card.addEventListener(
+          "touchstart",
+          () => selectCard(card),
+          { passive: true, once: true }
+        );
+      });
+    }
+
+    /* Evitar trabajo de animación cuando la pestaña se oculta. */
     window.addEventListener("pagehide", () => {
       destroyed = true;
       stopRotation();
-
-      if (transitionTimer !== null) {
-        window.clearTimeout(transitionTimer);
-      }
     }, { once: true });
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initHome, {
-      once: true
-    });
+    document.addEventListener("DOMContentLoaded", initHome, { once: true });
   } else {
     initHome();
   }
