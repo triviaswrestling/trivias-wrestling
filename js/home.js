@@ -12,7 +12,6 @@
     const home = document.querySelector("body.mw-game-home");
 
     if (!home || home.dataset.homeInitialized === "true") return;
-    home.dataset.homeInitialized = "true";
 
     const showcase = home.querySelector(".mw-showcase");
     const backdrop = home.querySelector(".mw-showcase__backdrop");
@@ -27,38 +26,48 @@
 
     if (!showcase || !backdrop || !menu || !cards.length) return;
 
+    home.dataset.homeInitialized = "true";
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     const rotationDelay = 7000;
-    
-const accentPalettes = [
-  { name: "AZUL ELÉCTRICO", color: "#1685ff", rgb: "22, 133, 255" },
-  { name: "ROJO ARENA", color: "#ff304f", rgb: "255, 48, 79" },
-  { name: "VIOLETA", color: "#a16bff", rgb: "161, 107, 255" },
-  { name: "DORADO", color: "#ffc94a", rgb: "255, 201, 74" },
-  { name: "CYAN", color: "#20cfff", rgb: "32, 207, 255" },
-  { name: "VERDE NEÓN", color: "#43e6b1", rgb: "67, 230, 177" }
-];
 
-/* Elegir un tema distinto del último guardado en esta página.
-   No requiere crear archivos ni guardar preferencias. */
-const previousAccent = home.dataset.accentTheme;
+    /* ------------------------------------------------------
+       Tema de color de la sesión
+       Se elige una vez y no cambia al seleccionar tarjetas.
+    ------------------------------------------------------ */
 
-const availablePalettes = accentPalettes.filter(
-  (palette) => palette.color !== previousAccent
-);
+    const accentPalettes = [
+      { name: "AZUL ELÉCTRICO", color: "#1685ff", rgb: "22, 133, 255" },
+      { name: "ROJO ARENA", color: "#ff304f", rgb: "255, 48, 79" },
+      { name: "VIOLETA", color: "#a16bff", rgb: "161, 107, 255" },
+      { name: "DORADO", color: "#ffc94a", rgb: "255, 201, 74" },
+      { name: "CYAN", color: "#20cfff", rgb: "32, 207, 255" },
+      { name: "VERDE NEÓN", color: "#43e6b1", rgb: "67, 230, 177" }
+    ];
 
-const selectedPalette =
-  availablePalettes[Math.floor(Math.random() * availablePalettes.length)];
+    const previousAccent = home.dataset.accentTheme;
 
-home.dataset.accentTheme = selectedPalette.color;
+    const availablePalettes = accentPalettes.filter(
+      (palette) => palette.color !== previousAccent
+    );
 
-home.style.setProperty("--mw-accent", selectedPalette.color);
-home.style.setProperty("--mw-accent-rgb", selectedPalette.rgb);
-home.style.setProperty("--mw-ambient", selectedPalette.color);
+    const selectedPalette =
+      availablePalettes[
+        Math.floor(Math.random() * availablePalettes.length)
+      ] || accentPalettes[0];
 
+    home.dataset.accentTheme = selectedPalette.color;
+
+    home.style.setProperty("--mw-accent", selectedPalette.color);
+    home.style.setProperty("--mw-accent-rgb", selectedPalette.rgb);
+    home.style.setProperty("--mw-ambient", selectedPalette.color);
+
+    /* ------------------------------------------------------
+       Estado del controlador
+    ------------------------------------------------------ */
 
     let currentSlide = 0;
     let activeCard = -1;
@@ -67,6 +76,7 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
     let rotationStartedAt = 0;
     let paused = false;
     let destroyed = false;
+    let revealObserver = null;
 
     /* ------------------------------------------------------
        Utilidades
@@ -84,36 +94,12 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
     const setHeroImage = (layer, url) => {
       if (!layer || !url) return;
 
-      layer.style.backgroundImage = `url("${url.replace(/"/g, '\\"')}")`;
+      layer.style.backgroundImage =
+        `url("${url.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}")`;
     };
-
-    const setAmbientColor = (color) => {
-      if (!color) return;
-
-      home.style.setProperty("--mw-ambient", color);
-      backdrop.style.backgroundColor = color;
-    };
-
-    const getRandomColor = () => {
-      const current = home.dataset.ambientColor;
-      const options = ambientColors.filter((color) => color !== current);
-      const color = options[Math.floor(Math.random() * options.length)];
-
-      home.dataset.ambientColor = color;
-      return color;
-    };
-
-    /* ------------------------------------------------------
-       Iluminación ambiente inicial
-       El color ambiente es independiente del borde rojo
-       de la tarjeta seleccionada.
-    ------------------------------------------------------ */
-
-    
 
     /* ------------------------------------------------------
        Sincronizar tarjetas con el hero
-       Lee las URL directamente desde el HTML existente.
     ------------------------------------------------------ */
 
     const heroImages = heroLayers
@@ -131,11 +117,10 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       currentSlide = (index + heroImages.length) % heroImages.length;
 
       heroImages.forEach((item, position) => {
-        item.layer.classList.toggle("is-active", position === currentSlide);
-        item.layer.setAttribute(
-          "aria-hidden",
-          position === currentSlide ? "false" : "true"
-        );
+        const active = position === currentSlide;
+
+        item.layer.classList.toggle("is-active", active);
+        item.layer.setAttribute("aria-hidden", active ? "false" : "true");
       });
 
       if (progress) {
@@ -151,9 +136,9 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       const url = getImageURL(card.querySelector(".mw-mode__image"));
       if (!url) return;
 
-      const layer = heroImages.find(
-        (item) => item.index === currentSlide
-      )?.layer || heroImages[0].layer;
+      const layer =
+        heroImages.find((item) => item.index === currentSlide)?.layer ||
+        heroImages[0].layer;
 
       setHeroImage(layer, url);
       layer.classList.add("is-active");
@@ -167,10 +152,11 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
 
     /* ------------------------------------------------------
        Selección de tarjetas
+       No modifica el color de la sesión.
     ------------------------------------------------------ */
 
     const selectCard = (card, options = {}) => {
-      const { updateHero = true, updateColor = true } = options;
+      const { updateHero = true } = options;
 
       const index = cards.indexOf(card);
       if (index < 0) return;
@@ -183,14 +169,6 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
         item.classList.toggle("is-active", selected);
         item.setAttribute("aria-current", selected ? "true" : "false");
       });
-
-      if (updateColor) {
-        const accent = getComputedStyle(card)
-          .getPropertyValue("--mode-accent")
-          .trim();
-
-        setAmbientColor(accent || getRandomColor());
-      }
 
       if (updateHero) {
         showCardImage(card);
@@ -215,7 +193,7 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       card.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
 
-        /* Los enlaces conservan su navegación normal. */
+        /* Evita el desplazamiento al usar espacio como activación. */
         if (event.key === " ") {
           event.preventDefault();
           selectCard(card);
@@ -223,14 +201,11 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       });
     });
 
-    /* Seleccionar una tarjeta inicial sin forzar el foco. */
-    if (cards.length) {
-      selectCard(cards[0], { updateHero: false, updateColor: false });
-    }
+    /* Selección inicial sin forzar el foco ni cambiar el tema. */
+    selectCard(cards[0], { updateHero: false });
 
     /* ------------------------------------------------------
        Rotación del hero
-       Conserva las imágenes definidas directamente en HTML.
     ------------------------------------------------------ */
 
     const advanceSlide = () => {
@@ -240,19 +215,28 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
     };
 
     const stopRotation = () => {
-      if (rotationTimer) {
+      if (rotationTimer !== null) {
         window.clearInterval(rotationTimer);
         rotationTimer = null;
       }
 
-      if (progressFrame) {
+      if (progressFrame !== null) {
         window.cancelAnimationFrame(progressFrame);
         progressFrame = null;
       }
     };
 
     const updateProgress = () => {
-      if (destroyed || paused || !progress || reducedMotion) return;
+      if (
+        destroyed ||
+        paused ||
+        document.hidden ||
+        !progress ||
+        reducedMotion
+      ) {
+        progressFrame = null;
+        return;
+      }
 
       const elapsed = performance.now() - rotationStartedAt;
       const percentage = Math.min(100, (elapsed / rotationDelay) * 100);
@@ -265,6 +249,7 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       stopRotation();
 
       if (
+        destroyed ||
         reducedMotion ||
         heroImages.length < 2 ||
         document.hidden ||
@@ -279,7 +264,9 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
         advanceSlide();
       }, rotationDelay);
 
-      progressFrame = window.requestAnimationFrame(updateProgress);
+      if (progress) {
+        progressFrame = window.requestAnimationFrame(updateProgress);
+      }
     };
 
     if (heroImages.length) {
@@ -295,14 +282,19 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       startRotation();
     }
 
-    /* Pausar la rotación si el usuario deja de ver la página. */
-    document.addEventListener("visibilitychange", () => {
+    /* ------------------------------------------------------
+       Pausa cuando la página pierde visibilidad o interacción
+    ------------------------------------------------------ */
+
+    const handleVisibilityChange = () => {
       if (document.hidden) {
         stopRotation();
       } else {
         startRotation();
       }
-    });
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     showcase.addEventListener("mouseenter", () => {
       paused = true;
@@ -333,7 +325,7 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
     home.classList.add("mw-home-js");
 
     if ("IntersectionObserver" in window && !reducedMotion) {
-      const revealObserver = new IntersectionObserver(
+      revealObserver = new IntersectionObserver(
         (entries, observer) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
@@ -361,14 +353,14 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
 
     /* ------------------------------------------------------
        Controles del menú
-       Desplazan la vista por bloques, sin convertir el grid
-       en un carrusel horizontal.
+       Desplazan la vista por bloques.
     ------------------------------------------------------ */
 
     const scrollToMenu = (direction) => {
-      const firstRow = cards.slice(0, 4);
-      const lastRow = cards.slice(-4);
-      const targets = direction < 0 ? firstRow : lastRow;
+      const targets = direction < 0
+        ? cards.slice(0, 4)
+        : cards.slice(-4);
+
       const target = targets[0];
 
       if (!target) return;
@@ -391,22 +383,23 @@ home.style.setProperty("--mw-ambient", selectedPalette.color);
       });
     }
 
-    /* Si el navegador no soporta hover, evitamos cambios
-       involuntarios de tarjeta mientras se toca la pantalla. */
-    if (!window.matchMedia("(hover: hover)").matches) {
-      cards.forEach((card) => {
-        card.addEventListener(
-          "touchstart",
-          () => selectCard(card),
-          { passive: true, once: true }
-        );
-      });
-    }
+    /* ------------------------------------------------------
+       Limpieza al abandonar la página
+    ------------------------------------------------------ */
 
-    /* Evitar trabajo de animación cuando la pestaña se oculta. */
     window.addEventListener("pagehide", () => {
       destroyed = true;
       stopRotation();
+
+      if (revealObserver) {
+        revealObserver.disconnect();
+        revealObserver = null;
+      }
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
     }, { once: true });
   };
 
