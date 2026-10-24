@@ -6,7 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#05070b">
   <meta name="description" content="MI WRESTLING 2.0: el universo de la Trivias WWE Championship.">
-  <title>MI WRESTLING 2.0 — Main Menu</title>
+  <title>MI WRESTLING 2.0 — Universe Mode</title>
+
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/pages/roster-pages.css">
   <link rel="stylesheet" href="css/mi-wrestling.css">
@@ -30,31 +34,32 @@
 
       <a class="mw-home__social"
          href="https://www.instagram.com/triviaswwe/"
-         target="_blank" rel="noopener noreferrer">
+         target="_blank"
+         rel="noopener noreferrer">
         <span class="mw-home__social-dot"></span>
         <span>SEGUINOS EN INSTAGRAM</span>
         <span aria-hidden="true">↗</span>
       </a>
     </header>
 
-    <!-- ESCENARIO PRINCIPAL CON FONDOS DE PRUEBA -->
-    <section class="mw-showcase" aria-label="Bienvenido a MI WRESTLING">
+    <!-- HERO CINEMATOGRÁFICO -->
+    <section class="mw-showcase" aria-label="MI WRESTLING 2.0">
 
       <div class="mw-showcase__backdrop" aria-hidden="true">
 
         <div class="mw-showcase__image is-active"
              data-hero-image="0"
-             style="background-image:url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=2000&q=85');">
+             style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=2000&q=85')">
         </div>
 
         <div class="mw-showcase__image"
              data-hero-image="1"
-             style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=2000&q=85');">
+             style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2000&q=85')">
         </div>
 
         <div class="mw-showcase__image"
              data-hero-image="2"
-             style="background-image:url('https://images.unsplash.com/photo-1566393028674-d1912e42337d?auto=format&fit=crop&w=2000&q=85');">
+             style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=2000&q=85')">
         </div>
 
         <div class="mw-showcase__scan"></div>
@@ -65,12 +70,13 @@
       <div class="mw-showcase__content">
         <p class="mw-showcase__eyebrow">
           <span></span>
-          EL UNIVERSO DE MI WRESTLING 2.0
+          THE UNIVERSE IS YOURS
         </p>
 
         <h1 class="mw-showcase__title">
           WELCOME TO
           <span>MI WRESTLING</span>
+          <small>2.0 UNIVERSE MODE</small>
         </h1>
 
         <p class="mw-showcase__copy">
@@ -83,12 +89,14 @@
         </p>
 
         <div class="mw-showcase__actions">
-          <a class="mw-home-button mw-home-button--primary" href="roster.html">
+          <a class="mw-home-button mw-home-button--primary"
+             href="roster.html">
             <span aria-hidden="true">▶</span>
             EXPLORAR ROSTER
           </a>
 
-          <a class="mw-home-button mw-home-button--ghost" href="#mw-menu">
+          <a class="mw-home-button mw-home-button--ghost"
+             href="#mw-menu">
             ELEGIR MODO
             <span aria-hidden="true">↓</span>
           </a>
@@ -109,8 +117,8 @@
       </div>
     </section>
 
-    <!-- MENÚ PRINCIPAL -->
-    <section class="mw-menu" id="mw-menu" aria-label="Seleccionar sección">
+    <!-- MODOS Y SECCIONES -->
+    <section class="mw-menu" id="mw-menu" aria-label="Menú principal">
 
       <div class="mw-menu__heading">
         <div>
@@ -119,112 +127,163 @@
         </div>
 
         <div class="mw-menu__controls">
-          <span class="mw-menu__hint">DESLIZÁ PARA EXPLORAR</span>
-          <button class="mw-menu__arrow" type="button"
-                  data-menu-prev aria-label="Ver secciones anteriores">‹</button>
-          <button class="mw-menu__arrow" type="button"
-                  data-menu-next aria-label="Ver más secciones">›</button>
+          <span class="mw-menu__hint">EXPLORÁ LOS MODOS</span>
+
+          <button class="mw-menu__arrow"
+                  type="button"
+                  data-menu-prev
+                  aria-label="Ver secciones anteriores">‹</button>
+
+          <button class="mw-menu__arrow"
+                  type="button"
+                  data-menu-next
+                  aria-label="Ver más secciones">›</button>
         </div>
       </div>
 
-      <nav class="mw-game-menu" aria-label="Menú principal">
+      <nav class="mw-game-menu" aria-label="Secciones de MI WRESTLING">
 
-        <a class="mw-mode is-active" href="roster.html"
+        <a class="mw-mode is-active"
+           href="roster.html"
            data-mode="roster"
-           data-hero="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#20cfff">
           <span class="mw-mode__number">01</span>
-          <span class="mw-mode__image mw-mode__image--roster"
-                style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>SUPERSTARS</small><strong>ROSTER</strong><em>Conocé a cada competidor</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>SUPERSTARS</small>
+            <strong>ROSTER</strong>
+            <em>Conocé a cada competidor</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="alumni.html"
+        <a class="mw-mode"
+           href="alumni.html"
            data-mode="alumni"
-           data-hero="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#b5c5d8">
           <span class="mw-mode__number">02</span>
-          <span class="mw-mode__image mw-mode__image--alumni"
-                style="background-image:url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>HALL OF LEGENDS</small><strong>ALUMNI</strong><em>Las huellas que dejaron</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>HALL OF LEGENDS</small>
+            <strong>ALUMNI</strong>
+            <em>Las huellas que dejaron</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="events.html"
+        <a class="mw-mode"
+           href="events.html"
            data-mode="events"
-           data-hero="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#ff355d">
           <span class="mw-mode__number">03</span>
-          <span class="mw-mode__image mw-mode__image--events"
-                style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>LIVE FROM THE ARENA</small><strong>EVENTOS</strong><em>Shows y noches históricas</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>LIVE FROM THE ARENA</small>
+            <strong>EVENTOS</strong>
+            <em>Shows y noches históricas</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="tournaments.html"
+        <a class="mw-mode"
+           href="tournaments.html"
            data-mode="tournaments"
-           data-hero="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#ffc94a">
           <span class="mw-mode__number">04</span>
-          <span class="mw-mode__image mw-mode__image--tournaments"
-                style="background-image:url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>PROVE YOURSELF</small><strong>TORNEOS</strong><em>El camino hacia la cima</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>PROVE YOURSELF</small>
+            <strong>TORNEOS</strong>
+            <em>El camino hacia la cima</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="championships.html"
+        <a class="mw-mode"
+           href="championships.html"
            data-mode="championships"
-           data-hero="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#e9b94f">
           <span class="mw-mode__number">05</span>
-          <span class="mw-mode__image mw-mode__image--championships"
-                style="background-image:url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>THE GOLD STANDARD</small><strong>CAMPEONATOS</strong><em>Reinados y títulos</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>THE GOLD STANDARD</small>
+            <strong>CAMPEONATOS</strong>
+            <em>Reinados y títulos</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="rankings.html"
+        <a class="mw-mode"
+           href="rankings.html"
            data-mode="rankings"
-           data-hero="https://images.unsplash.com/photo-1434596922112-19c563067271?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1434596922112-19c563067271?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#8c72ff">
           <span class="mw-mode__number">06</span>
-          <span class="mw-mode__image mw-mode__image--rankings"
-                style="background-image:url('https://images.unsplash.com/photo-1434596922112-19c563067271?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>WHO'S ON TOP?</small><strong>RANKINGS</strong><em>Escalá posiciones</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1434596922112-19c563067271?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>WHO'S ON TOP?</small>
+            <strong>RANKINGS</strong>
+            <em>Escalá posiciones</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="records.html"
+        <a class="mw-mode"
+           href="records.html"
            data-mode="records"
-           data-hero="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#43e6b1">
           <span class="mw-mode__number">07</span>
-          <span class="mw-mode__image mw-mode__image--records"
-                style="background-image:url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>BREAK THE RECORD</small><strong>RÉCORDS</strong><em>Estadísticas y marcas</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>BREAK THE RECORD</small>
+            <strong>RÉCORDS</strong>
+            <em>Estadísticas y marcas</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="recaps.html"
+        <a class="mw-mode"
+           href="recaps.html"
            data-mode="recaps"
-           data-hero="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#f4f6ff">
           <span class="mw-mode__number">08</span>
-          <span class="mw-mode__image mw-mode__image--recaps"
-                style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>RELIVE THE MOMENT</small><strong>RECAPS</strong><em>Volvé a vivir cada show</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>RELIVE THE MOMENT</small>
+            <strong>RECAPS</strong>
+            <em>Volvé a vivir cada show</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
-        <a class="mw-mode" href="promotions.html"
+        <a class="mw-mode"
+           href="promotions.html"
            data-mode="promotions"
-           data-hero="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80"
+           data-hero="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=85"
            style="--mode-accent:#ff8d44">
           <span class="mw-mode__number">09</span>
-          <span class="mw-mode__image mw-mode__image--promotions"
-                style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=75')"></span>
-          <span class="mw-mode__copy"><small>BRANDS THAT MATTER</small><strong>PROMOCIONES</strong><em>Marcas y universos</em></span>
+          <span class="mw-mode__image"
+                style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80')"></span>
+          <span class="mw-mode__copy">
+            <small>BRANDS THAT MATTER</small>
+            <strong>PROMOCIONES</strong>
+            <em>Marcas y universos</em>
+          </span>
           <span class="mw-mode__go">↗</span>
         </a>
 
