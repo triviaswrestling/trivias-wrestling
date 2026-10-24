@@ -32,13 +32,33 @@
     ).matches;
 
     const rotationDelay = 7000;
-    const ambientColors = [
-      "#087dff",
-      "#20cfff",
-      "#684dff",
-      "#1479cf",
-      "#13a9d6"
-    ];
+    
+const accentPalettes = [
+  { name: "AZUL ELÉCTRICO", color: "#1685ff", rgb: "22, 133, 255" },
+  { name: "ROJO ARENA", color: "#ff304f", rgb: "255, 48, 79" },
+  { name: "VIOLETA", color: "#a16bff", rgb: "161, 107, 255" },
+  { name: "DORADO", color: "#ffc94a", rgb: "255, 201, 74" },
+  { name: "CYAN", color: "#20cfff", rgb: "32, 207, 255" },
+  { name: "VERDE NEÓN", color: "#43e6b1", rgb: "67, 230, 177" }
+];
+
+/* Elegir un tema distinto del último guardado en esta página.
+   No requiere crear archivos ni guardar preferencias. */
+const previousAccent = home.dataset.accentTheme;
+
+const availablePalettes = accentPalettes.filter(
+  (palette) => palette.color !== previousAccent
+);
+
+const selectedPalette =
+  availablePalettes[Math.floor(Math.random() * availablePalettes.length)];
+
+home.dataset.accentTheme = selectedPalette.color;
+
+home.style.setProperty("--mw-accent", selectedPalette.color);
+home.style.setProperty("--mw-accent-rgb", selectedPalette.rgb);
+home.style.setProperty("--mw-ambient", selectedPalette.color);
+
 
     let currentSlide = 0;
     let activeCard = -1;
@@ -89,7 +109,7 @@
        de la tarjeta seleccionada.
     ------------------------------------------------------ */
 
-    setAmbientColor(getRandomColor());
+    
 
     /* ------------------------------------------------------
        Sincronizar tarjetas con el hero
