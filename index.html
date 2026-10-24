@@ -4,130 +4,245 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#03050a">
-  <meta name="description" content="MI WRESTLING 2.0: perfiles, eventos, torneos, campeonatos, rankings y resultados históricos.">
+  <meta name="theme-color" content="#05060a">
+  <meta name="description" content="MI WRESTLING 2.0: roster, eventos, torneos, campeonatos y toda la historia de la liga.">
 
-  <title>MI WRESTLING 2.0</title>
+  <title>MI WRESTLING 2.0 — Universo de lucha</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="stylesheet" href="css/mi-wrestling.css">
+  <link rel="stylesheet" href="css/pages/home.css">
 </head>
 
-<body data-home-menu="catalog">
+<body class="home-catalog-only"
+      data-home-menu="catalog"
+      data-no-global-nav="true">
 
-  <main class="home-catalog" id="contenido">
+  <main class="mw-home" id="contenido">
 
-    <header class="home-hero">
-      <a class="nav-brand" href="index.html" aria-label="MI WRESTLING 2.0">
-        MI WRESTLING <span class="accent-text">2.0</span>
+    <header class="mw-home-top">
+      <a class="mw-home-brand" href="index.html"
+         aria-label="MI WRESTLING 2.0, inicio">
+        <img src="images/logo.png"
+             width="48" height="48"
+             alt=""
+             fetchpriority="high">
+        <span>MI WRESTLING <b>2.0</b></span>
       </a>
 
-      <div class="eyebrow">EL ARCHIVO DE LA LIGA</div>
-
-      <h1 class="page-title">La historia se escribe acá.</h1>
-
-      <p class="lead">
-        Perfiles, torneos, eventos y resultados históricos.
-        Todo el universo de MI WRESTLING 2.0 en un solo lugar.
-      </p>
+      <a class="mw-instagram-top"
+         href="https://www.instagram.com/triviaswwe/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="mw-live-dot"></span>
+        <span>SEGUINOS EN INSTAGRAM</span>
+        <span aria-hidden="true">↗</span>
+      </a>
     </header>
 
-    <nav class="home-grid" aria-label="Catálogo principal">
+    <section class="mw-hero" aria-labelledby="mw-hero-title">
 
-      <a class="home-tile" href="roster.html">
-        <div class="card-copy">
-          <span class="pill">Perfiles</span>
-          <h2>Roster</h2>
-          <p class="card-meta">Luchadores y fichas.</p>
-        </div>
-      </a>
+      <img class="mw-hero-image"
+           src="images/home/hero.webp"
+           alt=""
+           fetchpriority="high"
+           decoding="async">
 
-      <a class="home-tile" href="alumni.html">
-        <div class="card-copy">
-          <span class="pill">Historia</span>
-          <h2>Alumni</h2>
-          <p class="card-meta">Perfiles inactivos y carreras.</p>
-        </div>
-      </a>
+      <div class="mw-hero-shade"></div>
+      <div class="mw-hero-lines" aria-hidden="true"></div>
 
-      <a class="home-tile" href="events.html">
-        <div class="card-copy">
-          <span class="pill">Shows</span>
-          <h2>Eventos</h2>
-          <p class="card-meta">PLE y shows históricos.</p>
-        </div>
-      </a>
-
-      <a class="home-tile" href="tournaments.html">
-        <div class="card-copy">
-          <span class="pill">Competencia</span>
-          <h2>Torneos</h2>
-          <p class="card-meta">Temporadas, formatos y finales.</p>
-        </div>
-      </a>
-
-      <a class="home-tile" href="championships.html">
-        <div class="card-copy">
-          <span class="pill">Títulos</span>
-          <h2>Campeonatos</h2>
-          <p class="card-meta">Títulos y reinados.</p>
-        </div>
-      </a>
-
-      <a class="home-tile" href="rankings.html">
-        <div class="card-copy">
-          <span class="pill">Clasificación</span>
-          <h2>Rankings</h2>
-          <p class="card-meta">Clasificación de perfiles.</p>
-        </div>
-      </a>
-
-      <a class="home-tile" href="records.html">
-        <div class="card-copy">
-          <span class="pill">Estadísticas</span>
-          <h2>Récords</h2>
-          <p class="card-meta">Estadísticas del archivo.</p>
-        </div>
-      </a>
-
-      <a class="home-tile" href="recaps.html">
-        <div class="card-copy">
-          <span class="pill">Resultados</span>
-          <h2>Recaps</h2>
-          <p class="card-meta">Reviví los resultados.</p>
-        </div>
-      </a>
-
-      <a class="home-tile" href="promotions.html">
-        <div class="card-copy">
-          <span class="pill">Universo</span>
-          <h2>Marcas y promociones</h2>
-          <p class="card-meta">Explorá las marcas de la liga.</p>
-        </div>
-      </a>
-
-    </nav>
-
-    <section class="archive-section instagram-section"
-             aria-labelledby="instagram-title">
-      <h2 id="instagram-title">MI WRESTLING EN INSTAGRAM</h2>
-
-      <p class="card-meta">
-        Noticias, novedades y contenido de la liga.
-      </p>
-
-      <div id="instagram-feed" class="instagram-feed">
-        <p class="text-muted">
-          Las publicaciones de Instagram aparecerán acá cuando
-          configuremos la integración.
+      <div class="mw-hero-content">
+        <p class="mw-kicker">
+          <span></span> EL UNIVERSO DE LA LUCHA
         </p>
+
+        <h1 id="mw-hero-title">
+          MI WRESTLING
+          <span>2.0</span>
+        </h1>
+
+        <p class="mw-hero-description">
+          Cada rivalidad tiene una historia.
+          Cada victoria deja una marca.
+          Este es tu archivo.
+        </p>
+
+        <a class="mw-primary-action" href="roster.html">
+          <span>EXPLORAR ROSTER</span>
+          <span class="mw-action-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="mw-hero-index" aria-hidden="true">
+        <span>MW</span>
+        <span>EST. 2.0</span>
+      </div>
+
+      <div class="mw-hero-bottom">
+        <span>SUPERSTARS · HISTORIA · COMPETENCIA</span>
+        <span class="mw-hero-indicator">01 / 09</span>
       </div>
     </section>
 
-  </main>
+    <section class="mw-library" aria-labelledby="mw-library-title">
 
-  <footer class="footer">
-    MI WRESTLING 2.0 · Archivo de resultados históricos
-  </footer>
+      <div class="mw-section-heading">
+        <div>
+          <p class="mw-kicker">TU UNIVERSO, TU HISTORIA</p>
+          <h2 id="mw-library-title">EXPLORÁ EL ARCHIVO</h2>
+        </div>
+        <span class="mw-section-count">09 SECCIONES</span>
+      </div>
+
+      <nav class="mw-menu-grid" aria-label="Catálogo principal">
+
+        <a class="mw-menu-card mw-menu-featured"
+           href="roster.html"
+           style="--card-image:url('../images/home/roster.webp')">
+          <img src="images/home/roster.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">01</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">SUPERSTARS</span>
+            <h3>ROSTER</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="alumni.html">
+          <img src="images/home/alumni.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">02</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">LEGENDS</span>
+            <h3>ALUMNI</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="events.html">
+          <img src="images/home/events.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">03</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">SHOWTIME</span>
+            <h3>EVENTOS</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="tournaments.html">
+          <img src="images/home/tournaments.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">04</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">COMPETITION</span>
+            <h3>TORNEOS</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="championships.html">
+          <img src="images/home/championships.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">05</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">GOLD & GLORY</span>
+            <h3>CAMPEONATOS</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="rankings.html">
+          <img src="images/home/rankings.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">06</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">POWER RANKINGS</span>
+            <h3>RANKINGS</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="records.html">
+          <img src="images/home/records.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">07</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">STATISTICS</span>
+            <h3>RÉCORDS</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="recaps.html">
+          <img src="images/home/recaps.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">08</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">REWIND</span>
+            <h3>RECAPS</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+        <a class="mw-menu-card" href="promotions.html">
+          <img src="images/home/promotions.webp"
+               alt="" loading="lazy" decoding="async">
+          <span class="mw-card-number">09</span>
+          <div class="mw-card-content">
+            <span class="mw-card-tag">WRESTLING WORLD</span>
+            <h3>MARCAS Y PROMOCIONES</h3>
+            <span class="mw-card-enter">EXPLORAR ↗</span>
+          </div>
+        </a>
+
+      </nav>
+    </section>
+
+    <section class="mw-social" aria-labelledby="mw-social-title">
+      <div class="mw-social-heading">
+        <div>
+          <p class="mw-kicker">FUERA DEL RING</p>
+          <h2 id="mw-social-title">MI WRESTLING SOCIAL</h2>
+          <p>Las novedades de la comunidad, también fuera del juego.</p>
+        </div>
+
+        <a href="https://www.instagram.com/triviaswwe/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mw-social-link">
+          @TRIVIASWWE ↗
+        </a>
+      </div>
+
+      <div class="mw-instagram-panel">
+        <div class="mw-instagram-mark" aria-hidden="true">◎</div>
+        <div class="mw-instagram-copy">
+          <h3>SEGUÍ LA ACCIÓN</h3>
+          <p>
+            Visitá nuestro Instagram para ver las publicaciones,
+            novedades y contenido de MI WRESTLING.
+          </p>
+        </div>
+        <a href="https://www.instagram.com/triviaswwe/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mw-primary-action">
+          VER INSTAGRAM <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="mw-home-footer">
+      <a class="mw-footer-brand" href="index.html">MI WRESTLING 2.0</a>
+      <span>EL ARCHIVO DE LA LIGA</span>
+      <span>© <span data-current-year>2026</span></span>
+    </footer>
+
+  </main>
 
   <script src="js/mi-wrestling.js" defer></script>
 </body>
