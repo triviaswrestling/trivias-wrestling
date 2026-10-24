@@ -1060,3 +1060,160 @@ body.mw-game-home .mw-home__footer span:first-child {
     transform: none;
   }
 }
+
+/* =====================================================
+   MI WRESTLING 2.0 — DYNAMIC GAME MENU UPGRADE
+   Añadir al final de home.css
+   ===================================================== */
+
+body.mw-game-home {
+  --mw-accent: #20cfff;
+  --mw-accent-rgb: 32, 207, 255;
+}
+
+/* Todas las palabras destacadas usan el color de la sesión */
+body.mw-game-home .mw-home__brand-copy strong i,
+body.mw-game-home .mw-showcase__eyebrow,
+body.mw-game-home .mw-showcase__title > span,
+body.mw-game-home .mw-menu__eyebrow {
+  color: var(--mw-accent);
+  transition: color .3s ease;
+}
+
+body.mw-game-home .mw-home__brand-mark {
+  border-color: var(--mw-accent);
+  box-shadow: 0 0 18px rgba(var(--mw-accent-rgb), .2);
+}
+
+body.mw-game-home .mw-showcase__eyebrow > span,
+body.mw-game-home .mw-showcase__progress > span {
+  background: var(--mw-accent);
+}
+
+body.mw-game-home .mw-showcase__progress > span {
+  box-shadow: 0 0 12px rgba(var(--mw-accent-rgb), .65);
+}
+
+body.mw-game-home .mw-live-dot,
+body.mw-game-home .mw-home__social-dot {
+  background: var(--mw-accent);
+  box-shadow: 0 0 10px rgba(var(--mw-accent-rgb), .8);
+}
+
+body.mw-game-home .mw-home-button--primary {
+  color: #05070b;
+  background: var(--mw-accent);
+  border-color: var(--mw-accent);
+  box-shadow: 0 5px 24px rgba(var(--mw-accent-rgb), .17);
+}
+
+body.mw-game-home .mw-home-button--primary:hover {
+  filter: brightness(1.14);
+  background: var(--mw-accent);
+}
+
+/* Iluminación ambiental más parecida a un videojuego */
+body.mw-game-home .mw-home {
+  background:
+    radial-gradient(
+      ellipse at 78% 15%,
+      rgba(var(--mw-accent-rgb), .13),
+      transparent 37%
+    ),
+    var(--mw-bg);
+}
+
+body.mw-game-home .mw-showcase__backdrop {
+  background:
+    radial-gradient(
+      ellipse at 76% 42%,
+      rgba(var(--mw-accent-rgb), .22),
+      transparent 42%
+    ),
+    linear-gradient(100deg, #05070b, #07101c 60%, #06101c);
+}
+
+/* Más profundidad en las tarjetas del menú */
+body.mw-game-home .mw-mode {
+  border-color: rgba(190, 220, 255, .14);
+  background: #080d15;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .16);
+}
+
+body.mw-game-home .mw-mode::before {
+  border: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, .11),
+      transparent 25%,
+      transparent 75%,
+      rgba(var(--mw-accent-rgb), .1)
+    );
+}
+
+body.mw-game-home .mw-mode__image {
+  filter: saturate(.9) contrast(1.05);
+}
+
+body.mw-game-home .mw-mode__copy strong {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+}
+
+/* Selección roja independiente del color que cambia por recarga */
+body.mw-game-home .mw-mode.is-active {
+  border-color: #ff304f;
+  box-shadow:
+    0 0 0 1px rgba(255, 48, 79, .85),
+    0 0 25px rgba(255, 48, 79, .2),
+    0 12px 30px rgba(0, 0, 0, .3);
+}
+
+body.mw-game-home .mw-mode.is-active::after {
+  background:
+    linear-gradient(
+      0deg,
+      rgba(3, 6, 11, .98) 0%,
+      rgba(3, 6, 11, .75) 35%,
+      rgba(3, 6, 11, .12) 100%
+    );
+}
+
+body.mw-game-home .mw-mode.is-active .mw-mode__copy small {
+  color: #ff647b;
+}
+
+/* Esquina luminosa de la tarjeta seleccionada */
+body.mw-game-home .mw-mode.is-active::before {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 48, 79, .22),
+      transparent 32%,
+      transparent 75%,
+      rgba(255, 48, 79, .12)
+    );
+}
+
+/* Un poco más de presencia visual en escritorio */
+@media (min-width: 681px) {
+  body.mw-game-home .mw-mode:hover,
+  body.mw-game-home .mw-mode:focus-visible {
+    box-shadow:
+      0 0 0 1px var(--mode-accent),
+      0 12px 30px rgba(0, 0, 0, .35);
+  }
+}
+
+/* Móvil: efectos más ligeros */
+@media (max-width: 680px) {
+  body.mw-game-home .mw-mode {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+  }
+
+  body.mw-game-home .mw-mode.is-active {
+    box-shadow:
+      0 0 0 1px #ff304f,
+      0 0 15px rgba(255, 48, 79, .16);
+  }
+}
