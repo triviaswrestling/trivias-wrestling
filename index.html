@@ -3,247 +3,314 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#05060a">
-  <meta name="description" content="MI WRESTLING 2.0: roster, eventos, torneos, campeonatos y toda la historia de la liga.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050914">
+  <meta name="description" content="Welcome to Mi Wrestling. El universo de Trivias WWE Championship: roster, eventos, torneos y rankings.">
 
-  <title>MI WRESTLING 2.0 — Universo de lucha</title>
+  <title>MI WRESTLING 2.0 — Welcome to the Universe</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="stylesheet" href="css/mi-wrestling.css">
   <link rel="stylesheet" href="css/pages/home.css">
+
+  <script src="js/home.js" defer></script>
+  <script src="js/mi-wrestling.js" defer></script>
 </head>
 
-<body class="home-catalog-only"
+<body class="mw-game-home home-catalog-only"
       data-home-menu="catalog"
       data-no-global-nav="true">
 
   <main class="mw-home" id="contenido">
 
-    <header class="mw-home-top">
-      <a class="mw-home-brand" href="index.html"
-         aria-label="MI WRESTLING 2.0, inicio">
-        <img src="images/logo.png"
-             width="48" height="48"
-             alt=""
-             fetchpriority="high">
+    <!-- CABECERA PROPIA DEL INICIO: SIN NAVBAR -->
+    <header class="mw-topbar">
+      <a class="mw-brand" href="index.html" aria-label="MI WRESTLING 2.0">
+        <img src="images/logo.png" alt="" width="42" height="42">
         <span>MI WRESTLING <b>2.0</b></span>
       </a>
 
-      <a class="mw-instagram-top"
+      <a class="mw-social-top"
          href="https://www.instagram.com/triviaswwe/"
          target="_blank"
          rel="noopener noreferrer">
-        <span class="mw-live-dot"></span>
-        <span>SEGUINOS EN INSTAGRAM</span>
+        <span class="mw-status-light"></span>
+        <span>TRIVIAS WWE</span>
         <span aria-hidden="true">↗</span>
       </a>
     </header>
 
-    <section class="mw-hero" aria-labelledby="mw-hero-title">
+    <!-- CARRUSEL CINEMATOGRÁFICO -->
+    <section class="mw-showcase" aria-label="Destacados de MI Wrestling">
 
-      <img class="mw-hero-image"
-           src="images/home/hero.webp"
-           alt=""
-           fetchpriority="high"
-           decoding="async">
+      <article class="mw-slide is-active"
+               data-title="WELCOME TO MI WRESTLING"
+               data-kicker="YOUR UNIVERSE. YOUR LEGACY."
+               data-image="images/home/hero.webp"
+               aria-hidden="false">
 
-      <div class="mw-hero-shade"></div>
-      <div class="mw-hero-lines" aria-hidden="true"></div>
+        <img class="mw-slide-image"
+             src="images/home/hero.webp"
+             alt=""
+             fetchpriority="high"
+             decoding="async">
 
-      <div class="mw-hero-content">
-        <p class="mw-kicker">
-          <span></span> EL UNIVERSO DE LA LUCHA
+        <div class="mw-slide-overlay"></div>
+      </article>
+
+      <article class="mw-slide"
+               data-title="CHOOSE YOUR LEGACY"
+               data-kicker="EVERY SUPERSTAR HAS A STORY."
+               data-image="images/home/roster.webp"
+               aria-hidden="true">
+
+        <img class="mw-slide-image"
+             src="images/home/roster.webp"
+             alt=""
+             loading="lazy"
+             decoding="async">
+
+        <div class="mw-slide-overlay"></div>
+      </article>
+
+      <article class="mw-slide"
+               data-title="MAKE HISTORY"
+               data-kicker="ONLY THE BEST REACH THE TOP."
+               data-image="images/home/tournaments.webp"
+               aria-hidden="true">
+
+        <img class="mw-slide-image"
+             src="images/home/tournaments.webp"
+             alt=""
+             loading="lazy"
+             decoding="async">
+
+        <div class="mw-slide-overlay"></div>
+      </article>
+
+      <div class="mw-showcase-content">
+        <div class="mw-game-label">
+          <span class="mw-status-light"></span>
+          THE ULTIMATE WRESTLING UNIVERSE
+        </div>
+
+        <p class="mw-intro-kicker" id="mw-slide-kicker">
+          YOUR UNIVERSE. YOUR LEGACY.
         </p>
 
-        <h1 id="mw-hero-title">
-          MI WRESTLING
-          <span>2.0</span>
+        <h1 id="mw-slide-title">
+          WELCOME TO
+          <span>MI WRESTLING</span>
         </h1>
 
-        <p class="mw-hero-description">
-          Cada rivalidad tiene una historia.
-          Cada victoria deja una marca.
-          Este es tu archivo.
+        <p class="mw-intro-text">
+          This is the official page of the Trivias WWE Championship,
+          a competitive tournament where wrestling fans answer questions
+          about wrestlers, historic events, championships, moves, and much
+          more. Represent your favorite wrestler on RAW, SmackDown, or NXT
+          and rack up wins to reach the top of the rankings.
         </p>
 
-        <a class="mw-primary-action" href="roster.html">
-          <span>EXPLORAR ROSTER</span>
-          <span class="mw-action-arrow" aria-hidden="true">→</span>
+        <div class="mw-brands" aria-label="Marcas disponibles">
+          <span>RAW</span>
+          <i></i>
+          <span>SMACKDOWN</span>
+          <i></i>
+          <span>NXT</span>
+        </div>
+
+        <a class="mw-main-button" href="roster.html">
+          <span>ENTER THE UNIVERSE</span>
+          <span class="mw-button-arrow" aria-hidden="true">↗</span>
         </a>
       </div>
 
-      <div class="mw-hero-index" aria-hidden="true">
-        <span>MW</span>
-        <span>EST. 2.0</span>
+      <div class="mw-showcase-side" aria-hidden="true">
+        <span class="mw-side-line"></span>
+        <span>MIW / 2.0</span>
+        <span class="mw-side-small">THE NEXT LEVEL</span>
       </div>
 
-      <div class="mw-hero-bottom">
-        <span>SUPERSTARS · HISTORIA · COMPETENCIA</span>
-        <span class="mw-hero-indicator">01 / 09</span>
+      <div class="mw-showcase-footer">
+        <span>OFFICIAL TRIVIAS WWE CHAMPIONSHIP</span>
+
+        <div class="mw-slider-controls" aria-label="Elegir imagen destacada">
+          <button class="mw-slide-dot is-active"
+                  type="button"
+                  data-slide="0"
+                  aria-label="Mostrar imagen 1"
+                  aria-pressed="true"></button>
+
+          <button class="mw-slide-dot"
+                  type="button"
+                  data-slide="1"
+                  aria-label="Mostrar imagen 2"
+                  aria-pressed="false"></button>
+
+          <button class="mw-slide-dot"
+                  type="button"
+                  data-slide="2"
+                  aria-label="Mostrar imagen 3"
+                  aria-pressed="false"></button>
+
+          <span class="mw-slide-counter" id="mw-slide-counter">01 / 03</span>
+        </div>
       </div>
     </section>
 
-    <section class="mw-library" aria-labelledby="mw-library-title">
+    <!-- MENÚ PRINCIPAL -->
+    <section class="mw-mode-section" aria-labelledby="mw-mode-title">
 
       <div class="mw-section-heading">
         <div>
-          <p class="mw-kicker">TU UNIVERSO, TU HISTORIA</p>
-          <h2 id="mw-library-title">EXPLORÁ EL ARCHIVO</h2>
+          <p class="mw-eyebrow">SELECT YOUR DESTINATION</p>
+          <h2 id="mw-mode-title">EXPLORE THE UNIVERSE</h2>
         </div>
-        <span class="mw-section-count">09 SECCIONES</span>
+
+        <span class="mw-heading-index">01 — 09</span>
       </div>
 
-      <nav class="mw-menu-grid" aria-label="Catálogo principal">
+      <nav class="mw-mode-grid" aria-label="Menú principal">
 
-        <a class="mw-menu-card mw-menu-featured"
-           href="roster.html"
-           style="--card-image:url('../images/home/roster.webp')">
-          <img src="images/home/roster.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">01</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">SUPERSTARS</span>
-            <h3>ROSTER</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card is-featured" href="roster.html"
+           data-preview="1">
+          <img src="images/home/roster.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">01</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">SUPERSTARS</span>
+            <span class="mw-mode-name">ROSTER</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="alumni.html">
-          <img src="images/home/alumni.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">02</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">LEGENDS</span>
-            <h3>ALUMNI</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="alumni.html" data-preview="1">
+          <img src="images/home/alumni.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">02</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">LEGENDS NEVER DIE</span>
+            <span class="mw-mode-name">ALUMNI</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="events.html">
-          <img src="images/home/events.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">03</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">SHOWTIME</span>
-            <h3>EVENTOS</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="events.html" data-preview="2">
+          <img src="images/home/events.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">03</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">THE SHOW MUST GO ON</span>
+            <span class="mw-mode-name">EVENTS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="tournaments.html">
-          <img src="images/home/tournaments.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">04</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">COMPETITION</span>
-            <h3>TORNEOS</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="tournaments.html" data-preview="2">
+          <img src="images/home/tournaments.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">04</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">COMPETITION</span>
+            <span class="mw-mode-name">TOURNAMENTS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="championships.html">
-          <img src="images/home/championships.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">05</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">GOLD & GLORY</span>
-            <h3>CAMPEONATOS</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="championships.html" data-preview="2">
+          <img src="images/home/championships.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">05</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">GOLD & GLORY</span>
+            <span class="mw-mode-name">CHAMPIONSHIPS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="rankings.html">
-          <img src="images/home/rankings.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">06</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">POWER RANKINGS</span>
-            <h3>RANKINGS</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="rankings.html" data-preview="2">
+          <img src="images/home/rankings.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">06</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">POWER RANKINGS</span>
+            <span class="mw-mode-name">RANKINGS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="records.html">
-          <img src="images/home/records.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">07</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">STATISTICS</span>
-            <h3>RÉCORDS</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="records.html" data-preview="2">
+          <img src="images/home/records.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">07</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">STATISTICS</span>
+            <span class="mw-mode-name">RECORDS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="recaps.html">
-          <img src="images/home/recaps.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">08</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">REWIND</span>
-            <h3>RECAPS</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="recaps.html" data-preview="2">
+          <img src="images/home/recaps.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">08</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">RELIVE THE MOMENTS</span>
+            <span class="mw-mode-name">RECAPS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
-        <a class="mw-menu-card" href="promotions.html">
-          <img src="images/home/promotions.webp"
-               alt="" loading="lazy" decoding="async">
-          <span class="mw-card-number">09</span>
-          <div class="mw-card-content">
-            <span class="mw-card-tag">WRESTLING WORLD</span>
-            <h3>MARCAS Y PROMOCIONES</h3>
-            <span class="mw-card-enter">EXPLORAR ↗</span>
-          </div>
+        <a class="mw-mode-card" href="promotions.html" data-preview="2">
+          <img src="images/home/promotions.webp" alt=""
+               loading="lazy" decoding="async">
+          <span class="mw-mode-number">09</span>
+          <span class="mw-mode-content">
+            <span class="mw-mode-category">WRESTLING WORLD</span>
+            <span class="mw-mode-name">PROMOTIONS</span>
+            <span class="mw-mode-action">EXPLORE <b>↗</b></span>
+          </span>
         </a>
 
       </nav>
+
+      <p class="mw-menu-hint">
+        <span class="mw-status-light"></span>
+        SELECT A MODE TO CONTINUE
+      </p>
     </section>
 
-    <section class="mw-social" aria-labelledby="mw-social-title">
-      <div class="mw-social-heading">
-        <div>
-          <p class="mw-kicker">FUERA DEL RING</p>
-          <h2 id="mw-social-title">MI WRESTLING SOCIAL</h2>
-          <p>Las novedades de la comunidad, también fuera del juego.</p>
-        </div>
-
-        <a href="https://www.instagram.com/triviaswwe/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="mw-social-link">
-          @TRIVIASWWE ↗
-        </a>
+    <!-- COMUNIDAD -->
+    <section class="mw-community" aria-labelledby="mw-community-title">
+      <div class="mw-community-copy">
+        <p class="mw-eyebrow">CONNECT WITH THE COMMUNITY</p>
+        <h2 id="mw-community-title">THE ACTION NEVER STOPS.</h2>
+        <p>
+          Follow MI WRESTLING for updates, announcements, rivalries
+          and moments from the Trivias WWE Championship.
+        </p>
       </div>
 
-      <div class="mw-instagram-panel">
-        <div class="mw-instagram-mark" aria-hidden="true">◎</div>
-        <div class="mw-instagram-copy">
-          <h3>SEGUÍ LA ACCIÓN</h3>
-          <p>
-            Visitá nuestro Instagram para ver las publicaciones,
-            novedades y contenido de MI WRESTLING.
-          </p>
-        </div>
-        <a href="https://www.instagram.com/triviaswwe/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="mw-primary-action">
-          VER INSTAGRAM <span aria-hidden="true">↗</span>
-        </a>
-      </div>
+      <a class="mw-community-button"
+         href="https://www.instagram.com/triviaswwe/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="mw-instagram-symbol" aria-hidden="true">◎</span>
+        <span>
+          <small>FOLLOW US ON</small>
+          <strong>INSTAGRAM ↗</strong>
+        </span>
+      </a>
     </section>
 
-    <footer class="mw-home-footer">
-      <a class="mw-footer-brand" href="index.html">MI WRESTLING 2.0</a>
-      <span>EL ARCHIVO DE LA LIGA</span>
-      <span>© <span data-current-year>2026</span></span>
+    <footer class="mw-footer">
+      <a href="index.html">MI WRESTLING 2.0</a>
+      <span>THE UNIVERSE IS YOURS.</span>
+      <span>© 2026</span>
     </footer>
 
   </main>
-
-  <script src="js/mi-wrestling.js" defer></script>
 </body>
 </html>
