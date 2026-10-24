@@ -1,1 +1,3 @@
 
+/* MI WRESTLING 2.0 | pagination.css */
+.pagination{display:flex;gap:6px;flex-wrap:wrap}.pagination button{background:var(--surface);color:var(--text);border:1px solid var(--border);padding:8px 12px}
