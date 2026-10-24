@@ -794,3 +794,32 @@ tr:hover td {
     scroll-behavior:auto !important;
   }
 }
+/* INICIO: catálogo adaptado a móvil */
+@media (max-width: 520px) {
+  .home-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .home-tile {
+    min-height: 125px;
+  }
+
+  .home-tile .card-copy {
+    padding: 10px;
+  }
+
+  .home-tile h2 {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .home-tile .card-meta {
+    font-size: .72rem;
+  }
+}
+
+/* Inicio: sin barra de navegación global */
+body[data-home-menu="catalog"] .site-nav {
+  display: none;
+}
