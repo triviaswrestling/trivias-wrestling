@@ -1,192 +1,3989 @@
 [
   {
+    "id": "adam-cole",
+    "name": "Adam Cole",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/zacarias.jpg",
+    "status": "inactive",
+    "division": null,
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Adam Cole",
+      "image": "images/zacarias.jpg",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "aj-styles",
+    "name": "AJ Styles",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "AJ Styles",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "alberto-del-rio",
+    "name": "Alberto del Rio",
+    "nickname": "El Patron",
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Alberto del Rio",
+      "image": "images/Vacante.webp",
+      "nickname": "El Patron",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "100 - 0",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "aleister-black",
+    "name": "Aleister Black",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Aleister Black",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "andrade",
+    "name": "Andrade",
+    "nickname": "El Idolo",
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Andrade",
+      "image": "images/Vacante.webp",
+      "nickname": "El Idolo",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "axiom",
+    "name": "Axiom",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Monday Night RAW",
+    "brand": "RAW",
+    "stable": "Club de amigos",
+    "legacyStats": {
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Axiom",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "Club de amigos",
+      "division": "Monday Night RAW",
+      "brand": "RAW",
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "100 - 0",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "austin-theory",
+    "name": "Austin Theory",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Austin Theory",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "batista",
+    "name": "Batista",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Batista",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "bobby-lashley",
+    "name": "Bobby Lashley",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Bobby Lashley",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "bo-dallas",
+    "name": "Bo Dallas",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Bo Dallas",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "bravo-americano",
+    "name": "Bravo Americano",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Bravo Americano",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
     "id": "bray-wyatt",
     "name": "Bray Wyatt",
-    "nickname": "The Eater of Worlds",
-    "brand": "legends",
-    "status": "alumni",
-    "division": "Men",
-    "overall": 97,
-    "image": "images/wrestlers/bray-wyatt.webp",
-    "bio": "Perfil base de Bray Wyatt. Las presentaciones alternativas pertenecen a este mismo luchador.",
-    "finisher": [
-      "Sister Abigail",
-      "Mandible Claw"
-    ],
-    "signature": [
-      "Sister Abigail",
-      "Uranage"
-    ],
-    "achievements": [
-      "WWE Champion",
-      "Universal Champion",
-      "Multiple-time world champion"
-    ],
-    "stats": {
-      "strength": 91,
-      "technical": 84,
-      "speed": 78,
-      "charisma": 99,
-      "stamina": 88
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
     },
-    "alterego": [
-      "wyatt-champion-1",
-      "the-fiend"
-    ],
-    "presentations": {
-      "default": {
-        "id": "bray-wyatt-original",
-        "name": "Bray Wyatt",
-        "image": "images/wrestlers/bray-wyatt.webp",
-        "brand": "legends"
-      },
-      "wyatt-champion-1": {
-        "id": "wyatt-champion-1",
-        "name": "Bray Wyatt — WWE Champion",
-        "image": "images/wrestlers/bray-wyatt-champion.webp",
-        "brand": "raw"
-      },
-      "the-fiend": {
-        "id": "the-fiend",
-        "name": "The Fiend",
-        "image": "images/wrestlers/the-fiend.webp",
-        "brand": "legends"
-      }
-    }
-  },
-  {
-    "id": "chad-gable",
-    "name": "Chad Gable",
-    "nickname": "Master of the Alpha Academy",
-    "brand": "raw",
-    "status": "active",
-    "division": "Men",
-    "overall": 89,
-    "image": "images/wrestlers/chad-gable.webp",
-    "bio": "Un único perfil con presentaciones seleccionables por combate.",
-    "finisher": [
-      "Chaos Theory",
-      "Ankle Lock"
-    ],
-    "signature": [
-      "German Suplex",
-      "Exploder Suplex"
-    ],
-    "achievements": [
-      "Tag Team Champion",
-      "Olympic-style wrestling specialist"
-    ],
-    "stats": {
-      "strength": 78,
-      "technical": 96,
-      "speed": 86,
-      "charisma": 82,
-      "stamina": 91
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Bray Wyatt",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
     },
-    "alterego": [
-      "el-grande-americano"
-    ],
-    "presentations": {
-      "default": {
-        "id": "chad-gable-original",
-        "name": "Chad Gable",
-        "image": "images/wrestlers/chad-gable.webp",
-        "brand": "raw"
-      },
-      "el-grande-americano": {
-        "id": "el-grande-americano",
-        "name": "El Grande Americano",
-        "image": "images/wrestlers/el-grande-americano.webp",
-        "brand": "raw"
-      }
-    }
-  },
-  {
-    "id": "finn-balor",
-    "name": "Finn Bálor",
-    "nickname": "The Prince",
-    "brand": "raw",
-    "status": "active",
-    "division": "Men",
-    "overall": 92,
-    "image": "images/wrestlers/finn-balor.webp",
-    "bio": "Perfil único para Finn Bálor y su presentación Demon.",
-    "finisher": [
-      "Coup de Grâce",
-      "1916"
-    ],
-    "signature": [
-      "Sling Blade",
-      "Shotgun Dropkick"
-    ],
-    "achievements": [
-      "Universal Champion",
-      "Intercontinental Champion",
-      "NXT Champion"
-    ],
-    "stats": {
-      "strength": 80,
-      "technical": 89,
-      "speed": 93,
-      "charisma": 92,
-      "stamina": 90
-    },
-    "alterego": [
-      "the-demon"
-    ],
-    "presentations": {
-      "default": {
-        "id": "finn-balor-original",
-        "name": "Finn Bálor",
-        "image": "images/wrestlers/finn-balor.webp",
-        "brand": "raw"
-      },
-      "the-demon": {
-        "id": "the-demon",
-        "name": "The Demon",
-        "image": "images/wrestlers/the-demon.webp",
-        "brand": "special"
-      }
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
     }
   },
   {
     "id": "bret-hart",
     "name": "Bret Hart",
-    "nickname": "The Hitman",
-    "brand": "legends",
-    "status": "alumni",
-    "division": "Men",
-    "overall": 96,
-    "image": "images/wrestlers/bret-hart.webp",
-    "bio": "The Excellence of Execution.",
-    "finisher": [
-      "Sharpshooter"
-    ],
-    "signature": [
-      "Russian Leg Sweep",
-      "Second Rope Elbow"
-    ],
-    "achievements": [
-      "WWE Champion",
-      "Intercontinental Champion",
-      "King of the Ring"
-    ],
-    "stats": {
-      "strength": 83,
-      "technical": 99,
-      "speed": 84,
-      "charisma": 93,
-      "stamina": 94
+    "nickname": "The Darkman",
+    "interpreter": null,
+    "image": "images/Darkman Hart.jpg",
+    "status": "active",
+    "division": "Main Roster",
+    "brand": "RAW",
+    "stable": "Hart ReFoundation",
+    "legacyStats": {
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0"
     },
-    "alterego": [],
-    "presentations": {
-      "default": {
-        "id": "bret-hart-original",
-        "name": "Bret Hart",
-        "image": "images/wrestlers/bret-hart.webp",
-        "brand": "legends"
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [
+      "16x World Champion",
+      "5x United States Champion"
+    ],
+    "legacy": {
+      "name": "Bret Hart",
+      "image": "images/Darkman Hart.jpg",
+      "nickname": "The Darkman",
+      "stable": "Hart ReFoundation",
+      "division": "Main Roster",
+      "brand": "RAW",
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": [
+        "16x World Champion",
+        "5x United States Champion"
+      ]
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "100 - 0",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "brock-lesnar",
+    "name": "Brock Lesnar",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Brock Lesnar",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "bron-breakker",
+    "name": "Bron Breakker",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Bron Breakker",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "bryan-danielson",
+    "name": "Bryan Danielson",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Monday Night RAW",
+    "brand": "RAW",
+    "stable": "Blackpool Combat Club",
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Bryan Danielson",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "Blackpool Combat Club",
+      "division": "Monday Night RAW",
+      "brand": "RAW",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "buddy-matthews",
+    "name": "Buddy Matthews",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Buddy Matthews",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "chad-gable",
+    "name": "Chad Gable",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Chad Gable",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "charlie-dempsey",
+    "name": "Charlie Dempsey",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Charlie Dempsey",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "chris-benoit",
+    "name": "Chris Benoit",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Chris Benoit",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "chris-jericho",
+    "name": "Chris Jericho",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Chris Jericho",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "claudio-castagnoli",
+    "name": "Claudio Castagnoli",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Claudio Castagnoli",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "cm-punk",
+    "name": "CM Punk",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "CM Punk",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "cody-rhodes",
+    "name": "Cody Rhodes",
+    "nickname": "The American Nightmare",
+    "interpreter": "yahir",
+    "image": "images/Cody Rhodes trivias.jpg",
+    "status": "active",
+    "division": "Main Roster",
+    "brand": "RAW",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "0 - 0",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [
+      "2x WWE Undisputed Champion",
+      "2x TNA Champion",
+      "Royal Rumble Winner 2024"
+    ],
+    "legacy": {
+      "name": "Cody Rhodes",
+      "image": "images/Cody Rhodes trivias.jpg",
+      "nickname": "The American Nightmare",
+      "stable": "",
+      "division": "Main Roster",
+      "brand": "RAW",
+      "overall2026": "0 - 0",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": [
+        "2x WWE Undisputed Champion",
+        "2x TNA Champion",
+        "Royal Rumble Winner 2024"
+      ]
+    },
+    "attributes": {
+      "power": 88,
+      "charisma": 96,
+      "micro": 92
+    },
+    "interpreterHistory": [
+      {
+        "id": "yahir",
+        "name": "Yahir",
+        "current": true,
+        "recordUrl": "records.html?interpreter=yahir"
       }
+    ],
+    "presentationIds": [],
+    "recordLinks": {
+      "season2026": "records.html?wrestler=cody-rhodes&season=2026",
+      "career": "records.html?wrestler=cody-rhodes"
+    },
+    "record": {
+      "season2026": "0 - 0",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "christian-cage",
+    "name": "Christian Cage",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Christian Cage",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "dezmond-xavier",
+    "name": "Dezmond Xavier",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Dezmond Xavier",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "damian-priest",
+    "name": "Damian Priest",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Damian Priest",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "dominik-mysterio",
+    "name": "Dominik Mysterio",
+    "nickname": "El Sucio",
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Dominik Mysterio",
+      "image": "images/Vacante.webp",
+      "nickname": "El Sucio",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "dragon-lee",
+    "name": "Dragon Lee",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Dragon Lee",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "drew-mcintyre",
+    "name": "Drew McIntyre",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Drew McIntyre",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "eddie-guerrero",
+    "name": "Eddie Guerrero",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Eddie Guerrero",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "edge",
+    "name": "Edge",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Edge",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "el-grande-americano",
+    "name": "El Grande Americano",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "El Grande Americano",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "enzo-amore",
+    "name": "Enzo Amore",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Enzo Amore",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "ethan-page",
+    "name": "Ethan Page",
+    "nickname": "All Ego",
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Ethan Page",
+      "image": "images/Vacante.webp",
+      "nickname": "All Ego",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "finn-balor",
+    "name": "Finn Balor",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Finn Balor",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "gunther",
+    "name": "GUNTHER",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "GUNTHER",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "ilja-dragunov",
+    "name": "Ilja Dragunov",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Ilja Dragunov",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "jacob-fatu",
+    "name": "Jacob Fatu",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Monday Night RAW",
+    "brand": "RAW",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Jacob Fatu",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Monday Night RAW",
+      "brand": "RAW",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "jd-mcdonagh",
+    "name": "JD Mcdonagh",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "JD Mcdonagh",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "jeff-jarrett",
+    "name": "Jeff Jarrett",
+    "nickname": "The Chosen One",
+    "interpreter": null,
+    "image": "images/Jeff Jarrett trivias.jpg",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [
+      "x5 WWE Undisputed Champion"
+    ],
+    "legacy": {
+      "name": "Jeff Jarrett",
+      "image": "images/Jeff Jarrett trivias.jpg",
+      "nickname": "The Chosen One",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0",
+      "status": "inactive",
+      "achievements": [
+        "x5 WWE Undisputed Champion"
+      ]
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "100 - 0",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "jeff-hardy",
+    "name": "Jeff Hardy",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Jeff Hardy",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "je-von-evans",
+    "name": "Je'Von Evans",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Je'Von Evans",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "jey-uso",
+    "name": "Jey Uso",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Jey Uso",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "jimmy-uso",
+    "name": "Jimmy Uso",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Jimmy Uso",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "joe-hendry",
+    "name": "Joe Hendry",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Joe Hendry",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "john-cena",
+    "name": "John Cena",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "John Cena",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "johnny-gargano",
+    "name": "Johnny Gargano",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Johnny Gargano",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "jon-moxley",
+    "name": "Jon Moxley",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Monday Night RAW",
+    "brand": "RAW",
+    "stable": "Blackpool Combat Club",
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Jon Moxley",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "Blackpool Combat Club",
+      "division": "Monday Night RAW",
+      "brand": "RAW",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "kane",
+    "name": "Kane",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Kane",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "karrion-kross",
+    "name": "Karrion Kross",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Karrion Kross",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "keith-lee",
+    "name": "Keith Lee",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Keith Lee",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "kenny-omega",
+    "name": "Kenny Omega",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Kenny Omega",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "kevin-owens",
+    "name": "Kevin Owens",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Kevin Owens",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "kofi-kingston",
+    "name": "Kofi Kingston",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Kofi Kingston",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "kyle-o-reilly",
+    "name": "Kyle O'Reilly",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Kyle O'Reilly",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "la-knight",
+    "name": "LA Knight",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "LA Knight",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "leon-slater",
+    "name": "Leon Slater",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Leon Slater",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "logan-paul",
+    "name": "Logan Paul",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Logan Paul",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "ludwig-kaiser",
+    "name": "Ludwig Kaiser",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Ludwig Kaiser",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "matt-cardona",
+    "name": "Matt Cardona",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Matt Cardona",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "mjf",
+    "name": "MJF",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "MJF",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "nathan-frazer",
+    "name": "Nathan Frazer",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Nathan Frazer",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "nic-nemeth",
+    "name": "Nic Nemeth",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Nic Nemeth",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "owen-hart",
+    "name": "Owen Hart",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Owen Hart",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "original-grande-americano",
+    "name": "Original Grande Americano",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Original Grande Americano",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "pac",
+    "name": "PAC",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "PAC",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "pete-dunne",
+    "name": "Pete Dunne",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Pete Dunne",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "psycho-clown",
+    "name": "Psycho Clown",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Psycho Clown",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "randy-orton",
+    "name": "Randy Orton",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [
+      "Intercontinental championship (current)"
+    ],
+    "legacy": {
+      "name": "Randy Orton",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": [
+        "Intercontinental championship (current)"
+      ]
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "penta",
+    "name": "Penta",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Penta",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "r-truth",
+    "name": "R-Truth",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "R-Truth",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "rey-fenix",
+    "name": "Rey Fenix",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Rey Fenix",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "rey-mysterio",
+    "name": "Rey Mysterio",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Rey Mysterio",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "ricochet",
+    "name": "RICOCHET",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "RICOCHET",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "rob-van-dam",
+    "name": "Rob Van Dam",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Rob Van Dam",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "roderick-strong",
+    "name": "Roderick Strong",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Roderick Strong",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "roman-reigns",
+    "name": "Roman Reigns",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Roman Reigns",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "sami-zayn",
+    "name": "Sami Zayn",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Sami Zayn",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "shawn-michaels",
+    "name": "Shawn Michaels",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Shawn Michaels",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "shinsuke-nakamura",
+    "name": "Shinsuke Nakamura",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Shinsuke Nakamura",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "sin-cara",
+    "name": "Sin Cara",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Sin Cara",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "solo-sikoa",
+    "name": "Solo Sikoa",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Solo Sikoa",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "seth-rollins",
+    "name": "Seth Rollins",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Seth Rollins trivias.jpg",
+    "status": "active",
+    "division": "Main Roster",
+    "brand": "SmackDown",
+    "stable": "The Vision",
+    "legacyStats": {
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [
+      "16x World Champion",
+      "5x United States Champion"
+    ],
+    "legacy": {
+      "name": "Seth Rollins",
+      "image": "images/Seth Rollins trivias.jpg",
+      "nickname": "",
+      "stable": "The Vision",
+      "division": "Main Roster",
+      "brand": "SmackDown",
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": [
+        "16x World Champion",
+        "5x United States Champion"
+      ]
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "100 - 0",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "shawn-spears",
+    "name": "Shawn Spears",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/shawna spears.jpg",
+    "status": "active",
+    "division": "RAW",
+    "brand": "RAW",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "0 - 0 - 100",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Shawn Spears",
+      "image": "images/shawna spears.jpg",
+      "nickname": "",
+      "stable": "",
+      "division": "RAW",
+      "brand": "RAW",
+      "overall2026": "0 - 0 - 100",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "0 - 0 - 100",
+      "career": "0 - 0"
+    }
+  },
+  {
+    "id": "sheamus",
+    "name": "Sheamus",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Sheamus",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "swerve-strickland",
+    "name": "Swerve Strickland",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Friday Night Smackdown",
+    "brand": "SmackDown",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Swerve Strickland",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Friday Night Smackdown",
+      "brand": "SmackDown",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "tama-tonga",
+    "name": "Tama Tonga",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Tama Tonga",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "ted-dibiase-jr",
+    "name": "Ted Dibiase Jr",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Ted Dibiase Jr",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "the-miz",
+    "name": "The Miz",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "The Miz",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "the-rock",
+    "name": "The Rock",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "The Rock",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "the-sandman",
+    "name": "The Sandman",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "The Sandman",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "the-undertaker",
+    "name": "The Undertaker",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "The Undertaker",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "timothy-thatcher",
+    "name": "Timothy Thatcher",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Timothy Thatcher",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "tommaso-ciampa",
+    "name": "Tommaso Ciampa",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Tommaso Ciampa",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "tonga-loa",
+    "name": "Tonga Loa",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Tonga Loa",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "trick-williams",
+    "name": "Trick Williams",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "Monday Night RAW",
+    "brand": "RAW",
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Trick Williams",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "Monday Night RAW",
+      "brand": "RAW",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "active",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "tyler-bate",
+    "name": "Tyler Bate",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Tyler Bate",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "velveteen-dream",
+    "name": "Velveteen Dream",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Velveteen Dream",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "wade-barrett",
+    "name": "Wade Barrett",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "inactive",
+    "division": null,
+    "brand": null,
+    "stable": null,
+    "legacyStats": {
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [],
+    "legacy": {
+      "name": "Wade Barrett",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "",
+      "division": "",
+      "brand": "",
+      "overall2026": "10 - 0 - 10",
+      "careerOverall": "0 - 10 - 0",
+      "status": "inactive",
+      "achievements": []
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "10 - 0 - 10",
+      "career": "0 - 10 - 0"
+    }
+  },
+  {
+    "id": "vacante",
+    "name": "Vacante",
+    "nickname": null,
+    "interpreter": null,
+    "image": "images/Vacante.webp",
+    "status": "active",
+    "division": "NXT",
+    "brand": "NXT",
+    "stable": "Club de amigos",
+    "legacyStats": {
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0"
+    },
+    "themeSong": null,
+    "finisher": null,
+    "signature": null,
+    "achievements": [
+      "16x World Champion of panchos",
+      "5x United States Champion"
+    ],
+    "legacy": {
+      "name": "Vacante",
+      "image": "images/Vacante.webp",
+      "nickname": "",
+      "stable": "Club de amigos",
+      "division": "NXT",
+      "brand": "NXT",
+      "overall2026": "100 - 0",
+      "careerOverall": "0 - 0",
+      "status": "active",
+      "achievements": [
+        "16x World Champion of panchos",
+        "5x United States Champion"
+      ]
+    },
+    "attributes": null,
+    "interpreterHistory": [],
+    "presentationIds": [],
+    "recordLinks": {},
+    "record": {
+      "season2026": "100 - 0",
+      "career": "0 - 0"
     }
   }
-      ]
-      
+]
