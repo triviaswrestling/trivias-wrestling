@@ -1,4 +1,87 @@
 /* ==========================================================
+   MI WRESTLING — ESTILOS GLOBALES Y BASE PARA TODO EL SITIO
+   ========================================================== */
+
+:root {
+  --mw-accent: #168cff;
+  --mw-accent-rgb: 22, 140, 255;
+  --mw-accent-2: #00e5ff;
+
+  --mw-bg: #05070b;
+  --mw-panel: #0a1019;
+  --mw-white: #f5f9ff;
+  --mw-muted: #9baabc;
+  --mw-line: rgba(190, 220, 255, .15);
+
+  --mw-global-width: 1600px;
+}
+
+/* Reset y Estilos Base del Documento (Aplica para Alumni, Roster, etc.) */
+html {
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--mw-bg);
+  color: var(--mw-white);
+  font-family: "Inter", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Contenedor principal estándar para páginas secundarias */
+.site-main {
+  width: min(calc(100% - 64px), var(--mw-global-width));
+  margin: 0 auto;
+  padding: 40px 0 80px;
+}
+
+.mw-page-header {
+  margin-bottom: 35px;
+}
+
+.page-title {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin: 0 0 10px;
+  color: var(--mw-white);
+}
+
+.lead {
+  color: var(--mw-muted);
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0;
+}
+
+
+
+/* ==========================================================
    MI WRESTLING — ESTILOS GLOBALES
    Estética basada en home.css:
    fondo oscuro, textura sutil, acentos dinámicos y líneas finas.
