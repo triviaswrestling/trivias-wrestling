@@ -1,20 +1,19 @@
-
 /* ==========================================================
    MI WRESTLING — GLOBAL NAVBAR / FOOTER / ACCENT ROTATION
-   No modifica CSS ni lógica de páginas o componentes.
+   Core unificado y corregido (Versión Completa Full)
    ========================================================== */
 
 (() => {
   "use strict";
 
   const THEMES = [
-    { name: "blue", accent: "#168cff", rgb: "22, 140, 255", second: "#00e5ff" },
-    { name: "red", accent: "#ff3156", rgb: "255, 49, 86", second: "#ffb347" },
-    { name: "violet", accent: "#9a5bff", rgb: "154, 91, 255", second: "#f05bff" },
-    { name: "cyan", accent: "#00cfe8", rgb: "0, 207, 232", second: "#8df8ff" },
-    { name: "gold", accent: "#d9a62e", rgb: "217, 166, 46", second: "#ffe18a" },
-    { name: "green", accent: "#19c786", rgb: "25, 199, 134", second: "#9affd8" },
-    { name: "orange", accent: "#ff7a24", rgb: "255, 122, 36", second: "#ffd06a" }
+    { name: "blue", accent: "#168cff", rgb: "22, 140, 255", second: "#00e5ff", primary: "#0051ff", secondary: "#00e5ff" },
+    { name: "red", accent: "#ff3156", rgb: "255, 49, 86", second: "#ffb347", primary: "#e60000", secondary: "#ffb347" },
+    { name: "violet", accent: "#9a5bff", rgb: "154, 91, 255", second: "#f05bff", primary: "#9a5bff", secondary: "#f05bff" },
+    { name: "cyan", accent: "#00cfe8", rgb: "0, 207, 232", second: "#8df8ff", primary: "#00cfe8", secondary: "#8df8ff" },
+    { name: "gold", accent: "#d9a62e", rgb: "217, 166, 46", second: "#ffe18a", primary: "#d9a62e", secondary: "#ffe18a" },
+    { name: "green", accent: "#19c786", rgb: "25, 199, 134", second: "#9affd8", primary: "#19c786", secondary: "#9affd8" },
+    { name: "orange", accent: "#ff7a24", rgb: "255, 122, 36", second: "#ffd06a", primary: "#ff7a24", secondary: "#ffd06a" }
   ];
 
   const NAV_LINKS = [
@@ -99,10 +98,6 @@
     })[char]);
   }
 
-  /*
-   * Obtiene la raíz del sitio a partir de la ubicación del script.
-   * Funciona también si el script está cargado desde una subcarpeta.
-   */
   function getRootPath() {
     const scripts = Array.from(document.scripts);
     const script = scripts.find(item =>
@@ -150,13 +145,15 @@
     const theme = THEMES[index];
     const root = document.documentElement;
 
+    // Aplicar variables de acento principales y secundarias (compatibilidad total)
     root.style.setProperty("--mw-accent", theme.accent);
     root.style.setProperty("--mw-accent-rgb", theme.rgb);
     root.style.setProperty("--mw-accent-2", theme.second);
-
-    /* Compatibilidad con páginas que usen variables antiguas. */
     root.style.setProperty("--accent", theme.accent);
     root.style.setProperty("--accent-rgb", theme.rgb);
+    root.style.setProperty("--theme-primary", theme.primary);
+    root.style.setProperty("--theme-secondary", theme.secondary);
+    root.style.setProperty("--theme-glow", `rgba(${theme.rgb}, 0.6)`);
     root.dataset.mwTheme = theme.name;
   }
 
@@ -171,8 +168,7 @@
   }
 
   function iconSVG(name) {
-    const common =
-      'viewBox="0 0 24 24" aria-hidden="true" focusable="false"';
+    const common = 'viewBox="0 0 24 24" aria-hidden="true" focusable="false"';
 
     const icons = {
       instagram: `<svg ${common}>
@@ -205,7 +201,7 @@
     const available = Boolean(social.url);
     const attrs = available
       ? `href="${escapeHTML(social.url)}" target="_blank" rel="noopener noreferrer"`
-      : 'href="#" aria-disabled="true" data-social-unavailable="true" title="Enlace de Instagram pendiente"';
+      : 'href="#" aria-disabled="true" data-social-unavailable="true" title="Enlace pendiente"';
 
     return `
       <a class="mw-global-social mw-global-social--${social.id}"
@@ -221,7 +217,7 @@
       const active = currentPageName() === path.toLowerCase();
 
       return `
-        <a class="mw-global-nav__link"
+        <a class="mw-global-nav__link ${active ? 'active' : ''}"
            href="${escapeHTML(siteURL(path))}"
            ${active ? 'aria-current="page"' : ""}>
           ${escapeHTML(label)}
@@ -286,7 +282,6 @@
   }
 
   function setupNavbar() {
-    /* La portada conserva su navbar propio de home.css. */
     if (isHomePage()) return;
     if (document.querySelector("[data-mw-global-nav], .site-nav")) return;
 
@@ -348,10 +343,32 @@
     }
   }
 
+  function setupInteractions() {
+    console.log("🔥 Mi-Wrestling Engine Activado");
+
+    const currentPath = currentPageName();
+    const navLinks = document.querySelectorAll('.mw-nav-item, nav a, .mw-global-nav__link');
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && (href.toLowerCase() === currentPath || (currentPath === '' && href.includes('index.html')))) {
+        link.classList.add('active');
+      }
+
+      link.addEventListener('mouseenter', () => {
+        link.style.letterSpacing = '2px';
+      });
+      link.addEventListener('mouseleave', () => {
+        link.style.letterSpacing = '1.5px';
+      });
+    });
+  }
+
   function init() {
     applyTheme();
     setupNavbar();
     setupFooter();
+    setupInteractions();
   }
 
   if (document.readyState === "loading") {
@@ -360,59 +377,9 @@
     init();
   }
 
-  /* API opcional: permite avanzar al siguiente acento desde otros scripts. */
   window.MIWrestlingTheme = {
     apply: applyTheme,
     next: rotateAccent,
     themes: THEMES.map(theme => ({ ...theme }))
   };
 })();
-/* ==========================================================================
-   MI-WRESTLING.JS - CORE JS UNIFICADO (ROTACIÓN DE TEMAS Y MENÚ)
-   ========================================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("🔥 Mi-Wrestling Engine Activado");
-
-  // 1. ROTACIÓN DE TEMAS / COLORES DINÁMICOS (ESTILO INICIO)
-  const root = document.documentElement;
-  
-  const themePresets = [
-    { primary: '#0051ff', secondary: '#e60000', glow: 'rgba(0, 81, 255, 0.6)' }, // SmackDown Blue
-    { primary: '#e60000', secondary: '#0051ff', glow: 'rgba(230, 0, 0, 0.6)' },  // RAW Red
-    { primary: '#ffcc00', secondary: '#0051ff', glow: 'rgba(255, 204, 0, 0.6)' }  // Gold Championship
-  ];
-
-  let currentThemeIndex = 0;
-
-  function applyNextTheme() {
-    currentThemeIndex = (currentThemeIndex + 1) % themePresets.length;
-    const theme = themePresets[currentThemeIndex];
-
-    root.style.setProperty('--theme-primary', theme.primary);
-    root.style.setProperty('--theme-secondary', theme.secondary);
-    root.style.setProperty('--theme-glow', theme.glow);
-  }
-
-  // Cambia dinámicamente cada 7 segundos como en la Home
-  setInterval(applyNextTheme, 7000);
-
-  // 2. DETECCIÓN DE PÁGINA ACTIVA EN EL MENÚ SVR
-  const currentPath = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('.mw-nav-item, nav a');
-
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
-
-    // Efecto de click/hover táctil
-    link.addEventListener('mouseenter', () => {
-      link.style.letterSpacing = '2px';
-    });
-    link.addEventListener('mouseleave', () => {
-      link.style.letterSpacing = '1.5px';
-    });
-  });
-});
