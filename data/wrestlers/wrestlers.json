@@ -1,1 +1,192 @@
-
+[
+  {
+    "id": "bray-wyatt",
+    "name": "Bray Wyatt",
+    "nickname": "The Eater of Worlds",
+    "brand": "legends",
+    "status": "alumni",
+    "division": "Men",
+    "overall": 97,
+    "image": "images/wrestlers/bray-wyatt.webp",
+    "bio": "Perfil base de Bray Wyatt. Las presentaciones alternativas pertenecen a este mismo luchador.",
+    "finisher": [
+      "Sister Abigail",
+      "Mandible Claw"
+    ],
+    "signature": [
+      "Sister Abigail",
+      "Uranage"
+    ],
+    "achievements": [
+      "WWE Champion",
+      "Universal Champion",
+      "Multiple-time world champion"
+    ],
+    "stats": {
+      "strength": 91,
+      "technical": 84,
+      "speed": 78,
+      "charisma": 99,
+      "stamina": 88
+    },
+    "alterego": [
+      "wyatt-champion-1",
+      "the-fiend"
+    ],
+    "presentations": {
+      "default": {
+        "id": "bray-wyatt-original",
+        "name": "Bray Wyatt",
+        "image": "images/wrestlers/bray-wyatt.webp",
+        "brand": "legends"
+      },
+      "wyatt-champion-1": {
+        "id": "wyatt-champion-1",
+        "name": "Bray Wyatt — WWE Champion",
+        "image": "images/wrestlers/bray-wyatt-champion.webp",
+        "brand": "raw"
+      },
+      "the-fiend": {
+        "id": "the-fiend",
+        "name": "The Fiend",
+        "image": "images/wrestlers/the-fiend.webp",
+        "brand": "legends"
+      }
+    }
+  },
+  {
+    "id": "chad-gable",
+    "name": "Chad Gable",
+    "nickname": "Master of the Alpha Academy",
+    "brand": "raw",
+    "status": "active",
+    "division": "Men",
+    "overall": 89,
+    "image": "images/wrestlers/chad-gable.webp",
+    "bio": "Un único perfil con presentaciones seleccionables por combate.",
+    "finisher": [
+      "Chaos Theory",
+      "Ankle Lock"
+    ],
+    "signature": [
+      "German Suplex",
+      "Exploder Suplex"
+    ],
+    "achievements": [
+      "Tag Team Champion",
+      "Olympic-style wrestling specialist"
+    ],
+    "stats": {
+      "strength": 78,
+      "technical": 96,
+      "speed": 86,
+      "charisma": 82,
+      "stamina": 91
+    },
+    "alterego": [
+      "el-grande-americano"
+    ],
+    "presentations": {
+      "default": {
+        "id": "chad-gable-original",
+        "name": "Chad Gable",
+        "image": "images/wrestlers/chad-gable.webp",
+        "brand": "raw"
+      },
+      "el-grande-americano": {
+        "id": "el-grande-americano",
+        "name": "El Grande Americano",
+        "image": "images/wrestlers/el-grande-americano.webp",
+        "brand": "raw"
+      }
+    }
+  },
+  {
+    "id": "finn-balor",
+    "name": "Finn Bálor",
+    "nickname": "The Prince",
+    "brand": "raw",
+    "status": "active",
+    "division": "Men",
+    "overall": 92,
+    "image": "images/wrestlers/finn-balor.webp",
+    "bio": "Perfil único para Finn Bálor y su presentación Demon.",
+    "finisher": [
+      "Coup de Grâce",
+      "1916"
+    ],
+    "signature": [
+      "Sling Blade",
+      "Shotgun Dropkick"
+    ],
+    "achievements": [
+      "Universal Champion",
+      "Intercontinental Champion",
+      "NXT Champion"
+    ],
+    "stats": {
+      "strength": 80,
+      "technical": 89,
+      "speed": 93,
+      "charisma": 92,
+      "stamina": 90
+    },
+    "alterego": [
+      "the-demon"
+    ],
+    "presentations": {
+      "default": {
+        "id": "finn-balor-original",
+        "name": "Finn Bálor",
+        "image": "images/wrestlers/finn-balor.webp",
+        "brand": "raw"
+      },
+      "the-demon": {
+        "id": "the-demon",
+        "name": "The Demon",
+        "image": "images/wrestlers/the-demon.webp",
+        "brand": "special"
+      }
+    }
+  },
+  {
+    "id": "bret-hart",
+    "name": "Bret Hart",
+    "nickname": "The Hitman",
+    "brand": "legends",
+    "status": "alumni",
+    "division": "Men",
+    "overall": 96,
+    "image": "images/wrestlers/bret-hart.webp",
+    "bio": "The Excellence of Execution.",
+    "finisher": [
+      "Sharpshooter"
+    ],
+    "signature": [
+      "Russian Leg Sweep",
+      "Second Rope Elbow"
+    ],
+    "achievements": [
+      "WWE Champion",
+      "Intercontinental Champion",
+      "King of the Ring"
+    ],
+    "stats": {
+      "strength": 83,
+      "technical": 99,
+      "speed": 84,
+      "charisma": 93,
+      "stamina": 94
+    },
+    "alterego": [],
+    "presentations": {
+      "default": {
+        "id": "bret-hart-original",
+        "name": "Bret Hart",
+        "image": "images/wrestlers/bret-hart.webp",
+        "brand": "legends"
+      }
+    }
+  }
+      ]
+      
