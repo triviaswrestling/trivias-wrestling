@@ -1,3 +1,40 @@
+/* MI WRESTLING 2.0 | RÉCORDS Y TARJETAS DE COMBATE */
+.mw-record-hero{padding:clamp(24px,5vw,44px);margin-bottom:22px;border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(120deg,rgba(22,140,255,.16),#080a10 58%,rgba(255,49,85,.12))}
+.mw-record-eyebrow{font-size:.72rem;font-weight:900;letter-spacing:.14em;color:var(--accent)}
+.mw-record-hero h1{font:900 clamp(2.5rem,8vw,5rem)/.95 "Barlow Condensed",sans-serif;margin:8px 0 10px}
+.mw-record-hero p:last-child{color:var(--text-soft)}
+.mw-record-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.mw-record-stat{min-width:0;padding:16px;border:1px solid var(--border);border-radius:var(--radius-small);background:var(--surface)}
+.mw-record-stat span{display:block;color:var(--text-soft);font-size:.67rem;font-weight:900;letter-spacing:.09em}
+.mw-record-stat strong{display:block;margin-top:8px;font:900 clamp(1.45rem,4vw,2.35rem)/1 "Barlow Condensed",sans-serif;overflow-wrap:anywhere}
+.mw-record-note,.mw-record-legacy,.mw-record-list-section{padding:20px;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius-small);background:var(--surface)}
+.mw-record-note h2,.mw-record-legacy h2,.mw-record-list-section h2{font:900 1.6rem "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 12px}
+.mw-record-legacy p{color:var(--text-soft);font-size:.9rem}
+.mw-record-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.mw-record-links a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--border);border-radius:4px;background:#0e121a;color:var(--text);text-decoration:none}
+.mw-record-links a:hover{border-color:var(--accent);color:#fff}
+.mw-record-back{display:inline-flex;margin:10px 0 18px;padding:11px 14px;border:1px solid var(--border);border-radius:4px;color:var(--text);text-decoration:none;font-weight:800}
+.mw-match-card{margin:13px 0;border:1px solid var(--border);border-radius:var(--radius-small);background:#0b0e15;overflow:hidden}
+.mw-match-card__header{display:flex;justify-content:space-between;gap:10px;padding:12px 15px;background:#111722;color:var(--text-soft);font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.mw-match-card__event{display:block;padding:10px 15px 0;color:var(--accent);font-size:.85rem;font-weight:800}
+.mw-match-participants{list-style:none;margin:0;padding:8px 15px}
+.mw-match-participant{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 12px;padding:12px 0;border-bottom:1px solid #ffffff12}
+.mw-match-participant:last-child{border-bottom:0}
+.mw-match-wrestler{font-weight:900;color:#fff}
+.mw-match-participant small{grid-column:1/-1;color:var(--text-soft);font-size:.8rem}
+.mw-match-participant small a{color:var(--accent)}
+.mw-match-result{font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+.mw-match-result.is-win{color:#55d99d}.mw-match-result.is-loss{color:#ff6576}.mw-match-result.is-draw{color:#e9c66c}.mw-match-result.is-no-contest{color:#aab4c4}
+.mw-match-details{border-top:1px solid var(--border)}
+.mw-match-details summary{padding:12px 15px;cursor:pointer;color:var(--text-soft);font-weight:800;font-size:.85rem}
+.mw-match-details__content{padding:0 15px 14px;color:var(--text-soft);font-size:.86rem}
+.mw-match-details__content h4{margin:10px 0 5px;color:#fff}
+.mw-match-details__content ul{padding-left:20px}
+.mw-match-details__content a{color:var(--accent)}
+@media(max-width:620px){.mw-record-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mw-record-links{grid-template-columns:1fr}.mw-match-card__header{align-items:flex-start;flex-direction:column;gap:5px}}
 
-/* MI WRESTLING 2.0 | ESTILOS DE RECORDS */
-body[data-page="records"] .page-hero{--page-accent:var(--accent)}
+.mw-match-scoreline{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px;background:#090c12;color:#f2f6ff;font-size:1.2rem;font-variant-numeric:tabular-nums}.mw-match-scoreline strong{min-width:24px;text-align:center}.mw-match-title-ribbon{padding:8px 14px;background:#15233a;color:#c3e1ff;border-bottom:1px solid #2b4569;font-size:.73rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.mw-match-participant__result{display:flex;align-items:center;gap:8px;flex-shrink:0}.mw-match-participant__result>strong{font-size:.9rem;color:var(--text);font-variant-numeric:tabular-nums}.mw-match-participant__result .mw-match-result{white-space:nowrap}
+
+/* Connected title wins + tournament timeline */
+.mw-title-win-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.mw-title-win-card{--title-accent:#d8dfeb;--title-rgb:216,223,235;display:flex;flex-direction:column;gap:7px;min-width:0;padding:12px;border:1px solid #343947;background:linear-gradient(140deg,rgba(var(--title-rgb),.11),#0a0b10 65%);clip-path:polygon(0 0,100% 0,100% 92%,93% 100%,0 100%);transition:background .15s,border-color .15s,filter .15s}.mw-title-win-card:hover,.mw-title-win-card:focus-visible,.mw-title-win-card:active{background:linear-gradient(140deg,rgba(var(--title-rgb),.28),#151821 65%);border-color:var(--title-accent);filter:brightness(1.18);outline:none}.mw-title-win-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:65px;border:1px solid var(--title-accent);background:radial-gradient(ellipse,rgba(var(--title-rgb),.16),#08090d 70%);overflow:hidden}.mw-title-win-art b{font:900 1.4rem var(--display);letter-spacing:.1em;color:var(--title-accent);text-shadow:0 2px #000}.mw-title-orbit{position:absolute;width:50px;height:50px;border:2px double var(--title-accent);border-radius:50%;opacity:.5}.mw-title-win-name{font:900 1.15rem/.98 var(--display);text-transform:uppercase}.mw-title-win-count{align-self:flex-start;padding:3px 7px;background:rgba(var(--title-rgb),.14);border:1px solid rgba(var(--title-rgb),.3);color:var(--title-accent);font:900 .78rem var(--display)}.mw-title-win-current{font:800 .68rem var(--display);letter-spacing:.07em;color:var(--text-soft)}.mw-title-empty{padding:14px;border:1px dashed #3b4251;background:#0b0d12;color:var(--text-soft);font-size:.88rem}.mw-tournament-timeline{position:relative;display:grid;gap:8px}.mw-tournament-timeline-card{display:grid;grid-template-columns:62px 12px minmax(0,1fr) 20px;align-items:stretch;gap:10px;padding:10px;background:linear-gradient(100deg,#141721,#090a0e);border:1px solid #2a2f3b;transition:background .15s,border-color .15s}.mw-tournament-timeline-card:hover,.mw-tournament-timeline-card:active{background:linear-gradient(100deg,#202431,#0b0c11);border-color:var(--accent)}.mw-tournament-timeline-year{align-self:center;font:900 1.2rem var(--display);color:var(--accent)}.mw-tournament-timeline-line{width:3px;background:var(--accent);opacity:.8}.mw-tournament-timeline-body{display:flex;flex-direction:column;gap:4px;min-width:0}.mw-tournament-timeline-body b{font:900 1.1rem var(--display);text-transform:uppercase}.mw-tournament-timeline-body small{font-size:.76rem;color:var(--text-soft)}.mw-tournament-timeline-arrow{align-self:center;color:var(--accent)}.mw-record-titles,.mw-record-tournaments{margin-top:24px}.mw-record-titles h2,.mw-record-tournaments h2{margin-bottom:14px}.title-wwe-championship{--title-accent:#f0d99c;--title-rgb:240,217,156}.title-world-championship{--title-accent:#d5e1f4;--title-rgb:213,225,244}.title-intercontinental-championship{--title-accent:#e0c28a;--title-rgb:224,194,138}.title-usa-championship{--title-accent:#9fc7ff;--title-rgb:159,199,255}.title-world-tag-championship{--title-accent:#e1e5ed;--title-rgb:225,229,237}.title-speed-championship{--title-accent:#64eaff;--title-rgb:100,234,255}.title-nxt-championship{--title-accent:#c8d0dc;--title-rgb:200,208,220}.title-crown-jewel-championship{--title-accent:#ffd36b;--title-rgb:255,211,107}.title-aaa-megacampeonato{--title-accent:#8affae;--title-rgb:138,255,174}.title-aew-championship{--title-accent:#ead9b9;--title-rgb:234,217,185}
+@media(max-width:700px){.mw-title-win-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mw-title-win-card{padding:9px;gap:6px}.mw-title-win-name{font-size:1.03rem}.mw-title-win-art{min-height:54px}.mw-title-win-art b{font-size:1.1rem}.mw-title-win-count{font-size:.72rem}.mw-tournament-timeline-card{grid-template-columns:46px 7px minmax(0,1fr) 14px;gap:7px;padding:8px}.mw-tournament-timeline-year{font-size:1rem}.mw-tournament-timeline-body b{font-size:1rem}}
