@@ -1,2 +1,24 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Perfiles activos"><title>Roster | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/roster.css"><script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="roster"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Roster</h1><p class="lead">Perfiles activos</p></section><p class="notice">Cargando catálogo…</p></main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
-
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#05070b">
+<meta name="description" content="ROSTER — MI WRESTLING 2.0">
+<title>ROSTER | MI WRESTLING 2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/mi-wrestling.css">
+<link rel="stylesheet" href="css/pages/roster-pages.css">
+</head>
+<body data-page="active" data-wrestler-status="active">
+<main class="mw-roster-page">
+<header class="mw-page-header"><p class="eyebrow">MI WRESTLING 2.0 / UNIVERSE DATABASE</p><h1 class="page-title">ROSTER</h1><p class="lead">Las superestrellas activas del universo MI WRESTLING.</p></header>
+<section class="mw-roster-toolbar" aria-label="Buscar y filtrar luchadores"><input id="wrestler-search" type="search" placeholder="Buscar superestrella…" aria-label="Buscar luchador"><select id="wrestler-brand" aria-label="Filtrar por marca"><option value="">Todas las marcas</option><option value="raw">RAW</option><option value="smackdown">SmackDown</option><option value="nxt">NXT</option><option value="legends">Leyendas</option><option value="special">Especial</option></select><span id="wrestler-count" aria-live="polite"></span></section>
+<section id="wrestler-grid" class="mw-wrestler-grid" aria-label="Luchadores"><p class="mw-loading">Cargando superestrellas…</p></section>
+</main>
+<div class="mw-modal-root" id="mw-modal-root"></div>
+<script src="js/mi-wrestling.js" defer></script>
+<script src="js/wrestlers.js" defer></script>
+</body></html>
