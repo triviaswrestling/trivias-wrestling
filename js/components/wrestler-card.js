@@ -54,7 +54,12 @@
     if (brand.includes("tna")) return { accent: "#e2b83f", glow: "rgba(226,184,63,.28)", label: wrestler.brand || "TNA", banner: "linear-gradient(105deg,#b8172b 0%,#d9aa31 52%,#f5d96a 100%)" };
     if (brand.includes("raw")) return { accent: "#ff334f", glow: "rgba(255,51,79,.32)", label: wrestler.brand || "RAW", banner: "linear-gradient(105deg,#8f1027,#ff334f 52%,#ff8b93)" };
     if (brand.includes("smack") || brand === "sd") return { accent: "#3199ff", glow: "rgba(49,153,255,.3)", label: wrestler.brand || "SMACKDOWN", banner: "linear-gradient(105deg,#103c88,#3199ff 52%,#8ad2ff)" };
-    if (brand.includes("nxt")) return { accent: "#e9c94a", glow: "rgba(233,201,74,.28)", label: wrestler.brand || "NXT", banner: "linear-gradient(105deg,#7a621a,#e9c94a 52%,#fff0a0)" };
+    if (brand.includes("nxt")) return {
+  accent: "#c7cdd6",
+  glow: "rgba(199,205,214,.22)",
+  label: wrestler.brand || "NXT",
+  banner: "linear-gradient(105deg,#515761 0%,#aeb5bf 35%,#f0f2f5 52%,#929aa6 75%,#424750 100%)"
+};
     if (brand.includes("wwe")) return { accent: "#e7eaf0", glow: "rgba(231,234,240,.22)", label: wrestler.brand || "WWE", banner: "linear-gradient(105deg,#5c6575,#f0f2f5 52%,#8c96a8)" };
     return { accent: "#22d8ff", glow: "rgba(34,216,255,.3)", label: wrestler.brand || "ACTIVE", banner: "linear-gradient(105deg,#126b92,#22d8ff 52%,#b4f5ff)" };
   }
