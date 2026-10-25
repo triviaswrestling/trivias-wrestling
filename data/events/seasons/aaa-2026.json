@@ -1,0 +1,14 @@
+{
+  "id": "aaa-2026",
+  "categoryId": "aaa",
+  "name": "Archivo 2026",
+  "year": 2026,
+  "status": "current",
+  "startDate": null,
+  "endDate": null,
+  "shows": [
+    "aaa"
+  ],
+  "events": [],
+  "notes": "Archivo organizado por año; el año se filtra desde el catálogo y no se presenta como una página intermedia."
+}
