@@ -367,3 +367,52 @@
     themes: THEMES.map(theme => ({ ...theme }))
   };
 })();
+/* ==========================================================================
+   MI-WRESTLING.JS - CORE JS UNIFICADO (ROTACIÓN DE TEMAS Y MENÚ)
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("🔥 Mi-Wrestling Engine Activado");
+
+  // 1. ROTACIÓN DE TEMAS / COLORES DINÁMICOS (ESTILO INICIO)
+  const root = document.documentElement;
+  
+  const themePresets = [
+    { primary: '#0051ff', secondary: '#e60000', glow: 'rgba(0, 81, 255, 0.6)' }, // SmackDown Blue
+    { primary: '#e60000', secondary: '#0051ff', glow: 'rgba(230, 0, 0, 0.6)' },  // RAW Red
+    { primary: '#ffcc00', secondary: '#0051ff', glow: 'rgba(255, 204, 0, 0.6)' }  // Gold Championship
+  ];
+
+  let currentThemeIndex = 0;
+
+  function applyNextTheme() {
+    currentThemeIndex = (currentThemeIndex + 1) % themePresets.length;
+    const theme = themePresets[currentThemeIndex];
+
+    root.style.setProperty('--theme-primary', theme.primary);
+    root.style.setProperty('--theme-secondary', theme.secondary);
+    root.style.setProperty('--theme-glow', theme.glow);
+  }
+
+  // Cambia dinámicamente cada 7 segundos como en la Home
+  setInterval(applyNextTheme, 7000);
+
+  // 2. DETECCIÓN DE PÁGINA ACTIVA EN EL MENÚ SVR
+  const currentPath = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.mw-nav-item, nav a');
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+
+    // Efecto de click/hover táctil
+    link.addEventListener('mouseenter', () => {
+      link.style.letterSpacing = '2px';
+    });
+    link.addEventListener('mouseleave', () => {
+      link.style.letterSpacing = '1.5px';
+    });
+  });
+});
