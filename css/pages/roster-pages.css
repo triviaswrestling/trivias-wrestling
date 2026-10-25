@@ -379,103 +379,155 @@
 
 
 
-/* =====================================================
-   MI WRESTLING 2.0 — ROSTER CARD FIX
-   Tarjetas más altas, nombres blancos y sin marca
-   ===================================================== */
 
-.mw-wrestler-card{
-    aspect-ratio:3/4.7;
+/* ==========================================================
+   MI WRESTLING 2.0 — WRESTLER CARDS 2026
+   RAW Netflix / SMACKDOWN / NXT / AAA
+   Solo presentación de tarjetas. No modifica Alumni ni WWE.
+   ========================================================== */
+
+/* Tarjeta base: fotografía protagonista */
+.mw-wrestler-card {
+    aspect-ratio: 3 / 4.7;
 }
 
-
-/* NOMBRES — VHS / WWE 2K RETRO */
-.mw-wrestler-card__name{
-    color:#e5e5e2!important;
-    -webkit-text-fill-color:#e5e5e2;
-    font-family:"Barlow Condensed",Impact,sans-serif;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:-.025em;
-    line-height:.96;
-    -webkit-text-stroke:.25px #17191d;
-    text-shadow:
-        0 1px 1px #000,
-        1px 0 0 #202126,
-        -1px 0 0 #202126,
-        0 2px 3px #000b;
+/* Fotografía limpia, sin apariencia metálica */
+.mw-wrestler-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
 }
 
-
-/* Ocultar la marca inferior que ocupa espacio */
-.mw-wrestler-card__brand{
-    display:none!important;
+/* Nombre y apodo: legibles sobre la fotografía */
+.mw-wrestler-card__name {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    font-family: var(--mw-font-display, "Barlow Condensed", Impact, sans-serif);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    line-height: 1;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 2px 5px #000, 0 0 12px rgb(0 0 0 / 45%);
+    overflow-wrap: anywhere;
 }
 
-/* Mantener la imagen cubriendo toda la tarjeta */
-.mw-wrestler-card__image{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center top;
+/* Evita la placa metálica de marca */
+.mw-wrestler-card__brand {
+    display: none !important;
 }
 
-/* Móvil: tres columnas y tarjetas más altas */
-@media(max-width:560px){
-    .roster-grid-container{
-        grid-template-columns:repeat(3,minmax(0,1fr));
-        gap:7px;
-        padding-inline:10px;
+/* Presentación de la franja inferior */
+.mw-wrestler-card__banner {
+    position: relative;
+    background: linear-gradient(
+        0deg,
+        rgb(0 0 0 / 98%) 0%,
+        rgb(0 0 0 / 88%) 58%,
+        rgb(0 0 0 / 12%) 100%
+    );
+    margin-bottom: 4px;
+    padding: 6px 5px 9px 8px;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Apodo con contraste y espacio propio */
+.mw-wrestler-card__subtitle {
+    color: #fff;
+    font-size: clamp(0.52rem, 2vw, 0.72rem);
+    font-weight: 800;
+    letter-spacing: 0.045em;
+    line-height: 1.15;
+    text-shadow: 0 1px 4px #000;
+    overflow-wrap: anywhere;
+}
+
+/* RAW — rojo y negro, identidad Netflix 2026 */
+.mw-wrestler-card:has([data-brand="RAW"]),
+.mw-wrestler-card.brand-raw {
+    --card-brand-color: #ff2638;
+}
+
+/* SMACKDOWN — azul eléctrico */
+.mw-wrestler-card:has([data-brand="SmackDown"]),
+.mw-wrestler-card.brand-smackdown {
+    --card-brand-color: #168cff;
+}
+
+/* NXT 2026 — negro, plata y blanco; sin amarillo */
+.mw-wrestler-card:has([data-brand="NXT"]),
+.mw-wrestler-card.brand-nxt {
+    --card-brand-color: #c7ccd4;
+}
+
+/* AAA — conserva una identidad intensa */
+.mw-wrestler-card:has([data-brand="AAA"]),
+.mw-wrestler-card.brand-aaa {
+    --card-brand-color: #f04444;
+}
+
+/* Detalle de color discreto, no metálico */
+.mw-wrestler-card:has([data-brand="RAW"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-raw .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="SmackDown"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-smackdown .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="NXT"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-nxt .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="AAA"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-aaa .mw-wrestler-card__banner {
+    border-top: 2px solid var(--card-brand-color);
+}
+
+/* Móvil */
+@media (max-width: 560px) {
+    .roster-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+        padding-inline: 10px;
     }
 
-    .mw-wrestler-card{
-        aspect-ratio:3/4.7;
+    .mw-wrestler-card {
+        aspect-ratio: 3 / 4.7;
     }
 
-    .mw-wrestler-card__name{
-        font-size:clamp(.82rem,3.7vw,1.18rem);
-        line-height:.96;
-        overflow-wrap:anywhere;
+    .mw-wrestler-card__name {
+        font-size: clamp(0.82rem, 3.7vw, 1.18rem);
+        line-height: 0.96;
     }
 
-    .mw-wrestler-card__banner{
-        padding:6px 5px 7px 8px;
-        margin-bottom:4px;
+    .mw-wrestler-card__banner {
+        padding: 6px 5px 7px 8px;
     }
 
-    .mw-wrestler-card__subtitle{
-        font-size:clamp(.43rem,1.9vw,.58rem);
-        letter-spacing:.04em;
+    .mw-wrestler-card__subtitle {
+        font-size: clamp(0.43rem, 1.9vw, 0.58rem);
+        letter-spacing: 0.04em;
     }
 }
 
-/* Conservar las tres columnas incluso en pantallas pequeñas */
-@media(max-width:360px){
-    .roster-grid-container{
-        grid-template-columns:repeat(3,minmax(0,1fr));
+@media (max-width: 360px) {
+    .roster-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
     }
 
-    .mw-wrestler-card__view{
-        display:none;
+    .mw-wrestler-card__view {
+        display: none;
     }
 }
 
-/* NXT: acabado plateado, no amarillo.
-   Se aplica a elementos que tengan esta clase o atributo. */
-.brand-nxt,
-[data-brand="NXT"]{
-    --theme-accent:#c7ced8;
-    --theme-glow:rgba(199,206,216,.18);
-}
-
-@media(prefers-reduced-motion:reduce){
+@media (prefers-reduced-motion: reduce) {
     .mw-wrestler-card,
     .mw-wrestler-card__image,
-    .mw-wrestler-card__sheen{
-        transition:none!important;
-        animation:none!important;
+    .mw-wrestler-card__sheen {
+        animation: none !important;
+        transition: none !important;
     }
 }
+
 
 /* ==========================================================
    MI WRESTLING 2.0 — DIVISIONES DEL ROSTER
