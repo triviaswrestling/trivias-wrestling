@@ -1,0 +1,289 @@
+{
+  "id": "speed-2024",
+  "categoryId": "speed",
+  "name": "Archivo 2024",
+  "year": 2024,
+  "status": "archived",
+  "startDate": "2024-08-08",
+  "endDate": "2024-11-21",
+  "shows": [
+    "speed"
+  ],
+  "events": [
+    {
+      "id": "speed-13",
+      "legacyKey": "speed-13",
+      "title": "SPEED #13",
+      "name": "SPEED #13",
+      "type": "WEEKLY",
+      "date": "2024-11-21",
+      "dateOriginal": "21/11/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-4-speed-13-match-1"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-12",
+      "legacyKey": "speed-12",
+      "title": "SPEED #12",
+      "name": "SPEED #12",
+      "type": "WEEKLY",
+      "date": "2024-11-14",
+      "dateOriginal": "14/11/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-4-speed-12-match-1",
+        "outsider-speed-4-speed-12-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-11",
+      "legacyKey": "speed-11",
+      "title": "SPEED #11",
+      "name": "SPEED #11",
+      "type": "WEEKLY",
+      "date": "2024-11-07",
+      "dateOriginal": "07/11/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-4-speed-11-match-1",
+        "outsider-speed-4-speed-11-match-2",
+        "outsider-speed-4-speed-11-match-3",
+        "outsider-speed-4-speed-11-match-4"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-10",
+      "legacyKey": "speed-10",
+      "title": "SPEED #10",
+      "name": "SPEED #10",
+      "type": "WEEKLY",
+      "date": "2024-10-24",
+      "dateOriginal": "24/10/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-3-speed-10-match-1"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-9",
+      "legacyKey": "speed-9",
+      "title": "SPEED #9",
+      "name": "SPEED #9",
+      "type": "WEEKLY",
+      "date": "2024-10-17",
+      "dateOriginal": "17/10/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-3-speed-9-match-1",
+        "outsider-speed-3-speed-9-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-8",
+      "legacyKey": "speed-8",
+      "title": "SPEED #8",
+      "name": "SPEED #8",
+      "type": "WEEKLY",
+      "date": "2024-10-10",
+      "dateOriginal": "10/10/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-3-speed-8-match-1",
+        "outsider-speed-3-speed-8-match-2",
+        "outsider-speed-3-speed-8-match-3",
+        "outsider-speed-3-speed-8-match-4"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-7",
+      "legacyKey": "speed-7",
+      "title": "SPEED #7",
+      "name": "SPEED #7",
+      "type": "WEEKLY",
+      "date": "2024-09-19",
+      "dateOriginal": "19/09/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-2-speed-7-match-1"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-6",
+      "legacyKey": "speed-6",
+      "title": "SPEED #6",
+      "name": "SPEED #6",
+      "type": "WEEKLY",
+      "date": "2024-09-12",
+      "dateOriginal": "12/09/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-2-speed-6-match-1",
+        "outsider-speed-2-speed-6-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-5",
+      "legacyKey": "speed-5",
+      "title": "SPEED #5",
+      "name": "SPEED #5",
+      "type": "WEEKLY",
+      "date": "2024-09-05",
+      "dateOriginal": "05/09/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-2-speed-5-match-1",
+        "outsider-speed-2-speed-5-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-4",
+      "legacyKey": "speed-4",
+      "title": "SPEED #4",
+      "name": "SPEED #4",
+      "type": "WEEKLY",
+      "date": "2024-08-29",
+      "dateOriginal": "29/08/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-2-speed-4-match-1",
+        "outsider-speed-2-speed-4-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-3",
+      "legacyKey": "speed-3",
+      "title": "SPEED #3",
+      "name": "SPEED #3",
+      "type": "WEEKLY",
+      "date": "2024-08-22",
+      "dateOriginal": "22/08/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-1-speed-3-match-1",
+        "outsider-speed-1-speed-3-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-2",
+      "legacyKey": "speed-2",
+      "title": "SPEED #2",
+      "name": "SPEED #2",
+      "type": "WEEKLY",
+      "date": "2024-08-15",
+      "dateOriginal": "15/08/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-1-speed-2-match-1",
+        "outsider-speed-1-speed-2-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    },
+    {
+      "id": "speed-1",
+      "legacyKey": "speed-1",
+      "title": "SPEED #1",
+      "name": "SPEED #1",
+      "type": "WEEKLY",
+      "date": "2024-08-08",
+      "dateOriginal": "08/08/2024",
+      "brand": "Speed",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "outsider-speed-1-speed-1-match-1",
+        "outsider-speed-1-speed-1-match-2"
+      ],
+      "categoryId": "speed",
+      "categoryName": "Speed",
+      "year": 2024,
+      "seasonId": "speed-2024",
+      "seasonName": "2024"
+    }
+  ],
+  "notes": "Archivo organizado por año; el año se filtra desde el catálogo y no se presenta como una página intermedia."
+}
