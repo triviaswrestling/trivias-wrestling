@@ -1,3 +1,58 @@
 /* MI WRESTLING 2.0 | ESTILOS DE TOURNAMENT */
 body[data-page="tournament"] .page-hero{--page-accent:var(--accent)}
 
+
+/* ARCHIVO DE TORNEOS — catálogo, draft, tabla, matriz y fases */
+.mw-tournament-catalog-tools,.mw-event-year-filter{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0;padding:14px;border:1px solid var(--border);background:#0b0d13;border-radius:var(--radius-small)}
+.mw-tournament-catalog-tools label,.mw-event-year-filter label{font-size:.72rem;font-weight:900;letter-spacing:.09em;color:var(--text-soft)}
+.mw-tournament-catalog-tools select,.mw-tournament-catalog-tools input,.mw-event-year-filter select{min-height:42px;max-width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:4px;background:#111722;color:var(--text);font:inherit}
+.mw-tournament-catalog-tools input{flex:1;min-width:190px}
+.mw-tournament-catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 32px}
+.mw-tournament-catalog-card{display:flex;flex-direction:column;gap:9px;min-width:0;padding:17px;border:1px solid #293344;border-radius:4px;background:linear-gradient(145deg,#141a26,#08090d 72%);color:inherit;text-decoration:none;transition:border-color .16s,transform .16s}
+.mw-tournament-catalog-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mw-tournament-catalog-card>span{font-size:.68rem;font-weight:900;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+.mw-tournament-catalog-card strong{font-size:1.03rem;line-height:1.25}
+.mw-tournament-catalog-card small{color:var(--text-soft);line-height:1.4}
+.mw-tournament-catalog-card b{margin-top:auto;font-size:.72rem;letter-spacing:.07em}
+.mw-tournament-hero{margin-bottom:16px}
+.mw-tournament-panel{margin:20px 0;padding:clamp(13px,2vw,22px);border:1px solid var(--border);border-radius:4px;background:linear-gradient(145deg,#0d111a,#07080b 75%);min-width:0}
+.mw-tournament-panel__heading{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.mw-tournament-panel__heading h2{margin:3px 0 0;font-size:clamp(1.15rem,2.5vw,1.65rem);text-transform:uppercase}
+.mw-tournament-panel__heading>span,.mw-tournament-panel__heading>p{color:var(--text-soft);font-size:.78rem}
+.mw-tournament-panel__heading>p{max-width:620px;margin:8px 0 0;line-height:1.5}
+.mw-tournament-draft-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.mw-tournament-draft-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #293344;border-radius:3px;background:#0a0c12;color:inherit;text-decoration:none;min-width:0}
+.mw-tournament-draft-card img,.mw-tournament-draft-placeholder{width:100%;aspect-ratio:3/4;object-fit:cover;background:linear-gradient(145deg,#17283d,#07080b);display:flex;align-items:center;justify-content:center;color:#dce8f8;font-size:1.5rem;font-weight:900}
+.mw-tournament-draft-card strong{padding:9px 8px;font-size:.8rem;line-height:1.25}
+.mw-tournament-table-wrap,.mw-tournament-matrix-wrap{max-width:100%;overflow:auto;border:1px solid #202a39;border-radius:3px}
+.mw-tournament-table,.mw-tournament-matrix{border-collapse:separate;border-spacing:0;width:100%;font-size:.78rem;white-space:nowrap}
+.mw-tournament-table th,.mw-tournament-table td,.mw-tournament-matrix th,.mw-tournament-matrix td{padding:9px 10px;text-align:center;border-right:1px solid #1e2734;border-bottom:1px solid #1e2734}
+.mw-tournament-table thead th,.mw-tournament-matrix thead th{position:sticky;top:0;z-index:2;background:#151d2b;color:#eaf2ff;font-weight:900}
+.mw-tournament-table thead button{border:0;background:none;color:inherit;font:inherit;font-weight:900;cursor:pointer}
+.mw-tournament-table tbody th,.mw-tournament-table tbody td:first-child,.mw-tournament-matrix tbody th{background:#0f141e;font-weight:800}
+.mw-tournament-table tbody td:nth-child(2){text-align:left;min-width:150px}
+.mw-tournament-table tr:first-child td:first-child{color:#55e6a5}
+.mw-tournament-table .is-positive{color:#55e6a5;font-weight:900}.mw-tournament-table .is-negative{color:#ff7777;font-weight:900}
+.mw-tournament-note{margin:10px 0 0;color:var(--text-soft);font-size:.75rem;line-height:1.5}
+.mw-tournament-matrix th{max-width:100px;overflow:hidden;text-overflow:ellipsis}
+.matrix-self,.matrix-empty{background:#0b0d12;color:#596274}
+.matrix-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:44px;min-height:42px;padding:5px 7px;border:1px solid transparent;border-radius:3px;color:#fff;font-size:.75rem;font-weight:900;cursor:pointer}
+.matrix-cell small{font-size:.6rem;font-weight:700;opacity:.85}
+.matrix-win{background:#123e32;border-color:#1e7658}.matrix-loss{background:#431b26;border-color:#853044}.matrix-draw{background:#3b3218;border-color:#79662c}
+.mw-tournament-matrix-detail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;color:var(--text-soft);font-size:.8rem}
+.mw-tournament-bracket{display:flex;align-items:stretch;gap:14px;overflow-x:auto;padding:2px 0 8px}
+.mw-tournament-bracket-round{display:flex;flex:1 0 220px;flex-direction:column;gap:10px;min-width:220px}
+.mw-tournament-bracket-round h3{padding:10px;background:#151d2b;border-left:3px solid var(--accent);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+.mw-tournament-score-card{overflow:hidden;border:1px solid #2a3444;border-radius:3px;background:#0b0f16;min-width:0}
+.mw-tournament-score-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;font-size:.84rem;border-bottom:1px solid #1d2532}
+.mw-tournament-score-row.is-winner{background:#10271f;color:#74f0b4;font-weight:900}
+.mw-tournament-score-row strong{font-variant-numeric:tabular-nums;font-size:1rem}
+.mw-tournament-score-meta{padding:7px 12px;color:var(--text-soft);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em}
+.mw-tournament-title-ribbon{padding:7px 10px;background:#16243a;color:#b8ddff;border-bottom:1px solid #2d4a70;font-size:.7rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.mw-tournament-results-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mw-tournament-event-link{display:inline-block;margin:0 0 12px;color:var(--accent);font-size:.8rem;font-weight:900;text-decoration:none}
+.mw-tournament-extra-match{margin:12px 0;padding:12px;border:1px solid #29384c;border-left:3px solid var(--accent);background:#0a0e15}
+.mw-tournament-extra-match .mw-tournament-event-link{margin-bottom:8px}
+.mw-tournament-final-event{border-color:#31435b}
+@media(max-width:900px){.mw-tournament-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mw-tournament-draft-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.mw-tournament-results-list{grid-template-columns:1fr}}
+@media(max-width:620px){.mw-tournament-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mw-tournament-catalog-card{padding:12px}.mw-tournament-catalog-card strong{font-size:.9rem}.mw-tournament-draft-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.mw-tournament-draft-card strong{font-size:.72rem;padding:7px}.mw-tournament-matrix-detail{grid-template-columns:1fr}.mw-tournament-panel__heading{align-items:flex-start}.mw-tournament-catalog-tools{align-items:stretch}.mw-tournament-catalog-tools label{width:100%}.mw-tournament-catalog-tools select{width:100%}}
