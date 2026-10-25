@@ -376,3 +376,71 @@
         transition: none !important;
     }
 }
+
+
+/* =====================================================
+   MI WRESTLING 2.0 — ROSTER CARD TUNING
+   Imagen más alta en móvil, sin etiqueta de marca
+   y nombres blancos.
+   ===================================================== */
+
+/* Ocultar la etiqueta superior de marca.
+   Se mantienen intactos los filtros y los datos. */
+.mw-roster-page .wrestler-card .wrestler-brand,
+.mw-roster-page .wrestler-card .brand-badge,
+.mw-roster-page .wrestler-card .brand-label,
+.mw-roster-page .wrestler-card [data-brand-badge] {
+    display: none !important;
+}
+
+/* El nombre siempre debe contrastar con el fondo */
+.mw-roster-page .wrestler-card .wrestler-name,
+.mw-roster-page .wrestler-card .card-name,
+.mw-roster-page .wrestler-card h2,
+.mw-roster-page .wrestler-card h3 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Mantener la imagen dentro de la tarjeta */
+.mw-roster-page .wrestler-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Móvil: tarjeta más alta y menos recorte horizontal */
+@media (max-width: 600px) {
+    .mw-roster-page .wrestler-card {
+        min-height: 0;
+        height: auto;
+    }
+
+    .mw-roster-page .wrestler-card .wrestler-image,
+    .mw-roster-page .wrestler-card .card-image,
+    .mw-roster-page .wrestler-card .wrestler-photo {
+        aspect-ratio: 3 / 4;
+        height: auto;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .mw-roster-page .wrestler-card img {
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        object-position: center top;
+    }
+
+    .mw-roster-page .wrestler-card .wrestler-name,
+    .mw-roster-page .wrestler-card .card-name,
+    .mw-roster-page .wrestler-card h2,
+    .mw-roster-page .wrestler-card h3 {
+        font-size: clamp(15px, 4.2vw, 19px);
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+    }
+}
+
