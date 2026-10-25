@@ -1,67 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#05070b">
-  <meta name="description" content="MI WRESTLING 2.0 — Base de Datos Oficial">
-  <title>Alumni | MI WRESTLING 2.0</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Hojas de estilo -->
-
-  <link rel="stylesheet" href="css/pages/roster-pages.css">
-    <link rel="stylesheet" href="css/mi-wrestling.css">
-
-  <!-- Script global (inyecta automáticamente el Navbar y el Footer) -->
-  <script src="js/mi-wrestling.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#05070b">
+<meta name="description" content="ALUMNI — MI WRESTLING 2.0">
+<title>ALUMNI | MI WRESTLING 2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/mi-wrestling.css">
+<link rel="stylesheet" href="css/pages/roster-pages.css">
 </head>
-<body data-page="alumni">
-
-  <main class="site-main">
-    <header class="mw-page-header">
-      <p class="eyebrow">HALL OF LEGENDS</p>
-      <h1 class="page-title">ALUMNI</h1>
-      <p class="lead">Superestrellas retiradas, leyendas e íconos que dejaron su marca en MI WRESTLING.</p>
-    </header>
-
-    <!-- Filtros / Buscador -->
-    <div class="toolbar">
-      <input type="text" class="field" placeholder="Buscar leyenda o competidor..." aria-label="Buscar leyenda">
-      <select class="field" aria-label="Filtrar por marca">
-        <option value="">Todas las Eras / Marcas</option>
-        <option value="raw">RAW Alumni</option>
-        <option value="smackdown">SmackDown Alumni</option>
-        <option value="legends">Hall of Fame</option>
-      </select>
-    </div>
-
-    <!-- Grilla de Tarjetas Estilo Drew McIntyre -->
-    <div class="roster-grid-container">
-      
-      <!-- Tarjeta de Ejemplo -->
-      <article class="wrestler-card-drew" style="--theme-accent: #ff3155; --theme-glow: rgba(255, 49, 85, 0.6);">
-        <img src="images/wrestlers/bret-hart.png" alt="Bret Hart" class="wrestler-card-render" onerror="this.style.display='none'">
-        
-        <div class="wrestler-card-banner">
-          <div class="wrestler-card-banner-inner">
-            <span class="wrestler-card-subtitle">HALL OF FAME</span>
-            <h2 class="wrestler-card-name">BRET HART</h2>
-          </div>
-        </div>
-
-        <div class="wrestler-card-brand-bar">
-          <span class="wrestler-card-details">3x Champion · Alumni</span>
-          <span class="pill">Leyenda</span>
-        </div>
-      </article>
-
-    </div>
-  </main>
-
-</body>
-</html>
+<body data-page="alumni" data-wrestler-status="alumni">
+<main class="mw-roster-page">
+<header class="mw-page-header"><p class="eyebrow">MI WRESTLING 2.0 / UNIVERSE DATABASE</p><h1 class="page-title">ALUMNI</h1><p class="lead">Leyendas, retirados y nombres que dejaron huella.</p></header>
+<section class="mw-roster-toolbar" aria-label="Buscar y filtrar luchadores"><input id="wrestler-search" type="search" placeholder="Buscar superestrella…" aria-label="Buscar luchador"><select id="wrestler-brand" aria-label="Filtrar por marca"><option value="">Todas las marcas</option><option value="raw">RAW</option><option value="smackdown">SmackDown</option><option value="nxt">NXT</option><option value="legends">Leyendas</option><option value="special">Especial</option></select><span id="wrestler-count" aria-live="polite"></span></section>
+<section id="wrestler-grid" class="mw-wrestler-grid" aria-label="Luchadores"><p class="mw-loading">Cargando superestrellas…</p></section>
+</main>
+<div class="mw-modal-root" id="mw-modal-root"></div>
+<script src="js/mi-wrestling.js" defer></script>
+<script src="js/wrestlers.js" defer></script>
+</body></html>
