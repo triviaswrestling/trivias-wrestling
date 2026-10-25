@@ -1,4 +1,3 @@
-
 /* ==========================================================
    MI WRESTLING — ESTILOS GLOBALES
    Estética basada en home.css:
@@ -7,10 +6,19 @@
    ========================================================== */
 
 :root {
+  /* Variables de acento primarias */
   --mw-accent: #168cff;
   --mw-accent-rgb: 22, 140, 255;
   --mw-accent-2: #00e5ff;
 
+  /* Sincronización con temas dinámicos (SVR / Home) */
+  --accent: var(--mw-accent);
+  --accent-rgb: var(--mw-accent-rgb);
+  --theme-primary: var(--mw-accent);
+  --theme-secondary: var(--mw-accent-2);
+  --theme-glow: rgba(var(--mw-accent-rgb), 0.6);
+
+  /* Paleta base de la interfaz */
   --mw-bg: #05070b;
   --mw-panel: #0a1019;
   --mw-white: #f5f9ff;
@@ -20,12 +28,17 @@
   --mw-global-width: 1600px;
 }
 
+/* Reset de caja para los componentes globales */
 .mw-global-nav,
 .mw-global-nav *,
 .mw-global-footer,
 .mw-global-footer * {
   box-sizing: border-box;
 }
+
+/* ==========================================================
+   NAVBAR GLOBAL
+   ========================================================== */
 
 .mw-global-nav {
   position: relative;
@@ -47,6 +60,7 @@
   gap: 24px;
 }
 
+/* Marca y Isotipo */
 .mw-global-nav__brand {
   display: inline-flex;
   align-items: center;
@@ -73,6 +87,7 @@
     ),
     #080d15;
   box-shadow: 0 0 18px rgba(var(--mw-accent-rgb), .12);
+  transition: border-color .3s ease, box-shadow .3s ease;
 }
 
 .mw-global-nav__mark img {
@@ -110,8 +125,7 @@
   white-space: nowrap;
 }
 
-/* Navegación de escritorio: limpia, sin panel envolvente. */
-
+/* Links de Navegación de Escritorio */
 .mw-global-nav__links {
   display: flex;
   align-items: center;
@@ -121,7 +135,8 @@
   min-width: 0;
 }
 
-.mw-global-nav__link {
+.mw-global-nav__link,
+.mw-nav-item {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -134,10 +149,11 @@
   font-weight: 800;
   letter-spacing: .65px;
   white-space: nowrap;
-  transition: color .18s ease;
+  transition: color .18s ease, letter-spacing .2s ease;
 }
 
-.mw-global-nav__link::after {
+.mw-global-nav__link::after,
+.mw-nav-item::after {
   content: "";
   position: absolute;
   right: 0;
@@ -148,21 +164,28 @@
   box-shadow: 0 0 8px rgba(var(--mw-accent-rgb), .45);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform .18s ease;
+  transition: transform .18s ease, background-color .3s ease;
 }
 
 .mw-global-nav__link:hover,
 .mw-global-nav__link:focus-visible,
-.mw-global-nav__link[aria-current="page"] {
+.mw-global-nav__link[aria-current="page"],
+.mw-global-nav__link.active,
+.mw-nav-item:hover,
+.mw-nav-item.active {
   color: var(--mw-white);
 }
 
 .mw-global-nav__link:hover::after,
 .mw-global-nav__link:focus-visible::after,
-.mw-global-nav__link[aria-current="page"]::after {
+.mw-global-nav__link[aria-current="page"]::after,
+.mw-global-nav__link.active::after,
+.mw-nav-item:hover::after,
+.mw-nav-item.active::after {
   transform: scaleX(1);
 }
 
+/* Botón CTA Redes en Navbar */
 .mw-global-nav__social-cta {
   display: inline-flex;
   align-items: center;
@@ -183,16 +206,17 @@
   border-radius: 50%;
   background: var(--mw-accent);
   box-shadow: 0 0 10px rgba(var(--mw-accent-rgb), .8);
+  transition: background-color .3s ease;
 }
 
 .mw-global-nav__social-arrow {
   color: var(--mw-accent);
   font-size: 16px;
   line-height: 1;
+  transition: color .3s ease;
 }
 
-/* Botón del menú móvil. */
-
+/* Botón Toggle Hamburguesa (Móvil) */
 .mw-global-nav__toggle {
   display: none;
   width: 40px;
@@ -226,7 +250,9 @@
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Footer: misma línea fina, anchura y tipografía compacta que home.css. */
+/* ==========================================================
+   FOOTER GLOBAL
+   ========================================================== */
 
 .mw-global-footer {
   width: 100%;
@@ -271,8 +297,7 @@
   text-align: right;
 }
 
-/* Redes sociales. */
-
+/* Redes Sociales en Footer */
 .mw-global-socials {
   display: flex;
   align-items: center;
@@ -317,6 +342,7 @@
   height: 16px;
   flex: 0 0 16px;
   color: var(--mw-accent);
+  transition: color .3s ease;
 }
 
 .mw-global-social__icon svg {
@@ -360,7 +386,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ajustes de escritorio compacto. */
+/* ==========================================================
+   MEDIA QUERIES / ADAPTABILIDAD RESPONSIVE
+   ========================================================== */
 
 @media (max-width: 1250px) {
   .mw-global-nav__inner {
@@ -371,7 +399,8 @@
     gap: 3px 11px;
   }
 
-  .mw-global-nav__link {
+  .mw-global-nav__link,
+  .mw-nav-item {
     font-size: 9px;
     letter-spacing: .45px;
   }
@@ -380,8 +409,6 @@
     font-size: 19px;
   }
 }
-
-/* Menú desplegable responsive. */
 
 @media (max-width: 920px) {
   .mw-global-nav,
@@ -422,14 +449,16 @@
     display: flex;
   }
 
-  .mw-global-nav__link {
+  .mw-global-nav__link,
+  .mw-nav-item {
     width: 100%;
     min-height: 42px;
     border-bottom: 1px solid rgba(190, 220, 255, .07);
     font-size: 10px;
   }
 
-  .mw-global-nav__link::after {
+  .mw-global-nav__link::after,
+  .mw-nav-item::after {
     right: auto;
     width: 42px;
   }
@@ -439,8 +468,6 @@
     margin: 8px 0 0;
   }
 }
-
-/* Teléfonos. */
 
 @media (max-width: 600px) {
   .mw-global-nav,
@@ -507,6 +534,7 @@
   }
 }
 
+/* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   .mw-global-nav *,
   .mw-global-footer * {
