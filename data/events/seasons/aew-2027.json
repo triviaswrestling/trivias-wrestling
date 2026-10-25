@@ -1,0 +1,14 @@
+{
+  "id": "aew-2027",
+  "categoryId": "aew",
+  "name": "Archivo 2027",
+  "year": 2027,
+  "status": "current",
+  "startDate": null,
+  "endDate": null,
+  "shows": [
+    "aew"
+  ],
+  "events": [],
+  "notes": "Archivo organizado por año; el año se filtra desde el catálogo y no se presenta como una página intermedia."
+}
