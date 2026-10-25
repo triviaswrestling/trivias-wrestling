@@ -476,3 +476,156 @@
         animation:none!important;
     }
 }
+
+/* ==========================================================
+   MI WRESTLING 2.0 — DIVISIONES DEL ROSTER
+   ========================================================== */
+
+.mw-roster-page > .roster-grid-container {
+  display: block;
+  width: 100%;
+}
+
+.mw-roster-division {
+  --division-accent: #dce2eb;
+  margin: 0 0 34px;
+  min-width: 0;
+}
+
+.mw-roster-division--main {
+  --division-accent: #e7e9ed;
+}
+
+.mw-roster-division--development {
+  --division-accent: #c7cdd6;
+}
+
+.mw-roster-division--other {
+  --division-accent: #37d7ff;
+}
+
+.mw-roster-division__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 0 0 11px;
+  border-bottom: 2px solid var(--division-accent);
+}
+
+.mw-roster-division__heading {
+  min-width: 0;
+}
+
+.mw-roster-division__eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: #9099a8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.mw-roster-division__title {
+  margin: 0;
+  color: #f0f1f3;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: clamp(27px, 5vw, 42px);
+  font-weight: 900;
+  line-height: .95;
+  letter-spacing: -.025em;
+}
+
+.mw-roster-division__subtitle {
+  margin: 6px 0 0;
+  color: var(--division-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.mw-roster-division__count {
+  flex: 0 0 auto;
+  color: #aab1bc;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.mw-roster-division__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0;
+}
+
+.mw-roster-division--main .mw-roster-division__header {
+  border-bottom-color: #e7e9ed;
+}
+
+.mw-roster-division--development .mw-roster-division__header {
+  border-bottom-color: #aeb6c2;
+}
+
+.mw-roster-division--development .mw-roster-division__title {
+  color: #d6dbe3;
+}
+
+.mw-champions-division {
+  margin: 0 0 22px;
+}
+
+.mw-champions-division__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(217,180,91,.55);
+}
+
+.mw-champions-division__header h3 {
+  margin: 0;
+  color: #f0d99a;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.mw-champions-division__header span {
+  color: #b8b0a0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 760px) {
+  .mw-roster-division__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mw-roster-division {
+    margin-bottom: 27px;
+  }
+
+  .mw-roster-division__header {
+    margin-bottom: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .mw-roster-division__grid {
+    gap: 6px;
+  }
+
+  .mw-roster-division__eyebrow {
+    font-size: 8px;
+  }
+
+  .mw-roster-division__count {
+    font-size: 9px;
+  }
+}
