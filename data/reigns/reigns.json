@@ -1,1 +1,2898 @@
 
+[
+  {
+    "id": "undisputed-wwe-champion-reign-21-1",
+    "championshipId": "wwe-championship",
+    "reignNumber": 21,
+    "championName": "Christian Cage",
+    "championId": "christian-cage",
+    "status": "current",
+    "startDate": "2026-06-21",
+    "endDate": null,
+    "durationDays": 88,
+    "durationIsApproximate": true,
+    "description": "Christian Cage defeated Randy Orton, Axiom and Seth Rollins in a Fatal-4 Way match at Clash in Italy 2026 on June 21, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 1,
+    "legacy": {
+      "numberLabel": "REIGN #21",
+      "daysLabel": "88+ DAYS",
+      "articleClasses": [
+        "reign",
+        "current-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "clash-in-italy-2026",
+    "championWrestlerIds": [
+      "christian-cage"
+    ],
+    "normalizedStatus": "current"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-20-2",
+    "championshipId": "wwe-championship",
+    "reignNumber": 20,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2026-04-26",
+    "endDate": "2026-06-21",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Christian Cage in a Singles match at WrestleMania 4 Life on April 26, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 2,
+    "legacy": {
+      "numberLabel": "REIGN #20",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "wrestlemania-4-life",
+    "endDateInferred": true,
+    "lostAtEventId": "clash-in-italy-2026",
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-19-3",
+    "championshipId": "wwe-championship",
+    "reignNumber": 19,
+    "championName": "Christian Cage",
+    "championId": "christian-cage",
+    "status": "historical",
+    "startDate": "2026-01-24",
+    "endDate": "2026-04-26",
+    "durationDays": 92,
+    "durationIsApproximate": true,
+    "description": "Christian Cage defeated Trick Williams in a Singles match at Saturday Night's Main Event 2026 on January 24, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 3,
+    "legacy": {
+      "numberLabel": "REIGN #19",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "saturday-nights-main-event-2026",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-4-life",
+    "championWrestlerIds": [
+      "christian-cage"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-18-4",
+    "championshipId": "wwe-championship",
+    "reignNumber": 18,
+    "championName": "Trick Williams",
+    "championId": "trick-williams",
+    "status": "historical",
+    "startDate": "2025-12-20",
+    "endDate": "2026-01-24",
+    "durationDays": 35,
+    "durationIsApproximate": true,
+    "description": "Trick Williams defeated Randy Orton in a Singles match at Survivor Series: WarGames 2025 on December 20, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 4,
+    "legacy": {
+      "numberLabel": "REIGN #18",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "survivor-series-wargames-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "saturday-nights-main-event-2026",
+    "championWrestlerIds": [
+      "trick-williams"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-17-5",
+    "championshipId": "wwe-championship",
+    "reignNumber": 17,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2025-08-23",
+    "endDate": "2025-12-20",
+    "durationDays": 119,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Bret Hart in a Singles match at Money in the Bank 2025 on August 23, 2025. This is the longest reign in the history of the championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 5,
+    "legacy": {
+      "numberLabel": "REIGN #17",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "money-in-the-bank-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "survivor-series-wargames-2025",
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-16-6",
+    "championshipId": "wwe-championship",
+    "reignNumber": 16,
+    "championName": "Bret Hart",
+    "championId": "bret-hart",
+    "status": "historical",
+    "startDate": "2025-06-28",
+    "endDate": "2025-08-23",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Bret Hart defeated Randy Orton in a Tables match at Backlash St. Louis 2025 on June 28, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 6,
+    "legacy": {
+      "numberLabel": "REIGN #16",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "backlash-st-louis-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "money-in-the-bank-2025",
+    "championWrestlerIds": [
+      "bret-hart"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-15-7",
+    "championshipId": "wwe-championship",
+    "reignNumber": 15,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2025-06-08",
+    "endDate": "2025-06-28",
+    "durationDays": 20,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Bret Hart in a Singles match at WrestleMania III Sunday on June 8, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 7,
+    "legacy": {
+      "numberLabel": "REIGN #15",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "wrestlemania-iii-sunday",
+    "endDateInferred": true,
+    "lostAtEventId": "backlash-st-louis-2025",
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-14-8",
+    "championshipId": "wwe-championship",
+    "reignNumber": 14,
+    "championName": "Bret Hart",
+    "championId": "bret-hart",
+    "status": "historical",
+    "startDate": "2025-02-24",
+    "endDate": "2025-06-08",
+    "durationDays": 104,
+    "durationIsApproximate": true,
+    "description": "Bret Hart defeated Jeff Jarrett in a Tables, Ladders & Chairs match at TLC 2025 on February 24, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 8,
+    "legacy": {
+      "numberLabel": "REIGN #14",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "tlc-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-iii-sunday",
+    "championWrestlerIds": [
+      "bret-hart"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-13-9",
+    "championshipId": "wwe-championship",
+    "reignNumber": 13,
+    "championName": "Jeff Jarrett",
+    "championId": "jeff-jarrett",
+    "status": "historical",
+    "startDate": "2024-11-26",
+    "endDate": "2025-02-24",
+    "durationDays": 90,
+    "durationIsApproximate": true,
+    "description": "Jeff Jarrett defeated Cody Rhodes in a Singles match at Crown Jewel 2024 on November 26, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 9,
+    "legacy": {
+      "numberLabel": "REIGN #13",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "crown-jewel-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "tlc-2025",
+    "championWrestlerIds": [
+      "jeff-jarrett"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-12-10",
+    "championshipId": "wwe-championship",
+    "reignNumber": 12,
+    "championName": "Cody Rhodes",
+    "championId": "cody-rhodes",
+    "status": "historical",
+    "startDate": "2024-10-27",
+    "endDate": "2024-11-26",
+    "durationDays": 30,
+    "durationIsApproximate": true,
+    "description": "Cody Rhodes defeated Jeff Jarrett in an Atlanta Death match at Bad Blood 2024 on October 27, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 10,
+    "legacy": {
+      "numberLabel": "REIGN #12",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "bad-blood-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "crown-jewel-2024",
+    "championWrestlerIds": [
+      "cody-rhodes"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-11-11",
+    "championshipId": "wwe-championship",
+    "reignNumber": 11,
+    "championName": "Jeff Jarrett",
+    "championId": "jeff-jarrett",
+    "status": "historical",
+    "startDate": "2024-07-22",
+    "endDate": "2024-10-27",
+    "durationDays": 97,
+    "durationIsApproximate": true,
+    "description": "Jeff Jarrett defeated Pete Dunne in a Singles match at Money in the Bank 2024 on July 22, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 11,
+    "legacy": {
+      "numberLabel": "REIGN #11",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "money-in-the-bank-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "bad-blood-2024",
+    "championWrestlerIds": [
+      "jeff-jarrett"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-10-12",
+    "championshipId": "wwe-championship",
+    "reignNumber": 10,
+    "championName": "Pete Dunne",
+    "championId": "pete-dunne",
+    "status": "historical",
+    "startDate": "2024-07-19",
+    "endDate": "2024-07-22",
+    "durationDays": 3,
+    "durationIsApproximate": true,
+    "description": "Pete Dunne defeated Jeff Jarrett in a Singles match at SmackDown #62 on July 19, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 12,
+    "legacy": {
+      "numberLabel": "REIGN #10",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "smackdown-6",
+    "endDateInferred": true,
+    "lostAtEventId": "money-in-the-bank-2024",
+    "championWrestlerIds": [
+      "pete-dunne"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-9-13",
+    "championshipId": "wwe-championship",
+    "reignNumber": 9,
+    "championName": "Jeff Jarrett",
+    "championId": "jeff-jarrett",
+    "status": "historical",
+    "startDate": "2024-04-28",
+    "endDate": "2024-07-19",
+    "durationDays": 82,
+    "durationIsApproximate": true,
+    "description": "Jeff Jarrett defeated Bryan Danielson in a Singles match at WrestleMania II on April 28, 2024. On the first day of his reign, the title was renamed the Undisputed WWE Championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 13,
+    "legacy": {
+      "numberLabel": "REIGN #9",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "wrestlemania-ii",
+    "endDateInferred": true,
+    "lostAtEventId": "smackdown-6",
+    "championWrestlerIds": [
+      "jeff-jarrett"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-8-14",
+    "championshipId": "wwe-championship",
+    "reignNumber": 8,
+    "championName": "Bryan Danielson",
+    "championId": "bryan-danielson",
+    "status": "historical",
+    "startDate": "2024-01-24",
+    "endDate": "2024-04-28",
+    "durationDays": 95,
+    "durationIsApproximate": true,
+    "description": "Bryan Danielson defeated Jeff Jarrett in a Tables, Ladders & Chairs match at TLC 2024 on January 24, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 14,
+    "legacy": {
+      "numberLabel": "REIGN #8",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "tlc-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-ii",
+    "championWrestlerIds": [
+      "bryan-danielson"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-7-15",
+    "championshipId": "wwe-championship",
+    "reignNumber": 7,
+    "championName": "Jeff Jarrett",
+    "championId": "jeff-jarrett",
+    "status": "historical",
+    "startDate": "2023-11-27",
+    "endDate": "2024-01-24",
+    "durationDays": 58,
+    "durationIsApproximate": true,
+    "description": "Jeff Jarrett defeated Bryan Danielson in a Singles match at Crown Jewel 2023 on November 27, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 15,
+    "legacy": {
+      "numberLabel": "REIGN #7",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "crown-jewel-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "tlc-2024",
+    "championWrestlerIds": [
+      "jeff-jarrett"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-6-16",
+    "championshipId": "wwe-championship",
+    "reignNumber": 6,
+    "championName": "Bryan Danielson",
+    "championId": "bryan-danielson",
+    "status": "historical",
+    "startDate": "2023-10-29",
+    "endDate": "2023-11-27",
+    "durationDays": 29,
+    "durationIsApproximate": true,
+    "description": "Bryan Danielson defeated Jeff Jarrett in a Singles match at Fastlane 2023 on October 29, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 16,
+    "legacy": {
+      "numberLabel": "REIGN #6",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "fastlane-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "crown-jewel-2023",
+    "championWrestlerIds": [
+      "bryan-danielson"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-5-17",
+    "championshipId": "wwe-championship",
+    "reignNumber": 5,
+    "championName": "Jeff Jarrett",
+    "championId": "jeff-jarrett",
+    "status": "historical",
+    "startDate": "2023-10-02",
+    "endDate": "2023-10-29",
+    "durationDays": 27,
+    "durationIsApproximate": true,
+    "description": "Jeff Jarrett defeated Bryan Danielson in a Winner Takes All match at Payback 2023 on October 2, 2023. The NXT Championship was also on the line. On October 3, 2023, Jarrett vacated his NXT Championship to focus on his main roster run.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 17,
+    "legacy": {
+      "numberLabel": "REIGN #5",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "payback-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "fastlane-2023",
+    "championWrestlerIds": [
+      "jeff-jarrett"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-4-18",
+    "championshipId": "wwe-championship",
+    "reignNumber": 4,
+    "championName": "Bryan Danielson",
+    "championId": "bryan-danielson",
+    "status": "historical",
+    "startDate": "2023-08-18",
+    "endDate": "2023-10-02",
+    "durationDays": 45,
+    "durationIsApproximate": true,
+    "description": "Bryan Danielson cashed in his Money in the Bank contract at SmackDown #21 on August 18, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 18,
+    "legacy": {
+      "numberLabel": "REIGN #4",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "smackdown-2",
+    "endDateInferred": true,
+    "lostAtEventId": "payback-2023",
+    "championWrestlerIds": [
+      "bryan-danielson"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-3-19",
+    "championshipId": "wwe-championship",
+    "reignNumber": 3,
+    "championName": "Kevin Owens",
+    "championId": "kevin-owens",
+    "status": "historical",
+    "startDate": "2023-08-07",
+    "endDate": "2023-08-18",
+    "durationDays": 11,
+    "durationIsApproximate": true,
+    "description": "Kevin Owens defeated Adam Cole in a Singles match at Money in the Bank 2023 on August 7, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 19,
+    "legacy": {
+      "numberLabel": "REIGN #3",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "money-in-the-bank-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "smackdown-2",
+    "championWrestlerIds": [
+      "kevin-owens"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-2-20",
+    "championshipId": "wwe-championship",
+    "reignNumber": 2,
+    "championName": "Adam Cole",
+    "championId": "adam-cole",
+    "status": "historical",
+    "startDate": "2023-06-12",
+    "endDate": "2023-08-07",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Adam Cole defeated Bryan Danielson in a Singles match at Night of Champions 2023 on June 12, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 20,
+    "legacy": {
+      "numberLabel": "REIGN #2",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "night-of-champions-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "money-in-the-bank-2023",
+    "championWrestlerIds": [
+      "adam-cole"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "undisputed-wwe-champion-reign-1-21",
+    "championshipId": "wwe-championship",
+    "reignNumber": 1,
+    "championName": "Bryan Danielson",
+    "championId": "bryan-danielson",
+    "status": "historical",
+    "startDate": "2023-03-20",
+    "endDate": "2023-06-12",
+    "durationDays": 84,
+    "durationIsApproximate": true,
+    "description": "Bryan Danielson defeated Cody Rhodes in a Winner Takes All match at Elimination Chamber 2023 on March 20, 2023. The WWE Championship and Universal Championship were unified. During his reign, the unified design was introduced.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/Undisputed-wwe-championship-trivias.html",
+    "sourcePosition": 21,
+    "legacy": {
+      "numberLabel": "REIGN #1",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "undisputed-wwe-champion",
+    "wonAtEventId": "elimination-chamber-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "night-of-champions-2023",
+    "championWrestlerIds": [
+      "bryan-danielson"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-12-1",
+    "championshipId": "world-championship",
+    "reignNumber": 12,
+    "championName": "Bret Hart",
+    "championId": "bret-hart",
+    "status": "current",
+    "startDate": "2026-06-21",
+    "endDate": null,
+    "durationDays": 88,
+    "durationIsApproximate": true,
+    "description": "Bret Hart defeated Jacob Fatu in a Singles match at Clash in Italy 2026 on June 21, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 1,
+    "legacy": {
+      "numberLabel": "REIGN #12",
+      "daysLabel": "88+ DAYS",
+      "articleClasses": [
+        "reign",
+        "current-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "clash-in-italy-2026",
+    "championWrestlerIds": [
+      "bret-hart"
+    ],
+    "normalizedStatus": "current"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-11-2",
+    "championshipId": "world-championship",
+    "reignNumber": 11,
+    "championName": "Jacob Fatu",
+    "championId": "jacob-fatu",
+    "status": "historical",
+    "startDate": "2026-05-24",
+    "endDate": "2026-06-21",
+    "durationDays": 28,
+    "durationIsApproximate": true,
+    "description": "Jacob Fatu defeated Swerve Strickland in a Singles match at Backlash: Tampa 2026 on May 24, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 2,
+    "legacy": {
+      "numberLabel": "REIGN #11",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "backlash-tampa-2026",
+    "endDateInferred": true,
+    "lostAtEventId": "clash-in-italy-2026",
+    "championWrestlerIds": [
+      "jacob-fatu"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-10-3",
+    "championshipId": "world-championship",
+    "reignNumber": 10,
+    "championName": "Swerve Strickland",
+    "championId": "swerve-strickland",
+    "status": "historical",
+    "startDate": "2026-04-26",
+    "endDate": "2026-05-24",
+    "durationDays": 28,
+    "durationIsApproximate": true,
+    "description": "Swerve Strickland defeated Seth Rollins in a Singles match at WrestleMania 4 Life on April 26, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 3,
+    "legacy": {
+      "numberLabel": "REIGN #10",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "wrestlemania-4-life",
+    "endDateInferred": true,
+    "lostAtEventId": "backlash-tampa-2026",
+    "championWrestlerIds": [
+      "swerve-strickland"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-9-4",
+    "championshipId": "world-championship",
+    "reignNumber": 9,
+    "championName": "Seth Rollins",
+    "championId": "seth-rollins",
+    "status": "historical",
+    "startDate": "2026-02-23",
+    "endDate": "2026-04-26",
+    "durationDays": 62,
+    "durationIsApproximate": true,
+    "description": "Seth Rollins defeated Cody Rhodes in a Singles match at Royal Rumble 2026 on February 23, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 4,
+    "legacy": {
+      "numberLabel": "REIGN #9",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "royal-rumble-2026",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-4-life",
+    "championWrestlerIds": [
+      "seth-rollins"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-8-5",
+    "championshipId": "world-championship",
+    "reignNumber": 8,
+    "championName": "Cody Rhodes",
+    "championId": "cody-rhodes",
+    "status": "historical",
+    "startDate": "2025-06-28",
+    "endDate": "2026-02-23",
+    "durationDays": 240,
+    "durationIsApproximate": true,
+    "description": "Cody Rhodes defeated Swerve Strickland in a Singles match at Backlash St. Louis 2025 on June 28, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 5,
+    "legacy": {
+      "numberLabel": "REIGN #8",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "backlash-st-louis-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "royal-rumble-2026",
+    "championWrestlerIds": [
+      "cody-rhodes"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-7-6",
+    "championshipId": "world-championship",
+    "reignNumber": 7,
+    "championName": "Swerve Strickland",
+    "championId": "swerve-strickland",
+    "status": "historical",
+    "startDate": "2025-06-07",
+    "endDate": "2025-06-28",
+    "durationDays": 21,
+    "durationIsApproximate": true,
+    "description": "Swerve Strickland defeated Pete Dunne in a Singles match at WrestleMania III Saturday on June 7, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 6,
+    "legacy": {
+      "numberLabel": "REIGN #7",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "wrestlemania-iii-saturday",
+    "endDateInferred": true,
+    "lostAtEventId": "backlash-st-louis-2025",
+    "championWrestlerIds": [
+      "swerve-strickland"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-6-7",
+    "championshipId": "world-championship",
+    "reignNumber": 6,
+    "championName": "Pete Dunne",
+    "championId": "pete-dunne",
+    "status": "historical",
+    "startDate": "2025-04-22",
+    "endDate": "2025-06-07",
+    "durationDays": 46,
+    "durationIsApproximate": true,
+    "description": "Pete Dunne defeated Cody Rhodes in a Singles match at Elimination Chamber: Toronto 2025 on April 22, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 7,
+    "legacy": {
+      "numberLabel": "REIGN #6",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "elimination-chamber-toronto-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-iii-saturday",
+    "championWrestlerIds": [
+      "pete-dunne"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-5-8",
+    "championshipId": "world-championship",
+    "reignNumber": 5,
+    "championName": "Cody Rhodes",
+    "championId": "cody-rhodes",
+    "status": "historical",
+    "startDate": "2025-02-24",
+    "endDate": "2025-04-22",
+    "durationDays": 57,
+    "durationIsApproximate": true,
+    "description": "Cody Rhodes defeated Adam Cole in a Tables, Ladders & Chairs match at TLC 2025 on February 24, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 8,
+    "legacy": {
+      "numberLabel": "REIGN #5",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "tlc-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "elimination-chamber-toronto-2025",
+    "championWrestlerIds": [
+      "cody-rhodes"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-4-9",
+    "championshipId": "world-championship",
+    "reignNumber": 4,
+    "championName": "Adam Cole",
+    "championId": "adam-cole",
+    "status": "historical",
+    "startDate": "2025-01-25",
+    "endDate": "2025-02-24",
+    "durationDays": 30,
+    "durationIsApproximate": true,
+    "description": "Adam Cole defeated Daniel Bryan in a Singles match at Saturday Night's Main Event 2025 on January 25, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 9,
+    "legacy": {
+      "numberLabel": "REIGN #4",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "saturday-nights-main-event-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "tlc-2025",
+    "championWrestlerIds": [
+      "adam-cole"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-3-10",
+    "championshipId": "world-championship",
+    "reignNumber": 3,
+    "championName": "Bryan Danielson",
+    "championId": "bryan-danielson",
+    "status": "historical",
+    "startDate": "2024-09-23",
+    "endDate": "2025-01-25",
+    "durationDays": 124,
+    "durationIsApproximate": true,
+    "description": "Bryan Danielson defeated Bret Hart in a Singles match at Bash in Berlin 2024 on September 23, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 10,
+    "legacy": {
+      "numberLabel": "REIGN #3",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "bash-in-berlin-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "saturday-nights-main-event-2025",
+    "championWrestlerIds": [
+      "bryan-danielson"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-2-11",
+    "championshipId": "world-championship",
+    "reignNumber": 2,
+    "championName": "Bret Hart",
+    "championId": "bret-hart",
+    "status": "historical",
+    "startDate": "2024-05-20",
+    "endDate": "2024-09-23",
+    "durationDays": 126,
+    "durationIsApproximate": true,
+    "description": "Bret Hart defeated Cody Rhodes in a Singles match at Backlash France 2024 on May 20, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 11,
+    "legacy": {
+      "numberLabel": "REIGN #2",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "backlash-france-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "bash-in-berlin-2024",
+    "championWrestlerIds": [
+      "bret-hart"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-heavyweight-champion-reign-1-12",
+    "championshipId": "world-championship",
+    "reignNumber": 1,
+    "championName": "Cody Rhodes",
+    "championId": "cody-rhodes",
+    "status": "historical",
+    "startDate": "2023-06-12",
+    "endDate": "2024-05-20",
+    "durationDays": 343,
+    "durationIsApproximate": true,
+    "description": "Cody Rhodes won the World Heavyweight Championship tournament final at Night of Champions 2023 on June 12, 2023. This is the longest reign and the one with the most successful title defenses in the company's history.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-heavyweight-championship-trivias.html",
+    "sourcePosition": 12,
+    "legacy": {
+      "numberLabel": "REIGN #1",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "world-heavyweight-champion",
+    "wonAtEventId": "night-of-champions-2023",
+    "endDateInferred": true,
+    "lostAtEventId": "backlash-france-2024",
+    "championWrestlerIds": [
+      "cody-rhodes"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-10-1",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 10,
+    "championName": "Blackpool Combat Club",
+    "championId": null,
+    "status": "current",
+    "startDate": "2026-04-26",
+    "endDate": null,
+    "durationDays": 144,
+    "durationIsApproximate": true,
+    "description": "Blackpool Combat Club defeated The Legacy to win the WWE World Tag Team Championship at WrestleMania 4 Life on April 26, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 1,
+    "legacy": {
+      "numberLabel": "REIGN #10",
+      "daysLabel": "144+ DAYS",
+      "articleClasses": [
+        "reign",
+        "current-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "wrestlemania-4-life",
+    "championTeamId": "blackpool-combat-club",
+    "normalizedStatus": "current"
+  },
+  {
+    "id": "world-tag-team-champions-reign-9-2",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 9,
+    "championName": "Legacy",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2026-02-23",
+    "endDate": "2026-04-26",
+    "durationDays": 62,
+    "durationIsApproximate": true,
+    "description": "Legacy defeated The Vision to win the WWE World Tag Team Championship at Royal Rumble 2026 on February 23, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 2,
+    "legacy": {
+      "numberLabel": "REIGN #9",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "royal-rumble-2026",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-4-life",
+    "championTeamId": "legacy",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-8-3",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 8,
+    "championName": "Vision",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2025-10-26",
+    "endDate": "2026-02-23",
+    "durationDays": 120,
+    "durationIsApproximate": true,
+    "description": "Vision defeated Brawling Brutes to win the WWE World Tag Team Championship at Wrestlepalooza 2025 on October 26, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 3,
+    "legacy": {
+      "numberLabel": "REIGN #8",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "wrestlepalooza-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "royal-rumble-2026",
+    "championTeamId": "vision",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-7-4",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 7,
+    "championName": "Brawling Brutes",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2025-09-20",
+    "endDate": "2025-10-26",
+    "durationDays": 36,
+    "durationIsApproximate": true,
+    "description": "Brawling Brutes won the vacant WWE World Tag Team Championship at SummerSlam 2025 on September 20, 2025, defeating Bullet Club, The Vision and Rey Mysterio & Batista in a Fatal 4-Way Elimination Tag Team match.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 4,
+    "legacy": {
+      "numberLabel": "REIGN #7",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "summerslam-2025",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlepalooza-2025",
+    "championTeamId": "brawling-brutes",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-status-5",
+    "championshipId": "world-tag-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2025-09-01",
+    "endDate": "2025-09-20",
+    "durationDays": 19,
+    "durationIsApproximate": true,
+    "description": "The WWE World Tag Team Championship was left vacant on September 1, 2025, following the end of The Undisputed Era's reign.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 5,
+    "legacy": {
+      "numberLabel": "HISTORICAL STATUS",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "endDateInferred": true,
+    "lostAtEventId": "summerslam-2025",
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "world-tag-team-champions-reign-6-6",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 6,
+    "championName": "Undisputed Era",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2025-01-25",
+    "endDate": "2025-09-01",
+    "durationDays": 219,
+    "durationIsApproximate": true,
+    "description": "Undisputed Era defeated Blackpool Combat Club to win the WWE World Tag Team Championship at Saturday Night's Main Event 2025 on January 25, 2025. The championships were left vacant following Bret Hart's betrayal of Kyle O'Reilly.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 6,
+    "legacy": {
+      "numberLabel": "REIGN #6",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "saturday-nights-main-event-2025",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championTeamId": "undisputed-era",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-5-7",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 5,
+    "championName": "Blackpool Combat Club",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2024-06-23",
+    "endDate": "2025-01-25",
+    "durationDays": 216,
+    "durationIsApproximate": true,
+    "description": "Blackpool Combat Club defeated Nexus to win the WWE World Tag Team Championship at Clash at the Castle: Scotland 2024 on June 23, 2024. At Survivor Series: WarGames 2024, Cody Rhodes was crowned champion under the Freebird Rule due to Ambrose's retirement from full-time wrestling. During this reign, the championship was renamed WWE World Tag Team Championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 7,
+    "legacy": {
+      "numberLabel": "REIGN #5",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "clash-at-the-castle-scotland-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "saturday-nights-main-event-2025",
+    "championTeamId": "blackpool-combat-club",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-4-8",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 4,
+    "championName": "Nexus",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2024-05-20",
+    "endDate": "2024-06-23",
+    "durationDays": 34,
+    "durationIsApproximate": true,
+    "description": "Nexus defeated Undisputed Era in Winners Take the Titles to win the WWE World Tag Team Championship at Backlash France 2024 on May 20, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 8,
+    "legacy": {
+      "numberLabel": "REIGN #4",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "backlash-france-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "clash-at-the-castle-scotland-2024",
+    "championTeamId": "nexus",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-3-9",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 3,
+    "championName": "Undisputed Era",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2024-03-25",
+    "endDate": "2024-05-20",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Undisputed Era defeated Banger Bros, #DIY, Blackpool Combat Club, Alberto Del Rio & Andrade, and The Judgment Day in a Tag Team Elimination Chamber to win the WWE World Tag Team Championship at Elimination Chamber: Perth 2024 on March 25, 2024. Starting April 10, 2024, Bron Breakker was introduced as a new stable member and proclaimed champion under the Freebird Rule due to AJ Styles' injury.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 9,
+    "legacy": {
+      "numberLabel": "REIGN #3",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "elimination-chamber-perth-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "backlash-france-2024",
+    "championTeamId": "undisputed-era",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-2-10",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 2,
+    "championName": "Banger Bros",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2024-02-25",
+    "endDate": "2024-03-25",
+    "durationDays": 29,
+    "durationIsApproximate": true,
+    "description": "Banger Bros defeated Blackpool Combat Club in Tag Team to win the WWE World Tag Team Championship at Royal Rumble 2024: 1st Anniversary on February 25, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 10,
+    "legacy": {
+      "numberLabel": "REIGN #2",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "wonAtEventId": "royal-rumble-2024",
+    "endDateInferred": true,
+    "lostAtEventId": "elimination-chamber-perth-2024",
+    "championTeamId": "banger-bros",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "world-tag-team-champions-reign-1-11",
+    "championshipId": "world-tag-championship",
+    "reignNumber": 1,
+    "championName": "Blackpool Combat Club",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2023-06-14",
+    "endDate": "2024-02-25",
+    "durationDays": 256,
+    "durationIsApproximate": true,
+    "description": "Blackpool Combat Club won the WWE Tag Team Championship tournament final at WWE Live: Mexico on June 14, 2023. Starting September 4, 2023, Ambrose was crowned champion under the Freebird Rule due to Finn Bálor's injury. This remains the longest reign in championship history.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/world-tag-team-championship-trivias.html",
+    "sourcePosition": 11,
+    "legacy": {
+      "numberLabel": "REIGN #1",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "world-tag-team-champions",
+    "endDateInferred": true,
+    "lostAtEventId": "royal-rumble-2024",
+    "championTeamId": "blackpool-combat-club",
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-randy-orton-1",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": null,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "current",
+    "startDate": "2026-08-23",
+    "endDate": null,
+    "durationDays": 25,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Daniel Bryan in a Singles match to win the Intercontinental Championship at SummerSlam on August 23, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 1,
+    "legacy": {
+      "numberLabel": "CURRENT CHAMPION",
+      "daysLabel": "25+ DAYS",
+      "articleClasses": [
+        "reign",
+        "current-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "current"
+  },
+  {
+    "id": "intercontinental-champion-reign-12-2",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 12,
+    "championName": "Bryan Danielson",
+    "championId": "bryan-danielson",
+    "status": "historical",
+    "startDate": "2026-06-21",
+    "endDate": "2026-08-23",
+    "durationDays": 63,
+    "durationIsApproximate": true,
+    "description": "Bryan Danielson defeated Kyle O'Reilly in a Singles match to win the Intercontinental Championship at Clash in Italy on June 21, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 2,
+    "legacy": {
+      "numberLabel": "REIGN #12",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "bryan-danielson"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-11-3",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 11,
+    "championName": "Kyle O'Reilly",
+    "championId": "kyle-o-reilly",
+    "status": "historical",
+    "startDate": "2026-04-26",
+    "endDate": "2026-06-21",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Kyle O'Reilly defeated Sheamus in a Ladder match to win the Intercontinental Championship at WrestleMania 4 Life on April 26, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 3,
+    "legacy": {
+      "numberLabel": "REIGN #11",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "wonAtEventId": "wrestlemania-4-life",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "kyle-o-reilly"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-10-4",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 10,
+    "championName": "Sheamus",
+    "championId": "sheamus",
+    "status": "historical",
+    "startDate": "2026-01-24",
+    "endDate": "2026-04-26",
+    "durationDays": 92,
+    "durationIsApproximate": true,
+    "description": "Sheamus defeated Kyle O'Reilly in a Singles match to win the Intercontinental Championship at Saturday Night's Main Event on January 24, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 4,
+    "legacy": {
+      "numberLabel": "REIGN #10",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-4-life",
+    "championWrestlerIds": [
+      "sheamus"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-9-5",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 9,
+    "championName": "Kyle O'Reilly",
+    "championId": "kyle-o-reilly",
+    "status": "historical",
+    "startDate": "2025-09-20",
+    "endDate": "2026-01-24",
+    "durationDays": 126,
+    "durationIsApproximate": true,
+    "description": "Kyle O'Reilly defeated Christian Cage in a Singles match to win the Intercontinental Championship at SummerSlam on September 20, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 5,
+    "legacy": {
+      "numberLabel": "REIGN #9",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "kyle-o-reilly"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-8-6",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 8,
+    "championName": "Christian Cage",
+    "championId": "christian-cage",
+    "status": "historical",
+    "startDate": "2025-03-22",
+    "endDate": "2025-09-20",
+    "durationDays": 182,
+    "durationIsApproximate": true,
+    "description": "Christian Cage defeated Randy Orton in a Steel Cage match to win the Intercontinental Championship at Royal Rumble on March 22, 2025. This is the longest reign in the history of the championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 6,
+    "legacy": {
+      "numberLabel": "REIGN #8",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "christian-cage"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-7-7",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 7,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2024-11-26",
+    "endDate": "2025-03-22",
+    "durationDays": 116,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Jimmy Uso in a Singles match to win the Intercontinental Championship at Crown Jewel on November 26, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 7,
+    "legacy": {
+      "numberLabel": "REIGN #7",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-6-8",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 6,
+    "championName": "Jimmy Uso",
+    "championId": "jimmy-uso",
+    "status": "historical",
+    "startDate": "2024-09-23",
+    "endDate": "2024-11-26",
+    "durationDays": 64,
+    "durationIsApproximate": true,
+    "description": "Jimmy Uso defeated Adam Cole in a Singles match to win the Intercontinental Championship at Bash in Berlin on September 23, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 8,
+    "legacy": {
+      "numberLabel": "REIGN #6",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "jimmy-uso"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-5-9",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 5,
+    "championName": "Adam Cole",
+    "championId": "adam-cole",
+    "status": "historical",
+    "startDate": "2024-05-20",
+    "endDate": "2024-09-23",
+    "durationDays": 126,
+    "durationIsApproximate": true,
+    "description": "Adam Cole defeated MJF in an Undisputed Rules Deathmatch to win the Intercontinental Championship at Backlash France on May 20, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 9,
+    "legacy": {
+      "numberLabel": "REIGN #5",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "adam-cole"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-4-10",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 4,
+    "championName": "Mjf",
+    "championId": "mjf",
+    "status": "historical",
+    "startDate": "2024-01-24",
+    "endDate": "2024-05-20",
+    "durationDays": 117,
+    "durationIsApproximate": true,
+    "description": "MJF defeated Dominik Mysterio, Gunther and Solo Sikoa in a Fatal 4-Way match to win the Intercontinental Championship at TLC on January 24, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 10,
+    "legacy": {
+      "numberLabel": "REIGN #4",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "mjf"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-3-11",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 3,
+    "championName": "Dominik Mysterio",
+    "championId": "dominik-mysterio",
+    "status": "historical",
+    "startDate": "2023-11-27",
+    "endDate": "2024-01-24",
+    "durationDays": 58,
+    "durationIsApproximate": true,
+    "description": "Dominik Mysterio defeated Randy Orton in a Singles match to win the Intercontinental Championship at Crown Jewel on November 27, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 11,
+    "legacy": {
+      "numberLabel": "REIGN #3",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "dominik-mysterio"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-2-12",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 2,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2023-10-29",
+    "endDate": "2023-11-27",
+    "durationDays": 29,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated MJF in a Singles match to win the Intercontinental Championship at Fastlane on October 29, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 12,
+    "legacy": {
+      "numberLabel": "REIGN #2",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "intercontinental-champion-reign-1-13",
+    "championshipId": "intercontinental-championship",
+    "reignNumber": 1,
+    "championName": "Mjf",
+    "championId": "mjf",
+    "status": "historical",
+    "startDate": "2023-09-03",
+    "endDate": "2023-10-29",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "MJF defeated AJ Styles and Gunther in a Triple Threat match to win the Intercontinental Championship at SummerSlam on September 3, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/intercontinental-championship-trivias.html",
+    "sourcePosition": 13,
+    "legacy": {
+      "numberLabel": "REIGN #1",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "intercontinental-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "mjf"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-cody-rhodes-1",
+    "championshipId": "usa-championship",
+    "reignNumber": null,
+    "championName": "Cody Rhodes",
+    "championId": "cody-rhodes",
+    "status": "current",
+    "startDate": "2026-06-21",
+    "endDate": null,
+    "durationDays": 88,
+    "durationIsApproximate": true,
+    "description": "Cody Rhodes defeated Trick Williams in a Singles match to win the United States Championship at Clash in Italy on June 21, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 1,
+    "legacy": {
+      "numberLabel": "CURRENT CHAMPION",
+      "daysLabel": "88+ DAYS",
+      "articleClasses": [
+        "reign",
+        "current-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "championWrestlerIds": [
+      "cody-rhodes"
+    ],
+    "normalizedStatus": "current"
+  },
+  {
+    "id": "united-states-champion-reign-13-2",
+    "championshipId": "usa-championship",
+    "reignNumber": 13,
+    "championName": "Trick Williams",
+    "championId": "trick-williams",
+    "status": "historical",
+    "startDate": "2026-04-26",
+    "endDate": "2026-06-21",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Trick Williams defeated Bret Hart in a Singles match to win the United States Championship at WrestleMania 4 Life on April 26, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 2,
+    "legacy": {
+      "numberLabel": "REIGN #13",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "wonAtEventId": "wrestlemania-4-life",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "trick-williams"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-12-3",
+    "championshipId": "usa-championship",
+    "reignNumber": 12,
+    "championName": "Bret Hart",
+    "championId": "bret-hart",
+    "status": "historical",
+    "startDate": "2026-01-24",
+    "endDate": "2026-04-26",
+    "durationDays": 92,
+    "durationIsApproximate": true,
+    "description": "Bret Hart defeated Swerve Strickland in a Singles match for the vacant United States Championship at Saturday Night's Main Event on January 24, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 3,
+    "legacy": {
+      "numberLabel": "REIGN #12",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-4-life",
+    "championWrestlerIds": [
+      "bret-hart"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-status-4",
+    "championshipId": "usa-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2026-01-05",
+    "endDate": "2026-01-24",
+    "durationDays": 19,
+    "durationIsApproximate": true,
+    "description": "The United States Championship was vacant on January 5, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 4,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "united-states-champion-reign-11-5",
+    "championshipId": "usa-championship",
+    "reignNumber": 11,
+    "championName": "Chris Benoit",
+    "championId": "chris-benoit",
+    "status": "historical",
+    "startDate": "2025-08-23",
+    "endDate": "2026-01-05",
+    "durationDays": 135,
+    "durationIsApproximate": true,
+    "description": "Chris Benoit defeated Pete Dunne in a Singles match to win the United States Championship at Money in the Bank on August 23, 2025. He left the title vacant after resigning from the company due to personal issues with the Board of Directors.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 5,
+    "legacy": {
+      "numberLabel": "REIGN #11",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "chris-benoit"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-10-6",
+    "championshipId": "usa-championship",
+    "reignNumber": 10,
+    "championName": "Pete Dunne",
+    "championId": "pete-dunne",
+    "status": "historical",
+    "startDate": "2025-07-26",
+    "endDate": "2025-08-23",
+    "durationDays": 28,
+    "durationIsApproximate": true,
+    "description": "Pete Dunne defeated The Riddler and Finn Bálor in a Triple Threat match to win the United States Championship at Night of Champions on July 26, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 6,
+    "legacy": {
+      "numberLabel": "REIGN #10",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "pete-dunne"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-9-7",
+    "championshipId": "usa-championship",
+    "reignNumber": 9,
+    "championName": "Tommaso Ciampa",
+    "championId": "tommaso-ciampa",
+    "status": "historical",
+    "startDate": "2025-01-25",
+    "endDate": "2025-07-26",
+    "durationDays": 182,
+    "durationIsApproximate": true,
+    "description": "Tommaso Ciampa defeated Tama Tonga in a Singles match to win the United States Championship at Saturday Night's Main Event on January 25, 2025. During this reign, The Riddler made Ciampa disappear and kept his championship, so the reign counts as the same. This is the longest reign in the history of the championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 7,
+    "legacy": {
+      "numberLabel": "REIGN #9",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "tommaso-ciampa"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-8-8",
+    "championshipId": "usa-championship",
+    "reignNumber": 8,
+    "championName": "Tama Tonga",
+    "championId": "tama-tonga",
+    "status": "historical",
+    "startDate": "2024-09-23",
+    "endDate": "2025-01-25",
+    "durationDays": 124,
+    "durationIsApproximate": true,
+    "description": "Tama Tonga defeated Randy Orton in a Singles match to win the United States Championship at Bash in Berlin on September 23, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 8,
+    "legacy": {
+      "numberLabel": "REIGN #8",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "tama-tonga"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-7-9",
+    "championshipId": "usa-championship",
+    "reignNumber": 7,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2024-05-20",
+    "endDate": "2024-09-23",
+    "durationDays": 126,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Logan Paul in a Singles match to win the United States Championship at Backlash France on May 20, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 9,
+    "legacy": {
+      "numberLabel": "REIGN #7",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-6-10",
+    "championshipId": "usa-championship",
+    "reignNumber": 6,
+    "championName": "Logan Paul",
+    "championId": "logan-paul",
+    "status": "historical",
+    "startDate": "2024-05-03",
+    "endDate": "2024-05-20",
+    "durationDays": 17,
+    "durationIsApproximate": true,
+    "description": "Logan Paul defeated Randy Orton in a Singles match to win the United States Championship at SmackDown on May 3, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 10,
+    "legacy": {
+      "numberLabel": "REIGN #6",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "logan-paul"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-5-11",
+    "championshipId": "usa-championship",
+    "reignNumber": 5,
+    "championName": "Randy Orton",
+    "championId": "randy-orton",
+    "status": "historical",
+    "startDate": "2024-01-24",
+    "endDate": "2024-05-03",
+    "durationDays": 100,
+    "durationIsApproximate": true,
+    "description": "Randy Orton defeated Logan Paul in a Singles match to win the United States Championship at TLC on January 24, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 11,
+    "legacy": {
+      "numberLabel": "REIGN #5",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "randy-orton"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-4-12",
+    "championshipId": "usa-championship",
+    "reignNumber": 4,
+    "championName": "Logan Paul",
+    "championId": "logan-paul",
+    "status": "historical",
+    "startDate": "2023-11-27",
+    "endDate": "2024-01-24",
+    "durationDays": 58,
+    "durationIsApproximate": true,
+    "description": "Logan Paul defeated Kevin Owens and Johnny Gargano in a Triple Threat match to win the United States Championship at Crown Jewel on November 27, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 12,
+    "legacy": {
+      "numberLabel": "REIGN #4",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "logan-paul"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-3-13",
+    "championshipId": "usa-championship",
+    "reignNumber": 3,
+    "championName": "Kevin Owens",
+    "championId": "kevin-owens",
+    "status": "historical",
+    "startDate": "2023-10-04",
+    "endDate": "2023-11-27",
+    "durationDays": 54,
+    "durationIsApproximate": true,
+    "description": "Kevin Owens defeated Drew McIntyre in a Singles match to win the United States Championship at NXT TakeOver III on October 4, 2023. This match was scheduled to take place two days earlier at Payback, but due to a flight issue for Drew, they decided to postpone it to NXT TakeOver III.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 13,
+    "legacy": {
+      "numberLabel": "REIGN #3",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "wonAtEventId": "nxt-takeover-1",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "kevin-owens"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-2-14",
+    "championshipId": "usa-championship",
+    "reignNumber": 2,
+    "championName": "Drew Mcintyre",
+    "championId": "drew-mcintyre",
+    "status": "historical",
+    "startDate": "2023-09-15",
+    "endDate": "2023-10-04",
+    "durationDays": 19,
+    "durationIsApproximate": true,
+    "description": "Drew McIntyre defeated Adam Cole in a Singles match to win the United States Championship at SmackDown on September 15, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 14,
+    "legacy": {
+      "numberLabel": "REIGN #2",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "nxt-takeover-1",
+    "championWrestlerIds": [
+      "drew-mcintyre"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "united-states-champion-reign-1-15",
+    "championshipId": "usa-championship",
+    "reignNumber": 1,
+    "championName": "Adam Cole",
+    "championId": "adam-cole",
+    "status": "historical",
+    "startDate": "2023-09-03",
+    "endDate": "2023-09-15",
+    "durationDays": 12,
+    "durationIsApproximate": true,
+    "description": "Adam Cole defeated Jon Moxley in a Singles match to win the United States Championship at SummerSlam on September 3, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/united-states-championship-trivias.html",
+    "sourcePosition": 15,
+    "legacy": {
+      "numberLabel": "REIGN #1",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "united-states-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "adam-cole"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-bo-dallas-1",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Bo Dallas",
+    "championId": "bo-dallas",
+    "status": "current",
+    "startDate": "2026-06-21",
+    "endDate": null,
+    "durationDays": 88,
+    "durationIsApproximate": true,
+    "description": "Bo Dallas defeated Bron Breakker in a Singles match to win the NXT Championship at Clash in Italy on June 21, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 1,
+    "legacy": {
+      "numberLabel": "CURRENT CHAMPION",
+      "daysLabel": "88+ DAYS",
+      "articleClasses": [
+        "reign",
+        "current-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "championWrestlerIds": [
+      "bo-dallas"
+    ],
+    "normalizedStatus": "current"
+  },
+  {
+    "id": "nxt-champion-reign-14-2",
+    "championshipId": "nxt-championship",
+    "reignNumber": 14,
+    "championName": "Bron Breakker",
+    "championId": "bron-breakker",
+    "status": "historical",
+    "startDate": "2026-04-26",
+    "endDate": "2026-06-21",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Bron Breakker defeated Jacob Fatu in an Unsanctioned match to win the NXT Championship at WrestleMania 4 Life on April 26, 2026.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 2,
+    "legacy": {
+      "numberLabel": "REIGN #14",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "wrestlemania-4-life",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "bron-breakker"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-13-3",
+    "championshipId": "nxt-championship",
+    "reignNumber": 13,
+    "championName": "Jacob Fatu",
+    "championId": "jacob-fatu",
+    "status": "historical",
+    "startDate": "2026-01-24",
+    "endDate": "2026-04-26",
+    "durationDays": 92,
+    "durationIsApproximate": true,
+    "description": "Jacob Fatu defeated Timothy Thatcher in a Winner Takes All match to win the NXT Championship at Saturday Night's Main Event on January 24, 2026. The NXT Championship and Speed Championship were unified. During his reign, the new design of the title was introduced.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 3,
+    "legacy": {
+      "numberLabel": "REIGN #13",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "wrestlemania-4-life",
+    "championWrestlerIds": [
+      "jacob-fatu"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-12-4",
+    "championshipId": "nxt-championship",
+    "reignNumber": 12,
+    "championName": "Timothy Thatcher",
+    "championId": "timothy-thatcher",
+    "status": "historical",
+    "startDate": "2025-10-21",
+    "endDate": "2026-01-24",
+    "durationDays": 95,
+    "durationIsApproximate": true,
+    "description": "Timothy Thatcher defeated Trick Williams in a Singles match to win the NXT Championship at NXT TakeOver XV on October 21, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 4,
+    "legacy": {
+      "numberLabel": "REIGN #12",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "timothy-thatcher"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-11-5",
+    "championshipId": "nxt-championship",
+    "reignNumber": 11,
+    "championName": "Trick Williams",
+    "championId": "trick-williams",
+    "status": "historical",
+    "startDate": "2025-08-26",
+    "endDate": "2025-10-21",
+    "durationDays": 56,
+    "durationIsApproximate": true,
+    "description": "Trick Williams defeated Edge in the finals of the tournament for the vacant NXT Championship at NXT TakeOver XIV on August 26, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 5,
+    "legacy": {
+      "numberLabel": "REIGN #11",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "trick-williams"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-status-6",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2025-08-13",
+    "endDate": "2025-08-26",
+    "durationDays": 13,
+    "durationIsApproximate": true,
+    "description": "The NXT Championship was vacated on August 13, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 6,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "nxt-champion-reign-10-7",
+    "championshipId": "nxt-championship",
+    "reignNumber": 10,
+    "championName": "Ethan Page",
+    "championId": "ethan-page",
+    "status": "historical",
+    "startDate": "2025-04-24",
+    "endDate": "2025-08-13",
+    "durationDays": 111,
+    "durationIsApproximate": true,
+    "description": "Ethan Page defeated Jacob Fatu in the finals of the tournament for the vacant NXT Championship at NXT TakeOver XII on April 24, 2025. He left the title vacant after NXT #100 following a heated discussion with the Board of Directors for cheating in his match against Jey Uso.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 7,
+    "legacy": {
+      "numberLabel": "REIGN #10",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "nxt-1",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "ethan-page"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-status-8",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2025-03-26",
+    "endDate": "2025-04-24",
+    "durationDays": 29,
+    "durationIsApproximate": true,
+    "description": "The NXT Championship was vacated on March 26, 2025.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 8,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "nxt-1",
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "nxt-champion-reign-9-9",
+    "championshipId": "nxt-championship",
+    "reignNumber": 9,
+    "championName": "Christian Cage",
+    "championId": "christian-cage",
+    "status": "historical",
+    "startDate": "2024-12-18",
+    "endDate": "2025-03-26",
+    "durationDays": 98,
+    "durationIsApproximate": true,
+    "description": "Christian Cage defeated Kyle O'Reilly in a Singles match to win the NXT Championship at NXT TakeOver X on December 18, 2024. He vacated the title after winning the Intercontinental Championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 9,
+    "legacy": {
+      "numberLabel": "REIGN #9",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "christian-cage"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-8-10",
+    "championshipId": "nxt-championship",
+    "reignNumber": 8,
+    "championName": "Kyle O'Reilly",
+    "championId": "kyle-o-reilly",
+    "status": "historical",
+    "startDate": "2024-09-25",
+    "endDate": "2024-12-18",
+    "durationDays": 84,
+    "durationIsApproximate": true,
+    "description": "Kyle O'Reilly defeated Edge in the finals of the tournament for the vacant NXT Championship at NXT TakeOver IX on September 25, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 10,
+    "legacy": {
+      "numberLabel": "REIGN #8",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "nxt-takeover-1",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "kyle-o-reilly"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-status-11",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2024-09-23",
+    "endDate": "2024-09-25",
+    "durationDays": 2,
+    "durationIsApproximate": true,
+    "description": "The NXT Championship was vacated on September 23, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 11,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "nxt-takeover-1",
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "nxt-champion-reign-7-12",
+    "championshipId": "nxt-championship",
+    "reignNumber": 7,
+    "championName": "Tama Tonga",
+    "championId": "tama-tonga",
+    "status": "historical",
+    "startDate": "2024-07-24",
+    "endDate": "2024-09-23",
+    "durationDays": 61,
+    "durationIsApproximate": true,
+    "description": "Tama Tonga defeated Finn Bálor in a Singles match to win the NXT Championship at NXT TakeOver VIII on July 24, 2024. He vacated the title after winning the United States Championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 12,
+    "legacy": {
+      "numberLabel": "REIGN #7",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "tama-tonga"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-6-13",
+    "championshipId": "nxt-championship",
+    "reignNumber": 6,
+    "championName": "Finn Bálor",
+    "championId": "finn-balor",
+    "status": "historical",
+    "startDate": "2024-05-22",
+    "endDate": "2024-07-24",
+    "durationDays": 63,
+    "durationIsApproximate": true,
+    "description": "Finn Bálor defeated Alberto Del Rio in the finals of the tournament for the vacant NXT Championship at NXT TakeOver VII on May 22, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 13,
+    "legacy": {
+      "numberLabel": "REIGN #6",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "finn-balor"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-status-14",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2024-05-21",
+    "endDate": "2024-05-22",
+    "durationDays": 1,
+    "durationIsApproximate": true,
+    "description": "The NXT Championship was vacated on May 21, 2024.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 14,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "nxt-champion-reign-5-15",
+    "championshipId": "nxt-championship",
+    "reignNumber": 5,
+    "championName": "Bret Hart",
+    "championId": "bret-hart",
+    "status": "historical",
+    "startDate": "2023-10-18",
+    "endDate": "2024-05-21",
+    "durationDays": 216,
+    "durationIsApproximate": true,
+    "description": "Bret Hart defeated Ricochet in a Singles match for the vacant NXT Championship at NXT #23 on October 18, 2023. He vacated the title after winning the World Heavyweight Championship. This is the longest reign in the history of the championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 15,
+    "legacy": {
+      "numberLabel": "REIGN #5",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "nxt-2",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "bret-hart"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-status-16",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2023-10-15",
+    "endDate": "2023-10-18",
+    "durationDays": 3,
+    "durationIsApproximate": true,
+    "description": "The NXT Championship was vacated on October 15, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 16,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "nxt-2",
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "nxt-champion-reign-4-17",
+    "championshipId": "nxt-championship",
+    "reignNumber": 4,
+    "championName": "Dolph Ziggler",
+    "championId": null,
+    "status": "historical",
+    "startDate": "2023-10-04",
+    "endDate": "2023-10-15",
+    "durationDays": 11,
+    "durationIsApproximate": true,
+    "description": "Dolph Ziggler defeated Logan Paul in the finals of the tournament for the vacant NXT Championship at NXT TakeOver III on October 4, 2023. He vacated the title after leaving the company.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 17,
+    "legacy": {
+      "numberLabel": "REIGN #4",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "nxt-takeover-1",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-status-18",
+    "championshipId": "nxt-championship",
+    "reignNumber": null,
+    "championName": "Vacant",
+    "championId": null,
+    "status": "vacant",
+    "startDate": "2023-10-03",
+    "endDate": "2023-10-04",
+    "durationDays": 1,
+    "durationIsApproximate": true,
+    "description": "The NXT Championship was vacated on October 3, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 18,
+    "legacy": {
+      "numberLabel": "VACANT",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ],
+      "wrestlerMatch": "unresolved"
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "nxt-takeover-1",
+    "normalizedStatus": "vacant"
+  },
+  {
+    "id": "nxt-champion-reign-3-19",
+    "championshipId": "nxt-championship",
+    "reignNumber": 3,
+    "championName": "Jeff Jarrett",
+    "championId": "jeff-jarrett",
+    "status": "historical",
+    "startDate": "2023-08-09",
+    "endDate": "2023-10-03",
+    "durationDays": 55,
+    "durationIsApproximate": true,
+    "description": "Jeff Jarrett defeated Karrion Kross in a Singles match to win the NXT Championship at NXT TakeOver II on August 9, 2023. He vacated the title after winning the Undisputed WWE Universal Championship.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 19,
+    "legacy": {
+      "numberLabel": "REIGN #3",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "nxt-takeover-1",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "jeff-jarrett"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-2-20",
+    "championshipId": "nxt-championship",
+    "reignNumber": 2,
+    "championName": "Karrion Kross",
+    "championId": "karrion-kross",
+    "status": "historical",
+    "startDate": "2023-07-16",
+    "endDate": "2023-08-09",
+    "durationDays": 24,
+    "durationIsApproximate": true,
+    "description": "Karrion Kross defeated Kevin Owens in a Singles match to win the NXT Championship at WWE Live: Santiago on July 16, 2023. After the match, Owens demanded his rematch clause be exercised, but was again defeated by Kross.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 20,
+    "legacy": {
+      "numberLabel": "REIGN #2",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "endDateInferred": true,
+    "lostAtEventId": "nxt-takeover-1",
+    "championWrestlerIds": [
+      "karrion-kross"
+    ],
+    "normalizedStatus": "ended"
+  },
+  {
+    "id": "nxt-champion-reign-1-21",
+    "championshipId": "nxt-championship",
+    "reignNumber": 1,
+    "championName": "Kevin Owens",
+    "championId": "kevin-owens",
+    "status": "historical",
+    "startDate": "2023-06-07",
+    "endDate": "2023-07-16",
+    "durationDays": 39,
+    "durationIsApproximate": true,
+    "description": "Kevin Owens defeated Karrion Kross in the finals of the tournament for the inaugural NXT Championship at NXT TakeOver I on June 7, 2023.",
+    "image": "../images/Vacante.jpg",
+    "source": "History/nxt-championship.html",
+    "sourcePosition": 21,
+    "legacy": {
+      "numberLabel": "REIGN #1",
+      "daysLabel": "",
+      "articleClasses": [
+        "reign",
+        "former-reign"
+      ]
+    },
+    "sourceChampionshipId": "nxt-champion",
+    "wonAtEventId": "nxt-takeover-1",
+    "endDateInferred": true,
+    "lostAtEventId": null,
+    "championWrestlerIds": [
+      "kevin-owens"
+    ],
+    "normalizedStatus": "ended"
+  }
+]
