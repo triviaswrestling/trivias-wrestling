@@ -44,39 +44,111 @@
   }
 
   
+
 function themeFor(wrestler) {
   const status = String(wrestler.status || "active").toLowerCase();
   const brand = String(wrestler.brand || "").toLowerCase();
 
-  if (/hall.?of.?fame|hof|sal[oó]n de la fama/.test(status) || /hall.?of.?fame|hof/.test(brand))
-    return { accent:"#91bfff", glow:"rgba(75,155,255,.2)", label:"HALL OF FAME", banner:"linear-gradient(110deg,#101722,#405779 38%,#c8d0da 54%,#9d8148 72%,#17191e)" };
+  // ALUMNI Y HALL OF FAME: conservar la identidad actual.
+  if (/hall.?of.?fame|hof|sal[oó]n de la fama/.test(status) ||
+      /hall.?of.?fame|hof/.test(brand)) {
+    return {
+      accent: "#91bfff",
+      glow: "rgba(75,155,255,.2)",
+      label: "HALL OF FAME",
+      banner: "linear-gradient(110deg,#101722,#405779 38%,#c8d0da 54%,#9d8148 72%,#17191e)"
+    };
+  }
 
-  if (/inactive|retired|alumni|retirad/.test(status))
-    return { accent:"#cbb783", glow:"rgba(203,183,131,.16)", label:"ALUMNI", banner:"linear-gradient(110deg,#171614,#51452f 35%,#c5ad75 53%,#77633b 72%,#171614)" };
+  if (/inactive|retired|alumni|retirad/.test(status)) {
+    return {
+      accent: "#cbb783",
+      glow: "rgba(203,183,131,.16)",
+      label: "ALUMNI",
+      banner: "linear-gradient(110deg,#171614,#51452f 35%,#c5ad75 53%,#77633b 72%,#171614)"
+    };
+  }
 
-  if (brand.includes("aaa"))
-    return { accent:"#e32636", glow:"rgba(227,38,54,.2)", label:wrestler.brand||"AAA", banner:"linear-gradient(105deg,#490b13,#b7192b 25%,#e6e7e9 47%,#aeb4bc 54%,#bd1829 76%,#087b4a)" };
+  // AAA: oscuro, rojo y verde; sin placa plateada.
+  if (brand.includes("aaa")) {
+    return {
+      accent: "#ed2939",
+      glow: "rgba(237,41,57,.18)",
+      label: wrestler.brand || "AAA",
+      banner: "linear-gradient(110deg,#090b0d 0%,#26090e 35%,#8e1422 72%,#101512 100%)"
+    };
+  }
 
-  if (brand.includes("raw"))
-    return { accent:"#ed2939", glow:"rgba(237,41,57,.2)", label:wrestler.brand||"RAW", banner:"linear-gradient(105deg,#090a0c,#292c31 25%,#c5c9cf 44%,#f0f1f2 49%,#7b818a 57%,#191a1e 78%,#b51c2b)" };
+  // RAW 2026 — Netflix: negro y rojo intenso.
+  if (brand.includes("raw")) {
+    return {
+      accent: "#ff2638",
+      glow: "rgba(255,38,56,.22)",
+      label: wrestler.brand || "RAW",
+      banner: "linear-gradient(110deg,#080808 0%,#26090d 38%,#a20f20 72%,#130709 100%)"
+    };
+  }
 
-  if (brand.includes("smack") || brand === "sd")
-    return { accent:"#2589ed", glow:"rgba(37,137,237,.2)", label:wrestler.brand||"SMACKDOWN", banner:"linear-gradient(105deg,#050b18,#103a78 25%,#d6dce5 43%,#f4f5f7 48%,#347fc7 60%,#092653 82%,#050b18)" };
+  // SMACKDOWN 2026: negro y azul eléctrico.
+  if (brand.includes("smack") || brand === "sd") {
+    return {
+      accent: "#2589ff",
+      glow: "rgba(37,137,255,.22)",
+      label: wrestler.brand || "SMACKDOWN",
+      banner: "linear-gradient(110deg,#050811 0%,#0b2048 38%,#125fc2 72%,#050914 100%)"
+    };
+  }
 
-  if (brand.includes("nxt"))
-    return { accent:"#c5cbd4", glow:"rgba(197,203,212,.16)", label:wrestler.brand||"NXT", banner:"linear-gradient(105deg,#08090b,#373b42 24%,#aeb4bd 42%,#f0f1f3 50%,#8d949e 62%,#292c32 82%,#08090b)" };
+  // NXT 2026: negro, gris oscuro y blanco.
+  // Sin amarillo, dorado ni reflejos metálicos.
+  if (brand.includes("nxt")) {
+    return {
+      accent: "#d9dee7",
+      glow: "rgba(217,222,231,.14)",
+      label: wrestler.brand || "NXT",
+      banner: "linear-gradient(110deg,#08090b 0%,#20242b 42%,#444b56 72%,#101114 100%)"
+    };
+  }
 
-  if (brand.includes("aew"))
-    return { accent:"#c7b98e", glow:"rgba(199,185,142,.15)", label:wrestler.brand||"AEW", banner:"linear-gradient(105deg,#111,#514b40 35%,#c7c0b0 52%,#514b40 72%,#111)" };
+  // AEW: mantener su aspecto original.
+  if (brand.includes("aew")) {
+    return {
+      accent: "#c7b98e",
+      glow: "rgba(199,185,142,.15)",
+      label: wrestler.brand || "AEW",
+      banner: "linear-gradient(105deg,#111,#514b40 35%,#c7c0b0 52%,#514b40 72%,#111)"
+    };
+  }
 
-  if (brand.includes("tna"))
-    return { accent:"#d8dce2", glow:"rgba(216,220,226,.15)", label:wrestler.brand||"TNA", banner:"linear-gradient(105deg,#111216,#555b65 35%,#d8dce2 52%,#a51e2d 76%,#111216)" };
+  // TNA: mantener su aspecto original.
+  if (brand.includes("tna")) {
+    return {
+      accent: "#d8dce2",
+      glow: "rgba(216,220,226,.15)",
+      label: wrestler.brand || "TNA",
+      banner: "linear-gradient(105deg,#111216,#555b65 35%,#d8dce2 52%,#a51e2d 76%,#111216)"
+    };
+  }
 
-  if (brand.includes("wwe"))
-    return { accent:"#d8dce2", glow:"rgba(216,220,226,.15)", label:wrestler.brand||"WWE", banner:"linear-gradient(105deg,#101114,#525760 35%,#e1e4e9 52%,#8b929d 72%,#101114)" };
+  // WWE: mantener su aspecto original.
+  if (brand.includes("wwe")) {
+    return {
+      accent: "#d8dce2",
+      glow: "rgba(216,220,226,.15)",
+      label: wrestler.brand || "WWE",
+      banner: "linear-gradient(105deg,#101114,#525760 35%,#e1e4e9 52%,#8b929d 72%,#101114)"
+    };
+  }
 
-  return { accent:"#37d7ff", glow:"rgba(55,215,255,.17)", label:wrestler.brand||"ACTIVE", banner:"linear-gradient(105deg,#07151c,#126b92 35%,#37d7ff 52%,#9beeff 62%,#07151c)" };
+  // Tema general para otras marcas.
+  return {
+    accent: "#37d7ff",
+    glow: "rgba(55,215,255,.17)",
+    label: wrestler.brand || "ACTIVE",
+    banner: "linear-gradient(110deg,#071016 0%,#103747 42%,#087dff 72%,#071016 100%)"
+  };
 }
+
 
 
   function currentChampionships(wrestler) {
