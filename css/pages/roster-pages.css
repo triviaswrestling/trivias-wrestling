@@ -674,3 +674,45 @@
     padding-inline: 8px;
   }
 }
+/* ==========================================================
+FIX MOBILE — MODAL: SEPARAR TEXTO DE LA IMAGEN
+========================================================== */
+@media (max-width: 560px) {
+.mw-modal-hero {
+grid-template-columns: minmax(105px, 35%) minmax(0, 1fr);
+gap: 16px;
+padding-right: 0;
+}
+
+.mw-modal-identity {
+min-width: 0;
+padding-left: 3px;
+}
+
+.mw-modal-identity h2 {
+font-size: clamp(1.5rem, 6vw, 2.15rem);
+overflow-wrap: anywhere;
+}
+
+.mw-modal-nickname {
+overflow-wrap: anywhere;
+}
+}
+
+@media (max-width: 360px) {
+.mw-modal-hero {
+grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
+gap: 13px;
+padding-right: 0;
+}
+
+.mw-modal-portrait-wrap {
+width: 100%;
+min-width: 0;
+min-height: 180px;
+}
+
+.mw-modal-identity h2 {
+font-size: 1.45rem;
+}
+}
