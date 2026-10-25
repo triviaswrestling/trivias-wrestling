@@ -71,13 +71,13 @@ function themeFor(wrestler) {
 
   // AAA: oscuro, rojo y verde; sin placa plateada.
   if (brand.includes("aaa")) {
-    return {
-      accent: "#ed2939",
-      glow: "rgba(237,41,57,.18)",
-      label: wrestler.brand || "AAA",
-      banner: "linear-gradient(110deg,#090b0d 0%,#26090e 35%,#8e1422 72%,#101512 100%)"
-    };
-  }
+  return {
+    label: "AAA",
+    accent: "#009B3A",
+    glow: "rgba(0, 155, 58, 0.38)",
+    banner: "linear-gradient(110deg, #050505 0%, #006B2D 35%, #FFFFFF 55%, #D71920 78%, #050505 100%)"
+  };
+}
 
   // RAW 2026 — Netflix: negro y rojo intenso.
   if (brand.includes("raw")) {
