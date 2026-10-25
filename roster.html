@@ -4,37 +4,103 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
   <meta name="theme-color" content="#05070b">
-  <meta name="description" content="Archivo de superestrellas de MI WRESTLING 2.0">
+  <meta name="description" content="Roster de superestrellas activas de MI WRESTLING 2.0">
   <title>Roster | MI WRESTLING 2.0</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base/wwe-2k26-theme.css">
-  <link rel="stylesheet" href="css/base/style.css">
-  <link rel="stylesheet" href="css/layout/nav.css">
+
   <link rel="stylesheet" href="css/pages/roster-pages.css">
-  <script src="js/core/config.js" defer></script>
-  <script src="js/core/navigation.js" defer></script>
+
   <script src="js/components/wrestler-card.js" defer></script>
   <script src="js/pages/wrestlers-catalog.js" defer></script>
 </head>
+
 <body data-page="roster">
+
   <main class="site-main mw-roster-page" data-wrestlers-catalog="roster">
-    <header class="mw-page-header">
-      <p class="eyebrow">MI WRESTLING 2.0 / SUPERSTAR DATABASE</p>
-      <h1 class="page-title">ROSTER</h1>
-      <p class="lead">Las superestrellas activas. Una ficha por luchador, múltiples presentaciones cuando corresponda.</p>
+
+    <!-- Encabezado cinematográfico -->
+    <header class="mw-page-header alumni-hero roster-hero">
+      <div class="alumni-hero-content">
+
+        <div class="alumni-eyebrow">
+          <span class="alumni-eyebrow-line"></span>
+          <span>MI WRESTLING 2.0</span>
+          <span class="alumni-eyebrow-divider">/</span>
+          <span class="alumni-eyebrow-muted">SUPERSTAR DATABASE</span>
+        </div>
+
+        <h1 class="alumni-title">
+          <span>ROSTER</span>
+        </h1>
+
+        <p class="alumni-description">
+          THE SUPERSTARS OF THE RING.
+          <span>
+            Las superestrellas activas de MI WRESTLING.
+            Una ficha por luchador, múltiples presentaciones cuando corresponda.
+          </span>
+        </p>
+
+        <div class="alumni-hero-bottom">
+          <span class="alumni-edition">MI WRESTLING 2.0</span>
+          <span class="alumni-edition-line"></span>
+          <span class="alumni-edition-label">ACTIVE SUPERSTARS</span>
+        </div>
+
+      </div>
     </header>
-    <section class="mw-current-champions" data-current-champions aria-label="Campeones actuales">
-      <div class="mw-champions-heading"><span class="mw-champions-kicker">THE GOLD STANDARD</span><h2>CAMPEONES ACTUALES</h2><span class="mw-champions-rule"></span></div>
+
+    <!-- Campeones actuales -->
+    <section
+      class="mw-current-champions"
+      data-current-champions
+      aria-label="Campeones actuales"
+    >
+      <div class="mw-champions-heading">
+        <span class="mw-champions-kicker">THE GOLD STANDARD</span>
+        <h2>CAMPEONES ACTUALES</h2>
+        <span class="mw-champions-rule"></span>
+      </div>
+
       <p class="mw-champions-empty">CARGANDO CAMPEONES…</p>
     </section>
+
+    <!-- Filtros por marca -->
     <section class="mw-brand-filter-panel" aria-label="Filtrar por marca">
-      <div class="mw-filter-panel-heading"><span class="mw-filter-kicker">SELECT BRAND</span><strong>EXPLORAR POR MARCA</strong><span class="mw-catalog-count" data-wrestler-count>PREPARANDO SUPERSTRELLAS</span></div>
-      <div class="mw-brand-filters" data-brand-filters role="group" aria-label="Marcas disponibles"><span class="mw-catalog-loading">CARGANDO MARCAS…</span></div>
+      <div class="mw-filter-panel-heading">
+        <span class="mw-filter-kicker">SELECT BRAND</span>
+        <strong>EXPLORAR POR MARCA</strong>
+        <span class="mw-catalog-count" data-wrestler-count>
+          PREPARANDO SUPERSTRELLAS
+        </span>
+      </div>
+
+      <div
+        class="mw-brand-filters"
+        data-brand-filters
+        role="group"
+        aria-label="Marcas disponibles"
+      >
+        <span class="mw-catalog-loading">CARGANDO MARCAS…</span>
+      </div>
     </section>
-    <div class="roster-grid-container" aria-live="polite"><p class="mw-catalog-loading">CARGANDO ARCHIVO DE SUPERSTRELLAS…</p></div>
+
+    <!-- Catálogo de luchadores -->
+    <div class="roster-grid-container" aria-live="polite">
+      <p class="mw-catalog-loading">
+        CARGANDO ARCHIVO DE SUPERSTRELLAS…
+      </p>
+    </div>
+
   </main>
-  <footer class="footer">MI WRESTLING 2.0 · SUPERSTAR ARCHIVE</footer>
+
+  <footer class="footer">
+    MI WRESTLING 2.0 · SUPERSTAR ARCHIVE
+  </footer>
+
 </body>
 </html>
