@@ -177,7 +177,7 @@ function themeFor(wrestler) {
       <img class="mw-wrestler-card__image" src="${escapeHTML(image)}" alt="${escapeHTML(name)}" loading="lazy" onerror="this.classList.add('is-missing');this.removeAttribute('src')">
       <span class="mw-wrestler-card__rank">${overall !== undefined ? `OVR ${overall}` : escapeHTML(theme.label)}</span>
       <span class="mw-wrestler-card__banner"><span class="mw-wrestler-card__banner-inner">
-        <span class="mw-wrestler-card__subtitle">${escapeHTML(subtitle)}</span>
+        <span class="mw-wrestler-card__subtitle" style="color:${theme.accent}">${escapeHTML(subtitle)}</span>
         <span class="mw-wrestler-card__name">${escapeHTML(name)}</span>
       </span></span>
       <span class="mw-wrestler-card__brand"><span>${escapeHTML(theme.label)}</span><span class="mw-wrestler-card__view">VER FICHA ↗</span></span>
