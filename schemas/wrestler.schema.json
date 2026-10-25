@@ -1,81 +1,143 @@
-
-
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "MI Wrestling Wrestler",
   "type": "object",
-  "required": ["id", "name", "status"],
+  "required": [
+    "id",
+    "name"
+  ],
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$"
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
     "name": {
       "type": "string",
       "minLength": 1
     },
     "nickname": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "interpreter": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "ID del intérprete actual, no es otro luchador"
     },
     "image": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "status": {
-      "type": "string",
-      "enum": ["active", "inactive", "retired", "unknown"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "division": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
-    "brandIds": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": {"type": "string"}
+    "brand": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
-    "stableIds": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": {"type": "string"}
-    },
-    "personaIds": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": {"type": "string"}
-    },
-    "themeSong": {
-      "type": ["string", "null"]
-    },
-    "finisher": {
-      "type": ["string", "null"]
-    },
-    "signature": {
-      "type": ["string", "null"]
-    },
-    "stats": {
-      "type": "object",
+    "attributes": {
+      "type": [
+        "object",
+        "null"
+      ],
       "properties": {
-        "power": {"type": "number", "minimum": 0, "maximum": 100},
-        "charisma": {"type": "number", "minimum": 0, "maximum": 100},
-        "micSkills": {"type": "number", "minimum": 0, "maximum": 100},
-        "overall": {"type": "number", "minimum": 0, "maximum": 100}
+        "power": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "charisma": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "micro": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
       },
-      "additionalProperties": false
+      "additionalProperties": true
     },
-    "achievements": {
+    "interpreterHistory": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["title"],
+        "required": [
+          "id",
+          "name"
+        ],
         "properties": {
-          "title": {"type": "string"},
-          "year": {"type": ["integer", "null"]},
-          "details": {"type": ["string", "null"]}
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "recordUrl": {
+            "type": "string"
+          }
         },
-        "additionalProperties": false
+        "additionalProperties": true
       }
+    },
+    "record": {
+      "type": "object",
+      "properties": {
+        "season2026": {
+          "type": "string"
+        },
+        "career": {
+          "type": "string"
+        }
+      }
+    },
+    "legacyStats": {
+      "type": "object"
+    },
+    "finisher": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "signature": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "achievements": {
+      "type": "array"
+    },
+    "presentationIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recordLinks": {
+      "type": "object"
     }
   },
   "additionalProperties": true
