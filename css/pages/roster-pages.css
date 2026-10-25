@@ -100,3 +100,279 @@
 @media(max-width:900px){.roster-grid-container{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:560px){.roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding-inline:10px}.mw-wrestler-card{aspect-ratio:3/4}.mw-wrestler-card__banner{padding:6px 5px 7px 8px;margin-bottom:4px}.mw-wrestler-card__name{font-size:clamp(.78rem,3.7vw,1.18rem);line-height:.94}.mw-wrestler-card__subtitle{font-size:clamp(.43rem,1.9vw,.58rem);letter-spacing:.04em}.mw-wrestler-card__brand{padding:0 5px 6px;font-size:.48rem;letter-spacing:.03em;gap:3px}.mw-wrestler-card__view{font-size:.43rem}.mw-wrestler-card__rank{top:5px;right:5px;padding:3px 4px;font-size:.57rem}.mw-brand-filter-panel{margin-bottom:16px;padding:13px 10px}.mw-filter-panel-heading{gap:8px}.mw-filter-panel-heading>strong{font-size:1.1rem}.mw-brand-filter{min-height:35px;padding:7px 11px;font-size:.75rem}.mw-current-champions{padding:18px 10px 0;margin-bottom:18px}.mw-champions-heading{gap:8px}.mw-champions-heading h2{font-size:1.35rem}.mw-champions-kicker{font-size:.58rem}.mw-champions-track{grid-template-columns:1fr 1fr;gap:7px}.mw-champion-card{min-height:86px;padding:7px;gap:7px}.mw-champion-card img{width:42px;height:64px;flex-basis:42px}.mw-champion-card__crest{width:35px;height:35px;flex-basis:35px;font-size:1.25rem}.mw-champion-card__copy small{font-size:.49rem;letter-spacing:.08em}.mw-champion-card__copy strong{font-size:.95rem}.mw-champion-card__copy>span{font-size:.57rem}.mw-champion-card__arrow{font-size:.9rem}.mw-modal-champion-bar{margin-bottom:12px;padding:9px;gap:9px}.mw-modal-champion-bar__crest{width:32px;height:32px;flex-basis:32px;font-size:1.1rem}.mw-modal-champion-bar__copy small{font-size:.52rem;letter-spacing:.1em}.mw-modal-champion-bar__copy strong{font-size:.9rem}}
 @media(max-width:360px){.roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr))}.mw-wrestler-card__view{display:none}.mw-champions-track{grid-template-columns:1fr}}
+
+/* =====================================================
+   MI WRESTLING 2.0 — ALUMNI CINEMATIC HERO
+   WWE 2K26 inspired · Mobile friendly
+   ===================================================== */
+
+.alumni-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto 34px;
+    padding: clamp(38px, 7vw, 82px) 20px 30px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            ellipse at 78% 30%,
+            rgba(0, 119, 255, 0.20),
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 8% 100%,
+            rgba(0, 65, 180, 0.13),
+            transparent 42%
+        ),
+        linear-gradient(
+            115deg,
+            #05070b 0%,
+            #090e18 52%,
+            #05070b 100%
+        );
+
+    border: 1px solid rgba(112, 169, 255, 0.16);
+    border-radius: 4px;
+    text-align: left;
+}
+
+/* Luz diagonal cinematográfica */
+.alumni-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -55%;
+    right: 12%;
+    width: 1px;
+    height: 210%;
+    transform: rotate(32deg);
+    transform-origin: center;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(69, 151, 255, 0.02) 20%,
+        rgba(69, 151, 255, 0.45) 48%,
+        rgba(69, 151, 255, 0.05) 75%,
+        transparent
+    );
+
+    box-shadow: 0 0 32px rgba(0, 111, 255, 0.15);
+    pointer-events: none;
+}
+
+/* Brillo inferior sutil */
+.alumni-hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(44, 139, 255, 0.75),
+        rgba(160, 208, 255, 0.25),
+        transparent
+    );
+
+    pointer-events: none;
+}
+
+.alumni-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Etiqueta superior */
+.alumni-eyebrow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 13px;
+
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: #82baff;
+}
+
+.alumni-eyebrow-line {
+    display: inline-block;
+    width: 27px;
+    height: 2px;
+    flex: 0 0 27px;
+
+    background: #258cff;
+    box-shadow: 0 0 10px rgba(37, 140, 255, 0.5);
+}
+
+.alumni-eyebrow-divider {
+    color: #52647c;
+}
+
+.alumni-eyebrow-muted {
+    color: #758399;
+}
+
+/* Título principal */
+.alumni-title {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: clamp(64px, 13vw, 142px);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 0.86;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+
+    color: #f5f8ff;
+
+    text-shadow:
+        0 2px 0 #9ba9bd,
+        0 5px 0 rgba(31, 53, 82, 0.8),
+        0 14px 36px rgba(0, 99, 255, 0.18);
+}
+
+.alumni-title span {
+    display: inline-block;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #e4edfa 42%,
+        #91a9ca 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Subtítulo */
+.alumni-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    max-width: 620px;
+    margin: 22px 0 0;
+
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    line-height: 1.7;
+    color: #76b6ff;
+}
+
+.alumni-description span {
+    max-width: 520px;
+
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    line-height: 1.8;
+    color: #b5c0d1;
+}
+
+/* Firma inferior */
+.alumni-hero-bottom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 32px;
+    padding-top: 16px;
+
+    border-top: 1px solid rgba(153, 184, 224, 0.14);
+}
+
+.alumni-edition,
+.alumni-edition-label {
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.alumni-edition {
+    color: #eaf3ff;
+}
+
+.alumni-edition-line {
+    width: 30px;
+    height: 1px;
+    background: rgba(98, 162, 255, 0.55);
+}
+
+.alumni-edition-label {
+    color: #73849d;
+}
+
+/* Ajustes para celulares */
+@media (max-width: 600px) {
+    .alumni-hero {
+        margin-bottom: 25px;
+        padding: 36px 17px 22px;
+    }
+
+    .alumni-eyebrow {
+        gap: 7px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .alumni-eyebrow-line {
+        width: 20px;
+        flex-basis: 20px;
+    }
+
+    .alumni-title {
+        font-size: clamp(62px, 17vw, 96px);
+        letter-spacing: -1px;
+    }
+
+    .alumni-description {
+        margin-top: 18px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .alumni-description span {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .alumni-hero-bottom {
+        margin-top: 24px;
+        gap: 9px;
+    }
+
+    .alumni-edition,
+    .alumni-edition-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .alumni-hero,
+    .alumni-hero::before,
+    .alumni-hero::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
