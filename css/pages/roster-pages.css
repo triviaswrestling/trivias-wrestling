@@ -388,11 +388,24 @@
     aspect-ratio:3/4.7;
 }
 
+
+/* NOMBRES — VHS / WWE 2K RETRO */
 .mw-wrestler-card__name{
-    color:#fff!important;
-    -webkit-text-fill-color:#fff;
-    text-shadow:0 2px 8px #000b;
+    color:#e5e5e2!important;
+    -webkit-text-fill-color:#e5e5e2;
+    font-family:"Barlow Condensed",Impact,sans-serif;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:-.025em;
+    line-height:.96;
+    -webkit-text-stroke:.25px #17191d;
+    text-shadow:
+        0 1px 1px #000,
+        1px 0 0 #202126,
+        -1px 0 0 #202126,
+        0 2px 3px #000b;
 }
+
 
 /* Ocultar la marca inferior que ocupa espacio */
 .mw-wrestler-card__brand{
