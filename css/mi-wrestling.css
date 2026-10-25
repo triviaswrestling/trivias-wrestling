@@ -916,3 +916,30 @@ a {
     grid-template-columns: 1fr;
   }
    }
+
+
+/* ==========================================================
+   MI WRESTLING 2.0 — GLOBAL GAME HUD / DASHBOARD / FOOTER
+   Inspiración WWE 2K: metal, iluminación temática y navegación liviana.
+   ========================================================== */
+.mw-global-nav{position:relative;z-index:1000;color:#f7f9ff;background:linear-gradient(180deg,#20242d 0,#090b10 16%,#050609 74%,#171b24 100%);border-top:3px solid #697181;border-bottom:2px solid var(--mw-accent);box-shadow:0 8px 24px #000b,inset 0 1px #ffffff24;isolation:isolate}
+.mw-global-nav:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;background:linear-gradient(105deg,transparent 0 20%,rgba(var(--mw-accent-rgb),.17) 36%,transparent 48% 72%,rgba(255,255,255,.07) 83%,transparent 90%)}
+.mw-global-nav__inner{position:relative;width:min(100% - 28px,1500px);min-height:76px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.mw-global-nav__brand{display:flex;align-items:center;gap:10px;min-width:max-content;text-decoration:none;color:#fff;text-shadow:0 2px 7px #000;font-family:var(--mw-font-display,'Barlow Condensed',Impact,sans-serif);font-weight:900;letter-spacing:.035em}
+.mw-global-nav__mark{display:grid;place-items:center;width:43px;height:43px;border:2px solid #dce7f8;transform:skew(-7deg);background:linear-gradient(135deg,#303744,#080a0f 65%);box-shadow:inset 0 0 0 2px #000,0 0 15px rgba(var(--mw-accent-rgb),.25);font-size:20px}
+.mw-global-nav__brand-title{display:block;font-size:clamp(18px,2vw,25px);line-height:.95}.mw-global-nav__brand-subtitle{display:block;margin-top:5px;font:700 9px var(--mw-font-body,Arial,sans-serif);letter-spacing:.19em;color:#aeb8ca}
+.mw-global-nav__links{display:flex;align-items:stretch;justify-content:flex-end;gap:3px;flex-wrap:wrap}
+.mw-global-nav__link{position:relative;display:flex;align-items:center;justify-content:center;min-height:42px;padding:9px 11px;color:#c7ceda;text-decoration:none;font-family:var(--mw-font-display,'Barlow Condensed',Impact,sans-serif);font-size:clamp(13px,1.2vw,17px);font-weight:800;letter-spacing:.045em;text-transform:uppercase;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);border-bottom:2px solid transparent;transition:background-color .16s ease,color .16s ease,border-color .16s ease;}
+.mw-global-nav__link:hover,.mw-global-nav__link[aria-current="page"]{color:#fff;background:linear-gradient(180deg,rgba(var(--mw-accent-rgb),.23),rgba(var(--mw-accent-rgb),.06));border-bottom-color:var(--mw-accent);text-shadow:0 0 12px rgba(var(--mw-accent-rgb),.55)}
+.mw-global-nav__toggle{display:none;width:48px;height:44px;border:1px solid #667083;background:linear-gradient(#252a35,#080a0e);box-shadow:inset 0 1px #ffffff30,0 4px 12px #0008;cursor:pointer;padding:10px;}
+.mw-global-nav__toggle span{display:block;height:2px;margin:4px 0;background:#fff;box-shadow:0 0 8px rgba(var(--mw-accent-rgb),.4)}
+.mw-global-footer{position:relative;isolation:isolate;overflow:hidden;margin-top:48px;color:#d8deea;background:linear-gradient(180deg,#10141d 0,#050609 24%,#080a10 100%);border-top:3px solid #626b7b;box-shadow:0 -12px 36px #0007,inset 0 1px #ffffff24}
+.mw-global-footer:before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 12% 0,rgba(var(--mw-accent-rgb),.24),transparent 42%),linear-gradient(115deg,transparent 20%,rgba(255,255,255,.035) 47%,transparent 66%)}
+.mw-global-footer__inner{width:min(100% - 36px,1400px);margin:auto;padding:30px 0 20px;display:grid;grid-template-columns:minmax(220px,1.2fr) minmax(260px,1fr);gap:22px 36px;align-items:center}
+.mw-global-footer__copy{max-width:620px;margin:0;color:#c2cada;font-size:13px;line-height:1.75}.mw-global-socials{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}
+.mw-global-social{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;border:1px solid #3a4352;background:linear-gradient(180deg,#1c222d,#080a0e);color:#f4f7ff;text-decoration:none;font:800 15px var(--mw-font-display,'Barlow Condensed',Impact,sans-serif);text-transform:uppercase;letter-spacing:.04em;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);transition:border-color .16s ease,background-color .16s ease}
+.mw-global-social:hover{border-color:var(--mw-accent);background:linear-gradient(180deg,rgba(var(--mw-accent-rgb),.28),#080a0e)}.mw-global-social svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7}
+.mw-global-footer__legal{grid-column:1/-1;margin:0;padding-top:16px;border-top:1px solid #ffffff16;color:#778397;font-size:10px;line-height:1.7}
+@media(max-width:1100px){.mw-global-nav__inner{min-height:68px;flex-wrap:wrap;padding:10px 0}.mw-global-nav__toggle{display:block;margin-left:auto}.mw-global-nav__links{display:none;position:absolute;top:calc(100% + 2px);left:-14px;right:-14px;max-height:min(72vh,620px);overflow:auto;padding:12px;background:linear-gradient(180deg,#242936 0,#090b10 12%,#050609 100%);border:1px solid #5b6576;border-bottom:3px solid var(--mw-accent);box-shadow:0 18px 38px #000e;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.mw-global-nav__links.is-open{display:grid}.mw-global-nav__link{min-height:48px;justify-content:flex-start;padding:11px 13px;background:linear-gradient(180deg,#171b24,#090b10);border:1px solid #252c38;border-left:3px solid transparent;font-size:17px}.mw-global-nav__link:hover,.mw-global-nav__link[aria-current="page"]{border-left-color:var(--mw-accent);border-bottom-color:#252c38}}
+@media(max-width:560px){.mw-global-nav__inner{width:calc(100% - 22px)}.mw-global-nav__brand-subtitle{font-size:8px}.mw-global-nav__links{left:-11px;right:-11px;grid-template-columns:1fr}.mw-global-nav__link{min-height:43px}.mw-global-footer__inner{width:calc(100% - 28px);grid-template-columns:1fr;padding-top:24px}.mw-global-socials{justify-content:flex-start}.mw-global-footer__legal{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.mw-global-nav__link,.mw-global-social{transition:none!important}}
