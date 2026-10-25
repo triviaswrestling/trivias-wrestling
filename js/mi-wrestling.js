@@ -1,63 +1,20 @@
 
-/* =========================================================
-   MI WRESTLING 2.0 — MOTOR GLOBAL
-   Responsabilidades exclusivas:
-   - Rotación del tema de color.
-   - Navbar universal.
-   - Menú hamburguesa para móviles.
-   - Footer universal.
-   - Año de copyright.
-   ========================================================= */
+/* ==========================================================
+   MI WRESTLING — GLOBAL NAVBAR / FOOTER / ACCENT ROTATION
+   No modifica CSS ni lógica de páginas o componentes.
+   ========================================================== */
 
-(function () {
+(() => {
   "use strict";
 
-  const VERSION = "3.0.0";
-  const ROOT = document.documentElement;
-
   const THEMES = [
-    {
-      name: "azul eléctrico",
-      accent: "#168cff",
-      rgb: "22,140,255",
-      second: "#00e5ff"
-    },
-    {
-      name: "rojo arena",
-      accent: "#ff3156",
-      rgb: "255,49,86",
-      second: "#ffb347"
-    },
-    {
-      name: "violeta",
-      accent: "#9a5bff",
-      rgb: "154,91,255",
-      second: "#f05bff"
-    },
-    {
-      name: "cian",
-      accent: "#00cfe8",
-      rgb: "0,207,232",
-      second: "#8df8ff"
-    },
-    {
-      name: "dorado",
-      accent: "#d9a62e",
-      rgb: "217,166,46",
-      second: "#ffe18a"
-    },
-    {
-      name: "verde",
-      accent: "#19c786",
-      rgb: "25,199,134",
-      second: "#9affd8"
-    },
-    {
-      name: "naranja",
-      accent: "#ff7a24",
-      rgb: "255,122,36",
-      second: "#ffd06a"
-    }
+    { name: "blue", accent: "#168cff", rgb: "22, 140, 255", second: "#00e5ff" },
+    { name: "red", accent: "#ff3156", rgb: "255, 49, 86", second: "#ffb347" },
+    { name: "violet", accent: "#9a5bff", rgb: "154, 91, 255", second: "#f05bff" },
+    { name: "cyan", accent: "#00cfe8", rgb: "0, 207, 232", second: "#8df8ff" },
+    { name: "gold", accent: "#d9a62e", rgb: "217, 166, 46", second: "#ffe18a" },
+    { name: "green", accent: "#19c786", rgb: "25, 199, 134", second: "#9affd8" },
+    { name: "orange", accent: "#ff7a24", rgb: "255, 122, 36", second: "#ffd06a" }
   ];
 
   const NAV_LINKS = [
@@ -83,402 +40,330 @@
     ["Acerca de", "about.html"]
   ];
 
-  const FOOTER_DESCRIPTION =
-    "La base de datos definitiva para las trivias de WWE. " +
-    "Explorá luchadores, campeonatos y eventos, y seguí los récords de nuestra comunidad.";
-
-  const DISCLAIMER =
-    "MI WRESTLING utiliza imágenes de luchadores, campeonatos y eventos " +
-    "únicamente con fines de identificación. No reclama derechos de propiedad " +
-    "sobre ellas. Todos los derechos de esas imágenes pertenecen a los luchadores " +
-    "y a las organizaciones de lucha libre correspondientes, incluida WWE.";
-
-  const SOCIAL_LINKS = [
+  const SOCIALS = [
     {
-      name: "Instagram",
-      label: "IG",
-      href: "#instagram"
+      id: "instagram",
+      label: "Instagram",
+      url: "",
+      icon: "instagram"
     },
     {
-      name: "YouTube",
-      label: "YT",
-      href: "#youtube"
+      id: "youtube",
+      label: "YouTube",
+      url: "https://www.youtube.com/@TriviasWWE",
+      icon: "youtube"
     },
     {
-      name: "Discord",
-      label: "DC",
-      href: "#discord"
+      id: "discord",
+      label: "Discord",
+      url: "https://discord.gg/YmBJQPfQ",
+      icon: "discord"
     },
     {
-      name: "WhatsApp",
-      label: "WA",
-      href: "#whatsapp"
+      id: "whatsapp",
+      label: "WhatsApp",
+      url: "https://chat.whatsapp.com/D7vkfUKTujZ8nr6xlQj02C",
+      icon: "whatsapp"
     }
   ];
 
-  /* =========================================================
-     UTILIDADES
-     ========================================================= */
+  const FOOTER_DESCRIPTION =
+    "La base de datos definitiva para las trivias de WWE. Explorá luchadores, campeonatos y eventos, y seguí los récords de nuestra comunidad.";
 
-  function safeStorageGet(key) {
+  const FOOTER_LEGAL =
+    "MI WRESTLING utiliza imágenes de luchadores, campeonatos y eventos únicamente con fines de identificación. No reclama derechos de propiedad sobre ellas. Todos los derechos de esas imágenes pertenecen a los luchadores y a las organizaciones de lucha libre correspondientes, incluida WWE.";
+
+  const THEME_KEY = "mw-global-theme-index";
+
+  function safeGet(key) {
     try {
-      return window.localStorage.getItem(key);
+      return localStorage.getItem(key);
     } catch (_) {
       return null;
     }
   }
 
-  function safeStorageSet(key, value) {
+  function safeSet(key, value) {
     try {
-      window.localStorage.setItem(key, value);
-    } catch (_) {
-      // El sitio sigue funcionando aunque el almacenamiento esté bloqueado.
-    }
-  }
-
-  function safeSessionGet(key) {
-    try {
-      return window.sessionStorage.getItem(key);
-    } catch (_) {
-      return null;
-    }
-  }
-
-  function safeSessionSet(key, value) {
-    try {
-      window.sessionStorage.setItem(key, value);
-    } catch (_) {
-      // El tema también funciona sin sessionStorage.
-    }
+      localStorage.setItem(key, value);
+    } catch (_) {}
   }
 
   function escapeHTML(value) {
-    return String(value == null ? "" : value).replace(
-      /[&<>"']/g,
-      function (character) {
-        return {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
-        }[character];
-      }
-    );
+    return String(value).replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
   }
 
-  function getBasePath() {
-    const path = window.location.pathname;
-    const directory = path.slice(0, path.lastIndexOf("/") + 1);
-
-    return directory || "/";
-  }
-
-  function getLogoPath() {
-    return getBasePath() + "images/logo.png";
-  }
-
-  function normalizePath(path) {
-    return String(path || "")
-      .split("?")[0]
-      .split("#")[0]
-      .replace(/\/+/g, "/");
-  }
-
-  function currentPath() {
-    return normalizePath(window.location.pathname);
-  }
-
-  function isCurrentLink(href) {
-    const target = normalizePath(
-      new URL(href, window.location.href).pathname
+  /*
+   * Obtiene la raíz del sitio a partir de la ubicación del script.
+   * Funciona también si el script está cargado desde una subcarpeta.
+   */
+  function getRootPath() {
+    const scripts = Array.from(document.scripts);
+    const script = scripts.find(item =>
+      /(?:^|\/)js\/mi-wrestling\.js(?:[?#].*)?$/i.test(item.src || "")
     );
 
-    const current = currentPath();
+    if (script && script.src) {
+      const url = new URL(script.src, location.href);
+      return url.pathname.replace(/\/js\/mi-wrestling\.js$/i, "/");
+    }
 
-    if (target === current) return true;
+    const parts = location.pathname.split("/").filter(Boolean);
+    const last = parts[parts.length - 1] || "";
 
+    if (/\.[a-z0-9]+$/i.test(last)) {
+      parts.pop();
+    }
+
+    return "/" + (parts.length ? parts.join("/") + "/" : "");
+  }
+
+  const ROOT = getRootPath();
+
+  function siteURL(path) {
+    return ROOT + String(path).replace(/^\/+/, "");
+  }
+
+  function currentPageName() {
     return (
-      target.endsWith("/index.html") &&
-      current === target.slice(0, -"index.html".length)
-    );
+      location.pathname.split("/").filter(Boolean).pop() || "index.html"
+    ).toLowerCase();
   }
-
-  function createElementFromHTML(html) {
-    const template = document.createElement("template");
-    template.innerHTML = html.trim();
-    return template.content.firstElementChild;
-  }
-
-  /* =========================================================
-     ROTACIÓN DEL TEMA
-     El color cambia en cada carga cuando es posible guardar
-     el último tema utilizado.
-     ========================================================= */
-
-  function applyTheme() {
-    const storageKey = "mw-global-theme-index";
-    const sessionKey = "mw-global-theme-session-index";
-
-    let previousIndex = Number(safeStorageGet(storageKey));
-
-    if (
-      !Number.isInteger(previousIndex) ||
-      previousIndex < 0 ||
-      previousIndex >= THEMES.length
-    ) {
-      previousIndex = -1;
-    }
-
-    let nextIndex;
-
-    if (previousIndex < 0) {
-      nextIndex = Math.floor(Math.random() * THEMES.length);
-    } else {
-      nextIndex = (previousIndex + 1) % THEMES.length;
-    }
-
-    safeStorageSet(storageKey, String(nextIndex));
-    safeSessionSet(sessionKey, String(nextIndex));
-
-    const theme = THEMES[nextIndex];
-
-    ROOT.style.setProperty("--mw-accent", theme.accent);
-    ROOT.style.setProperty("--mw-accent-rgb", theme.rgb);
-    ROOT.style.setProperty("--mw-accent-2", theme.second);
-
-    // Compatibilidad con estilos globales existentes.
-    ROOT.style.setProperty("--accent", theme.accent);
-    ROOT.style.setProperty("--accent-rgb", theme.rgb);
-    ROOT.style.setProperty("--accent-2", theme.second);
-
-    ROOT.dataset.mwTheme = theme.name;
-    ROOT.dataset.mwVersion = VERSION;
-
-    document.documentElement.style.colorScheme = "dark";
-  }
-
-  /* =========================================================
-     NAVBAR UNIVERSAL
-     Si ya existe una navbar universal, no crea otra.
-     No reemplaza el encabezado propio de la página de inicio.
-     ========================================================= */
 
   function isHomePage() {
-    const path = currentPath();
-    const lastPart = path.split("/").filter(Boolean).pop() || "";
-
-    return (
-      lastPart === "" ||
-      lastPart.toLowerCase() === "index.html"
-    );
+    return currentPageName() === "index.html";
   }
 
-  function getNavigationMarkup() {
-    const links = NAV_LINKS.map(function (item) {
-      const label = item[0];
-      const href = getBasePath() + item[1];
-      const active = isCurrentLink(href);
+  function applyTheme() {
+    let index = Number.parseInt(safeGet(THEME_KEY) || "0", 10);
+
+    if (!Number.isFinite(index)) index = 0;
+
+    index = ((index % THEMES.length) + THEMES.length) % THEMES.length;
+
+    const theme = THEMES[index];
+    const root = document.documentElement;
+
+    root.style.setProperty("--mw-accent", theme.accent);
+    root.style.setProperty("--mw-accent-rgb", theme.rgb);
+    root.style.setProperty("--mw-accent-2", theme.second);
+
+    /* Compatibilidad con páginas que usen variables antiguas. */
+    root.style.setProperty("--accent", theme.accent);
+    root.style.setProperty("--accent-rgb", theme.rgb);
+    root.dataset.mwTheme = theme.name;
+  }
+
+  function rotateAccent() {
+    const current = Number.parseInt(safeGet(THEME_KEY) || "0", 10);
+    const next = Number.isFinite(current)
+      ? (current + 1) % THEMES.length
+      : 0;
+
+    safeSet(THEME_KEY, String(next));
+    applyTheme();
+  }
+
+  function iconSVG(name) {
+    const common =
+      'viewBox="0 0 24 24" aria-hidden="true" focusable="false"';
+
+    const icons = {
+      instagram: `<svg ${common}>
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.7" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle>
+      </svg>`,
+
+      youtube: `<svg ${common}>
+        <path d="M21 7.3a2.7 2.7 0 0 0-1.9-1.9C17.4 5 12 5 12 5s-5.4 0-7.1.4A2.7 2.7 0 0 0 3 7.3 28 28 0 0 0 2.6 12a28 28 0 0 0 .4 4.7 2.7 2.7 0 0 0 1.9 1.9C6.6 19 12 19 12 19s5.4 0 7.1-.4a2.7 2.7 0 0 0 1.9-1.9 28 28 0 0 0 .4-4.7 28 28 0 0 0-.4-4.7Z"></path>
+        <path d="m10 9 5 3-5 3Z" fill="#05070b" stroke="none"></path>
+      </svg>`,
+
+      discord: `<svg ${common}>
+        <path d="M7 7.2a13 13 0 0 1 3-.9l.4.8a12 12 0 0 1 3.2 0l.4-.8a13 13 0 0 1 3 .9c1.8 2.6 2.3 5.1 2 7.6a12 12 0 0 1-3.7 1.9l-.8-1.3a8 8 0 0 0 1.2-.6 9 9 0 0 1-8.2 0 8 8 0 0 0 1.2.6l-.8 1.3A12 12 0 0 1 3 14.8c-.3-2.5.2-5 2-7.6Z"></path>
+        <circle cx="9" cy="11.5" r="1"></circle>
+        <circle cx="15" cy="11.5" r="1"></circle>
+      </svg>`,
+
+      whatsapp: `<svg ${common}>
+        <path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.1-4.4a8.2 8.2 0 1 1 15.6-3.9Z"></path>
+        <path d="M8.2 7.8c.2-.4.5-.4.8-.4h.5l.8 1.9c.1.2 0 .4-.1.6l-.6.7c-.2.2-.1.4 0 .6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.2.6-.1.7-.6 1.3-1.2 1.5-.7.3-1.6.1-2.7-.4-1.4-.6-2.7-1.8-3.6-3.1-.8-1.1-1-2.1-.8-2.9.1-.4.4-.8.7-1Z"></path>
+      </svg>`
+    };
+
+    return icons[name] || "";
+  }
+
+  function socialMarkup(social) {
+    const available = Boolean(social.url);
+    const attrs = available
+      ? `href="${escapeHTML(social.url)}" target="_blank" rel="noopener noreferrer"`
+      : 'href="#" aria-disabled="true" data-social-unavailable="true" title="Enlace de Instagram pendiente"';
+
+    return `
+      <a class="mw-global-social mw-global-social--${social.id}"
+         ${attrs}
+         aria-label="${social.label}">
+        <span class="mw-global-social__icon">${iconSVG(social.icon)}</span>
+        <span>${social.label}</span>
+      </a>`;
+  }
+
+  function buildNavbar() {
+    const links = NAV_LINKS.map(([label, path]) => {
+      const active = currentPageName() === path.toLowerCase();
 
       return `
-        <a
-          class="mw-nav__link${active ? " is-active" : ""}"
-          href="${escapeHTML(href)}"
-          ${active ? 'aria-current="page"' : ""}
-        >${escapeHTML(label)}</a>
-      `;
+        <a class="mw-global-nav__link"
+           href="${escapeHTML(siteURL(path))}"
+           ${active ? 'aria-current="page"' : ""}>
+          ${escapeHTML(label)}
+        </a>`;
     }).join("");
 
     return `
       <header class="mw-global-nav" data-mw-global-nav>
         <div class="mw-global-nav__inner">
-          <a
-            class="mw-global-nav__brand"
-            href="${escapeHTML(getBasePath() + "index.html")}"
-            aria-label="MI WRESTLING — Inicio"
-          >
-            <img
-              class="mw-global-nav__logo"
-              src="${escapeHTML(getLogoPath())}"
-              alt=""
-              width="43"
-              height="43"
-              onerror="this.style.display='none'"
-            >
+          <a class="mw-global-nav__brand"
+             href="${escapeHTML(siteURL("index.html"))}"
+             aria-label="MI WRESTLING, inicio">
+            <span class="mw-global-nav__mark">
+              <img src="${escapeHTML(siteURL("images/logo.png"))}"
+                   alt=""
+                   onerror="this.style.display='none'">
+            </span>
             <span class="mw-global-nav__brand-copy">
-              <strong>MI WRESTLING</strong>
-              <small>SUPERSTAR DATABASE</small>
+              <span class="mw-global-nav__brand-title">MI WRESTLING</span>
+              <span class="mw-global-nav__brand-subtitle">SUPERSTAR DATABASE</span>
             </span>
           </a>
 
-          <button
-            class="mw-global-nav__toggle"
-            type="button"
-            aria-label="Abrir menú de navegación"
-            aria-expanded="false"
-            aria-controls="mw-global-nav-menu"
-            data-mw-nav-toggle
-          >
-            <span></span>
-            <span></span>
-            <span></span>
+          <button class="mw-global-nav__toggle"
+                  type="button"
+                  aria-label="Abrir menú"
+                  aria-expanded="false"
+                  aria-controls="mw-global-nav-links">
+            <span></span><span></span><span></span>
           </button>
 
-          <nav
-            class="mw-global-nav__menu"
-            id="mw-global-nav-menu"
-            aria-label="Navegación principal"
-            data-mw-nav-menu
-          >
-            <div class="mw-global-nav__links">
-              ${links}
-            </div>
-
-            <a
-              class="mw-global-nav__social"
-              href="#instagram"
-              aria-label="Seguinos en Instagram"
-            >
-              Seguinos en Instagram <span aria-hidden="true">↗</span>
+          <nav class="mw-global-nav__links"
+               id="mw-global-nav-links"
+               aria-label="Navegación principal">
+            ${links}
+            <a class="mw-global-nav__social-cta" href="#mw-socials">
+              <span class="mw-global-nav__social-dot"></span>
+              REDES
+              <span class="mw-global-nav__social-arrow">↗</span>
             </a>
           </nav>
         </div>
-      </header>
-    `;
+      </header>`;
   }
 
-  function setupNavigation() {
-    // La página de inicio conserva su cabecera y diseño propios.
-    if (isHomePage()) return;
-
-    if (
-      document.querySelector("[data-mw-global-nav]") ||
-      document.querySelector(".site-nav")
-    ) {
-      return;
-    }
-
-    const navbar = createElementFromHTML(getNavigationMarkup());
-
-    if (!navbar) return;
-
-    document.body.insertBefore(navbar, document.body.firstChild);
-
-    const toggle = navbar.querySelector("[data-mw-nav-toggle]");
-    const menu = navbar.querySelector("[data-mw-nav-menu]");
-
-    if (!toggle || !menu) return;
-
-    function closeMenu() {
-      navbar.classList.remove("is-menu-open");
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "Abrir menú de navegación");
-    }
-
-    toggle.addEventListener("click", function () {
-      const isOpen = navbar.classList.toggle("is-menu-open");
-
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.setAttribute(
-        "aria-label",
-        isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
-      );
-    });
-
-    menu.addEventListener("click", function (event) {
-      if (event.target.closest("a")) closeMenu();
-    });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") closeMenu();
-    });
-
-    document.addEventListener("click", function (event) {
-      if (!navbar.contains(event.target)) closeMenu();
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 900) closeMenu();
-    });
-  }
-
-  /* =========================================================
-     FOOTER UNIVERSAL
-     ========================================================= */
-
-  function getFooterMarkup() {
-    const socialMarkup = SOCIAL_LINKS.map(function (social) {
-      return `
-        <a
-          class="mw-global-footer__social"
-          href="${escapeHTML(social.href)}"
-          aria-label="${escapeHTML(social.name)}"
-          title="${escapeHTML(social.name)}"
-        >${escapeHTML(social.label)}</a>
-      `;
-    }).join("");
-
+  function buildFooter() {
     return `
       <footer class="mw-global-footer" data-mw-global-footer>
         <div class="mw-global-footer__inner">
-          <div class="mw-global-footer__main">
-            <a
-              class="mw-global-footer__brand"
-              href="${escapeHTML(getBasePath() + "index.html")}"
-            >MI WRESTLING</a>
+          <p class="mw-global-footer__copy">${FOOTER_DESCRIPTION}</p>
 
-            <p class="mw-global-footer__description">
-              ${escapeHTML(FOOTER_DESCRIPTION)}
-            </p>
-
-            <div class="mw-global-footer__socials"
-              aria-label="Redes sociales">
-              ${socialMarkup}
+          <div class="mw-global-footer__meta">
+            <p class="mw-global-footer__caption">Seguinos en nuestras redes</p>
+            <div class="mw-global-socials" id="mw-socials">
+              ${SOCIALS.map(socialMarkup).join("")}
             </div>
           </div>
 
-          <div class="mw-global-footer__legal">
-            <p class="mw-global-footer__disclaimer">
-              ${escapeHTML(DISCLAIMER)}
-            </p>
-
-            <p class="mw-global-footer__copyright">
-              Desarrollado por © ${new Date().getFullYear()}
-              Trivias WWE para la comunidad.
-            </p>
-          </div>
+          <p class="mw-global-footer__legal">${FOOTER_LEGAL}</p>
         </div>
-      </footer>
-    `;
+      </footer>`;
+  }
+
+  function setupNavbar() {
+    /* La portada conserva su navbar propio de home.css. */
+    if (isHomePage()) return;
+    if (document.querySelector("[data-mw-global-nav], .site-nav")) return;
+
+    const holder = document.createElement("div");
+    holder.innerHTML = buildNavbar().trim();
+
+    const nav = holder.firstElementChild;
+    const existingHeader = document.querySelector("body > header, body > .site-header");
+
+    if (existingHeader) {
+      existingHeader.insertAdjacentElement("beforebegin", nav);
+    } else {
+      document.body.insertAdjacentElement("afterbegin", nav);
+    }
+
+    const toggle = nav.querySelector(".mw-global-nav__toggle");
+    const links = nav.querySelector(".mw-global-nav__links");
+
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      links.classList.toggle("is-open", open);
+    });
+
+    links.addEventListener("click", event => {
+      if (!event.target.closest("a")) return;
+
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Abrir menú");
+      links.classList.remove("is-open");
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape") return;
+
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Abrir menú");
+      links.classList.remove("is-open");
+    });
   }
 
   function setupFooter() {
-    if (
-      document.querySelector("[data-mw-global-footer]") ||
-      document.querySelector(".site-footer") ||
-      document.querySelector(".mw-footer")
-    ) {
-      return;
-    }
+    if (document.querySelector(
+      "[data-mw-global-footer], footer.site-footer, footer.mw-footer, .mw-home__footer"
+    )) return;
 
-    document.body.appendChild(createElementFromHTML(getFooterMarkup()));
+    const holder = document.createElement("div");
+    holder.innerHTML = buildFooter().trim();
+
+    const footer = holder.firstElementChild;
+    const existingFooter = document.querySelector("body > footer, body > .site-footer");
+
+    if (existingFooter) {
+      existingFooter.insertAdjacentElement("beforebegin", footer);
+    } else {
+      document.body.appendChild(footer);
+    }
   }
 
-  /* =========================================================
-     INICIALIZACIÓN
-     ========================================================= */
-
-  function initialize() {
+  function init() {
     applyTheme();
-    setupNavigation();
+    setupNavbar();
     setupFooter();
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialize, {
-      once: true
-    });
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   } else {
-    initialize();
+    init();
   }
+
+  /* API opcional: permite avanzar al siguiente acento desde otros scripts. */
+  window.MIWrestlingTheme = {
+    apply: applyTheme,
+    next: rotateAccent,
+    themes: THEMES.map(theme => ({ ...theme }))
+  };
 })();
