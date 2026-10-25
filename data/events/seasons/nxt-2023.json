@@ -1,0 +1,110 @@
+{
+  "id": "nxt-2023",
+  "categoryId": "nxt",
+  "name": "Archivo 2023",
+  "year": 2023,
+  "status": "archived",
+  "startDate": "2023-04-12",
+  "endDate": "2023-06-07",
+  "shows": [
+    "nxt"
+  ],
+  "events": [
+    {
+      "id": "nxt-takeover-1",
+      "legacyKey": "nxt-takeover-1",
+      "title": "NXT TakeOver I",
+      "type": "PLE",
+      "date": "2023-06-07",
+      "dateOriginal": "07/06/2023",
+      "brand": "NXT",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "nxt-takeover-1-match-1",
+        "nxt-takeover-1-match-2",
+        "nxt-takeover-1-match-3",
+        "nxt-takeover-1-match-4",
+        "nxt-takeover-1-match-5"
+      ],
+      "categoryId": "nxt",
+      "categoryName": "NXT",
+      "year": 2023,
+      "seasonId": "nxt-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "nxt-3",
+      "legacyKey": "nxt-3",
+      "title": "NXT 3",
+      "name": "NXT 3",
+      "type": "WEEKLY",
+      "date": "2023-04-26",
+      "dateOriginal": "26/04/2023",
+      "brand": "NXT",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "nxt-3-match-1",
+        "nxt-3-match-2",
+        "nxt-3-match-3",
+        "nxt-3-match-4",
+        "nxt-3-match-5"
+      ],
+      "categoryId": "nxt",
+      "categoryName": "NXT",
+      "year": 2023,
+      "seasonId": "nxt-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "nxt-2",
+      "legacyKey": "nxt-2",
+      "title": "NXT 2",
+      "name": "NXT 2",
+      "type": "WEEKLY",
+      "date": "2023-04-19",
+      "dateOriginal": "19/04/2023",
+      "brand": "NXT",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "nxt-2-match-1",
+        "nxt-2-match-2",
+        "nxt-2-match-3",
+        "nxt-2-match-4",
+        "nxt-2-match-5"
+      ],
+      "categoryId": "nxt",
+      "categoryName": "NXT",
+      "year": 2023,
+      "seasonId": "nxt-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "nxt-1",
+      "legacyKey": "nxt-1",
+      "title": "NXT 1",
+      "name": "NXT 1",
+      "type": "WEEKLY",
+      "date": "2023-04-12",
+      "dateOriginal": "12/04/2023",
+      "brand": "NXT",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "nxt-1-match-1",
+        "nxt-1-match-2",
+        "nxt-1-match-3",
+        "nxt-1-match-4",
+        "nxt-1-match-5"
+      ],
+      "categoryId": "nxt",
+      "categoryName": "NXT",
+      "year": 2023,
+      "seasonId": "nxt-2023",
+      "seasonName": "2023"
+    }
+  ],
+  "notes": "Archivo organizado por año; el año se filtra desde el catálogo y no se presenta como una página intermedia."
+}
