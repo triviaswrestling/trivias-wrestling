@@ -1,0 +1,14 @@
+{
+  "id": "specials-2026",
+  "categoryId": "specials",
+  "name": "Archivo 2026",
+  "year": 2026,
+  "status": "current",
+  "startDate": null,
+  "endDate": null,
+  "shows": [
+    "specials"
+  ],
+  "events": [],
+  "notes": "Archivo organizado por año; el año se filtra desde el catálogo y no se presenta como una página intermedia."
+}
