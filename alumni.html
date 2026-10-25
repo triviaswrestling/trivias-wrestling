@@ -3,41 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#05060a">
-  <meta name="description" content="MI WRESTLING 2.0: archivo histórico de luchadores y resultados de la liga de trivia WWE.">
-  <meta name="robots" content="index, follow">
-  
+  <meta name="theme-color" content="#05070b">
+  <meta name="description" content="MI WRESTLING 2.0 — Base de Datos Oficial">
   <title>Alumni | MI WRESTLING 2.0</title>
 
-  <!-- Estilos específicos de las páginas de roster y Alumni -->
-  <link rel="stylesheet" href="css/pages/roster-pages.css">
-  
-  <!-- Estilos globales compartidos con el resto del sitio -->
-  <link rel="stylesheet" href="css/mi-wrestling.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Motor público: navegación, contenido y footer global -->
+  <!-- Hojas de estilo -->
+  <link rel="stylesheet" href="css/mi-wrestling.css">
+  <link rel="stylesheet" href="css/pages/roster-pages.css">
+
+  <!-- Script global (inyecta automáticamente el Navbar y el Footer) -->
   <script src="js/mi-wrestling.js" defer></script>
 </head>
 <body data-page="alumni">
 
-  <noscript>
-    <div style="padding: 20px; text-align: center; color: #f5f9ff; background: #05070b;">
-      <p>Necesitás JavaScript activado para consultar el archivo Alumni de MI WRESTLING.</p>
-    </div>
-  </noscript>
-
-  <!-- Contenedor principal para la vista Alumni -->
-  <main class="mw-alumni-page" id="main-content">
+  <main class="site-main">
     <header class="mw-page-header">
-      <div class="mw-page-header__inner">
-        <h1 class="mw-page-title">ALUMNI</h1>
-        <p class="mw-page-subtitle">ARCHIVO HISTÓRICO Y LUCHADORES REGISTRADOS</p>
-      </div>
+      <p class="eyebrow">HALL OF LEGENDS</p>
+      <h1 class="page-title">ALUMNI</h1>
+      <p class="lead">Superestrellas retiradas, leyendas e íconos que dejaron su marca en MI WRESTLING.</p>
     </header>
 
-    <section class="mw-alumni-content">
-      <!-- El contenido dinámico de Alumni se renderizará aquí -->
-    </section>
+    <!-- Filtros / Buscador -->
+    <div class="toolbar">
+      <input type="text" class="field" placeholder="Buscar leyenda o competidor..." aria-label="Buscar leyenda">
+      <select class="field" aria-label="Filtrar por marca">
+        <option value="">Todas las Eras / Marcas</option>
+        <option value="raw">RAW Alumni</option>
+        <option value="smackdown">SmackDown Alumni</option>
+        <option value="legends">Hall of Fame</option>
+      </select>
+    </div>
+
+    <!-- Grilla de Tarjetas Estilo Drew McIntyre -->
+    <div class="roster-grid-container">
+      
+      <!-- Tarjeta de Ejemplo -->
+      <article class="wrestler-card-drew" style="--theme-accent: #ff3155; --theme-glow: rgba(255, 49, 85, 0.6);">
+        <img src="images/wrestlers/bret-hart.png" alt="Bret Hart" class="wrestler-card-render" onerror="this.style.display='none'">
+        
+        <div class="wrestler-card-banner">
+          <div class="wrestler-card-banner-inner">
+            <span class="wrestler-card-subtitle">HALL OF FAME</span>
+            <h2 class="wrestler-card-name">BRET HART</h2>
+          </div>
+        </div>
+
+        <div class="wrestler-card-brand-bar">
+          <span class="wrestler-card-details">3x Champion · Alumni</span>
+          <span class="pill">Leyenda</span>
+        </div>
+      </article>
+
+    </div>
   </main>
 
 </body>
