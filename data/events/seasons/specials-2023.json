@@ -1,0 +1,161 @@
+{
+  "id": "specials-2023",
+  "categoryId": "specials",
+  "name": "Archivo 2023",
+  "year": 2023,
+  "status": "archived",
+  "startDate": "2023-02-27",
+  "endDate": "2023-03-15",
+  "shows": [
+    "specials"
+  ],
+  "events": [
+    {
+      "id": "live-6",
+      "legacyKey": "live-6",
+      "title": "WWE LIVE #6",
+      "type": "SPECIAL",
+      "date": "2023-03-15",
+      "dateOriginal": "15/03/2023",
+      "brand": "LIVE",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "live-6-match-1",
+        "live-6-match-2",
+        "live-6-match-3"
+      ],
+      "categoryId": "specials",
+      "categoryName": "Especiales",
+      "year": 2023,
+      "seasonId": "specials-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "live-5",
+      "legacyKey": "live-5",
+      "title": "WWE LIVE #5",
+      "type": "SPECIAL",
+      "date": "2023-03-13",
+      "dateOriginal": "13/03/2023",
+      "brand": "LIVE",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "live-5-match-1",
+        "live-5-match-2",
+        "live-5-match-3",
+        "live-5-match-4",
+        "live-5-match-5",
+        "live-5-match-6",
+        "live-5-match-7"
+      ],
+      "categoryId": "specials",
+      "categoryName": "Especiales",
+      "year": 2023,
+      "seasonId": "specials-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "live-4",
+      "legacyKey": "live-4",
+      "title": "WWE LIVE #4",
+      "type": "SPECIAL",
+      "date": "2023-03-08",
+      "dateOriginal": "08/03/2023",
+      "brand": "LIVE",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "live-4-match-1",
+        "live-4-match-2",
+        "live-4-match-3",
+        "live-4-match-4",
+        "live-4-match-5",
+        "live-4-match-6",
+        "live-4-match-7"
+      ],
+      "categoryId": "specials",
+      "categoryName": "Especiales",
+      "year": 2023,
+      "seasonId": "specials-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "live-3",
+      "legacyKey": "live-3",
+      "title": "WWE LIVE #3",
+      "type": "SPECIAL",
+      "date": "2023-03-06",
+      "dateOriginal": "06/03/2023",
+      "brand": "LIVE",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "live-3-match-1",
+        "live-3-match-2",
+        "live-3-match-3",
+        "live-3-match-4",
+        "live-3-match-5",
+        "live-3-match-6",
+        "live-3-match-7"
+      ],
+      "categoryId": "specials",
+      "categoryName": "Especiales",
+      "year": 2023,
+      "seasonId": "specials-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "live-2",
+      "legacyKey": "live-2",
+      "title": "WWE LIVE #2",
+      "type": "SPECIAL",
+      "date": "2023-03-01",
+      "dateOriginal": "01/03/2023",
+      "brand": "LIVE",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "live-2-match-1",
+        "live-2-match-2",
+        "live-2-match-3",
+        "live-2-match-4",
+        "live-2-match-5",
+        "live-2-match-6",
+        "live-2-match-7"
+      ],
+      "categoryId": "specials",
+      "categoryName": "Especiales",
+      "year": 2023,
+      "seasonId": "specials-2023",
+      "seasonName": "2023"
+    },
+    {
+      "id": "live-1",
+      "legacyKey": "live-1",
+      "title": "WWE LIVE #1",
+      "type": "SPECIAL",
+      "date": "2023-02-27",
+      "dateOriginal": "27/02/2023",
+      "brand": "LIVE",
+      "mode": "ROAD",
+      "image": null,
+      "matchIds": [
+        "live-1-match-1",
+        "live-1-match-2",
+        "live-1-match-3",
+        "live-1-match-4",
+        "live-1-match-5",
+        "live-1-match-6",
+        "live-1-match-7"
+      ],
+      "categoryId": "specials",
+      "categoryName": "Especiales",
+      "year": 2023,
+      "seasonId": "specials-2023",
+      "seasonName": "2023"
+    }
+  ],
+  "notes": "Archivo organizado por año; el año se filtra desde el catálogo y no se presenta como una página intermedia."
+}
