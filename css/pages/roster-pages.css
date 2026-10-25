@@ -378,69 +378,88 @@
 }
 
 
+
 /* =====================================================
-   MI WRESTLING 2.0 — ROSTER CARD TUNING
-   Imagen más alta en móvil, sin etiqueta de marca
-   y nombres blancos.
+   MI WRESTLING 2.0 — ROSTER CARD FIX
+   Tarjetas más altas, nombres blancos y sin marca
    ===================================================== */
 
-/* Ocultar la etiqueta superior de marca.
-   Se mantienen intactos los filtros y los datos. */
-.mw-roster-page .wrestler-card .wrestler-brand,
-.mw-roster-page .wrestler-card .brand-badge,
-.mw-roster-page .wrestler-card .brand-label,
-.mw-roster-page .wrestler-card [data-brand-badge] {
-    display: none !important;
+.mw-wrestler-card{
+    aspect-ratio:3/4.7;
 }
 
-/* El nombre siempre debe contrastar con el fondo */
-.mw-roster-page .wrestler-card .wrestler-name,
-.mw-roster-page .wrestler-card .card-name,
-.mw-roster-page .wrestler-card h2,
-.mw-roster-page .wrestler-card h3 {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+.mw-wrestler-card__name{
+    color:#fff!important;
+    -webkit-text-fill-color:#fff;
+    text-shadow:0 2px 8px #000b;
 }
 
-/* Mantener la imagen dentro de la tarjeta */
-.mw-roster-page .wrestler-card img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+/* Ocultar la marca inferior que ocupa espacio */
+.mw-wrestler-card__brand{
+    display:none!important;
 }
 
-/* Móvil: tarjeta más alta y menos recorte horizontal */
-@media (max-width: 600px) {
-    .mw-roster-page .wrestler-card {
-        min-height: 0;
-        height: auto;
+/* Mantener la imagen cubriendo toda la tarjeta */
+.mw-wrestler-card__image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center top;
+}
+
+/* Móvil: tres columnas y tarjetas más altas */
+@media(max-width:560px){
+    .roster-grid-container{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:7px;
+        padding-inline:10px;
     }
 
-    .mw-roster-page .wrestler-card .wrestler-image,
-    .mw-roster-page .wrestler-card .card-image,
-    .mw-roster-page .wrestler-card .wrestler-photo {
-        aspect-ratio: 3 / 4;
-        height: auto;
-        min-height: 0;
-        overflow: hidden;
+    .mw-wrestler-card{
+        aspect-ratio:3/4.7;
     }
 
-    .mw-roster-page .wrestler-card img {
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
-        object-position: center top;
+    .mw-wrestler-card__name{
+        font-size:clamp(.82rem,3.7vw,1.18rem);
+        line-height:.96;
+        overflow-wrap:anywhere;
     }
 
-    .mw-roster-page .wrestler-card .wrestler-name,
-    .mw-roster-page .wrestler-card .card-name,
-    .mw-roster-page .wrestler-card h2,
-    .mw-roster-page .wrestler-card h3 {
-        font-size: clamp(15px, 4.2vw, 19px);
-        line-height: 1.1;
-        overflow-wrap: anywhere;
+    .mw-wrestler-card__banner{
+        padding:6px 5px 7px 8px;
+        margin-bottom:4px;
+    }
+
+    .mw-wrestler-card__subtitle{
+        font-size:clamp(.43rem,1.9vw,.58rem);
+        letter-spacing:.04em;
     }
 }
 
+/* Conservar las tres columnas incluso en pantallas pequeñas */
+@media(max-width:360px){
+    .roster-grid-container{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .mw-wrestler-card__view{
+        display:none;
+    }
+}
+
+/* NXT: acabado plateado, no amarillo.
+   Se aplica a elementos que tengan esta clase o atributo. */
+.brand-nxt,
+[data-brand="NXT"]{
+    --theme-accent:#c7ced8;
+    --theme-glow:rgba(199,206,216,.18);
+}
+
+@media(prefers-reduced-motion:reduce){
+    .mw-wrestler-card,
+    .mw-wrestler-card__image,
+    .mw-wrestler-card__sheen{
+        transition:none!important;
+        animation:none!important;
+    }
+}
