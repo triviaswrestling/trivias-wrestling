@@ -90,9 +90,11 @@
   }
 
   function applyTheme() {
-    let index = Number.parseInt(safeGet(THEME_KEY) || "0", 10);
-    if (!Number.isFinite(index)) index = 0;
-    index = ((index % THEMES.length) + THEMES.length) % THEMES.length;
+    // Cada carga rota el acento: no depende de una animación ni de una librería.
+    let index = Number.parseInt(safeGet(THEME_KEY) || "-1", 10);
+    if (!Number.isFinite(index)) index = -1;
+    index = (index + 1 + THEMES.length) % THEMES.length;
+    safeSet(THEME_KEY, String(index));
 
     const theme = THEMES[index];
     const root = document.documentElement;
@@ -187,7 +189,9 @@
     const holder = document.createElement("div");
     holder.innerHTML = buildNavbar().trim();
     const nav = holder.firstElementChild;
-    document.body.insertAdjacentElement("afterbegin", nav);
+    const main = document.querySelector("main");
+    if (main) main.insertAdjacentElement("beforebegin", nav);
+    else document.body.insertAdjacentElement("afterbegin", nav);
 
     const toggle = nav.querySelector(".mw-global-nav__toggle");
     const links = nav.querySelector(".mw-global-nav__links");
@@ -219,6 +223,9 @@
   function setupFooter() {
     if (isHomePage()) return;
     if (document.querySelector("[data-mw-global-footer]")) return;
+
+    // Reemplaza el footer mínimo heredado: evita que se acumulen dos pies de página.
+    document.querySelectorAll("body > footer.footer, body > .footer").forEach(node => node.remove());
 
     const holder = document.createElement("div");
     holder.innerHTML = buildFooter().trim();
