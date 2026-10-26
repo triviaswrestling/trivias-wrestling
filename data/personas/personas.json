@@ -1,1 +1,907 @@
 
+[
+  {
+    "id": "agus-brito-ar",
+    "name": "Agus Brito",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "angelsito-es",
+    "name": "Angelsito",
+    "country": "ES",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "brai-ar",
+    "name": "Brai",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "carlo-bell-mx",
+    "name": "Carlo Bell",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "carlos-mx",
+    "name": "Carlos",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "claudio-cl",
+    "name": "Claudio",
+    "country": "CL",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "denzel-co",
+    "name": "Denzel",
+    "country": "CO",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "diego-mas-cl",
+    "name": "Diego Mas",
+    "country": "CL",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "diego-v-pe",
+    "name": "Diego V",
+    "country": "PE",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "douglas-ve",
+    "name": "Douglas",
+    "country": "VE",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "edwin-mx",
+    "name": "Edwin",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "eloy-es",
+    "name": "Eloy",
+    "country": "ES",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "erbin-us",
+    "name": "Erbin",
+    "country": "US",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "esteban-cl",
+    "name": "Esteban",
+    "country": "CL",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "ezequiel-uy",
+    "name": "Ezequiel",
+    "country": "UY",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "franco-ar",
+    "name": "Franco",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jesus-pe",
+    "name": "Jesus",
+    "country": "PE",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jeyk-cl",
+    "name": "Jeyk",
+    "country": "CL",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "joaco-ar",
+    "name": "Joaco",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jossue-ec",
+    "name": "Jossue",
+    "country": "EC",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "kao-mx",
+    "name": "Kao",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "kaufman-mx",
+    "name": "Kaufman",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "lautaro-ar",
+    "name": "Lautaro",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "lolo-ar",
+    "name": "Lolo",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "lucas-wm-ar",
+    "name": "Lucas WM",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "luis-salvador-pe",
+    "name": "Luis Salvador",
+    "country": "PE",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "mateo-cl",
+    "name": "Mateo",
+    "country": "CL",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "mateo-ar",
+    "name": "Mateo",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "mati-ar",
+    "name": "Mati",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "mauricio-co",
+    "name": "Mauricio",
+    "country": "CO",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "miguel-es",
+    "name": "Miguel",
+    "country": "ES",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "nico-ar",
+    "name": "Nico",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "niko-ar",
+    "name": "Niko",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "noe-cruz-mx",
+    "name": "Noe Cruz",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "nyponeri-cl",
+    "name": "Nyponeri",
+    "country": "CL",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "orozco-co",
+    "name": "Orozco",
+    "country": "CO",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "raiden-co",
+    "name": "Raiden",
+    "country": "CO",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "samuel-es",
+    "name": "Samuel",
+    "country": "ES",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "santi-pacheco-ar",
+    "name": "Santi Pacheco",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "santical-ar",
+    "name": "Santical",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "tato-ar",
+    "name": "Tato",
+    "country": "AR",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "vince-it",
+    "name": "Vince",
+    "country": "IT",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "worri-mx",
+    "name": "Worri",
+    "country": "MX",
+    "status": "active",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "aaron-mx",
+    "name": "Aaron",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "adiac-ni",
+    "name": "Adiac",
+    "country": "NI",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "agustin-ar",
+    "name": "Agustín",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "alan-cl",
+    "name": "Alan",
+    "country": "CL",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "alejandro-co",
+    "name": "Alejandro",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "alexis-mx",
+    "name": "Alexis",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "ancari-bo",
+    "name": "Ancari",
+    "country": "BO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "andrey-co",
+    "name": "Andrey",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "antony-ar",
+    "name": "Antony",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "ariel-ar",
+    "name": "Ariel",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "axel-mx",
+    "name": "Axel",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "bardero-py",
+    "name": "Bardero",
+    "country": "PY",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "cabrera-mx",
+    "name": "Cabrera",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "cambita-bo",
+    "name": "Cambita",
+    "country": "BO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "ceci-ar",
+    "name": "Ceci",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "cesar-ar",
+    "name": "Cesar",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "dhanyel-us",
+    "name": "Dhanyel",
+    "country": "US",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "diego-ar",
+    "name": "Diego",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "dustin-cl",
+    "name": "Dustin",
+    "country": "CL",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "dylan-cr",
+    "name": "Dylan",
+    "country": "CR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "fabri-ar",
+    "name": "Fabri",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "facha-pe",
+    "name": "Facha",
+    "country": "PE",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "fati-ar",
+    "name": "Fati",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "fran-ar",
+    "name": "Fran",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "gonzalo-ar",
+    "name": "Gonzalo",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "gustav-ar",
+    "name": "Gustav",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "henry-mx",
+    "name": "Henry",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "javier-ni",
+    "name": "Javier",
+    "country": "NI",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jean-paul-cr",
+    "name": "Jean Paul",
+    "country": "CR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jefry-pe",
+    "name": "Jefry",
+    "country": "PE",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jenaro-ar",
+    "name": "Jenaro",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jimmy-mx",
+    "name": "Jimmy",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "jona-mx",
+    "name": "Jona",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "josue-mx",
+    "name": "Josue",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "juan-co",
+    "name": "Juan",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "juancho-ar",
+    "name": "Juancho",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "julio-cruzman-mx",
+    "name": "Julio Cruzman",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "kam-co",
+    "name": "Kam",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "kevin-pe",
+    "name": "Kevin",
+    "country": "PE",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "lil-jones-gq",
+    "name": "Lil Jones",
+    "country": "GQ",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "martin-ar",
+    "name": "Martin",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "martin-cl",
+    "name": "Martin",
+    "country": "CL",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "maxinante-ar",
+    "name": "Maxinante",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "miguel-co",
+    "name": "Miguel",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "moya-pe",
+    "name": "Moya",
+    "country": "PE",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "nahuel-ar",
+    "name": "Nahuel",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "nicko-ar",
+    "name": "Nicko",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "patron-uy",
+    "name": "Patron",
+    "country": "UY",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "pedro-ar",
+    "name": "Pedro",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "pfa-mx",
+    "name": "PFA",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "phaunus-es",
+    "name": "Phaunus",
+    "country": "ES",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "piero-pe",
+    "name": "Piero",
+    "country": "PE",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "r-gutierrez-mx",
+    "name": "R. Gutierrez",
+    "country": "MX",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "rober-gt",
+    "name": "Rober",
+    "country": "GT",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "rojas-ar",
+    "name": "Rojas",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "sergi-enrique-co",
+    "name": "Sergi Enrique",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "sosa-ar",
+    "name": "Sosa",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "soyl-bo",
+    "name": "Soyl",
+    "country": "BO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "tacho-co",
+    "name": "Tacho",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "tano-ar",
+    "name": "Tano",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "themos-ar",
+    "name": "Themos",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "tincho-ar",
+    "name": "Tincho",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "tinn-cr",
+    "name": "Tinn",
+    "country": "CR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "tony-cr",
+    "name": "Tony",
+    "country": "CR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "visionary-pe",
+    "name": "Visionary",
+    "country": "PE",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "wojtek-co",
+    "name": "Wojtek",
+    "country": "CO",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "wu-cl",
+    "name": "Wu",
+    "country": "CL",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "zaca-ar",
+    "name": "Zaca",
+    "country": "AR",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "zona-ec",
+    "name": "Zona",
+    "country": "EC",
+    "status": "inactive",
+    "source": "community-roster-2026",
+    "notes": null
+  },
+  {
+    "id": "yahir",
+    "name": "Yahir",
+    "country": null,
+    "status": "active",
+    "source": "legacy-wrestler-history",
+    "notes": "Incluido porque el historial anterior de Cody Rhodes lo identifica como intérprete actual. País no registrado."
+  }
+]
