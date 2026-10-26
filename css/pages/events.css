@@ -248,23 +248,35 @@ body[data-page="events"] .mw-event-category-card__footer {
         opacity: 0;
         transform: translateX(-140%) skewX(-18deg);
     }
-    18% { opacity: .45; }
-    48% { opacity: .9; }
-    75% { opacity: .5; }
+
+    18% {
+        opacity: .45;
+    }
+
+    48% {
+        opacity: .9;
+    }
+
+    75% {
+        opacity: .5;
+    }
+
     100% {
         opacity: 0;
         transform: translateX(220%) skewX(-18deg);
     }
 }
 
-body[data-page="events"] .mw-event-category-card.is-animating {
+/* Tarjeta levantada durante la animación o selección */
+body[data-page="events"] .mw-event-category-card.is-animating,
+body[data-page="events"] .mw-event-category-card.is-selected {
     z-index: 20;
     transform: translateY(-5px) scale(1.015);
     filter: brightness(1.12);
     border-color: var(--ev-accent);
 }
 
-/* Capa exclusiva para el destello */
+/* Capa del destello */
 body[data-page="events"] .mw-event-category-card__flash {
     position: absolute;
     z-index: 10;
@@ -274,26 +286,24 @@ body[data-page="events"] .mw-event-category-card__flash {
     width: 70%;
     pointer-events: none;
     opacity: 0;
+
     background: linear-gradient(
         90deg,
         transparent,
         color-mix(in srgb, var(--ev-accent) 25%, transparent) 22%,
-        rgba(255,255,255,.92) 48%,
+        rgba(255, 255, 255, .92) 48%,
         color-mix(in srgb, var(--ev-secondary) 40%, transparent) 68%,
         transparent
     );
+
     transform: translateX(-140%) skewX(-18deg);
 }
 
-body[data-page="events"] .mw-event-category-card.is-animating .mw-event-category-card__flash {
-    animation: mw-event-chroma 1.45s cubic-bezier(.2,.65,.25,1) both;
+/* Ejecutar el destello */
+body[data-page="events"] .mw-event-category-card.is-animating
+.mw-event-category-card__flash {
+    animation: mw-event-chroma 1.45s cubic-bezier(.2, .65, .25, 1) both;
 }
-
-body[data-page="events"] .mw-event-category-card:active {
-    transform: translateY(-4px) scale(1.015);
-    filter: brightness(1.12);
-}
-
 
 /* ==========================================================
    IDENTIDAD DE MARCAS — CATEGORÍAS
