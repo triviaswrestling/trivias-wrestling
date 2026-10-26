@@ -1,8 +1,16 @@
 
 /* ==========================================================
-   MI WRESTLING — SPORTS SWISH AUDIO
-   1. swoosh: rompeviento / espada cortando el aire
-   2. menu: ráfaga ligera para navegación y animaciones del menú
+   MI WRESTLING — SPORTS AUDIO ENGINE
+   Archivo: js/sound-effects.js
+
+   SONIDO 1: ráfaga pesada tipo rompeviento / espada.
+   SONIDO 2: swoosh gamer para menú y footer.
+
+   - Sin archivos de audio externos.
+   - Activación tras la primera interacción.
+   - Botón de silencio con preferencia guardada.
+   - Evita sonidos duplicados por animaciones.
+   - Compatible con GitHub Pages.
    ========================================================== */
 
 (() => {
@@ -12,92 +20,174 @@
 
     const STORAGE_KEY = "mw-sounds-enabled";
 
-    let enabled = true;
-    let ctx = null;
-    let master = null;
+    const CONFIG = {
+        enabled: true,
+        volume: 0.72,
+        masterVolume: 0.65,
+        generalCooldown: 220,
+        menuCooldown: 180
+    };
+
+    let audioContext = null;
+    let masterGain = null;
     let unlocked = false;
-    let lastSwoosh = 0;
+    let lastGeneral = 0;
     let lastMenu = 0;
     let soundButton = null;
 
+    /* ======================================================
+       PREFERENCIAS
+       ====================================================== */
+
     try {
-        enabled = localStorage.getItem(STORAGE_KEY) !== "false";
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        if (saved === "true") CONFIG.enabled = true;
+        if (saved === "false") CONFIG.enabled = false;
     } catch (_) {}
 
-    function init() {
-        if (ctx) return true;
+    function savePreference() {
+        try {
+            localStorage.setItem(
+                STORAGE_KEY,
+                String(CONFIG.enabled)
+            );
+        } catch (_) {}
+    }
+
+    /* ======================================================
+       MOTOR DE AUDIO
+       ====================================================== */
+
+    function initAudio() {
+        if (audioContext) return true;
 
         const AudioContextClass =
-            window.AudioContext || window.webkitAudioContext;
+            window.AudioContext ||
+            window.webkitAudioContext;
 
         if (!AudioContextClass) return false;
 
         try {
-            ctx = new AudioContextClass();
-            master = ctx.createGain();
-            master.gain.value = 0.65;
-            master.connect(ctx.destination);
+            audioContext = new AudioContextClass();
+            masterGain = audioContext.createGain();
+
+            masterGain.gain.value =
+                CONFIG.masterVolume * CONFIG.volume;
+
+            masterGain.connect(audioContext.destination);
+
             return true;
-        } catch (_) {
+        } catch (error) {
+            console.warn(
+                "[MI WRESTLING] Audio no disponible:",
+                error
+            );
+
             return false;
         }
     }
 
-    async function unlock() {
-        if (!init()) return false;
+    async function unlockAudio() {
+        if (!initAudio()) return false;
 
         try {
-            if (ctx.state !== "running") await ctx.resume();
-            unlocked = ctx.state === "running";
+            if (audioContext.state !== "running") {
+                await audioContext.resume();
+            }
+
+            unlocked = audioContext.state === "running";
+
             return unlocked;
         } catch (_) {
+            unlocked = false;
             return false;
         }
     }
 
-    function noiseSweep({
-        duration,
-        startFrequency,
-        endFrequency,
-        volume,
-        q = 0.7,
-        attack = 0.018
-    }) {
-        if (!enabled || !unlocked || !ctx ||
-            ctx.state !== "running") return;
+    function canPlay() {
+        return Boolean(
+            CONFIG.enabled &&
+            unlocked &&
+            audioContext &&
+            audioContext.state === "running" &&
+            masterGain
+        );
+    }
 
-        const length = Math.floor(ctx.sampleRate * duration);
-        const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    /* ======================================================
+       GENERADOR DE RÁFAGAS
+       ====================================================== */
+
+    function noiseSweep({
+        duration = 0.25,
+        startFrequency = 3000,
+        endFrequency = 500,
+        volume = 0.5,
+        q = 0.7,
+        attack = 0.015,
+        curve = 1.8
+    } = {}) {
+        if (!canPlay()) return;
+
+        const ctx = audioContext;
+        const length = Math.max(
+            1,
+            Math.floor(ctx.sampleRate * duration)
+        );
+
+        const buffer = ctx.createBuffer(
+            1,
+            length,
+            ctx.sampleRate
+        );
+
         const samples = buffer.getChannelData(0);
 
         for (let i = 0; i < length; i++) {
             const p = i / length;
 
-            // Ataque rápido, cuerpo marcado y cola de aire.
-            const envelope =
-                Math.pow(1 - p, 1.75) *
-                Math.min(1, p / Math.max(0.001, attack / duration));
+            // Ataque rápido y cola natural de aire.
+            const fadeIn = Math.min(
+                1,
+                p / Math.max(0.001, attack / duration)
+            );
 
-            samples[i] = (Math.random() * 2 - 1) * envelope;
+            const envelope =
+                Math.pow(1 - p, curve) * fadeIn;
+
+            samples[i] =
+                (Math.random() * 2 - 1) * envelope;
         }
 
         const source = ctx.createBufferSource();
         const filter = ctx.createBiquadFilter();
         const gain = ctx.createGain();
+
         const t = ctx.currentTime;
 
         source.buffer = buffer;
 
         filter.type = "bandpass";
         filter.Q.value = q;
-        filter.frequency.setValueAtTime(startFrequency, t);
+
+        filter.frequency.setValueAtTime(
+            startFrequency,
+            t
+        );
+
         filter.frequency.exponentialRampToValueAtTime(
             endFrequency,
             t + duration
         );
 
         gain.gain.setValueAtTime(0.0001, t);
-        gain.gain.linearRampToValueAtTime(volume, t + attack);
+
+        gain.gain.linearRampToValueAtTime(
+            volume,
+            t + attack
+        );
+
         gain.gain.exponentialRampToValueAtTime(
             0.0001,
             t + duration
@@ -105,26 +195,40 @@
 
         source.connect(filter);
         filter.connect(gain);
-        gain.connect(master);
+        gain.connect(masterGain);
 
         source.start(t);
         source.stop(t + duration + 0.015);
     }
 
-    // SONIDO 1: rompeviento pesado, con barrido agudo descendente.
+    /* ======================================================
+       SONIDO 1 — RÁFAGA PESADA
+       Botones y tarjetas fuera del menú y footer.
+       ====================================================== */
+
     function playSwoosh() {
-        if (!enabled) return;
+        if (!CONFIG.enabled) return;
 
         if (!unlocked) {
-            unlock().then((ready) => {
-                if (ready && enabled) playSwoosh();
+            unlockAudio().then((ready) => {
+                if (ready && CONFIG.enabled) {
+                    playSwoosh();
+                }
             });
+
             return;
         }
 
         const time = performance.now();
-        if (time - lastSwoosh < 220) return;
-        lastSwoosh = time;
+
+        if (
+            time - lastGeneral <
+            CONFIG.generalCooldown
+        ) {
+            return;
+        }
+
+        lastGeneral = time;
 
         noiseSweep({
             duration: 0.29,
@@ -132,57 +236,113 @@
             endFrequency: 420,
             volume: 0.76,
             q: 0.62,
-            attack: 0.014
+            attack: 0.014,
+            curve: 1.75
         });
     }
 
-    // SONIDO 2: swoosh corto y liviano para el menú.
+    /* ======================================================
+       SONIDO 2 — MENÚ / FOOTER
+       Swoosh más grave, corto y definido.
+       ====================================================== */
+
     function playMenu() {
-        if (!enabled) return;
+        if (!CONFIG.enabled) return;
 
         if (!unlocked) {
-            unlock().then((ready) => {
-                if (ready && enabled) playMenu();
+            unlockAudio().then((ready) => {
+                if (ready && CONFIG.enabled) {
+                    playMenu();
+                }
             });
+
             return;
         }
 
         const time = performance.now();
-        if (time - lastMenu < 170) return;
+
+        if (
+            time - lastMenu <
+            CONFIG.menuCooldown
+        ) {
+            return;
+        }
+
         lastMenu = time;
 
+        // Barrido más grave y compacto, estilo interfaz deportiva.
         noiseSweep({
-            duration: 0.17,
-            startFrequency: 2400,
-            endFrequency: 850,
-            volume: 0.37,
+            duration: 0.19,
+            startFrequency: 2200,
+            endFrequency: 520,
+            volume: 0.48,
             q: 0.8,
-            attack: 0.022
+            attack: 0.018,
+            curve: 1.65
         });
     }
 
-    function updateButton() {
+    /* ======================================================
+       IDENTIFICACIÓN DEL MENÚ Y FOOTER REALES
+       Generados por mi-wrestling.js.
+       ====================================================== */
+
+    function isMenuControl(element) {
+        if (!(element instanceof Element)) {
+            return false;
+        }
+
+        return Boolean(
+            element.closest([
+                "[data-mw-global-nav]",
+                ".mw-global-nav",
+                ".mw-global-nav__toggle",
+                ".mw-global-nav__links",
+                "[data-mw-global-footer]",
+                ".mw-global-footer",
+                ".mw-global-socials",
+                ".mw-global-social"
+            ].join(","))
+        );
+    }
+
+    /* ======================================================
+       BOTÓN PARA SILENCIAR
+       Reutiliza uno existente o crea uno flotante.
+       ====================================================== */
+
+    function updateSoundButton() {
         if (!soundButton) return;
 
-        soundButton.textContent = enabled
+        soundButton.textContent = CONFIG.enabled
             ? "🔊 Sonido"
             : "🔇 Silenciado";
 
         soundButton.setAttribute(
             "aria-label",
-            enabled ? "Silenciar sonidos" : "Activar sonidos"
+            CONFIG.enabled
+                ? "Silenciar efectos de sonido"
+                : "Activar efectos de sonido"
         );
 
-        soundButton.setAttribute("aria-pressed", String(enabled));
+        soundButton.setAttribute(
+            "aria-pressed",
+            String(CONFIG.enabled)
+        );
+
+        soundButton.title = CONFIG.enabled
+            ? "Silenciar efectos de sonido"
+            : "Activar efectos de sonido";
     }
 
-    function createButton() {
+    function createSoundButton() {
         soundButton = document.querySelector(
             "[data-mw-sound-toggle]"
         );
 
         if (!soundButton) {
             soundButton = document.createElement("button");
+
             soundButton.type = "button";
             soundButton.dataset.mwSoundToggle = "";
 
@@ -197,7 +357,8 @@
                 "background:#080b10",
                 "color:#fff",
                 "font:700 12px Montserrat,Arial,sans-serif",
-                "cursor:pointer"
+                "cursor:pointer",
+                "box-shadow:0 3px 12px rgba(0,0,0,.35)"
             ].join(";");
 
             document.body.appendChild(soundButton);
@@ -207,143 +368,165 @@
             event.preventDefault();
             event.stopPropagation();
 
-            enabled = !enabled;
+            CONFIG.enabled = !CONFIG.enabled;
 
-            try {
-                localStorage.setItem(STORAGE_KEY, String(enabled));
-            } catch (_) {}
+            savePreference();
+            updateSoundButton();
 
-            updateButton();
-
-            if (enabled) unlock();
+            if (CONFIG.enabled) {
+                unlockAudio();
+            }
         });
 
-        updateButton();
+        updateSoundButton();
     }
+
+    /* ======================================================
+       API PÚBLICA
+       ====================================================== */
 
     const API = {
         play(type = "swoosh") {
-            if (type === "menu") playMenu();
-            else playSwoosh();
+            if (type === "menu") {
+                playMenu();
+            } else {
+                playSwoosh();
+            }
         },
 
         playMenu,
         playSwoosh,
-        unlock,
+        unlock: unlockAudio,
 
         setEnabled(value) {
-            enabled = Boolean(value);
+            CONFIG.enabled = Boolean(value);
 
-            try {
-                localStorage.setItem(STORAGE_KEY, String(enabled));
-            } catch (_) {}
+            savePreference();
+            updateSoundButton();
 
-            updateButton();
-
-            if (enabled) unlock();
+            if (CONFIG.enabled) {
+                unlockAudio();
+            }
         },
 
         toggle() {
-            API.setEnabled(!enabled);
-            return enabled;
+            API.setEnabled(!CONFIG.enabled);
+            return CONFIG.enabled;
+        },
+
+        setVolume(value) {
+            const number = Number(value);
+
+            if (!Number.isFinite(number)) return;
+
+            CONFIG.volume = Math.max(
+                0,
+                Math.min(1, number)
+            );
+
+            if (masterGain && audioContext) {
+                masterGain.gain.setTargetAtTime(
+                    CONFIG.masterVolume * CONFIG.volume,
+                    audioContext.currentTime,
+                    0.025
+                );
+            }
         },
 
         get enabled() {
-            return enabled;
+            return CONFIG.enabled;
+        },
+
+        get ready() {
+            return canPlay();
         }
     };
 
     window.MWSportsAudio = API;
     window.MWAudio = API;
 
-    document.addEventListener("pointerdown", unlock, {
-        once: true,
-        passive: true
-    });
+    /* ======================================================
+       DESBLOQUEO AUTOMÁTICO TRAS INTERACCIÓN
+       ====================================================== */
 
-    document.addEventListener("keydown", unlock, { once: true });
+    document.addEventListener(
+        "pointerdown",
+        unlockAudio,
+        {
+            once: true,
+            passive: true
+        }
+    );
 
-    // Detectar controles del menú por selectores comunes.
-    function isMenuControl(element) {
-        return Boolean(element.closest([
-            ".main-header",
-            ".main-nav",
-            ".navbar",
-            ".navigation",
-            ".nav-menu",
-            ".menu",
-            ".mobile-menu",
-            ".menu-toggle",
-            ".hamburger",
-            "[data-menu]",
-            "[data-nav]",
-            "[aria-controls]"
-        ].join(",")));
-    }
+    document.addEventListener(
+        "keydown",
+        unlockAudio,
+        { once: true }
+    );
+
+    /* ======================================================
+       UN ÚNICO SONIDO POR CLIC
+       El menú/footer tienen prioridad sobre el sonido general.
+       ====================================================== */
 
     document.addEventListener("click", (event) => {
         const target = event.target;
+
         if (!(target instanceof Element)) return;
 
-        const control = target.closest(
-            "a, button, [role='button'], select, summary, " +
-            ".mw-wrestler-card, [data-sfx], [data-sound]"
-        );
+        const control = target.closest([
+            "a",
+            "button",
+            "[role='button']",
+            "select",
+            "summary",
+            ".mw-wrestler-card",
+            "[data-sfx]",
+            "[data-sound]"
+        ].join(","));
 
-        if (!control ||
-            control.matches("[data-mw-sound-toggle]")) return;
+        if (!control) return;
 
-        if (
-            control.dataset.sfx === "off" ||
-            control.dataset.sound === "off"
-        ) return;
+        // No hacer sonar el botón que silencia/activa.
+        if (control.matches("[data-mw-sound-toggle]")) {
+            return;
+        }
 
         const explicit =
-            control.dataset.sfx || control.dataset.sound;
+            control.dataset.sfx ||
+            control.dataset.sound;
 
-        if (explicit === "menu" || isMenuControl(control)) {
+        if (explicit === "off") return;
+
+        if (
+            explicit === "menu" ||
+            isMenuControl(control)
+        ) {
             playMenu();
         } else {
             playSwoosh();
         }
     }, true);
 
-    // Solo transiciones/animaciones del menú; evita que todo el sitio
-    // dispare sonidos por cambios de color o efectos decorativos.
-    function isMenuAnimation(target) {
-        return target instanceof Element &&
-            isMenuControl(target);
-    }
-
-    document.addEventListener("animationstart", (event) => {
-        if (isMenuAnimation(event.target)) playMenu();
-    }, true);
-
-    document.addEventListener("transitionrun", (event) => {
-        if (!isMenuAnimation(event.target)) return;
-
-        const property = event.propertyName || "";
-
-        if (
-            property.includes("color") ||
-            property.includes("shadow") ||
-            property.includes("opacity")
-        ) return;
-
-        playMenu();
-    }, true);
+    /* ======================================================
+       INICIO
+       ====================================================== */
 
     function start() {
-        createButton();
+        createSoundButton();
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", start, {
-            once: true
-        });
+        document.addEventListener(
+            "DOMContentLoaded",
+            start,
+            { once: true }
+        );
     } else {
         start();
     }
 
-    console.info("[MI WRESTLING] Swoosh + menú cargados.");
+    console.info(
+        "[MI WRESTLING] Audio deportivo listo: swoosh + menú."
+    );
 })();
