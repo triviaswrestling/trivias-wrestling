@@ -842,3 +842,84 @@ body[data-page="events"] .mw-event-empty p {
         animation-duration: .01ms;
     }
 }
+
+/* ==========================================================
+   MI WRESTLING — CHROMA + LEVANTAMIENTO AL TOCAR
+   ========================================================== */
+
+.mw-event-category-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+        transform .22s cubic-bezier(.2,.75,.25,1),
+        border-color .22s ease,
+        filter .22s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mw-event-category-card::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: -60% -80%;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+        115deg,
+        transparent 38%,
+        rgba(55, 215, 255, .08) 43%,
+        rgba(0, 125, 255, .85) 48%,
+        rgba(255, 255, 255, .95) 50%,
+        rgba(255, 0, 170, .8) 52%,
+        rgba(55, 215, 255, .12) 57%,
+        transparent 62%
+    );
+    transform: translateX(-65%);
+}
+
+.mw-event-category-card:active {
+    transform: translateY(-4px) scale(1.015);
+    filter: brightness(1.16);
+}
+
+.mw-event-category-card.is-animating {
+    transform: translateY(-5px) scale(1.018);
+    border-color: #37d7ff;
+    filter: brightness(1.12);
+}
+
+.mw-event-category-card.is-animating::after {
+    opacity: 1;
+    animation: mwEventChromaFlash .8s ease-out forwards;
+}
+
+@keyframes mwEventChromaFlash {
+    0% {
+        opacity: 0;
+        transform: translateX(-65%);
+    }
+    18% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(65%);
+    }
+}
+
+@media (hover: hover) {
+    .mw-event-category-card:hover {
+        transform: translateY(-5px) scale(1.015);
+        border-color: #37d7ff;
+        filter: brightness(1.12);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mw-event-category-card,
+    .mw-event-category-card::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
