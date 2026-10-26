@@ -1,180 +1,399 @@
-/* MI WRESTLING 2.0 — GLOBAL SOUND EFFECTS */
+
+/* ==========================================================
+   MI WRESTLING — SOUND ENGINE
+   Estilo: WWE 2K + SuperCard + PS5
+   Archivo: js/sound-effects.js
+   ========================================================== */
+
 (() => {
     "use strict";
 
     if (window.MWSoundEffects) return;
 
-    const KEY = "mw-sounds-enabled";
-    let enabled = true;
-    let audio = null;
+    const STORAGE_KEY = "mw-sounds-enabled";
+    const VOLUME_KEY = "mw-sounds-volume";
+
+    let enabled = localStorage.getItem(STORAGE_KEY) !== "false";
+    let volume = Number(localStorage.getItem(VOLUME_KEY) ?? 0.75);
+    let audioContext = null;
+    let masterGain = null;
     let lastSound = 0;
 
-    try {
-        enabled = localStorage.getItem(KEY) !== "false";
-    } catch (_) {}
+    const clamp = (value, min, max) =>
+        Math.max(min, Math.min(max, value));
 
-    function getAudio() {
-        if (!audio) {
-            const AudioContext =
-                window.AudioContext || window.webkitAudioContext;
+    function initAudio() {
+        const AudioCtx = window.AudioContext ||
+            window.webkitAudioContext;
 
-            if (!AudioContext) return null;
-            audio = new AudioContext();
+        if (!AudioCtx) return false;
+
+        if (!audioContext) {
+            audioContext = new AudioCtx();
+            masterGain = audioContext.createGain();
+            masterGain.gain.value = volume;
+            masterGain.connect(audioContext.destination);
         }
 
-        if (audio.state === "suspended") audio.resume();
-        return audio;
+        if (audioContext.state === "suspended") {
+            audioContext.resume().catch(() => {});
+        }
+
+        return true;
     }
 
-    function tone(frequency, duration, type = "sine", volume = 0.035, delay = 0) {
-        const ctx = getAudio();
-        if (!ctx || !enabled) return;
+    function tone({
+        frequency = 440,
+        endFrequency = frequency,
+        duration = 0.12,
+        type = "sine",
+        gain = 0.2,
+        delay = 0
+    } = {}) {
+        if (!initAudio()) return;
 
-        const start = ctx.currentTime + delay;
-        const oscillator = ctx.createOscillator();
-        const gain = ctx.createGain();
+        const now = audioContext.currentTime + delay;
+        const oscillator = audioContext.createOscillator();
+        const envelope = audioContext.createGain();
 
         oscillator.type = type;
-        oscillator.frequency.setValueAtTime(frequency, start);
+        oscillator.frequency.setValueAtTime(
+            Math.max(20, frequency), now
+        );
+        oscillator.frequency.exponentialRampToValueAtTime(
+            Math.max(20, endFrequency), now + duration
+        );
 
-        gain.gain.setValueAtTime(0.001, start);
-        gain.gain.exponentialRampToValueAtTime(volume, start + 0.012);
-        gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+        envelope.gain.setValueAtTime(0.0001, now);
+        envelope.gain.exponentialRampToValueAtTime(
+            Math.max(0.0002, gain), now + 0.008
+        );
+        envelope.gain.exponentialRampToValueAtTime(
+            0.0001, now + duration
+        );
 
-        oscillator.connect(gain);
-        gain.connect(ctx.destination);
+        oscillator.connect(envelope);
+        envelope.connect(masterGain);
 
-        oscillator.start(start);
-        oscillator.stop(start + duration + 0.02);
+        oscillator.start(now);
+        oscillator.stop(now + duration + 0.02);
     }
 
+    function noise({
+        duration = 0.15,
+        gain = 0.12,
+        frequency = 1800,
+        delay = 0
+    } = {}) {
+        if (!initAudio()) return;
+
+        const sampleRate = audioContext.sampleRate;
+        const length = Math.max(
+            1, Math.floor(sampleRate * duration)
+        );
+
+        const buffer = audioContext.createBuffer(
+            1, length, sampleRate
+        );
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < length; i++) {
+            const fade = 1 - i / length;
+            data[i] = (Math.random() * 2 - 1) * fade;
+        }
+
+        const source = audioContext.createBufferSource();
+        const filter = audioContext.createBiquadFilter();
+        const envelope = audioContext.createGain();
+
+        source.buffer = buffer;
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(frequency, audioContext.currentTime + delay);
+
+        envelope.gain.setValueAtTime(
+            Math.max(0.0001, gain), audioContext.currentTime + delay
+        );
+        envelope.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + delay + duration
+        );
+
+        source.connect(filter);
+        filter.connect(envelope);
+        envelope.connect(masterGain);
+
+        source.start(audioContext.currentTime + delay);
+    }
+
+    const sounds = {
+        // Golpe potente para botones y acciones.
+        click() {
+            tone({
+                frequency: 180,
+                endFrequency: 65,
+                duration: 0.16,
+                type: "triangle",
+                gain: 0.36
+            });
+            noise({
+                duration: 0.09,
+                gain: 0.13,
+                frequency: 1500
+            });
+        },
+
+        // Interfaz futurista, estilo consola.
+        menu() {
+            tone({
+                frequency: 520,
+                endFrequency: 880,
+                duration: 0.11,
+                type: "sine",
+                gain: 0.18
+            });
+            tone({
+                frequency: 1100,
+                endFrequency: 650,
+                duration: 0.10,
+                type: "triangle",
+                gain: 0.09,
+                delay: 0.035
+            });
+            noise({
+                duration: 0.09,
+                gain: 0.045,
+                frequency: 4500
+            });
+        },
+
+        // Brillo metálico para tarjetas y cromados.
+        card() {
+            noise({
+                duration: 0.20,
+                gain: 0.10,
+                frequency: 6500
+            });
+            tone({
+                frequency: 1250,
+                endFrequency: 2100,
+                duration: 0.16,
+                type: "sine",
+                gain: 0.19
+            });
+            tone({
+                frequency: 1850,
+                endFrequency: 950,
+                duration: 0.23,
+                type: "triangle",
+                gain: 0.11,
+                delay: 0.045
+            });
+        },
+
+        // Entrada de ventana, ficha o modal.
+        open() {
+            tone({
+                frequency: 95,
+                endFrequency: 48,
+                duration: 0.28,
+                type: "sawtooth",
+                gain: 0.30
+            });
+            noise({
+                duration: 0.23,
+                gain: 0.12,
+                frequency: 2400
+            });
+            tone({
+                frequency: 240,
+                endFrequency: 720,
+                duration: 0.22,
+                type: "sine",
+                gain: 0.14,
+                delay: 0.035
+            });
+        },
+
+        // Cierre más corto.
+        close() {
+            tone({
+                frequency: 520,
+                endFrequency: 140,
+                duration: 0.16,
+                type: "triangle",
+                gain: 0.17
+            });
+        },
+
+        // Acción importante: campeonato, confirmación o destacado.
+        special() {
+            tone({
+                frequency: 55,
+                endFrequency: 38,
+                duration: 0.42,
+                type: "sine",
+                gain: 0.42
+            });
+            tone({
+                frequency: 130,
+                endFrequency: 65,
+                duration: 0.32,
+                type: "triangle",
+                gain: 0.30
+            });
+            noise({
+                duration: 0.30,
+                gain: 0.18,
+                frequency: 1200
+            });
+            tone({
+                frequency: 440,
+                endFrequency: 1100,
+                duration: 0.35,
+                type: "sine",
+                gain: 0.12,
+                delay: 0.04
+            });
+        }
+    };
+
     function play(kind = "click") {
-        if (!enabled || Date.now() - lastSound < 65) return;
-        lastSound = Date.now();
+        if (!enabled || !sounds[kind]) return;
 
-        switch (kind) {
-            case "menu":
-                tone(440, 0.07, "triangle", 0.035);
-                tone(660, 0.09, "triangle", 0.025, 0.045);
-                break;
+        const now = performance.now();
 
-            case "card":
-                tone(520, 0.055, "sine", 0.025);
-                tone(780, 0.075, "triangle", 0.02, 0.035);
-                break;
+        // Evita que un mismo sonido se dispare en ráfaga.
+        if (now - lastSound < 45) return;
+        lastSound = now;
 
-            case "modal":
-                tone(330, 0.08, "triangle", 0.03);
-                tone(495, 0.12, "sine", 0.025, 0.045);
-                break;
-
-            case "filter":
-                tone(620, 0.045, "square", 0.012);
-                break;
-
-            default:
-                tone(460, 0.045, "triangle", 0.025);
+        try {
+            sounds[kind]();
+        } catch (error) {
+            // Si el navegador bloquea el audio, no rompe la página.
         }
     }
 
-    function createControl() {
+    function setEnabled(value) {
+        enabled = Boolean(value);
+        localStorage.setItem(STORAGE_KEY, String(enabled));
+
+        if (enabled) initAudio();
+
+        updateToggle();
+    }
+
+    function setVolume(value) {
+        volume = clamp(Number(value) || 0, 0, 1);
+        localStorage.setItem(VOLUME_KEY, String(volume));
+
+        if (masterGain && audioContext) {
+            masterGain.gain.setTargetAtTime(
+                volume,
+                audioContext.currentTime,
+                0.03
+            );
+        }
+    }
+
+    function updateToggle() {
+        document.querySelectorAll("[data-mw-sound-toggle]")
+            .forEach(button => {
+                button.textContent = enabled ? "🔊" : "🔇";
+                button.setAttribute(
+                    "aria-label",
+                    enabled ? "Silenciar sonidos" : "Activar sonidos"
+                );
+                button.setAttribute(
+                    "aria-pressed",
+                    String(enabled)
+                );
+            });
+    }
+
+    function createToggle() {
         if (document.querySelector("[data-mw-sound-toggle]")) return;
 
         const button = document.createElement("button");
         button.type = "button";
         button.dataset.mwSoundToggle = "";
+        button.textContent = enabled ? "🔊" : "🔇";
+        button.setAttribute("aria-label", "Silenciar sonidos");
         button.setAttribute("aria-pressed", String(enabled));
-        button.style.cssText = [
-            "position:fixed",
-            "right:14px",
-            "bottom:14px",
-            "z-index:9999",
-            "width:44px",
-            "height:44px",
-            "border:1px solid #168cff",
-            "border-radius:5px",
-            "background:#090d16",
-            "color:#fff",
-            "font-size:19px",
-            "cursor:pointer",
-            "box-shadow:0 0 12px #168cff35"
-        ].join(";");
 
-        function update() {
-            button.textContent = enabled ? "♪" : "♪̸";
-            button.setAttribute("aria-pressed", String(enabled));
-            button.setAttribute(
-                "aria-label",
-                enabled ? "Silenciar efectos de sonido" : "Activar efectos de sonido"
-            );
-            button.title = enabled ? "Sonido activado" : "Sonido silenciado";
-        }
+        Object.assign(button.style, {
+            position: "fixed",
+            right: "16px",
+            bottom: "16px",
+            zIndex: "99999",
+            width: "46px",
+            height: "46px",
+            border: "1px solid rgba(55,215,255,.65)",
+            borderRadius: "12px",
+            background: "rgba(5,7,11,.94)",
+            color: "#fff",
+            fontSize: "20px",
+            cursor: "pointer",
+            boxShadow: "0 0 14px rgba(55,215,255,.18)"
+        });
 
         button.addEventListener("click", () => {
-            enabled = !enabled;
-
-            try {
-                localStorage.setItem(KEY, String(enabled));
-            } catch (_) {}
-
-            update();
-
+            setEnabled(!enabled);
             if (enabled) play("menu");
         });
 
-        update();
         document.body.appendChild(button);
     }
 
+    // Detecta interacciones en las páginas sin editar sus scripts.
     document.addEventListener("click", event => {
-        const target = event.target instanceof Element
-            ? event.target
-            : event.target.parentElement;
-
-        if (!target) return;
-
-        if (target.closest("[data-mw-sound-toggle]")) return;
-
-        const control = target.closest(
-            'button, a, [role="button"], summary, ' +
-            'input[type="button"], input[type="submit"], select'
+        const target = event.target.closest(
+            "[data-mw-sound-toggle], " +
+            ".mw-global-nav__toggle, " +
+            ".mw-global-nav__link, " +
+            ".mw-event-card, " +
+            ".mw-event-category-card, " +
+            ".mw-event-season-card, " +
+            "[data-sound='card'], " +
+            "[data-sound='special'], " +
+            "button, a, [role='button'], summary"
         );
 
-        if (!control || control.matches(":disabled")) return;
+        if (!target || target.matches("[data-mw-sound-toggle]")) return;
 
-        if (control.matches("select")) {
-            play("filter");
-        } else if (control.matches(".mw-global-nav__toggle")) {
-            play("menu");
-        } else if (control.matches(
-            ".mw-global-nav__link, .mw-event-card, " +
-            ".mw-event-category-card, .mw-event-season-card"
+        if (target.matches("[data-sound='special']")) {
+            play("special");
+        } else if (target.matches(
+            ".mw-event-card, .mw-event-category-card, " +
+            ".mw-event-season-card, [data-sound='card']"
         )) {
             play("card");
-        } else if (
-            control.closest('[role="dialog"], .mw-modal, .mw-modal-root')
-        ) {
-            play("modal");
+        } else if (target.matches(
+            ".mw-global-nav__toggle, .mw-global-nav__link"
+        )) {
+            play("menu");
         } else {
             play("click");
         }
     });
 
-    document.addEventListener("change", event => {
-        if (event.target.matches("select, input[type=checkbox], input[type=radio]")) {
-            play("filter");
-        }
-    });
-
     window.MWSoundEffects = {
         play,
-        enable() { enabled = true; },
-        disable() { enabled = false; }
+        enable: () => setEnabled(true),
+        disable: () => setEnabled(false),
+        setVolume,
+        get enabled() {
+            return enabled;
+        }
     };
 
+    function start() {
+        createToggle();
+        updateToggle();
+    }
+
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", createControl, { once: true });
+        document.addEventListener("DOMContentLoaded", start, { once: true });
     } else {
-        createControl();
+        start();
     }
 })();
