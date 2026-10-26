@@ -1,4 +1,3 @@
-
 /* ==========================================================
    MI WRESTLING 2.0 — EVENTOS DINÁMICOS · ESTILO PS5
    ========================================================== */
@@ -12,15 +11,25 @@
        UTILIDADES
        ========================================================== */
     const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
     })[c]);
 
     const norm = value => String(value ?? "").toLowerCase().trim()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
 
     const get = async path => {
         const response = await fetch(path);
-        if (!response.ok) throw new Error(`No se pudo cargar ${path} (HTTP ${response.status})`);
+
+        if (!response.ok) {
+            throw new Error(`No se pudo cargar ${path} (HTTP ${response.status})`);
+        }
+
         return response.json();
     };
 
@@ -28,15 +37,23 @@
         Array.isArray(value?.events) ? value.events :
         Array.isArray(value?.items) ? value.items : [];
 
-    const yearOf = event => Number(event.year || String(event.date || "").slice(0, 4)) || 0;
-    const nameOf = event => event.name || event.title || event.id || "Evento";
+    const yearOf = event =>
+        Number(event.year || String(event.date || "").slice(0, 4)) || 0;
+
+    const nameOf = event =>
+        event.name || event.title || event.id || "Evento";
 
     const fmtDate = event => {
         if (!event.date) return "Fecha pendiente";
+
         const date = new Date(`${event.date}T00:00:00Z`);
+
         return Number.isNaN(date.getTime()) ? "Fecha pendiente" :
             new Intl.DateTimeFormat("es-AR", {
-                day: "2-digit", month: "short", year: "numeric", timeZone: "UTC"
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                timeZone: "UTC"
             }).format(date);
     };
 
@@ -47,6 +64,7 @@
             theme: "raw",
             description: "Archivo semanal de RAW."
         },
+
         smackdown: {
             name: "SmackDown",
             subtitle: "SMACKDOWN · USA NETWORK",
@@ -76,7 +94,8 @@
         especiales: "specials"
     };
 
-    const themeOf = value => themes[norm(value)] || norm(value) || "specials";
+    const themeOf = value =>
+        themes[norm(value)] || norm(value) || "specials";
 
     const matchesShow = (event, showId) => {
         const values = [
@@ -114,14 +133,19 @@
        CARGA DE DATOS
        ========================================================== */
     try {
-        const [catalog, indexData, brandsData, promotionsData, wrestlersData] =
-            await Promise.all([
-                get("data/events/catalog.json"),
-                get("data/events/events.json").catch(() => []),
-                get("data/brands/brands.json").catch(() => []),
-                get("data/promotions/promotions.json").catch(() => []),
-                get("data/wrestlers/wrestlers.json").catch(() => [])
-            ]);
+        const [
+            catalog,
+            indexData,
+            brandsData,
+            promotionsData,
+            wrestlersData
+        ] = await Promise.all([
+            get("data/events/catalog.json"),
+            get("data/events/events.json").catch(() => []),
+            get("data/brands/brands.json").catch(() => []),
+            get("data/promotions/promotions.json").catch(() => []),
+            get("data/wrestlers/wrestlers.json").catch(() => [])
+        ]);
 
         if (!Array.isArray(catalog.categories)) {
             throw new Error("El catálogo no contiene categorías válidas.");
@@ -139,7 +163,9 @@
                     if (!Array.isArray(events)) continue;
 
                     for (const event of events) {
-                        if (!event?.id || knownIds.has(String(event.id))) continue;
+                        if (!event?.id || knownIds.has(String(event.id))) {
+                            continue;
+                        }
 
                         knownIds.add(String(event.id));
 
@@ -153,7 +179,10 @@
                         });
                     }
                 } catch (error) {
-                    console.warn("[MI WRESTLING] Temporada omitida:", season.path);
+                    console.warn(
+                        "[MI WRESTLING] Temporada omitida:",
+                        season.path
+                    );
                 }
             }
         }
@@ -162,7 +191,10 @@
             if (!event?.id || knownIds.has(String(event.id))) continue;
 
             knownIds.add(String(event.id));
-            allEvents.push({ ...event, id: String(event.id) });
+            allEvents.push({
+                ...event,
+                id: String(event.id)
+            });
         }
 
         const brands = arr(brandsData);
@@ -170,7 +202,9 @@
         const wrestlers = arr(wrestlersData);
 
         const hasTNA = allEvents.some(event =>
-            /tna/i.test(`${event.categoryId || ""} ${event.brand || ""} ${event.promotion || ""}`)
+            /tna/i.test(
+                `${event.categoryId || ""} ${event.brand || ""} ${event.promotion || ""}`
+            )
         ) || brands.some(item =>
             /tna/i.test(`${item.id || ""} ${item.name || ""}`)
         ) || promotions.some(item =>
@@ -235,7 +269,9 @@
                 return brandInfo[show].theme;
             }
 
-            if (selected) return themeOf(selected.theme || selected.id);
+            if (selected) {
+                return themeOf(selected.theme || selected.id);
+            }
 
             return themeOf(event.brand || event.show || event.categoryId);
         };
@@ -243,6 +279,7 @@
         /* ==========================================================
            COMPONENTES HTML
            ========================================================== */
+
         const categoryCard = category => {
             const events = countFor(category);
             const years = new Set(events.map(yearOf).filter(Boolean)).size;
@@ -250,26 +287,45 @@
             return `
                 <a class="mw-event-category-card theme-${esc(themeOf(category.theme || category.id))}"
                    href="events.html?category=${encodeURIComponent(category.id)}">
+
+                    <span class="mw-event-category-card__flash" aria-hidden="true"></span>
+
                     <span class="mw-event-category-card__eyebrow">${category.id === "ple" ? "PREMIUM LIVE EVENTS" : "EVENT ARCHIVE"}</span>
+
                     <strong>${esc(category.name)}</strong>
+
                     <span class="mw-event-category-card__subtitle">${esc(category.subtitle || category.description || "")}</span>
+
                     <span class="mw-event-category-card__footer">
-                        <span>${years || "—"} año(s)</span><span>${events.length} evento(s) ↗</span>
+                        <span>${years || "—"} año(s)</span>
+                        <span>${events.length} evento(s) ↗</span>
                     </span>
                 </a>`;
         };
 
         const showCard = showId => {
             const brand = brandInfo[showId];
-            const count = allEvents.filter(event => matchesShow(event, showId)).length;
+
+            const count = allEvents.filter(event =>
+                matchesShow(event, showId)
+            ).length;
 
             return `
                 <a class="mw-event-category-card theme-${brand.theme}"
                    href="events.html?category=weekly&amp;show=${showId}">
+
+                    <span class="mw-event-category-card__flash" aria-hidden="true"></span>
+
                     <span class="mw-event-category-card__eyebrow">${showId === "raw" ? "MONDAY NIGHT" : "FRIDAY NIGHT"}</span>
+
                     <strong>${esc(brand.name)}</strong>
+
                     <span class="mw-event-category-card__subtitle">${esc(brand.subtitle)}</span>
-                    <span class="mw-event-category-card__footer"><span>${count} evento(s)</span><span>EXPLORAR ↗</span></span>
+
+                    <span class="mw-event-category-card__footer">
+                        <span>${count} evento(s)</span>
+                        <span>EXPLORAR ↗</span>
+                    </span>
                 </a>`;
         };
 
@@ -285,9 +341,13 @@
             return events.map(event => `
                 <a class="mw-event-card theme-${esc(cardTheme(event, selected, show))}"
                    href="event.html?id=${encodeURIComponent(event.id)}">
+
                     <span class="mw-event-card__meta">${esc(event.status || event.mode || event.type || "EVENTO")}</span>
+
                     <strong>${esc(nameOf(event))}</strong>
+
                     <span>${esc(fmtDate(event))}${event.location ? ` · ${esc(event.location)}` : ""}</span>
+
                     <span class="mw-event-card__open">VER CARTELERA ↗</span>
                 </a>`).join("");
         };
@@ -295,12 +355,18 @@
         const yearFilter = (years, selectedYear) => `
             <div class="mw-event-year-filter">
                 <label>FILTRAR POR AÑO</label>
+
                 <div class="mw-event-year-buttons">
-                    <button type="button" class="mw-event-year-button ${selectedYear === "all" ? "is-active" : ""}"
-                        data-year="all" aria-pressed="${selectedYear === "all"}">TODOS</button>
+                    <button type="button"
+                        class="mw-event-year-button ${selectedYear === "all" ? "is-active" : ""}"
+                        data-year="all"
+                        aria-pressed="${selectedYear === "all"}">TODOS</button>
+
                     ${years.map(year => `
-                        <button type="button" class="mw-event-year-button ${String(year) === selectedYear ? "is-active" : ""}"
-                            data-year="${year}" aria-pressed="${String(year) === selectedYear}">${year}</button>
+                        <button type="button"
+                            class="mw-event-year-button ${String(year) === selectedYear ? "is-active" : ""}"
+                            data-year="${year}"
+                            aria-pressed="${String(year) === selectedYear}">${year}</button>
                     `).join("")}
                 </div>
             </div>`;
@@ -310,9 +376,11 @@
            ========================================================== */
         const displayName = (selected, current) => {
             if (!selected) return "Eventos";
+
             if (selected.id === "weekly" && brandInfo[current.show]) {
                 return brandInfo[current.show].name;
             }
+
             return selected.name;
         };
 
@@ -324,6 +392,7 @@
             ) || null;
 
             const weeklySelector = selected?.id === "weekly" && !state.show;
+
             const weeklyBrand = selected?.id === "weekly" &&
                 Boolean(brandInfo[state.show]);
 
@@ -340,23 +409,39 @@
                 html += `
                     <section class="mw-event-category-section">
                         <div class="mw-event-section-heading">
-                            <div><span class="mw-event-kicker">ELEGÍ TU UNIVERSO</span><h2>Catálogo de eventos</h2></div>
+                            <div>
+                                <span class="mw-event-kicker">ELEGÍ TU UNIVERSO</span>
+                                <h2>Catálogo de eventos</h2>
+                            </div>
+
                             <span>${categories.length} categorías</span>
                         </div>
-                        <div class="mw-event-category-grid">${categories.map(categoryCard).join("")}</div>
+
+                        <div class="mw-event-category-grid">
+                            ${categories.map(categoryCard).join("")}
+                        </div>
                     </section>`;
             } else if (weeklySelector) {
                 html += `
                     <a class="mw-event-back" href="events.html">← TODOS LOS EVENTOS</a>
+
                     <section class="mw-event-category-hero theme-weekly">
-                        <span>WEEKLY ARCHIVE</span><h1>RAW + SMACKDOWN</h1>
+                        <span>WEEKLY ARCHIVE</span>
+                        <h1>RAW + SMACKDOWN</h1>
                         <p>Elegí una marca para consultar sus carteleras.</p>
                     </section>
+
                     <section class="mw-event-section">
                         <div class="mw-event-disclosure">
-                            <button type="button" class="mw-event-disclosure__toggle" aria-expanded="false">PROGRAMACIÓN SEMANAL</button>
+                            <button type="button"
+                                class="mw-event-disclosure__toggle"
+                                aria-expanded="false">PROGRAMACIÓN SEMANAL</button>
+
                             <div class="mw-event-disclosure__content">
-                                <div class="mw-event-category-grid">${showCard("raw")}${showCard("smackdown")}</div>
+                                <div class="mw-event-category-grid">
+                                    ${showCard("raw")}
+                                    ${showCard("smackdown")}
+                                </div>
                             </div>
                         </div>
                     </section>`;
@@ -376,7 +461,8 @@
 
                 const filtered = events
                     .filter(event =>
-                        state.year === "all" || yearOf(event) === Number(state.year)
+                        state.year === "all" ||
+                        yearOf(event) === Number(state.year)
                     )
                     .sort((a, b) =>
                         String(b.date || "").localeCompare(String(a.date || ""))
@@ -388,31 +474,62 @@
 
                 html += `
                     <a class="mw-event-back" href="${backUrl}">← ${weeklyBrand ? "RAW + SMACKDOWN" : "TODAS LAS CATEGORÍAS"}</a>
+
                     <section class="mw-event-category-hero theme-${esc(display.theme || display.id)}">
                         <span>${esc(display.subtitle || "EVENT ARCHIVE")}</span>
                         <h1>${esc(display.name)}</h1>
                         <p>${esc(display.description || "")}</p>
                     </section>
+
                     <section class="mw-event-section theme-${esc(display.theme || display.id)}">
                         <div class="mw-event-section-heading">
-                            <div><span class="mw-event-kicker">ARCHIVO</span><h2>Carteleras</h2></div>
+                            <div>
+                                <span class="mw-event-kicker">ARCHIVO</span>
+                                <h2>Carteleras</h2>
+                            </div>
+
                             <span>${filtered.length} evento(s)</span>
                         </div>
+
                         ${yearFilter(years, state.year)}
+
                         ${selected.id === "nxt" ? `
                             <div class="mw-event-disclosure is-open">
-                                <button type="button" class="mw-event-disclosure__toggle" aria-expanded="true">NXT ROAD</button>
+                                <button type="button"
+                                    class="mw-event-disclosure__toggle"
+                                    aria-expanded="true">NXT ROAD</button>
+
                                 <div class="mw-event-disclosure__content">
-                                    <div class="mw-event-grid">${eventCards(filtered.filter(event => !isTakeover(event)), selected, state.show)}</div>
+                                    <div class="mw-event-grid">
+                                        ${eventCards(
+                                            filtered.filter(event => !isTakeover(event)),
+                                            selected,
+                                            state.show
+                                        )}
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="mw-event-disclosure">
-                                <button type="button" class="mw-event-disclosure__toggle" aria-expanded="false">NXT TAKEOVER · TORNEO DE ASCENSO</button>
+                                <button type="button"
+                                    class="mw-event-disclosure__toggle"
+                                    aria-expanded="false">NXT TAKEOVER · TORNEO DE ASCENSO</button>
+
                                 <div class="mw-event-disclosure__content">
-                                    <div class="mw-event-grid">${eventCards(filtered.filter(isTakeover), selected, state.show)}</div>
+                                    <div class="mw-event-grid">
+                                        ${eventCards(
+                                            filtered.filter(isTakeover),
+                                            selected,
+                                            state.show
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        ` : `<div class="mw-event-grid">${eventCards(filtered, selected, state.show)}</div>`}
+                        ` : `
+                            <div class="mw-event-grid">
+                                ${eventCards(filtered, selected, state.show)}
+                            </div>
+                        `}
                     </section>`;
             }
 
@@ -434,14 +551,23 @@
 
             if (target.search === location.search) return;
 
-            history.pushState({}, "", target.pathname + target.search + target.hash);
+            history.pushState(
+                {},
+                "",
+                target.pathname + target.search + target.hash
+            );
+
             transition(direction);
         };
 
         const transition = (direction = "forward") => {
             const id = ++transitionId;
 
-            root.classList.remove("mw-panel-enter-right", "mw-panel-enter-left");
+            root.classList.remove(
+                "mw-panel-enter-right",
+                "mw-panel-enter-left"
+            );
+
             root.classList.add(
                 direction === "back"
                     ? "mw-panel-leave-right"
@@ -453,7 +579,11 @@
 
                 render();
 
-                root.classList.remove("mw-panel-leave-left", "mw-panel-leave-right");
+                root.classList.remove(
+                    "mw-panel-leave-left",
+                    "mw-panel-leave-right"
+                );
+
                 root.classList.add(
                     direction === "back"
                         ? "mw-panel-enter-left"
@@ -471,7 +601,10 @@
                     });
                 });
 
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
             }, 160);
         };
 
@@ -537,7 +670,10 @@
             if (!card || !root.contains(card)) return;
 
             // No reiniciar al moverse entre elementos internos.
-            if (event.relatedTarget && card.contains(event.relatedTarget)) {
+            if (
+                event.relatedTarget &&
+                card.contains(event.relatedTarget)
+            ) {
                 return;
             }
 
@@ -559,7 +695,10 @@
                 if (yearButton.dataset.year === "all") {
                     next.searchParams.delete("year");
                 } else {
-                    next.searchParams.set("year", yearButton.dataset.year);
+                    next.searchParams.set(
+                        "year",
+                        yearButton.dataset.year
+                    );
                 }
 
                 navigate(next.href);
@@ -574,16 +713,30 @@
                 const panel = disclosure.closest(".mw-event-disclosure");
                 const open = panel.classList.toggle("is-open");
 
-                disclosure.setAttribute("aria-expanded", String(open));
+                disclosure.setAttribute(
+                    "aria-expanded",
+                    String(open)
+                );
+
                 return;
             }
 
             const link = event.target.closest("a[href]");
 
-            if (!link || event.ctrlKey || event.metaKey ||
-                event.shiftKey || event.altKey) return;
+            if (
+                !link ||
+                event.ctrlKey ||
+                event.metaKey ||
+                event.shiftKey ||
+                event.altKey
+            ) {
+                return;
+            }
 
-            if (link.target === "_blank" || link.hasAttribute("download")) {
+            if (
+                link.target === "_blank" ||
+                link.hasAttribute("download")
+            ) {
                 return;
             }
 
@@ -614,16 +767,23 @@
 
             clearTimeout(navigationTimer);
             clearCardSelection();
+
             navigate(target.href);
         });
 
         /* Tocar fuera de las tarjetas deselecciona */
         root.addEventListener("pointerdown", event => {
-            if (event.target.closest(".mw-event-category-card")) return;
+            if (event.target.closest(".mw-event-category-card")) {
+                return;
+            }
 
-            if (event.target.closest(
-                "button, a, input, select, textarea, [role='button']"
-            )) return;
+            if (
+                event.target.closest(
+                    "button, a, input, select, textarea, [role='button']"
+                )
+            ) {
+                return;
+            }
 
             clearTimeout(navigationTimer);
             clearCardSelection();
@@ -642,7 +802,10 @@
         render();
 
     } catch (error) {
-        console.error("[MI WRESTLING] Error cargando eventos:", error);
+        console.error(
+            "[MI WRESTLING] Error cargando eventos:",
+            error
+        );
 
         root.innerHTML = `
             <section class="mw-event-empty">
