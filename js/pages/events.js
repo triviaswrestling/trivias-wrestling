@@ -1,5 +1,6 @@
 /* ==========================================================
    MI WRESTLING 2.0 | EVENT CATALOG
+   WWE 2K26 / NETWORK STYLE
    ========================================================== */
 
 (async function () {
@@ -8,7 +9,13 @@
     const root = document.querySelector("[data-events-catalog]");
     if (!root) return;
 
-    /* ESCAPE DE HTML */
+    const PAGE_URL = "events.html";
+    let animationTimer = null;
+
+    /* ======================================================
+       UTILIDADES
+       ====================================================== */
+
     const esc = value =>
         String(value ?? "").replace(/[&<>"']/g, char => ({
             "&": "&amp;",
@@ -18,7 +25,14 @@
             "'": "&#39;"
         })[char]);
 
-    /* CARGA DE JSON */
+    const normalize = value =>
+        String(value ?? "")
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]/g, "");
+
     const get = async path => {
         const response = await fetch(path);
 
@@ -31,7 +45,16 @@
         return response.json();
     };
 
-    /* FECHAS */
+    const asArray = value => {
+        if (Array.isArray(value)) return value;
+        if (value && Array.isArray(value.events)) return value.events;
+        if (value && Array.isArray(value.items)) return value.items;
+        if (value && Array.isArray(value.brands)) return value.brands;
+        if (value && Array.isArray(value.promotions)) return value.promotions;
+        if (value && Array.isArray(value.wrestlers)) return value.wrestlers;
+        return [];
+    };
+
     const fmtDate = event => {
         if (!event.date) return "Fecha pendiente";
 
@@ -47,36 +70,146 @@
             }).format(date);
     };
 
-    /* PARÁMETROS DE URL */
+    const eventYear = event =>
+        Number(event.year || String(event.date || "").slice(0, 4)) || 0;
+
+    const eventName = event =>
+        event.name || event.title || event.id || "Evento sin título";
+
     const params = new URLSearchParams(location.search);
     const selectedId = params.get("category");
     const selectedYear = params.get("year") || "all";
     const selectedShow = params.get("show");
 
-    /* INFORMACIÓN DE LAS MARCAS */
+    /* ======================================================
+       IDENTIDAD VISUAL
+       ====================================================== */
+
     const brandInfo = {
         raw: {
             name: "RAW",
             subtitle: "RAW · NETFLIX",
             description: "El archivo semanal de RAW.",
-            theme: "raw"
+            theme: "raw",
+            showId: "raw"
         },
         smackdown: {
             name: "SmackDown",
             subtitle: "SMACKDOWN · USA NETWORK",
             description: "El archivo semanal de SmackDown.",
-            theme: "smackdown"
+            theme: "smackdown",
+            showId: "smackdown"
         }
     };
 
+    const themeAliases = {
+        ple: "ple",
+        premiumliveevents: "ple",
+        weekly: "weekly",
+        raw: "raw",
+        wwraw: "raw",
+        mondaynightraw: "raw",
+        smackdown: "smackdown",
+        wwesmackdown: "smackdown",
+        fridaynightsmackdown: "smackdown",
+        nxt: "nxt",
+        speed: "speed",
+        wwespeed: "speed",
+        aaa: "aaa",
+        lucha libre aaa: "aaa",
+        aew: "aew",
+        tna: "tna",
+        specials: "specials",
+        special: "specials",
+        especiales: "specials"
+    };
+
+    const themeFor = value => {
+        const key = normalize(value);
+        return themeAliases[key] || key || "specials";
+    };
+
+    const categoryTheme = category =>
+        themeFor(category.theme || category.id);
+
+    const matchesShow = (event, showId) => {
+        const values = [
+            event.brand,
+            event.brandId,
+            event.show,
+            event.showId,
+            event.categoryId,
+            event.category,
+            event.promotion
+        ].map(normalize);
+
+        const accepted = showId === "raw"
+            ? ["raw", "wwraw", "mondaynightraw"]
+            : ["smackdown", "wwesmackdown", "fridaynightsmackdown"];
+
+        return values.some(value => accepted.includes(value));
+    };
+
+    const matchesNxtDivision = (event, division) => {
+        const values = [
+            event.division,
+            event.subcategory,
+            event.eventType,
+            event.tournamentType,
+            event.mode,
+            event.type,
+            event.brand,
+            event.show
+        ].map(normalize);
+
+        if (division === "takeover") {
+            return values.some(value =>
+                value.includes("takeover") ||
+                value.includes("ascenso")
+            );
+        }
+
+        return !values.some(value =>
+            value.includes("takeover") ||
+            value.includes("ascenso")
+        );
+    };
+
+    const eventTheme = (event, selected, showId) => {
+        if (selected?.id === "weekly" && brandInfo[showId]) {
+            return brandInfo[showId].theme;
+        }
+
+        if (selected?.id === "ple") return "ple";
+        if (selected?.id === "nxt") return "nxt";
+        if (selected?.id === "speed") return "speed";
+        if (selected?.id === "aaa") return "aaa";
+        if (selected?.id === "aew") return "aew";
+        if (selected?.id === "tna") return "tna";
+        if (selected?.id === "specials") return "specials";
+
+        return themeFor(
+            event.brandId ||
+            event.brand ||
+            event.showId ||
+            event.show ||
+            event.categoryId ||
+            selected?.theme ||
+            selected?.id
+        );
+    };
+
+    /* ======================================================
+       CARGA DE DATOS
+       ====================================================== */
+
     try {
-        /* CARGAR ÍNDICES PRINCIPALES */
         const [
             catalog,
-            indexEvents,
-            brands,
-            promotions,
-            wrestlers
+            indexData,
+            brandsData,
+            promotionsData,
+            wrestlersData
         ] = await Promise.all([
             get("data/events/catalog.json"),
             get("data/events/events.json").catch(() => []),
@@ -91,7 +224,15 @@
             );
         }
 
-        /* CARGAR EVENTOS DE CADA TEMPORADA */
+        const indexEvents = asArray(indexData);
+        const brands = asArray(brandsData);
+        const promotions = asArray(promotionsData);
+        const wrestlers = asArray(wrestlersData);
+
+        /* ==================================================
+           CARGA DE TEMPORADAS
+           ================================================== */
+
         const allEvents = [];
         const knownIds = new Set();
 
@@ -99,30 +240,30 @@
             for (const season of category.seasons || []) {
                 try {
                     const file = await get(season.path);
-                    const events = Array.isArray(file)
-                        ? file
-                        : file.events;
+                    const events = asArray(file);
 
-                    if (!Array.isArray(events)) {
+                    if (!events.length && !Array.isArray(file)) {
                         console.warn(
-                            "[MI WRESTLING] Formato de temporada inesperado:",
+                            "[MI WRESTLING] Temporada sin eventos o formato inesperado:",
                             season.path
                         );
-                        continue;
                     }
 
                     for (const event of events) {
                         if (!event || !event.id) continue;
-                        if (knownIds.has(event.id)) continue;
 
-                        knownIds.add(event.id);
+                        const id = String(event.id);
+                        if (knownIds.has(id)) continue;
+
+                        knownIds.add(id);
 
                         allEvents.push({
                             ...event,
+                            id,
                             categoryId: event.categoryId || category.id,
-                            categoryName: category.name,
+                            categoryName: event.categoryName || category.name,
                             year: event.year || file.year || season.year,
-                            seasonId: season.id || file.id || null
+                            seasonId: event.seasonId || season.id || file.id || null
                         });
                     }
                 } catch (error) {
@@ -135,25 +276,26 @@
             }
         }
 
-        /* INCORPORAR EVENTOS DEL ÍNDICE GENERAL */
-        const extraEvents = Array.isArray(indexEvents)
-            ? indexEvents
-            : Array.isArray(indexEvents.events)
-                ? indexEvents.events
-                : [];
+        /* Incorporar índice general sin duplicar IDs */
 
-        for (const event of extraEvents) {
-            if (!event || !event.id || knownIds.has(event.id)) continue;
+        for (const event of indexEvents) {
+            if (!event || !event.id) continue;
 
-            knownIds.add(event.id);
-            allEvents.push(event);
+            const id = String(event.id);
+            if (knownIds.has(id)) continue;
+
+            knownIds.add(id);
+            allEvents.push({ ...event, id });
         }
 
-        /* DETECTAR TNA */
+        /* ==================================================
+           CATEGORÍAS Y ORDEN
+           ================================================== */
+
         const hasTNA =
             allEvents.some(event =>
                 /tna/i.test(
-                    `${event.categoryId || ""} ${event.brand || ""}`
+                    `${event.categoryId || ""} ${event.brand || ""} ${event.promotion || ""}`
                 )
             ) ||
             brands.some(item =>
@@ -166,7 +308,6 @@
                 /tna/i.test(String(item.brand || ""))
             );
 
-        /* ORDEN DEL CATÁLOGO: PLE PRIMERO */
         const priority = {
             ple: 1,
             weekly: 2,
@@ -195,88 +336,74 @@
         const isWeeklySelector =
             selected?.id === "weekly" && !selectedShow;
 
-        /* IDENTIFICAR RAW Y SMACKDOWN */
-        const normalize = value =>
-            String(value || "")
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9]/g, "");
+        const isWeeklyBrand =
+            selected?.id === "weekly" && Boolean(brandInfo[selectedShow]);
 
-        const matchesShow = (event, showId) => {
-            const values = [
-                event.brand,
-                event.brandId,
-                event.show,
-                event.showId,
-                event.categoryId,
-                event.category,
-                event.promotion
-            ];
+        const display = isWeeklyBrand
+            ? brandInfo[selectedShow]
+            : selected;
 
-            const accepted = showId === "raw"
-                ? ["raw", "wwraw", "mondaynightraw"]
-                : ["smackdown", "wwesmackdown", "fridaynightsmackdown"];
+        /* ==================================================
+           EVENTOS DE LA CATEGORÍA
+           ================================================== */
 
-            return values.some(value =>
-                accepted.includes(normalize(value))
-            );
-        };
-
-        /* EVENTOS DE LA CATEGORÍA ELEGIDA */
         const categoryEvents = selected
             ? allEvents.filter(event => {
                 if (selected.id === "weekly") {
-                    if (!selectedShow) {
-                        return (
-                            matchesShow(event, "raw") ||
-                            matchesShow(event, "smackdown") ||
-                            normalize(event.categoryId) === "weekly"
-                        );
+                    if (selectedShow && brandInfo[selectedShow]) {
+                        return matchesShow(event, selectedShow);
                     }
 
-                    return matchesShow(event, selectedShow);
+                    return (
+                        matchesShow(event, "raw") ||
+                        matchesShow(event, "smackdown") ||
+                        normalize(event.categoryId) === "weekly"
+                    );
                 }
 
-                return normalize(event.categoryId) === normalize(selected.id) ||
-                    normalize(event.brand) === normalize(selected.id);
+                return (
+                    normalize(event.categoryId) === normalize(selected.id) ||
+                    normalize(event.brand) === normalize(selected.id) ||
+                    normalize(event.promotion) === normalize(selected.id)
+                );
             })
             : [];
 
-        /* AÑOS DISPONIBLES */
+        const nxtRoadEvents = selected?.id === "nxt"
+            ? categoryEvents.filter(event =>
+                matchesNxtDivision(event, "road")
+            )
+            : [];
+
+        const nxtTakeoverEvents = selected?.id === "nxt"
+            ? categoryEvents.filter(event =>
+                matchesNxtDivision(event, "takeover")
+            )
+            : [];
+
         const years = [
             ...new Set(
                 categoryEvents
-                    .map(event =>
-                        Number(
-                            event.year ||
-                            String(event.date || "").slice(0, 4)
-                        )
-                    )
-                    .filter(year => Number.isFinite(year) && year > 0)
+                    .map(eventYear)
+                    .filter(year => year > 0)
             )
         ].sort((a, b) => b - a);
 
-        /* FILTRO Y ORDEN CRONOLÓGICO */
-        const filtered = selected
-            ? categoryEvents
+        const filterByYear = events =>
+            events
                 .filter(event =>
                     selectedYear === "all" ||
-                    Number(
-                        event.year ||
-                        String(event.date || "").slice(0, 4)
-                    ) === Number(selectedYear)
+                    eventYear(event) === Number(selectedYear)
                 )
                 .sort((a, b) =>
-                    String(b.date || "").localeCompare(
-                        String(a.date || "")
-                    ) ||
-                    String(a.title || a.name || "").localeCompare(
-                        String(b.title || b.name || "")
-                    )
-                )
-            : [];
+                    String(b.date || "").localeCompare(String(a.date || "")) ||
+                    eventName(a).localeCompare(eventName(b), "es")
+                );
 
-        /* CONTAR EVENTOS POR CATEGORÍA */
+        const filtered = filterByYear(categoryEvents);
+        const filteredRoad = filterByYear(nxtRoadEvents);
+        const filteredTakeover = filterByYear(nxtTakeoverEvents);
+
         const countFor = category => {
             if (category.id === "weekly") {
                 return allEvents.filter(event =>
@@ -288,24 +415,28 @@
 
             return allEvents.filter(event =>
                 normalize(event.categoryId) === normalize(category.id) ||
-                normalize(event.brand) === normalize(category.id)
+                normalize(event.brand) === normalize(category.id) ||
+                normalize(event.promotion) === normalize(category.id)
             );
         };
 
-        /* TARJETAS DE CATEGORÍA */
+        /* ==================================================
+           TARJETAS DE CATEGORÍA
+           ================================================== */
+
         const categoryCard = category => {
             const list = countFor(category);
+            const theme = categoryTheme(category);
 
             const yearCount = new Set(
-                list.map(event =>
-                    event.year || String(event.date || "").slice(0, 4)
-                ).filter(Boolean)
+                list.map(eventYear).filter(year => year > 0)
             ).size;
 
             return `
                 <a
-                    class="mw-event-category-card theme-${esc(category.theme || category.id)}"
-                    href="events.html?category=${encodeURIComponent(category.id)}"
+                    class="mw-event-category-card theme-${esc(theme)}"
+                    href="${PAGE_URL}?category=${encodeURIComponent(category.id)}"
+                    aria-label="Explorar ${esc(category.name)}"
                 >
                     <span class="mw-event-category-card__eyebrow">
                         ${category.id === "ple"
@@ -327,87 +458,145 @@
             `;
         };
 
-        /* SELECTOR WEEKLY: RAW / SMACKDOWN */
+        /* ==================================================
+           TARJETAS RAW / SMACKDOWN
+           ================================================== */
+
+        const weeklyShowCard = showId => {
+            const brand = brandInfo[showId];
+            const count = allEvents.filter(event =>
+                matchesShow(event, showId)
+            ).length;
+
+            return `
+                <a
+                    class="mw-event-category-card theme-${brand.theme}"
+                    href="${PAGE_URL}?category=weekly&amp;show=${showId}"
+                >
+                    <span class="mw-event-category-card__eyebrow">
+                        ${showId === "raw" ? "MONDAY NIGHT" : "FRIDAY NIGHT"}
+                    </span>
+
+                    <strong>${esc(brand.name)}</strong>
+
+                    <span class="mw-event-category-card__subtitle">
+                        ${esc(brand.subtitle)} · Archivo semanal
+                    </span>
+
+                    <span class="mw-event-category-card__footer">
+                        <span>${count} evento(s)</span>
+                        <span>EXPLORAR ↗</span>
+                    </span>
+                </a>
+            `;
+        };
+
         const showSelector = `
             <section class="mw-event-category-section mw-weekly-selector">
                 <div class="mw-event-section-heading">
                     <div>
-                        <span class="mw-event-kicker">
-                            PROGRAMACIÓN SEMANAL
-                        </span>
+                        <span class="mw-event-kicker">PROGRAMACIÓN SEMANAL</span>
                         <h2>Elegí tu marca</h2>
                     </div>
                     <span>RAW + SmackDown</span>
                 </div>
 
                 <div class="mw-event-category-grid">
-                    <a
-                        class="mw-event-category-card theme-raw"
-                        href="events.html?category=weekly&amp;show=raw"
-                    >
-                        <span class="mw-event-category-card__eyebrow">
-                            MONDAY NIGHT
-                        </span>
-                        <strong>RAW</strong>
-                        <span class="mw-event-category-card__subtitle">
-                            Netflix · Archivo semanal
-                        </span>
-                        <span class="mw-event-category-card__footer">
-                            <span>Todos los años</span>
-                            <span>EXPLORAR ↗</span>
-                        </span>
-                    </a>
-
-                    <a
-                        class="mw-event-category-card theme-smackdown"
-                        href="events.html?category=weekly&amp;show=smackdown"
-                    >
-                        <span class="mw-event-category-card__eyebrow">
-                            FRIDAY NIGHT
-                        </span>
-                        <strong>SMACKDOWN</strong>
-                        <span class="mw-event-category-card__subtitle">
-                            USA Network · Archivo semanal
-                        </span>
-                        <span class="mw-event-category-card__footer">
-                            <span>Todos los años</span>
-                            <span>EXPLORAR ↗</span>
-                        </span>
-                    </a>
+                    ${weeklyShowCard("raw")}
+                    ${weeklyShowCard("smackdown")}
                 </div>
             </section>
         `;
 
-        /* TARJETAS DE EVENTOS */
-        const eventCards = filtered.map(event => `
-            <a
-                class="mw-event-card"
-                href="event.html?id=${encodeURIComponent(event.id)}"
-            >
-                <span class="mw-event-card__meta">
-                    ${esc(event.status || event.mode || event.type || "EVENTO")}
-                </span>
+        /* ==================================================
+           BOTONES DE AÑO
+           ================================================== */
 
-                <strong>${esc(event.name || event.title || event.id)}</strong>
+        const yearButtons = `
+            <div class="mw-event-year-filter">
+                <label>FILTRAR POR AÑO</label>
+                <div class="mw-event-year-buttons">
+                    <button
+                        type="button"
+                        class="mw-event-year-button ${selectedYear === "all" ? "is-active" : ""}"
+                        data-event-year="all"
+                        aria-pressed="${selectedYear === "all"}"
+                    >TODOS</button>
 
-                <span>
-                    ${esc(fmtDate(event))}${event.location
-                        ? " · " + esc(event.location)
-                        : ""}
-                </span>
+                    ${years.map(year => `
+                        <button
+                            type="button"
+                            class="mw-event-year-button ${String(year) === selectedYear ? "is-active" : ""}"
+                            data-event-year="${year}"
+                            aria-pressed="${String(year) === selectedYear}"
+                        >${year}</button>
+                    `).join("")}
+                </div>
+            </div>
+        `;
 
-                <span class="mw-event-card__open">
-                    VER CARTELERA ↗
-                </span>
-            </a>
-        `).join("");
+        /* ==================================================
+           TARJETAS DE EVENTOS
+           ================================================== */
 
-        /* HERO PRINCIPAL */
+        const eventCards = (events, theme) => {
+            if (!events.length) {
+                return `
+                    <div class="mw-event-empty">
+                        <h3>Archivo preparado</h3>
+                        <p>Todavía no hay eventos cargados para esta selección.</p>
+                    </div>
+                `;
+            }
+
+            return events.map(event => {
+                const actualTheme = eventTheme(
+                    event,
+                    selected,
+                    selectedShow
+                ) || theme;
+
+                const status = event.status || event.mode || event.type || "EVENTO";
+                const date = fmtDate(event);
+                const locationText = event.location
+                    ? ` · ${esc(event.location)}`
+                    : "";
+
+                return `
+                    <a
+                        class="mw-event-card theme-${esc(actualTheme)}"
+                        href="event.html?id=${encodeURIComponent(event.id)}"
+                    >
+                        <span class="mw-event-card__meta">
+                            ${esc(status)}
+                        </span>
+
+                        <strong>${esc(eventName(event))}</strong>
+
+                        <span>${esc(date)}${locationText}</span>
+
+                        <span class="mw-event-card__open">
+                            VER CARTELERA ↗
+                        </span>
+                    </a>
+                `;
+            }).join("");
+        };
+
+        const emptyYearMessage = `
+            <div class="mw-event-empty">
+                <h3>No hay eventos en ese año</h3>
+                <p>Probá con otro año para consultar más carteleras.</p>
+            </div>
+        `;
+
+        /* ==================================================
+           HERO PRINCIPAL
+           ================================================== */
+
         let html = `
             <section class="page-hero mw-events-hero">
-                <div class="eyebrow">
-                    MI WRESTLING 2.0 / EVENT ARCHIVE
-                </div>
+                <div class="eyebrow">MI WRESTLING 2.0 / EVENT ARCHIVE</div>
                 <h1>EVENTOS</h1>
                 <p class="lead">
                     Explorá las marcas, los eventos premium y sus carteleras por año.
@@ -415,15 +604,16 @@
             </section>
         `;
 
-        /* VISTA GENERAL */
+        /* ==================================================
+           CATÁLOGO GENERAL
+           ================================================== */
+
         if (!selected) {
             html += `
                 <section class="mw-event-category-section">
                     <div class="mw-event-section-heading">
                         <div>
-                            <span class="mw-event-kicker">
-                                ELEGÍ TU UNIVERSO
-                            </span>
+                            <span class="mw-event-kicker">ELEGÍ TU UNIVERSO</span>
                             <h2>Catálogo de eventos</h2>
                         </div>
                         <span>${categories.length} categorías</span>
@@ -436,62 +626,61 @@
             `;
         }
 
-        /* VISTA WEEKLY */
+        /* ==================================================
+           WEEKLY — SELECTOR DE MARCAS
+           ================================================== */
+
         else if (isWeeklySelector) {
             html += `
-                <a class="mw-event-back" href="events.html">
+                <a class="mw-event-back" href="${PAGE_URL}">
                     ← TODOS LOS EVENTOS
                 </a>
 
                 <section class="mw-event-category-hero theme-weekly">
                     <span>WEEKLY ARCHIVE</span>
                     <h1>RAW + SMACKDOWN</h1>
-                    <p>
-                        Elegí una marca para consultar sus carteleras semanales.
-                    </p>
+                    <p>Elegí una marca para consultar sus carteleras semanales.</p>
                 </section>
 
-                ${showSelector}
+                <section class="mw-event-section">
+                    <div class="mw-event-disclosure is-open">
+                        <button
+                            type="button"
+                            class="mw-event-disclosure__toggle"
+                            aria-expanded="true"
+                            aria-controls="weekly-shows"
+                        >PROGRAMACIÓN SEMANAL</button>
+
+                        <div
+                            class="mw-event-disclosure__content"
+                            id="weekly-shows"
+                        >
+                            <div class="mw-event-category-grid">
+                                ${weeklyShowCard("raw")}
+                                ${weeklyShowCard("smackdown")}
+                            </div>
+                        </div>
+                    </div>
+                </section>
             `;
         }
 
-        /* VISTA DE CATEGORÍA */
+        /* ==================================================
+           ARCHIVO DE UNA MARCA / CATEGORÍA
+           ================================================== */
+
         else {
-            const isWeeklyBrand =
-                selected.id === "weekly" && Boolean(brandInfo[selectedShow]);
-
-            const display = isWeeklyBrand
-                ? brandInfo[selectedShow]
-                : selected;
-
             const theme = display.theme || display.id;
             const title = display.name;
             const description = display.description || "";
 
-            const yearOptions = [
-                `<option value="all" ${selectedYear === "all" ? "selected" : ""}>
-                    Todos los años
-                </option>`,
-                ...years.map(year => `
-                    <option
-                        value="${year}"
-                        ${String(year) === selectedYear ? "selected" : ""}
-                    >
-                        ${year}
-                    </option>
-                `)
-            ].join("");
+            const backUrl = isWeeklyBrand
+                ? `${PAGE_URL}?category=weekly`
+                : PAGE_URL;
 
             html += `
-                <a
-                    class="mw-event-back"
-                    href="${isWeeklyBrand
-                        ? "events.html?category=weekly"
-                        : "events.html"}"
-                >
-                    ← ${isWeeklyBrand
-                        ? "RAW + SMACKDOWN"
-                        : "TODAS LAS CATEGORÍAS"}
+                <a class="mw-event-back" href="${backUrl}">
+                    ← ${isWeeklyBrand ? "RAW + SMACKDOWN" : "TODAS LAS CATEGORÍAS"}
                 </a>
 
                 <section class="mw-event-category-hero theme-${esc(theme)}">
@@ -509,56 +698,132 @@
                         <span>${filtered.length} evento(s)</span>
                     </div>
 
-                    <div class="mw-event-year-filter">
-                        <label for="event-year">FILTRAR POR AÑO</label>
-                        <select id="event-year">${yearOptions}</select>
-                    </div>
+                    ${yearButtons}
 
-                    <div class="mw-event-grid">
-                        ${eventCards || `
-                            <div class="mw-event-empty">
-                                <h3>
-                                    ${categoryEvents.length
-                                        ? "No hay eventos en ese año"
-                                        : "Archivo preparado"}
-                                </h3>
-                                <p>
-                                    ${categoryEvents.length
-                                        ? "Probá con otro año para ver más carteleras."
-                                        : "Todavía no hay eventos cargados para esta selección."}
-                                </p>
+                    ${selected.id === "nxt" ? `
+                        <div class="mw-event-disclosure is-open">
+                            <button
+                                type="button"
+                                class="mw-event-disclosure__toggle"
+                                aria-expanded="true"
+                                aria-controls="nxt-road-events"
+                            >NXT ROAD</button>
+
+                            <div class="mw-event-disclosure__content" id="nxt-road-events">
+                                <div class="mw-event-grid">
+                                    ${filteredRoad.length
+                                        ? eventCards(filteredRoad, "nxt")
+                                        : emptyYearMessage}
+                                </div>
                             </div>
-                        `}
-                    </div>
+                        </div>
+
+                        <div class="mw-event-disclosure">
+                            <button
+                                type="button"
+                                class="mw-event-disclosure__toggle"
+                                aria-expanded="false"
+                                aria-controls="nxt-takeover-events"
+                            >NXT TAKEOVER · TORNEO DE ASCENSO</button>
+
+                            <div class="mw-event-disclosure__content" id="nxt-takeover-events">
+                                <div class="mw-event-grid">
+                                    ${filteredTakeover.length
+                                        ? eventCards(filteredTakeover, "nxt")
+                                        : emptyYearMessage}
+                                </div>
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="mw-event-grid">
+                            ${filtered.length
+                                ? eventCards(filtered, theme)
+                                : emptyYearMessage}
+                        </div>
+                    `}
                 </section>
             `;
         }
 
-        /* MOSTRAR CATÁLOGO */
+        /* ==================================================
+           PINTAR PÁGINA
+           ================================================== */
+
         root.innerHTML = html;
 
-        /* CAMBIAR AÑO */
-        const yearSelect = root.querySelector("#event-year");
+        /* ==================================================
+           FILTRO DE AÑOS
+           ================================================== */
 
-        if (yearSelect) {
-            yearSelect.addEventListener("change", () => {
+        root.querySelectorAll("[data-event-year]").forEach(button => {
+            button.addEventListener("click", () => {
                 const next = new URLSearchParams(location.search);
+                const year = button.dataset.eventYear;
 
-                if (yearSelect.value === "all") {
+                if (year === "all") {
                     next.delete("year");
                 } else {
-                    next.set("year", yearSelect.value);
+                    next.set("year", year);
                 }
 
                 const query = next.toString();
-                location.href = `events.html${query ? "?" + query : ""}`;
+                location.href = `${PAGE_URL}${query ? `?${query}` : ""}`;
             });
-        }
+        });
 
-        /* TÍTULO DEL DOCUMENTO */
+        /* ==================================================
+           DESPLEGABLES
+           ================================================== */
+
+        root.querySelectorAll(".mw-event-disclosure__toggle").forEach(button => {
+            button.addEventListener("click", () => {
+                const panel = button.closest(".mw-event-disclosure");
+                if (!panel) return;
+
+                const isOpen = panel.classList.toggle("is-open");
+                button.setAttribute("aria-expanded", String(isOpen));
+            });
+        });
+
+        /* ==================================================
+           CHROMA TEMPORAL
+           ================================================== */
+
+        const clearChroma = () => {
+            if (animationTimer) {
+                clearTimeout(animationTimer);
+                animationTimer = null;
+            }
+
+            root.querySelectorAll(".mw-event-category-card.is-animating")
+                .forEach(card => card.classList.remove("is-animating"));
+        };
+
+        root.querySelectorAll(".mw-event-category-card").forEach(card => {
+            card.addEventListener("click", () => {
+                clearChroma();
+                card.classList.add("is-animating");
+
+                animationTimer = setTimeout(() => {
+                    card.classList.remove("is-animating");
+                    animationTimer = null;
+                }, 1550);
+            });
+        });
+
+        document.addEventListener("pointerdown", event => {
+            if (!event.target.closest(".mw-event-category-card")) {
+                clearChroma();
+            }
+        }, { passive: true });
+
+        /* ==================================================
+           TÍTULO DEL DOCUMENTO
+           ================================================== */
+
         const currentName = selected
             ? (
-                selected.id === "weekly" && brandInfo[selectedShow]
+                isWeeklyBrand
                     ? brandInfo[selectedShow].name
                     : selected.name
             )
