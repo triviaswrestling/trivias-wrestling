@@ -789,3 +789,56 @@ body[data-page="events"] .mw-event-empty p {
         animation: none;
     }
 }
+
+/* ==========================================================
+   MI WRESTLING — TRANSICIONES DE PANEL TIPO PS5
+   ========================================================== */
+.mw-events-panel {
+    position: relative;
+    will-change: transform, opacity;
+}
+
+.mw-events-panel.mw-panel-leave-left {
+    animation: mwPanelLeaveLeft .16s ease-in both;
+    pointer-events: none;
+}
+
+.mw-events-panel.mw-panel-leave-right {
+    animation: mwPanelLeaveRight .16s ease-in both;
+    pointer-events: none;
+}
+
+.mw-events-panel.mw-panel-enter-right {
+    animation: mwPanelEnterRight .3s cubic-bezier(.2,.75,.25,1) both;
+}
+
+.mw-events-panel.mw-panel-enter-left {
+    animation: mwPanelEnterLeft .3s cubic-bezier(.2,.75,.25,1) both;
+}
+
+@keyframes mwPanelLeaveLeft {
+    to { opacity: 0; transform: translateX(-7%); }
+}
+
+@keyframes mwPanelLeaveRight {
+    to { opacity: 0; transform: translateX(7%); }
+}
+
+@keyframes mwPanelEnterRight {
+    from { opacity: 0; transform: translateX(9%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes mwPanelEnterLeft {
+    from { opacity: 0; transform: translateX(-9%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mw-events-panel.mw-panel-leave-left,
+    .mw-events-panel.mw-panel-leave-right,
+    .mw-events-panel.mw-panel-enter-right,
+    .mw-events-panel.mw-panel-enter-left {
+        animation-duration: .01ms;
+    }
+}
