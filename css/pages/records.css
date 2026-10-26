@@ -180,3 +180,69 @@
 @media(prefers-reduced-motion:reduce){
 .mw-record-page *,.mw-record-page *:before,.mw-record-page *:after{transition:none!important}
 }
+/* MI WRESTLING — FIX TIPOGRAFÍA WWE 2K */
+.mw-record-page,
+.mw-record-page button,
+.mw-record-page input,
+.mw-record-page select,
+.mw-record-page option,
+.mw-record-page a,
+.mw-record-page span,
+.mw-record-page strong,
+.mw-record-page h1,
+.mw-record-page h2,
+.mw-record-page h3,
+.mw-record-page label {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+}
+
+/* Nombres de luchadores y jugadores */
+.mw-record-link__name,
+.mw-player-link .mw-record-link__name,
+.mw-player-link .mw-record-link__name strong {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+    font-weight: 700;
+    letter-spacing: .035em;
+    text-transform: uppercase;
+}
+
+/* Países y banderas */
+.mw-player-link .mw-player-country,
+.mw-player-link .mw-record-link__flag,
+.mw-player-link .mw-country,
+.mw-player-link .mw-flag {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+}
+
+/* Botones de filtros */
+.mw-player-filter__button,
+.mw-player-filter__options,
+.mw-player-filter__options button,
+.mw-player-filter button,
+.mw-player-filter select,
+.mw-player-filters button,
+.mw-player-filters select {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+/* Categorías y tarjetas */
+.mw-record-category,
+.mw-record-category *,
+.mw-record-link,
+.mw-record-link *,
+.mw-record-card,
+.mw-record-card *,
+.mw-record-hero,
+.mw-record-hero * {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+}
+
+/* Evitar que los controles vuelvan a la fuente del navegador */
+.mw-record-page button,
+.mw-record-page select,
+.mw-record-page input {
+    font-size: inherit;
+  }
