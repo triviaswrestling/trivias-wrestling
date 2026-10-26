@@ -383,59 +383,54 @@
         /* ==========================================================
            CLICS: AÑO, DESPLEGABLES, CHROMA Y NAVEGACIÓN
            ========================================================== */
-        root.addEventListener("click", event => {
-            const yearButton = event.target.closest("[data-year]");
+        
+root.addEventListener("click", event => {
+    const yearButton = event.target.closest("[data-year]");
 
-            if (yearButton) {
-                const next = new URL(location.href);
+    if (yearButton) {
+        const next = new URL(location.href);
+        if (yearButton.dataset.year === "all") {
+            next.searchParams.delete("year");
+        } else {
+            next.searchParams.set("year", yearButton.dataset.year);
+        }
+        navigate(next.href);
+        return;
+    }
 
-                if (yearButton.dataset.year === "all") {
-                    next.searchParams.delete("year");
-                } else {
-                    next.searchParams.set("year", yearButton.dataset.year);
-                }
+    const disclosure = event.target.closest(".mw-event-disclosure__toggle");
 
-                navigate(next.href);
-                return;
-            }
+    if (disclosure) {
+        const panel = disclosure.closest(".mw-event-disclosure");
+        const open = panel.classList.toggle("is-open");
+        disclosure.setAttribute("aria-expanded", String(open));
+        return;
+    }
 
-            const disclosure = event.target.closest(".mw-event-disclosure__toggle");
+    const link = event.target.closest("a[href]");
+    if (!link || event.ctrlKey || event.metaKey ||
+        event.shiftKey || event.altKey) return;
+    if (link.target === "_blank" || link.hasAttribute("download")) return;
 
-            if (disclosure) {
-                const panel = disclosure.closest(".mw-event-disclosure");
-                const open = panel.classList.toggle("is-open");
-                disclosure.setAttribute("aria-expanded", String(open));
-                return;
-            }
+    const target = new URL(link.href, location.href);
 
-            const card = event.target.closest(".mw-event-category-card");
+    if (target.pathname !== location.pathname) return;
 
-            if (card) {
-                card.classList.remove("is-animating");
-                void card.offsetWidth;
-                card.classList.add("is-animating");
+    event.preventDefault();
 
-                setTimeout(() => {
-                    card.classList.remove("is-animating");
-                }, 850);
-            }
+    const card = link.closest(".mw-event-category-card");
 
-            const link = event.target.closest("a[href]");
+    if (card) {
+        card.classList.remove("is-animating");
+        void card.offsetWidth;
+        card.classList.add("is-animating");
+    }
 
-            if (!link || event.ctrlKey || event.metaKey ||
-                event.shiftKey || event.altKey) return;
+    navigate(target.href);
+});
 
-            if (link.target === "_blank" || link.hasAttribute("download")) return;
+window.addEventListener("popstate", () => transition("back"));
 
-            const target = new URL(link.href, location.href);
-
-            if (target.pathname !== location.pathname) return;
-
-            event.preventDefault();
-            navigate(target.href);
-        });
-
-        window.addEventListener("popstate", () => transition("back"));
 
         /* ==========================================================
            INICIO
