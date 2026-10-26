@@ -240,7 +240,7 @@ body[data-page="events"] .mw-event-category-card__footer {
 
 
 /* ==========================================================
-   ANIMACIÓN CHROMA — CARTA ESPECIAL
+   CHROMA — DESTELLO POR ENCIMA DEL CONTENIDO
    ========================================================== */
 
 @keyframes mw-event-chroma {
@@ -248,40 +248,44 @@ body[data-page="events"] .mw-event-category-card__footer {
         opacity: 0;
         transform: translateX(-140%) skewX(-18deg);
     }
-    18% { opacity: .3; }
-    48% { opacity: .82; }
+    18% { opacity: .45; }
+    48% { opacity: .9; }
     75% { opacity: .5; }
     100% {
         opacity: 0;
-        transform: translateX(160%) skewX(-18deg);
+        transform: translateX(220%) skewX(-18deg);
     }
 }
 
 body[data-page="events"] .mw-event-category-card.is-animating {
-    z-index: 3;
+    z-index: 20;
     transform: translateY(-5px) scale(1.015);
     filter: brightness(1.12);
     border-color: var(--ev-accent);
 }
 
-body[data-page="events"] .mw-event-category-card.is-animating::after {
-    z-index: 4;
+/* Capa exclusiva para el destello */
+body[data-page="events"] .mw-event-category-card__flash {
+    position: absolute;
+    z-index: 10;
     top: 0;
-    right: auto;
     bottom: 0;
     left: 0;
     width: 70%;
-    height: 100%;
-    opacity: 1;
-    transform: translateX(-140%) skewX(-18deg);
+    pointer-events: none;
+    opacity: 0;
     background: linear-gradient(
         90deg,
         transparent,
-        color-mix(in srgb, var(--ev-accent) 15%, transparent) 20%,
-        rgba(255,255,255,.8) 48%,
-        color-mix(in srgb, var(--ev-secondary) 35%, transparent) 65%,
+        color-mix(in srgb, var(--ev-accent) 25%, transparent) 22%,
+        rgba(255,255,255,.92) 48%,
+        color-mix(in srgb, var(--ev-secondary) 40%, transparent) 68%,
         transparent
     );
+    transform: translateX(-140%) skewX(-18deg);
+}
+
+body[data-page="events"] .mw-event-category-card.is-animating .mw-event-category-card__flash {
     animation: mw-event-chroma 1.45s cubic-bezier(.2,.65,.25,1) both;
 }
 
@@ -841,65 +845,3 @@ body[data-page="events"] .mw-event-empty p {
 
 
 
-/* ==========================================================
-   MI WRESTLING 2.0 — SELECCIÓN FIFA / WWE 2K
-   ========================================================== */
-
-body[data-page="events"] .mw-event-category-card {
-    -webkit-tap-highlight-color: transparent;
-    will-change: transform, filter;
-}
-
-/* Elevación persistente después de seleccionar */
-body[data-page="events"] .mw-event-category-card.is-selected {
-    z-index: 5;
-    transform: translateY(-6px) scale(1.025);
-    filter: brightness(1.14);
-    border-color: var(--ev-accent);
-}
-
-/* Tarjeta mientras pasa el destello */
-body[data-page="events"] .mw-event-category-card.is-animating {
-    z-index: 6;
-    transform: translateY(-6px) scale(1.025);
-    filter: brightness(1.16);
-    border-color: var(--ev-accent);
-}
-
-/*
-   PC:
-   El hover eleva la tarjeta.
-   El JS debe añadir .is-animating para activar el destello.
-*/
-@media (hover: hover) and (pointer: fine) {
-    body[data-page="events"] .mw-event-category-card:hover {
-        transform: translateY(-4px) scale(1.015);
-        filter: brightness(1.10);
-        border-color: var(--ev-accent);
-    }
-
-    body[data-page="events"] .mw-event-category-card.is-selected:hover,
-    body[data-page="events"] .mw-event-category-card.is-animating:hover {
-        transform: translateY(-6px) scale(1.025);
-        filter: brightness(1.16);
-    }
-}
-
-/* Evitar que el estado activo aplaste la tarjeta */
-body[data-page="events"] .mw-event-category-card:active {
-    transform: translateY(-4px) scale(1.015);
-    filter: brightness(1.12);
-}
-
-/* Movimiento reducido */
-@media (prefers-reduced-motion: reduce) {
-    body[data-page="events"] .mw-event-category-card,
-    body[data-page="events"] .mw-event-card,
-    body[data-page="events"] .mw-event-year-button {
-        transition: none !important;
-    }
-
-    body[data-page="events"] .mw-event-category-card.is-animating::after {
-        animation: none !important;
-    }
-}
