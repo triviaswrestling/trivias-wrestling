@@ -180,69 +180,57 @@
 @media(prefers-reduced-motion:reduce){
 .mw-record-page *,.mw-record-page *:before,.mw-record-page *:after{transition:none!important}
 }
-/* MI WRESTLING — FIX TIPOGRAFÍA WWE 2K */
-.mw-record-page,
-.mw-record-page button,
-.mw-record-page input,
-.mw-record-page select,
-.mw-record-page option,
-.mw-record-page a,
-.mw-record-page span,
-.mw-record-page strong,
+
+
+
+/* MI WRESTLING — TIPOGRAFÍA CORRECTA */
+.mw-record-page {
+    font-family: "Inter", sans-serif;
+}
+
+/* Títulos estilo WWE 2K */
 .mw-record-page h1,
 .mw-record-page h2,
 .mw-record-page h3,
-.mw-record-page label {
-    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+.mw-record-page .mw-record-hero__title,
+.mw-record-page .mw-record-category__title,
+.mw-record-page .mw-record-card__title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 /* Nombres de luchadores y jugadores */
-.mw-record-link__name,
-.mw-player-link .mw-record-link__name,
-.mw-player-link .mw-record-link__name strong {
-    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+.mw-record-page .mw-record-link__name,
+.mw-record-page .mw-player-link .mw-record-link__name {
+    font-family: "Inter", sans-serif;
     font-weight: 700;
-    letter-spacing: .035em;
-    text-transform: uppercase;
+    letter-spacing: -.025em;
+    text-transform: none;
 }
 
-/* Países y banderas */
-.mw-player-link .mw-player-country,
-.mw-player-link .mw-record-link__flag,
-.mw-player-link .mw-country,
-.mw-player-link .mw-flag {
-    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+/* Países, datos secundarios y descripciones */
+.mw-record-page .mw-player-country,
+.mw-record-page .mw-country,
+.mw-record-page .mw-record-link__meta,
+.mw-record-page .mw-player-details {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
 }
 
-/* Botones de filtros */
-.mw-player-filter__button,
-.mw-player-filter__options,
-.mw-player-filter__options button,
-.mw-player-filter button,
-.mw-player-filter select,
-.mw-player-filters button,
-.mw-player-filters select {
-    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
-    font-weight: 700;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-}
-
-/* Categorías y tarjetas */
-.mw-record-category,
-.mw-record-category *,
-.mw-record-link,
-.mw-record-link *,
-.mw-record-card,
-.mw-record-card *,
-.mw-record-hero,
-.mw-record-hero * {
-    font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
-}
-
-/* Evitar que los controles vuelvan a la fuente del navegador */
+/* Botones y controles de filtros */
 .mw-record-page button,
 .mw-record-page select,
-.mw-record-page input {
+.mw-record-page input,
+.mw-record-page .mw-player-filter__button,
+.mw-record-page .mw-player-filter__options button {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+}
+
+/* Evita tipografías predeterminadas del navegador */
+.mw-record-page button,
+.mw-record-page input,
+.mw-record-page select {
     font-size: inherit;
-  }
+}
