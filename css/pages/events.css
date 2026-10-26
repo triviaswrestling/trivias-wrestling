@@ -843,6 +843,7 @@ body[data-page="events"] .mw-event-empty p {
     }
 }
 
+
 /* ==========================================================
    MI WRESTLING — CHROMA + LEVANTAMIENTO AL TOCAR
    ========================================================== */
@@ -851,11 +852,13 @@ body[data-page="events"] .mw-event-empty p {
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition:
         transform .22s cubic-bezier(.2,.75,.25,1),
         border-color .22s ease,
         filter .22s ease;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .mw-event-category-card::after {
