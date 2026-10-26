@@ -1,26 +1,642 @@
-/* MI WRESTLING 2.0 | EVENT CATALOG — WWE 2K26 STYLE */
-body[data-page="events"] .page-hero{--page-accent:var(--accent)}
-.mw-event-category-section,.mw-event-section{margin:26px 0 42px}
-.mw-event-section-heading,.mw-team-results-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 16px}
-.mw-event-section-heading h2,.mw-team-results-heading h2{margin:3px 0 0;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;letter-spacing:-.03em}
-.mw-event-section-heading>span,.mw-team-results-heading>span{color:var(--text-soft);font-size:.85rem}
-.mw-event-kicker{color:var(--accent);font-size:.7rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
-.mw-event-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.mw-event-category-card{--category-a:#168cff;--category-b:#111b2b;position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:190px;padding:18px;overflow:hidden;border:1px solid color-mix(in srgb,var(--category-a) 52%,#252b38);border-radius:5px;color:#f8fafc;text-decoration:none;background:linear-gradient(135deg,#080a10 0%,var(--category-b) 52%,#050609 100%);box-shadow:inset 4px 0 0 var(--category-a);transition:transform .16s ease,border-color .16s ease}
-.mw-event-category-card:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(120deg,transparent 22%,color-mix(in srgb,var(--category-a) 22%,transparent) 48%,transparent 70%);opacity:.85}
-.mw-event-category-card:hover,.mw-event-category-card:focus-visible{transform:translateY(-3px);border-color:var(--category-a);outline:none}
-.mw-event-category-card__eyebrow{font-size:.64rem;font-weight:900;letter-spacing:.18em;color:var(--category-a)}
-.mw-event-category-card>strong{margin:12px 0 4px;font-size:clamp(1.45rem,3vw,2rem);font-weight:950;text-transform:uppercase;line-height:1}
-.mw-event-category-card__subtitle{color:#c6cedb;font-size:.82rem}
-.mw-event-category-card__footer{display:flex;justify-content:space-between;gap:8px;margin-top:auto;padding-top:22px;color:#c5ccda;font-size:.7rem;font-weight:750;text-transform:uppercase}
-.theme-weekly{--category-a:#ff3048;--category-b:#071c3b}.theme-nxt{--category-a:#a855f7;--category-b:#171323}.theme-speed{--category-a:#e8f0ff;--category-b:#172333}.theme-ple{--category-a:#e8c46a;--category-b:#292010}.theme-specials{--category-a:#00cfe8;--category-b:#09222b}.theme-aaa{--category-a:#009b3a;--category-b:#182019}.theme-aew{--category-a:#f0f2f5;--category-b:#202329}.theme-tna{--category-a:#d7b35b;--category-b:#201a0a}
-.mw-event-category-hero{position:relative;overflow:hidden;margin:18px 0 26px;padding:clamp(22px,5vw,42px);border:1px solid #2b3444;border-radius:5px;background:linear-gradient(115deg,#07090e,#111a29 70%,#050609);box-shadow:inset 5px 0 var(--category-a,#168cff)}
-.mw-event-category-hero>span{font-size:.72rem;font-weight:900;letter-spacing:.14em;color:var(--category-a,#168cff);text-transform:uppercase}.mw-event-category-hero h1{margin:10px 0;font-size:clamp(2rem,7vw,4rem);font-weight:950;line-height:.98;text-transform:uppercase}.mw-event-category-hero p{max-width:720px;color:#c5cedb}.mw-event-show-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.mw-event-show-pills span{padding:7px 11px;border:1px solid #48566b;background:#0b0d13;font-weight:900;font-size:.78rem;letter-spacing:.08em}
-.mw-event-season-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.mw-event-season-card{display:flex;flex-direction:column;gap:9px;min-height:150px;padding:17px;border:1px solid var(--border);border-radius:5px;background:linear-gradient(145deg,#151a25,#080a0f);color:var(--text);text-decoration:none}.mw-event-season-card__year{color:var(--accent);font-size:.7rem;font-weight:900;letter-spacing:.15em}.mw-event-season-card strong{font-size:1.2rem}.mw-event-season-card>span:not(.mw-event-season-card__year){color:var(--text-soft);font-size:.82rem}.mw-event-season-card__open{margin-top:auto;font-size:.7rem;font-weight:900;letter-spacing:.08em;color:var(--accent)!important}
-.mw-event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.mw-event-card{display:flex;flex-direction:column;gap:9px;min-width:0;padding:16px;border:1px solid var(--border);border-radius:5px;background:linear-gradient(145deg,#151b27,#080a10);color:var(--text);text-decoration:none}.mw-event-card strong{font-size:1.12rem;font-weight:900}.mw-event-card>span{color:var(--text-soft);font-size:.82rem}.mw-event-card__meta{font-size:.64rem!important;font-weight:900;letter-spacing:.12em;color:var(--accent)!important}.mw-event-card__open{margin-top:auto;font-size:.68rem!important;font-weight:900;letter-spacing:.08em;color:var(--accent)!important}.mw-event-card:hover,.mw-event-season-card:hover{border-color:var(--accent)}
-.mw-event-empty{margin:16px 0;padding:22px;border:1px dashed #394356;border-radius:5px;background:#0a0c12;color:var(--text-soft)}.mw-event-empty h3{margin-top:0;color:var(--text)}.mw-event-empty code,.mw-event-category-hero code{overflow-wrap:anywhere;color:#b9dfff}.mw-event-back{display:inline-flex;margin:10px 0 16px;color:var(--accent);font-size:.72rem;font-weight:900;letter-spacing:.08em;text-decoration:none}.mw-event-subheading{margin:24px 0 12px}.mw-event-detail-hero{margin-top:14px}.mw-event-detail-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.mw-event-detail-meta span{padding:7px 10px;border:1px solid #323b4b;border-radius:3px;font-size:.72rem;text-transform:uppercase;color:#cbd5e1}
-.mw-match-sides{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;padding:12px 0}.mw-match-side{min-width:0;padding:12px;border:1px solid #293244;border-radius:4px;background:#090c13}.mw-match-side h4{margin:0 0 10px;color:var(--accent);font-size:.8rem}.mw-match-side ul{list-style:none;margin:0;padding:0}.mw-match-vs{font-weight:950;font-size:.8rem;color:var(--text-soft)}.mw-match-participant{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #242a35}.mw-match-participant:last-child{border-bottom:0}.mw-match-participant__identity{display:flex;flex-direction:column;gap:4px;min-width:0}.mw-match-wrestler{font-weight:850;color:var(--text);text-decoration:none}.mw-match-team-link,.mw-match-interpreter{font-size:.75rem;color:var(--text-soft)}.mw-match-team-link,.mw-match-interpreter a,.mw-match-side h4 a{color:var(--accent);text-decoration:none}.mw-match-result{flex-shrink:0;font-size:.7rem;font-weight:900;text-transform:uppercase}.mw-match-result.is-win{color:#58dfa1}.mw-match-result.is-loss{color:#ff6474}.mw-match-result.is-draw{color:#e8c46a}
-@media(max-width:520px){.mw-event-category-grid,.mw-event-season-grid,.mw-event-grid{grid-template-columns:1fr}.mw-event-category-card{min-height:165px}.mw-match-sides{grid-template-columns:1fr}.mw-match-vs{text-align:center}.mw-event-section-heading,.mw-team-results-heading{align-items:start;flex-direction:column}}
-@media(min-width:900px){.mw-event-category-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.mw-event-season-grid,.mw-event-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* ==========================================================
+   MI WRESTLING 2.0 — EVENTOS
+   Diseño: WWE 2K26 / WWE Network
+   Tarjetas angulares + colores por marca + chroma táctil
+   ========================================================== */
 
-.mw-event-year-filter{margin:16px 0 20px}.mw-event-year-filter select{min-width:150px;min-height:42px;padding:9px 12px;border:1px solid var(--border);border-radius:4px;background:#111722;color:var(--text);font:inherit}
+body[data-page="events"] {
+    --ev-bg: #07090e;
+    --ev-panel: #10141d;
+    --ev-border: rgba(255, 255, 255, .12);
+    --ev-text: #f5f7fc;
+    --ev-muted: #9ba5b7;
+    color: var(--ev-text);
+}
+
+/* HERO PRINCIPAL */
+
+body[data-page="events"] .mw-events-hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: clamp(30px, 6vw, 76px) 20px;
+    background:
+        linear-gradient(110deg, #07090e 20%, #101a2c 65%, #07090e);
+    border-bottom: 1px solid rgba(55, 215, 255, .22);
+}
+
+body[data-page="events"] .mw-events-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: repeating-linear-gradient(
+        115deg,
+        transparent 0 58px,
+        rgba(255, 255, 255, .025) 59px 61px,
+        transparent 62px 110px
+    );
+    pointer-events: none;
+}
+
+body[data-page="events"] .mw-events-hero h1 {
+    margin: 8px 0;
+    font-weight: 900;
+    letter-spacing: -.045em;
+    line-height: .95;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 9vw, 5.5rem);
+    text-shadow: 3px 3px 0 rgba(55, 215, 255, .13);
+}
+
+body[data-page="events"] .mw-events-hero .eyebrow,
+body[data-page="events"] .mw-event-kicker {
+    color: #37d7ff;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+body[data-page="events"] .mw-events-hero .lead {
+    max-width: 600px;
+    color: #b9c4d5;
+    line-height: 1.6;
+}
+
+/* SECCIONES */
+
+body[data-page="events"] .mw-event-category-section,
+body[data-page="events"] .mw-event-section {
+    width: min(1200px, 100%);
+    margin-inline: auto;
+    padding: 24px 14px;
+}
+
+body[data-page="events"] .mw-event-section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+body[data-page="events"] .mw-event-section-heading h2 {
+    margin: 5px 0 0;
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+body[data-page="events"] .mw-event-section-heading > span {
+    color: var(--ev-muted);
+    font-size: .72rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+/* ==========================================================
+   TARJETAS DE CATEGORÍA
+   ========================================================== */
+
+body[data-page="events"] .mw-event-category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+body[data-page="events"] .mw-event-category-card {
+    --ev-accent: #37d7ff;
+    --ev-secondary: #087dff;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    isolation: isolate;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 190px;
+    padding: 15px 13px;
+    gap: 9px;
+
+    color: #fff;
+    text-decoration: none;
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--ev-accent) 19%, #10141d),
+            #080a10 67%
+        );
+    border: 1px solid color-mix(
+        in srgb, var(--ev-accent) 48%, transparent
+    );
+
+    /* Bordes diagonales, estilo videojuego */
+    clip-path: polygon(
+        0 0,
+        calc(100% - 17px) 0,
+        100% 17px,
+        100% 100%,
+        17px 100%,
+        0 calc(100% - 17px)
+    );
+
+    transition:
+        transform .18s ease,
+        filter .18s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Fondo opcional para futuras portadas */
+body[data-page="events"] .mw-event-category-card::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background-image:
+        linear-gradient(
+            0deg,
+            rgba(4, 6, 11, .98) 0%,
+            rgba(4, 6, 11, .65) 52%,
+            rgba(4, 6, 11, .16) 100%
+        ),
+        var(--category-image, none);
+    background-size: cover;
+    background-position: center;
+    opacity: .95;
+    transition: opacity .2s ease;
+}
+
+/* Diagonales decorativas */
+body[data-page="events"] .mw-event-category-card::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -45%;
+    right: -35%;
+    width: 65%;
+    height: 190%;
+    transform: rotate(28deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in srgb, var(--ev-accent) 12%, transparent),
+        transparent
+    );
+    pointer-events: none;
+}
+
+body[data-page="events"] .mw-event-category-card__eyebrow {
+    font-size: .58rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    color: var(--ev-accent);
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+body[data-page="events"] .mw-event-category-card > strong {
+    display: block;
+    font-size: clamp(1.15rem, 4.2vw, 2rem);
+    font-weight: 900;
+    line-height: .98;
+    letter-spacing: -.035em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    text-shadow: 0 2px 12px #000;
+}
+
+body[data-page="events"] .mw-event-category-card__subtitle {
+    color: #c5ccda;
+    font-size: .72rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+body[data-page="events"] .mw-event-category-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    padding-top: 9px;
+    margin-top: 2px;
+    border-top: 1px solid rgba(255, 255, 255, .15);
+    color: #e2e8f2;
+    font-size: .62rem;
+    font-weight: 800;
+}
+
+/* Chroma al tocar: breve, no permanente */
+@keyframes mw-event-chroma {
+    0% {
+        opacity: 0;
+        transform: translateX(-120%) skewX(-20deg);
+    }
+    35% {
+        opacity: .85;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(150%) skewX(-20deg);
+    }
+}
+
+body[data-page="events"] .mw-event-category-card:active {
+    transform: scale(.975);
+    filter: brightness(1.2);
+}
+
+body[data-page="events"] .mw-event-category-card:active::after {
+    z-index: 2;
+    inset: 0;
+    width: auto;
+    height: auto;
+    transform: none;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 35, 105, .42) 38%,
+        rgba(55, 215, 255, .55) 49%,
+        rgba(170, 80, 255, .35) 58%,
+        transparent 78%
+    );
+    animation: mw-event-chroma .38s ease-out;
+}
+
+@media (hover: hover) {
+    body[data-page="events"] .mw-event-category-card:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.12);
+    }
+}
+
+/* ==========================================================
+   COLORES DE LAS MARCAS
+   ========================================================== */
+
+/* Weekly: unión de RAW + SmackDown */
+body[data-page="events"] .theme-weekly {
+    --ev-accent: #f3f5ff;
+    --ev-secondary: #e50914;
+    background:
+        linear-gradient(
+            115deg,
+            rgba(229, 9, 20, .22) 0 48%,
+            rgba(8, 125, 255, .24) 52% 100%
+        ),
+        #090b11;
+    border-color: rgba(255, 255, 255, .32);
+}
+
+/* RAW — Netflix */
+body[data-page="events"] .theme-raw {
+    --ev-accent: #ff2835;
+    --ev-secondary: #b9000b;
+    background:
+        linear-gradient(140deg, rgba(229, 9, 20, .34), #09090c 75%);
+    border-color: rgba(229, 9, 20, .65);
+}
+
+/* SmackDown — USA Network */
+body[data-page="events"] .theme-smackdown {
+    --ev-accent: #37a5ff;
+    --ev-secondary: #0759c7;
+    background:
+        linear-gradient(140deg, rgba(8, 91, 205, .4), #080c14 75%);
+    border-color: rgba(55, 165, 255, .62);
+}
+
+/* PLE — dorado y negro */
+body[data-page="events"] .theme-ple {
+    --ev-accent: #f4cc70;
+    --ev-secondary: #a77922;
+    background:
+        linear-gradient(140deg, rgba(166, 117, 29, .38), #0c0b08 72%);
+    border-color: rgba(244, 204, 112, .65);
+}
+
+/* NXT — metálico */
+body[data-page="events"] .theme-nxt {
+    --ev-accent: #d8e0e9;
+    --ev-secondary: #778392;
+    background:
+        linear-gradient(140deg, rgba(169, 184, 200, .25), #090b0f 72%);
+    border-color: rgba(216, 224, 233, .48);
+}
+
+/* Speed — cian + verde fluorescente */
+body[data-page="events"] .theme-speed {
+    --ev-accent: #49fff0;
+    --ev-secondary: #b4ff26;
+    background:
+        linear-gradient(125deg, rgba(25, 229, 213, .23), #080c11 62%, rgba(150, 255, 25, .13));
+    border-color: rgba(73, 255, 240, .55);
+}
+
+/* AAA — verde */
+body[data-page="events"] .theme-aaa {
+    --ev-accent: #58ef82;
+    --ev-secondary: #159447;
+    background:
+        linear-gradient(140deg, rgba(25, 148, 71, .34), #080d0b 75%);
+    border-color: rgba(88, 239, 130, .55);
+}
+
+/* AEW */
+body[data-page="events"] .theme-aew {
+    --ev-accent: #f3f3f3;
+    --ev-secondary: #7b8795;
+    background:
+        linear-gradient(140deg, rgba(180, 190, 205, .2), #08090c 75%);
+    border-color: rgba(255, 255, 255, .32);
+}
+
+/* Especiales */
+body[data-page="events"] .theme-specials {
+    --ev-accent: #56ddff;
+    --ev-secondary: #5d6cff;
+    background:
+        linear-gradient(140deg, rgba(44, 126, 255, .25), #080b12 75%);
+    border-color: rgba(86, 221, 255, .45);
+}
+
+/* TNA */
+body[data-page="events"] .theme-tna {
+    --ev-accent: #ffcb54;
+    --ev-secondary: #d87924;
+    background:
+        linear-gradient(140deg, rgba(216, 121, 36, .26), #0b0b0d 75%);
+    border-color: rgba(255, 203, 84, .48);
+}
+
+/* ==========================================================
+   HERO DE CADA CATEGORÍA
+   ========================================================== */
+
+body[data-page="events"] .mw-event-category-hero {
+    --ev-accent: #37d7ff;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 25px 17px;
+    margin: 0 14px 22px;
+    background: linear-gradient(115deg, #111722, #080a10);
+    border-left: 4px solid var(--ev-accent);
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+body[data-page="events"] .mw-event-category-hero > span {
+    color: var(--ev-accent);
+    font-size: .7rem;
+    font-weight: 900;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+body[data-page="events"] .mw-event-category-hero h1 {
+    margin: 8px 0;
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+body[data-page="events"] .mw-event-category-hero p {
+    max-width: 650px;
+    margin-bottom: 0;
+    color: #b8c2d2;
+    line-height: 1.5;
+}
+
+body[data-page="events"] .mw-event-category-hero.theme-raw {
+    --ev-accent: #ff2835;
+}
+
+body[data-page="events"] .mw-event-category-hero.theme-smackdown {
+    --ev-accent: #37a5ff;
+}
+
+body[data-page="events"] .mw-event-category-hero.theme-ple {
+    --ev-accent: #f4cc70;
+}
+
+body[data-page="events"] .mw-event-category-hero.theme-nxt {
+    --ev-accent: #d8e0e9;
+}
+
+body[data-page="events"] .mw-event-category-hero.theme-speed {
+    --ev-accent: #49fff0;
+}
+
+body[data-page="events"] .mw-event-category-hero.theme-aaa {
+    --ev-accent: #58ef82;
+}
+
+/* Volver al catálogo */
+
+body[data-page="events"] .mw-event-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 14px;
+    color: #aab8cc;
+    text-decoration: none;
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .06em;
+}
+
+body[data-page="events"] .mw-event-back:hover {
+    color: #37d7ff;
+}
+
+/* ==========================================================
+   FILTRO POR AÑO
+   ========================================================== */
+
+body[data-page="events"] .mw-event-year-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #0e121a;
+    border: 1px solid var(--ev-border);
+}
+
+body[data-page="events"] .mw-event-year-filter label {
+    color: #aeb9ca;
+    font-size: .68rem;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+body[data-page="events"] .mw-event-year-filter select {
+    max-width: 55%;
+    padding: 10px 30px 10px 12px;
+    color: #fff;
+    background: #171e2a;
+    border: 1px solid #354154;
+    border-radius: 2px;
+    font: inherit;
+    font-weight: 700;
+}
+
+/* ==========================================================
+   TARJETAS DE EVENTOS
+   ========================================================== */
+
+body[data-page="events"] .mw-event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+body[data-page="events"] .mw-event-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    min-height: 145px;
+    gap: 10px;
+    padding: 14px 12px;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(145deg, #171d29, #0b0e14 78%);
+    border: 1px solid #283244;
+    clip-path: polygon(
+        0 0,
+        calc(100% - 13px) 0,
+        100% 13px,
+        100% 100%,
+        0 100%
+    );
+    transition: transform .16s ease, border-color .16s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body[data-page="events"] .mw-event-card:active {
+    transform: scale(.98);
+    border-color: #37d7ff;
+}
+
+body[data-page="events"] .mw-event-card__meta {
+    color: #37d7ff;
+    font-size: .6rem;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+body[data-page="events"] .mw-event-card > strong {
+    font-size: .98rem;
+    font-weight: 900;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+}
+
+body[data-page="events"] .mw-event-card > span:not(.mw-event-card__meta):not(.mw-event-card__open) {
+    color: #aab5c7;
+    font-size: .7rem;
+    line-height: 1.4;
+}
+
+body[data-page="events"] .mw-event-card__open {
+    margin-top: auto;
+    padding-top: 8px;
+    color: #f3f6fc;
+    font-size: .62rem;
+    font-weight: 900;
+    letter-spacing: .05em;
+}
+
+/* Estado vacío y errores */
+
+body[data-page="events"] .mw-event-empty {
+    grid-column: 1 / -1;
+    padding: 25px 17px;
+    background: #10141d;
+    border: 1px solid #293244;
+    border-left: 3px solid #37d7ff;
+}
+
+body[data-page="events"] .mw-event-empty h1,
+body[data-page="events"] .mw-event-empty h3 {
+    margin-top: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+body[data-page="events"] .mw-event-empty p {
+    color: #aab5c7;
+    line-height: 1.55;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 360px) {
+    body[data-page="events"] .mw-event-category-grid,
+    body[data-page="events"] .mw-event-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body[data-page="events"] .mw-event-category-card {
+        min-height: 165px;
+    }
+}
+
+@media (min-width: 700px) {
+    body[data-page="events"] .mw-event-category-section,
+    body[data-page="events"] .mw-event-section {
+        padding: 30px 22px;
+    }
+
+    body[data-page="events"] .mw-event-category-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    body[data-page="events"] .mw-event-category-card {
+        min-height: 225px;
+        padding: 20px;
+    }
+
+    body[data-page="events"] .mw-event-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    body[data-page="events"] .mw-event-category-hero {
+        margin-inline: 22px;
+        padding: 36px 26px;
+    }
+}
+
+@media (min-width: 1050px) {
+    body[data-page="events"] .mw-event-category-grid,
+    body[data-page="events"] .mw-event-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-page="events"] .mw-event-category-card,
+    body[data-page="events"] .mw-event-card,
+    body[data-page="events"] .mw-event-category-card::before {
+        transition: none;
+    }
+
+    body[data-page="events"] .mw-event-category-card:active::after {
+        animation: none;
+    }
+}
