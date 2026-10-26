@@ -19,23 +19,19 @@
     ["Inicio", "index.html"],
     ["Roster", "roster.html"],
     ["Alumni", "alumni.html"],
-    ["Marcas", "brands.html"],
-    ["Temporadas", "seasons.html"],
-    ["Calendario", "calendar.html"],
+    ["Equipos", "teams.html"],
+    ["Campeonatos", "championships.html"],
     ["Eventos", "events.html"],
     ["Torneos", "tournaments.html"],
-    ["Campeonatos", "championships.html"],
     ["Rankings", "ranking.html"],
     ["Récords", "records.html"],
-    ["Equipos", "teams.html"],
     ["Personas", "personas.html"],
     ["Rivalidades", "rivalries.html"],
     ["Recaps", "recaps.html"],
     ["Guía", "guide.html"],
     ["Reglas", "rules.html"],
     ["Estipulaciones", "stipulations.html"],
-    ["Promociones", "promotions.html"],
-    ["Acerca de", "about.html"]
+    ["Promociones", "promotions.html"]
   ];
 
   const SOCIALS = [
