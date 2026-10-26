@@ -773,21 +773,7 @@ body[data-page="events"] .mw-event-empty p {
     }
 }
 
-/* ==========================================================
-   ACCESIBILIDAD / MOVIMIENTO REDUCIDO
-   ========================================================== */
 
-@media (prefers-reduced-motion: reduce) {
-    body[data-page="events"] .mw-event-category-card,
-    body[data-page="events"] .mw-event-card,
-    body[data-page="events"] .mw-event-year-button {
-        transition: none;
-    }
-
-    body[data-page="events"] .mw-event-category-card.is-animating::after {
-        animation: none;
-    }
-}
 
 /* ==========================================================
    MI WRESTLING — TRANSICIONES DE PANEL TIPO PS5
