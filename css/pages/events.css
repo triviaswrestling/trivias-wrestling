@@ -840,8 +840,9 @@ body[data-page="events"] .mw-event-empty p {
 
 
 
+
 /* ==========================================================
-   MI WRESTLING — SELECCIÓN TIPO FIFA / WWE 2K
+   MI WRESTLING 2.0 — SELECCIÓN FIFA / WWE 2K
    ========================================================== */
 
 body[data-page="events"] .mw-event-category-card {
@@ -849,7 +850,7 @@ body[data-page="events"] .mw-event-category-card {
     will-change: transform, filter;
 }
 
-/* Selección persistente */
+/* Elevación persistente después de seleccionar */
 body[data-page="events"] .mw-event-category-card.is-selected {
     z-index: 5;
     transform: translateY(-6px) scale(1.025);
@@ -857,7 +858,7 @@ body[data-page="events"] .mw-event-category-card.is-selected {
     border-color: var(--ev-accent);
 }
 
-/* Destello: conserva el movimiento original del chroma */
+/* Tarjeta mientras pasa el destello */
 body[data-page="events"] .mw-event-category-card.is-animating {
     z-index: 6;
     transform: translateY(-6px) scale(1.025);
@@ -865,11 +866,16 @@ body[data-page="events"] .mw-event-category-card.is-animating {
     border-color: var(--ev-accent);
 }
 
-/* PC: elevación al pasar el cursor */
+/*
+   PC:
+   El hover eleva la tarjeta.
+   El JS debe añadir .is-animating para activar el destello.
+*/
 @media (hover: hover) and (pointer: fine) {
     body[data-page="events"] .mw-event-category-card:hover {
-        transform: translateY(-3px) scale(1.01);
-        filter: brightness(1.08);
+        transform: translateY(-4px) scale(1.015);
+        filter: brightness(1.10);
+        border-color: var(--ev-accent);
     }
 
     body[data-page="events"] .mw-event-category-card.is-selected:hover,
@@ -879,9 +885,17 @@ body[data-page="events"] .mw-event-category-card.is-animating {
     }
 }
 
+/* Evitar que el estado activo aplaste la tarjeta */
+body[data-page="events"] .mw-event-category-card:active {
+    transform: translateY(-4px) scale(1.015);
+    filter: brightness(1.12);
+}
+
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
-    body[data-page="events"] .mw-event-category-card {
+    body[data-page="events"] .mw-event-category-card,
+    body[data-page="events"] .mw-event-card,
+    body[data-page="events"] .mw-event-year-button {
         transition: none !important;
     }
 
