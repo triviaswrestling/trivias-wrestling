@@ -30,6 +30,7 @@
 
     const yearOf = event => Number(event.year || String(event.date || "").slice(0, 4)) || 0;
     const nameOf = event => event.name || event.title || event.id || "Evento";
+
     const fmtDate = event => {
         if (!event.date) return "Fecha pendiente";
         const date = new Date(`${event.date}T00:00:00Z`);
@@ -40,26 +41,52 @@
     };
 
     const brandInfo = {
-        raw: { name: "RAW", subtitle: "RAW · NETFLIX", theme: "raw", description: "Archivo semanal de RAW." },
-        smackdown: { name: "SmackDown", subtitle: "SMACKDOWN · USA NETWORK", theme: "smackdown", description: "Archivo semanal de SmackDown." }
+        raw: {
+            name: "RAW",
+            subtitle: "RAW · NETFLIX",
+            theme: "raw",
+            description: "Archivo semanal de RAW."
+        },
+        smackdown: {
+            name: "SmackDown",
+            subtitle: "SMACKDOWN · USA NETWORK",
+            theme: "smackdown",
+            description: "Archivo semanal de SmackDown."
+        }
     };
 
     const themes = {
-        ple: "ple", premiumliveevents: "ple", weekly: "weekly",
-        raw: "raw", wwraw: "raw", mondaynightraw: "raw",
-        smackdown: "smackdown", wwesmackdown: "smackdown",
-        fridaynightsmackdown: "smackdown", nxt: "nxt",
-        speed: "speed", wwespeed: "speed", aaa: "aaa",
-        aew: "aew", tna: "tna", specials: "specials",
-        special: "specials", especiales: "specials"
+        ple: "ple",
+        premiumliveevents: "ple",
+        weekly: "weekly",
+        raw: "raw",
+        wwraw: "raw",
+        mondaynightraw: "raw",
+        smackdown: "smackdown",
+        wwesmackdown: "smackdown",
+        fridaynightsmackdown: "smackdown",
+        nxt: "nxt",
+        speed: "speed",
+        wwespeed: "speed",
+        aaa: "aaa",
+        aew: "aew",
+        tna: "tna",
+        specials: "specials",
+        special: "specials",
+        especiales: "specials"
     };
 
     const themeOf = value => themes[norm(value)] || norm(value) || "specials";
 
     const matchesShow = (event, showId) => {
         const values = [
-            event.brand, event.brandId, event.show, event.showId,
-            event.categoryId, event.category, event.promotion
+            event.brand,
+            event.brandId,
+            event.show,
+            event.showId,
+            event.categoryId,
+            event.category,
+            event.promotion
         ].map(norm);
 
         const accepted = showId === "raw"
@@ -70,9 +97,17 @@
     };
 
     const isTakeover = event => [
-        event.id, event.name, event.title, event.division,
-        event.subcategory, event.eventType, event.tournamentType,
-        event.mode, event.type, event.category, event.categoryName
+        event.id,
+        event.name,
+        event.title,
+        event.division,
+        event.subcategory,
+        event.eventType,
+        event.tournamentType,
+        event.mode,
+        event.type,
+        event.category,
+        event.categoryName
     ].some(value => /takeover|ascenso/i.test(String(value ?? "")));
 
     /* ==========================================================
@@ -100,11 +135,14 @@
                 try {
                     const file = await get(season.path);
                     const events = Array.isArray(file) ? file : file?.events;
+
                     if (!Array.isArray(events)) continue;
 
                     for (const event of events) {
                         if (!event?.id || knownIds.has(String(event.id))) continue;
+
                         knownIds.add(String(event.id));
+
                         allEvents.push({
                             ...event,
                             id: String(event.id),
@@ -122,6 +160,7 @@
 
         for (const event of arr(indexData)) {
             if (!event?.id || knownIds.has(String(event.id))) continue;
+
             knownIds.add(String(event.id));
             allEvents.push({ ...event, id: String(event.id) });
         }
@@ -132,17 +171,29 @@
 
         const hasTNA = allEvents.some(event =>
             /tna/i.test(`${event.categoryId || ""} ${event.brand || ""} ${event.promotion || ""}`)
-        ) || brands.some(item => /tna/i.test(`${item.id || ""} ${item.name || ""}`))
-          || promotions.some(item => /tna/i.test(`${item.id || ""} ${item.name || ""}`))
-          || wrestlers.some(item => /tna/i.test(String(item.brand || "")));
+        ) || brands.some(item =>
+            /tna/i.test(`${item.id || ""} ${item.name || ""}`)
+        ) || promotions.some(item =>
+            /tna/i.test(`${item.id || ""} ${item.name || ""}`)
+        ) || wrestlers.some(item =>
+            /tna/i.test(String(item.brand || ""))
+        );
 
         const priority = {
-            ple: 1, weekly: 2, nxt: 3, speed: 4,
-            aaa: 5, aew: 6, specials: 7, tna: 8
+            ple: 1,
+            weekly: 2,
+            nxt: 3,
+            speed: 4,
+            aaa: 5,
+            aew: 6,
+            specials: 7,
+            tna: 8
         };
 
         const categories = catalog.categories
-            .filter(category => category.id !== "tna" || hasTNA || category.show === true)
+            .filter(category =>
+                category.id !== "tna" || hasTNA || category.show === true
+            )
             .sort((a, b) =>
                 (priority[a.id] || 99) - (priority[b.id] || 99) ||
                 (a.order || 99) - (b.order || 99)
@@ -153,6 +204,7 @@
            ========================================================== */
         const readState = () => {
             const params = new URLSearchParams(location.search);
+
             return {
                 category: params.get("category"),
                 year: params.get("year") || "all",
@@ -172,6 +224,7 @@
                     matchesShow(event, "smackdown") ||
                     norm(event.categoryId) === "weekly";
             }
+
             return norm(event.categoryId) === norm(category.id) ||
                 norm(event.brand) === norm(category.id) ||
                 norm(event.promotion) === norm(category.id);
@@ -181,7 +234,9 @@
             if (selected?.id === "weekly" && brandInfo[show]) {
                 return brandInfo[show].theme;
             }
+
             if (selected) return themeOf(selected.theme || selected.id);
+
             return themeOf(event.brand || event.show || event.categoryId);
         };
 
@@ -191,6 +246,7 @@
         const categoryCard = category => {
             const events = countFor(category);
             const years = new Set(events.map(yearOf).filter(Boolean)).size;
+
             return `
                 <a class="mw-event-category-card theme-${esc(themeOf(category.theme || category.id))}"
                    href="events.html?category=${encodeURIComponent(category.id)}">
@@ -206,6 +262,7 @@
         const showCard = showId => {
             const brand = brandInfo[showId];
             const count = allEvents.filter(event => matchesShow(event, showId)).length;
+
             return `
                 <a class="mw-event-category-card theme-${brand.theme}"
                    href="events.html?category=weekly&amp;show=${showId}">
@@ -218,7 +275,11 @@
 
         const eventCards = (events, selected, show) => {
             if (!events.length) {
-                return `<div class="mw-event-empty"><h3>Sin eventos disponibles</h3><p>Probá con otro año o volvé más adelante.</p></div>`;
+                return `
+                    <div class="mw-event-empty">
+                        <h3>Sin eventos disponibles</h3>
+                        <p>Probá con otro año o volvé más adelante.</p>
+                    </div>`;
             }
 
             return events.map(event => `
@@ -247,12 +308,25 @@
         /* ==========================================================
            CONSTRUIR LA VISTA ACTUAL
            ========================================================== */
+        const displayName = (selected, current) => {
+            if (!selected) return "Eventos";
+            if (selected.id === "weekly" && brandInfo[current.show]) {
+                return brandInfo[current.show].name;
+            }
+            return selected.name;
+        };
+
         const render = () => {
             state = readState();
 
-            const selected = categories.find(category => category.id === state.category) || null;
+            const selected = categories.find(category =>
+                category.id === state.category
+            ) || null;
+
             const weeklySelector = selected?.id === "weekly" && !state.show;
-            const weeklyBrand = selected?.id === "weekly" && Boolean(brandInfo[state.show]);
+            const weeklyBrand = selected?.id === "weekly" &&
+                Boolean(brandInfo[state.show]);
+
             const display = weeklyBrand ? brandInfo[state.show] : selected;
 
             let html = `
@@ -288,17 +362,29 @@
                     </section>`;
             } else {
                 const events = allEvents.filter(event => {
-                    if (selected.id === "weekly") return matchesShow(event, state.show);
+                    if (selected.id === "weekly") {
+                        return matchesShow(event, state.show);
+                    }
+
                     return norm(event.categoryId) === norm(selected.id) ||
                         norm(event.brand) === norm(selected.id) ||
                         norm(event.promotion) === norm(selected.id);
                 });
 
-                const years = [...new Set(events.map(yearOf).filter(Boolean))].sort((a, b) => b - a);
-                const filtered = events.filter(event => state.year === "all" || yearOf(event) === Number(state.year))
-                    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+                const years = [...new Set(events.map(yearOf).filter(Boolean))]
+                    .sort((a, b) => b - a);
 
-                const backUrl = weeklyBrand ? "events.html?category=weekly" : "events.html";
+                const filtered = events
+                    .filter(event =>
+                        state.year === "all" || yearOf(event) === Number(state.year)
+                    )
+                    .sort((a, b) =>
+                        String(b.date || "").localeCompare(String(a.date || ""))
+                    );
+
+                const backUrl = weeklyBrand
+                    ? "events.html?category=weekly"
+                    : "events.html";
 
                 html += `
                     <a class="mw-event-back" href="${backUrl}">← ${weeklyBrand ? "RAW + SMACKDOWN" : "TODAS LAS CATEGORÍAS"}</a>
@@ -331,13 +417,8 @@
             }
 
             root.innerHTML = html;
-            document.title = `${displayName(selected, state)}${state.year !== "all" ? " · " + state.year : ""} | MI WRESTLING 2.0`;
-        };
 
-        const displayName = (selected, current) => {
-            if (!selected) return "Eventos";
-            if (selected.id === "weekly" && brandInfo[current.show]) return brandInfo[current.show].name;
-            return selected.name;
+            document.title = `${displayName(selected, state)}${state.year !== "all" ? " · " + state.year : ""} | MI WRESTLING 2.0`;
         };
 
         /* ==========================================================
@@ -345,6 +426,7 @@
            ========================================================== */
         const navigate = (url, direction = "forward") => {
             const target = new URL(url, location.href);
+
             if (target.pathname !== location.pathname) {
                 location.href = target.href;
                 return;
@@ -358,19 +440,33 @@
 
         const transition = (direction = "forward") => {
             const id = ++transitionId;
+
             root.classList.remove("mw-panel-enter-right", "mw-panel-enter-left");
-            root.classList.add(direction === "back" ? "mw-panel-leave-right" : "mw-panel-leave-left");
+            root.classList.add(
+                direction === "back"
+                    ? "mw-panel-leave-right"
+                    : "mw-panel-leave-left"
+            );
 
             setTimeout(() => {
                 if (id !== transitionId) return;
+
                 render();
+
                 root.classList.remove("mw-panel-leave-left", "mw-panel-leave-right");
-                root.classList.add(direction === "back" ? "mw-panel-enter-left" : "mw-panel-enter-right");
+                root.classList.add(
+                    direction === "back"
+                        ? "mw-panel-enter-left"
+                        : "mw-panel-enter-right"
+                );
 
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         if (id === transitionId) {
-                            root.classList.remove("mw-panel-enter-right", "mw-panel-enter-left");
+                            root.classList.remove(
+                                "mw-panel-enter-right",
+                                "mw-panel-enter-left"
+                            );
                         }
                     });
                 });
@@ -379,69 +475,143 @@
             }, 160);
         };
 
-        
         /* ==========================================================
-           CLICS: AÑO, DESPLEGABLES, CHROMA Y NAVEGACIÓN
+           SELECCIÓN PERSISTENTE Y DESTELLO CHROMA
            ========================================================== */
-        
-root.addEventListener("click", event => {
-    const yearButton = event.target.closest("[data-year]");
+        let selectedCard = null;
+        let chromaTimer = null;
+        let navigationTimer = null;
 
-    if (yearButton) {
-        const next = new URL(location.href);
-        if (yearButton.dataset.year === "all") {
-            next.searchParams.delete("year");
-        } else {
-            next.searchParams.set("year", yearButton.dataset.year);
-        }
-        navigate(next.href);
-        return;
-    }
+        const clearCardSelection = () => {
+            if (selectedCard) {
+                selectedCard.classList.remove("is-selected", "is-animating");
+                selectedCard = null;
+            }
 
-    const disclosure = event.target.closest(".mw-event-disclosure__toggle");
+            clearTimeout(chromaTimer);
+        };
 
-    if (disclosure) {
-        const panel = disclosure.closest(".mw-event-disclosure");
-        const open = panel.classList.toggle("is-open");
-        disclosure.setAttribute("aria-expanded", String(open));
-        return;
-    }
+        const selectCard = card => {
+            if (selectedCard && selectedCard !== card) {
+                selectedCard.classList.remove("is-selected", "is-animating");
+            }
 
-    const link = event.target.closest("a[href]");
-    if (!link || event.ctrlKey || event.metaKey ||
-        event.shiftKey || event.altKey) return;
-    if (link.target === "_blank" || link.hasAttribute("download")) return;
+            clearTimeout(chromaTimer);
 
-    const target = new URL(link.href, location.href);
+            selectedCard = card;
+            card.classList.remove("is-animating");
+            card.classList.add("is-selected");
 
-    if (target.pathname !== location.pathname) return;
+            // Reinicia el destello chroma al seleccionar.
+            void card.offsetWidth;
+            card.classList.add("is-animating");
 
-    event.preventDefault();
+            chromaTimer = setTimeout(() => {
+                card.classList.remove("is-animating");
+            }, 1450);
+        };
 
-    const card = link.closest(".mw-event-category-card");
+        /* ==========================================================
+           CLICS: FILTROS, DESPLEGABLES Y NAVEGACIÓN
+           ========================================================== */
+        root.addEventListener("click", event => {
+            const yearButton = event.target.closest("[data-year]");
 
-    if (card) {
-        card.classList.remove("is-animating");
-        void card.offsetWidth;
-        card.classList.add("is-animating");
-    }
+            if (yearButton) {
+                clearCardSelection();
+                clearTimeout(navigationTimer);
 
-    navigate(target.href);
-});
+                const next = new URL(location.href);
 
-window.addEventListener("popstate", () => transition("back"));
+                if (yearButton.dataset.year === "all") {
+                    next.searchParams.delete("year");
+                } else {
+                    next.searchParams.set("year", yearButton.dataset.year);
+                }
 
+                navigate(next.href);
+                return;
+            }
+
+            const disclosure = event.target.closest(
+                ".mw-event-disclosure__toggle"
+            );
+
+            if (disclosure) {
+                const panel = disclosure.closest(".mw-event-disclosure");
+                const open = panel.classList.toggle("is-open");
+
+                disclosure.setAttribute("aria-expanded", String(open));
+                return;
+            }
+
+            const link = event.target.closest("a[href]");
+
+            if (!link || event.ctrlKey || event.metaKey ||
+                event.shiftKey || event.altKey) return;
+
+            if (link.target === "_blank" || link.hasAttribute("download")) {
+                return;
+            }
+
+            const target = new URL(link.href, location.href);
+
+            if (target.origin !== location.origin) return;
+
+            const card = link.closest(".mw-event-category-card");
+
+            if (card) {
+                event.preventDefault();
+
+                // Evita que varios toques acumulen navegaciones.
+                clearTimeout(navigationTimer);
+
+                selectCard(card);
+
+                // Permite ver el levantamiento y el destello antes de navegar.
+                navigationTimer = setTimeout(() => {
+                    navigate(target.href);
+                }, 650);
+
+                return;
+            }
+
+            if (target.pathname !== location.pathname) return;
+
+            event.preventDefault();
+
+            clearTimeout(navigationTimer);
+            clearCardSelection();
+            navigate(target.href);
+        });
+
+        // Tocar fuera de las tarjetas desactiva la selección.
+        root.addEventListener("pointerdown", event => {
+            if (event.target.closest(".mw-event-category-card")) return;
+
+            if (event.target.closest(
+                "button, a, input, select, textarea, [role='button']"
+            )) return;
+
+            clearTimeout(navigationTimer);
+            clearCardSelection();
+        });
+
+        window.addEventListener("popstate", () => {
+            clearTimeout(navigationTimer);
+            clearCardSelection();
+            transition("back");
+        });
 
         /* ==========================================================
            INICIO
            ========================================================== */
-
-           
         root.classList.add("mw-events-panel");
         render();
 
     } catch (error) {
         console.error("[MI WRESTLING] Error cargando eventos:", error);
+
         root.innerHTML = `
             <section class="mw-event-empty">
                 <h1>No se pudo cargar el catálogo</h1>
