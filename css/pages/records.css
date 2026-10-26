@@ -183,54 +183,30 @@
 
 
 
-/* MI WRESTLING — TIPOGRAFÍA CORRECTA */
-.mw-record-page {
-    font-family: "Inter", sans-serif;
+/* MI WRESTLING — TIPOGRAFÍA UNIFICADA */
+.mw-record-page,
+.mw-record-page * {
+    font-family: "Barlow Condensed", sans-serif !important;
 }
 
-/* Títulos estilo WWE 2K */
-.mw-record-page h1,
-.mw-record-page h2,
-.mw-record-page h3,
-.mw-record-page .mw-record-hero__title,
-.mw-record-page .mw-record-category__title,
-.mw-record-page .mw-record-card__title {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-/* Nombres de luchadores y jugadores */
+.mw-record-page .mw-player-link,
+.mw-record-page .mw-player-link *,
 .mw-record-page .mw-record-link__name,
-.mw-record-page .mw-player-link .mw-record-link__name {
-    font-family: "Inter", sans-serif;
-    font-weight: 700;
-    letter-spacing: -.025em;
-    text-transform: none;
-}
-
-/* Países, datos secundarios y descripciones */
 .mw-record-page .mw-player-country,
 .mw-record-page .mw-country,
-.mw-record-page .mw-record-link__meta,
-.mw-record-page .mw-player-details {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-}
-
-/* Botones y controles de filtros */
-.mw-record-page button,
-.mw-record-page select,
-.mw-record-page input,
+.mw-record-page .mw-player-details,
 .mw-record-page .mw-player-filter__button,
-.mw-record-page .mw-player-filter__options button {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
+.mw-record-page .mw-player-filter__options,
+.mw-record-page .mw-player-filter__options *,
+.mw-record-page select,
+.mw-record-page option,
+.mw-record-page button {
+    font-family: "Barlow Condensed", sans-serif !important;
+    font-weight: 700;
 }
 
-/* Evita tipografías predeterminadas del navegador */
-.mw-record-page button,
-.mw-record-page input,
-.mw-record-page select {
-    font-size: inherit;
+.mw-record-page .mw-player-link .mw-record-link__name {
+    font-size: 1.05rem;
+    letter-spacing: .02em;
+    text-transform: uppercase;
 }
