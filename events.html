@@ -1,69 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
     <meta name="theme-color" content="#05070b">
-    <meta name="description" content="Shows, especiales y eventos históricos de MI WRESTLING 2.0.">
+    <meta name="description" content="Shows semanales, especiales y eventos históricos de MI WRESTLING 2.0.">
 
     <title>Eventos | MI WRESTLING 2.0</title>
 
+    <!-- FUENTES GLOBALES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/mi-wrestling.css">
-  <link rel="stylesheet" href="css/pages/events.css">
-  <link rel="stylesheet" href="css/components/match-card.css">
+    <!-- ARQUITECTURA VISUAL GLOBAL -->
+    <link rel="stylesheet" href="css/base/style.css">
+    <link rel="stylesheet" href="css/base/wwe-2k26-theme.css">
+    <link rel="stylesheet" href="css/mi-wrestling.css">
+
+    <!-- ESTILOS PROPIOS DE EVENTOS -->
+    <link rel="stylesheet" href="css/pages/events.css">
 </head>
 
 <body data-page="events">
-    <main class="site-main mw-roster-page" data-page-content>
 
-        <header class="mw-page-header alumni-hero events-hero">
-            <div class="alumni-hero-content">
-                <div class="alumni-eyebrow">
-                    <span class="alumni-eyebrow-line"></span>
-                    <span>MI WRESTLING 2.0</span>
-                    <span class="alumni-eyebrow-divider">/</span>
-                    <span class="alumni-eyebrow-muted">EVENT ARCHIVE</span>
-                </div>
-
-                <h1 class="alumni-title"><span>EVENTOS</span></h1>
-
-                <p class="alumni-description">
-                    CADA EVENTO ES PARTE DE LA HISTORIA.
-                    <span>Shows semanales, especiales y noches inolvidables del wrestling.</span>
-                </p>
-
-                <div class="alumni-hero-bottom">
-                    <span class="alumni-edition">MI WRESTLING 2.0</span>
-                    <span class="alumni-edition-line"></span>
-                    <span class="alumni-edition-label">EVENT COLLECTION</span>
-                </div>
-            </div>
-        </header>
-
-        <section class="mw-brand-filter-panel" aria-label="Filtros de eventos">
-            <div class="mw-filter-panel-heading">
-                <span class="mw-filter-kicker">SELECT EVENT</span>
-                <strong>EXPLORAR EVENTOS</strong>
-                <span class="mw-catalog-count" data-event-count>CARGANDO EVENTOS</span>
-            </div>
-
-            <div class="mw-brand-filters" data-event-filters role="group" aria-label="Categorías de eventos">
-                <span class="mw-catalog-loading">CARGANDO FILTROS…</span>
-            </div>
+    <!-- EL CONTENIDO LO CONSTRUYE events.js -->
+    <main class="site-main" data-page-content data-events-catalog>
+        <section class="page-hero">
+            <div class="eyebrow">MI WRESTLING 2.0 / EVENT ARCHIVE</div>
+            <h1>EVENTOS</h1>
+            <p class="lead">Cargando archivo de eventos...</p>
         </section>
-
-        <section id="events-grid" class="mw-wrestler-grid events-grid" aria-label="Catálogo de eventos" aria-live="polite">
-            <p class="mw-catalog-loading">CARGANDO CATÁLOGO DE EVENTOS…</p>
-        </section>
-
     </main>
 
-    <footer class="footer">MI WRESTLING 2.0 · EVENT ARCHIVE</footer>
-  <script src="js/mi-wrestling.js" defer></script>
-  <script src="js/components/match-card.js" defer></script>
-  <script src="js/pages/events.js" defer></script>
+    <footer class="footer">
+        MI WRESTLING 2.0 · EVENT ARCHIVE
+    </footer>
+
+    <!-- SISTEMA GLOBAL -->
+    <script src="js/mi-wrestling.js" defer></script>
+    <script src="js/sound-effects.js" defer></script>
+    <script src="js/theme-rotation.js" defer></script>
+
+    <!-- LÓGICA EXCLUSIVA DE EVENTOS -->
+    <script src="js/pages/events.js" defer></script>
+
 </body>
 </html>
