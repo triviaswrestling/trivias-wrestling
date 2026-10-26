@@ -1,1 +1,1182 @@
 
+[
+  {
+    "id": "diy",
+    "name": "#DIY",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "johnny-gargano",
+      "tommaso-ciampa"
+    ],
+    "members": [
+      {
+        "wrestlerId": "johnny-gargano",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "tommaso-ciampa",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 1,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "a-town-down-under",
+    "name": "A-Town Down Under",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "austin-theory",
+      "logan-paul"
+    ],
+    "members": [
+      {
+        "wrestlerId": "austin-theory",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "logan-paul",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 2,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "awesome-truth",
+    "name": "Awesome Truth",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "the-miz",
+      "r-truth"
+    ],
+    "members": [
+      {
+        "wrestlerId": "the-miz",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "r-truth",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 3,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "banger-bros",
+    "name": "Banger Bros",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "drew-mcintyre",
+      "sheamus"
+    ],
+    "members": [
+      {
+        "wrestlerId": "drew-mcintyre",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "sheamus",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 4,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "bar",
+    "name": "Bar",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "sheamus",
+      "claudio-castagnoli"
+    ],
+    "members": [
+      {
+        "wrestlerId": "sheamus",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "claudio-castagnoli",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 5,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "better-than-you-bay-bay",
+    "name": "Better Than You Bay Bay",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "adam-cole",
+      "mjf"
+    ],
+    "members": [
+      {
+        "wrestlerId": "adam-cole",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "mjf",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 6,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "blackpool-combat-club",
+    "name": "Blackpool Combat Club",
+    "type": "stable",
+    "status": "active",
+    "memberWrestlerIds": [
+      "bryan-danielson",
+      "jon-moxley",
+      "claudio-castagnoli",
+      "pac"
+    ],
+    "members": [
+      {
+        "wrestlerId": "bryan-danielson",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jon-moxley",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "claudio-castagnoli",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "pac",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 7,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "bloodline",
+    "name": "Bloodline",
+    "type": "stable",
+    "status": "active",
+    "memberWrestlerIds": [
+      "roman-reigns",
+      "jey-uso",
+      "jimmy-uso",
+      "solo-sikoa",
+      "jacob-fatu",
+      "tama-tonga",
+      "tonga-loa"
+    ],
+    "members": [
+      {
+        "wrestlerId": "roman-reigns",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jey-uso",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jimmy-uso",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "solo-sikoa",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jacob-fatu",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "tama-tonga",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "tonga-loa",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 8,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "brawling-brutes",
+    "name": "Brawling Brutes",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "sheamus",
+      "pete-dunne"
+    ],
+    "members": [
+      {
+        "wrestlerId": "sheamus",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "pete-dunne",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 9,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "british-strong-style",
+    "name": "British Strong Style",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "pete-dunne",
+      "tyler-bate"
+    ],
+    "members": [
+      {
+        "wrestlerId": "pete-dunne",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "tyler-bate",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 10,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "bullet-club",
+    "name": "Bullet Club",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "kenny-omega",
+      "tama-tonga"
+    ],
+    "members": [
+      {
+        "wrestlerId": "kenny-omega",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "tama-tonga",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 11,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "ecw-originals",
+    "name": "ECW Originals",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "rob-van-dam",
+      "the-sandman"
+    ],
+    "members": [
+      {
+        "wrestlerId": "rob-van-dam",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "the-sandman",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 12,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "edge-christian",
+    "name": "Edge & Christian",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "edge",
+      "christian-cage"
+    ],
+    "members": [
+      {
+        "wrestlerId": "edge",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "christian-cage",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 13,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "final-trick",
+    "name": "Final Trick",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "trick-williams",
+      "ethan-page"
+    ],
+    "members": [
+      {
+        "wrestlerId": "trick-williams",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "ethan-page",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 14,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "hart-re-foundation",
+    "name": "Hart Re-Foundation",
+    "type": "stable",
+    "status": "active",
+    "memberWrestlerIds": [
+      "bret-hart",
+      "owen-hart"
+    ],
+    "members": [
+      {
+        "wrestlerId": "bret-hart",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "owen-hart",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 15,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "hell-sicks",
+    "name": "Hell Sicks",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [],
+    "members": [],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 16,
+    "membershipReviewRequired": false,
+    "membershipNote": "Sin integrantes vinculados todavía; agregarlos cuando se confirme el roster de esta agrupación.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "judgment-day",
+    "name": "Judgment Day",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "finn-balor",
+      "damian-priest",
+      "dominik-mysterio",
+      "jd-mcdonagh"
+    ],
+    "members": [
+      {
+        "wrestlerId": "finn-balor",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "damian-priest",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "dominik-mysterio",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jd-mcdonagh",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 17,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "kevin-owens-sami-zayn",
+    "name": "Kevin Owens & Sami Zayn",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "kevin-owens",
+      "sami-zayn"
+    ],
+    "members": [
+      {
+        "wrestlerId": "kevin-owens",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "sami-zayn",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 18,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "league-of-nations",
+    "name": "League of Nations",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "sheamus",
+      "wade-barrett",
+      "alberto-del-rio"
+    ],
+    "members": [
+      {
+        "wrestlerId": "sheamus",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "wade-barrett",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "alberto-del-rio",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 19,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "legacy",
+    "name": "Legacy",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "randy-orton",
+      "ted-dibiase-jr"
+    ],
+    "members": [
+      {
+        "wrestlerId": "randy-orton",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "ted-dibiase-jr",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 20,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "los-americanos",
+    "name": "Los Americanos",
+    "type": "stable",
+    "status": "active",
+    "memberWrestlerIds": [
+      "el-grande-americano",
+      "bravo-americano",
+      "original-grande-americano"
+    ],
+    "members": [
+      {
+        "wrestlerId": "el-grande-americano",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "bravo-americano",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "original-grande-americano",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 21,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "lwo",
+    "name": "LWO",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "rey-mysterio",
+      "dragon-lee",
+      "rey-fenix",
+      "penta"
+    ],
+    "members": [
+      {
+        "wrestlerId": "rey-mysterio",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "dragon-lee",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "rey-fenix",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "penta",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 22,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "nexus",
+    "name": "Nexus",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "wade-barrett"
+    ],
+    "members": [
+      {
+        "wrestlerId": "wade-barrett",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 23,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "psycho-clown-santos-escobar",
+    "name": "Psycho Clown & Santos Escobar",
+    "type": "tag-team",
+    "status": "active",
+    "memberWrestlerIds": [
+      "psycho-clown"
+    ],
+    "members": [
+      {
+        "wrestlerId": "psycho-clown",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 24,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "rey-mysterio-batista",
+    "name": "Rey Mysterio & Batista",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "rey-mysterio",
+      "batista"
+    ],
+    "members": [
+      {
+        "wrestlerId": "rey-mysterio",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "batista",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 25,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "rk-brood",
+    "name": "RK-Brood",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "randy-orton"
+    ],
+    "members": [
+      {
+        "wrestlerId": "randy-orton",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 26,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "shield",
+    "name": "Shield",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "roman-reigns",
+      "seth-rollins",
+      "jon-moxley"
+    ],
+    "members": [
+      {
+        "wrestlerId": "roman-reigns",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "seth-rollins",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jon-moxley",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 27,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "undisputed-era",
+    "name": "Undisputed Era",
+    "type": "stable",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "adam-cole",
+      "kyle-o-reilly",
+      "roderick-strong"
+    ],
+    "members": [
+      {
+        "wrestlerId": "adam-cole",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "kyle-o-reilly",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "roderick-strong",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 28,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "usos",
+    "name": "Usos",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "jey-uso",
+      "jimmy-uso"
+    ],
+    "members": [
+      {
+        "wrestlerId": "jey-uso",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "jimmy-uso",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 29,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "vision",
+    "name": "Vision",
+    "type": "stable",
+    "status": "active",
+    "memberWrestlerIds": [
+      "seth-rollins",
+      "bron-breakker",
+      "austin-theory",
+      "logan-paul"
+    ],
+    "members": [
+      {
+        "wrestlerId": "seth-rollins",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "bron-breakker",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "austin-theory",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "logan-paul",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 30,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  },
+  {
+    "id": "young-ogs",
+    "name": "Young OGs",
+    "type": "tag-team",
+    "status": "inactive",
+    "memberWrestlerIds": [
+      "je-von-evans",
+      "leon-slater"
+    ],
+    "members": [
+      {
+        "wrestlerId": "je-von-evans",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      },
+      {
+        "wrestlerId": "leon-slater",
+        "startDate": null,
+        "endDate": null,
+        "status": "unconfirmed",
+        "notes": "Miembro inicial sugerido; confirmar fechas/etapa exacta."
+      }
+    ],
+    "brandIds": [],
+    "image": null,
+    "startDate": null,
+    "endDate": null,
+    "achievements": [],
+    "order": 31,
+    "membershipReviewRequired": true,
+    "membershipNote": "Los integrantes iniciales se vinculan únicamente a superestrellas existentes en el roster. Confirmar membresía y fechas antes de publicar como dato histórico definitivo.",
+    "source": "community-list-2026"
+  }
+]
