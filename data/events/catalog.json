@@ -1,210 +1,193 @@
 {
-  "version": 1,
-  "description": "Catálogo de categorías. Cada temporada apunta a su propio JSON; los eventos guardan IDs y los combates viven en data/matches/matches.json.",
-  "categories": [
-    {
-      "id": "weekly",
-      "name": "Weekly",
-      "subtitle": "RAW + SmackDown",
-      "description": "Los shows semanales principales reunidos en un mismo archivo.",
-      "showIds": [
-        "raw",
-        "smackdown"
-      ],
-      "theme": "weekly",
-      "order": 1,
-      "show": true,
-      "seasons": [
-        {
-          "id": "weekly-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/weekly-2026.json"
-        },
-        {
-          "id": "weekly-2023",
-          "name": "2023",
-          "year": 2023,
-          "path": "data/events/seasons/weekly-2023.json"
-        }
-      ]
-    },
-    {
-      "id": "nxt",
-      "name": "NXT",
-      "subtitle": "NXT weekly shows",
-      "description": "Episodios semanales de NXT.",
-      "showIds": [
-        "nxt"
-      ],
-      "theme": "nxt",
-      "order": 2,
-      "show": true,
-      "seasons": [
-        {
-          "id": "nxt-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/nxt-2026.json"
-        },
-        {
-          "id": "nxt-2023",
-          "name": "2023",
-          "year": 2023,
-          "path": "data/events/seasons/nxt-2023.json"
-        }
-      ]
-    },
-    {
-      "id": "speed",
-      "name": "Speed",
-      "subtitle": "WWE Speed",
-      "description": "Combates rápidos y episodios de Speed.",
-      "showIds": [
-        "speed"
-      ],
-      "theme": "speed",
-      "order": 3,
-      "show": true,
-      "seasons": [
-        {
-          "id": "speed-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/speed-2026.json"
-        },
-        {
-          "id": "speed-2024",
-          "name": "2024",
-          "year": 2024,
-          "path": "data/events/seasons/speed-2024.json"
-        }
-      ]
-    },
-    {
-      "id": "ple",
-      "name": "PLE",
-      "subtitle": "Premium Live Events",
-      "description": "Grandes eventos premium.",
-      "showIds": [
-        "ple"
-      ],
-      "theme": "ple",
-      "order": 4,
-      "show": true,
-      "seasons": [
-        {
-          "id": "ple-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/ple-2026.json"
-        },
-        {
-          "id": "ple-2025",
-          "name": "2025",
-          "year": 2025,
-          "path": "data/events/seasons/ple-2025.json"
-        },
-        {
-          "id": "ple-2024",
-          "name": "2024",
-          "year": 2024,
-          "path": "data/events/seasons/ple-2024.json"
-        },
-        {
-          "id": "ple-2023",
-          "name": "2023",
-          "year": 2023,
-          "path": "data/events/seasons/ple-2023.json"
-        }
-      ]
-    },
-    {
-      "id": "specials",
-      "name": "Especiales",
-      "subtitle": "Special events",
-      "description": "Especiales fuera de la programación semanal habitual.",
-      "showIds": [
-        "specials"
-      ],
-      "theme": "specials",
-      "order": 5,
-      "show": true,
-      "seasons": [
-        {
-          "id": "specials-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/specials-2026.json"
-        },
-        {
-          "id": "specials-2023",
-          "name": "2023",
-          "year": 2023,
-          "path": "data/events/seasons/specials-2023.json"
-        }
-      ]
-    },
-    {
-      "id": "aaa",
-      "name": "AAA",
-      "subtitle": "Lucha Libre AAA",
-      "description": "Eventos de Lucha Libre AAA.",
-      "showIds": [
-        "aaa"
-      ],
-      "theme": "aaa",
-      "order": 6,
-      "show": true,
-      "seasons": [
-        {
-          "id": "aaa-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/aaa-2026.json"
-        }
-      ]
-    },
-    {
-      "id": "aew",
-      "name": "AEW",
-      "subtitle": "All Elite Wrestling",
-      "description": "Eventos de AEW.",
-      "showIds": [
-        "aew"
-      ],
-      "theme": "aew",
-      "order": 7,
-      "show": true,
-      "seasons": [
-        {
-          "id": "aew-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/aew-2026.json"
-        }
-      ]
-    },
-    {
-      "id": "tna",
-      "name": "TNA",
-      "subtitle": "Total Nonstop Action",
-      "description": "Eventos de TNA, si existen registros en la base.",
-      "showIds": [
-        "tna"
-      ],
-      "theme": "tna",
-      "order": 8,
-      "show": false,
-      "showWhenDataPresent": true,
-      "seasons": [
-        {
-          "id": "tna-2026",
-          "name": "2026",
-          "year": 2026,
-          "path": "data/events/seasons/tna-2026.json"
-        }
-      ]
-    }
-  ]
+"version": 1,
+"description": "Catálogo de categorías. Cada temporada apunta a su propio JSON; los eventos guardan IDs y los combates viven en data/matches/matches.json.",
+"categories": [
+{
+"id": "ple",
+"name": "PLE",
+"subtitle": "Premium Live Events",
+"description": "Grandes eventos premium.",
+"showIds": ["ple"],
+"theme": "ple",
+"order": 1,
+"show": true,
+"seasons": [
+{
+"id": "ple-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/ple-2026.json"
+},
+{
+"id": "ple-2025",
+"name": "2025",
+"year": 2025,
+"path": "data/events/seasons/ple-2025.json"
+},
+{
+"id": "ple-2024",
+"name": "2024",
+"year": 2024,
+"path": "data/events/seasons/ple-2024.json"
+},
+{
+"id": "ple-2023",
+"name": "2023",
+"year": 2023,
+"path": "data/events/seasons/ple-2023.json"
+}
+]
+},
+{
+"id": "weekly",
+"name": "Weekly",
+"subtitle": "RAW + SmackDown",
+"description": "Elegí RAW o SmackDown para explorar sus carteleras semanales por separado.",
+"showIds": ["raw", "smackdown"],
+"theme": "weekly",
+"order": 2,
+"show": true,
+"seasons": [
+{
+"id": "weekly-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/weekly-2026.json"
+},
+{
+"id": "weekly-2023",
+"name": "2023",
+"year": 2023,
+"path": "data/events/seasons/weekly-2023.json"
+}
+]
+},
+{
+"id": "nxt",
+"name": "NXT",
+"subtitle": "WWE NXT",
+"description": "Episodios semanales de NXT.",
+"showIds": ["nxt"],
+"theme": "nxt",
+"order": 3,
+"show": true,
+"seasons": [
+{
+"id": "nxt-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/nxt-2026.json"
+},
+{
+"id": "nxt-2023",
+"name": "2023",
+"year": 2023,
+"path": "data/events/seasons/nxt-2023.json"
+}
+]
+},
+{
+"id": "speed",
+"name": "Speed",
+"subtitle": "WWE Speed",
+"description": "Combates rápidos y episodios de Speed.",
+"showIds": ["speed"],
+"theme": "speed",
+"order": 4,
+"show": true,
+"seasons": [
+{
+"id": "speed-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/speed-2026.json"
+},
+{
+"id": "speed-2024",
+"name": "2024",
+"year": 2024,
+"path": "data/events/seasons/speed-2024.json"
+}
+]
+},
+{
+"id": "aaa",
+"name": "AAA",
+"subtitle": "Lucha Libre AAA on FOX",
+"description": "Eventos de Lucha Libre AAA.",
+"showIds": ["aaa"],
+"theme": "aaa",
+"order": 5,
+"show": true,
+"seasons": [
+{
+"id": "aaa-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/aaa-2026.json"
+}
+]
+},
+{
+"id": "aew",
+"name": "AEW",
+"subtitle": "All Elite Wrestling",
+"description": "Eventos de AEW.",
+"showIds": ["aew"],
+"theme": "aew",
+"order": 6,
+"show": true,
+"seasons": [
+{
+"id": "aew-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/aew-2026.json"
+}
+]
+},
+{
+"id": "specials",
+"name": "Especiales",
+"subtitle": "Special Events",
+"description": "Especiales fuera de la programación semanal habitual.",
+"showIds": ["specials"],
+"theme": "specials",
+"order": 7,
+"show": true,
+"seasons": [
+{
+"id": "specials-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/specials-2026.json"
+},
+{
+"id": "specials-2023",
+"name": "2023",
+"year": 2023,
+"path": "data/events/seasons/specials-2023.json"
+}
+]
+},
+{
+"id": "tna",
+"name": "TNA",
+"subtitle": "TNA Wrestling",
+"description": "Eventos de TNA, si existen registros en la base.",
+"showIds": ["tna"],
+"theme": "tna",
+"order": 8,
+"show": false,
+"showWhenDataPresent": true,
+"seasons": [
+{
+"id": "tna-2026",
+"name": "2026",
+"year": 2026,
+"path": "data/events/seasons/tna-2026.json"
+}
+]
+}
+]
 }
