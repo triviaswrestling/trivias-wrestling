@@ -1,40 +1,678 @@
-/* MI WRESTLING 2.0 | RÉCORDS Y TARJETAS DE COMBATE */
-.mw-record-hero{padding:clamp(24px,5vw,44px);margin-bottom:22px;border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(120deg,rgba(22,140,255,.16),#080a10 58%,rgba(255,49,85,.12))}
-.mw-record-eyebrow{font-size:.72rem;font-weight:900;letter-spacing:.14em;color:var(--accent)}
-.mw-record-hero h1{font:900 clamp(2.5rem,8vw,5rem)/.95 "Barlow Condensed",sans-serif;margin:8px 0 10px}
-.mw-record-hero p:last-child{color:var(--text-soft)}
-.mw-record-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
-.mw-record-stat{min-width:0;padding:16px;border:1px solid var(--border);border-radius:var(--radius-small);background:var(--surface)}
-.mw-record-stat span{display:block;color:var(--text-soft);font-size:.67rem;font-weight:900;letter-spacing:.09em}
-.mw-record-stat strong{display:block;margin-top:8px;font:900 clamp(1.45rem,4vw,2.35rem)/1 "Barlow Condensed",sans-serif;overflow-wrap:anywhere}
-.mw-record-note,.mw-record-legacy,.mw-record-list-section{padding:20px;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius-small);background:var(--surface)}
-.mw-record-note h2,.mw-record-legacy h2,.mw-record-list-section h2{font:900 1.6rem "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 12px}
-.mw-record-legacy p{color:var(--text-soft);font-size:.9rem}
-.mw-record-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
-.mw-record-links a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--border);border-radius:4px;background:#0e121a;color:var(--text);text-decoration:none}
-.mw-record-links a:hover{border-color:var(--accent);color:#fff}
-.mw-record-back{display:inline-flex;margin:10px 0 18px;padding:11px 14px;border:1px solid var(--border);border-radius:4px;color:var(--text);text-decoration:none;font-weight:800}
-.mw-match-card{margin:13px 0;border:1px solid var(--border);border-radius:var(--radius-small);background:#0b0e15;overflow:hidden}
-.mw-match-card__header{display:flex;justify-content:space-between;gap:10px;padding:12px 15px;background:#111722;color:var(--text-soft);font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-.mw-match-card__event{display:block;padding:10px 15px 0;color:var(--accent);font-size:.85rem;font-weight:800}
+/* MI WRESTLING 2.0 | RECORDS — CONSOLE EDITION */
+.mw-record-page{
+  --rc1:#38a8ff;
+  --rc2:#a66cff;
+  --rc3:#ff5579;
+  --rc4:#ffb454;
+  --rc5:#42e4cf;
+  --rc6:#b8ed62;
+  --rc-line:#ffffff20;
+  --rc-panel:#0c0e14;
+  font-family:"Inter",sans-serif;
+  isolation:isolate;
+}
+.mw-record-page [hidden]{display:none!important}
+.mw-record-page button,
+.mw-record-page input{font:inherit}
+.mw-record-page h1,
+.mw-record-page h2,
+.mw-record-page h3,
+.mw-record-page .mw-record-category__title,
+.mw-record-page .mw-record-stat strong,
+.mw-record-page .mw-title-win-name,
+.mw-record-page .mw-title-win-count,
+.mw-record-page .mw-tournament-timeline-year,
+.mw-record-page .mw-tournament-timeline-body b{
+  font-family:"Barlow Condensed",sans-serif;
+  font-weight:900;
+}
+
+/* HERO */
+.mw-record-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:clamp(26px,5vw,52px);
+  margin-bottom:28px;
+  border:1px solid var(--rc-line);
+  border-radius:3px;
+  background:
+    linear-gradient(115deg,#151722 0%,#090a10 58%,#111018 100%);
+}
+.mw-record-hero:before{
+  position:absolute;
+  z-index:-1;
+  content:"";
+  width:45%;
+  height:220%;
+  top:-55%;
+  right:-8%;
+  transform:rotate(25deg);
+  background:linear-gradient(
+    90deg,transparent,color-mix(in srgb,var(--rc1) 17%,transparent),
+    color-mix(in srgb,var(--rc2) 12%,transparent),transparent
+  );
+  pointer-events:none;
+}
+.mw-record-hero:after{
+  position:absolute;
+  z-index:-1;
+  content:"";
+  inset:auto 0 0;
+  height:3px;
+  background:linear-gradient(
+    90deg,var(--rc1),var(--rc2),var(--rc3),var(--rc4),var(--rc5)
+  );
+}
+.mw-record-eyebrow{
+  margin:0;
+  color:var(--rc1);
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.mw-record-hero h1{
+  margin:12px 0;
+  font-size:clamp(3.1rem,10vw,6.5rem);
+  line-height:.82;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  text-wrap:balance;
+}
+.mw-record-hero>p:last-of-type{
+  max-width:560px;
+  color:var(--text-soft);
+  font-size:.92rem;
+  line-height:1.65;
+}
+.mw-record-hero__meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:22px;
+}
+.mw-record-hero__meta span,
+.mw-record-count{
+  padding:6px 9px;
+  border:1px solid var(--rc-line);
+  background:#ffffff06;
+  color:var(--text);
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.07em;
+}
+
+/* SECTION HEADINGS */
+.mw-record-section-heading{margin:28px 0 15px}
+.mw-record-section-heading h2,
+.mw-record-catalogs__top h2,
+.mw-record-catalog__heading h2{
+  margin:7px 0;
+  font-size:clamp(2rem,5vw,2.8rem);
+  line-height:.9;
+  text-transform:uppercase;
+}
+.mw-record-section-heading .mw-record-eyebrow{color:var(--rc2)}
+
+/* MODE SELECT */
+.mw-record-category-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+}
+.mw-record-category{
+  --tile-color:var(--rc1);
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  gap:9px;
+  min-width:0;
+  min-height:220px;
+  padding:clamp(16px,3vw,27px);
+  overflow:hidden;
+  text-align:left;
+  color:var(--text);
+  border:1px solid color-mix(in srgb,var(--tile-color) 42%,#252832);
+  border-radius:3px;
+  background:linear-gradient(145deg,#191a23,#0a0b10 75%);
+  clip-path:polygon(0 0,100% 0,100% 89%,91% 100%,0 100%);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.mw-record-category:nth-child(6n+1){--tile-color:var(--rc1)}
+.mw-record-category:nth-child(6n+2){--tile-color:var(--rc2)}
+.mw-record-category:nth-child(6n+3){--tile-color:var(--rc5)}
+.mw-record-category:nth-child(6n+4){--tile-color:var(--rc4)}
+.mw-record-category:nth-child(6n+5){--tile-color:var(--rc3)}
+.mw-record-category:nth-child(6n){--tile-color:var(--rc6)}
+.mw-record-category:before{
+  position:absolute;
+  z-index:-1;
+  content:"";
+  inset:0;
+  background:linear-gradient(
+    130deg,color-mix(in srgb,var(--tile-color) 16%,transparent),
+    transparent 53%
+  );
+  opacity:.8;
+}
+.mw-record-category:after{
+  position:absolute;
+  z-index:-1;
+  content:"";
+  top:-40%;
+  right:-32%;
+  width:65%;
+  height:150%;
+  transform:rotate(27deg);
+  background:linear-gradient(
+    90deg,transparent,
+    color-mix(in srgb,var(--tile-color) 10%,transparent),transparent
+  );
+  pointer-events:none;
+}
+.mw-record-category:hover,
+.mw-record-category:focus-visible{
+  border-color:var(--tile-color);
+  background:linear-gradient(145deg,#22232e,#0d0e15 75%);
+  outline:none;
+}
+.mw-record-category:active{transform:scale(.985)}
+.mw-record-category__number{
+  position:absolute;
+  top:13px;
+  right:16px;
+  color:color-mix(in srgb,var(--tile-color) 52%,transparent);
+  font:900 3.5rem/.8 "Barlow Condensed",sans-serif;
+}
+.mw-record-category__title{
+  max-width:100%;
+  color:#fff;
+  font-size:clamp(1.8rem,4.5vw,3rem);
+  line-height:.88;
+  letter-spacing:-.02em;
+  overflow-wrap:anywhere;
+  text-transform:uppercase;
+}
+.mw-record-category__description{
+  max-width:92%;
+  color:#b7bac6;
+  font-size:.78rem;
+  line-height:1.5;
+}
+.mw-record-category__count{
+  margin-top:6px;
+  color:var(--tile-color);
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.09em;
+}
+.mw-record-category__arrow{
+  position:absolute;
+  right:15px;
+  bottom:13px;
+  color:var(--tile-color);
+  font-size:1.25rem;
+  transition:transform .2s;
+}
+.mw-record-category:hover .mw-record-category__arrow{
+  transform:translate(2px,-2px);
+}
+
+/* CATALOG WINDOWS */
+.mw-record-catalogs{
+  margin-top:26px;
+  scroll-margin-top:12px;
+}
+.mw-record-catalogs__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:18px;
+  margin-bottom:14px;
+  border:1px solid var(--rc-line);
+  background:linear-gradient(110deg,#171821,#0b0c12);
+}
+.mw-record-catalogs__top .mw-record-eyebrow{color:var(--rc3)}
+.mw-record-back{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  max-width:100%;
+  padding:11px 14px;
+  border:1px solid var(--rc-line);
+  border-radius:2px;
+  background:#14151d;
+  color:var(--text);
+  font-size:.72rem;
+  font-weight:900;
+  text-decoration:none;
+  cursor:pointer;
+  transition:border-color .18s,background .18s;
+}
+.mw-record-back:hover,
+.mw-record-back:focus-visible{
+  border-color:var(--rc1);
+  background:#1c1d28;
+  outline:none;
+}
+.mw-record-catalog{
+  padding:clamp(12px,2.5vw,20px);
+  margin:14px 0;
+  border:1px solid var(--rc-line);
+  background:var(--rc-panel);
+}
+.mw-record-catalog__heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:15px;
+}
+.mw-record-catalog__heading .mw-record-eyebrow{color:var(--rc2)}
+.mw-record-catalog__heading>div>p:last-child{
+  margin:7px 0 0;
+  color:var(--text-soft);
+  font-size:.83rem;
+  line-height:1.5;
+}
+.mw-record-search{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 13px;
+  margin:14px 0;
+  border:1px solid #ffffff20;
+  background:#07080d;
+}
+.mw-record-search>span{
+  color:var(--rc5);
+  font-size:1.5rem;
+}
+.mw-record-search input{
+  width:100%;
+  min-width:0;
+  padding:14px 0;
+  border:0;
+  outline:none;
+  background:transparent;
+  color:#fff;
+  font:600 .85rem "Inter",sans-serif;
+}
+.mw-record-search:focus-within{border-color:var(--rc5)}
+.mw-record-search input::placeholder{color:#888b98}
+.mw-record-links{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.mw-record-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-width:0;
+  padding:13px;
+  border:1px solid #ffffff16;
+  border-left:2px solid var(--rc2);
+  background:linear-gradient(100deg,#15151e,#0c0d13);
+  color:var(--text);
+  text-decoration:none;
+  transition:border-color .18s,background .18s;
+}
+.mw-record-link:nth-child(6n+1){border-left-color:var(--rc1)}
+.mw-record-link:nth-child(6n+2){border-left-color:var(--rc2)}
+.mw-record-link:nth-child(6n+3){border-left-color:var(--rc5)}
+.mw-record-link:nth-child(6n+4){border-left-color:var(--rc4)}
+.mw-record-link:nth-child(6n+5){border-left-color:var(--rc3)}
+.mw-record-link:nth-child(6n){border-left-color:var(--rc6)}
+.mw-record-link:hover,
+.mw-record-link:focus-visible{
+  border-top-color:#ffffff40;
+  border-right-color:#ffffff40;
+  border-bottom-color:#ffffff40;
+  background:#1a1b25;
+  outline:none;
+}
+.mw-record-link__name{
+  min-width:0;
+  overflow-wrap:anywhere;
+  font-size:.82rem;
+  font-weight:800;
+}
+.mw-record-link__arrow{flex-shrink:0;color:var(--rc1)}
+.mw-record-empty,
+.mw-record-no-results{
+  padding:15px;
+  border:1px dashed #ffffff30;
+  background:#0b0c12;
+  color:var(--text-soft);
+  font-size:.84rem;
+  line-height:1.65;
+}
+.mw-record-no-results[hidden]{display:none!important}
+
+/* STATS */
+.mw-record-stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:18px 0;
+}
+.mw-record-stat{
+  min-width:0;
+  padding:16px;
+  border:1px solid var(--rc-line);
+  border-top:2px solid var(--rc1);
+  border-radius:2px;
+  background:linear-gradient(145deg,#15151e,#0b0c12);
+}
+.mw-record-stat:nth-child(4n+2){border-top-color:var(--rc2)}
+.mw-record-stat:nth-child(4n+3){border-top-color:var(--rc5)}
+.mw-record-stat:nth-child(4n){border-top-color:var(--rc4)}
+.mw-record-stat span{
+  display:block;
+  color:var(--text-soft);
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.mw-record-stat strong{
+  display:block;
+  margin-top:8px;
+  font-size:clamp(1.5rem,4vw,2.5rem);
+  line-height:1;
+  overflow-wrap:anywhere;
+}
+.mw-record-note,
+.mw-record-legacy,
+.mw-record-list-section{
+  padding:clamp(14px,3vw,22px);
+  margin:20px 0;
+  border:1px solid var(--rc-line);
+  border-radius:2px;
+  background:linear-gradient(145deg,#11121a,#0a0b10);
+}
+.mw-record-note h2,
+.mw-record-legacy h2,
+.mw-record-list-section h2{
+  margin:0 0 13px;
+  font-size:1.8rem;
+  line-height:.95;
+  text-transform:uppercase;
+}
+.mw-record-legacy p,
+.mw-record-note>p{
+  color:var(--text-soft);
+  font-size:.87rem;
+  line-height:1.65;
+}
+.mw-record-titles,.mw-record-tournaments{margin-top:24px}
+
+/* MATCH CARDS */
+.mw-match-card{
+  margin:13px 0;
+  overflow:hidden;
+  border:1px solid var(--rc-line);
+  border-radius:3px;
+  background:#0b0c12;
+}
+.mw-match-card__header{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 15px;
+  background:#171821;
+  color:var(--text-soft);
+  font-size:.73rem;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.mw-match-card__event{
+  display:block;
+  padding:10px 15px 0;
+  color:var(--rc1);
+  font-size:.85rem;
+  font-weight:800;
+}
 .mw-match-participants{list-style:none;margin:0;padding:8px 15px}
-.mw-match-participant{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 12px;padding:12px 0;border-bottom:1px solid #ffffff12}
+.mw-match-participant{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:5px 12px;
+  padding:12px 0;
+  border-bottom:1px solid #ffffff12;
+}
 .mw-match-participant:last-child{border-bottom:0}
-.mw-match-wrestler{font-weight:900;color:#fff}
-.mw-match-participant small{grid-column:1/-1;color:var(--text-soft);font-size:.8rem}
-.mw-match-participant small a{color:var(--accent)}
-.mw-match-result{font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
-.mw-match-result.is-win{color:#55d99d}.mw-match-result.is-loss{color:#ff6576}.mw-match-result.is-draw{color:#e9c66c}.mw-match-result.is-no-contest{color:#aab4c4}
-.mw-match-details{border-top:1px solid var(--border)}
-.mw-match-details summary{padding:12px 15px;cursor:pointer;color:var(--text-soft);font-weight:800;font-size:.85rem}
-.mw-match-details__content{padding:0 15px 14px;color:var(--text-soft);font-size:.86rem}
+.mw-match-wrestler{color:#fff;font-weight:900}
+.mw-match-participant small{
+  grid-column:1/-1;
+  color:var(--text-soft);
+  font-size:.8rem;
+}
+.mw-match-participant small a,
+.mw-match-details__content a{color:var(--rc5)}
+.mw-match-result{
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.mw-match-result.is-win{color:#55d99d}
+.mw-match-result.is-loss{color:#ff6576}
+.mw-match-result.is-draw{color:#e9c66c}
+.mw-match-result.is-no-contest{color:#aab4c4}
+.mw-match-details{border-top:1px solid var(--rc-line)}
+.mw-match-details summary{
+  padding:12px 15px;
+  color:var(--text-soft);
+  font-size:.85rem;
+  font-weight:800;
+  cursor:pointer;
+}
+.mw-match-details__content{
+  padding:0 15px 14px;
+  color:var(--text-soft);
+  font-size:.86rem;
+  line-height:1.6;
+}
 .mw-match-details__content h4{margin:10px 0 5px;color:#fff}
 .mw-match-details__content ul{padding-left:20px}
-.mw-match-details__content a{color:var(--accent)}
-@media(max-width:620px){.mw-record-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mw-record-links{grid-template-columns:1fr}.mw-match-card__header{align-items:flex-start;flex-direction:column;gap:5px}}
+.mw-match-scoreline{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:10px;
+  background:#090a0f;
+  color:#f2f6ff;
+  font-size:1.2rem;
+  font-variant-numeric:tabular-nums;
+}
+.mw-match-scoreline strong{min-width:24px;text-align:center}
+.mw-match-title-ribbon{
+  padding:8px 14px;
+  border-bottom:1px solid #ffffff20;
+  background:#171923;
+  color:var(--rc4);
+  font-size:.73rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.mw-match-participant__result{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
+.mw-match-participant__result>strong{
+  color:var(--text);
+  font-size:.9rem;
+  font-variant-numeric:tabular-nums;
+}
+.mw-match-participant__result .mw-match-result{white-space:nowrap}
 
-.mw-match-scoreline{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px;background:#090c12;color:#f2f6ff;font-size:1.2rem;font-variant-numeric:tabular-nums}.mw-match-scoreline strong{min-width:24px;text-align:center}.mw-match-title-ribbon{padding:8px 14px;background:#15233a;color:#c3e1ff;border-bottom:1px solid #2b4569;font-size:.73rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.mw-match-participant__result{display:flex;align-items:center;gap:8px;flex-shrink:0}.mw-match-participant__result>strong{font-size:.9rem;color:var(--text);font-variant-numeric:tabular-nums}.mw-match-participant__result .mw-match-result{white-space:nowrap}
+/* TITLE HISTORY */
+.mw-title-win-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.mw-title-win-card{
+  --title-accent:#d8dfeb;
+  --title-rgb:216,223,235;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  min-width:0;
+  padding:12px;
+  border:1px solid #ffffff20;
+  background:linear-gradient(140deg,rgba(var(--title-rgb),.11),#0a0b10 65%);
+  clip-path:polygon(0 0,100% 0,100% 92%,93% 100%,0 100%);
+  transition:background .18s,border-color .18s;
+}
+.mw-title-win-card:hover,
+.mw-title-win-card:focus-visible{
+  border-color:var(--title-accent);
+  background:linear-gradient(140deg,rgba(var(--title-rgb),.24),#15151e 65%);
+  outline:none;
+}
+.mw-title-win-art{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:65px;
+  overflow:hidden;
+  border:1px solid var(--title-accent);
+  background:radial-gradient(ellipse,rgba(var(--title-rgb),.16),#08090d 70%);
+}
+.mw-title-win-art b{
+  color:var(--title-accent);
+  font:900 1.4rem "Barlow Condensed",sans-serif;
+  letter-spacing:.1em;
+  text-shadow:0 2px #000;
+}
+.mw-title-orbit{
+  position:absolute;
+  width:50px;
+  height:50px;
+  border:2px double var(--title-accent);
+  border-radius:50%;
+  opacity:.5;
+}
+.mw-title-win-name{
+  font-size:1.15rem;
+  line-height:.98;
+  text-transform:uppercase;
+}
+.mw-title-win-count{
+  align-self:flex-start;
+  padding:3px 7px;
+  border:1px solid rgba(var(--title-rgb),.3);
+  background:rgba(var(--title-rgb),.14);
+  color:var(--title-accent);
+  font-size:.78rem;
+}
+.mw-title-win-current{
+  color:var(--text-soft);
+  font:800 .68rem "Barlow Condensed",sans-serif;
+  letter-spacing:.07em;
+}
+.mw-title-empty{
+  padding:14px;
+  border:1px dashed #3b4251;
+  background:#0b0d12;
+  color:var(--text-soft);
+  font-size:.88rem;
+}
 
-/* Connected title wins + tournament timeline */
-.mw-title-win-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.mw-title-win-card{--title-accent:#d8dfeb;--title-rgb:216,223,235;display:flex;flex-direction:column;gap:7px;min-width:0;padding:12px;border:1px solid #343947;background:linear-gradient(140deg,rgba(var(--title-rgb),.11),#0a0b10 65%);clip-path:polygon(0 0,100% 0,100% 92%,93% 100%,0 100%);transition:background .15s,border-color .15s,filter .15s}.mw-title-win-card:hover,.mw-title-win-card:focus-visible,.mw-title-win-card:active{background:linear-gradient(140deg,rgba(var(--title-rgb),.28),#151821 65%);border-color:var(--title-accent);filter:brightness(1.18);outline:none}.mw-title-win-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:65px;border:1px solid var(--title-accent);background:radial-gradient(ellipse,rgba(var(--title-rgb),.16),#08090d 70%);overflow:hidden}.mw-title-win-art b{font:900 1.4rem var(--display);letter-spacing:.1em;color:var(--title-accent);text-shadow:0 2px #000}.mw-title-orbit{position:absolute;width:50px;height:50px;border:2px double var(--title-accent);border-radius:50%;opacity:.5}.mw-title-win-name{font:900 1.15rem/.98 var(--display);text-transform:uppercase}.mw-title-win-count{align-self:flex-start;padding:3px 7px;background:rgba(var(--title-rgb),.14);border:1px solid rgba(var(--title-rgb),.3);color:var(--title-accent);font:900 .78rem var(--display)}.mw-title-win-current{font:800 .68rem var(--display);letter-spacing:.07em;color:var(--text-soft)}.mw-title-empty{padding:14px;border:1px dashed #3b4251;background:#0b0d12;color:var(--text-soft);font-size:.88rem}.mw-tournament-timeline{position:relative;display:grid;gap:8px}.mw-tournament-timeline-card{display:grid;grid-template-columns:62px 12px minmax(0,1fr) 20px;align-items:stretch;gap:10px;padding:10px;background:linear-gradient(100deg,#141721,#090a0e);border:1px solid #2a2f3b;transition:background .15s,border-color .15s}.mw-tournament-timeline-card:hover,.mw-tournament-timeline-card:active{background:linear-gradient(100deg,#202431,#0b0c11);border-color:var(--accent)}.mw-tournament-timeline-year{align-self:center;font:900 1.2rem var(--display);color:var(--accent)}.mw-tournament-timeline-line{width:3px;background:var(--accent);opacity:.8}.mw-tournament-timeline-body{display:flex;flex-direction:column;gap:4px;min-width:0}.mw-tournament-timeline-body b{font:900 1.1rem var(--display);text-transform:uppercase}.mw-tournament-timeline-body small{font-size:.76rem;color:var(--text-soft)}.mw-tournament-timeline-arrow{align-self:center;color:var(--accent)}.mw-record-titles,.mw-record-tournaments{margin-top:24px}.mw-record-titles h2,.mw-record-tournaments h2{margin-bottom:14px}.title-wwe-championship{--title-accent:#f0d99c;--title-rgb:240,217,156}.title-world-championship{--title-accent:#d5e1f4;--title-rgb:213,225,244}.title-intercontinental-championship{--title-accent:#e0c28a;--title-rgb:224,194,138}.title-usa-championship{--title-accent:#9fc7ff;--title-rgb:159,199,255}.title-world-tag-championship{--title-accent:#e1e5ed;--title-rgb:225,229,237}.title-speed-championship{--title-accent:#64eaff;--title-rgb:100,234,255}.title-nxt-championship{--title-accent:#c8d0dc;--title-rgb:200,208,220}.title-crown-jewel-championship{--title-accent:#ffd36b;--title-rgb:255,211,107}.title-aaa-megacampeonato{--title-accent:#8affae;--title-rgb:138,255,174}.title-aew-championship{--title-accent:#ead9b9;--title-rgb:234,217,185}
-@media(max-width:700px){.mw-title-win-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mw-title-win-card{padding:9px;gap:6px}.mw-title-win-name{font-size:1.03rem}.mw-title-win-art{min-height:54px}.mw-title-win-art b{font-size:1.1rem}.mw-title-win-count{font-size:.72rem}.mw-tournament-timeline-card{grid-template-columns:46px 7px minmax(0,1fr) 14px;gap:7px;padding:8px}.mw-tournament-timeline-year{font-size:1rem}.mw-tournament-timeline-body b{font-size:1rem}}
+/* TOURNAMENT TIMELINE */
+.mw-tournament-timeline{position:relative;display:grid;gap:8px}
+.mw-tournament-timeline-card{
+  display:grid;
+  grid-template-columns:62px 12px minmax(0,1fr) 20px;
+  align-items:stretch;
+  gap:10px;
+  padding:10px;
+  border:1px solid var(--rc-line);
+  background:linear-gradient(100deg,#171821,#0a0b10);
+  transition:border-color .18s,background .18s;
+}
+.mw-tournament-timeline-card:hover{
+  border-color:var(--rc2);
+  background:linear-gradient(100deg,#20212b,#0b0c12);
+}
+.mw-tournament-timeline-year{
+  align-self:center;
+  color:var(--rc1);
+  font-size:1.2rem;
+}
+.mw-tournament-timeline-line{width:3px;background:var(--rc2);opacity:.8}
+.mw-tournament-timeline-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.mw-tournament-timeline-body b{font-size:1.1rem;text-transform:uppercase}
+.mw-tournament-timeline-body small{color:var(--text-soft);font-size:.76rem}
+.mw-tournament-timeline-arrow{align-self:center;color:var(--rc5)}
+
+/* EXISTING CHAMPIONSHIP ACCENTS */
+.title-wwe-championship{--title-accent:#f0d99c;--title-rgb:240,217,156}
+.title-world-championship{--title-accent:#d5e1f4;--title-rgb:213,225,244}
+.title-intercontinental-championship{--title-accent:#e0c28a;--title-rgb:224,194,138}
+.title-usa-championship{--title-accent:#9fc7ff;--title-rgb:159,199,255}
+.title-world-tag-championship{--title-accent:#e1e5ed;--title-rgb:225,229,237}
+.title-speed-championship{--title-accent:#64eaff;--title-rgb:100,234,255}
+.title-nxt-championship{--title-accent:#c8d0dc;--title-rgb:200,208,220}
+.title-crown-jewel-championship{--title-accent:#ffd36b;--title-rgb:255,211,107}
+.title-aaa-megacampeonato{--title-accent:#8affae;--title-rgb:138,255,174}
+.title-aew-championship{--title-accent:#ead9b9;--title-rgb:234,217,185}
+
+/* MOBILE */
+@media(max-width:700px){
+  .mw-record-category-grid,.mw-record-links{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .mw-record-category{min-height:175px;padding:13px 11px}
+  .mw-record-category__number{top:10px;right:11px;font-size:2.2rem}
+  .mw-record-category__title{font-size:clamp(1.35rem,5vw,1.8rem)}
+  .mw-record-category__description{font-size:.7rem}
+  .mw-record-category__count{font-size:.55rem}
+  .mw-record-category__arrow{right:10px;bottom:9px}
+  .mw-record-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mw-record-catalog{padding:11px}
+  .mw-record-link{gap:6px;padding:10px 8px}
+  .mw-record-link__name{font-size:.73rem}
+  .mw-record-catalogs__top{align-items:flex-start}
+  .mw-title-win-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .mw-title-win-card{gap:6px;padding:9px}
+  .mw-title-win-name{font-size:1.03rem}
+  .mw-title-win-art{min-height:54px}
+  .mw-title-win-art b{font-size:1.1rem}
+  .mw-title-win-count{font-size:.72rem}
+  .mw-tournament-timeline-card{
+    grid-template-columns:46px 7px minmax(0,1fr) 14px;
+    gap:7px;
+    padding:8px;
+  }
+  .mw-tournament-timeline-year{font-size:1rem}
+  .mw-tournament-timeline-body b{font-size:1rem}
+  .mw-match-card__header{align-items:flex-start;flex-direction:column;gap:5px}
+}
+@media(hover:none){
+  .mw-record-category:hover .mw-record-category__arrow{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .mw-record-page *,
+  .mw-record-page *:before,
+  .mw-record-page *:after{transition:none!important}
+}
