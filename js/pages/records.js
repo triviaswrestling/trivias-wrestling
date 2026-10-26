@@ -7,6 +7,7 @@
   if (!main) return;
 
   /* PALETA ALEATORIA POR RECARGA */
+
   const palettes = [
     ["#38a8ff", "#a66cff", "#ff5579", "#ffb454", "#42e4cf", "#b8ed62"],
     ["#f45b69", "#ff9f43", "#f7d154", "#55d6be", "#4d96ff", "#b967ff"],
@@ -37,107 +38,75 @@
   })[char]);
 
   const link = (label, url) =>
-    `<a class="mw-record-back" href="${url}">${esc(label)}</a>`;
+    `<a class="mw-record-back" href="${esc(url)}">${esc(label)}</a>`;
 
   const empty = message =>
     `<p class="mw-record-empty">${esc(message)}</p>`;
 
-  const statMarkup = record => `
-    <div class="mw-record-stat-grid">
-      ${[
-        ["VICTORIAS", record.wins],
-        ["DERROTAS", record.losses],
-        ["EMPATES", record.draws],
-        ["COMBATES", record.appearances]
-      ].map(([label, value]) => `
-        <article class="mw-record-stat">
-          <span>${label}</span>
-          <strong>${esc(value ?? 0)}</strong>
-        </article>
-      `).join("")}
-    </div>`;
-
-  /* DATOS FLEXIBLES DE INTÉRPRETES */
-
-  const getCountry = person =>
-    person.country ||
-    person.nationality ||
-    person.pais ||
-    person.nacionalidad ||
-    "";
-
-  const getBrand = person =>
-    person.currentBrand ||
-    person.currentブランド ||
-    person.current_brand ||
-    person.brand ||
-    person.marcaActual ||
-    person.marca ||
-    "";
-
-  const getStatus = person =>
-    person.status ||
-    person.estado ||
-    "";
-
   const normalize = value =>
     String(value ?? "").trim().toLocaleLowerCase("es");
 
-  const countryFlag = country => {
-    const name = normalize(country);
+  /* PAÍSES: LOS CÓDIGOS SON LOS DE personas.json */
 
-    const flags = {
-      "argentina": "🇦🇷",
-      "estados unidos": "🇺🇸",
-      "united states": "🇺🇸",
-      "usa": "🇺🇸",
-      "ee. uu.": "🇺🇸",
-      "méxico": "🇲🇽",
-      "mexico": "🇲🇽",
-      "canadá": "🇨🇦",
-      "canada": "🇨🇦",
-      "reino unido": "🇬🇧",
-      "inglaterra": "🏴",
-      "escocia": "🏴",
-      "irlanda": "🇮🇪",
-      "españa": "🇪🇸",
-      "japón": "🇯🇵",
-      "japon": "🇯🇵",
-      "australia": "🇦🇺",
-      "francia": "🇫🇷",
-      "alemania": "🇩🇪",
-      "italia": "🇮🇹",
-      "brasil": "🇧🇷",
-      "brazil": "🇧🇷",
-      "chile": "🇨🇱",
-      "colombia": "🇨🇴",
-      "puerto rico": "🇵🇷",
-      "nueva zelanda": "🇳🇿",
-      "sudáfrica": "🇿🇦",
-      "corea del sur": "🇰🇷",
-      "china": "🇨🇳",
-      "india": "🇮🇳",
-      "suiza": "🇨🇭",
-      "países bajos": "🇳🇱",
-      "holanda": "🇳🇱",
-      "cuba": "🇨🇺",
-      "perú": "🇵🇪",
-      "venezuela": "🇻🇪",
-      "bolivia": "🇧🇴",
-      "uruguay": "🇺🇾",
-      "ecuador": "🇪🇨",
-      "panamá": "🇵🇦",
-      "república dominicana": "🇩🇴",
-      "jamaica": "🇯🇲",
-      "nigeria": "🇳🇬",
-      "rusia": "🇷🇺",
-      "polonia": "🇵🇱",
-      "grecia": "🇬🇷",
-      "israel": "🇮🇱"
-    };
-
-    return flags[name] || "🌎";
+  const countryNames = {
+    AR: "Argentina",
+    CL: "Chile",
+    MX: "México",
+    CO: "Colombia",
+    PE: "Perú",
+    ES: "España",
+    VE: "Venezuela",
+    EC: "Ecuador",
+    UY: "Uruguay",
+    IT: "Italia",
+    NI: "Nicaragua",
+    BO: "Bolivia",
+    PY: "Paraguay",
+    US: "Estados Unidos",
+    CR: "Costa Rica",
+    GQ: "Guinea Ecuatorial",
+    GT: "Guatemala"
   };
+
+  const getCountry = person =>
+    String(
+      person.country ||
+      person.nationality ||
+      person.pais ||
+      person.nacionalidad ||
+      ""
+    ).trim().toUpperCase();
+
+  const countryFlag = code => {
+    const value = String(code || "").trim().toUpperCase();
+
+    return /^[A-Z]{2}$/.test(value)
+      ? String.fromCodePoint(
+          ...value.split("").map(char => 127397 + char.charCodeAt(0))
+        )
+      : "🌐";
+  };
+
+  const countryLabel = code =>
+    countryNames[String(code || "").toUpperCase()] ||
+    (code ? String(code) : "País no registrado");
+
+  /* ESTADO Y MARCA */
+
+  const getStatus = person =>
+    person.status || person.estado || "";
+
+  const getBrand = person =>
+    person.currentBrand ||
+    person.current_brand ||
+    person.brand ||
+    person.currentShow ||
+    person.current_show ||
+    person.rosterBrand ||
+    person.marcaActual ||
+    person.marca ||
+    person.show ||
+    "";
 
   const statusLabel = status => {
     const value = normalize(status);
@@ -161,7 +130,22 @@
     return status ? String(status) : "Sin estado registrado";
   };
 
-  /* CATÁLOGOS */
+  const statMarkup = record => `
+    <div class="mw-record-stat-grid">
+      ${[
+        ["VICTORIAS", record.wins],
+        ["DERROTAS", record.losses],
+        ["EMPATES", record.draws],
+        ["COMBATES", record.appearances]
+      ].map(([label, value]) => `
+        <article class="mw-record-stat">
+          <span>${label}</span>
+          <strong>${esc(value ?? 0)}</strong>
+        </article>
+      `).join("")}
+    </div>`;
+
+  /* CATÁLOGO GENERAL */
 
   const catalog = (title, description, items, type) => `
     <section class="mw-record-catalog" data-catalog="${esc(type)}">
@@ -170,9 +154,7 @@
           <h2>${esc(title)}</h2>
           <p>${esc(description)}</p>
         </div>
-        <span class="mw-record-count" data-visible-count>
-          ${items.length}
-        </span>
+        <span class="mw-record-count">${items.length}</span>
       </div>
 
       <div class="mw-record-links" data-record-list="${esc(type)}">
@@ -185,24 +167,34 @@
       </div>
     </section>`;
 
-  /* FILTROS DE JUGADORES */
+  /* CATÁLOGO DE JUGADORES Y FILTROS */
 
   function buildInterpreterCatalog(personas) {
-    const brands = [...new Set(
-      personas.map(getBrand).filter(Boolean).map(String)
-    )].sort((a, b) => a.localeCompare(b, "es"));
-
-    const countries = [...new Set(
-      personas.map(getCountry).filter(Boolean).map(String)
-    )].sort((a, b) => a.localeCompare(b, "es"));
-
-    const statuses = [...new Set(
-      personas.map(person => statusLabel(getStatus(person)))
-    )].sort((a, b) => a.localeCompare(b, "es"));
-
     const people = [...personas].sort((a, b) =>
       String(a.name || "").localeCompare(String(b.name || ""), "es")
     );
+
+    const countries = [...new Set(
+      people.map(getCountry).filter(Boolean)
+    )].sort((a, b) =>
+      countryLabel(a).localeCompare(countryLabel(b), "es")
+    );
+
+    const statuses = [...new Set(
+      people.map(person => statusLabel(getStatus(person)))
+    )].sort((a, b) => a.localeCompare(b, "es"));
+
+    /*
+     * La conexión entre intérpretes y superestrellas todavía
+     * no está configurada. Por eso, la marca se obtiene solo
+     * si el propio registro ya tiene un campo de marca.
+     */
+
+    const brands = [...new Set(
+      people.map(person => String(getBrand(person)).trim()).filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b, "es"));
+
+    const hasUnassignedBrand = people.some(person => !getBrand(person));
 
     return `
       <section class="mw-record-catalog mw-player-directory"
@@ -211,7 +203,7 @@
         <div class="mw-record-catalog__heading">
           <div>
             <h2>JUGADORES</h2>
-            <p>Seleccioná un intérprete.</p>
+            <p>Filtrá por marca, país o estado.</p>
           </div>
           <span class="mw-record-count" data-player-count>
             ${people.length}
@@ -219,13 +211,19 @@
         </div>
 
         <div class="mw-player-filters">
+
           <label class="mw-player-filter">
             <span>MARCA ACTUAL</span>
             <select data-player-brand>
               <option value="">Todas las marcas</option>
               ${brands.map(brand => `
-                <option value="${esc(brand)}">${esc(brand)}</option>
+                <option value="${esc(normalize(brand))}">
+                  ${esc(brand)}
+                </option>
               `).join("")}
+              ${hasUnassignedBrand ? `
+                <option value="__unassigned__">Sin marca asignada</option>
+              ` : ""}
             </select>
           </label>
 
@@ -234,8 +232,13 @@
             <select data-player-country>
               <option value="">Todos los países</option>
               ${countries.map(country => `
-                <option value="${esc(country)}">${esc(country)}</option>
+                <option value="${esc(country)}">
+                  ${esc(countryFlag(country))} ${esc(countryLabel(country))}
+                </option>
               `).join("")}
+              ${people.some(person => !getCountry(person)) ? `
+                <option value="__unknown__">🌐 País no registrado</option>
+              ` : ""}
             </select>
           </label>
 
@@ -244,32 +247,41 @@
             <select data-player-status>
               <option value="">Todos los estados</option>
               ${statuses.map(status => `
-                <option value="${esc(status)}">${esc(status)}</option>
+                <option value="${esc(normalize(status))}">
+                  ${esc(status)}
+                </option>
               `).join("")}
             </select>
           </label>
+
         </div>
 
         <div class="mw-record-links" data-player-list>
           ${people.map(person => {
             const country = getCountry(person);
-            const brand = getBrand(person);
+            const rawBrand = String(getBrand(person) || "").trim();
+            const brand = rawBrand || "Sin marca asignada";
             const status = statusLabel(getStatus(person));
+            const countryKey = country || "__unknown__";
+            const brandKey = rawBrand ? normalize(rawBrand) : "__unassigned__";
 
             return `
               <a class="mw-record-link mw-player-link"
                 href="records.html?interpreter=${encodeURIComponent(person.id)}"
-                data-brand="${esc(normalize(brand))}"
-                data-country="${esc(normalize(country))}"
+                data-brand="${esc(brandKey)}"
+                data-country="${esc(countryKey)}"
                 data-status="${esc(normalize(status))}">
 
                 <span class="mw-record-link__name">
-                  <span class="mw-player-flag" aria-label="${esc(country || "País no registrado")}">
+                  <span class="mw-player-flag"
+                    aria-label="${esc(countryLabel(country))}">
                     ${countryFlag(country)}
                   </span>
+
                   ${esc(person.name || "Intérprete sin nombre")}
+
                   <span class="mw-player-details">
-                    ${esc([brand, status].filter(Boolean).join(" · "))}
+                    ${esc(brand)} · ${esc(status)}
                   </span>
                 </span>
 
@@ -293,15 +305,17 @@
     const items = [...container.querySelectorAll(".mw-player-link")];
 
     const update = () => {
-      const brand = normalize(brandFilter?.value);
-      const country = normalize(countryFilter?.value);
-      const status = normalize(statusFilter?.value);
+      const brand = brandFilter?.value || "";
+      const country = countryFilter?.value || "";
+      const status = normalize(statusFilter?.value || "");
+
       let visible = 0;
 
       items.forEach(item => {
         const matchesBrand = !brand || item.dataset.brand === brand;
         const matchesCountry = !country || item.dataset.country === country;
         const matchesStatus = !status || item.dataset.status === status;
+
         const show = matchesBrand && matchesCountry && matchesStatus;
 
         item.hidden = !show;
@@ -509,9 +523,7 @@
         <header class="mw-record-hero">
           <p class="mw-record-eyebrow">PLAYER PROFILE</p>
           <h1>${countryFlag(country)} ${esc(person.name)}</h1>
-          <p>${esc(country || "País no registrado")} ·
-            ${esc(statusLabel(getStatus(person)))}
-          </p>
+          <p>${esc(countryLabel(country))} · ${esc(statusLabel(getStatus(person)))}</p>
         </header>
 
         ${statMarkup(record)}
@@ -608,7 +620,6 @@
 
     const catalogs = {
       wrestlers: {
-        title: "WRESTLERS",
         html: catalog(
           "WRESTLERS",
           "Seleccioná una superestrella.",
@@ -618,18 +629,19 @@
       },
 
       interpreters: {
-        title: "JUGADORES",
         html: buildInterpreterCatalog(personas)
       },
 
       teams: {
-        title: "TAG TEAMS",
-        html: empty("Esta categoría necesita el archivo de datos de tag teams para mostrar parejas reales y enlazar sus historiales.")
+        html: empty(
+          "Esta categoría necesita el archivo de datos de tag teams para mostrar parejas reales y enlazar sus historiales."
+        )
       },
 
       factions: {
-        title: "FACCIONES",
-        html: empty("Esta categoría necesita el archivo de datos de facciones para mostrar grupos reales y enlazar sus historiales.")
+        html: empty(
+          "Esta categoría necesita el archivo de datos de facciones para mostrar grupos reales y enlazar sus historiales."
+        )
       }
     };
 
