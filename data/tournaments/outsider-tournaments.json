@@ -1,0 +1,2302 @@
+[
+  {
+    "id": "outsider-speed-4",
+    "legacyKey": "outsider-speed-4",
+    "title": "Road to Crown Jewel",
+    "brand": "Speed",
+    "promotion": "WWE",
+    "format": "BRACKET",
+    "roster": [
+      "Edge"
+    ],
+    "shows": {
+      "speed-11": {
+        "date": "07/11/2024",
+        "matches": [
+          [
+            "Christian Cage",
+            "Matt Cardona",
+            2,
+            1
+          ],
+          [
+            "Claudio Castagnoli",
+            "Jacob Fatu",
+            0,
+            3
+          ],
+          [
+            "LA Knight",
+            "Bron Breakker",
+            0,
+            3
+          ],
+          [
+            "Tommaso Ciampa",
+            "Roman Reigns",
+            3,
+            0
+          ]
+        ]
+      },
+      "speed-12": {
+        "date": "14/11/2024",
+        "matches": [
+          [
+            "Christian Cage",
+            "Jacob Fatu",
+            2,
+            1
+          ],
+          [
+            "Bron Breakker",
+            "Tommaso Ciampa",
+            3,
+            0
+          ]
+        ]
+      },
+      "speed-13": {
+        "date": "21/11/2024",
+        "matches": [
+          [
+            "Christian Cage",
+            "Bron Breakker",
+            1,
+            2
+          ]
+        ]
+      }
+    },
+    "finalEvent": "crown-jewel-2024",
+    "finalDate": "2024-11-26",
+    "finalMatches": [
+      {
+        "type": "EVENT_REFERENCE",
+        "eventId": "crown-jewel-2024",
+        "matchIndex": 0
+      }
+    ],
+    "legacy": {
+      "name": "Road to Crown Jewel",
+      "brand": "SPEED",
+      "promotion": "WWE",
+      "format": "BRACKET",
+      "roster": [
+        "Edge"
+      ],
+      "shows": {
+        "speed-11": {
+          "date": "07/11/2024",
+          "matches": [
+            [
+              "Christian Cage",
+              "Matt Cardona",
+              2,
+              1
+            ],
+            [
+              "Claudio Castagnoli",
+              "Jacob Fatu",
+              0,
+              3
+            ],
+            [
+              "LA Knight",
+              "Bron Breakker",
+              0,
+              3
+            ],
+            [
+              "Tommaso Ciampa",
+              "Roman Reigns",
+              3,
+              0
+            ]
+          ]
+        },
+        "speed-12": {
+          "date": "14/11/2024",
+          "matches": [
+            [
+              "Christian Cage",
+              "Jacob Fatu",
+              2,
+              1
+            ],
+            [
+              "Bron Breakker",
+              "Tommaso Ciampa",
+              3,
+              0
+            ]
+          ]
+        },
+        "speed-13": {
+          "date": "21/11/2024",
+          "matches": [
+            [
+              "Christian Cage",
+              "Bron Breakker",
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      "finalEvent": "crown-jewel-2024",
+      "finalDate": "26/11/2024",
+      "finalMatches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "crown-jewel-2024",
+          "matchIndex": 0
+        }
+      ]
+    },
+    "seasonNumber": 4,
+    "showList": [
+      {
+        "id": "outsider-speed-4-show-speed-11",
+        "legacyKey": "speed-11",
+        "title": "speed-11",
+        "brand": "Speed",
+        "date": "2024-11-07",
+        "dateOriginal": "07/11/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-4-show-speed-11-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Christian Cage",
+                "score": 2
+              },
+              {
+                "name": "Matt Cardona",
+                "score": 1
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Christian Cage",
+              "Matt Cardona",
+              2,
+              1
+            ]
+          },
+          {
+            "id": "outsider-speed-4-show-speed-11-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Claudio Castagnoli",
+                "score": 0
+              },
+              {
+                "name": "Jacob Fatu",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Claudio Castagnoli",
+              "Jacob Fatu",
+              0,
+              3
+            ]
+          },
+          {
+            "id": "outsider-speed-4-show-speed-11-match-3",
+            "order": 3,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "LA Knight",
+                "score": 0
+              },
+              {
+                "name": "Bron Breakker",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "LA Knight",
+              "Bron Breakker",
+              0,
+              3
+            ]
+          },
+          {
+            "id": "outsider-speed-4-show-speed-11-match-4",
+            "order": 4,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Tommaso Ciampa",
+                "score": 3
+              },
+              {
+                "name": "Roman Reigns",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Tommaso Ciampa",
+              "Roman Reigns",
+              3,
+              0
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "07/11/2024",
+          "matches": [
+            [
+              "Christian Cage",
+              "Matt Cardona",
+              2,
+              1
+            ],
+            [
+              "Claudio Castagnoli",
+              "Jacob Fatu",
+              0,
+              3
+            ],
+            [
+              "LA Knight",
+              "Bron Breakker",
+              0,
+              3
+            ],
+            [
+              "Tommaso Ciampa",
+              "Roman Reigns",
+              3,
+              0
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-4-speed-11-match-1",
+          "outsider-speed-4-speed-11-match-2",
+          "outsider-speed-4-speed-11-match-3",
+          "outsider-speed-4-speed-11-match-4"
+        ],
+        "matchCount": 4
+      },
+      {
+        "id": "outsider-speed-4-show-speed-12",
+        "legacyKey": "speed-12",
+        "title": "speed-12",
+        "brand": "Speed",
+        "date": "2024-11-14",
+        "dateOriginal": "14/11/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-4-show-speed-12-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Christian Cage",
+                "score": 2
+              },
+              {
+                "name": "Jacob Fatu",
+                "score": 1
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Christian Cage",
+              "Jacob Fatu",
+              2,
+              1
+            ]
+          },
+          {
+            "id": "outsider-speed-4-show-speed-12-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Bron Breakker",
+                "score": 3
+              },
+              {
+                "name": "Tommaso Ciampa",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Bron Breakker",
+              "Tommaso Ciampa",
+              3,
+              0
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "14/11/2024",
+          "matches": [
+            [
+              "Christian Cage",
+              "Jacob Fatu",
+              2,
+              1
+            ],
+            [
+              "Bron Breakker",
+              "Tommaso Ciampa",
+              3,
+              0
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-4-speed-12-match-1",
+          "outsider-speed-4-speed-12-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-4-show-speed-13",
+        "legacyKey": "speed-13",
+        "title": "speed-13",
+        "brand": "Speed",
+        "date": "2024-11-21",
+        "dateOriginal": "21/11/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-4-show-speed-13-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Christian Cage",
+                "score": 1
+              },
+              {
+                "name": "Bron Breakker",
+                "score": 2
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Christian Cage",
+              "Bron Breakker",
+              1,
+              2
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "21/11/2024",
+          "matches": [
+            [
+              "Christian Cage",
+              "Bron Breakker",
+              1,
+              2
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-4-speed-13-match-1"
+        ],
+        "matchCount": 1
+      }
+    ],
+    "final": {
+      "event": "crown-jewel-2024",
+      "matches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "crown-jewel-2024",
+          "matchIndex": 0
+        }
+      ],
+      "bracketFormat": null,
+      "bracketTitle": null,
+      "matchIds": [
+        "crown-jewel-2024-match-1"
+      ],
+      "eventId": "crown-jewel-2024"
+    },
+    "isTemplate": false,
+    "sourceType": "outsider",
+    "year": 2024,
+    "brandId": "speed",
+    "promotionId": "wwe",
+    "participantNames": [
+      "Edge"
+    ],
+    "draft": {
+      "presentation": "wrestler-cards",
+      "participantNames": [
+        "Edge"
+      ]
+    },
+    "pointsSystem": {
+      "win": 3,
+      "draw": 1,
+      "loss": 0,
+      "scoreLabel": "Rondas",
+      "differenceLabel": "Diferencia de rondas"
+    },
+    "matrixEnabled": true,
+    "bonusChampionshipMatches": [
+      "crown-jewel-2024-match-1"
+    ],
+    "stages": [
+      {
+        "id": "speed-11",
+        "name": "SPEED 11",
+        "type": "bracket",
+        "order": 1,
+        "matchIds": [
+          "outsider-speed-4-speed-11-match-1",
+          "outsider-speed-4-speed-11-match-2",
+          "outsider-speed-4-speed-11-match-3",
+          "outsider-speed-4-speed-11-match-4"
+        ],
+        "date": "2024-11-07",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-12",
+        "name": "SPEED 12",
+        "type": "bracket",
+        "order": 2,
+        "matchIds": [
+          "outsider-speed-4-speed-12-match-1",
+          "outsider-speed-4-speed-12-match-2"
+        ],
+        "date": "2024-11-14",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-13",
+        "name": "SPEED 13",
+        "type": "bracket",
+        "order": 3,
+        "matchIds": [
+          "outsider-speed-4-speed-13-match-1"
+        ],
+        "date": "2024-11-21",
+        "format": "BRACKET"
+      },
+      {
+        "id": "final",
+        "name": "FASE FINAL",
+        "type": "bracket",
+        "format": "BRACKET",
+        "order": 4,
+        "matchIds": [
+          "crown-jewel-2024-match-1"
+        ],
+        "eventId": "crown-jewel-2024"
+      }
+    ],
+    "finalEventReferences": [
+      {
+        "eventId": "crown-jewel-2024",
+        "matchIndex": 0,
+        "matchId": "crown-jewel-2024-match-1"
+      }
+    ],
+    "matchIds": [
+      "outsider-speed-4-speed-12-match-1",
+      "outsider-speed-4-speed-11-match-2",
+      "outsider-speed-4-speed-11-match-1",
+      "outsider-speed-4-speed-13-match-1",
+      "crown-jewel-2024-match-1",
+      "outsider-speed-4-speed-12-match-2",
+      "outsider-speed-4-speed-11-match-4",
+      "outsider-speed-4-speed-11-match-3"
+    ],
+    "participantIds": [
+      "edge"
+    ],
+    "status": "active",
+    "hasData": true,
+    "name": "Road to Crown Jewel",
+    "formatCapabilities": {
+      "draft": true,
+      "standings": true,
+      "matrix": true,
+      "zones": true,
+      "bracket": true,
+      "combinedStages": true,
+      "eventFinals": true,
+      "championshipExtras": true,
+      "teamAndTrios": true,
+      "flexibleParticipants": true
+    }
+  },
+  {
+    "id": "outsider-speed-3",
+    "legacyKey": "outsider-speed-3",
+    "title": "SPEED #3",
+    "brand": "Speed",
+    "promotion": "WWE",
+    "format": "BRACKET",
+    "roster": [
+      "AJ Styles",
+      "Alberto Del Rio",
+      "Aleister Black",
+      "Chad Gable",
+      "CM Punk",
+      "Jey Uso",
+      "Rob Van Dam",
+      "Roman Reigns",
+      "Edge"
+    ],
+    "shows": {
+      "speed-8": {
+        "date": "10/10/2024",
+        "matches": [
+          [
+            "Aleister Black",
+            "Chad Gable",
+            3,
+            0
+          ],
+          [
+            "AJ Styles",
+            "Rob Van Dam",
+            3,
+            0
+          ],
+          [
+            "Alberto Del Rio",
+            "Jey Uso",
+            3,
+            0
+          ],
+          [
+            "CM Punk",
+            "Roman Reigns",
+            1,
+            2
+          ]
+        ]
+      },
+      "speed-9": {
+        "date": "17/10/2024",
+        "matches": [
+          [
+            "Aleister Black",
+            "AJ Styles",
+            0,
+            3
+          ],
+          [
+            "Alberto Del Rio",
+            "Roman Reigns",
+            0,
+            3
+          ]
+        ]
+      },
+      "speed-10": {
+        "date": "24/10/2024",
+        "matches": [
+          [
+            "AJ Styles",
+            "Roman Reigns",
+            0,
+            3
+          ]
+        ]
+      }
+    },
+    "finalEvent": "bad-blood-2024",
+    "finalDate": "2024-10-27",
+    "finalMatches": [
+      {
+        "type": "EVENT_REFERENCE",
+        "eventId": "bad-blood-2024",
+        "matchIndex": 0
+      }
+    ],
+    "legacy": {
+      "name": "SPEED #3",
+      "brand": "SPEED",
+      "promotion": "WWE",
+      "format": "BRACKET",
+      "roster": [
+        "AJ Styles",
+        "Alberto Del Rio",
+        "Aleister Black",
+        "Chad Gable",
+        "CM Punk",
+        "Jey Uso",
+        "Rob Van Dam",
+        "Roman Reigns",
+        "Edge"
+      ],
+      "shows": {
+        "speed-8": {
+          "date": "10/10/2024",
+          "matches": [
+            [
+              "Aleister Black",
+              "Chad Gable",
+              3,
+              0
+            ],
+            [
+              "AJ Styles",
+              "Rob Van Dam",
+              3,
+              0
+            ],
+            [
+              "Alberto Del Rio",
+              "Jey Uso",
+              3,
+              0
+            ],
+            [
+              "CM Punk",
+              "Roman Reigns",
+              1,
+              2
+            ]
+          ]
+        },
+        "speed-9": {
+          "date": "17/10/2024",
+          "matches": [
+            [
+              "Aleister Black",
+              "AJ Styles",
+              0,
+              3
+            ],
+            [
+              "Alberto Del Rio",
+              "Roman Reigns",
+              0,
+              3
+            ]
+          ]
+        },
+        "speed-10": {
+          "date": "24/10/2024",
+          "matches": [
+            [
+              "AJ Styles",
+              "Roman Reigns",
+              0,
+              3
+            ]
+          ]
+        }
+      },
+      "finalEvent": "bad-blood-2024",
+      "finalDate": "27/10/2024",
+      "finalMatches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "bad-blood-2024",
+          "matchIndex": 0
+        }
+      ]
+    },
+    "seasonNumber": 3,
+    "showList": [
+      {
+        "id": "outsider-speed-3-show-speed-8",
+        "legacyKey": "speed-8",
+        "title": "speed-8",
+        "brand": "Speed",
+        "date": "2024-10-10",
+        "dateOriginal": "10/10/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-3-show-speed-8-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Aleister Black",
+                "score": 3
+              },
+              {
+                "name": "Chad Gable",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Aleister Black",
+              "Chad Gable",
+              3,
+              0
+            ]
+          },
+          {
+            "id": "outsider-speed-3-show-speed-8-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "AJ Styles",
+                "score": 3
+              },
+              {
+                "name": "Rob Van Dam",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "AJ Styles",
+              "Rob Van Dam",
+              3,
+              0
+            ]
+          },
+          {
+            "id": "outsider-speed-3-show-speed-8-match-3",
+            "order": 3,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Alberto Del Rio",
+                "score": 3
+              },
+              {
+                "name": "Jey Uso",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Alberto Del Rio",
+              "Jey Uso",
+              3,
+              0
+            ]
+          },
+          {
+            "id": "outsider-speed-3-show-speed-8-match-4",
+            "order": 4,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "CM Punk",
+                "score": 1
+              },
+              {
+                "name": "Roman Reigns",
+                "score": 2
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "CM Punk",
+              "Roman Reigns",
+              1,
+              2
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "10/10/2024",
+          "matches": [
+            [
+              "Aleister Black",
+              "Chad Gable",
+              3,
+              0
+            ],
+            [
+              "AJ Styles",
+              "Rob Van Dam",
+              3,
+              0
+            ],
+            [
+              "Alberto Del Rio",
+              "Jey Uso",
+              3,
+              0
+            ],
+            [
+              "CM Punk",
+              "Roman Reigns",
+              1,
+              2
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-3-speed-8-match-1",
+          "outsider-speed-3-speed-8-match-2",
+          "outsider-speed-3-speed-8-match-3",
+          "outsider-speed-3-speed-8-match-4"
+        ],
+        "matchCount": 4
+      },
+      {
+        "id": "outsider-speed-3-show-speed-9",
+        "legacyKey": "speed-9",
+        "title": "speed-9",
+        "brand": "Speed",
+        "date": "2024-10-17",
+        "dateOriginal": "17/10/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-3-show-speed-9-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Aleister Black",
+                "score": 0
+              },
+              {
+                "name": "AJ Styles",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Aleister Black",
+              "AJ Styles",
+              0,
+              3
+            ]
+          },
+          {
+            "id": "outsider-speed-3-show-speed-9-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Alberto Del Rio",
+                "score": 0
+              },
+              {
+                "name": "Roman Reigns",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Alberto Del Rio",
+              "Roman Reigns",
+              0,
+              3
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "17/10/2024",
+          "matches": [
+            [
+              "Aleister Black",
+              "AJ Styles",
+              0,
+              3
+            ],
+            [
+              "Alberto Del Rio",
+              "Roman Reigns",
+              0,
+              3
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-3-speed-9-match-1",
+          "outsider-speed-3-speed-9-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-3-show-speed-10",
+        "legacyKey": "speed-10",
+        "title": "speed-10",
+        "brand": "Speed",
+        "date": "2024-10-24",
+        "dateOriginal": "24/10/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-3-show-speed-10-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "AJ Styles",
+                "score": 0
+              },
+              {
+                "name": "Roman Reigns",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "AJ Styles",
+              "Roman Reigns",
+              0,
+              3
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "24/10/2024",
+          "matches": [
+            [
+              "AJ Styles",
+              "Roman Reigns",
+              0,
+              3
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-3-speed-10-match-1"
+        ],
+        "matchCount": 1
+      }
+    ],
+    "final": {
+      "event": "bad-blood-2024",
+      "matches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "bad-blood-2024",
+          "matchIndex": 0
+        }
+      ],
+      "bracketFormat": null,
+      "bracketTitle": null,
+      "matchIds": [
+        "bad-blood-2024-match-1"
+      ],
+      "eventId": "bad-blood-2024"
+    },
+    "isTemplate": false,
+    "sourceType": "outsider",
+    "year": 2024,
+    "brandId": "speed",
+    "promotionId": "wwe",
+    "participantNames": [
+      "AJ Styles",
+      "Alberto Del Rio",
+      "Aleister Black",
+      "Chad Gable",
+      "CM Punk",
+      "Jey Uso",
+      "Rob Van Dam",
+      "Roman Reigns",
+      "Edge"
+    ],
+    "draft": {
+      "presentation": "wrestler-cards",
+      "participantNames": [
+        "AJ Styles",
+        "Alberto Del Rio",
+        "Aleister Black",
+        "Chad Gable",
+        "CM Punk",
+        "Jey Uso",
+        "Rob Van Dam",
+        "Roman Reigns",
+        "Edge"
+      ]
+    },
+    "pointsSystem": {
+      "win": 3,
+      "draw": 1,
+      "loss": 0,
+      "scoreLabel": "Rondas",
+      "differenceLabel": "Diferencia de rondas"
+    },
+    "matrixEnabled": true,
+    "bonusChampionshipMatches": [
+      "bad-blood-2024-match-1"
+    ],
+    "stages": [
+      {
+        "id": "speed-8",
+        "name": "SPEED 8",
+        "type": "bracket",
+        "order": 1,
+        "matchIds": [
+          "outsider-speed-3-speed-8-match-1",
+          "outsider-speed-3-speed-8-match-2",
+          "outsider-speed-3-speed-8-match-3",
+          "outsider-speed-3-speed-8-match-4"
+        ],
+        "date": "2024-10-10",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-9",
+        "name": "SPEED 9",
+        "type": "bracket",
+        "order": 2,
+        "matchIds": [
+          "outsider-speed-3-speed-9-match-1",
+          "outsider-speed-3-speed-9-match-2"
+        ],
+        "date": "2024-10-17",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-10",
+        "name": "SPEED 10",
+        "type": "bracket",
+        "order": 3,
+        "matchIds": [
+          "outsider-speed-3-speed-10-match-1"
+        ],
+        "date": "2024-10-24",
+        "format": "BRACKET"
+      },
+      {
+        "id": "final",
+        "name": "FASE FINAL",
+        "type": "bracket",
+        "format": "BRACKET",
+        "order": 4,
+        "matchIds": [
+          "bad-blood-2024-match-1"
+        ],
+        "eventId": "bad-blood-2024"
+      }
+    ],
+    "finalEventReferences": [
+      {
+        "eventId": "bad-blood-2024",
+        "matchIndex": 0,
+        "matchId": "bad-blood-2024-match-1"
+      }
+    ],
+    "matchIds": [
+      "outsider-speed-3-speed-8-match-2",
+      "outsider-speed-3-speed-8-match-4",
+      "outsider-speed-3-speed-9-match-1",
+      "bad-blood-2024-match-1",
+      "outsider-speed-3-speed-8-match-3",
+      "outsider-speed-3-speed-9-match-2",
+      "outsider-speed-3-speed-10-match-1",
+      "outsider-speed-3-speed-8-match-1"
+    ],
+    "participantIds": [
+      "aj-styles",
+      "alberto-del-rio",
+      "aleister-black",
+      "chad-gable",
+      "cm-punk",
+      "jey-uso",
+      "rob-van-dam",
+      "roman-reigns",
+      "edge"
+    ],
+    "status": "active",
+    "hasData": true,
+    "name": "SPEED #3",
+    "formatCapabilities": {
+      "draft": true,
+      "standings": true,
+      "matrix": true,
+      "zones": true,
+      "bracket": true,
+      "combinedStages": true,
+      "eventFinals": true,
+      "championshipExtras": true,
+      "teamAndTrios": true,
+      "flexibleParticipants": true
+    }
+  },
+  {
+    "id": "outsider-speed-2",
+    "legacyKey": "outsider-speed-2",
+    "title": "SPEED #2",
+    "brand": "Speed",
+    "promotion": "WWE",
+    "format": "BRACKET",
+    "roster": [
+      "Ilja Dragunov",
+      "Kyle O'Reilly",
+      "AJ Styles",
+      "Johnny Gargano",
+      "Rey Mysterio",
+      "LA Knight",
+      "Sheamus",
+      "Chad Gable"
+    ],
+    "shows": {
+      "speed-4": {
+        "date": "29/08/2024",
+        "matches": [
+          [
+            "Ilja Dragunov",
+            "Kyle O'Reilly",
+            0,
+            3
+          ],
+          [
+            "AJ Styles",
+            "Johnny Gargano",
+            3,
+            0
+          ]
+        ]
+      },
+      "speed-5": {
+        "date": "05/09/2024",
+        "matches": [
+          [
+            "Rey Mysterio",
+            "LA Knight",
+            2,
+            1
+          ],
+          [
+            "Sheamus",
+            "Chad Gable",
+            0,
+            3
+          ]
+        ]
+      },
+      "speed-6": {
+        "date": "12/09/2024",
+        "matches": [
+          [
+            "Kyle O'Reilly",
+            "Rey Mysterio",
+            0,
+            3
+          ],
+          [
+            "AJ Styles",
+            "Chad Gable",
+            3,
+            0
+          ]
+        ]
+      },
+      "speed-7": {
+        "date": "19/09/2024",
+        "matches": [
+          [
+            "Rey Mysterio",
+            "AJ Styles",
+            1,
+            2
+          ]
+        ]
+      }
+    },
+    "finalEvent": "bash-in-berlin-2024",
+    "finalDate": "2024-09-23",
+    "finalMatches": [
+      {
+        "type": "EVENT_REFERENCE",
+        "eventId": "bash-in-berlin-2024",
+        "matchIndex": 0
+      }
+    ],
+    "legacy": {
+      "name": "SPEED #2",
+      "brand": "SPEED",
+      "promotion": "WWE",
+      "format": "BRACKET",
+      "roster": [
+        "Ilja Dragunov",
+        "Kyle O'Reilly",
+        "AJ Styles",
+        "Johnny Gargano",
+        "Rey Mysterio",
+        "LA Knight",
+        "Sheamus",
+        "Chad Gable"
+      ],
+      "shows": {
+        "speed-4": {
+          "date": "29/08/2024",
+          "matches": [
+            [
+              "Ilja Dragunov",
+              "Kyle O'Reilly",
+              0,
+              3
+            ],
+            [
+              "AJ Styles",
+              "Johnny Gargano",
+              3,
+              0
+            ]
+          ]
+        },
+        "speed-5": {
+          "date": "05/09/2024",
+          "matches": [
+            [
+              "Rey Mysterio",
+              "LA Knight",
+              2,
+              1
+            ],
+            [
+              "Sheamus",
+              "Chad Gable",
+              0,
+              3
+            ]
+          ]
+        },
+        "speed-6": {
+          "date": "12/09/2024",
+          "matches": [
+            [
+              "Kyle O'Reilly",
+              "Rey Mysterio",
+              0,
+              3
+            ],
+            [
+              "AJ Styles",
+              "Chad Gable",
+              3,
+              0
+            ]
+          ]
+        },
+        "speed-7": {
+          "date": "19/09/2024",
+          "matches": [
+            [
+              "Rey Mysterio",
+              "AJ Styles",
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      "finalEvent": "bash-in-berlin-2024",
+      "finalDate": "23/09/2024",
+      "finalMatches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "bash-in-berlin-2024",
+          "matchIndex": 0
+        }
+      ]
+    },
+    "seasonNumber": 2,
+    "showList": [
+      {
+        "id": "outsider-speed-2-show-speed-4",
+        "legacyKey": "speed-4",
+        "title": "speed-4",
+        "brand": "Speed",
+        "date": "2024-08-29",
+        "dateOriginal": "29/08/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-2-show-speed-4-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Ilja Dragunov",
+                "score": 0
+              },
+              {
+                "name": "Kyle O'Reilly",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Ilja Dragunov",
+              "Kyle O'Reilly",
+              0,
+              3
+            ]
+          },
+          {
+            "id": "outsider-speed-2-show-speed-4-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "AJ Styles",
+                "score": 3
+              },
+              {
+                "name": "Johnny Gargano",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "AJ Styles",
+              "Johnny Gargano",
+              3,
+              0
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "29/08/2024",
+          "matches": [
+            [
+              "Ilja Dragunov",
+              "Kyle O'Reilly",
+              0,
+              3
+            ],
+            [
+              "AJ Styles",
+              "Johnny Gargano",
+              3,
+              0
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-2-speed-4-match-1",
+          "outsider-speed-2-speed-4-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-2-show-speed-5",
+        "legacyKey": "speed-5",
+        "title": "speed-5",
+        "brand": "Speed",
+        "date": "2024-09-05",
+        "dateOriginal": "05/09/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-2-show-speed-5-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Rey Mysterio",
+                "score": 2
+              },
+              {
+                "name": "LA Knight",
+                "score": 1
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Rey Mysterio",
+              "LA Knight",
+              2,
+              1
+            ]
+          },
+          {
+            "id": "outsider-speed-2-show-speed-5-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Sheamus",
+                "score": 0
+              },
+              {
+                "name": "Chad Gable",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Sheamus",
+              "Chad Gable",
+              0,
+              3
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "05/09/2024",
+          "matches": [
+            [
+              "Rey Mysterio",
+              "LA Knight",
+              2,
+              1
+            ],
+            [
+              "Sheamus",
+              "Chad Gable",
+              0,
+              3
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-2-speed-5-match-1",
+          "outsider-speed-2-speed-5-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-2-show-speed-6",
+        "legacyKey": "speed-6",
+        "title": "speed-6",
+        "brand": "Speed",
+        "date": "2024-09-12",
+        "dateOriginal": "12/09/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-2-show-speed-6-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Kyle O'Reilly",
+                "score": 0
+              },
+              {
+                "name": "Rey Mysterio",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Kyle O'Reilly",
+              "Rey Mysterio",
+              0,
+              3
+            ]
+          },
+          {
+            "id": "outsider-speed-2-show-speed-6-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "AJ Styles",
+                "score": 3
+              },
+              {
+                "name": "Chad Gable",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "AJ Styles",
+              "Chad Gable",
+              3,
+              0
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "12/09/2024",
+          "matches": [
+            [
+              "Kyle O'Reilly",
+              "Rey Mysterio",
+              0,
+              3
+            ],
+            [
+              "AJ Styles",
+              "Chad Gable",
+              3,
+              0
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-2-speed-6-match-1",
+          "outsider-speed-2-speed-6-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-2-show-speed-7",
+        "legacyKey": "speed-7",
+        "title": "speed-7",
+        "brand": "Speed",
+        "date": "2024-09-19",
+        "dateOriginal": "19/09/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-2-show-speed-7-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Rey Mysterio",
+                "score": 1
+              },
+              {
+                "name": "AJ Styles",
+                "score": 2
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Rey Mysterio",
+              "AJ Styles",
+              1,
+              2
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "19/09/2024",
+          "matches": [
+            [
+              "Rey Mysterio",
+              "AJ Styles",
+              1,
+              2
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-2-speed-7-match-1"
+        ],
+        "matchCount": 1
+      }
+    ],
+    "final": {
+      "event": "bash-in-berlin-2024",
+      "matches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "bash-in-berlin-2024",
+          "matchIndex": 0
+        }
+      ],
+      "bracketFormat": null,
+      "bracketTitle": null,
+      "matchIds": [
+        "bash-in-berlin-2024-match-1"
+      ],
+      "eventId": "bash-in-berlin-2024"
+    },
+    "isTemplate": false,
+    "sourceType": "outsider",
+    "year": 2024,
+    "brandId": "speed",
+    "promotionId": "wwe",
+    "participantNames": [
+      "Ilja Dragunov",
+      "Kyle O'Reilly",
+      "AJ Styles",
+      "Johnny Gargano",
+      "Rey Mysterio",
+      "LA Knight",
+      "Sheamus",
+      "Chad Gable"
+    ],
+    "draft": {
+      "presentation": "wrestler-cards",
+      "participantNames": [
+        "Ilja Dragunov",
+        "Kyle O'Reilly",
+        "AJ Styles",
+        "Johnny Gargano",
+        "Rey Mysterio",
+        "LA Knight",
+        "Sheamus",
+        "Chad Gable"
+      ]
+    },
+    "pointsSystem": {
+      "win": 3,
+      "draw": 1,
+      "loss": 0,
+      "scoreLabel": "Rondas",
+      "differenceLabel": "Diferencia de rondas"
+    },
+    "matrixEnabled": true,
+    "bonusChampionshipMatches": [
+      "bash-in-berlin-2024-match-1"
+    ],
+    "stages": [
+      {
+        "id": "speed-4",
+        "name": "SPEED 4",
+        "type": "bracket",
+        "order": 1,
+        "matchIds": [
+          "outsider-speed-2-speed-4-match-1",
+          "outsider-speed-2-speed-4-match-2"
+        ],
+        "date": "2024-08-29",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-5",
+        "name": "SPEED 5",
+        "type": "bracket",
+        "order": 2,
+        "matchIds": [
+          "outsider-speed-2-speed-5-match-1",
+          "outsider-speed-2-speed-5-match-2"
+        ],
+        "date": "2024-09-05",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-6",
+        "name": "SPEED 6",
+        "type": "bracket",
+        "order": 3,
+        "matchIds": [
+          "outsider-speed-2-speed-6-match-1",
+          "outsider-speed-2-speed-6-match-2"
+        ],
+        "date": "2024-09-12",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-7",
+        "name": "SPEED 7",
+        "type": "bracket",
+        "order": 4,
+        "matchIds": [
+          "outsider-speed-2-speed-7-match-1"
+        ],
+        "date": "2024-09-19",
+        "format": "BRACKET"
+      },
+      {
+        "id": "final",
+        "name": "FASE FINAL",
+        "type": "bracket",
+        "format": "BRACKET",
+        "order": 5,
+        "matchIds": [
+          "bash-in-berlin-2024-match-1"
+        ],
+        "eventId": "bash-in-berlin-2024"
+      }
+    ],
+    "finalEventReferences": [
+      {
+        "eventId": "bash-in-berlin-2024",
+        "matchIndex": 0,
+        "matchId": "bash-in-berlin-2024-match-1"
+      }
+    ],
+    "matchIds": [
+      "outsider-speed-2-speed-5-match-2",
+      "outsider-speed-2-speed-5-match-1",
+      "outsider-speed-2-speed-6-match-1",
+      "outsider-speed-2-speed-6-match-2",
+      "bash-in-berlin-2024-match-1",
+      "outsider-speed-2-speed-4-match-2",
+      "outsider-speed-2-speed-4-match-1",
+      "outsider-speed-2-speed-7-match-1"
+    ],
+    "participantIds": [
+      "ilja-dragunov",
+      "kyle-o-reilly",
+      "aj-styles",
+      "johnny-gargano",
+      "rey-mysterio",
+      "la-knight",
+      "sheamus",
+      "chad-gable"
+    ],
+    "status": "active",
+    "hasData": true,
+    "name": "SPEED #2",
+    "formatCapabilities": {
+      "draft": true,
+      "standings": true,
+      "matrix": true,
+      "zones": true,
+      "bracket": true,
+      "combinedStages": true,
+      "eventFinals": true,
+      "championshipExtras": true,
+      "teamAndTrios": true,
+      "flexibleParticipants": true
+    }
+  },
+  {
+    "id": "outsider-speed-1",
+    "legacyKey": "outsider-speed-1",
+    "title": "SPEED #1",
+    "brand": "Speed",
+    "promotion": "WWE",
+    "format": "BRACKET",
+    "roster": [
+      "Bron Breakker",
+      "Aleister Black",
+      "Tommaso Ciampa",
+      "CM Punk",
+      "Jey Uso",
+      "Edge",
+      "Rob Van Dam",
+      "Wade Barrett"
+    ],
+    "shows": {
+      "speed-1": {
+        "date": "08/08/2024",
+        "matches": [
+          [
+            "Bron Breakker",
+            "Aleister Black",
+            1,
+            2
+          ],
+          [
+            "Tommaso Ciampa",
+            "CM Punk",
+            2,
+            1
+          ]
+        ]
+      },
+      "speed-2": {
+        "date": "15/08/2024",
+        "matches": [
+          [
+            "Jey Uso",
+            "Edge",
+            1,
+            2
+          ],
+          [
+            "Rob Van Dam",
+            "Wade Barrett",
+            0,
+            3
+          ]
+        ]
+      },
+      "speed-3": {
+        "date": "22/08/2024",
+        "matches": [
+          [
+            "Aleister Black",
+            "Edge",
+            0,
+            3
+          ],
+          [
+            "Tommaso Ciampa",
+            "Wade Barrett",
+            3,
+            0
+          ]
+        ]
+      }
+    },
+    "finalEvent": "summerslam-2024",
+    "finalDate": "2024-08-25",
+    "finalMatches": [
+      {
+        "type": "EVENT_REFERENCE",
+        "eventId": "summerslam-2024",
+        "matchIndex": 1
+      }
+    ],
+    "legacy": {
+      "name": "SPEED #1",
+      "brand": "SPEED",
+      "promotion": "WWE",
+      "format": "BRACKET",
+      "roster": [
+        "Bron Breakker",
+        "Aleister Black",
+        "Tommaso Ciampa",
+        "CM Punk",
+        "Jey Uso",
+        "Edge",
+        "Rob Van Dam",
+        "Wade Barrett"
+      ],
+      "shows": {
+        "speed-1": {
+          "date": "08/08/2024",
+          "matches": [
+            [
+              "Bron Breakker",
+              "Aleister Black",
+              1,
+              2
+            ],
+            [
+              "Tommaso Ciampa",
+              "CM Punk",
+              2,
+              1
+            ]
+          ]
+        },
+        "speed-2": {
+          "date": "15/08/2024",
+          "matches": [
+            [
+              "Jey Uso",
+              "Edge",
+              1,
+              2
+            ],
+            [
+              "Rob Van Dam",
+              "Wade Barrett",
+              0,
+              3
+            ]
+          ]
+        },
+        "speed-3": {
+          "date": "22/08/2024",
+          "matches": [
+            [
+              "Aleister Black",
+              "Edge",
+              0,
+              3
+            ],
+            [
+              "Tommaso Ciampa",
+              "Wade Barrett",
+              3,
+              0
+            ]
+          ]
+        }
+      },
+      "finalEvent": "summerslam-2024",
+      "finalDate": "25/08/2024",
+      "finalMatches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "summerslam-2024",
+          "matchIndex": 1
+        }
+      ]
+    },
+    "seasonNumber": 1,
+    "showList": [
+      {
+        "id": "outsider-speed-1-show-speed-1",
+        "legacyKey": "speed-1",
+        "title": "speed-1",
+        "brand": "Speed",
+        "date": "2024-08-08",
+        "dateOriginal": "08/08/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-1-show-speed-1-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Bron Breakker",
+                "score": 1
+              },
+              {
+                "name": "Aleister Black",
+                "score": 2
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Bron Breakker",
+              "Aleister Black",
+              1,
+              2
+            ]
+          },
+          {
+            "id": "outsider-speed-1-show-speed-1-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Tommaso Ciampa",
+                "score": 2
+              },
+              {
+                "name": "CM Punk",
+                "score": 1
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Tommaso Ciampa",
+              "CM Punk",
+              2,
+              1
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "08/08/2024",
+          "matches": [
+            [
+              "Bron Breakker",
+              "Aleister Black",
+              1,
+              2
+            ],
+            [
+              "Tommaso Ciampa",
+              "CM Punk",
+              2,
+              1
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-1-speed-1-match-1",
+          "outsider-speed-1-speed-1-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-1-show-speed-2",
+        "legacyKey": "speed-2",
+        "title": "speed-2",
+        "brand": "Speed",
+        "date": "2024-08-15",
+        "dateOriginal": "15/08/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-1-show-speed-2-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Jey Uso",
+                "score": 1
+              },
+              {
+                "name": "Edge",
+                "score": 2
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Jey Uso",
+              "Edge",
+              1,
+              2
+            ]
+          },
+          {
+            "id": "outsider-speed-1-show-speed-2-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Rob Van Dam",
+                "score": 0
+              },
+              {
+                "name": "Wade Barrett",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Rob Van Dam",
+              "Wade Barrett",
+              0,
+              3
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "15/08/2024",
+          "matches": [
+            [
+              "Jey Uso",
+              "Edge",
+              1,
+              2
+            ],
+            [
+              "Rob Van Dam",
+              "Wade Barrett",
+              0,
+              3
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-1-speed-2-match-1",
+          "outsider-speed-1-speed-2-match-2"
+        ],
+        "matchCount": 2
+      },
+      {
+        "id": "outsider-speed-1-show-speed-3",
+        "legacyKey": "speed-3",
+        "title": "speed-3",
+        "brand": "Speed",
+        "date": "2024-08-22",
+        "dateOriginal": "22/08/2024",
+        "matches": [
+          {
+            "id": "outsider-speed-1-show-speed-3-match-1",
+            "order": 1,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Aleister Black",
+                "score": 0
+              },
+              {
+                "name": "Edge",
+                "score": 3
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Aleister Black",
+              "Edge",
+              0,
+              3
+            ]
+          },
+          {
+            "id": "outsider-speed-1-show-speed-3-match-2",
+            "order": 2,
+            "kind": "singles",
+            "type": "UNKNOWN",
+            "participants": [
+              {
+                "name": "Tommaso Ciampa",
+                "score": 3
+              },
+              {
+                "name": "Wade Barrett",
+                "score": 0
+              }
+            ],
+            "winner": null,
+            "raw": [
+              "Tommaso Ciampa",
+              "Wade Barrett",
+              3,
+              0
+            ]
+          }
+        ],
+        "legacy": {
+          "date": "22/08/2024",
+          "matches": [
+            [
+              "Aleister Black",
+              "Edge",
+              0,
+              3
+            ],
+            [
+              "Tommaso Ciampa",
+              "Wade Barrett",
+              3,
+              0
+            ]
+          ]
+        },
+        "matchIds": [
+          "outsider-speed-1-speed-3-match-1",
+          "outsider-speed-1-speed-3-match-2"
+        ],
+        "matchCount": 2
+      }
+    ],
+    "final": {
+      "event": "summerslam-2024",
+      "matches": [
+        {
+          "type": "EVENT_REFERENCE",
+          "eventId": "summerslam-2024",
+          "matchIndex": 1
+        }
+      ],
+      "bracketFormat": null,
+      "bracketTitle": null,
+      "matchIds": [
+        "summerslam-2024-match-2"
+      ],
+      "eventId": "summerslam-2024"
+    },
+    "isTemplate": false,
+    "sourceType": "outsider",
+    "year": 2024,
+    "brandId": "speed",
+    "promotionId": "wwe",
+    "participantNames": [
+      "Bron Breakker",
+      "Aleister Black",
+      "Tommaso Ciampa",
+      "CM Punk",
+      "Jey Uso",
+      "Edge",
+      "Rob Van Dam",
+      "Wade Barrett"
+    ],
+    "draft": {
+      "presentation": "wrestler-cards",
+      "participantNames": [
+        "Bron Breakker",
+        "Aleister Black",
+        "Tommaso Ciampa",
+        "CM Punk",
+        "Jey Uso",
+        "Edge",
+        "Rob Van Dam",
+        "Wade Barrett"
+      ]
+    },
+    "pointsSystem": {
+      "win": 3,
+      "draw": 1,
+      "loss": 0,
+      "scoreLabel": "Rondas",
+      "differenceLabel": "Diferencia de rondas"
+    },
+    "matrixEnabled": true,
+    "bonusChampionshipMatches": [
+      "summerslam-2024-match-2"
+    ],
+    "stages": [
+      {
+        "id": "speed-1",
+        "name": "SPEED 1",
+        "type": "bracket",
+        "order": 1,
+        "matchIds": [
+          "outsider-speed-1-speed-1-match-1",
+          "outsider-speed-1-speed-1-match-2"
+        ],
+        "date": "2024-08-08",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-2",
+        "name": "SPEED 2",
+        "type": "bracket",
+        "order": 2,
+        "matchIds": [
+          "outsider-speed-1-speed-2-match-1",
+          "outsider-speed-1-speed-2-match-2"
+        ],
+        "date": "2024-08-15",
+        "format": "BRACKET"
+      },
+      {
+        "id": "speed-3",
+        "name": "SPEED 3",
+        "type": "bracket",
+        "order": 3,
+        "matchIds": [
+          "outsider-speed-1-speed-3-match-1",
+          "outsider-speed-1-speed-3-match-2"
+        ],
+        "date": "2024-08-22",
+        "format": "BRACKET"
+      },
+      {
+        "id": "final",
+        "name": "FASE FINAL",
+        "type": "bracket",
+        "format": "BRACKET",
+        "order": 4,
+        "matchIds": [
+          "summerslam-2024-match-2"
+        ],
+        "eventId": "summerslam-2024"
+      }
+    ],
+    "finalEventReferences": [
+      {
+        "eventId": "summerslam-2024",
+        "matchIndex": 1,
+        "matchId": "summerslam-2024-match-2"
+      }
+    ],
+    "matchIds": [
+      "outsider-speed-1-speed-3-match-2",
+      "outsider-speed-1-speed-1-match-1",
+      "outsider-speed-1-speed-1-match-2",
+      "outsider-speed-1-speed-2-match-1",
+      "outsider-speed-1-speed-3-match-1",
+      "outsider-speed-1-speed-2-match-2",
+      "summerslam-2024-match-2"
+    ],
+    "participantIds": [
+      "bron-breakker",
+      "aleister-black",
+      "tommaso-ciampa",
+      "cm-punk",
+      "jey-uso",
+      "edge",
+      "rob-van-dam",
+      "wade-barrett"
+    ],
+    "status": "active",
+    "hasData": true,
+    "name": "SPEED #1",
+    "formatCapabilities": {
+      "draft": true,
+      "standings": true,
+      "matrix": true,
+      "zones": true,
+      "bracket": true,
+      "combinedStages": true,
+      "eventFinals": true,
+      "championshipExtras": true,
+      "teamAndTrios": true,
+      "flexibleParticipants": true
+    }
+  }
+]
