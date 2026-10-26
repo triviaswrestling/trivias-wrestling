@@ -1,295 +1,811 @@
 
 /* ==========================================================
-   MI WRESTLING — MAGIC CARD SFX
-   Efecto: ráfaga + cromo + impacto mágico
-   Sin archivos de audio externos
+   MI WRESTLING 2.0 — SPORTS AUDIO ENGINE
+   Estilo: WWE 2K / NBA 2K / menús deportivos AAA
+   Archivo: js/sound-effects.js
+
+   - Sin archivos de audio externos.
+   - Web Audio API.
+   - Efectos breves, deportivos y contundentes.
+   - Compatible con mouse, teclado y pantalla táctil.
+   - No modifica mi-wrestling.js ni mi-wrestling.css.
    ========================================================== */
 
 (() => {
-    "use strict";
+  "use strict";
 
-    if (window.MWSoundEffects) return;
+  if (window.MWAudio) return;
 
-    const KEY = "mw-sounds-enabled";
-    let enabled = localStorage.getItem(KEY) !== "false";
-    let ctx = null;
-    let master = null;
-    let lastCardSound = 0;
+  const CONFIG = {
+    enabled: true,
+    volume: 0.72,
+    cooldown: 38,
+    respectReducedMotion: false
+  };
 
-    function init() {
-        if (ctx) {
-            if (ctx.state === "suspended") ctx.resume();
-            return;
-        }
+  let audio = null;
+  let master = null;
+  let compressor = null;
+  let unlocked = false;
+  let lastSoundAt = 0;
+  let lastTarget = null;
 
-        const AudioContext =
-            window.AudioContext || window.webkitAudioContext;
+  const now = () => audio ? audio.currentTime : 0;
 
-        if (!AudioContext) return;
+  /* ----------------------------------------------------------
+     INICIALIZACIÓN
+     ---------------------------------------------------------- */
 
-        ctx = new AudioContext();
-        master = ctx.createGain();
-        master.gain.value = 0.8;
-        master.connect(ctx.destination);
+  function initAudio() {
+    if (audio) return true;
+
+    const AudioContextClass =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextClass) return false;
+
+    try {
+      audio = new AudioContextClass();
+
+      master = audio.createGain();
+      master.gain.value = CONFIG.volume;
+
+      compressor = audio.createDynamicsCompressor();
+      compressor.threshold.value = -19;
+      compressor.knee.value = 16;
+      compressor.ratio.value = 3.2;
+      compressor.attack.value = 0.003;
+      compressor.release.value = 0.16;
+
+      master.connect(compressor);
+      compressor.connect(audio.destination);
+
+      return true;
+    } catch (error) {
+      console.warn("[MW Audio] No se pudo inicializar el audio.", error);
+      return false;
+    }
+  }
+
+  async function unlock() {
+    if (!initAudio()) return;
+
+    try {
+      if (audio.state === "suspended") {
+        await audio.resume();
+      }
+
+      unlocked = audio.state === "running";
+    } catch (_) {
+      unlocked = false;
+    }
+  }
+
+  function canPlay(force = false) {
+    if (!CONFIG.enabled || !initAudio()) return false;
+    if (audio.state !== "running") return false;
+
+    const current = performance.now();
+
+    if (!force && current - lastSoundAt < CONFIG.cooldown) {
+      return false;
     }
 
-    function sweep({
-        start = 500,
-        end = 7000,
-        duration = 0.3,
-        volume = 0.16,
-        delay = 0,
-        filterType = "bandpass"
-    } = {}) {
-        init();
-        if (!ctx) return;
+    lastSoundAt = current;
+    return true;
+  }
 
-        const t = ctx.currentTime + delay;
-        const length = Math.ceil(ctx.sampleRate * duration);
-        const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
-        const data = buffer.getChannelData(0);
+  function setVolume(value) {
+    CONFIG.volume = Math.max(0, Math.min(1, Number(value) || 0));
 
-        // Ruido breve y suave, como una ráfaga de aire.
-        for (let i = 0; i < length; i++) {
-            data[i] = Math.random() * 2 - 1;
-        }
+    if (master && audio) {
+      master.gain.setTargetAtTime(
+        CONFIG.volume,
+        audio.currentTime,
+        0.025
+      );
+    }
+  }
 
-        const source = ctx.createBufferSource();
-        const filter = ctx.createBiquadFilter();
-        const envelope = ctx.createGain();
+  function setEnabled(value) {
+    CONFIG.enabled = Boolean(value);
+  }
 
-        source.buffer = buffer;
-        filter.type = filterType;
-        filter.Q.value = 0.7;
+  /* ----------------------------------------------------------
+     UTILIDADES DE SÍNTESIS
+     ---------------------------------------------------------- */
 
-        filter.frequency.setValueAtTime(start, t);
-        filter.frequency.exponentialRampToValueAtTime(
-            Math.max(80, end), t + duration
-        );
+  function envelope(gain, start, peak, attack, decay) {
+    gain.gain.cancelScheduledValues(start);
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.linearRampToValueAtTime(
+      Math.max(0.0001, peak),
+      start + attack
+    );
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      start + attack + decay
+    );
+  }
 
-        envelope.gain.setValueAtTime(0.0001, t);
-        envelope.gain.linearRampToValueAtTime(volume, t + 0.035);
-        envelope.gain.exponentialRampToValueAtTime(
-            0.0001, t + duration
-        );
+  function tone({
+    frequency = 400,
+    endFrequency = frequency,
+    duration = 0.09,
+    volume = 0.12,
+    type = "sine",
+    delay = 0,
+    detune = 0
+  } = {}) {
+    if (!audio || !master) return;
 
-        source.connect(filter);
-        filter.connect(envelope);
-        envelope.connect(master);
+    const start = now() + delay;
+    const osc = audio.createOscillator();
+    const gain = audio.createGain();
 
-        source.start(t);
-        source.stop(t + duration + 0.02);
+    osc.type = type;
+    osc.frequency.setValueAtTime(
+      Math.max(20, frequency),
+      start
+    );
+
+    osc.frequency.exponentialRampToValueAtTime(
+      Math.max(20, endFrequency),
+      start + duration
+    );
+
+    osc.detune.value = detune;
+
+    envelope(gain, start, volume, 0.006, duration);
+
+    osc.connect(gain);
+    gain.connect(master);
+
+    osc.start(start);
+    osc.stop(start + duration + 0.04);
+  }
+
+  function noise({
+    duration = 0.10,
+    volume = 0.12,
+    frequency = 1200,
+    q = 0.7,
+    type = "bandpass",
+    delay = 0,
+    sweep = 0,
+    attack = 0.008
+  } = {}) {
+    if (!audio || !master) return;
+
+    const start = now() + delay;
+    const length = Math.max(
+      1,
+      Math.ceil(audio.sampleRate * duration)
+    );
+
+    const buffer = audio.createBuffer(
+      1,
+      length,
+      audio.sampleRate
+    );
+
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < length; i++) {
+      const fade = 1 - i / length;
+      data[i] = (Math.random() * 2 - 1) * fade;
     }
 
-    function chime(freq, delay, duration, volume, type = "sine") {
-        init();
-        if (!ctx) return;
+    const source = audio.createBufferSource();
+    const filter = audio.createBiquadFilter();
+    const gain = audio.createGain();
 
-        const t = ctx.currentTime + delay;
-        const osc = ctx.createOscillator();
-        const env = ctx.createGain();
+    source.buffer = buffer;
 
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, t);
+    filter.type = type;
+    filter.frequency.setValueAtTime(
+      Math.max(40, frequency),
+      start
+    );
 
-        env.gain.setValueAtTime(0.0001, t);
-        env.gain.exponentialRampToValueAtTime(
-            volume, t + 0.012
-        );
-        env.gain.exponentialRampToValueAtTime(
-            0.0001, t + duration
-        );
-
-        osc.connect(env);
-        env.connect(master);
-
-        osc.start(t);
-        osc.stop(t + duration + 0.025);
+    if (sweep !== 0) {
+      filter.frequency.exponentialRampToValueAtTime(
+        Math.max(40, frequency + sweep),
+        start + duration
+      );
     }
 
-    function impact() {
-        chime(145, 0, 0.20, 0.24, "sine");
-        chime(62, 0.015, 0.26, 0.20, "triangle");
+    filter.Q.value = q;
 
-        sweep({
-            start: 180,
-            end: 1000,
-            duration: 0.12,
-            volume: 0.11,
-            filterType: "lowpass"
-        });
-    }
+    envelope(gain, start, volume, attack, duration);
 
-    function playCard() {
-        if (!enabled) return;
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(master);
 
-        const now = performance.now();
-        if (now - lastCardSound < 220) return;
-        lastCardSound = now;
+    source.start(start);
+    source.stop(start + duration + 0.025);
+  }
 
-        try {
-            init();
-            if (!ctx) return;
+  /* ----------------------------------------------------------
+     1. NAVEGACIÓN — ráfaga deportiva corta
+     ---------------------------------------------------------- */
 
-            // 1. FSSSH — la carta entra en escena.
-            sweep({
-                start: 450,
-                end: 8500,
-                duration: 0.30,
-                volume: 0.19
-            });
+  function navigation() {
+    if (!canPlay()) return;
 
-            // 2. SHWING — brillo cromado y mágico.
-            chime(1174, 0.055, 0.34, 0.13);
-            chime(1760, 0.075, 0.38, 0.095);
-            chime(2637, 0.105, 0.42, 0.065);
-            chime(3520, 0.13, 0.30, 0.035, "triangle");
-
-            // 3. WHOOM — pequeño golpe al seleccionar.
-            chime(105, 0.025, 0.22, 0.17, "triangle");
-
-            // 4. Cola brillante, como una carta holográfica.
-            sweep({
-                start: 6000,
-                end: 1700,
-                duration: 0.34,
-                volume: 0.07,
-                delay: 0.09
-            });
-        } catch (_) {}
-    }
-
-    function playMenu() {
-        if (!enabled) return;
-
-        try {
-            init();
-            if (!ctx) return;
-
-            sweep({
-                start: 300,
-                end: 5500,
-                duration: 0.20,
-                volume: 0.12
-            });
-
-            chime(880, 0.035, 0.15, 0.075);
-            chime(1320, 0.065, 0.19, 0.045);
-        } catch (_) {}
-    }
-
-    function setEnabled(value) {
-        enabled = Boolean(value);
-        localStorage.setItem(KEY, String(enabled));
-        updateToggle();
-
-        if (!enabled && ctx && master) {
-            master.gain.setTargetAtTime(
-                0, ctx.currentTime, 0.025
-            );
-        } else if (enabled && ctx && master) {
-            master.gain.setTargetAtTime(
-                0.8, ctx.currentTime, 0.025
-            );
-        }
-    }
-
-    function updateToggle() {
-        document.querySelectorAll("[data-mw-sound-toggle]")
-            .forEach(button => {
-                button.textContent = enabled ? "🔊" : "🔇";
-                button.setAttribute(
-                    "aria-label",
-                    enabled ? "Silenciar sonidos" : "Activar sonidos"
-                );
-                button.setAttribute("aria-pressed", String(enabled));
-            });
-    }
-
-    function createToggle() {
-        if (document.querySelector("[data-mw-sound-toggle]")) return;
-
-        const button = document.createElement("button");
-        button.type = "button";
-        button.dataset.mwSoundToggle = "";
-        button.textContent = enabled ? "🔊" : "🔇";
-        button.setAttribute("aria-label", "Silenciar sonidos");
-
-        Object.assign(button.style, {
-            position: "fixed",
-            right: "16px",
-            bottom: "16px",
-            zIndex: "99999",
-            width: "46px",
-            height: "46px",
-            border: "1px solid rgba(55,215,255,.65)",
-            borderRadius: "12px",
-            background: "#05070b",
-            color: "#fff",
-            fontSize: "20px"
-        });
-
-        button.addEventListener("click", () => {
-            setEnabled(!enabled);
-            if (enabled) playMenu();
-        });
-
-        document.body.appendChild(button);
-        updateToggle();
-    }
-
-    document.addEventListener("click", event => {
-        if (event.target.closest("[data-mw-sound-toggle]")) return;
-
-        const card = event.target.closest(
-            ".mw-wrestler-card, [data-wrestler-card], " +
-            "[data-wrestler-id], .wrestler-card"
-        );
-
-        if (card) {
-            playCard();
-            return;
-        }
-
-        if (event.target.closest(
-            ".mw-global-nav__toggle, .mw-global-nav__link"
-        )) {
-            playMenu();
-        }
+    noise({
+      duration: 0.075,
+      volume: 0.105,
+      frequency: 950,
+      sweep: 2400,
+      q: 0.55,
+      attack: 0.004
     });
 
-    window.MWSoundEffects = {
-        play(name = "card") {
-            if (name === "menu") playMenu();
-            else playCard();
-        },
-        enable: () => setEnabled(true),
-        disable: () => setEnabled(false),
-        setVolume(value) {
-            init();
-            if (master && ctx) {
-                const volume = Math.max(
-                    0, Math.min(1, Number(value) || 0)
-                );
-                master.gain.setTargetAtTime(
-                    volume, ctx.currentTime, 0.025
-                );
-            }
-        },
-        get enabled() {
-            return enabled;
-        }
-    };
+    tone({
+      frequency: 175,
+      endFrequency: 115,
+      duration: 0.055,
+      volume: 0.045,
+      type: "triangle"
+    });
+  }
 
-    function start() {
-        createToggle();
+  /* ----------------------------------------------------------
+     2. BOTÓN — toque seco y definido
+     ---------------------------------------------------------- */
+
+  function tap() {
+    if (!canPlay()) return;
+
+    tone({
+      frequency: 240,
+      endFrequency: 125,
+      duration: 0.065,
+      volume: 0.11,
+      type: "triangle"
+    });
+
+    noise({
+      duration: 0.025,
+      volume: 0.045,
+      frequency: 1800,
+      sweep: -650,
+      q: 0.8,
+      attack: 0.002
+    });
+  }
+
+  /* ----------------------------------------------------------
+     3. SELECCIÓN — SHWIP metálico deportivo
+     ---------------------------------------------------------- */
+
+  function select() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.115,
+      volume: 0.14,
+      frequency: 1500,
+      sweep: 3000,
+      q: 0.45,
+      attack: 0.003
+    });
+
+    tone({
+      frequency: 360,
+      endFrequency: 175,
+      duration: 0.095,
+      volume: 0.11,
+      type: "triangle",
+      delay: 0.012
+    });
+
+    tone({
+      frequency: 1050,
+      endFrequency: 650,
+      duration: 0.055,
+      volume: 0.045,
+      type: "sine",
+      delay: 0.025
+    });
+  }
+
+  /* ----------------------------------------------------------
+     4. CONFIRMAR — golpe grave y respuesta contundente
+     ---------------------------------------------------------- */
+
+  function confirm() {
+    if (!canPlay()) return;
+
+    tone({
+      frequency: 115,
+      endFrequency: 48,
+      duration: 0.17,
+      volume: 0.22,
+      type: "sine"
+    });
+
+    tone({
+      frequency: 310,
+      endFrequency: 180,
+      duration: 0.085,
+      volume: 0.095,
+      type: "triangle",
+      delay: 0.012
+    });
+
+    noise({
+      duration: 0.045,
+      volume: 0.095,
+      frequency: 1250,
+      sweep: -500,
+      q: 0.8,
+      attack: 0.002
+    });
+  }
+
+  /* ----------------------------------------------------------
+     5. ABRIR VENTANA — barrido ascendente y golpe
+     ---------------------------------------------------------- */
+
+  function openPanel() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.15,
+      volume: 0.11,
+      frequency: 420,
+      sweep: 1700,
+      q: 0.65
+    });
+
+    tone({
+      frequency: 145,
+      endFrequency: 225,
+      duration: 0.10,
+      volume: 0.09,
+      type: "triangle",
+      delay: 0.035
+    });
+
+    noise({
+      duration: 0.035,
+      volume: 0.045,
+      frequency: 2200,
+      sweep: -500,
+      delay: 0.07
+    });
+  }
+
+  /* ----------------------------------------------------------
+     6. CERRAR VENTANA — barrido descendente
+     ---------------------------------------------------------- */
+
+  function closePanel() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.11,
+      volume: 0.09,
+      frequency: 1500,
+      sweep: -1000,
+      q: 0.65
+    });
+
+    tone({
+      frequency: 220,
+      endFrequency: 105,
+      duration: 0.10,
+      volume: 0.075,
+      type: "triangle"
+    });
+  }
+
+  /* ----------------------------------------------------------
+     7. VOLVER — respuesta rápida
+     ---------------------------------------------------------- */
+
+  function back() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.07,
+      volume: 0.09,
+      frequency: 1150,
+      sweep: -800,
+      q: 0.65
+    });
+
+    tone({
+      frequency: 180,
+      endFrequency: 125,
+      duration: 0.07,
+      volume: 0.075,
+      type: "triangle"
+    });
+  }
+
+  /* ----------------------------------------------------------
+     8. CAMBIO DE FILTRO — clic corto
+     ---------------------------------------------------------- */
+
+  function filter() {
+    if (!canPlay()) return;
+
+    tone({
+      frequency: 420,
+      endFrequency: 290,
+      duration: 0.045,
+      volume: 0.065,
+      type: "triangle"
+    });
+
+    noise({
+      duration: 0.018,
+      volume: 0.035,
+      frequency: 2100,
+      sweep: -800,
+      q: 1
+    });
+  }
+
+  /* ----------------------------------------------------------
+     9. CAMBIO DE PESTAÑA — ráfaga con cuerpo
+     ---------------------------------------------------------- */
+
+  function tab() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.095,
+      volume: 0.12,
+      frequency: 700,
+      sweep: 1900,
+      q: 0.5
+    });
+
+    tone({
+      frequency: 260,
+      endFrequency: 175,
+      duration: 0.075,
+      volume: 0.07,
+      type: "triangle",
+      delay: 0.018
+    });
+  }
+
+  /* ----------------------------------------------------------
+     10. ERROR — golpe apagado, sin alarma molesta
+     ---------------------------------------------------------- */
+
+  function error() {
+    if (!canPlay()) return;
+
+    tone({
+      frequency: 155,
+      endFrequency: 85,
+      duration: 0.13,
+      volume: 0.14,
+      type: "triangle"
+    });
+
+    noise({
+      duration: 0.035,
+      volume: 0.045,
+      frequency: 350,
+      sweep: -100,
+      q: 1.2
+    });
+  }
+
+  /* ----------------------------------------------------------
+     11. ÉXITO — doble golpe deportivo
+     ---------------------------------------------------------- */
+
+  function success() {
+    if (!canPlay()) return;
+
+    tone({
+      frequency: 180,
+      endFrequency: 125,
+      duration: 0.11,
+      volume: 0.15,
+      type: "triangle"
+    });
+
+    noise({
+      duration: 0.035,
+      volume: 0.07,
+      frequency: 1600,
+      sweep: 600,
+      delay: 0.035
+    });
+
+    tone({
+      frequency: 440,
+      endFrequency: 330,
+      duration: 0.075,
+      volume: 0.065,
+      type: "sine",
+      delay: 0.055
+    });
+  }
+
+  /* ----------------------------------------------------------
+     12. CAMBIO DE ESTADO — toggle / interruptor
+     ---------------------------------------------------------- */
+
+  function toggle() {
+    if (!canPlay()) return;
+
+    tone({
+      frequency: 300,
+      endFrequency: 460,
+      duration: 0.045,
+      volume: 0.065,
+      type: "triangle"
+    });
+
+    tone({
+      frequency: 180,
+      endFrequency: 230,
+      duration: 0.04,
+      volume: 0.045,
+      type: "sine",
+      delay: 0.035
+    });
+  }
+
+  /* ----------------------------------------------------------
+     13. CARTA / SUPERSTRELLA — golpe de selección especial
+     ---------------------------------------------------------- */
+
+  function cardSelect() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.14,
+      volume: 0.15,
+      frequency: 1250,
+      sweep: 2600,
+      q: 0.5,
+      attack: 0.002
+    });
+
+    tone({
+      frequency: 105,
+      endFrequency: 52,
+      duration: 0.15,
+      volume: 0.18,
+      type: "sine",
+      delay: 0.012
+    });
+
+    tone({
+      frequency: 560,
+      endFrequency: 260,
+      duration: 0.11,
+      volume: 0.09,
+      type: "triangle",
+      delay: 0.02
+    });
+
+    noise({
+      duration: 0.045,
+      volume: 0.06,
+      frequency: 2400,
+      sweep: -900,
+      delay: 0.055,
+      q: 0.7
+    });
+  }
+
+  /* ----------------------------------------------------------
+     14. REVELACIÓN — presentación importante
+     ---------------------------------------------------------- */
+
+  function reveal() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.24,
+      volume: 0.14,
+      frequency: 280,
+      sweep: 2200,
+      q: 0.45
+    });
+
+    tone({
+      frequency: 70,
+      endFrequency: 42,
+      duration: 0.24,
+      volume: 0.19,
+      type: "sine",
+      delay: 0.04
+    });
+
+    tone({
+      frequency: 190,
+      endFrequency: 120,
+      duration: 0.15,
+      volume: 0.12,
+      type: "triangle",
+      delay: 0.08
+    });
+
+    noise({
+      duration: 0.07,
+      volume: 0.07,
+      frequency: 1800,
+      sweep: -750,
+      delay: 0.13
+    });
+  }
+
+  /* ----------------------------------------------------------
+     15. DESPLAZAMIENTO — ráfaga ultracorta
+     ---------------------------------------------------------- */
+
+  function swipe() {
+    if (!canPlay()) return;
+
+    noise({
+      duration: 0.065,
+      volume: 0.075,
+      frequency: 800,
+      sweep: 1800,
+      q: 0.5,
+      attack: 0.002
+    });
+  }
+
+  /* ----------------------------------------------------------
+     API PÚBLICA
+     Permite llamar a cualquier sonido desde otros scripts.
+     ---------------------------------------------------------- */
+
+  const API = {
+    unlock,
+    init: unlock,
+
+    play: (name) => {
+      const sounds = {
+        navigation,
+        nav: navigation,
+        tap,
+        click: tap,
+        select,
+        confirm,
+        open: openPanel,
+        openPanel,
+        close: closePanel,
+        closePanel,
+        back,
+        filter,
+        tab,
+        error,
+        success,
+        toggle,
+        card: cardSelect,
+        cardSelect,
+        reveal,
+        swipe
+      };
+
+      if (sounds[name]) sounds[name]();
+    },
+
+    navigation,
+    tap,
+    select,
+    confirm,
+    open: openPanel,
+    close: closePanel,
+    back,
+    filter,
+    tab,
+    error,
+    success,
+    toggle,
+    card: cardSelect,
+    cardSelect,
+    reveal,
+    swipe,
+
+    setVolume,
+    setEnabled,
+
+    get enabled() {
+      return CONFIG.enabled;
+    },
+
+    get volume() {
+      return CONFIG.volume;
+    },
+
+    get unlocked() {
+      return unlocked;
+    }
+  };
+
+  window.MWAudio = API;
+
+  /* ----------------------------------------------------------
+     ACTIVACIÓN DE AUDIO EN MÓVILES
+     Los navegadores requieren una interacción del usuario.
+     ---------------------------------------------------------- */
+
+  const firstInteraction = () => {
+    unlock();
+  };
+
+  document.addEventListener("pointerdown", firstInteraction, {
+    once: true,
+    passive: true
+  });
+
+  document.addEventListener("keydown", firstInteraction, {
+    once: true
+  });
+
+  /* ----------------------------------------------------------
+     ASIGNACIÓN AUTOMÁTICA PRUDENTE
+
+     Se priorizan elementos explícitamente etiquetados.
+     No se asigna un sonido a todos los clics a ciegas.
+     Así evitamos duplicar efectos de otros scripts.
+     ---------------------------------------------------------- */
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element
+      ? event.target.closest(
+          "[data-sfx], [data-sound], .mw-sfx-button"
+        )
+      : null;
+
+    if (!target || target.closest("[data-sfx='off']")) return;
+
+    const soundName =
+      target.dataset.sfx ||
+      target.dataset.sound ||
+      "tap";
+
+    if (soundName === "off" || soundName === "none") return;
+
+    API.play(soundName);
+  }, true);
+
+  /* ----------------------------------------------------------
+     TECLADO — respuesta al navegar por controles
+     ---------------------------------------------------------- */
+
+  document.addEventListener("keydown", (event) => {
+    if (event.repeat) return;
+
+    const target = event.target;
+
+    if (!(target instanceof Element)) return;
+
+    if (
+      event.key === "Enter" &&
+      target.matches(
+        "button, a, [role='button'], [data-sfx], [data-sound]"
+      )
+    ) {
+      // El clic generado por el teclado ya puede activar el sonido.
+      // Evitamos dispararlo dos veces.
+      return;
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", start, {
-            once: true
-        });
-    } else {
-        start();
+    if (
+      (event.key === "ArrowLeft" || event.key === "ArrowRight") &&
+      target.matches("[data-sfx-nav]")
+    ) {
+      navigation();
     }
+  });
+
+  console.info("[MI WRESTLING] Sports Audio Engine preparado.");
 })();
