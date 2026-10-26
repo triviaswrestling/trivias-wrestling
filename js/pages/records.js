@@ -46,7 +46,7 @@
   const normalize = value =>
     String(value ?? "").trim().toLocaleLowerCase("es");
 
-  /* PAÍSES: LOS CÓDIGOS SON LOS DE personas.json */
+  /* PAÍSES */
 
   const countryNames = {
     AR: "Argentina",
@@ -65,7 +65,8 @@
     US: "Estados Unidos",
     CR: "Costa Rica",
     GQ: "Guinea Ecuatorial",
-    GT: "Guatemala"
+    GT: "Guatemala",
+    PR: "Puerto Rico"
   };
 
   const getCountry = person =>
@@ -87,9 +88,35 @@
       : "🌐";
   };
 
-  const countryLabel = code =>
-    countryNames[String(code || "").toUpperCase()] ||
-    (code ? String(code) : "País no registrado");
+  const countryLabel = code => {
+    const value = String(code || "").toUpperCase();
+    return countryNames[value] || (value || "País no registrado");
+  };
+
+  /* COLOR POR PAÍS */
+
+  const countryColors = {
+    AR: "#65aaff",
+    CL: "#ff6575",
+    MX: "#55d99b",
+    CO: "#ffd45b",
+    PE: "#ff747c",
+    ES: "#ffb84d",
+    VE: "#ffce58",
+    EC: "#ffca55",
+    UY: "#77caff",
+    IT: "#5cda9e",
+    NI: "#64d4ef",
+    BO: "#ff7777",
+    PY: "#ff747d",
+    US: "#75aaff",
+    CR: "#6ab8ff",
+    GQ: "#61d6a0",
+    GT: "#79c9ff",
+    PR: "#70a8ff"
+  };
+
+  const countryColor = code => countryColors[code] || "#a66cff";
 
   /* ESTADO Y MARCA */
 
@@ -167,7 +194,7 @@
       </div>
     </section>`;
 
-  /* CATÁLOGO DE JUGADORES Y FILTROS */
+  /* BOTONES DE FILTROS */
 
   function buildInterpreterCatalog(personas) {
     const people = [...personas].sort((a, b) =>
@@ -184,17 +211,56 @@
       people.map(person => statusLabel(getStatus(person)))
     )].sort((a, b) => a.localeCompare(b, "es"));
 
-    /*
-     * La conexión entre intérpretes y superestrellas todavía
-     * no está configurada. Por eso, la marca se obtiene solo
-     * si el propio registro ya tiene un campo de marca.
-     */
-
     const brands = [...new Set(
       people.map(person => String(getBrand(person)).trim()).filter(Boolean)
     )].sort((a, b) => a.localeCompare(b, "es"));
 
     const hasUnassignedBrand = people.some(person => !getBrand(person));
+    const hasUnknownCountry = people.some(person => !getCountry(person));
+
+    const filterButtons = (type, options, allLabel) => `
+      <div class="mw-player-filter__options" data-filter-group="${type}">
+        <button type="button"
+          class="mw-player-filter__button mw-player-filter__button--all is-selected"
+          data-filter-type="${type}"
+          data-filter-value="__all__"
+          aria-pressed="true">${allLabel}</button>
+
+        ${options.map(option => `
+          <button type="button"
+            class="mw-player-filter__button"
+            data-filter-type="${type}"
+            data-filter-value="${esc(option.value)}"
+            aria-pressed="false">${option.label}</button>
+        `).join("")}
+      </div>`;
+
+    const brandOptions = [
+      ...brands.map(brand => ({
+        value: normalize(brand),
+        label: esc(brand)
+      })),
+      ...(hasUnassignedBrand ? [{
+        value: "__unassigned__",
+        label: "Sin marca asignada"
+      }] : [])
+    ];
+
+    const countryOptions = [
+      ...countries.map(country => ({
+        value: country,
+        label: `${countryFlag(country)} ${esc(countryLabel(country))}`
+      })),
+      ...(hasUnknownCountry ? [{
+        value: "__unknown__",
+        label: "🌐 Sin país"
+      }] : [])
+    ];
+
+    const statusOptions = statuses.map(status => ({
+      value: normalize(status),
+      label: esc(status)
+    }));
 
     return `
       <section class="mw-record-catalog mw-player-directory"
@@ -203,65 +269,43 @@
         <div class="mw-record-catalog__heading">
           <div>
             <h2>JUGADORES</h2>
-            <p>Filtrá por marca, país o estado.</p>
+            <p>Activá uno o varios filtros. Tocá otra vez para desactivarlos.</p>
           </div>
-          <span class="mw-record-count" data-player-count>
-            ${people.length}
-          </span>
+          <span class="mw-record-count" data-player-count>${people.length}</span>
         </div>
 
         <div class="mw-player-filters">
 
-          <label class="mw-player-filter">
+          <div class="mw-player-filter">
             <span>MARCA ACTUAL</span>
-            <select data-player-brand>
-              <option value="">Todas las marcas</option>
-              ${brands.map(brand => `
-                <option value="${esc(normalize(brand))}">
-                  ${esc(brand)}
-                </option>
-              `).join("")}
-              ${hasUnassignedBrand ? `
-                <option value="__unassigned__">Sin marca asignada</option>
-              ` : ""}
-            </select>
-          </label>
+            ${filterButtons("brand", brandOptions, "TODAS")}
+          </div>
 
-          <label class="mw-player-filter">
+          <div class="mw-player-filter">
             <span>PAÍS</span>
-            <select data-player-country>
-              <option value="">Todos los países</option>
-              ${countries.map(country => `
-                <option value="${esc(country)}">
-                  ${esc(countryFlag(country))} ${esc(countryLabel(country))}
-                </option>
-              `).join("")}
-              ${people.some(person => !getCountry(person)) ? `
-                <option value="__unknown__">🌐 País no registrado</option>
-              ` : ""}
-            </select>
-          </label>
+            ${filterButtons("country", countryOptions, "TODOS")}
+          </div>
 
-          <label class="mw-player-filter">
+          <div class="mw-player-filter">
             <span>ESTADO</span>
-            <select data-player-status>
-              <option value="">Todos los estados</option>
-              ${statuses.map(status => `
-                <option value="${esc(normalize(status))}">
-                  ${esc(status)}
-                </option>
-              `).join("")}
-            </select>
-          </label>
+            ${filterButtons("status", statusOptions, "TODOS")}
+          </div>
 
+        </div>
+
+        <div class="mw-player-results-bar">
+          <p>JUGADORES ENCONTRADOS</p>
+          <strong data-player-visible-count>${people.length}</strong>
+          <button type="button" class="mw-player-clear-filters"
+            data-clear-player-filters>RESTABLECER</button>
         </div>
 
         <div class="mw-record-links" data-player-list>
           ${people.map(person => {
             const country = getCountry(person);
             const rawBrand = String(getBrand(person) || "").trim();
-            const brand = rawBrand || "Sin marca asignada";
             const status = statusLabel(getStatus(person));
+
             const countryKey = country || "__unknown__";
             const brandKey = rawBrand ? normalize(rawBrand) : "__unassigned__";
 
@@ -270,19 +314,14 @@
                 href="records.html?interpreter=${encodeURIComponent(person.id)}"
                 data-brand="${esc(brandKey)}"
                 data-country="${esc(countryKey)}"
-                data-status="${esc(normalize(status))}">
+                data-status="${esc(normalize(status))}"
+                style="--player-country:${countryColor(country)}">
 
-                <span class="mw-record-link__name">
+                <span class="mw-player-name-line">
                   <span class="mw-player-flag"
-                    aria-label="${esc(countryLabel(country))}">
-                    ${countryFlag(country)}
-                  </span>
-
-                  ${esc(person.name || "Intérprete sin nombre")}
-
-                  <span class="mw-player-details">
-                    ${esc(brand)} · ${esc(status)}
-                  </span>
+                    role="img"
+                    aria-label="${esc(countryLabel(country))}">${countryFlag(country)}</span>
+                  <span class="mw-player-name">${esc(person.name || "Intérprete sin nombre")}</span>
                 </span>
 
                 <span class="mw-record-link__arrow" aria-hidden="true">↗</span>
@@ -291,44 +330,122 @@
         </div>
 
         <p class="mw-record-no-results" data-player-empty hidden>
-          No hay intérpretes que coincidan con esos filtros.
+          No hay jugadores que coincidan con los filtros seleccionados.
         </p>
       </section>`;
   }
 
   function bindPlayerFilters(container) {
-    const brandFilter = container.querySelector("[data-player-brand]");
-    const countryFilter = container.querySelector("[data-player-country]");
-    const statusFilter = container.querySelector("[data-player-status]");
     const count = container.querySelector("[data-player-count]");
+    const visibleCount = container.querySelector("[data-player-visible-count]");
     const emptyState = container.querySelector("[data-player-empty]");
+    const clearButton = container.querySelector("[data-clear-player-filters]");
     const items = [...container.querySelectorAll(".mw-player-link")];
 
-    const update = () => {
-      const brand = brandFilter?.value || "";
-      const country = countryFilter?.value || "";
-      const status = normalize(statusFilter?.value || "");
+    const selected = {
+      brand: new Set(),
+      country: new Set(),
+      status: new Set()
+    };
 
+    const update = () => {
       let visible = 0;
 
       items.forEach(item => {
-        const matchesBrand = !brand || item.dataset.brand === brand;
-        const matchesCountry = !country || item.dataset.country === country;
-        const matchesStatus = !status || item.dataset.status === status;
+        const matchesBrand =
+          selected.brand.size === 0 || selected.brand.has(item.dataset.brand);
+
+        const matchesCountry =
+          selected.country.size === 0 || selected.country.has(item.dataset.country);
+
+        const matchesStatus =
+          selected.status.size === 0 || selected.status.has(item.dataset.status);
 
         const show = matchesBrand && matchesCountry && matchesStatus;
 
         item.hidden = !show;
+
         if (show) visible++;
       });
 
       if (count) count.textContent = visible;
+      if (visibleCount) visibleCount.textContent = visible;
       if (emptyState) emptyState.hidden = visible > 0;
     };
 
-    [brandFilter, countryFilter, statusFilter].forEach(filter => {
-      filter?.addEventListener("change", update);
+    container.querySelectorAll("[data-filter-type][data-filter-value]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          const type = button.dataset.filterType;
+          const value = button.dataset.filterValue;
+
+          if (!selected[type]) return;
+
+          const group = container.querySelector(
+            `[data-filter-group="${type}"]`
+          );
+
+          if (value === "__all__") {
+            selected[type].clear();
+
+            group?.querySelectorAll("[data-filter-type]").forEach(option => {
+              const active = option.dataset.filterValue === "__all__";
+              option.classList.toggle("is-selected", active);
+              option.setAttribute("aria-pressed", String(active));
+            });
+
+            update();
+            return;
+          }
+
+          selected[type].delete("__all__");
+
+          if (selected[type].has(value)) {
+            selected[type].delete(value);
+            button.classList.remove("is-selected");
+            button.setAttribute("aria-pressed", "false");
+          } else {
+            selected[type].add(value);
+            button.classList.add("is-selected");
+            button.setAttribute("aria-pressed", "true");
+          }
+
+          const allButton = group?.querySelector(
+            '[data-filter-value="__all__"]'
+          );
+
+          if (allButton) {
+            const noneSelected = selected[type].size === 0;
+            allButton.classList.toggle("is-selected", noneSelected);
+            allButton.setAttribute("aria-pressed", String(noneSelected));
+          }
+
+          update();
+        });
+      });
+
+    clearButton?.addEventListener("click", () => {
+      Object.values(selected).forEach(set => set.clear());
+
+      container.querySelectorAll("[data-filter-type]").forEach(button => {
+        const active = button.dataset.filterValue === "__all__";
+        button.classList.toggle("is-selected", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      update();
     });
+
+    /* Tinte por país al pulsar la tarjeta, sin bloquear el enlace. */
+
+    items.forEach(item => {
+      item.addEventListener("pointerdown", () => {
+        items.forEach(other => other.classList.remove("is-country-active"));
+        item.classList.add("is-country-active");
+      });
+    });
+
+    update();
   }
 
   try {
@@ -651,10 +768,10 @@
 
     main.querySelectorAll("[data-open-catalog]").forEach(button => {
       button.addEventListener("click", () => {
-        const selected = catalogs[button.dataset.openCatalog];
-        if (!selected) return;
+        const selectedCatalog = catalogs[button.dataset.openCatalog];
+        if (!selectedCatalog) return;
 
-        catalogContent.innerHTML = selected.html;
+        catalogContent.innerHTML = selectedCatalog.html;
         categorySection.hidden = true;
         catalogSection.hidden = false;
 
