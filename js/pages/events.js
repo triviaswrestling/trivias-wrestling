@@ -658,6 +658,19 @@
                 card.classList.remove("is-animating");
             }, CHROMA_DURATION);
         };
+       /* MÓVIL: activar el efecto apenas se apoya el dedo */
+root.addEventListener("pointerdown", event => {
+    if (event.pointerType === "mouse") return;
+
+    const card = event.target.closest(
+        ".mw-event-category-card"
+    );
+
+    if (!card || !root.contains(card)) return;
+
+    clearTimeout(navigationTimer);
+    selectCard(card, true);
+});
 
         /* PC: activar el destello al entrar con el cursor */
         root.addEventListener("pointerover", event => {
