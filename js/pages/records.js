@@ -375,3 +375,22 @@
       </section>`;
   }
 })();
+
+/* PALETA ALEATORIA POR RECARGA */
+  const palettes = [
+    ["#38a8ff","#a66cff","#ff5579","#ffb454","#42e4cf","#b8ed62"],
+    ["#f45b69","#ff9f43","#f7d154","#55d6be","#4d96ff","#b967ff"],
+    ["#55d6ff","#6574ff","#bd63ff","#ff6392","#ffad66","#8de969"],
+    ["#ff7043","#ffca58","#7ce0c3","#49b9ff","#aa82ff","#ff78b7"],
+    ["#4edbca","#65a9ff","#c18aff","#ff6f91","#ffc36e","#b4e769"],
+    ["#e96bff","#8c7bff","#56c7ff","#53e0b0","#ffd166","#ff6b6b"]
+  ];
+
+  const palette = palettes[Math.floor(Math.random() * palettes.length)];
+  const style = document.querySelector(".mw-record-page");
+
+  if (style) {
+    ["--rc1","--rc2","--rc3","--rc4","--rc5","--rc6"].forEach((name,index) => {
+      style.style.setProperty(name,palette[index]);
+    });
+  }
