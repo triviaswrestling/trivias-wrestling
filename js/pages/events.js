@@ -111,7 +111,7 @@
     ].some(value => /takeover|ascenso/i.test(String(value ?? "")));
 
     /* ==========================================================
-       CARGA DE DATOS — SE OMITEN TEMPORADAS INEXISTENTES
+       CARGA DE DATOS
        ========================================================== */
     try {
         const [catalog, indexData, brandsData, promotionsData, wrestlersData] =
@@ -482,34 +482,67 @@
         let chromaTimer = null;
         let navigationTimer = null;
 
+        const CHROMA_DURATION = 1450;
+        const NAVIGATION_DELAY = 1100;
+
         const clearCardSelection = () => {
+            clearTimeout(chromaTimer);
+
             if (selectedCard) {
-                selectedCard.classList.remove("is-selected", "is-animating");
+                selectedCard.classList.remove(
+                    "is-selected",
+                    "is-animating"
+                );
+
                 selectedCard = null;
             }
-
-            clearTimeout(chromaTimer);
         };
 
-        const selectCard = card => {
+        const selectCard = (card, restart = false) => {
+            if (!card || !root.contains(card)) return;
+
+            if (selectedCard === card && !restart) return;
+
             if (selectedCard && selectedCard !== card) {
-                selectedCard.classList.remove("is-selected", "is-animating");
+                selectedCard.classList.remove(
+                    "is-selected",
+                    "is-animating"
+                );
             }
 
             clearTimeout(chromaTimer);
 
             selectedCard = card;
+
             card.classList.remove("is-animating");
             card.classList.add("is-selected");
 
-            // Reinicia el destello chroma al seleccionar.
+            // Reinicia el destello CSS.
             void card.offsetWidth;
             card.classList.add("is-animating");
 
             chromaTimer = setTimeout(() => {
                 card.classList.remove("is-animating");
-            }, 1450);
+            }, CHROMA_DURATION);
         };
+
+        /* PC: activar el destello al entrar con el cursor */
+        root.addEventListener("pointerover", event => {
+            if (event.pointerType !== "mouse") return;
+
+            const card = event.target.closest(
+                ".mw-event-category-card"
+            );
+
+            if (!card || !root.contains(card)) return;
+
+            // No reiniciar al moverse entre elementos internos.
+            if (event.relatedTarget && card.contains(event.relatedTarget)) {
+                return;
+            }
+
+            selectCard(card);
+        });
 
         /* ==========================================================
            CLICS: FILTROS, DESPLEGABLES Y NAVEGACIÓN
@@ -563,15 +596,14 @@
             if (card) {
                 event.preventDefault();
 
-                // Evita que varios toques acumulen navegaciones.
                 clearTimeout(navigationTimer);
 
-                selectCard(card);
+                // En cada toque se reinicia el destello.
+                selectCard(card, true);
 
-                // Permite ver el levantamiento y el destello antes de navegar.
                 navigationTimer = setTimeout(() => {
                     navigate(target.href);
-                }, 650);
+                }, NAVIGATION_DELAY);
 
                 return;
             }
@@ -585,7 +617,7 @@
             navigate(target.href);
         });
 
-        // Tocar fuera de las tarjetas desactiva la selección.
+        /* Tocar fuera de las tarjetas deselecciona */
         root.addEventListener("pointerdown", event => {
             if (event.target.closest(".mw-event-category-card")) return;
 
