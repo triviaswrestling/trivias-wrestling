@@ -379,17 +379,28 @@
             }, 160);
         };
 
+        
+        /* ==========================================================
+           CLICS: AÑO, DESPLEGABLES, CHROMA Y NAVEGACIÓN
+           ========================================================== */
         root.addEventListener("click", event => {
             const yearButton = event.target.closest("[data-year]");
+
             if (yearButton) {
                 const next = new URL(location.href);
-                if (yearButton.dataset.year === "all") next.searchParams.delete("year");
-                else next.searchParams.set("year", yearButton.dataset.year);
+
+                if (yearButton.dataset.year === "all") {
+                    next.searchParams.delete("year");
+                } else {
+                    next.searchParams.set("year", yearButton.dataset.year);
+                }
+
                 navigate(next.href);
                 return;
             }
 
             const disclosure = event.target.closest(".mw-event-disclosure__toggle");
+
             if (disclosure) {
                 const panel = disclosure.closest(".mw-event-disclosure");
                 const open = panel.classList.toggle("is-open");
@@ -397,11 +408,27 @@
                 return;
             }
 
+            const card = event.target.closest(".mw-event-category-card");
+
+            if (card) {
+                card.classList.remove("is-animating");
+                void card.offsetWidth;
+                card.classList.add("is-animating");
+
+                setTimeout(() => {
+                    card.classList.remove("is-animating");
+                }, 850);
+            }
+
             const link = event.target.closest("a[href]");
-            if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+
+            if (!link || event.ctrlKey || event.metaKey ||
+                event.shiftKey || event.altKey) return;
+
             if (link.target === "_blank" || link.hasAttribute("download")) return;
 
             const target = new URL(link.href, location.href);
+
             if (target.pathname !== location.pathname) return;
 
             event.preventDefault();
@@ -413,6 +440,8 @@
         /* ==========================================================
            INICIO
            ========================================================== */
+
+           
         root.classList.add("mw-events-panel");
         render();
 
