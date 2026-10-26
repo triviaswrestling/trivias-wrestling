@@ -238,10 +238,9 @@ body[data-page="events"] .mw-event-category-card__footer {
     border-top: 1px solid rgba(255,255,255,.2);
 }
 
+
 /* ==========================================================
    ANIMACIÓN CHROMA — CARTA ESPECIAL
-   El JS activará .is-animating y la retirará al finalizar
-   o al tocar otra zona de la pantalla.
    ========================================================== */
 
 @keyframes mw-event-chroma {
@@ -249,15 +248,9 @@ body[data-page="events"] .mw-event-category-card__footer {
         opacity: 0;
         transform: translateX(-140%) skewX(-18deg);
     }
-    18% {
-        opacity: .3;
-    }
-    48% {
-        opacity: .82;
-    }
-    75% {
-        opacity: .5;
-    }
+    18% { opacity: .3; }
+    48% { opacity: .82; }
+    75% { opacity: .5; }
     100% {
         opacity: 0;
         transform: translateX(160%) skewX(-18deg);
@@ -269,7 +262,6 @@ body[data-page="events"] .mw-event-category-card.is-animating {
     transform: translateY(-5px) scale(1.015);
     filter: brightness(1.12);
     border-color: var(--ev-accent);
-    transition: transform .28s ease, filter .28s ease, border-color .28s ease;
 }
 
 body[data-page="events"] .mw-event-category-card.is-animating::after {
@@ -280,21 +272,24 @@ body[data-page="events"] .mw-event-category-card.is-animating::after {
     left: 0;
     width: 70%;
     height: 100%;
+    opacity: 1;
     transform: translateX(-140%) skewX(-18deg);
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ev-accent) 15%, transparent) 20%, rgba(255,255,255,.8) 48%, color-mix(in srgb, var(--ev-secondary) 35%, transparent) 65%, transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in srgb, var(--ev-accent) 15%, transparent) 20%,
+        rgba(255,255,255,.8) 48%,
+        color-mix(in srgb, var(--ev-secondary) 35%, transparent) 65%,
+        transparent
+    );
     animation: mw-event-chroma 1.45s cubic-bezier(.2,.65,.25,1) both;
 }
 
 body[data-page="events"] .mw-event-category-card:active {
-    filter: brightness(1.08);
+    transform: translateY(-4px) scale(1.015);
+    filter: brightness(1.12);
 }
 
-@media (hover: hover) {
-    body[data-page="events"] .mw-event-category-card:hover {
-        transform: translateY(-3px);
-        filter: brightness(1.08);
-    }
-}
 
 /* ==========================================================
    IDENTIDAD DE MARCAS — CATEGORÍAS
