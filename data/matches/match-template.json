@@ -1,0 +1,77 @@
+{
+  "id": "match-id-001",
+  "eventId": "event-id-001",
+  "tournamentId": null,
+  "date": null,
+  "order": 1,
+  "type": "tag-team",
+  "format": "2v2",
+  "stipulationIds": [],
+  "championshipId": null,
+  "participants": [
+    {
+      "wrestlerId": "wrestler-id-1",
+      "interpreterId": "persona-id-1",
+      "assignmentId": "assignment-id-1",
+      "personaId": null,
+      "teamId": "team-id-1",
+      "side": "red",
+      "role": "competitor",
+      "result": "win"
+    },
+    {
+      "wrestlerId": "wrestler-id-2",
+      "interpreterId": "persona-id-2",
+      "assignmentId": "assignment-id-2",
+      "personaId": null,
+      "teamId": "team-id-1",
+      "side": "red",
+      "role": "competitor",
+      "result": "win"
+    },
+    {
+      "wrestlerId": "wrestler-id-3",
+      "interpreterId": "persona-id-3",
+      "assignmentId": "assignment-id-3",
+      "personaId": null,
+      "teamId": "team-id-2",
+      "side": "blue",
+      "role": "competitor",
+      "result": "loss"
+    },
+    {
+      "wrestlerId": "wrestler-id-4",
+      "interpreterId": "persona-id-4",
+      "assignmentId": "assignment-id-4",
+      "personaId": null,
+      "teamId": "team-id-2",
+      "side": "blue",
+      "role": "competitor",
+      "result": "loss"
+    }
+  ],
+  "winnerIds": [
+    "wrestler-id-1",
+    "wrestler-id-2"
+  ],
+  "officials": [
+    {
+      "interpreterId": "persona-referee-id",
+      "role": "referee",
+      "notes": null
+    }
+  ],
+  "notes": "Plantilla únicamente; reemplazar los IDs ficticios antes de usarla.",
+  "tournamentIds": [],
+  "phaseId": null,
+  "phaseType": null,
+  "countsForStandings": true,
+  "isChampionshipMatch": false,
+  "championship": null,
+  "score": null,
+  "sideScores": null,
+  "tournamentLinks": {},
+  "linkedEventId": null,
+  "championshipName": null,
+  "championshipMatchRole": null
+}
