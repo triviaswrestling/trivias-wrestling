@@ -68,6 +68,26 @@
         }
     }
 
+    function recordsOf(data) {
+        if (Array.isArray(data)) return data;
+        if (!data || typeof data !== "object") return [];
+        for (const key of ["items", "data", "records", "championships", "titles", "stipulations", "interpreters", "personas", "teams"]) {
+            if (Array.isArray(data[key])) return data[key];
+        }
+        return [];
+    }
+
+    async function getFirstAvailable(paths) {
+        for (const path of paths) {
+            try {
+                const value = await get(path, true);
+                const records = recordsOf(value);
+                if (records.length) return records;
+            } catch (_) {}
+        }
+        return [];
+    }
+
     function dateValue(value) {
         if (!value) return null;
 
@@ -106,7 +126,7 @@
     }
 
     const eventName = event =>
-        firstValue(event?.name, event?.title, event?.id, "Evento sin nombre");
+        firstValue(event?.name, event?.nombre, event?.title, event?.id, "Evento sin nombre");
 
     const eventDate = event =>
         firstValue(event?.date, event?.startDate, event?.scheduledDate, "");
@@ -247,9 +267,17 @@
     }
 
     function participantResult(match, participant) {
-        const explicit = norm(participant.result);
+        const explicit = norm(firstValue(participant.result, participant.outcome, participant.status));
+        const resultAliases = {
+            winner: "win", won: "win", victory: "win", ganado: "win", ganadora: "win", ganador: "win",
+            loser: "loss", lost: "loss", defeated: "loss", derrota: "loss", perdio: "loss", perdedora: "loss", perdedor: "loss",
+            empate: "draw", tied: "draw", cancelled: "no-contest", "no contest": "no-contest"
+        };
+        const normalizedExplicit = resultAliases[explicit] || explicit;
 
-        if (validResults.includes(explicit)) return explicit;
+        if (validResults.includes(normalizedExplicit)) return normalizedExplicit;
+        if (participant.isWinner === true || participant.winner === true) return "win";
+        if (participant.isLoser === true) return "loss";
 
         const winners = winnerIds(match);
         const ids = [
@@ -262,22 +290,29 @@
         }
 
         const global = norm(match.result);
-
-        if (global === "draw") return "draw";
-        if (global === "no-contest") return "no-contest";
+        if (["draw", "empate", "tie"].includes(global)) return "draw";
+        if (["no-contest", "no contest", "cancelled", "cancelado"].includes(global)) return "no-contest";
 
         return "pending";
     }
 
     function hasResult(match) {
+        const globalResult = norm(match.result);
         if (
-            ["draw", "no-contest"].includes(norm(match.result)) ||
+            ["draw", "empate", "tie", "no-contest", "no contest", "cancelled", "cancelado"].includes(globalResult) ||
             winnerIds(match).length > 0
         ) return true;
 
-        return arr(match.participants).some(participant =>
-            validResults.includes(norm(participant.result))
-        );
+        return arr(match.participants).some(participant => {
+            const result = norm(firstValue(participant.result, participant.outcome, participant.status));
+            return validResults.includes(result) ||
+                Boolean({
+                    winner: true, won: true, victory: true, ganado: true, ganadora: true, ganador: true,
+                    loser: true, lost: true, defeated: true, derrota: true, perdio: true, empate: true
+                }[result]) ||
+                participant.isWinner === true ||
+                participant.isLoser === true;
+        });
     }
 
     function resultLabel(result) {
@@ -331,7 +366,6 @@
             participant.personaId,
             participant.alterEgoId,
             participant.alteregoId,
-            participant.interpreterId,
             participant.persona?.id
         );
 
@@ -345,15 +379,28 @@
         const name = firstValue(
             participant.displayName,
             participant.name,
+            participant.nombre,
             participant.personaName,
             persona?.name,
+            persona?.nombre,
             participant.wrestlerName,
             wrestler?.name,
+            wrestler?.nombre,
             participant.wrestlerId,
             "Superestrella sin vincular"
         );
 
-        return { wrestler, persona, name };
+        const interpreterId = str(firstValue(
+            participant.interpreterId,
+            participant.interpreter?.id,
+            persona?.interpreterId,
+            wrestler?.interpreterId
+        ));
+        const interpreter = context.interpreterMap?.get(interpreterId) ||
+            context.personaMap.get(interpreterId) ||
+            (participant.interpreter && typeof participant.interpreter === "object" ? participant.interpreter : null);
+
+        return { wrestler, persona, interpreter, interpreterId, name };
     }
 
     function participantImage(participant, context) {
@@ -367,6 +414,7 @@
             participant.imageWebp,
             participant.portrait,
             participant.image,
+            participant.imagen,
             persona?.render,
             persona?.renderImage,
             persona?.webp,
@@ -377,7 +425,8 @@
             wrestler?.webp,
             wrestler?.imageWebp,
             wrestler?.portrait,
-            wrestler?.image
+            wrestler?.image,
+            wrestler?.imagen
         ));
     }
 
@@ -438,6 +487,15 @@
                             ${esc(personaName)}
                         </span>
                     ` : ""}
+                    ${info.interpreter ? `
+                        <a class="mw-match-fighter__interpreter"
+                           href="interprete.html?id=${encodeURIComponent(info.interpreterId || info.interpreter.id || "")}">
+                            ${esc(firstValue(info.interpreter.name, info.interpreter.nombre, info.interpreter.displayName, participant.interpreterName, "Intérprete"))}
+                        </a>
+                    ` : ""}
+                    ${participant.score != null && participant.score !== "" ? `
+                        <span class="mw-match-fighter__score">PUNTAJE ${esc(participant.score)}</span>
+                    ` : ""}
                     ${result !== "pending" ? `
                         <span class="mw-match-fighter__result">
                             ${esc(resultLabel(result))}
@@ -462,8 +520,19 @@
         if (/triple.?threat|3.?way/.test(all)) return "TRIPLE THREAT";
         if (/ladder/.test(all)) return "LADDER MATCH";
         if (/iron.?man/.test(all)) return "IRON MAN MATCH";
+        if (/last.?man|last.?woman/.test(all)) return "LAST PERSON STANDING";
+        if (/submission/.test(all)) return "SUBMISSION MATCH";
+        if (/tables/.test(all)) return "TABLES MATCH";
+        if (/tlc/.test(all)) return "TLC MATCH";
+        if (/casket/.test(all)) return "CASKET MATCH";
+        if (/ambulance/.test(all)) return "AMBULANCE MATCH";
+        if (/hell.?in.?a.?cell/.test(all)) return "HELL IN A CELL";
+        if (/steel.?cage|cage.?match/.test(all)) return "STEEL CAGE MATCH";
+        if (/extreme.?rules|no.?holds.?barred/.test(all)) return "NO HOLDS BARRED";
+        if (/street.?fight/.test(all)) return "STREET FIGHT";
         if (/handicap/.test(all)) return "HANDICAP MATCH";
-        if (/war.?games/.test(all)) return "WAR GAMES";
+        if (/war.?games|wargames/.test(all)) return "WAR GAMES";
+        if (/mixed.?tag/.test(all)) return "MIXED TAG TEAM";
 
         if (/tag|team|trios|six.?man|eight.?man|ten.?man/.test(all)) {
             return participants.length > 2 ? "TAG TEAM MATCH" : "TAG TEAM";
@@ -477,7 +546,7 @@
         return str(match.type || "COMBATE").replace(/-/g, " ").toUpperCase();
     }
 
-    function explicitSides(participants) {
+    function explicitSides(participants, context) {
         const groups = new Map();
 
         participants.forEach((participant, index) => {
@@ -495,20 +564,26 @@
             groups.get(key).push({ participant, index });
         });
 
-        return [...groups.entries()].map(([key, items]) => ({
-            key,
-            items,
-            label: str(
-                items[0]?.participant.sideLabel ||
-                items[0]?.participant.teamName ||
-                items[0]?.participant.team?.name ||
-                ""
-            )
-        }));
+        return [...groups.entries()].map(([key, items]) => {
+            const team = context?.teamMap?.get(String(key));
+            return {
+                key,
+                items,
+                label: str(
+                    items[0]?.participant.sideLabel ||
+                    items[0]?.participant.teamName ||
+                    items[0]?.participant.team?.name ||
+                    team?.name ||
+                    team?.displayName ||
+                    ""
+                )
+            };
+        });
+
     }
 
-    function makeSides(match, participants) {
-        const explicit = explicitSides(participants);
+    function makeSides(match, participants, context) {
+        const explicit = explicitSides(participants, context);
 
         if (explicit.length === 2) return explicit;
         if (explicit.length > 2) return [];
@@ -665,6 +740,68 @@
             </div>`;
     }
 
+    function chamberLayout(match, participants, context, scores) {
+        const explicit = explicitSides(participants, context);
+        let teams = explicit.length >= 3 ? explicit : [];
+
+        if (!teams.length) {
+            const teamGroups = new Map();
+            participants.forEach((participant, index) => {
+                const teamKey = str(
+                    participant.teamId ??
+                    participant.team?.id ??
+                    participant.teamName ??
+                    participant.side ??
+                    ""
+                );
+                if (teamKey) {
+                    if (!teamGroups.has(teamKey)) teamGroups.set(teamKey, []);
+                    teamGroups.get(teamKey).push({ participant, index });
+                }
+            });
+            if (teamGroups.size >= 3) {
+                teams = [...teamGroups.entries()].map(([key, items]) => ({
+                    key,
+                    items,
+                    label: str(items[0]?.participant.teamName || items[0]?.participant.team?.name || context.teamMap?.get(key)?.name || "")
+                }));
+            }
+        }
+
+        if (!teams.length) {
+            for (let i = 0; i < participants.length; i += 2) {
+                const items = participants.slice(i, i + 2).map((participant, offset) => ({
+                    participant,
+                    index: i + offset
+                }));
+                if (items.length) teams.push({
+                    key: `chamber-team-${teams.length + 1}`,
+                    label: str(items[0].participant.teamName || items[0].participant.team?.name || `EQUIPO ${teams.length + 1}`),
+                    items
+                });
+            }
+        }
+
+        const cells = teams.slice(0, 8).map((team, teamIndex) => `
+            <div class="mw-chamber-cell" data-chamber-cell="${teamIndex + 1}">
+                <span class="mw-chamber-cell__number">CÁMARA ${teamIndex + 1}</span>
+                ${team.label ? `<strong class="mw-chamber-cell__team">${esc(team.label)}</strong>` : ""}
+                <div class="mw-chamber-cell__fighters">
+                    ${team.items.map(item => portraitMarkup(item.participant, context, item.index, true)).join("")}
+                </div>
+            </div>
+        `).join("");
+
+        return `
+            <div class="mw-match-art mw-match-art--chamber ${teams.length > 8 ? "is-expanded" : ""}"
+                 data-participant-count="${participants.length}" data-team-count="${teams.length}">
+                <div class="mw-match-art__background" aria-hidden="true"></div>
+                <div class="mw-chamber-grid">${cells}</div>
+                ${centerMarkup(match, participants, scores)}
+                <div class="mw-match-multi-label">ELIMINATION CHAMBER · ${teams.length} EQUIPOS</div>
+            </div>`;
+    }
+
     function multiLayout(match, participants, context, scores) {
         const all = norm(`${match.type || ""} ${match.format || ""}`);
         const rumble = /rumble|battle.?royal/.test(all);
@@ -683,7 +820,7 @@
                         : "multi";
 
         return `
-            <div class="mw-match-art mw-match-art--multi is-${mode}"
+            <div class="mw-match-art mw-match-art--multi is-${mode} ${participants.length > 8 ? "is-expanded" : ""}"
                  data-participant-count="${participants.length}">
                 <div class="mw-match-art__background" aria-hidden="true"></div>
                 <div class="mw-match-multi-grid">
@@ -717,7 +854,7 @@
 
         const title = context.championshipMap.get(id);
 
-        return str(title?.name || title?.title || id.replace(/-/g, " "));
+        return str(title?.name || title?.nombre || title?.title || title?.displayName || id.replace(/-/g, " "));
     }
 
     function isTitleMatch(match) {
@@ -736,10 +873,12 @@
 
         if (!name || !isTitleMatch(match)) return "";
 
+        const id = str(match.championshipId || match.titleId || match.championship?.id);
+        const href = id ? `campeonato.html?id=${encodeURIComponent(id)}` : "";
         return `
             <div class="mw-match-title-ribbon">
                 <span class="mw-match-title-ribbon__icon" aria-hidden="true">★</span>
-                <span class="mw-match-title-ribbon__name">${esc(name)}</span>
+                ${href ? `<a class="mw-match-title-ribbon__name" href="${href}">${esc(name)}</a>` : `<span class="mw-match-title-ribbon__name">${esc(name)}</span>`}
                 <span class="mw-match-title-ribbon__status">EN JUEGO</span>
             </div>`;
     }
@@ -752,7 +891,7 @@
 
         return ids.map(id => {
             const item = context.stipulationMap.get(str(id));
-            return item?.name || item?.title || str(id).replace(/-/g, " ");
+            return item?.name || item?.nombre || item?.title || str(id).replace(/-/g, " ");
         });
     }
 
@@ -816,12 +955,15 @@
         );
 
         const type = matchType(match, participants);
-        const sides = makeSides(match, participants);
+        const sides = makeSides(match, participants, context);
         const scores = scoreData(match);
 
         let visual;
 
-        if (
+        const matchIdentity = norm(`${match.type || ""} ${match.format || ""}`);
+        if (/elimination.?chamber/.test(matchIdentity)) {
+            visual = chamberLayout(match, participants, context, scores);
+        } else if (
             participants.length === 2 &&
             !sides.length &&
             !isFreeForAll(match)
@@ -879,7 +1021,7 @@
         ].join(" "));
 
         const themes = [
-            { test: /\bnxt\b/, accent: "#d6ff35", rgb: "214,255,53", name: "nxt" },
+            { test: /\bnxt\b/, accent: "#c7cbd1", rgb: "199,203,209", name: "nxt" },
             { test: /smack.?down/, accent: "#168cff", rgb: "22,140,255", name: "smackdown" },
             { test: /\braw\b/, accent: "#e32636", rgb: "227,38,54", name: "raw" },
             { test: /evolve/, accent: "#b8ff3b", rgb: "184,255,59", name: "evolve" },
@@ -911,6 +1053,9 @@
         root.style.setProperty("--event-accent", accent || theme.accent);
         root.style.setProperty("--event-accent-rgb", rgb);
         root.style.setProperty("--event-secondary", secondary || "#ffffff");
+        document.body.style.setProperty("--event-accent", accent || theme.accent);
+        document.body.style.setProperty("--event-accent-rgb", rgb);
+        document.body.style.setProperty("--event-secondary", secondary || "#ffffff");
 
         /*
          * El CSS del evento utiliza data-theme.
@@ -937,14 +1082,33 @@
             wrestlers,
             personas,
             teams,
-            indexEvents
+            indexEvents,
+            championships,
+            stipulations,
+            interpreters
         ] = await Promise.all([
             get("data/events/catalog.json"),
             get("data/matches/matches.json"),
             get("data/wrestlers/wrestlers.json"),
             get("data/personas/personas.json"),
             get("data/teams/teams.json", true),
-            get("data/events/events.json", true)
+            get("data/events/events.json", true),
+            getFirstAvailable([
+                "data/championships/championships.json",
+                "data/campeonatos/campeonatos.json",
+                "data/titles/titles.json",
+                "data/championships/index.json"
+            ]),
+            getFirstAvailable([
+                "data/stipulations/stipulations.json",
+                "data/estipulaciones/estipulaciones.json",
+                "data/rules/stipulations.json"
+            ]),
+            getFirstAvailable([
+                "data/interpreters/interpreters.json",
+                "data/interpretes/interpretes.json",
+                "data/personas/interpreters.json"
+            ])
         ]);
 
         if (
@@ -1046,8 +1210,9 @@
             wrestlerMap,
             personaMap,
             teamMap,
-            championshipMap: new Map(),
-            stipulationMap: new Map()
+            interpreterMap: new Map(arr(interpreters).map(item => [String(item.id), item])),
+            championshipMap: new Map(arr(championships).map(item => [String(item.id), item])),
+            stipulationMap: new Map(arr(stipulations).map(item => [String(item.id), item]))
         };
 
         const cards = eventMatches.length
