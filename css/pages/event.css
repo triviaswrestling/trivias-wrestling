@@ -1,29 +1,31 @@
 
 /* =========================================================
-   MI WRESTLING 2.0 — EVENT DETAIL
-   Estética: AEW Collision / Wrestling Broadcast
-   Mobile-first · Ligero · Adaptable
+   MI WRESTLING 2.0
+   EVENT DETAIL — COLLISION BROADCAST DESIGN
+   Archivo: css/pages/event.css
    ========================================================= */
 
-/* ---------- 01. VARIABLES ---------- */
+/* ---------- 01. VARIABLES LOCALES ---------- */
 
 body[data-page="event"] {
-    --mw-bg: #050608;
-    --mw-panel: #0c0e12;
-    --mw-panel-2: #11151b;
-    --mw-line: #292e36;
-    --mw-text: #f4f5f7;
-    --mw-muted: #a0a6b1;
+    --event-bg: #050608;
+    --event-panel: #0d1015;
+    --event-panel-light: #151920;
+    --event-border: #292f38;
 
-    --mw-accent: #e83b46;
-    --mw-accent-rgb: 232, 59, 70;
-    --mw-accent-2: #ff6871;
+    --event-text: #f4f5f7;
+    --event-muted: #a4abb6;
 
-    --mw-font-display: "Barlow Condensed", Impact, sans-serif;
-    --mw-font-body: "Montserrat", Arial, sans-serif;
+    --event-accent: #e83b46;
+    --event-accent-rgb: 232, 59, 70;
+    --event-accent-light: #ff7078;
 
-    color: var(--mw-text);
-    font-family: var(--mw-font-body);
+    --event-display: "Barlow Condensed", Impact, sans-serif;
+    --event-body: "Inter", Arial, sans-serif;
+
+    color: var(--event-text);
+    font-family: var(--event-body);
+    min-width: 0;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -33,124 +35,162 @@ body[data-page="event"] *::after {
     box-sizing: border-box;
 }
 
-body[data-page="event"] img {
+body[data-page="event"] .mw-event-page {
+    width: min(100% - 28px, 1440px);
+    margin-inline: auto;
+    padding: 20px 0 40px;
+}
+
+body[data-page="event"] .mw-event-page img {
     display: block;
     max-width: 100%;
 }
 
-body[data-page="event"] a {
-    color: inherit;
-    text-decoration: none;
-}
-
-body[data-page="event"] button,
-body[data-page="event"] summary {
-    font: inherit;
-}
-
-body[data-page="event"] .mw-event-page {
-    width: min(100% - 28px, 1440px);
-    margin-inline: auto;
-    padding: 18px 0 40px;
-}
-
-/* ---------- 02. CONTENEDORES ---------- */
-
-body[data-page="event"] .mw-event-page main,
-body[data-page="event"] main.site-main {
-    min-width: 0;
-}
-
-body[data-page="event"] .mw-event-page section,
-body[data-page="event"] main.site-main section {
-    min-width: 0;
-}
-
-body[data-page="event"] .mw-event-page section + section,
-body[data-page="event"] main.site-main section + section {
-    margin-top: 24px;
-}
-
 body[data-page="event"] .mw-event-page h1,
 body[data-page="event"] .mw-event-page h2,
-body[data-page="event"] .mw-event-page h3,
-body[data-page="event"] main.site-main h1,
-body[data-page="event"] main.site-main h2,
-body[data-page="event"] main.site-main h3 {
-    margin-top: 0;
-    font-family: var(--mw-font-display);
+body[data-page="event"] .mw-event-page h3 {
+    font-family: var(--event-display);
     font-weight: 800;
     line-height: 1;
     text-transform: uppercase;
-    letter-spacing: .025em;
 }
 
-/* ---------- 03. CABECERA DEL EVENTO ---------- */
+/* ---------- 02. CABECERA DE CARGA ---------- */
 
-body[data-page="event"] .mw-event-detail-hero,
-body[data-page="event"] .page-hero.mw-event-detail-hero {
+body[data-page="event"] .mw-page-header {
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
     overflow: hidden;
-    padding: 16px;
-    border: 1px solid var(--mw-line);
-    border-top: 3px solid var(--mw-accent);
+    padding: 20px;
+    border: 1px solid var(--event-border);
+    border-top: 3px solid var(--event-accent);
     border-radius: 4px;
     background:
         linear-gradient(
-            120deg,
-            rgba(var(--mw-accent-rgb), .11),
-            transparent 55%
+            115deg,
+            rgba(var(--event-accent-rgb), .13),
+            transparent 58%
         ),
-        linear-gradient(145deg, #12151b, #08090c 72%);
-    isolation: isolate;
+        linear-gradient(145deg, #14171d, #08090c 75%);
 }
 
-body[data-page="event"] .mw-event-detail-hero::before {
+body[data-page="event"] .mw-page-header::after {
     position: absolute;
-    z-index: -1;
-    top: 0;
-    right: -20%;
-    width: 55%;
-    height: 100%;
+    inset: 0 0 0 auto;
+    width: 45%;
     content: "";
     pointer-events: none;
     background: linear-gradient(
         125deg,
         transparent 35%,
-        rgba(255, 255, 255, .035) 35%,
-        rgba(255, 255, 255, .035) 45%,
+        rgba(255, 255, 255, .035) 35% 45%,
         transparent 45%
     );
 }
 
-body[data-page="event"] .mw-event-detail-hero > *,
-body[data-page="event"] .page-hero.mw-event-detail-hero > * {
+body[data-page="event"] .mw-event-hero-content {
+    position: relative;
+    z-index: 1;
     min-width: 0;
 }
 
-/* Logo del evento.
-   El JS puede conservar la clase mw-event-poster,
-   pero el contenido debe ser el LOGO, no un póster. */
+body[data-page="event"] .mw-event-eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    color: var(--event-accent-light);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+body[data-page="event"] .mw-event-eyebrow span {
+    color: #646b77;
+}
+
+body[data-page="event"] .mw-event-title {
+    margin: 12px 0 8px;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    letter-spacing: -.015em;
+    overflow-wrap: anywhere;
+}
+
+body[data-page="event"] .mw-event-description {
+    max-width: 680px;
+    margin: 0;
+    color: var(--event-muted);
+    font-size: .88rem;
+    line-height: 1.6;
+}
+
+/* ---------- 03. CONTENIDO INYECTADO ---------- */
+
+body[data-page="event"] .mw-event-content {
+    display: grid;
+    gap: 22px;
+    min-width: 0;
+    margin-top: 18px;
+}
+
+body[data-page="event"] .mw-event-content > * {
+    min-width: 0;
+}
+
+body[data-page="event"] .mw-catalog-loading {
+    margin: 0;
+    padding: 22px 14px;
+    border: 1px solid var(--event-border);
+    border-left: 3px solid var(--event-accent);
+    border-radius: 3px;
+    background: var(--event-panel);
+    color: var(--event-muted);
+    font-family: var(--event-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-align: center;
+}
+
+/* ---------- 04. CABECERA DEL EVENTO CARGADO ---------- */
+
+/* Se adapta a las clases del contenido que genere event.js. */
+
+body[data-page="event"] .mw-event-detail-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 14px;
+    border: 1px solid var(--event-border);
+    border-top: 3px solid var(--event-accent);
+    border-radius: 4px;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(var(--event-accent-rgb), .11),
+            transparent 58%
+        ),
+        linear-gradient(145deg, #13161c, #08090c 75%);
+}
 
 body[data-page="event"] .mw-event-poster {
     display: grid;
     place-items: center;
     width: 100%;
     min-width: 0;
-    min-height: 125px;
-    max-height: 230px;
+    min-height: 105px;
+    max-height: 170px;
     overflow: hidden;
-    padding: 12px;
-    border: 1px solid rgba(255, 255, 255, .08);
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, .09);
     border-radius: 3px;
     background:
         radial-gradient(
             ellipse at center,
-            rgba(var(--mw-accent-rgb), .13),
-            transparent 70%
+            rgba(var(--event-accent-rgb), .14),
+            transparent 72%
         ),
         #07080a;
 }
@@ -158,30 +198,21 @@ body[data-page="event"] .mw-event-poster {
 body[data-page="event"] .mw-event-poster img {
     width: 100%;
     height: 100%;
-    max-height: 205px;
+    max-height: 145px;
     object-fit: contain;
     object-position: center;
 }
 
-body[data-page="event"] .mw-event-poster:empty {
-    display: none;
-}
-
-/* Datos de cabecera */
-
-body[data-page="event"] .mw-event-detail-hero h1,
-body[data-page="event"] .mw-event-detail-hero .page-title {
+body[data-page="event"] .mw-event-detail-hero h1 {
     margin: 0;
-    font-size: clamp(2rem, 5vw, 3.7rem);
-    line-height: .92;
+    font-size: clamp(2rem, 6vw, 3.8rem);
     overflow-wrap: anywhere;
-    text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
 
 body[data-page="event"] .mw-event-detail-hero p {
-    color: var(--mw-muted);
-    font-size: .84rem;
-    line-height: 1.5;
+    color: var(--event-muted);
+    font-size: .82rem;
+    line-height: 1.55;
 }
 
 body[data-page="event"] .mw-event-detail-hero .mw-event-meta,
@@ -191,56 +222,51 @@ body[data-page="event"] .mw-event-detail-hero .hero-meta {
     flex-wrap: wrap;
     align-items: center;
     gap: 6px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 body[data-page="event"] .mw-event-detail-hero .mw-event-meta > *,
 body[data-page="event"] .mw-event-detail-hero .event-meta > *,
 body[data-page="event"] .mw-event-detail-hero .hero-meta > * {
     padding: 5px 8px;
-    border: 1px solid var(--mw-line);
+    border: 1px solid var(--event-border);
     border-radius: 2px;
-    background: rgba(0, 0, 0, .25);
+    background: rgba(0, 0, 0, .3);
     color: #e5e7eb;
-    font-size: .68rem;
+    font-size: .66rem;
     font-weight: 700;
-    letter-spacing: .045em;
     text-transform: uppercase;
 }
 
-/* ---------- 04. TÍTULOS DE SECCIÓN ---------- */
+/* ---------- 05. SECCIONES ---------- */
 
-body[data-page="event"] .mw-section-heading,
+body[data-page="event"] .mw-event-content section {
+    min-width: 0;
+}
+
+body[data-page="event"] .mw-event-content section > h2,
 body[data-page="event"] .mw-event-matches > h2,
 body[data-page="event"] .mw-event-timeline > h2 {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 14px;
+    margin: 0 0 13px;
     padding-bottom: 9px;
-    border-bottom: 1px solid var(--mw-line);
-    font-size: clamp(1.4rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--event-border);
+    font-size: clamp(1.45rem, 3.5vw, 2rem);
 }
 
-body[data-page="event"] .mw-section-heading::before,
+body[data-page="event"] .mw-event-content section > h2::before,
 body[data-page="event"] .mw-event-matches > h2::before,
 body[data-page="event"] .mw-event-timeline > h2::before {
     width: 4px;
-    height: 1.15em;
+    height: 1.1em;
     flex: 0 0 4px;
     content: "";
-    background: var(--mw-accent);
+    background: var(--event-accent);
 }
 
-body[data-page="event"] .mw-section-heading small {
-    margin-left: auto;
-    color: var(--mw-muted);
-    font-family: var(--mw-font-body);
-    font-size: .65rem;
-    font-weight: 700;
-}
-
-/* ---------- 05. ESTADÍSTICAS DEL EVENTO ---------- */
+/* ---------- 06. ESTADÍSTICAS ---------- */
 
 body[data-page="event"] .mw-event-stats,
 body[data-page="event"] .mw-event-stat-grid {
@@ -253,18 +279,18 @@ body[data-page="event"] .mw-event-stat,
 body[data-page="event"] .mw-stat-card {
     min-width: 0;
     padding: 12px;
-    border: 1px solid var(--mw-line);
-    border-left: 2px solid var(--mw-accent);
+    border: 1px solid var(--event-border);
+    border-left: 2px solid var(--event-accent);
     border-radius: 3px;
-    background: linear-gradient(145deg, #11141a, #090a0d);
+    background: linear-gradient(145deg, #11151b, #090a0d);
 }
 
 body[data-page="event"] .mw-event-stat strong,
 body[data-page="event"] .mw-stat-card strong {
     display: block;
-    font-family: var(--mw-font-display);
+    font-family: var(--event-display);
     font-size: 1.65rem;
-    font-weight: 800;
+    font-weight: 900;
     line-height: 1;
 }
 
@@ -272,17 +298,13 @@ body[data-page="event"] .mw-event-stat span,
 body[data-page="event"] .mw-stat-card span {
     display: block;
     margin-top: 5px;
-    color: var(--mw-muted);
+    color: var(--event-muted);
     font-size: .67rem;
     font-weight: 700;
     text-transform: uppercase;
 }
 
-/* ---------- 06. CATÁLOGO DE COMBATES ---------- */
-
-body[data-page="event"] .mw-event-matches {
-    min-width: 0;
-}
+/* ---------- 07. LISTA DE COMBATES ---------- */
 
 body[data-page="event"] .mw-event-matches-list,
 body[data-page="event"] #mw-event-matches,
@@ -293,45 +315,35 @@ body[data-page="event"] .mw-match-list {
     min-width: 0;
 }
 
-/* ---------- 07. TARJETA GRÁFICA ---------- */
+/* ---------- 08. TARJETA DE COMBATE ---------- */
 
 body[data-page="event"] .mw-match-card {
-    --match-accent: var(--mw-accent);
-    --match-accent-rgb: var(--mw-accent-rgb);
-    --match-accent-2: var(--mw-accent-2);
+    --match-accent: var(--event-accent);
+    --match-accent-rgb: var(--event-accent-rgb);
 
     position: relative;
     min-width: 0;
     overflow: hidden;
-    border: 1px solid #292d34;
+    border: 1px solid #292e36;
     border-radius: 4px;
     background: #090a0d;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, .2);
     isolation: isolate;
 }
 
 body[data-page="event"] .mw-match-card::before {
     position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 100%;
+    z-index: 3;
+    inset: 0 0 auto;
     height: 3px;
     content: "";
-    pointer-events: none;
     background: linear-gradient(
         90deg,
         var(--match-accent),
-        var(--match-accent-2, #f3f3f3) 50%,
+        #f1f2f4 50%,
         var(--match-accent)
     );
+    pointer-events: none;
 }
-
-body[data-page="event"] .mw-match-card:focus-within {
-    border-color: var(--match-accent);
-}
-
-/* Barra superior: número, tipo y estado */
 
 body[data-page="event"] .mw-match-card__header,
 body[data-page="event"] .mw-match-header {
@@ -341,30 +353,24 @@ body[data-page="event"] .mw-match-header {
     gap: 8px;
     min-height: 34px;
     padding: 8px 10px;
-    border-bottom: 1px solid #272a31;
-    background: linear-gradient(90deg, #15181e, #0b0c0f);
-}
-
-body[data-page="event"] .mw-match-card__header > *,
-body[data-page="event"] .mw-match-header > * {
-    min-width: 0;
+    border-bottom: 1px solid #292e36;
+    background: linear-gradient(90deg, #161a21, #0b0d10);
 }
 
 body[data-page="event"] .mw-match-number {
     color: var(--match-accent);
-    font-family: var(--mw-font-display);
+    font-family: var(--event-display);
     font-size: .95rem;
-    font-weight: 800;
-    letter-spacing: .04em;
+    font-weight: 900;
 }
 
 body[data-page="event"] .mw-match-type,
 body[data-page="event"] .mw-match-format {
     overflow: hidden;
-    color: #e5e7eb;
-    font-size: .65rem;
+    color: #e7e9ed;
+    font-size: .64rem;
     font-weight: 800;
-    letter-spacing: .06em;
+    letter-spacing: .055em;
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
@@ -372,14 +378,14 @@ body[data-page="event"] .mw-match-format {
 
 body[data-page="event"] .mw-match-status,
 body[data-page="event"] .mw-match-result-label {
-    color: var(--mw-muted);
-    font-size: .62rem;
+    color: var(--event-muted);
+    font-size: .61rem;
     font-weight: 800;
     text-align: right;
     text-transform: uppercase;
 }
 
-/* ---------- 08. BARRA DEL CAMPEONATO ---------- */
+/* ---------- 09. CAMPEONATO EN JUEGO ---------- */
 
 body[data-page="event"] .mw-match-championship,
 body[data-page="event"] .mw-championship-bar {
@@ -388,28 +394,20 @@ body[data-page="event"] .mw-championship-bar {
     justify-content: center;
     gap: 8px;
     min-height: 29px;
-    padding: 6px 10px;
+    padding: 5px 10px;
     border-bottom: 1px solid rgba(255, 255, 255, .12);
     background: linear-gradient(
         90deg,
-        rgba(var(--match-accent-rgb), .22),
-        rgba(0, 0, 0, .9) 75%
+        rgba(var(--match-accent-rgb), .23),
+        #090a0d 85%
     );
     color: #fff;
-    font-family: var(--mw-font-display);
-    font-size: .88rem;
-    font-weight: 800;
-    letter-spacing: .055em;
+    font-family: var(--event-display);
+    font-size: .86rem;
+    font-weight: 900;
+    letter-spacing: .045em;
     text-align: center;
     text-transform: uppercase;
-}
-
-body[data-page="event"] .mw-match-championship img,
-body[data-page="event"] .mw-championship-bar img {
-    width: 23px;
-    height: 23px;
-    flex: 0 0 auto;
-    object-fit: contain;
 }
 
 body[data-page="event"] .mw-match-championship:empty,
@@ -417,14 +415,14 @@ body[data-page="event"] .mw-championship-bar:empty {
     display: none;
 }
 
-/* ---------- 09. ESCENARIO 16:9 ---------- */
+body[data-page="event"] .mw-match-championship img,
+body[data-page="event"] .mw-championship-bar img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
 
-/* El JS debe crear:
-   .mw-match-art
-   .mw-match-side
-   .mw-match-side__image
-   .mw-match-side__name (si corresponde)
-*/
+/* ---------- 10. GRÁFICA DE COMBATE 16:9 ---------- */
 
 body[data-page="event"] .mw-match-art {
     position: relative;
@@ -438,7 +436,7 @@ body[data-page="event"] .mw-match-art {
         linear-gradient(
             115deg,
             rgba(var(--match-accent-rgb), .2),
-            transparent 44%
+            transparent 55%
         ),
         #08090c;
     isolation: isolate;
@@ -460,13 +458,8 @@ body[data-page="event"] .mw-match-art::before {
             transparent 62%
         ),
         radial-gradient(
-            ellipse at 18% 100%,
-            rgba(var(--match-accent-rgb), .28),
-            transparent 65%
-        ),
-        radial-gradient(
-            ellipse at 82% 100%,
-            rgba(var(--match-accent-rgb), .14),
+            ellipse at 15% 100%,
+            rgba(var(--match-accent-rgb), .25),
             transparent 65%
         );
 }
@@ -482,22 +475,13 @@ body[data-page="event"] .mw-match-side {
     overflow: hidden;
     background: linear-gradient(
         145deg,
-        rgba(var(--side-accent-rgb, var(--match-accent-rgb)), .14),
-        transparent 65%
+        rgba(var(--side-accent-rgb, var(--match-accent-rgb)), .16),
+        transparent 70%
     );
 }
 
-body[data-page="event"] .mw-match-side:first-child {
-    border-right: 1px solid rgba(255, 255, 255, .15);
-}
-
-body[data-page="event"] .mw-match-side:last-child {
-    background:
-        linear-gradient(
-            235deg,
-            rgba(var(--side-accent-rgb, var(--match-accent-rgb)), .14),
-            transparent 65%
-        );
+body[data-page="event"] .mw-match-side + .mw-match-side {
+    border-left: 1px solid rgba(255, 255, 255, .14);
 }
 
 body[data-page="event"] .mw-match-side__image {
@@ -510,7 +494,7 @@ body[data-page="event"] .mw-match-side__image {
     min-height: 0;
     object-fit: contain;
     object-position: center bottom;
-    filter: drop-shadow(0 5px 7px rgba(0, 0, 0, .72));
+    filter: drop-shadow(0 5px 7px rgba(0, 0, 0, .75));
     user-select: none;
     -webkit-user-drag: none;
 }
@@ -525,11 +509,10 @@ body[data-page="event"] .mw-match-side:last-child .mw-match-side__image {
 
 body[data-page="event"] .mw-match-side__fallback {
     position: absolute;
-    z-index: 0;
     inset: auto 4px 8px;
-    color: rgba(255, 255, 255, .72);
-    font-family: var(--mw-font-display);
-    font-size: clamp(1.3rem, 4vw, 3rem);
+    color: rgba(255, 255, 255, .7);
+    font-family: var(--event-display);
+    font-size: clamp(1.2rem, 4vw, 3rem);
     font-weight: 900;
     line-height: 1;
     text-align: center;
@@ -541,7 +524,7 @@ body[data-page="event"] .mw-match-side__image[hidden] {
     display: none;
 }
 
-/* ---------- 10. EQUIPOS: 2v2, 3v3, 4v4, 5v5... ---------- */
+/* ---------- 11. COMBATES POR EQUIPOS ---------- */
 
 body[data-page="event"] .mw-match-art--tag,
 body[data-page="event"] .mw-match-art[data-layout="tag"] {
@@ -560,13 +543,13 @@ body[data-page="event"] .mw-match-team {
     overflow: hidden;
     background: linear-gradient(
         145deg,
-        rgba(var(--side-accent-rgb, var(--match-accent-rgb)), .16),
+        rgba(var(--side-accent-rgb, var(--match-accent-rgb)), .17),
         transparent 75%
     );
 }
 
 body[data-page="event"] .mw-match-team + .mw-match-team {
-    border-left: 1px solid rgba(255, 255, 255, .17);
+    border-left: 1px solid rgba(255, 255, 255, .16);
 }
 
 body[data-page="event"] .mw-match-team .mw-match-side__image,
@@ -582,12 +565,12 @@ body[data-page="event"] .mw-match-team .mw-match-wrestler-image {
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .75));
 }
 
-body[data-page="event"] .mw-match-team[data-members="1"] .mw-match-side__image {
-    width: 100%;
+body[data-page="event"] .mw-match-team[data-members="1"] {
+    --member-width: 100%;
 }
 
 body[data-page="event"] .mw-match-team[data-members="2"] {
-    --member-width: 57%;
+    --member-width: 58%;
 }
 
 body[data-page="event"] .mw-match-team[data-members="3"] {
@@ -603,22 +586,20 @@ body[data-page="event"] .mw-match-team[data-members="6"] {
     --member-width: 30%;
 }
 
-/* Si el combate tiene muchos integrantes, el escenario crece. */
-
 body[data-page="event"] .mw-match-card[data-layout="tag"][data-count="8"] .mw-match-art,
 body[data-page="event"] .mw-match-card[data-layout="tag"][data-count="10"] .mw-match-art,
 body[data-page="event"] .mw-match-card[data-layout="tag"][data-count="12"] .mw-match-art {
-    min-height: 240px;
+    min-height: 230px;
     aspect-ratio: 16 / 10;
 }
 
 body[data-page="event"] .mw-match-card[data-layout="tag"][data-count="14"] .mw-match-art,
 body[data-page="event"] .mw-match-card[data-layout="tag"][data-count="16"] .mw-match-art {
-    min-height: 280px;
+    min-height: 270px;
     aspect-ratio: 16 / 11;
 }
 
-/* ---------- 11. MULTIPERSONA: TRIPLE THREAT / FATAL 4-WAY ---------- */
+/* ---------- 12. TRIPLE THREAT / FATAL 4-WAY ---------- */
 
 body[data-page="event"] .mw-match-art--multi,
 body[data-page="event"] .mw-match-art[data-layout="multi"] {
@@ -635,11 +616,6 @@ body[data-page="event"] .mw-match-art[data-layout="multi"] .mw-match-side {
 body[data-page="event"] .mw-match-art--multi .mw-match-side:last-child,
 body[data-page="event"] .mw-match-art[data-layout="multi"] .mw-match-side:last-child {
     border-right: 0;
-}
-
-body[data-page="event"] .mw-match-art--multi .mw-match-side__image,
-body[data-page="event"] .mw-match-art[data-layout="multi"] .mw-match-side__image {
-    object-position: center bottom;
 }
 
 body[data-page="event"] .mw-match-art--multi[data-count="4"],
@@ -663,7 +639,7 @@ body[data-page="event"] .mw-match-art[data-layout="multi"][data-count="8"] {
     aspect-ratio: 16 / 10;
 }
 
-/* ---------- 12. ROYAL RUMBLE / ELIMINATION CHAMBER ---------- */
+/* ---------- 13. ROYAL RUMBLE / ELIMINATION CHAMBER ---------- */
 
 body[data-page="event"] .mw-match-art--battle-royal,
 body[data-page="event"] .mw-match-art[data-layout="battle-royal"],
@@ -688,12 +664,6 @@ body[data-page="event"] .mw-match-art[data-layout="elimination-chamber"] .mw-mat
     border: 1px solid rgba(255, 255, 255, .07);
 }
 
-body[data-page="event"] .mw-match-art--battle-royal .mw-match-side__image,
-body[data-page="event"] .mw-match-art[data-layout="battle-royal"] .mw-match-side__image,
-body[data-page="event"] .mw-match-art[data-layout="elimination-chamber"] .mw-match-side__image {
-    object-position: center bottom;
-}
-
 body[data-page="event"] .mw-match-entry-number {
     position: absolute;
     z-index: 3;
@@ -704,7 +674,7 @@ body[data-page="event"] .mw-match-entry-number {
     border: 1px solid rgba(255, 255, 255, .2);
     background: rgba(0, 0, 0, .8);
     color: #fff;
-    font-family: var(--mw-font-display);
+    font-family: var(--event-display);
     font-size: .8rem;
     font-weight: 900;
     text-align: center;
@@ -718,12 +688,12 @@ body[data-page="event"] .mw-match-side.is-eliminated {
 body[data-page="event"] .mw-match-side.is-winner {
     background: linear-gradient(
         0deg,
-        rgba(var(--match-accent-rgb), .4),
+        rgba(var(--match-accent-rgb), .35),
         transparent 65%
     );
 }
 
-/* ---------- 13. MARCADOR: UNA SOLA LÍNEA ---------- */
+/* ---------- 14. MARCADOR ÚNICO ---------- */
 
 body[data-page="event"] .mw-match-scoreboard {
     position: relative;
@@ -731,17 +701,17 @@ body[data-page="event"] .mw-match-scoreboard {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    gap: 9px;
+    gap: 8px;
     min-width: 0;
-    padding: 11px 12px;
-    border-top: 1px solid #292d34;
-    background: linear-gradient(180deg, #12151a, #090a0d);
+    padding: 10px 12px;
+    border-top: 1px solid #292e36;
+    background: linear-gradient(180deg, #14171d, #090a0d);
 }
 
 body[data-page="event"] .mw-match-scoreboard__side {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     min-width: 0;
 }
 
@@ -759,9 +729,9 @@ body[data-page="event"] .mw-match-scoreboard__name {
     min-width: 0;
     overflow: hidden;
     color: #f4f5f7;
-    font-family: var(--mw-font-display);
-    font-size: clamp(.95rem, 2vw, 1.3rem);
-    font-weight: 800;
+    font-family: var(--event-display);
+    font-size: clamp(.95rem, 2.2vw, 1.35rem);
+    font-weight: 900;
     line-height: 1;
     overflow-wrap: anywhere;
     text-overflow: ellipsis;
@@ -774,11 +744,11 @@ body[data-page="event"] .mw-match-scoreboard__score {
     min-width: 25px;
     min-height: 27px;
     padding: 3px 5px;
-    border: 1px solid rgba(255, 255, 255, .15);
+    border: 1px solid rgba(255, 255, 255, .16);
     border-radius: 2px;
-    background: #1b1f26;
+    background: #1c2027;
     color: #fff;
-    font-family: var(--mw-font-display);
+    font-family: var(--event-display);
     font-size: 1.05rem;
     font-weight: 900;
     line-height: 1;
@@ -786,60 +756,31 @@ body[data-page="event"] .mw-match-scoreboard__score {
 
 body[data-page="event"] .mw-match-scoreboard__separator {
     color: var(--match-accent);
-    font-family: var(--mw-font-display);
-    font-size: 1.15rem;
+    font-family: var(--event-display);
+    font-size: 1.1rem;
     font-weight: 900;
-}
-
-body[data-page="event"] .mw-match-scoreboard__score:empty {
-    display: none;
-}
-
-/* No inventar marcadores: ocultar el área de puntuación
-   si el combate no tiene puntuaciones registradas. */
-
-body[data-page="event"] .mw-match-scoreboard[data-has-score="false"] .mw-match-scoreboard__score {
-    display: none;
-}
-
-body[data-page="event"] .mw-match-scoreboard[data-has-score="false"] {
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 }
 
 body[data-page="event"] .mw-match-scoreboard__result {
     grid-column: 1 / -1;
-    margin-top: 4px;
-    color: var(--mw-muted);
-    font-size: .64rem;
+    margin-top: 3px;
+    color: var(--event-muted);
+    font-size: .63rem;
     font-weight: 800;
-    letter-spacing: .07em;
+    letter-spacing: .06em;
     text-align: center;
     text-transform: uppercase;
 }
 
+body[data-page="event"] .mw-match-scoreboard__score:empty,
 body[data-page="event"] .mw-match-scoreboard__result:empty {
     display: none;
-}
-
-/* ---------- 14. RESULTADOS Y ESTADOS ---------- */
-
-body[data-page="event"] .mw-match-card[data-result="win"] .mw-match-scoreboard__side.is-winner .mw-match-scoreboard__name,
-body[data-page="event"] .mw-match-card[data-result="winner"] .mw-match-scoreboard__side.is-winner .mw-match-scoreboard__name {
-    color: #fff;
-}
-
-body[data-page="event"] .mw-match-card[data-result="draw"] .mw-match-scoreboard__result {
-    color: #e8d28c;
-}
-
-body[data-page="event"] .mw-match-card[data-result="no-contest"] .mw-match-scoreboard__result {
-    color: #b8bec8;
 }
 
 /* ---------- 15. DETALLES DESPLEGABLES ---------- */
 
 body[data-page="event"] .mw-match-details {
-    border-top: 1px solid #262a31;
+    border-top: 1px solid #272c34;
     background: #0b0d11;
 }
 
@@ -848,11 +789,11 @@ body[data-page="event"] .mw-match-details summary {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    min-height: 39px;
+    min-height: 38px;
     padding: 10px 12px;
-    color: #cbd0d8;
+    color: #d2d6de;
     cursor: pointer;
-    font-size: .7rem;
+    font-size: .69rem;
     font-weight: 800;
     letter-spacing: .04em;
     list-style: none;
@@ -866,7 +807,7 @@ body[data-page="event"] .mw-match-details summary::-webkit-details-marker {
 
 body[data-page="event"] .mw-match-details summary::after {
     content: "+";
-    color: var(--match-accent);
+    color: var(--match-accent, var(--event-accent));
     font-size: 1.15rem;
     font-weight: 900;
 }
@@ -876,7 +817,7 @@ body[data-page="event"] .mw-match-details[open] summary::after {
 }
 
 body[data-page="event"] .mw-match-details summary:focus-visible {
-    outline: 2px solid var(--match-accent);
+    outline: 2px solid var(--event-accent);
     outline-offset: -3px;
 }
 
@@ -889,14 +830,9 @@ body[data-page="event"] .mw-match-details > ul {
 body[data-page="event"] .mw-match-details__content p,
 body[data-page="event"] .mw-match-details > div p {
     margin: 7px 0;
-    color: #b7bdc7;
+    color: #b8bec8;
     font-size: .77rem;
     line-height: 1.55;
-}
-
-body[data-page="event"] .mw-match-details__content strong,
-body[data-page="event"] .mw-match-details > div strong {
-    color: #f3f4f6;
 }
 
 body[data-page="event"] .mw-match-stipulations {
@@ -916,7 +852,7 @@ body[data-page="event"] .mw-match-stipulations span {
     font-weight: 700;
 }
 
-/* ---------- 16. ESTADOS VACÍOS Y ERRORES ---------- */
+/* ---------- 16. VACÍOS Y ERRORES ---------- */
 
 body[data-page="event"] .mw-empty,
 body[data-page="event"] .mw-event-empty,
@@ -925,7 +861,7 @@ body[data-page="event"] .mw-event-error {
     border: 1px dashed #343944;
     border-radius: 3px;
     background: #0c0e12;
-    color: var(--mw-muted);
+    color: var(--event-muted);
     font-size: .82rem;
     line-height: 1.6;
     text-align: center;
@@ -936,17 +872,13 @@ body[data-page="event"] .mw-event-empty strong,
 body[data-page="event"] .mw-event-error strong {
     display: block;
     margin-bottom: 6px;
-    color: var(--mw-text);
-    font-family: var(--mw-font-display);
+    color: var(--event-text);
+    font-family: var(--event-display);
     font-size: 1.25rem;
     text-transform: uppercase;
 }
 
-/* ---------- 17. CRONOLOGÍA / EVENTOS RELACIONADOS ---------- */
-
-body[data-page="event"] .mw-event-timeline {
-    min-width: 0;
-}
+/* ---------- 17. CRONOLOGÍA ---------- */
 
 body[data-page="event"] .mw-event-timeline-list,
 body[data-page="event"] .mw-timeline-grid {
@@ -958,18 +890,14 @@ body[data-page="event"] .mw-timeline-grid {
 body[data-page="event"] .mw-timeline-card {
     min-width: 0;
     overflow: hidden;
-    border: 1px solid var(--mw-line);
+    border: 1px solid var(--event-border);
     border-radius: 3px;
     background: #0c0e12;
-    transition: border-color .15s ease, transform .15s ease;
-}
-
-body[data-page="event"] .mw-timeline-card:active {
-    transform: scale(.985);
+    transition: border-color .15s ease;
 }
 
 body[data-page="event"] .mw-timeline-card:hover {
-    border-color: var(--mw-accent);
+    border-color: var(--event-accent);
 }
 
 body[data-page="event"] .mw-timeline-card img {
@@ -991,12 +919,10 @@ body[data-page="event"] .mw-timeline-card h3 {
 
 body[data-page="event"] .mw-timeline-card p {
     margin: 5px 0 0;
-    color: var(--mw-muted);
+    color: var(--event-muted);
     font-size: .67rem;
     line-height: 1.4;
 }
-
-/* Navegación anterior / siguiente */
 
 body[data-page="event"] .mw-event-navigation,
 body[data-page="event"] .mw-timeline-navigation {
@@ -1010,7 +936,7 @@ body[data-page="event"] .mw-event-navigation a,
 body[data-page="event"] .mw-timeline-navigation a {
     min-width: 0;
     padding: 11px;
-    border: 1px solid var(--mw-line);
+    border: 1px solid var(--event-border);
     border-radius: 3px;
     background: #101319;
     font-size: .75rem;
@@ -1020,92 +946,78 @@ body[data-page="event"] .mw-timeline-navigation a {
 
 body[data-page="event"] .mw-event-navigation a:hover,
 body[data-page="event"] .mw-timeline-navigation a:hover {
-    border-color: var(--mw-accent);
+    border-color: var(--event-accent);
 }
 
-/* ---------- 18. TEMAS POR MARCA / EVENTO ---------- */
+/* ---------- 18. TEMAS ---------- */
 
-/* El JS puede asignar data-theme al body o a la tarjeta.
-   Cada tema conserva la misma composición gráfica. */
-
-body[data-page="event"][data-theme="raw"],
-body[data-page="event"] [data-theme="raw"] {
-    --mw-accent: #f02c3b;
-    --mw-accent-rgb: 240, 44, 59;
-    --mw-accent-2: #f4f4f4;
+body[data-page="event"][data-theme="raw"] {
+    --event-accent: #f02c3b;
+    --event-accent-rgb: 240, 44, 59;
+    --event-accent-light: #fff;
 }
 
-body[data-page="event"][data-theme="smackdown"],
-body[data-page="event"] [data-theme="smackdown"] {
-    --mw-accent: #168cff;
-    --mw-accent-rgb: 22, 140, 255;
-    --mw-accent-2: #f3f7ff;
+body[data-page="event"][data-theme="smackdown"] {
+    --event-accent: #168cff;
+    --event-accent-rgb: 22, 140, 255;
+    --event-accent-light: #f3f7ff;
 }
 
-body[data-page="event"][data-theme="nxt"],
-body[data-page="event"] [data-theme="nxt"] {
-    --mw-accent: #f2c532;
-    --mw-accent-rgb: 242, 197, 50;
-    --mw-accent-2: #fff2a5;
+body[data-page="event"][data-theme="nxt"] {
+    --event-accent: #f2c532;
+    --event-accent-rgb: 242, 197, 50;
+    --event-accent-light: #fff2a5;
 }
 
-body[data-page="event"][data-theme="collision"],
-body[data-page="event"] [data-theme="collision"] {
-    --mw-accent: #e83b46;
-    --mw-accent-rgb: 232, 59, 70;
-    --mw-accent-2: #f3f3f3;
+body[data-page="event"][data-theme="collision"] {
+    --event-accent: #e83b46;
+    --event-accent-rgb: 232, 59, 70;
+    --event-accent-light: #f3f3f3;
 }
 
-body[data-page="event"][data-theme="dynamite"],
-body[data-page="event"] [data-theme="dynamite"] {
-    --mw-accent: #37d7ff;
-    --mw-accent-rgb: 55, 215, 255;
-    --mw-accent-2: #087dff;
+body[data-page="event"][data-theme="dynamite"] {
+    --event-accent: #37d7ff;
+    --event-accent-rgb: 55, 215, 255;
+    --event-accent-light: #b8f1ff;
 }
 
-body[data-page="event"][data-theme="aew"],
-body[data-page="event"] [data-theme="aew"] {
-    --mw-accent: #e7edf5;
-    --mw-accent-rgb: 231, 237, 245;
-    --mw-accent-2: #818b99;
+body[data-page="event"][data-theme="aew"] {
+    --event-accent: #e7edf5;
+    --event-accent-rgb: 231, 237, 245;
+    --event-accent-light: #fff;
 }
 
-body[data-page="event"][data-theme="ple"],
-body[data-page="event"] [data-theme="ple"] {
-    --mw-accent: #ffcf52;
-    --mw-accent-rgb: 255, 207, 82;
-    --mw-accent-2: #fff2bd;
+body[data-page="event"][data-theme="ple"] {
+    --event-accent: #ffcf52;
+    --event-accent-rgb: 255, 207, 82;
+    --event-accent-light: #fff2bd;
 }
 
-body[data-page="event"][data-theme="special"],
-body[data-page="event"] [data-theme="special"] {
-    --mw-accent: #a98aff;
-    --mw-accent-rgb: 169, 138, 255;
-    --mw-accent-2: #e4d8ff;
+body[data-page="event"][data-theme="special"] {
+    --event-accent: #a98aff;
+    --event-accent-rgb: 169, 138, 255;
+    --event-accent-light: #e4d8ff;
 }
 
-body[data-page="event"][data-theme="aaa"],
-body[data-page="event"] [data-theme="aaa"] {
-    --mw-accent: #d52c36;
-    --mw-accent-rgb: 213, 44, 54;
-    --mw-accent-2: #fff;
+body[data-page="event"][data-theme="aaa"] {
+    --event-accent: #d52c36;
+    --event-accent-rgb: 213, 44, 54;
+    --event-accent-light: #fff;
 }
 
-body[data-page="event"][data-theme="tna"],
-body[data-page="event"] [data-theme="tna"] {
-    --mw-accent: #ef3038;
-    --mw-accent-rgb: 239, 48, 56;
-    --mw-accent-2: #e8e8e8;
+body[data-page="event"][data-theme="tna"] {
+    --event-accent: #ef3038;
+    --event-accent-rgb: 239, 48, 56;
+    --event-accent-light: #fff;
 }
 
-body[data-page="event"][data-theme="speed"],
-body[data-page="event"] [data-theme="speed"] {
-    --mw-accent: #00d5ff;
-    --mw-accent-rgb: 0, 213, 255;
-    --mw-accent-2: #f4f8ff;
+body[data-page="event"][data-theme="speed"] {
+    --event-accent: #00d5ff;
+    --event-accent-rgb: 0, 213, 255;
+    --event-accent-light: #f4f8ff;
 }
 
-/* ---------- 19. TABLET / PC ---------- */
+/* ---------- 19. PC ---------- */
 
 @media (min-width: 700px) {
     body[data-page="event"] .mw-event-page {
@@ -1113,16 +1025,19 @@ body[data-page="event"] [data-theme="speed"] {
         padding-top: 24px;
     }
 
-    body[data-page="event"] .mw-event-detail-hero,
-    body[data-page="event"] .page-hero.mw-event-detail-hero {
-        grid-template-columns: minmax(190px, 28%) minmax(0, 1fr);
+    body[data-page="event"] .mw-page-header {
+        padding: 24px;
+    }
+
+    body[data-page="event"] .mw-event-detail-hero {
+        grid-template-columns: minmax(200px, 27%) minmax(0, 1fr);
         align-items: stretch;
         gap: 22px;
-        padding: 18px;
+        padding: 20px;
     }
 
     body[data-page="event"] .mw-event-poster {
-        min-height: 155px;
+        min-height: 150px;
         max-height: 220px;
         height: 100%;
     }
@@ -1148,16 +1063,15 @@ body[data-page="event"] [data-theme="speed"] {
     }
 }
 
-/* ---------- 20. PANTALLAS GRANDES ---------- */
+/* ---------- 20. PC GRANDE ---------- */
 
 @media (min-width: 1100px) {
     body[data-page="event"] .mw-event-page {
         width: min(100% - 64px, 1500px);
     }
 
-    body[data-page="event"] .mw-event-detail-hero,
-    body[data-page="event"] .page-hero.mw-event-detail-hero {
-        grid-template-columns: minmax(230px, 26%) minmax(0, 1fr);
+    body[data-page="event"] .mw-event-detail-hero {
+        grid-template-columns: minmax(230px, 25%) minmax(0, 1fr);
         gap: 26px;
         padding: 22px;
     }
@@ -1166,19 +1080,8 @@ body[data-page="event"] [data-theme="speed"] {
         min-height: 180px;
     }
 
-    body[data-page="event"] .mw-event-detail-hero h1,
-    body[data-page="event"] .mw-event-detail-hero .page-title {
+    body[data-page="event"] .mw-event-detail-hero h1 {
         font-size: clamp(3rem, 4vw, 4.5rem);
-    }
-
-    body[data-page="event"] .mw-event-matches-list,
-    body[data-page="event"] #mw-event-matches,
-    body[data-page="event"] .mw-match-list {
-        gap: 20px;
-    }
-
-    body[data-page="event"] .mw-match-scoreboard {
-        padding: 13px 16px;
     }
 
     body[data-page="event"] .mw-event-timeline-list,
@@ -1187,7 +1090,7 @@ body[data-page="event"] [data-theme="speed"] {
     }
 }
 
-/* ---------- 21. MÓVILES ---------- */
+/* ---------- 21. MÓVIL ---------- */
 
 @media (max-width: 699px) {
     body[data-page="event"] .mw-event-page {
@@ -1195,51 +1098,41 @@ body[data-page="event"] [data-theme="speed"] {
         padding: 12px 0 28px;
     }
 
-    body[data-page="event"] .mw-event-detail-hero,
-    body[data-page="event"] .page-hero.mw-event-detail-hero {
+    body[data-page="event"] .mw-page-header {
+        padding: 14px;
+    }
+
+    body[data-page="event"] .mw-event-title {
+        font-size: clamp(2.3rem, 10vw, 3.5rem);
+    }
+
+    body[data-page="event"] .mw-event-description {
+        font-size: .8rem;
+    }
+
+    body[data-page="event"] .mw-event-content {
+        gap: 18px;
+        margin-top: 12px;
+    }
+
+    body[data-page="event"] .mw-event-detail-hero {
         grid-template-columns: minmax(0, 1fr);
         gap: 12px;
-        padding: 12px;
+        padding: 11px;
     }
 
     body[data-page="event"] .mw-event-poster {
-        width: 100%;
-        min-height: 95px;
-        max-height: 145px;
-        padding: 8px;
+        min-height: 90px;
+        max-height: 140px;
+        padding: 7px;
     }
 
     body[data-page="event"] .mw-event-poster img {
-        max-height: 125px;
+        max-height: 120px;
     }
 
-    body[data-page="event"] .mw-event-detail-hero h1,
-    body[data-page="event"] .mw-event-detail-hero .page-title {
+    body[data-page="event"] .mw-event-detail-hero h1 {
         font-size: clamp(2rem, 9vw, 3rem);
-    }
-
-    body[data-page="event"] .mw-event-detail-hero p {
-        margin: 7px 0;
-        font-size: .78rem;
-    }
-
-    body[data-page="event"] .mw-event-detail-hero .mw-event-meta,
-    body[data-page="event"] .mw-event-detail-hero .event-meta,
-    body[data-page="event"] .mw-event-detail-hero .hero-meta {
-        margin-top: 9px;
-        gap: 5px;
-    }
-
-    body[data-page="event"] .mw-event-detail-hero .mw-event-meta > *,
-    body[data-page="event"] .mw-event-detail-hero .event-meta > *,
-    body[data-page="event"] .mw-event-detail-hero .hero-meta > * {
-        padding: 5px 7px;
-        font-size: .62rem;
-    }
-
-    body[data-page="event"] .mw-event-page section + section,
-    body[data-page="event"] main.site-main section + section {
-        margin-top: 20px;
     }
 
     body[data-page="event"] .mw-event-stats,
@@ -1257,34 +1150,23 @@ body[data-page="event"] [data-theme="speed"] {
         font-size: 1.4rem;
     }
 
-    body[data-page="event"] .mw-event-matches-list,
-    body[data-page="event"] #mw-event-matches,
-    body[data-page="event"] .mw-match-list {
-        gap: 12px;
-    }
-
     body[data-page="event"] .mw-match-card__header,
     body[data-page="event"] .mw-match-header {
         min-height: 31px;
         padding: 7px 8px;
-        gap: 6px;
+        gap: 5px;
     }
 
     body[data-page="event"] .mw-match-type,
     body[data-page="event"] .mw-match-format {
-        font-size: .59rem;
-    }
-
-    body[data-page="event"] .mw-match-status,
-    body[data-page="event"] .mw-match-result-label {
-        font-size: .56rem;
+        font-size: .58rem;
     }
 
     body[data-page="event"] .mw-match-championship,
     body[data-page="event"] .mw-championship-bar {
-        min-height: 27px;
+        min-height: 26px;
         padding: 5px 7px;
-        font-size: .78rem;
+        font-size: .76rem;
     }
 
     body[data-page="event"] .mw-match-scoreboard {
@@ -1293,28 +1175,18 @@ body[data-page="event"] [data-theme="speed"] {
     }
 
     body[data-page="event"] .mw-match-scoreboard__side {
-        gap: 5px;
+        gap: 4px;
     }
 
     body[data-page="event"] .mw-match-scoreboard__name {
-        font-size: clamp(.76rem, 3.4vw, 1rem);
+        font-size: clamp(.73rem, 3.4vw, .98rem);
     }
 
     body[data-page="event"] .mw-match-scoreboard__score {
-        min-width: 22px;
-        min-height: 24px;
+        min-width: 21px;
+        min-height: 23px;
         padding: 3px;
-        font-size: .92rem;
-    }
-
-    body[data-page="event"] .mw-match-scoreboard__separator {
-        font-size: 1rem;
-    }
-
-    body[data-page="event"] .mw-match-details summary {
-        min-height: 36px;
-        padding: 9px;
-        font-size: .65rem;
+        font-size: .88rem;
     }
 
     body[data-page="event"] .mw-match-art--battle-royal,
@@ -1335,11 +1207,7 @@ body[data-page="event"] [data-theme="speed"] {
     body[data-page="event"] .mw-match-art--multi[data-count="5"],
     body[data-page="event"] .mw-match-art[data-layout="multi"][data-count="5"],
     body[data-page="event"] .mw-match-art--multi[data-count="6"],
-    body[data-page="event"] .mw-match-art[data-layout="multi"][data-count="6"] {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        aspect-ratio: 4 / 3;
-    }
-
+    body[data-page="event"] .mw-match-art[data-layout="multi"][data-count="6"],
     body[data-page="event"] .mw-match-art--multi[data-count="7"],
     body[data-page="event"] .mw-match-art[data-layout="multi"][data-count="7"],
     body[data-page="event"] .mw-match-art--multi[data-count="8"],
@@ -1362,25 +1230,20 @@ body[data-page="event"] [data-theme="speed"] {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
     }
-
-    body[data-page="event"] .mw-timeline-card__body {
-        padding: 8px;
-    }
-
-    body[data-page="event"] .mw-timeline-card h3 {
-        font-size: .88rem;
-    }
 }
 
-/* ---------- 22. MÓVILES MUY ESTRECHOS ---------- */
+/* ---------- 22. TELÉFONOS ESTRECHOS ---------- */
 
 @media (max-width: 360px) {
     body[data-page="event"] .mw-event-page {
         width: calc(100% - 14px);
     }
 
-    body[data-page="event"] .mw-event-detail-hero,
-    body[data-page="event"] .page-hero.mw-event-detail-hero {
+    body[data-page="event"] .mw-page-header {
+        padding: 11px;
+    }
+
+    body[data-page="event"] .mw-event-detail-hero {
         padding: 9px;
     }
 
@@ -1390,13 +1253,13 @@ body[data-page="event"] [data-theme="speed"] {
     }
 
     body[data-page="event"] .mw-match-scoreboard__name {
-        font-size: .72rem;
+        font-size: .7rem;
     }
 
     body[data-page="event"] .mw-match-scoreboard__score {
         min-width: 19px;
-        min-height: 22px;
-        font-size: .82rem;
+        min-height: 21px;
+        font-size: .8rem;
     }
 
     body[data-page="event"] .mw-match-art--battle-royal,
@@ -1411,7 +1274,7 @@ body[data-page="event"] [data-theme="speed"] {
     }
 }
 
-/* ---------- 23. ACCESIBILIDAD / MOVIMIENTO ---------- */
+/* ---------- 23. ACCESIBILIDAD ---------- */
 
 @media (prefers-reduced-motion: reduce) {
     body[data-page="event"] *,
@@ -1421,24 +1284,5 @@ body[data-page="event"] [data-theme="speed"] {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
-    }
-}
-
-/* ---------- 24. IMPRESIÓN ---------- */
-
-@media print {
-    body[data-page="event"] .mw-event-page {
-        width: 100%;
-        padding: 0;
-    }
-
-    body[data-page="event"] .mw-match-card,
-    body[data-page="event"] .mw-event-detail-hero {
-        break-inside: avoid;
-        box-shadow: none;
-    }
-
-    body[data-page="event"] .mw-match-details:not([open]) > *:not(summary) {
-        display: block;
     }
 }
