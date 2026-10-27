@@ -1,4 +1,55 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Equipos y agrupaciones"><title>Equipos | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/teams.css">
-  <script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="teams"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Equipos</h1><p class="lead">Equipos y agrupaciones</p></section><p class="notice">Cargando catálogo…</p>
-  </main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#05070b">
+    <meta name="description" content="Equipos, parejas y agrupaciones de MI WRESTLING 2.0.">
+    <title>Equipos | MI WRESTLING 2.0</title>
 
+    <!-- Fuentes base -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/mi-wrestling.css">
+    <link rel="stylesheet" href="css/pages/teams.css">
+
+    <!-- Sistema de datos -->
+  
+    <script src="js/theme-rotation.js" defer></script>
+    
+    <!-- Sistema global y sonidos -->
+    <script src="js/mi-wrestling.js" defer></script>
+    <script src="js/sound-effects.js" defer></script>
+</head>
+<body data-page="teams">
+    <main class="site-main mw-teams-page" data-page-content>
+
+        <!-- Encabezado -->
+        <header class="mw-page-header teams-hero">
+            <div class="teams-hero-content">
+                <div class="teams-eyebrow">
+                    <span>MI WRESTLING 2.0</span>
+                    <span>/</span>
+                    <span>TAG TEAMS &amp; FACTIONS</span>
+                </div>
+                <h1 class="teams-title"><span>EQUIPOS</span></h1>
+                <p class="teams-description">LAS ALIANZAS HACEN HISTORIA.<span>Parejas, equipos y agrupaciones que dejaron su marca en el universo de MI WRESTLING.</span></p>
+            </div>
+        </header>
+
+        <!-- Catálogo -->
+        <section id="teams-grid" class="mw-teams-grid" aria-label="Catálogo de equipos" aria-live="polite">
+            <p class="mw-catalog-loading">CARGANDO EQUIPOS…</p>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="mw-modal-root" id="mw-modal-root"></div>
+
+    <!-- Pie de página -->
+    <footer class="footer">MI WRESTLING 2.0 · TAG TEAMS &amp; FACTIONS</footer>
+</body>
+</html>
