@@ -352,7 +352,7 @@ body[data-page="event"] .mw-event-section-heading > span {
 
 /* ==========================================================
    TARJETAS DE COMBATE
-   Compatible con js/components/match-card.js
+   Tarjetas autogeneradas por js/pages/event.js; sin dependencia externa
    ========================================================== */
 
 body[data-page="event"] .mw-event-matches {
@@ -958,4 +958,231 @@ body[data-page="event"] .mw-event-loading {
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
     }
+}
+
+
+/* ==========================================================
+   CAPA VISUAL 2.0 — MATCH CARDS CON RETRATOS Y FACE-OFF
+   ========================================================== */
+body[data-page="event"] .mw-event-matches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(12px, 1.5vw, 22px);
+}
+
+body[data-page="event"] .mw-match-card {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.035), transparent 38%),
+        linear-gradient(145deg, rgba(20,25,36,.99), rgba(6,9,15,.99));
+    border-color: rgba(255,255,255,.13);
+}
+
+body[data-page="event"] .mw-match-card::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+    opacity: .38;
+    background: radial-gradient(ellipse at 50% 0%, rgba(var(--event-accent-rgb),.15), transparent 65%);
+}
+
+body[data-page="event"] .mw-match-position {
+    padding: 7px 14px 0;
+    color: var(--event-accent);
+    font: 900 10px/1.4 "Inter", sans-serif;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+body[data-page="event"] .mw-match-faceoff {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 74px minmax(0,1fr);
+    align-items: stretch;
+    gap: 0;
+    padding: 15px 12px 17px;
+}
+
+body[data-page="event"] .mw-match-faceoff > .mw-match-participant {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.09);
+    background: rgba(255,255,255,.025);
+}
+
+body[data-page="event"] .mw-match-faceoff > .mw-match-participant:first-child {
+    border-radius: 3px 0 0 3px;
+    text-align: left;
+}
+body[data-page="event"] .mw-match-faceoff > .mw-match-participant:last-child {
+    border-radius: 0 3px 3px 0;
+    text-align: right;
+}
+
+body[data-page="event"] .mw-match-participant__portrait {
+    position: relative;
+    display: grid;
+    place-items: end center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    min-height: 74px;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, rgba(var(--event-accent-rgb),.10), transparent),
+        linear-gradient(135deg, #202735, #0a0d14);
+}
+
+body[data-page="event"] .mw-match-participant__portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    transition: transform .35s ease, filter .35s ease;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    body[data-page="event"] .mw-match-card:hover .mw-match-participant__portrait img {
+        transform: scale(1.045);
+        filter: saturate(1.08);
+    }
+}
+
+body[data-page="event"] .mw-match-participant__portrait > span {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 74px;
+    color: rgba(255,255,255,.75);
+    font: 900 clamp(22px,3vw,36px)/1 "Barlow Condensed",sans-serif;
+    letter-spacing: .06em;
+}
+body[data-page="event"] .mw-match-participant__portrait img:not([hidden]) + span { display:none; }
+body[data-page="event"] .mw-match-participant__portrait img[hidden] + span { display:grid; }
+body[data-page="event"] .mw-match-participant__portrait.is-empty > span { display:grid; }
+
+body[data-page="event"] .mw-match-faceoff .mw-match-participant__identity {
+    display: grid;
+    gap: 5px;
+    width: 100%;
+    padding: 10px 9px 8px;
+    text-align: inherit;
+}
+body[data-page="event"] .mw-match-faceoff .mw-match-wrestler {
+    font: 900 clamp(12px,1.15vw,16px)/1.12 "Barlow Condensed",sans-serif;
+    text-transform: uppercase;
+}
+body[data-page="event"] .mw-match-faceoff > .mw-match-participant:last-child .mw-match-participant__identity { justify-items:end; }
+body[data-page="event"] .mw-match-faceoff .mw-match-participant__result {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    padding: 0 9px 10px;
+}
+body[data-page="event"] .mw-match-faceoff .mw-match-participant__result > strong { font-size: 19px; }
+body[data-page="event"] .mw-match-faceoff .mw-match-result { font-size: 8px; }
+
+body[data-page="event"] .mw-match-faceoff__center {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    margin-inline: -1px;
+    padding: 10px 3px;
+    background: linear-gradient(180deg, rgba(var(--event-accent-rgb),.18), rgba(0,0,0,.92) 35%, rgba(0,0,0,.92) 65%, rgba(var(--event-accent-rgb),.12));
+    border-block: 1px solid rgba(var(--event-accent-rgb),.48);
+    clip-path: polygon(15% 0,100% 0,85% 100%,0 100%);
+}
+body[data-page="event"] .mw-match-faceoff__center > span {
+    color: var(--event-accent);
+    font: italic 900 18px/1 "Barlow Condensed",sans-serif;
+    text-shadow: 0 0 16px rgba(var(--event-accent-rgb),.35);
+}
+body[data-page="event"] .mw-match-faceoff__center > strong {
+    color: #fff;
+    font: 900 14px/1.1 "Barlow Condensed",sans-serif;
+    white-space: nowrap;
+}
+body[data-page="event"] .mw-match-faceoff__center > strong i { color: var(--event-accent); font-style: normal; padding-inline: 2px; }
+body[data-page="event"] .mw-match-faceoff__center > strong.is-pending {
+    max-width: 65px;
+    color: #b6c0d0;
+    font: 800 7px/1.25 "Inter",sans-serif;
+    text-align: center;
+    white-space: normal;
+}
+
+body[data-page="event"] .mw-match-participants.is-multitudinous {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    align-items: stretch;
+    gap: 8px;
+}
+body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-participant {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+}
+body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-participant__portrait { aspect-ratio: 3 / 4; min-height: 0; }
+body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-participant__identity { padding: 7px 6px; }
+body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-wrestler { font-size: 12px; }
+body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-participant__result { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; padding:0 6px 7px; }
+body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-result { font-size:7px; }
+body[data-page="event"] .mw-match-no-participants { color: var(--event-muted); font: 600 12px/1.6 "Inter",sans-serif; list-style:none; }
+body[data-page="event"] .mw-match-scoreline { margin-top: 0; }
+
+/* La cabecera conserva el protagonismo del evento y permite pósteres 16:9 o verticales sin deformarlos. */
+body[data-page="event"] .mw-event-detail-hero { align-items: center; }
+body[data-page="event"] .mw-event-poster img { object-fit: contain; }
+body[data-page="event"] .mw-event-poster__fallback { display:none; }
+body[data-page="event"] .mw-event-poster.is-empty .mw-event-poster__fallback { display:grid; }
+body[data-page="event"] .mw-event-detail-meta > span { max-width:100%; overflow-wrap:anywhere; }
+body[data-page="event"] .mw-event-timeline-card__image img { object-fit: contain; }
+
+@media (max-width: 900px) {
+    body[data-page="event"] .mw-event-matches { grid-template-columns: minmax(0,1fr); }
+    body[data-page="event"] .mw-match-faceoff { grid-template-columns: minmax(0,1fr) 76px minmax(0,1fr); }
+    body[data-page="event"] .mw-match-participants.is-multitudinous { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+
+@media (max-width: 520px) {
+    body[data-page="event"] .mw-event-matches { gap: 13px; }
+    body[data-page="event"] .mw-match-card__header { padding: 11px 12px; }
+    body[data-page="event"] .mw-match-faceoff { grid-template-columns: minmax(0,1fr) 58px minmax(0,1fr); padding: 12px 8px 13px; }
+    body[data-page="event"] .mw-match-faceoff__center > span { font-size: 15px; }
+    body[data-page="event"] .mw-match-faceoff__center > strong { font-size: 12px; }
+    body[data-page="event"] .mw-match-faceoff .mw-match-participant__identity { padding: 8px 7px; }
+    body[data-page="event"] .mw-match-faceoff .mw-match-wrestler { font-size: 13px; }
+    body[data-page="event"] .mw-match-faceoff .mw-match-result { font-size: 7px; padding: 4px; }
+    body[data-page="event"] .mw-match-participants.is-multitudinous { grid-template-columns: repeat(2,minmax(0,1fr)); padding: 11px; gap: 7px; }
+    body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-wrestler { font-size: 12px; }
+    body[data-page="event"] .mw-match-participants.is-multitudinous .mw-match-participant__portrait { aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 350px) {
+    body[data-page="event"] .mw-match-faceoff { grid-template-columns: minmax(0,1fr) 48px minmax(0,1fr); padding-inline: 5px; }
+    body[data-page="event"] .mw-match-faceoff .mw-match-wrestler { font-size: 12px; }
+    body[data-page="event"] .mw-match-faceoff .mw-match-participant__result { padding-inline: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-page="event"] .mw-match-participant__portrait img { transition:none; }
 }
