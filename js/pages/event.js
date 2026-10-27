@@ -25,7 +25,7 @@
         })[char]);
 
     const get = async path => {
-        const response = await fetch(path);
+        const response = await fetch(path, { headers: { Accept: "application/json" } });
 
         if (!response.ok) {
             throw new Error(
@@ -114,15 +114,10 @@
                     alt="Póster de ${esc(eventName(event))}"
                     loading="eager"
                     fetchpriority="high"
-                    onerror="
-                        this.remove();
-                        this.parentElement.innerHTML =
-                            '<div class=&quot;mw-event-poster__fallback&quot;>' +
-                            this.parentElement.dataset.fallback +
-                            '</div>';
-                    "
-                    data-fallback="${esc(eventName(event))}"
+                    decoding="async"
+                    onerror="this.hidden=true; this.parentElement.classList.add('is-empty')"
                 >
+                <div class="mw-event-poster__fallback">${esc(eventName(event))}</div>
             </div>
         `;
     }
@@ -221,6 +216,97 @@
         `;
     }
 
+    const asArray = value => Array.isArray(value) ? value : [];
+    const norm = value => String(value || "").trim().toLowerCase();
+    const hasResult = match => {
+        const participants = asArray(match.participants);
+        return participants.some(p => ["win", "loss", "draw", "no-contest"].includes(norm(p.result))) ||
+            Boolean(match.winner) || asArray(match.winnerIds).length > 0;
+    };
+    const participantResult = (match, participant) => {
+        const explicit = norm(participant.result);
+        if (["win", "loss", "draw", "no-contest"].includes(explicit)) return explicit;
+        const winnerIds = asArray(match.winnerIds).map(String);
+        if (participant.wrestlerId && winnerIds.includes(String(participant.wrestlerId))) return "win";
+        if (winnerIds.length && participant.wrestlerId && !winnerIds.includes(String(participant.wrestlerId))) return "loss";
+        return "pending";
+    };
+    const resultLabel = result => ({ win: "Victoria", loss: "Derrota", draw: "Empate", "no-contest": "Sin resultado", pending: "Pendiente" })[result] || "Pendiente";
+    const personName = (participant, wrestlerMap) => {
+        const wrestler = wrestlerMap.get(String(participant.wrestlerId || ""));
+        return wrestler?.name || participant.wrestlerName || participant.name || participant.wrestlerId || "Superestrella sin vincular";
+    };
+    const imagePath = value => {
+        const raw = String(value || "").trim();
+        if (!raw || /^(javascript|data|vbscript):/i.test(raw)) return "";
+        return raw;
+    };
+
+    function renderMatchCard(match, context) {
+        const { wrestlerMap, personaMap, teamMap } = context;
+        const participants = asArray(match.participants).filter(p => !p.role || p.role === "competitor");
+        const legacy = match.legacy || {};
+        const rawType = norm(match.type || "");
+        const typeLabels = {
+            singles: "Singles", "one-on-one": "Singles", tag: "Tag Team", "tag-team": "Tag Team",
+            trios: "Trios", "six-man-tag": "Six-Man Tag", "multi-person": "Combate multitudinario",
+            "battle-royal": "Battle Royal", "royal-rumble": "Royal Rumble", fatal4way: "Fatal 4-Way",
+            "fatal-4-way": "Fatal 4-Way", tournament: "Combate de torneo", "triple-threat": "Triple Threat"
+        };
+        const type = typeLabels[rawType] || match.type || (participants.length === 2 ? "Singles" : participants.length > 2 ? "Combate multitudinario" : "Combate");
+        const score = Array.isArray(match.sideScores) ? match.sideScores : Array.isArray(match.score) ? match.score :
+            legacy.score1 !== undefined && legacy.score2 !== undefined && legacy.score1 !== null && legacy.score2 !== null ? [legacy.score1, legacy.score2] : null;
+        const championship = match.championship || match.championshipName || (match.championshipId ? String(match.championshipId).replace(/-/g, " ") : "");
+        const isRumble = /rumble|battle.?royal|multi.?person|fatal.?4|triple.?threat/i.test(`${rawType} ${type}`) || participants.length > 4;
+        const sideValue = p => String(p.side || p.teamId || p.sideLabel || "");
+        const sideKeys = [...new Set(participants.map(sideValue).filter(Boolean))];
+        const grouped = sideKeys.length > 1;
+        const resultMarkup = p => {
+            const result = participantResult(match, p);
+            const scoreValue = p.score !== undefined && p.score !== null && p.score !== "" ? `<strong>${esc(p.score)}</strong>` : "";
+            return `<span class="mw-match-participant__result">${scoreValue}<span class="mw-match-result is-${esc(result)}">${esc(resultLabel(result))}</span></span>`;
+        };
+        const participantMarkup = (p, index, asFaceoff = false) => {
+            const tag = asFaceoff ? "div" : "li";
+            const wrestler = wrestlerMap.get(String(p.wrestlerId || ""));
+            const persona = personaMap.get(String(p.interpreterId || ""));
+            const team = teamMap.get(String(p.teamId || ""));
+            const name = personName(p, wrestlerMap);
+            const image = imagePath(wrestler?.image || p.image || "");
+            const result = participantResult(match, p);
+            return `<${tag} class="mw-match-participant mw-match-participant--visual is-${esc(result)}">
+                <div class="mw-match-participant__portrait">${image ? `<img src="${esc(image)}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.parentElement.classList.add('is-empty')">` : ""}<span aria-hidden="true">${esc(name.split(/\s+/).slice(0,2).map(x=>x[0]||"").join("").toUpperCase())}</span></div>
+                <div class="mw-match-participant__identity"><a class="mw-match-wrestler" href="superstar.html?id=${encodeURIComponent(p.wrestlerId || "")}">${esc(name)}</a>${team ? `<a class="mw-match-team-link" href="team.html?id=${encodeURIComponent(team.id)}">${esc(team.name)}</a>` : ""}${persona ? `<span class="mw-match-interpreter">Intérprete: <a href="persona.html?id=${encodeURIComponent(persona.id)}">${esc(persona.name)}</a></span>` : ""}</div>
+                ${resultMarkup(p)}
+            </${tag}>`;
+        };
+        let participantsMarkup = "";
+        if (grouped) {
+            participantsMarkup = `<div class="mw-match-sides">${sideKeys.map((key, i) => {
+                const group = participants.filter(p => sideValue(p) === key);
+                const team = teamMap.get(String(group.find(p => p.teamId)?.teamId || ""));
+                return `<section class="mw-match-side"><h4>${esc(team?.name || group[0]?.sideLabel || `Equipo ${i+1}`)}</h4><ul>${group.map((p, j) => participantMarkup(p, j)).join("")}</ul></section>`;
+            }).join('<span class="mw-match-vs" aria-label="contra">VS</span>')}</div>`;
+        } else if (participants.length === 2 && !isRumble) {
+            participantsMarkup = `<div class="mw-match-faceoff">${participantMarkup(participants[0], 0, true)}<div class="mw-match-faceoff__center"><span>VS</span>${score ? `<strong>${esc(score[0] ?? "—")} <i>–</i> ${esc(score[1] ?? "—")}</strong>` : `<strong class="is-pending">${hasResult(match) ? "RESULTADO" : "POR LUCHAR"}</strong>`}</div>${participantMarkup(participants[1], 1, true)}</div>`;
+        } else {
+            participantsMarkup = `<ul class="mw-match-participants${isRumble ? " is-multitudinous" : ""}">${participants.map((p, i) => participantMarkup(p, i)).join("") || "<li class=\"mw-match-no-participants\">Participantes pendientes de registrar.</li>"}</ul>${score ? `<div class="mw-match-scoreline"><strong>${esc(score[0] ?? "—")}</strong><span>–</span><strong>${esc(score[1] ?? "—")}</strong></div>` : ""}`;
+        }
+        const officials = asArray(match.officials).map(o => {
+            const person = personaMap.get(String(o.interpreterId || ""));
+            const role = ({ referee: "Árbitro", timekeeper: "Cronometrador", commentator: "Comentarista", other: "Oficial" })[o.role] || "Oficial";
+            return `<li><b>${esc(role)}:</b> ${esc(person?.name || o.interpreterId || "No registrado")}</li>`;
+        });
+        const notes = match.notes ? `<p>${esc(match.notes)}</p>` : "";
+        return `<article class="mw-match-card${isRumble ? " is-multitudinous" : ""}" data-match-type="${esc(rawType || "unknown")}">
+            <header class="mw-match-card__header"><span class="mw-match-type">${esc(type)}${match.format ? ` · ${esc(match.format)}` : ""}</span><time>${esc(shortDate(match.date || ""))}</time></header>
+            ${championship ? `<div class="mw-match-title-ribbon">${esc(championship)}${match.titleOnLine || match.forTitle ? " · EN JUEGO" : ""}</div>` : ""}
+            ${match.position ? `<div class="mw-match-position">${esc(match.position)}</div>` : ""}
+            ${participantsMarkup}
+            <details class="mw-match-details"><summary>Detalles del combate</summary><div class="mw-match-details__content"><h4>Formato</h4><p>${esc(type)}${match.format ? ` (${esc(match.format)})` : ""}</p><h4>Participantes e intérpretes</h4><ul>${participants.map(p => { const wrestler = wrestlerMap.get(String(p.wrestlerId || "")); const persona = personaMap.get(String(p.interpreterId || "")); return `<li>${esc(wrestler?.name || p.name || p.wrestlerId || "Superestrella")}: ${esc(persona?.name || "intérprete no registrado")}</li>`; }).join("") || "<li>Sin participantes registrados.</li>"}</ul><h4>Árbitros y oficiales</h4><ul>${officials.join("") || "<li>No se registraron oficiales.</li>"}</ul>${notes}</div></details>
+        </article>`;
+    }
+
     function renderEmpty(title, message, backLink = "events.html") {
         main.innerHTML = `
             <section class="mw-event-empty">
@@ -255,6 +341,13 @@
             get("data/teams/teams.json").catch(() => []),
             get("data/events/events.json").catch(() => [])
         ]);
+
+        if (!catalog || !Array.isArray(catalog.categories)) {
+            throw new Error("El catálogo de eventos no contiene una lista válida de categorías.");
+        }
+        if (!Array.isArray(matches) || !Array.isArray(wrestlers) || !Array.isArray(personas)) {
+            throw new Error("Uno de los archivos principales de datos no tiene el formato esperado.");
+        }
 
         const events = [];
         const seasons = [];
@@ -347,29 +440,14 @@
             `events.html?category=${encodeURIComponent(backCategory)}` +
             (event.year ? `&year=${encodeURIComponent(event.year)}` : "");
 
-        // 3. Resultados: usa el componente central existente.
-        const cards =
-            eventMatches.length && window.MIW_MATCH_CARD
-                ? eventMatches.map(match =>
-                    window.MIW_MATCH_CARD.render(match, {
-                        wrestlers,
-                        personas,
-                        events,
-                        teams
-                    })
-                ).join("")
-                : `
-                    <div class="mw-event-empty">
-                        <h2>Cartelera pendiente</h2>
-                        <p>
-                            ${
-                                eventMatches.length
-                                    ? "No se encontró el componente de tarjetas de combate."
-                                    : "Este evento todavía no tiene combates vinculados. No se inventan resultados."
-                            }
-                        </p>
-                    </div>
-                `;
+        // 3. Las tarjetas se generan aquí: event.html no depende de match-card.js.
+        const wrestlerMap = new Map(asArray(wrestlers).map(item => [String(item.id), item]));
+        const personaMap = new Map(asArray(personas).map(item => [String(item.id), item]));
+        const teamMap = new Map(asArray(teams).map(item => [String(item.id), item]));
+        const matchContext = { wrestlerMap, personaMap, teamMap };
+        const cards = eventMatches.length
+            ? eventMatches.map(match => renderMatchCard(match, matchContext)).join("")
+            : `<div class="mw-event-empty"><h2>Cartelera pendiente</h2><p>Este evento todavía no tiene combates vinculados. No se inventan participantes ni resultados.</p></div>`;
 
         // 4. Preparar cronología de la misma categoría.
         const categoryEvents = events
@@ -414,14 +492,7 @@
 
         // 5. Datos derivados del archivo, sin inventar cifras.
         const matchCount = eventMatches.length;
-        const finishedCount = eventMatches.filter(match =>
-            (match.participants || []).some(participant =>
-                ["win", "loss", "draw", "no-contest"].includes(
-                    String(participant.result || "").toLowerCase()
-                )
-            ) || Boolean(match.winner) ||
-            (Array.isArray(match.winnerIds) && match.winnerIds.length > 0)
-        ).length;
+        const finishedCount = eventMatches.filter(hasResult).length;
 
         const dateLabel = formatDate(event.date);
         const typeLabel = event.type || category?.name || "Evento";
@@ -454,7 +525,9 @@
                         <span>${esc(typeLabel)}</span>
                         <span>${esc(statusLabel)}</span>
                         ${event.brand ? `<span>${esc(event.brand)}</span>` : ""}
-                        ${event.location ? `<span>${esc(event.location)}</span>` : ""}
+                        ${event.location ? `<span class="mw-event-detail-meta__location">${esc(event.location)}</span>` : ""}
+                        ${event.venue ? `<span>${esc(event.venue)}</span>` : ""}
+                        ${event.country ? `<span>${esc(event.country)}</span>` : ""}
                     </div>
 
                 </div>
@@ -523,8 +596,28 @@
 
         document.title = `${eventName(event)} | MI WRESTLING 2.0`;
 
+        // Acento visual por marca/categoría; el resto de la página conserva la identidad global.
+        const brandKey = norm([event.brand, event.categoryId, event.categoryName, event.type].join(" "));
+        const themes = [
+            { test: /raw/, color: "#e83b46", rgb: "232, 59, 70" },
+            { test: /smack.?down/, color: "#168cff", rgb: "22, 140, 255" },
+            { test: /nxt/, color: "#f4c542", rgb: "244, 197, 66" },
+            { test: /aew/, color: "#e7e7e7", rgb: "231, 231, 231" },
+            { test: /aaa/, color: "#d52c36", rgb: "213, 44, 54" },
+            { test: /tna/, color: "#ef3038", rgb: "239, 48, 56" },
+            { test: /speed/, color: "#00d5ff", rgb: "0, 213, 255" },
+            { test: /ple|premium/, color: "#ffcf52", rgb: "255, 207, 82" },
+            { test: /special/, color: "#a98aff", rgb: "169, 138, 255" }
+        ];
+        const theme = themes.find(item => item.test.test(brandKey));
+        if (theme) {
+            document.body.style.setProperty("--event-accent", theme.color);
+            document.body.style.setProperty("--event-accent-rgb", theme.rgb);
+        }
+
         // Permite que otros scripts conozcan el evento cargado.
         main.dataset.eventId = String(event.id);
+        main.dataset.eventCategory = String(event.categoryId || "");
 
     } catch (error) {
         console.error("[MI WRESTLING] Error al cargar el evento:", error);
