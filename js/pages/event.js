@@ -1,12 +1,6 @@
-
 /* ==========================================================
    MI WRESTLING 2.0 — EVENTO INDIVIDUAL
-   Collision Match Cards · Responsive · Data-driven
-   Compatible con:
-   - Singles, Tag Team, Trios, 4v4 y 5v5
-   - Triple Threat, Fatal 4-Way y combates múltiples
-   - Royal Rumble y Elimination Chamber
-   - Resultados, campeonatos y estipulaciones
+   Collision Match Cards · 16:9 · Data-driven
    ========================================================== */
 
 (async function () {
@@ -18,7 +12,6 @@
 
     if (!main) return;
 
-    const $ = (selector, root = main) => root.querySelector(selector);
     const arr = value => Array.isArray(value) ? value : [];
     const str = value => String(value ?? "").trim();
     const norm = value => str(value).toLowerCase();
@@ -39,19 +32,19 @@
 
     function firstValue(...values) {
         return values.find(value =>
-            value !== undefined &&
-            value !== null &&
-            str(value) !== ""
+            value !== undefined && value !== null && str(value) !== ""
         );
     }
 
     function safeColor(value) {
         const color = str(value);
+
         if (
             /^#[0-9a-f]{3,8}$/i.test(color) ||
             /^rgba?\(\s*[\d.%\s,]+\)$/i.test(color) ||
             /^hsla?\(\s*[\d.%\s,deg]+\)$/i.test(color)
         ) return color;
+
         return "";
     }
 
@@ -80,9 +73,7 @@
 
         const raw = str(value);
         const date = new Date(
-            /^\d{4}-\d{2}-\d{2}$/.test(raw)
-                ? `${raw}T00:00:00Z`
-                : raw
+            /^\d{4}-\d{2}-\d{2}$/.test(raw) ? `${raw}T00:00:00Z` : raw
         );
 
         return Number.isNaN(date.getTime()) ? null : date;
@@ -139,7 +130,6 @@
 
     /* ======================================================
        IDENTIDAD DEL EVENTO
-       Prioridad: logo específico, nunca confundirlo con póster.
        ====================================================== */
 
     function getEventLogo(event) {
@@ -166,7 +156,10 @@
                         alt="Logo de ${esc(eventName(event))}"
                         fetchpriority="high"
                         decoding="async"
-                        onerror="this.hidden=true;this.parentElement.classList.remove('has-logo')">
+                        onerror="
+                            this.hidden=true;
+                            this.parentElement.classList.remove('has-logo')
+                        ">
                     <span class="mw-event-logo__fallback">
                         ${esc(eventName(event))}
                     </span>
@@ -247,12 +240,10 @@
     const validResults = ["win", "loss", "draw", "no-contest"];
 
     function winnerIds(match) {
-        const values = [
+        return [
             ...arr(match.winnerIds),
             ...(match.winnerId != null ? [match.winnerId] : [])
-        ];
-
-        return values.map(String);
+        ].map(String);
     }
 
     function participantResult(match, participant) {
@@ -261,15 +252,13 @@
         if (validResults.includes(explicit)) return explicit;
 
         const winners = winnerIds(match);
-        const participantIds = [
+        const ids = [
             participant.wrestlerId,
             participant.id
         ].filter(value => value != null).map(String);
 
-        if (winners.length && participantIds.length) {
-            return participantIds.some(id => winners.includes(id))
-                ? "win"
-                : "loss";
+        if (winners.length && ids.length) {
+            return ids.some(id => winners.includes(id)) ? "win" : "loss";
         }
 
         const global = norm(match.result);
@@ -314,15 +303,15 @@
     function resultText(match, participants) {
         const global = norm(match.result);
 
-        if (global === "draw" ||
-            participants.some(p => participantResult(match, p) === "draw")) {
-            return "EMPATE";
-        }
+        if (
+            global === "draw" ||
+            participants.some(p => participantResult(match, p) === "draw")
+        ) return "EMPATE";
 
-        if (global === "no-contest" ||
-            participants.some(p => participantResult(match, p) === "no-contest")) {
-            return "SIN RESULTADO";
-        }
+        if (
+            global === "no-contest" ||
+            participants.some(p => participantResult(match, p) === "no-contest")
+        ) return "SIN RESULTADO";
 
         return hasResult(match) ? "RESULTADO OFICIAL" : "POR LUCHAR";
     }
@@ -338,13 +327,15 @@
     }
 
     function getPersona(participant, context) {
-        return context.personaMap.get(str(
-            participant.personaId ||
-            participant.alterEgoId ||
-            participant.alteregoId ||
-            participant.interpreterId ||
+        const id = firstValue(
+            participant.personaId,
+            participant.alterEgoId,
+            participant.alteregoId,
+            participant.interpreterId,
             participant.persona?.id
-        )) || null;
+        );
+
+        return context.personaMap.get(str(id)) || null;
     }
 
     function participantInfo(participant, context) {
@@ -379,6 +370,7 @@
             persona?.render,
             persona?.renderImage,
             persona?.webp,
+            persona?.imageWebp,
             persona?.image,
             wrestler?.render,
             wrestler?.renderImage,
@@ -400,7 +392,10 @@
 
     function wrestlerHref(participant) {
         const id = str(participant.wrestlerId);
-        return id ? `superstar.html?id=${encodeURIComponent(id)}` : "";
+
+        return id
+            ? `superstar.html?id=${encodeURIComponent(id)}`
+            : "";
     }
 
     function portraitMarkup(participant, context, index, compact = false) {
@@ -420,14 +415,17 @@
                 class="mw-match-fighter${compact ? " is-compact" : ""} ${resultClass(result)}"
                 data-result="${esc(result)}"
                 data-fighter-index="${index}">
-                <div class="mw-match-fighter__render">
+                <div class="mw-match-fighter__render${image ? "" : " has-fallback"}">
                     ${image ? `
                         <img
                             src="${esc(image)}"
                             alt="${esc(info.name)}"
                             loading="lazy"
                             decoding="async"
-                            onerror="this.hidden=true;this.parentElement.classList.add('has-fallback')">
+                            onerror="
+                                this.hidden=true;
+                                this.parentElement.classList.add('has-fallback')
+                            ">
                     ` : ""}
                     <span class="mw-match-fighter__fallback">
                         ${esc(initials(info.name))}
@@ -436,23 +434,25 @@
                 <div class="mw-match-fighter__identity">
                     ${nameMarkup}
                     ${personaName && personaName !== wrestlerName ? `
-                        <span class="mw-match-fighter__persona">${esc(personaName)}</span>
+                        <span class="mw-match-fighter__persona">
+                            ${esc(personaName)}
+                        </span>
                     ` : ""}
                     ${result !== "pending" ? `
-                        <span class="mw-match-fighter__result">${esc(resultLabel(result))}</span>
+                        <span class="mw-match-fighter__result">
+                            ${esc(resultLabel(result))}
+                        </span>
                     ` : ""}
                 </div>
             </div>`;
     }
 
     /* ======================================================
-       TIPO DE COMBATE Y AGRUPACIÓN DE EQUIPOS
+       TIPO Y LADOS
        ====================================================== */
 
     function matchType(match, participants) {
-        const raw = norm(match.type);
-        const format = norm(match.format);
-        const all = `${raw} ${format}`;
+        const all = norm(`${match.type || ""} ${match.format || ""}`);
 
         if (/royal.?rumble/.test(all)) return "ROYAL RUMBLE";
         if (/battle.?royal/.test(all)) return "BATTLE ROYAL";
@@ -464,9 +464,11 @@
         if (/iron.?man/.test(all)) return "IRON MAN MATCH";
         if (/handicap/.test(all)) return "HANDICAP MATCH";
         if (/war.?games/.test(all)) return "WAR GAMES";
+
         if (/tag|team|trios|six.?man|eight.?man|ten.?man/.test(all)) {
             return participants.length > 2 ? "TAG TEAM MATCH" : "TAG TEAM";
         }
+
         if (/multi.?person/.test(all)) return "COMBATE MÚLTIPLE";
         if (participants.length === 2) return "SINGLES MATCH";
         if (participants.length === 3) return "TRIPLE THREAT";
@@ -516,9 +518,11 @@
             /tag|team|trios|six.?man|eight.?man|ten.?man|war.?games/.test(all) ||
             /^\s*[2-9]\s*v\s*[2-9]\s*$/.test(norm(match.format));
 
-        if (!isTeamMatch || participants.length < 4 || participants.length % 2 !== 0) {
-            return [];
-        }
+        if (
+            !isTeamMatch ||
+            participants.length < 4 ||
+            participants.length % 2 !== 0
+        ) return [];
 
         const half = participants.length / 2;
 
@@ -527,14 +531,16 @@
                 key: "team-left",
                 label: str(match.team1Name || match.side1Name || "EQUIPO 1"),
                 items: participants.slice(0, half).map((participant, index) => ({
-                    participant, index
+                    participant,
+                    index
                 }))
             },
             {
                 key: "team-right",
                 label: str(match.team2Name || match.side2Name || "EQUIPO 2"),
                 items: participants.slice(half).map((participant, index) => ({
-                    participant, index: index + half
+                    participant,
+                    index: index + half
                 }))
             }
         ];
@@ -547,9 +553,7 @@
     }
 
     /* ======================================================
-       MARCADOR ÚNICO
-       Una sola zona central; las filas inferiores solo muestran
-       el resultado, no repiten las puntuaciones.
+       MARCADOR CENTRAL ÚNICO
        ====================================================== */
 
     function scoreData(match) {
@@ -585,7 +589,7 @@
             : `<strong class="mw-match-score__value">${esc(value)}</strong>`;
     }
 
-    function centerMarkup(match, participants, scores, hasSides) {
+    function centerMarkup(match, participants, scores) {
         const status = resultText(match, participants);
         const hasOfficialScore = Boolean(scores);
 
@@ -609,13 +613,17 @@
     }
 
     /* ======================================================
-       ESCENA GRÁFICA 16:9
-       Renders a ambos lados, nombres debajo y centro despejado.
+       GRÁFICA 16:9
        ====================================================== */
 
     function sideMarkup(side, context, sideIndex) {
         const members = side.items.map(item =>
-            portraitMarkup(item.participant, context, item.index, side.items.length > 3)
+            portraitMarkup(
+                item.participant,
+                context,
+                item.index,
+                side.items.length > 3
+            )
         ).join("");
 
         return `
@@ -624,9 +632,7 @@
                 ${side.label ? `
                     <span class="mw-match-side__label">${esc(side.label)}</span>
                 ` : ""}
-                <div class="mw-match-side__renders">
-                    ${members}
-                </div>
+                <div class="mw-match-side__renders">${members}</div>
             </div>`;
     }
 
@@ -639,7 +645,7 @@
                         ${portraitMarkup(participants[0], context, 0)}
                     </div>
                 </div>
-                ${centerMarkup(match, participants, scores, false)}
+                ${centerMarkup(match, participants, scores)}
                 <div class="mw-match-side mw-match-side--right">
                     <div class="mw-match-side__renders">
                         ${portraitMarkup(participants[1], context, 1)}
@@ -654,12 +660,12 @@
                  data-team-size="${Math.max(sides[0].items.length, sides[1].items.length)}">
                 <div class="mw-match-art__background" aria-hidden="true"></div>
                 ${sideMarkup(sides[0], context, 0)}
-                ${centerMarkup(match, participants, scores, true)}
+                ${centerMarkup(match, participants, scores)}
                 ${sideMarkup(sides[1], context, 1)}
             </div>`;
     }
 
-    function multiLayout(match, participants, context) {
+    function multiLayout(match, participants, context, scores) {
         const all = norm(`${match.type || ""} ${match.format || ""}`);
         const rumble = /rumble|battle.?royal/.test(all);
         const chamber = /elimination.?chamber/.test(all);
@@ -688,11 +694,12 @@
                 <div class="mw-match-multi-label">
                     ${esc(matchType(match, participants))}
                 </div>
+                ${centerMarkup(match, participants, scores)}
             </div>`;
     }
 
     /* ======================================================
-       CAMPEONATO Y ESTIPULACIÓN
+       CAMPEONATOS Y ESTIPULACIONES
        ====================================================== */
 
     function championshipName(match, context) {
@@ -726,6 +733,7 @@
 
     function championshipMarkup(match, context) {
         const name = championshipName(match, context);
+
         if (!name || !isTitleMatch(match)) return "";
 
         return `
@@ -748,31 +756,10 @@
         });
     }
 
-    /* ======================================================
-       RESUMEN INFERIOR
-       No repite el marcador central.
-       ====================================================== */
-
-    function resultRows(match, participants, context) {
-        return `
-            <div class="mw-match-results" data-has-result="${hasResult(match)}">
-                ${participants.map(participant => {
-                    const info = participantInfo(participant, context);
-                    const result = participantResult(match, participant);
-
-                    return `
-                        <div class="mw-match-result-row ${resultClass(result)}"
-                             data-result="${esc(result)}">
-                            <span class="mw-match-result-row__name">${esc(info.name)}</span>
-                            <span class="mw-match-result-row__status">${esc(resultLabel(result))}</span>
-                        </div>`;
-                }).join("")}
-            </div>`;
-    }
-
     function detailsMarkup(match, participants, context, type) {
         const officials = arr(match.officials).map(official => {
             const persona = context.personaMap.get(str(official.interpreterId));
+
             const role = ({
                 referee: "Árbitro",
                 timekeeper: "Cronometrador",
@@ -802,7 +789,12 @@
                     <ul class="mw-match-details__participants">
                         ${participants.map(participant => {
                             const info = participantInfo(participant, context);
-                            return `<li>${esc(info.name)}<span>${esc(resultLabel(participantResult(match, participant)))}</span></li>`;
+
+                            return `
+                                <li>
+                                    ${esc(info.name)}
+                                    <span>${esc(resultLabel(participantResult(match, participant)))}</span>
+                                </li>`;
                         }).join("") || "<li>Sin participantes registrados.</li>"}
                     </ul>
 
@@ -826,7 +818,6 @@
         const type = matchType(match, participants);
         const sides = makeSides(match, participants);
         const scores = scoreData(match);
-        const all = norm(`${match.type || ""} ${match.format || ""}`);
 
         let visual;
 
@@ -839,7 +830,7 @@
         } else if (sides.length === 2 && !isFreeForAll(match)) {
             visual = teamLayout(match, participants, context, sides, scores);
         } else {
-            visual = multiLayout(match, participants, context);
+            visual = multiLayout(match, participants, context, scores);
         }
 
         const matchNumber = firstValue(match.order, match.positionOrder, "");
@@ -867,7 +858,6 @@
 
                 <div class="mw-match-card__graphic">
                     ${visual}
-                    ${resultRows(match, participants, context)}
                 </div>
 
                 ${detailsMarkup(match, participants, context, type)}
@@ -875,7 +865,7 @@
     }
 
     /* ======================================================
-       TEMAS VISUALES
+       TEMA VISUAL DINÁMICO
        ====================================================== */
 
     function applyEventTheme(event) {
@@ -889,38 +879,45 @@
         ].join(" "));
 
         const themes = [
-            { test: /\bnxt\b/, accent: "#d6ff35", secondary: "#ffffff", rgb: "214,255,53", name: "nxt" },
-            { test: /smack.?down/, accent: "#168cff", secondary: "#ffffff", rgb: "22,140,255", name: "smackdown" },
-            { test: /\braw\b/, accent: "#e32636", secondary: "#ffffff", rgb: "227,38,54", name: "raw" },
-            { test: /evolve/, accent: "#b8ff3b", secondary: "#ffffff", rgb: "184,255,59", name: "evolve" },
-            { test: /speed/, accent: "#00d5ff", secondary: "#ffffff", rgb: "0,213,255", name: "speed" },
-            { test: /collision/, accent: "#e32636", secondary: "#ffffff", rgb: "227,38,54", name: "collision" },
-            { test: /dynamite/, accent: "#37d7ff", secondary: "#ffffff", rgb: "55,215,255", name: "dynamite" },
-            { test: /\baew\b/, accent: "#37d7ff", secondary: "#ffffff", rgb: "55,215,255", name: "aew" },
-            { test: /\bple\b|premium.?live|wrestlemania/, accent: "#ffcc54", secondary: "#ffffff", rgb: "255,204,84", name: "ple" },
-            { test: /special|especial/, accent: "#a98aff", secondary: "#ffffff", rgb: "169,138,255", name: "special" }
+            { test: /\bnxt\b/, accent: "#d6ff35", rgb: "214,255,53", name: "nxt" },
+            { test: /smack.?down/, accent: "#168cff", rgb: "22,140,255", name: "smackdown" },
+            { test: /\braw\b/, accent: "#e32636", rgb: "227,38,54", name: "raw" },
+            { test: /evolve/, accent: "#b8ff3b", rgb: "184,255,59", name: "evolve" },
+            { test: /speed/, accent: "#00d5ff", rgb: "0,213,255", name: "speed" },
+            { test: /collision/, accent: "#e32636", rgb: "227,38,54", name: "collision" },
+            { test: /dynamite/, accent: "#37d7ff", rgb: "55,215,255", name: "dynamite" },
+            { test: /\baew\b/, accent: "#37d7ff", rgb: "55,215,255", name: "aew" },
+            { test: /\bple\b|premium.?live|wrestlemania/, accent: "#ffcc54", rgb: "255,204,84", name: "ple" },
+            { test: /special|especial/, accent: "#a98aff", rgb: "169,138,255", name: "special" }
         ];
 
         const theme = themes.find(item => item.test.test(identity)) || {
             accent: "#e32636",
-            secondary: "#ffffff",
             rgb: "227,38,54",
             name: "default"
         };
 
         const accent = safeColor(event.themeAccent || event.color);
         const secondary = safeColor(event.themeSecondary);
-        const rgb = str(event.themeAccentRgb).match(/^[\d\s,.]+$/)
-            ? str(event.themeAccentRgb)
+
+        const suppliedRgb = str(event.themeAccentRgb);
+        const rgb = /^[\d\s,.]+$/.test(suppliedRgb) &&
+            suppliedRgb.split(",").length === 3
+            ? suppliedRgb
             : theme.rgb;
 
         const root = document.documentElement;
 
         root.style.setProperty("--event-accent", accent || theme.accent);
         root.style.setProperty("--event-accent-rgb", rgb);
-        root.style.setProperty("--event-secondary", secondary || theme.secondary);
+        root.style.setProperty("--event-secondary", secondary || "#ffffff");
 
-        main.dataset.eventTheme = str(event.theme || theme.name);
+        /*
+         * El CSS del evento utiliza data-theme.
+         * Se prioriza el tema detectado para evitar nombres arbitrarios.
+         */
+        document.body.dataset.theme = theme.name;
+        main.dataset.eventTheme = theme.name;
         main.dataset.eventBrand = str(event.brand || "");
     }
 
@@ -969,7 +966,9 @@
                     const data = await get(season.path);
 
                     for (const event of arr(data.events)) {
-                        if (events.some(item => String(item.id) === String(event.id))) continue;
+                        if (events.some(item => String(item.id) === String(event.id))) {
+                            continue;
+                        }
 
                         events.push({
                             ...event,
@@ -980,7 +979,11 @@
                         });
                     }
                 } catch (error) {
-                    console.warn("[MI WRESTLING] No se pudo cargar temporada:", season.path, error);
+                    console.warn(
+                        "[MI WRESTLING] No se pudo cargar temporada:",
+                        season.path,
+                        error
+                    );
                 }
             }
         }
@@ -1027,9 +1030,17 @@
                 String(a.id).localeCompare(String(b.id))
             );
 
-        const wrestlerMap = new Map(wrestlers.map(item => [String(item.id), item]));
-        const personaMap = new Map(personas.map(item => [String(item.id), item]));
-        const teamMap = new Map(arr(teams).map(item => [String(item.id), item]));
+        const wrestlerMap = new Map(
+            wrestlers.map(item => [String(item.id), item])
+        );
+
+        const personaMap = new Map(
+            personas.map(item => [String(item.id), item])
+        );
+
+        const teamMap = new Map(
+            arr(teams).map(item => [String(item.id), item])
+        );
 
         const context = {
             wrestlerMap,
@@ -1050,6 +1061,7 @@
                 </div>`;
 
         const backCategory = event.categoryId || category?.id || "ple";
+
         const backLink =
             `events.html?category=${encodeURIComponent(backCategory)}` +
             (event.year ? `&year=${encodeURIComponent(event.year)}` : "");
@@ -1067,13 +1079,19 @@
             String(item.id) === String(event.id)
         );
 
-        const previous = currentIndex > 0 ? categoryEvents[currentIndex - 1] : null;
+        const previous = currentIndex > 0
+            ? categoryEvents[currentIndex - 1]
+            : null;
+
         const next = currentIndex >= 0 && currentIndex < categoryEvents.length - 1
             ? categoryEvents[currentIndex + 1]
             : null;
 
         const timelineEvents = currentIndex >= 0
-            ? categoryEvents.slice(Math.max(0, currentIndex - 2), currentIndex + 3)
+            ? categoryEvents.slice(
+                Math.max(0, currentIndex - 2),
+                currentIndex + 3
+            )
             : [];
 
         const timelineMarkup = timelineEvents.length
@@ -1143,6 +1161,7 @@
                     </div>
                     <span>${matchCount} ${matchCount === 1 ? "combate" : "combates"}</span>
                 </div>
+
                 <div class="mw-event-matches" id="mw-event-matches">
                     ${cards}
                 </div>
@@ -1156,7 +1175,11 @@
                     </div>
                     <span>${esc(category?.name || event.categoryName || "Archivo")}</span>
                 </div>
-                <div class="mw-event-timeline">${timelineMarkup}</div>
+
+                <div class="mw-event-timeline">
+                    ${timelineMarkup}
+                </div>
+
                 ${timelineNavigation(previous, next)}
             </section>`;
 
