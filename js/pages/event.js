@@ -25,30 +25,9 @@
     })[char]);
 
     function safeUrl(value) {
-        let url = str(value);
+        const url = str(value);
         if (!url || /^(javascript|data|vbscript):/i.test(url)) return "";
-
-        // Las imágenes del proyecto viven en /images. Como event.html está
-        // en la raíz, normalizamos rutas heredadas sin crear archivos nuevos.
-        if (!/^(https?:|blob:|\/\/|data:)/i.test(url)) {
-            url = url.replace(/\\/g, "/").replace(/^\.\//, "");
-            while (url.startsWith("../")) url = url.slice(3);
-            if (!url.startsWith("/") && /^(images|assets)\//i.test(url)) {
-                url = "/" + url;
-            } else if (!url.startsWith("/") && !url.includes("/")) {
-                url = "/images/" + url;
-            }
-            // Codifica espacios y caracteres especiales sin alterar las barras.
-            url = url.split("/").map((part, index) =>
-                index === 0 ? part : encodeURIComponent(decodeURIComponentSafe(part))
-            ).join("/");
-        }
         return url;
-    }
-
-    function decodeURIComponentSafe(value) {
-        try { return decodeURIComponent(value); }
-        catch (_) { return value; }
     }
 
     function firstValue(...values) {
@@ -493,7 +472,7 @@
                             loading="lazy"
                             decoding="async"
                             onerror="
-                                this.remove();
+                                this.hidden=true;
                                 this.parentElement.classList.add('has-fallback')
                             ">
                     ` : ""}
