@@ -1,8 +1,12 @@
 
 /* ==========================================================
    MI WRESTLING 2.0 — EVENTO INDIVIDUAL
-   Collision-inspired Match Cards
-   16:9 · Mobile-first · Singles · Teams · Multi-person
+   Collision Match Cards · Responsive · Data-driven
+   Compatible con:
+   - Singles, Tag Team, Trios, 4v4 y 5v5
+   - Triple Threat, Fatal 4-Way y combates múltiples
+   - Royal Rumble y Elimination Chamber
+   - Resultados, campeonatos y estipulaciones
    ========================================================== */
 
 (async function () {
@@ -29,12 +33,26 @@
 
     function safeUrl(value) {
         const url = str(value);
-
-        if (!url || /^(javascript|data|vbscript):/i.test(url)) {
-            return "";
-        }
-
+        if (!url || /^(javascript|data|vbscript):/i.test(url)) return "";
         return url;
+    }
+
+    function firstValue(...values) {
+        return values.find(value =>
+            value !== undefined &&
+            value !== null &&
+            str(value) !== ""
+        );
+    }
+
+    function safeColor(value) {
+        const color = str(value);
+        if (
+            /^#[0-9a-f]{3,8}$/i.test(color) ||
+            /^rgba?\(\s*[\d.%\s,]+\)$/i.test(color) ||
+            /^hsla?\(\s*[\d.%\s,deg]+\)$/i.test(color)
+        ) return color;
+        return "";
     }
 
     async function get(path, optional = false) {
@@ -50,26 +68,25 @@
             return await response.json();
         } catch (error) {
             if (optional) {
-                console.warn(
-                    "[MI WRESTLING] Archivo opcional no disponible:",
-                    path
-                );
+                console.warn("[MI WRESTLING] Archivo opcional no disponible:", path);
                 return [];
             }
-
             throw error;
         }
     }
 
-    const dateValue = value => {
+    function dateValue(value) {
         if (!value) return null;
 
+        const raw = str(value);
         const date = new Date(
-            `${String(value).slice(0, 10)}T00:00:00Z`
+            /^\d{4}-\d{2}-\d{2}$/.test(raw)
+                ? `${raw}T00:00:00Z`
+                : raw
         );
 
         return Number.isNaN(date.getTime()) ? null : date;
-    };
+    }
 
     function formatDate(value, fallback = "Fecha pendiente") {
         const date = dateValue(value);
@@ -98,21 +115,16 @@
     }
 
     const eventName = event =>
-        event?.name ||
-        event?.title ||
-        event?.id ||
-        "Evento sin nombre";
+        firstValue(event?.name, event?.title, event?.id, "Evento sin nombre");
 
-    const eventDate = event => event?.date || event?.startDate || "";
+    const eventDate = event =>
+        firstValue(event?.date, event?.startDate, event?.scheduledDate, "");
 
     const eventUrl = event =>
         `event.html?id=${encodeURIComponent(event.id)}`;
 
     const categoryName = event =>
-        event?.categoryName ||
-        event?.brand ||
-        event?.type ||
-        "Evento";
+        firstValue(event?.categoryName, event?.brand, event?.type, "Evento");
 
     function renderEmpty(title, message, backLink = "events.html") {
         main.innerHTML = `
@@ -127,16 +139,24 @@
 
     /* ======================================================
        IDENTIDAD DEL EVENTO
-       Logo separado del póster promocional.
+       Prioridad: logo específico, nunca confundirlo con póster.
        ====================================================== */
 
+    function getEventLogo(event) {
+        return safeUrl(firstValue(
+            event.logo,
+            event.logoUrl,
+            event.eventLogo,
+            event.logoImage,
+            event.imageLogo,
+            event.brandLogo,
+            event.logoWebp,
+            event.image
+        ));
+    }
+
     function eventLogoMarkup(event) {
-        const logo = safeUrl(
-            event.logo ||
-            event.logoUrl ||
-            event.brandLogo ||
-            ""
-        );
+        const logo = getEventLogo(event);
 
         return `
             <div class="mw-event-logo${logo ? " has-logo" : ""}">
@@ -145,7 +165,11 @@
                         src="${esc(logo)}"
                         alt="Logo de ${esc(eventName(event))}"
                         fetchpriority="high"
-                        decoding="async">
+                        decoding="async"
+                        onerror="this.hidden=true;this.parentElement.classList.remove('has-logo')">
+                    <span class="mw-event-logo__fallback">
+                        ${esc(eventName(event))}
+                    </span>
                 ` : `
                     <span class="mw-event-logo__fallback">
                         ${esc(eventName(event))}
@@ -155,7 +179,7 @@
     }
 
     function timelineCard(event, currentId) {
-        const image = safeUrl(event.logo || event.image || "");
+        const image = getEventLogo(event);
         const current = String(event.id) === String(currentId);
 
         return `
@@ -163,30 +187,27 @@
                 class="mw-event-timeline-card${current ? " is-current" : ""}"
                 href="${eventUrl(event)}"
                 ${current ? 'aria-current="page"' : ""}>
-
                 <div class="mw-event-timeline-card__image">
                     ${image ? `
                         <img
                             src="${esc(image)}"
                             alt=""
                             loading="lazy"
-                            decoding="async">
+                            decoding="async"
+                            onerror="this.hidden=true">
                     ` : `
                         <span class="mw-event-timeline-card__fallback">
                             ${esc(eventName(event))}
                         </span>
                     `}
                 </div>
-
                 <div class="mw-event-timeline-card__copy">
                     <span class="mw-event-timeline-card__date">
                         ${esc(shortDate(eventDate(event)))}
                     </span>
-
                     <strong class="mw-event-timeline-card__title">
                         ${esc(eventName(event))}
                     </strong>
-
                     <span class="mw-event-timeline-card__meta">
                         ${esc(categoryName(event))}
                         ${event.year ? ` · ${esc(event.year)}` : ""}
@@ -198,35 +219,24 @@
     function timelineNavigation(previous, next) {
         if (!previous && !next) return "";
 
-        const item = (event, label, arrow, right = false) =>
-            event ? `
-                <a
-                    href="${eventUrl(event)}"
-                    ${right ? 'class="is-next"' : ""}>
+        function item(event, label, arrow, right = false) {
+            if (!event) return "<span></span>";
 
-                    ${right ? "" : `
-                        <span class="mw-event-nav-arrow">${arrow}</span>
-                    `}
-
+            return `
+                <a href="${eventUrl(event)}" ${right ? 'class="is-next"' : ""}>
+                    ${!right ? `<span class="mw-event-nav-arrow">${arrow}</span>` : ""}
                     <span class="mw-event-nav-copy">
                         <small>${label}</small>
                         <strong>${esc(eventName(event))}</strong>
                     </span>
-
-                    ${right ? `
-                        <span class="mw-event-nav-arrow">${arrow}</span>
-                    ` : ""}
-                </a>
-            ` : "<span></span>";
+                    ${right ? `<span class="mw-event-nav-arrow">${arrow}</span>` : ""}
+                </a>`;
+        }
 
         return `
-            <nav
-                class="mw-event-timeline-nav"
-                aria-label="Navegación entre eventos">
-
+            <nav class="mw-event-timeline-nav" aria-label="Navegación entre eventos">
                 ${item(previous, "EVENTO ANTERIOR", "←")}
                 ${item(next, "EVENTO SIGUIENTE", "→", true)}
-
             </nav>`;
     }
 
@@ -234,19 +244,13 @@
        RESULTADOS
        ====================================================== */
 
-    const validResults = [
-        "win",
-        "loss",
-        "draw",
-        "no-contest"
-    ];
+    const validResults = ["win", "loss", "draw", "no-contest"];
 
     function winnerIds(match) {
-        const values = arr(match.winnerIds);
-
-        if (match.winnerId != null) {
-            values.push(match.winnerId);
-        }
+        const values = [
+            ...arr(match.winnerIds),
+            ...(match.winnerId != null ? [match.winnerId] : [])
+        ];
 
         return values.map(String);
     }
@@ -254,21 +258,24 @@
     function participantResult(match, participant) {
         const explicit = norm(participant.result);
 
-        if (validResults.includes(explicit)) {
-            return explicit;
-        }
+        if (validResults.includes(explicit)) return explicit;
 
         const winners = winnerIds(match);
-        const id = str(participant.wrestlerId);
+        const participantIds = [
+            participant.wrestlerId,
+            participant.id
+        ].filter(value => value != null).map(String);
 
-        if (winners.length && id) {
-            return winners.includes(id) ? "win" : "loss";
+        if (winners.length && participantIds.length) {
+            return participantIds.some(id => winners.includes(id))
+                ? "win"
+                : "loss";
         }
 
-        const globalResult = norm(match.result);
+        const global = norm(match.result);
 
-        if (globalResult === "draw") return "draw";
-        if (globalResult === "no-contest") return "no-contest";
+        if (global === "draw") return "draw";
+        if (global === "no-contest") return "no-contest";
 
         return "pending";
     }
@@ -277,9 +284,7 @@
         if (
             ["draw", "no-contest"].includes(norm(match.result)) ||
             winnerIds(match).length > 0
-        ) {
-            return true;
-        }
+        ) return true;
 
         return arr(match.participants).some(participant =>
             validResults.includes(norm(participant.result))
@@ -307,76 +312,85 @@
     }
 
     function resultText(match, participants) {
-        const globalResult = norm(match.result);
+        const global = norm(match.result);
 
-        if (
-            globalResult === "draw" ||
-            participants.some(p => participantResult(match, p) === "draw")
-        ) {
+        if (global === "draw" ||
+            participants.some(p => participantResult(match, p) === "draw")) {
             return "EMPATE";
         }
 
-        if (
-            globalResult === "no-contest" ||
-            participants.some(p =>
-                participantResult(match, p) === "no-contest"
-            )
-        ) {
+        if (global === "no-contest" ||
+            participants.some(p => participantResult(match, p) === "no-contest")) {
             return "SIN RESULTADO";
         }
 
-        if (hasResult(match)) return "RESULTADO OFICIAL";
-
-        return "POR LUCHAR";
+        return hasResult(match) ? "RESULTADO OFICIAL" : "POR LUCHAR";
     }
 
     /* ======================================================
-       PARTICIPANTES E IMÁGENES
+       PARTICIPANTES
        ====================================================== */
 
-    function participantName(participant, context) {
-        const wrestler = context.wrestlerMap.get(
-            str(participant.wrestlerId)
+    function getWrestler(participant, context) {
+        return context.wrestlerMap.get(str(participant.wrestlerId)) ||
+            context.wrestlerMap.get(str(participant.wrestler?.id)) ||
+            null;
+    }
+
+    function getPersona(participant, context) {
+        return context.personaMap.get(str(
+            participant.personaId ||
+            participant.alterEgoId ||
+            participant.alteregoId ||
+            participant.interpreterId ||
+            participant.persona?.id
+        )) || null;
+    }
+
+    function participantInfo(participant, context) {
+        const wrestler = getWrestler(participant, context);
+        const persona = getPersona(participant, context);
+
+        const name = firstValue(
+            participant.displayName,
+            participant.name,
+            participant.personaName,
+            persona?.name,
+            participant.wrestlerName,
+            wrestler?.name,
+            participant.wrestlerId,
+            "Superestrella sin vincular"
         );
 
-        const persona = context.personaMap.get(
-            str(participant.personaId || participant.interpreterId)
-        );
-
-        return {
-            wrestler,
-            persona,
-            name:
-                participant.name ||
-                persona?.name ||
-                participant.wrestlerName ||
-                wrestler?.name ||
-                participant.wrestlerId ||
-                "Superestrella sin vincular"
-        };
+        return { wrestler, persona, name };
     }
 
     function participantImage(participant, context) {
-        const wrestler = context.wrestlerMap.get(
-            str(participant.wrestlerId)
-        );
+        const wrestler = getWrestler(participant, context);
+        const persona = getPersona(participant, context);
 
-        const persona = context.personaMap.get(
-            str(participant.personaId || participant.interpreterId)
-        );
-
-        return safeUrl(
-            participant.image ||
-            persona?.image ||
-            wrestler?.webp ||
-            wrestler?.image ||
-            ""
-        );
+        return safeUrl(firstValue(
+            participant.render,
+            participant.renderImage,
+            participant.webp,
+            participant.imageWebp,
+            participant.portrait,
+            participant.image,
+            persona?.render,
+            persona?.renderImage,
+            persona?.webp,
+            persona?.image,
+            wrestler?.render,
+            wrestler?.renderImage,
+            wrestler?.webp,
+            wrestler?.imageWebp,
+            wrestler?.portrait,
+            wrestler?.image
+        ));
     }
 
     function initials(name) {
-        return str(name)
-            .split(/\s+/)
+        return str(name).split(/\s+/)
             .filter(Boolean)
             .slice(0, 2)
             .map(part => part[0])
@@ -384,184 +398,182 @@
             .toUpperCase() || "?";
     }
 
-    function portraitMarkup(participant, context, index) {
-        const info = participantName(participant, context);
+    function wrestlerHref(participant) {
+        const id = str(participant.wrestlerId);
+        return id ? `superstar.html?id=${encodeURIComponent(id)}` : "";
+    }
+
+    function portraitMarkup(participant, context, index, compact = false) {
+        const info = participantInfo(participant, context);
         const image = participantImage(participant, context);
         const result = participantResult(context.match, participant);
-
-        const wrestlerId = str(participant.wrestlerId);
-
-        const href = wrestlerId
-            ? `superstar.html?id=${encodeURIComponent(wrestlerId)}`
-            : "";
-
-        const personaName = info.persona?.name;
+        const href = wrestlerHref(participant);
         const wrestlerName = info.wrestler?.name;
+        const personaName = info.persona?.name;
+
+        const nameMarkup = href
+            ? `<a class="mw-match-fighter__name" href="${href}">${esc(info.name)}</a>`
+            : `<strong class="mw-match-fighter__name">${esc(info.name)}</strong>`;
 
         return `
             <div
-                class="mw-match-fighter"
+                class="mw-match-fighter${compact ? " is-compact" : ""} ${resultClass(result)}"
                 data-result="${esc(result)}"
                 data-fighter-index="${index}">
-
                 <div class="mw-match-fighter__render">
                     ${image ? `
                         <img
                             src="${esc(image)}"
                             alt="${esc(info.name)}"
                             loading="lazy"
-                            decoding="async">
-                    ` : `
-                        <span class="mw-match-fighter__fallback">
-                            ${esc(initials(info.name))}
-                        </span>
-                    `}
+                            decoding="async"
+                            onerror="this.hidden=true;this.parentElement.classList.add('has-fallback')">
+                    ` : ""}
+                    <span class="mw-match-fighter__fallback">
+                        ${esc(initials(info.name))}
+                    </span>
                 </div>
-
                 <div class="mw-match-fighter__identity">
-                    ${href ? `
-                        <a
-                            class="mw-match-fighter__name"
-                            href="${href}">
-                            ${esc(info.name)}
-                        </a>
-                    ` : `
-                        <strong class="mw-match-fighter__name">
-                            ${esc(info.name)}
-                        </strong>
-                    `}
-
+                    ${nameMarkup}
                     ${personaName && personaName !== wrestlerName ? `
-                        <span class="mw-match-fighter__persona">
-                            ${esc(personaName)}
-                        </span>
+                        <span class="mw-match-fighter__persona">${esc(personaName)}</span>
+                    ` : ""}
+                    ${result !== "pending" ? `
+                        <span class="mw-match-fighter__result">${esc(resultLabel(result))}</span>
                     ` : ""}
                 </div>
             </div>`;
     }
 
     /* ======================================================
-       FORMATO DE COMBATE
+       TIPO DE COMBATE Y AGRUPACIÓN DE EQUIPOS
        ====================================================== */
 
     function matchType(match, participants) {
         const raw = norm(match.type);
         const format = norm(match.format);
+        const all = `${raw} ${format}`;
 
-        if (/royal.?rumble/.test(raw)) return "ROYAL RUMBLE";
-        if (/battle.?royal/.test(raw)) return "BATTLE ROYAL";
-        if (/elimination.?chamber/.test(raw)) return "ELIMINATION CHAMBER";
-        if (/fatal.?5|five.?way/.test(raw)) return "FATAL 5-WAY";
-        if (/fatal.?4|four.?way/.test(raw)) return "FATAL 4-WAY";
-        if (/triple.?threat/.test(raw)) return "TRIPLE THREAT";
-        if (/ladder/.test(raw)) return "LADDER MATCH";
-        if (/iron.?man/.test(raw)) return "IRON MAN MATCH";
-        if (/handicap/.test(raw)) return "HANDICAP MATCH";
-        if (/tag|team/.test(raw) && participants.length > 2) {
-            return "TAG TEAM";
+        if (/royal.?rumble/.test(all)) return "ROYAL RUMBLE";
+        if (/battle.?royal/.test(all)) return "BATTLE ROYAL";
+        if (/elimination.?chamber/.test(all)) return "ELIMINATION CHAMBER";
+        if (/fatal.?5|five.?way|5.?way/.test(all)) return "FATAL 5-WAY";
+        if (/fatal.?4|four.?way|4.?way/.test(all)) return "FATAL 4-WAY";
+        if (/triple.?threat|3.?way/.test(all)) return "TRIPLE THREAT";
+        if (/ladder/.test(all)) return "LADDER MATCH";
+        if (/iron.?man/.test(all)) return "IRON MAN MATCH";
+        if (/handicap/.test(all)) return "HANDICAP MATCH";
+        if (/war.?games/.test(all)) return "WAR GAMES";
+        if (/tag|team|trios|six.?man|eight.?man|ten.?man/.test(all)) {
+            return participants.length > 2 ? "TAG TEAM MATCH" : "TAG TEAM";
         }
-
-        if (/trios|six.?man/.test(raw)) return "TRIOS MATCH";
-        if (/multi.?person/.test(raw)) return "COMBATE MÚLTIPLE";
-        if (format === "2v2") return "TAG TEAM";
-        if (format === "3v3") return "TRIOS MATCH";
+        if (/multi.?person/.test(all)) return "COMBATE MÚLTIPLE";
         if (participants.length === 2) return "SINGLES MATCH";
         if (participants.length === 3) return "TRIPLE THREAT";
         if (participants.length === 4) return "FATAL 4-WAY";
 
-        return str(match.type || "COMBATE")
-            .replace(/-/g, " ")
-            .toUpperCase();
+        return str(match.type || "COMBATE").replace(/-/g, " ").toUpperCase();
     }
 
-    /*
-     * Se agrupan los participantes por side o teamId.
-     * Ejemplo:
-     * side: "red"  -> bando izquierdo
-     * side: "blue" -> bando derecho
-     *
-     * Si no hay dos bandos claros, se usa el formato
-     * de combate múltiple.
-     */
-
-    function makeSides(participants) {
-        const buckets = new Map();
+    function explicitSides(participants) {
+        const groups = new Map();
 
         participants.forEach((participant, index) => {
             const key = str(
-                participant.side ||
-                participant.teamId ||
+                participant.side ??
+                participant.teamId ??
+                participant.team?.id ??
+                participant.teamName ??
                 ""
             );
 
             if (!key) return;
 
-            if (!buckets.has(key)) {
-                buckets.set(key, []);
-            }
-
-            buckets.get(key).push({
-                participant,
-                index
-            });
+            if (!groups.has(key)) groups.set(key, []);
+            groups.get(key).push({ participant, index });
         });
 
-        const sides = [...buckets.entries()].map(([key, items]) => ({
+        return [...groups.entries()].map(([key, items]) => ({
             key,
             items,
-            label:
-                str(items[0]?.participant.sideLabel) ||
-                str(items[0]?.participant.teamName) ||
+            label: str(
+                items[0]?.participant.sideLabel ||
+                items[0]?.participant.teamName ||
+                items[0]?.participant.team?.name ||
                 ""
+            )
         }));
+    }
 
-        return sides.length === 2 &&
-            sides.every(side => side.items.length > 0)
-            ? sides
-            : [];
+    function makeSides(match, participants) {
+        const explicit = explicitSides(participants);
+
+        if (explicit.length === 2) return explicit;
+        if (explicit.length > 2) return [];
+
+        const all = norm(`${match.type || ""} ${match.format || ""}`);
+        const isTeamMatch =
+            /tag|team|trios|six.?man|eight.?man|ten.?man|war.?games/.test(all) ||
+            /^\s*[2-9]\s*v\s*[2-9]\s*$/.test(norm(match.format));
+
+        if (!isTeamMatch || participants.length < 4 || participants.length % 2 !== 0) {
+            return [];
+        }
+
+        const half = participants.length / 2;
+
+        return [
+            {
+                key: "team-left",
+                label: str(match.team1Name || match.side1Name || "EQUIPO 1"),
+                items: participants.slice(0, half).map((participant, index) => ({
+                    participant, index
+                }))
+            },
+            {
+                key: "team-right",
+                label: str(match.team2Name || match.side2Name || "EQUIPO 2"),
+                items: participants.slice(half).map((participant, index) => ({
+                    participant, index: index + half
+                }))
+            }
+        ];
+    }
+
+    function isFreeForAll(match) {
+        return /royal.?rumble|battle.?royal|elimination.?chamber|triple.?threat|fatal.?4|fatal.?5|five.?way|four.?way|3.?way|4.?way/.test(
+            norm(`${match.type || ""} ${match.format || ""}`)
+        );
     }
 
     /* ======================================================
-       MARCADOR
-       No inventar puntuaciones ausentes.
+       MARCADOR ÚNICO
+       Una sola zona central; las filas inferiores solo muestran
+       el resultado, no repiten las puntuaciones.
        ====================================================== */
 
     function scoreData(match) {
         const raw = match.sideScores ?? match.score;
-        const legacy = match.legacy || {};
 
         if (Array.isArray(raw) && raw.length >= 2) {
             return [raw[0], raw[1]];
         }
 
         if (raw && typeof raw === "object") {
-            const first =
-                raw.red ?? raw.home ?? raw.side1 ?? raw.team1;
+            const first = raw.red ?? raw.home ?? raw.side1 ?? raw.team1;
+            const second = raw.blue ?? raw.away ?? raw.side2 ?? raw.team2;
 
-            const second =
-                raw.blue ?? raw.away ?? raw.side2 ?? raw.team2;
-
-            if (first != null && second != null) {
-                return [first, second];
-            }
+            if (first != null && second != null) return [first, second];
         }
+
+        const legacy = match.legacy || {};
 
         if (legacy.score1 != null && legacy.score2 != null) {
             return [legacy.score1, legacy.score2];
         }
 
-        return null;
-    }
-
-    function participantScore(match, participant, index) {
-        if (participant.score != null) {
-            return participant.score;
-        }
-
-        const scores = arr(match.participantScores);
-
-        if (scores[index] != null) {
-            return scores[index];
+        if (match.score1 != null && match.score2 != null) {
+            return [match.score1, match.score2];
         }
 
         return null;
@@ -573,40 +585,19 @@
             : `<strong class="mw-match-score__value">${esc(value)}</strong>`;
     }
 
-    /* ======================================================
-       COMPOSICIÓN GRÁFICA
-       La zona visual se divide en dos bandos.
-       Cada bando puede contener uno o varios renders.
-       ====================================================== */
-
-    function sideMarkup(side, context, sideIndex) {
-        const members = side.items.map(item =>
-            portraitMarkup(item.participant, context, item.index)
-        ).join("");
-
-        return `
-            <div
-                class="mw-match-side mw-match-side--${sideIndex === 0 ? "left" : "right"}"
-                data-side="${esc(side.key)}">
-
-                <div class="mw-match-side__renders">
-                    ${members}
-                </div>
-
-            </div>`;
-    }
-
-    function centerMarkup(match, participants, scores) {
+    function centerMarkup(match, participants, scores, hasSides) {
         const status = resultText(match, participants);
+        const hasOfficialScore = Boolean(scores);
 
         return `
             <div class="mw-match-center" aria-label="${esc(status)}">
-                <span class="mw-match-center__versus">VS</span>
-
-                ${scores ? `
+                <span class="mw-match-center__versus">
+                    ${hasOfficialScore ? "FINAL" : "VS"}
+                </span>
+                ${hasOfficialScore ? `
                     <div class="mw-match-center__score">
                         ${scoreMarkup(scores[0])}
-                        <span>–</span>
+                        <span class="mw-match-center__separator">:</span>
                         ${scoreMarkup(scores[1])}
                     </div>
                 ` : `
@@ -617,110 +608,109 @@
             </div>`;
     }
 
-    function singlesLayout(match, participants, context, scores) {
+    /* ======================================================
+       ESCENA GRÁFICA 16:9
+       Renders a ambos lados, nombres debajo y centro despejado.
+       ====================================================== */
+
+    function sideMarkup(side, context, sideIndex) {
+        const members = side.items.map(item =>
+            portraitMarkup(item.participant, context, item.index, side.items.length > 3)
+        ).join("");
+
         return `
-            <div class="mw-match-stage mw-match-stage--singles">
-                <div class="mw-match-stage__side">
-                    ${portraitMarkup(participants[0], context, 0)}
-                </div>
-
-                ${centerMarkup(match, participants, scores)}
-
-                <div class="mw-match-stage__side">
-                    ${portraitMarkup(participants[1], context, 1)}
+            <div class="mw-match-side mw-match-side--${sideIndex === 0 ? "left" : "right"}"
+                 data-side="${esc(side.key)}">
+                ${side.label ? `
+                    <span class="mw-match-side__label">${esc(side.label)}</span>
+                ` : ""}
+                <div class="mw-match-side__renders">
+                    ${members}
                 </div>
             </div>`;
     }
 
-    function tagLayout(match, participants, context, sides, scores) {
+    function singlesLayout(match, participants, context, scores) {
         return `
-            <div class="mw-match-stage mw-match-stage--teams">
+            <div class="mw-match-art mw-match-art--singles">
+                <div class="mw-match-art__background" aria-hidden="true"></div>
+                <div class="mw-match-side mw-match-side--left">
+                    <div class="mw-match-side__renders">
+                        ${portraitMarkup(participants[0], context, 0)}
+                    </div>
+                </div>
+                ${centerMarkup(match, participants, scores, false)}
+                <div class="mw-match-side mw-match-side--right">
+                    <div class="mw-match-side__renders">
+                        ${portraitMarkup(participants[1], context, 1)}
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function teamLayout(match, participants, context, sides, scores) {
+        return `
+            <div class="mw-match-art mw-match-art--teams"
+                 data-team-size="${Math.max(sides[0].items.length, sides[1].items.length)}">
+                <div class="mw-match-art__background" aria-hidden="true"></div>
                 ${sideMarkup(sides[0], context, 0)}
-
-                ${centerMarkup(match, participants, scores)}
-
+                ${centerMarkup(match, participants, scores, true)}
                 ${sideMarkup(sides[1], context, 1)}
             </div>`;
     }
 
-    /*
-     * Triple Threat, Fatal 4-Way, Royal Rumble y otras luchas
-     * sin dos bandos definidos.
-     *
-     * Se permite una lista visual de altura variable para
-     * formatos grandes, en vez de encoger todos los renders
-     * hasta volverlos ilegibles.
-     */
-
     function multiLayout(match, participants, context) {
-        const rumble = /rumble|battle.?royal/i.test(
-            `${match.type || ""} ${match.format || ""}`
-        );
-
-        const elimination = /elimination.?chamber/i.test(
-            `${match.type || ""} ${match.format || ""}`
-        );
+        const all = norm(`${match.type || ""} ${match.format || ""}`);
+        const rumble = /rumble|battle.?royal/.test(all);
+        const chamber = /elimination.?chamber/.test(all);
+        const triple = /triple.?threat|3.?way/.test(all) || participants.length === 3;
+        const fourWay = /fatal.?4|four.?way|4.?way/.test(all) || participants.length === 4;
 
         const mode = rumble
             ? "royal-rumble"
-            : elimination
+            : chamber
                 ? "elimination-chamber"
-                : participants.length === 3
+                : triple
                     ? "triple-threat"
-                    : participants.length === 4
+                    : fourWay
                         ? "fatal-four-way"
                         : "multi";
 
         return `
-            <div
-                class="mw-match-stage mw-match-stage--multi is-${mode}"
-                data-participant-count="${participants.length}">
-
+            <div class="mw-match-art mw-match-art--multi is-${mode}"
+                 data-participant-count="${participants.length}">
+                <div class="mw-match-art__background" aria-hidden="true"></div>
                 <div class="mw-match-multi-grid">
-                    ${participants.map((participant, index) => `
-                        <div class="mw-match-multi-item">
-                            ${portraitMarkup(participant, context, index)}
-                        </div>
-                    `).join("")}
-
-                    ${participants.length ? "" : `
-                        <p class="mw-match-no-participants">
-                            Participantes pendientes de registrar.
-                        </p>
-                    `}
+                    ${participants.map((participant, index) =>
+                        portraitMarkup(participant, context, index, participants.length > 4)
+                    ).join("")}
                 </div>
-
-                ${arr(match.participants).length > 0 && rumble ? `
-                    <div class="mw-match-format-label">
-                        TODOS CONTRA TODOS
-                    </div>
-                ` : ""}
+                <div class="mw-match-multi-label">
+                    ${esc(matchType(match, participants))}
+                </div>
             </div>`;
     }
 
     /* ======================================================
-       CAMPEONATO EN JUEGO
+       CAMPEONATO Y ESTIPULACIÓN
        ====================================================== */
 
     function championshipName(match, context) {
-        const direct =
-            match.championshipName ||
-            match.championship?.name ||
-            (typeof match.championship === "string"
-                ? match.championship
-                : "");
+        const direct = firstValue(
+            match.championshipName,
+            match.titleName,
+            match.championship?.name,
+            typeof match.championship === "string" ? match.championship : ""
+        );
 
         if (direct) return str(direct);
 
-        const id = str(match.championshipId);
-
+        const id = str(match.championshipId || match.titleId);
         if (!id) return "";
 
-        const championship = context.championshipMap?.get(id);
+        const title = context.championshipMap.get(id);
 
-        return championship?.name ||
-            championship?.title ||
-            id.replace(/-/g, " ");
+        return str(title?.name || title?.title || id.replace(/-/g, " "));
     }
 
     function isTitleMatch(match) {
@@ -728,288 +718,164 @@
             match.isChampionshipMatch ||
             match.titleOnLine ||
             match.forTitle ||
-            match.championship?.isOnLine
+            match.championship?.isOnLine ||
+            match.championshipId ||
+            match.titleId
         );
     }
 
     function championshipMarkup(match, context) {
         const name = championshipName(match, context);
-
         if (!name || !isTitleMatch(match)) return "";
 
         return `
             <div class="mw-match-title-ribbon">
-                <span class="mw-match-title-ribbon__icon" aria-hidden="true">
-                    ★
-                </span>
-
-                <span class="mw-match-title-ribbon__name">
-                    ${esc(name)}
-                </span>
-
-                <span class="mw-match-title-ribbon__status">
-                    EN JUEGO
-                </span>
+                <span class="mw-match-title-ribbon__icon" aria-hidden="true">★</span>
+                <span class="mw-match-title-ribbon__name">${esc(name)}</span>
+                <span class="mw-match-title-ribbon__status">EN JUEGO</span>
             </div>`;
     }
 
+    function stipulationNames(match, context) {
+        const ids = [
+            ...arr(match.stipulationIds),
+            ...(match.stipulationId ? [match.stipulationId] : [])
+        ];
+
+        return ids.map(id => {
+            const item = context.stipulationMap.get(str(id));
+            return item?.name || item?.title || str(id).replace(/-/g, " ");
+        });
+    }
+
     /* ======================================================
-       FILA DE RESULTADOS
-       Debajo de los renders: nombres y marcadores.
+       RESUMEN INFERIOR
+       No repite el marcador central.
        ====================================================== */
 
     function resultRows(match, participants, context) {
-        const scores = scoreData(match);
-
         return `
-            <div
-                class="mw-match-results"
-                data-has-result="${hasResult(match)}">
-
-                ${participants.map((participant, index) => {
-                    const info = participantName(participant, context);
+            <div class="mw-match-results" data-has-result="${hasResult(match)}">
+                ${participants.map(participant => {
+                    const info = participantInfo(participant, context);
                     const result = participantResult(match, participant);
 
-                    const score = participantScore(
-                        match,
-                        participant,
-                        index
-                    );
-
                     return `
-                        <div
-                            class="mw-match-result-row ${resultClass(result)}"
-                            data-result="${esc(result)}">
-
-                            <span class="mw-match-result-row__name">
-                                ${esc(info.name)}
-                            </span>
-
-                            <span class="mw-match-result-row__score">
-                                ${score != null
-                                    ? esc(score)
-                                    : scores && participants.length === 2
-                                        ? esc(scores[index] ?? "—")
-                                        : "—"}
-                            </span>
-
-                            <span class="mw-match-result-row__status">
-                                ${esc(resultLabel(result))}
-                            </span>
-
+                        <div class="mw-match-result-row ${resultClass(result)}"
+                             data-result="${esc(result)}">
+                            <span class="mw-match-result-row__name">${esc(info.name)}</span>
+                            <span class="mw-match-result-row__status">${esc(resultLabel(result))}</span>
                         </div>`;
                 }).join("")}
             </div>`;
     }
 
-    /* ======================================================
-       DETALLES DESPLEGABLES
-       Funciona con el elemento nativo <details>.
-       ====================================================== */
-
-    function stipulationNames(match, context) {
-        return arr(match.stipulationIds).map(id => {
-            const item = context.stipulationMap?.get(str(id));
-
-            return item?.name ||
-                item?.title ||
-                str(id).replace(/-/g, " ");
-        });
-    }
-
     function detailsMarkup(match, participants, context, type) {
         const officials = arr(match.officials).map(official => {
-            const persona = context.personaMap.get(
-                str(official.interpreterId)
-            );
-
+            const persona = context.personaMap.get(str(official.interpreterId));
             const role = ({
                 referee: "Árbitro",
                 timekeeper: "Cronometrador",
                 commentator: "Comentarista"
             })[norm(official.role)] || "Oficial";
 
-            return `
-                <li>
-                    <b>${esc(role)}:</b>
-                    ${esc(persona?.name || official.name || "No registrado")}
-                </li>`;
+            return `<li><b>${esc(role)}:</b> ${esc(persona?.name || official.name || "No registrado")}</li>`;
         }).join("");
 
         const stipulations = stipulationNames(match, context);
-
         const notes = str(match.notes);
 
         return `
             <details class="mw-match-details">
                 <summary class="mw-match-details__summary">
                     <span>DETALLES DEL COMBATE</span>
-
-                    <span
-                        class="mw-match-details__icon"
-                        aria-hidden="true"></span>
+                    <span class="mw-match-details__icon" aria-hidden="true"></span>
                 </summary>
-
                 <div class="mw-match-details__content">
-
                     <div class="mw-match-details__meta">
-                        <p>
-                            <b>Formato:</b>
-                            ${esc(type)}
-                            ${match.format ? ` · ${esc(match.format)}` : ""}
-                        </p>
-
-                        ${match.date ? `
-                            <p>
-                                <b>Fecha:</b>
-                                ${esc(shortDate(match.date))}
-                            </p>
-                        ` : ""}
-
-                        ${stipulations.length ? `
-                            <p>
-                                <b>Estipulación:</b>
-                                ${esc(stipulations.join(", "))}
-                            </p>
-                        ` : ""}
+                        <p><b>Formato:</b> ${esc(type)}${match.format ? ` · ${esc(match.format)}` : ""}</p>
+                        ${match.date ? `<p><b>Fecha:</b> ${esc(shortDate(match.date))}</p>` : ""}
+                        ${stipulations.length ? `<p><b>Estipulación:</b> ${esc(stipulations.join(", "))}</p>` : ""}
                     </div>
 
                     <h4>Participantes</h4>
-
                     <ul class="mw-match-details__participants">
                         ${participants.map(participant => {
-                            const info = participantName(participant, context);
-
-                            return `
-                                <li>
-                                    ${esc(info.name)}
-                                    <span>
-                                        ${esc(resultLabel(
-                                            participantResult(match, participant)
-                                        ))}
-                                    </span>
-                                </li>`;
+                            const info = participantInfo(participant, context);
+                            return `<li>${esc(info.name)}<span>${esc(resultLabel(participantResult(match, participant)))}</span></li>`;
                         }).join("") || "<li>Sin participantes registrados.</li>"}
                     </ul>
 
                     <h4>Oficiales</h4>
+                    <ul>${officials || "<li>No se registraron oficiales.</li>"}</ul>
 
-                    <ul>
-                        ${officials || "<li>No se registraron oficiales.</li>"}
-                    </ul>
-
-                    ${notes ? `
-                        <div class="mw-match-details__notes">
-                            ${esc(notes)}
-                        </div>
-                    ` : ""}
-
+                    ${notes ? `<div class="mw-match-details__notes">${esc(notes)}</div>` : ""}
                 </div>
             </details>`;
     }
 
     /* ======================================================
-       MATCH CARD PRINCIPAL
+       MATCH CARD COMPLETA
        ====================================================== */
 
     function renderMatchCard(match, context) {
         const participants = arr(match.participants).filter(participant =>
-            !participant.role ||
-            norm(participant.role) === "competitor"
+            !participant.role || norm(participant.role) === "competitor"
         );
 
         const type = matchType(match, participants);
-        const sides = makeSides(participants);
+        const sides = makeSides(match, participants);
         const scores = scoreData(match);
-
-        const rawType = norm(match.type);
-        const date = match.date ? shortDate(match.date) : "";
-
-        const isSingles = participants.length === 2 && !sides.length;
+        const all = norm(`${match.type || ""} ${match.format || ""}`);
 
         let visual;
 
-        if (isSingles) {
-            visual = singlesLayout(
-                match,
-                participants,
-                context,
-                scores
-            );
-        } else if (sides.length === 2) {
-            visual = tagLayout(
-                match,
-                participants,
-                context,
-                sides,
-                scores
-            );
+        if (
+            participants.length === 2 &&
+            !sides.length &&
+            !isFreeForAll(match)
+        ) {
+            visual = singlesLayout(match, participants, context, scores);
+        } else if (sides.length === 2 && !isFreeForAll(match)) {
+            visual = teamLayout(match, participants, context, sides, scores);
         } else {
-            visual = multiLayout(
-                match,
-                participants,
-                context
-            );
+            visual = multiLayout(match, participants, context);
         }
 
-        const matchNumber = match.order ??
-            match.positionOrder ??
-            "";
+        const matchNumber = firstValue(match.order, match.positionOrder, "");
+        const date = match.date ? shortDate(match.date) : "";
 
         return `
             <article
                 class="mw-match-card ${sides.length ? "is-tag" : ""}"
                 data-match-id="${esc(match.id || "")}"
-                data-match-type="${esc(rawType || "unknown")}"
+                data-match-type="${esc(match.type || "unknown")}"
                 data-participant-count="${participants.length}"
                 data-format="${esc(match.format || "")}">
 
                 <header class="mw-match-card__header">
-
                     <span class="mw-match-card__number">
-                        ${matchNumber !== ""
-                            ? `MATCH ${esc(matchNumber)}`
-                            : "COMBATE"}
+                        ${matchNumber !== "" ? `MATCH ${esc(matchNumber)}` : "COMBATE"}
                     </span>
-
                     <span class="mw-match-card__type">
-                        ${esc(type)}
-                        ${match.format
-                            ? ` · ${esc(match.format)}`
-                            : ""}
+                        ${esc(type)}${match.format ? ` · ${esc(match.format)}` : ""}
                     </span>
-
-                    ${date ? `
-                        <time class="mw-match-card__date">
-                            ${esc(date)}
-                        </time>
-                    ` : ""}
-
+                    ${date ? `<time class="mw-match-card__date">${esc(date)}</time>` : ""}
                 </header>
 
                 ${championshipMarkup(match, context)}
 
                 <div class="mw-match-card__graphic">
-
                     ${visual}
-
                     ${resultRows(match, participants, context)}
-
                 </div>
 
-                ${detailsMarkup(
-                    match,
-                    participants,
-                    context,
-                    type
-                )}
-
+                ${detailsMarkup(match, participants, context, type)}
             </article>`;
     }
 
     /* ======================================================
-       COLORES POR MARCA / EVENTO
-       Los valores son personalizables desde los datos.
+       TEMAS VISUALES
        ====================================================== */
 
     function applyEventTheme(event) {
@@ -1022,130 +888,44 @@
             event.theme
         ].join(" "));
 
-        /*
-         * Los colores son variables visuales del sitio.
-         * El CSS posterior debe usar --event-accent,
-         * --event-accent-rgb y --event-secondary.
-         */
-
         const themes = [
-            {
-                test: /\bnxt\b/,
-                accent: "#d6ff35",
-                secondary: "#ffffff",
-                rgb: "214,255,53",
-                name: "nxt"
-            },
-            {
-                test: /smack.?down/,
-                accent: "#168cff",
-                secondary: "#ffffff",
-                rgb: "22,140,255",
-                name: "smackdown"
-            },
-            {
-                test: /\braw\b/,
-                accent: "#e32636",
-                secondary: "#ffffff",
-                rgb: "227,38,54",
-                name: "raw"
-            },
-            {
-                test: /evolve/,
-                accent: "#b8ff3b",
-                secondary: "#ffffff",
-                rgb: "184,255,59",
-                name: "evolve"
-            },
-            {
-                test: /speed/,
-                accent: "#00d5ff",
-                secondary: "#ffffff",
-                rgb: "0,213,255",
-                name: "speed"
-            },
-            {
-                test: /collision/,
-                accent: "#e32636",
-                secondary: "#ffffff",
-                rgb: "227,38,54",
-                name: "collision"
-            },
-            {
-                test: /dynamite/,
-                accent: "#e32636",
-                secondary: "#ffffff",
-                rgb: "227,38,54",
-                name: "dynamite"
-            },
-            {
-                test: /\baew\b/,
-                accent: "#e32636",
-                secondary: "#ffffff",
-                rgb: "227,38,54",
-                name: "aew"
-            },
-            {
-                test: /\bple\b|premium.?live|wrestlemania/,
-                accent: "#ffcc54",
-                secondary: "#ffffff",
-                rgb: "255,204,84",
-                name: "ple"
-            },
-            {
-                test: /special|especial/,
-                accent: "#a98aff",
-                secondary: "#ffffff",
-                rgb: "169,138,255",
-                name: "special"
-            }
+            { test: /\bnxt\b/, accent: "#d6ff35", secondary: "#ffffff", rgb: "214,255,53", name: "nxt" },
+            { test: /smack.?down/, accent: "#168cff", secondary: "#ffffff", rgb: "22,140,255", name: "smackdown" },
+            { test: /\braw\b/, accent: "#e32636", secondary: "#ffffff", rgb: "227,38,54", name: "raw" },
+            { test: /evolve/, accent: "#b8ff3b", secondary: "#ffffff", rgb: "184,255,59", name: "evolve" },
+            { test: /speed/, accent: "#00d5ff", secondary: "#ffffff", rgb: "0,213,255", name: "speed" },
+            { test: /collision/, accent: "#e32636", secondary: "#ffffff", rgb: "227,38,54", name: "collision" },
+            { test: /dynamite/, accent: "#37d7ff", secondary: "#ffffff", rgb: "55,215,255", name: "dynamite" },
+            { test: /\baew\b/, accent: "#37d7ff", secondary: "#ffffff", rgb: "55,215,255", name: "aew" },
+            { test: /\bple\b|premium.?live|wrestlemania/, accent: "#ffcc54", secondary: "#ffffff", rgb: "255,204,84", name: "ple" },
+            { test: /special|especial/, accent: "#a98aff", secondary: "#ffffff", rgb: "169,138,255", name: "special" }
         ];
 
-        const theme = themes.find(item => item.test.test(identity));
-
-        /*
-         * Si los datos del evento ya tienen colores explícitos,
-         * esos valores tienen prioridad sobre los predeterminados.
-         */
-
-        const accent = safeUrl(event.themeAccent)
-            ? ""
-            : str(event.themeAccent || event.color || "");
-
-        const rgb = str(event.themeAccentRgb || "");
-        const secondary = str(event.themeSecondary || "");
-
-        const chosen = theme || {
+        const theme = themes.find(item => item.test.test(identity)) || {
             accent: "#e32636",
             secondary: "#ffffff",
             rgb: "227,38,54",
             name: "default"
         };
 
+        const accent = safeColor(event.themeAccent || event.color);
+        const secondary = safeColor(event.themeSecondary);
+        const rgb = str(event.themeAccentRgb).match(/^[\d\s,.]+$/)
+            ? str(event.themeAccentRgb)
+            : theme.rgb;
+
         const root = document.documentElement;
 
-        root.style.setProperty(
-            "--event-accent",
-            accent || chosen.accent
-        );
+        root.style.setProperty("--event-accent", accent || theme.accent);
+        root.style.setProperty("--event-accent-rgb", rgb);
+        root.style.setProperty("--event-secondary", secondary || theme.secondary);
 
-        root.style.setProperty(
-            "--event-accent-rgb",
-            rgb || chosen.rgb
-        );
-
-        root.style.setProperty(
-            "--event-secondary",
-            secondary || chosen.secondary
-        );
-
-        main.dataset.eventTheme = str(event.theme || chosen.name);
+        main.dataset.eventTheme = str(event.theme || theme.name);
         main.dataset.eventBrand = str(event.brand || "");
     }
 
     /* ======================================================
-       CARGA DE DATOS
-       Conserva las rutas actuales.
+       CARGA Y MAPEO DE DATOS
        ====================================================== */
 
     main.innerHTML = `
@@ -1176,48 +956,37 @@
             !Array.isArray(wrestlers) ||
             !Array.isArray(personas)
         ) {
-            throw new Error(
-                "Uno de los archivos principales no tiene el formato esperado."
-            );
+            throw new Error("Uno de los archivos principales no tiene el formato esperado.");
         }
 
         const events = [];
 
         for (const category of catalog.categories) {
             for (const season of arr(category.seasons)) {
+                if (!season.path) continue;
+
                 try {
                     const data = await get(season.path);
 
                     for (const event of arr(data.events)) {
-                        if (events.some(item =>
-                            String(item.id) === String(event.id)
-                        )) {
-                            continue;
-                        }
+                        if (events.some(item => String(item.id) === String(event.id))) continue;
 
                         events.push({
                             ...event,
                             categoryId: event.categoryId || category.id,
-                            categoryName:
-                                event.categoryName || category.name,
+                            categoryName: event.categoryName || category.name,
                             seasonId: event.seasonId || data.id,
                             year: event.year || data.year
                         });
                     }
                 } catch (error) {
-                    console.warn(
-                        "[MI WRESTLING] No se pudo cargar temporada:",
-                        season.path,
-                        error
-                    );
+                    console.warn("[MI WRESTLING] No se pudo cargar temporada:", season.path, error);
                 }
             }
         }
 
         for (const event of arr(indexEvents)) {
-            if (!events.some(item =>
-                String(item.id) === String(event.id)
-            )) {
+            if (!events.some(item => String(item.id) === String(event.id))) {
                 events.push(event);
             }
         }
@@ -1233,9 +1002,7 @@
             return;
         }
 
-        const event = events.find(item =>
-            String(item.id) === String(id)
-        );
+        const event = events.find(item => String(item.id) === String(id));
 
         if (!event) {
             renderEmpty(
@@ -1252,35 +1019,17 @@
         const eventMatches = matches
             .filter(match =>
                 String(match.eventId || "") === String(event.id) ||
-                arr(event.matchIds).some(matchId =>
-                    String(matchId) === String(match.id)
-                )
+                arr(event.matchIds).some(matchId => String(matchId) === String(match.id))
             )
             .sort((a, b) =>
-                (
-                    Number(a.order ?? a.positionOrder ?? 9999) -
-                    Number(b.order ?? b.positionOrder ?? 9999)
-                ) ||
+                Number(a.order ?? a.positionOrder ?? 9999) -
+                Number(b.order ?? b.positionOrder ?? 9999) ||
                 String(a.id).localeCompare(String(b.id))
             );
 
-        const wrestlerMap = new Map(
-            wrestlers.map(item => [String(item.id), item])
-        );
-
-        const personaMap = new Map(
-            personas.map(item => [String(item.id), item])
-        );
-
-        const teamMap = new Map(
-            arr(teams).map(item => [String(item.id), item])
-        );
-
-        /*
-         * Estos mapas quedan preparados para integrarse con los
-         * índices de campeonatos y estipulaciones cuando revisemos
-         * sus rutas reales. No se solicitan archivos inexistentes.
-         */
+        const wrestlerMap = new Map(wrestlers.map(item => [String(item.id), item]));
+        const personaMap = new Map(personas.map(item => [String(item.id), item]));
+        const teamMap = new Map(arr(teams).map(item => [String(item.id), item]));
 
         const context = {
             wrestlerMap,
@@ -1292,31 +1041,22 @@
 
         const cards = eventMatches.length
             ? eventMatches.map(match =>
-                renderMatchCard(match, {
-                    ...context,
-                    match
-                })
+                renderMatchCard(match, { ...context, match })
             ).join("")
             : `
                 <div class="mw-event-empty">
                     <h2>Cartelera pendiente</h2>
-                    <p>
-                        Este evento todavía no tiene combates vinculados.
-                    </p>
+                    <p>Este evento todavía no tiene combates vinculados.</p>
                 </div>`;
 
         const backCategory = event.categoryId || category?.id || "ple";
-
         const backLink =
             `events.html?category=${encodeURIComponent(backCategory)}` +
-            (event.year
-                ? `&year=${encodeURIComponent(event.year)}`
-                : "");
+            (event.year ? `&year=${encodeURIComponent(event.year)}` : "");
 
         const categoryEvents = events
             .filter(item =>
-                String(item.categoryId || "") ===
-                String(event.categoryId || "")
+                String(item.categoryId || "") === String(event.categoryId || "")
             )
             .filter(item => dateValue(eventDate(item)))
             .sort((a, b) =>
@@ -1327,39 +1067,24 @@
             String(item.id) === String(event.id)
         );
 
-        const previous = currentIndex > 0
-            ? categoryEvents[currentIndex - 1]
-            : null;
-
-        const next = currentIndex >= 0 &&
-            currentIndex < categoryEvents.length - 1
+        const previous = currentIndex > 0 ? categoryEvents[currentIndex - 1] : null;
+        const next = currentIndex >= 0 && currentIndex < categoryEvents.length - 1
             ? categoryEvents[currentIndex + 1]
             : null;
 
         const timelineEvents = currentIndex >= 0
-            ? categoryEvents.slice(
-                Math.max(0, currentIndex - 2),
-                currentIndex + 3
-            )
+            ? categoryEvents.slice(Math.max(0, currentIndex - 2), currentIndex + 3)
             : [];
 
         const timelineMarkup = timelineEvents.length
-            ? timelineEvents.map(item =>
-                timelineCard(item, event.id)
-            ).join("")
+            ? timelineEvents.map(item => timelineCard(item, event.id)).join("")
             : `
                 <div class="mw-event-empty">
-                    <p>
-                        No hay otros eventos fechados en esta categoría.
-                    </p>
+                    <p>No hay otros eventos fechados en esta categoría.</p>
                 </div>`;
 
         const matchCount = eventMatches.length;
         const finishedCount = eventMatches.filter(hasResult).length;
-
-        /* ==================================================
-           RENDER FINAL DEL EVENTO
-           ================================================== */
 
         main.innerHTML = `
             <a class="mw-event-back" href="${esc(backLink)}">
@@ -1367,152 +1092,72 @@
             </a>
 
             <header class="mw-event-detail-hero">
-
                 <div class="mw-event-detail-hero__branding">
                     ${eventLogoMarkup(event)}
                 </div>
 
                 <div class="mw-event-detail-hero__copy">
-
                     <div class="mw-event-eyebrow">
-                        ${esc(category?.name ||
-                            event.categoryName ||
-                            "MI WRESTLING")}
-
+                        ${esc(category?.name || event.categoryName || "MI WRESTLING")}
                         <span>/</span>
-
-                        ${esc(
-                            event.year ||
-                            String(event.date || "").slice(0, 4) ||
-                            "ARCHIVO"
-                        )}
+                        ${esc(event.year || String(event.date || "").slice(0, 4) || "ARCHIVO")}
                     </div>
 
                     <h1>${esc(eventName(event))}</h1>
 
                     <p class="mw-event-description">
-                        ${esc(
-                            event.description ||
-                            "La cartelera oficial, los resultados y la historia del evento."
-                        )}
+                        ${esc(event.description || "La cartelera oficial, los resultados y la historia del evento.")}
                     </p>
 
                     <div class="mw-event-detail-meta">
-                        <span>${esc(formatDate(event.date))}</span>
-
-                        <span>
-                            ${esc(event.type || category?.name || "Evento")}
-                        </span>
-
-                        <span>
-                            ${esc(event.status || event.mode || "Archivo")}
-                        </span>
-
-                        ${event.brand ? `
-                            <span>${esc(event.brand)}</span>
-                        ` : ""}
-
-                        ${event.location ? `
-                            <span>${esc(event.location)}</span>
-                        ` : ""}
-
-                        ${event.venue ? `
-                            <span>${esc(event.venue)}</span>
-                        ` : ""}
+                        <span>${esc(formatDate(eventDate(event)))}</span>
+                        <span>${esc(event.type || category?.name || "Evento")}</span>
+                        <span>${esc(event.status || event.mode || "Archivo")}</span>
+                        ${event.brand ? `<span>${esc(event.brand)}</span>` : ""}
+                        ${event.location ? `<span>${esc(event.location)}</span>` : ""}
+                        ${event.venue ? `<span>${esc(event.venue)}</span>` : ""}
                     </div>
-
                 </div>
-
             </header>
 
-            <section
-                class="mw-event-stats"
-                aria-label="Resumen del evento">
-
+            <section class="mw-event-stats" aria-label="Resumen del evento">
                 <div class="mw-event-stat">
-                    <strong class="mw-event-stat__value">
-                        ${matchCount}
-                    </strong>
-                    <span class="mw-event-stat__label">
-                        Combates registrados
-                    </span>
+                    <strong class="mw-event-stat__value">${matchCount}</strong>
+                    <span class="mw-event-stat__label">Combates registrados</span>
                 </div>
-
                 <div class="mw-event-stat">
-                    <strong class="mw-event-stat__value">
-                        ${finishedCount}
-                    </strong>
-                    <span class="mw-event-stat__label">
-                        Con resultado registrado
-                    </span>
+                    <strong class="mw-event-stat__value">${finishedCount}</strong>
+                    <span class="mw-event-stat__label">Con resultado registrado</span>
                 </div>
-
                 <div class="mw-event-stat">
-                    <strong class="mw-event-stat__value">
-                        ${esc(event.year || "—")}
-                    </strong>
-                    <span class="mw-event-stat__label">
-                        Año del evento
-                    </span>
+                    <strong class="mw-event-stat__value">${esc(event.year || "—")}</strong>
+                    <span class="mw-event-stat__label">Año del evento</span>
                 </div>
-
             </section>
 
-            <section
-                class="mw-event-section"
-                aria-labelledby="mw-event-card-heading">
-
+            <section class="mw-event-section" aria-labelledby="mw-event-card-heading">
                 <div class="mw-event-section-heading">
                     <div>
-                        <span class="mw-event-kicker">
-                            OFFICIAL MATCH CARD
-                        </span>
-
-                        <h2 id="mw-event-card-heading">
-                            Cartelera y resultados
-                        </h2>
+                        <span class="mw-event-kicker">OFFICIAL MATCH CARD</span>
+                        <h2 id="mw-event-card-heading">Cartelera y resultados</h2>
                     </div>
-
-                    <span>
-                        ${matchCount}
-                        ${matchCount === 1 ? "combate" : "combates"}
-                    </span>
+                    <span>${matchCount} ${matchCount === 1 ? "combate" : "combates"}</span>
                 </div>
-
-                <div class="mw-event-matches">
+                <div class="mw-event-matches" id="mw-event-matches">
                     ${cards}
                 </div>
-
             </section>
 
-            <section
-                class="mw-event-section"
-                aria-labelledby="mw-event-timeline-heading">
-
+            <section class="mw-event-section" aria-labelledby="mw-event-timeline-heading">
                 <div class="mw-event-section-heading">
                     <div>
-                        <span class="mw-event-kicker">
-                            EVENT HISTORY
-                        </span>
-
-                        <h2 id="mw-event-timeline-heading">
-                            Cronología de eventos
-                        </h2>
+                        <span class="mw-event-kicker">EVENT HISTORY</span>
+                        <h2 id="mw-event-timeline-heading">Cronología de eventos</h2>
                     </div>
-
-                    <span>
-                        ${esc(category?.name ||
-                            event.categoryName ||
-                            "Archivo")}
-                    </span>
+                    <span>${esc(category?.name || event.categoryName || "Archivo")}</span>
                 </div>
-
-                <div class="mw-event-timeline">
-                    ${timelineMarkup}
-                </div>
-
+                <div class="mw-event-timeline">${timelineMarkup}</div>
                 ${timelineNavigation(previous, next)}
-
             </section>`;
 
         document.title = `${eventName(event)} | MI WRESTLING 2.0`;
@@ -1523,15 +1168,11 @@
         main.dataset.eventCategory = String(event.categoryId || "");
 
     } catch (error) {
-        console.error(
-            "[MI WRESTLING] Error al cargar el evento:",
-            error
-        );
+        console.error("[MI WRESTLING] Error al cargar el evento:", error);
 
         renderEmpty(
             "NO SE PUDO CARGAR EL EVENTO",
-            error.message ||
-                "Ocurrió un error al leer los archivos de datos."
+            error.message || "Ocurrió un error al leer los archivos de datos."
         );
     }
 })();
