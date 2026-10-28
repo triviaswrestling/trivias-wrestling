@@ -581,7 +581,7 @@ body[data-page="tournament"][data-tournament-brand*="wcw"] { --t-accent: #9b79bd
   .mw-tournament-draft-card__seed { top: 5px; left: 5px; min-width: 24px; height: 23px; font-size: .68rem; }
   .mw-tournament-draft-card strong { min-height: 43px; padding: 7px 4px 4px; font-size: clamp(.72rem, 3.4vw, .9rem); }
   .mw-tournament-draft-card__open { padding-bottom: 7px; font-size: .48rem; }
-  .mw-table-tools { align-items: stretch; flex-direction: column; }
+  x   .mw-table-tools { align-items: stretch; flex-direction: column; }
   .mw-table-tools__label { margin: 0; }
   .mw-table-difference-toggle { width: 100%; justify-content: flex-start; min-height: 42px; }
   .mw-table-points { font-size: .61rem; }
@@ -622,21 +622,6 @@ body[data-page="tournament"][data-tournament-brand*="wcw"] { --t-accent: #9b79bd
   .mw-tournament-bracket-round h3 { padding: 10px 8px; font-size: .83rem; }
 }
 
-@media (max-width: 370px) {
-  body[data-page="tournament"] .site-main,
-  body[data-page="tournament"] [data-tournament-main],
-  body[data-page="tournament"] [data-page-content] { padding-inline: 8px; }
-  .mw-tournament-hero { padding-inline: 13px; }
-  .mw-tournament-panel { padding-inline: 8px; }
-  .mw-tournament-draft-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .mw-matchup-bar { grid-template-columns: minmax(0, 1fr) 53px minmax(0, 1fr); }
-  .mw-matchup-side { gap: 4px; padding-inline: 4px; }
-  .mw-matchup-portrait, .mw-matchup-side .mw-image-fallback { width: 29px; height: 41px; flex-basis: 29px; }
-  .mw-matchup-name { font-size: .61rem; }
-  .mw-matchup-scoreboard strong { font-size: 1.2rem; }
-  .mw-matchup-scoreboard__state { font-size: .36rem; }
-  .mw-tournament-catalog-card__footer { flex-direction: column; }
-}
 
 @media (hover: none) {
   .mw-tournament-catalog-card:hover, .mw-tournament-draft-card:hover { transform: none; filter: none; }
@@ -657,12 +642,91 @@ body[data-page="tournament"][data-tournament-brand*="wcw"] { --t-accent: #9b79bd
 .mw-image-fallback[hidden] { display: none !important; }
 
 /* En escritorio, la ficha completa mantiene proporción 3:4 y el nombre gana peso. */
-.mw-tournament-draft-card { aspect-ratio: 3 / 4; min-height: 0; }
-.mw-tournament-draft-card__image,
-.mw-tournament-draft-card .mw-image-fallback { flex: 1 1 auto; min-height: 0; height: auto; aspect-ratio: auto; object-fit: cover; object-position: center 18%; }
-.mw-tournament-draft-card strong { position: relative; z-index: 1; flex: 0 0 auto; min-height: 66px; padding: 11px 8px 8px; font-size: clamp(1rem, 1.55vw, 1.35rem); line-height: 1.02; text-wrap: balance; }
-.mw-tournament-draft-card__open { flex: 0 0 auto; padding: 0 5px 10px; font-size: .6rem; }
+/* DRAFT CARDS — estilo WWE 2K26
+Tarjeta 3:4, render completo y nombre superpuesto con degradado. */
 
+.mw-tournament-draft-card {
+position: relative;
+display: block;
+width: 100%;
+aspect-ratio: 3 / 4;
+min-width: 0;
+min-height: 0;
+overflow: hidden;
+padding: 0;
+isolation: isolate;
+border: 1px solid #414149;
+background: #09090c;
+color: #fff;
+text-decoration: none;
+box-shadow: inset 0 0 0 1px #ffffff08;
+transition: transform .16s ease, border-color .16s ease, filter .16s ease;
+}
+
+.mw-tournament-draft-card__image,
+.mw-tournament-draft-card .mw-image-fallback {
+position: absolute;
+inset: 0;
+display: block;
+width: 100%;
+height: 100%;
+min-height: 0;
+aspect-ratio: auto;
+object-fit: contain;
+object-position: center center;
+background: radial-gradient(ellipse at center, #29292f 0%, #101014 65%, #070709 100%);
+}
+
+/* Sombra inferior detrás del nombre, sin tapar el render. */
+.mw-tournament-draft-card::after {
+content: "";
+position: absolute;
+z-index: 1;
+inset: 35% 0 0;
+background: linear-gradient(
+180deg,
+transparent 0%,
+rgba(0, 0, 0, .12) 24%,
+rgba(0, 0, 0, .70) 65%,
+rgba(0, 0, 0, .96) 100%
+);
+pointer-events: none;
+}
+
+.mw-tournament-draft-card__seed {
+z-index: 3;
+}
+
+/* Nombre integrado en la imagen, no en una banda externa. */
+.mw-tournament-draft-card strong {
+position: absolute;
+z-index: 2;
+right: 0;
+bottom: 0;
+left: 0;
+display: flex;
+align-items: flex-end;
+justify-content: center;
+width: 100%;
+min-height: 0;
+padding: 30px 8px 12px;
+background: none;
+color: #fff;
+font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+font-size: clamp(1rem, 1.65vw, 1.55rem);
+font-weight: 900;
+line-height: 1;
+text-align: center;
+text-transform: uppercase;
+text-wrap: balance;
+overflow-wrap: anywhere;
+text-shadow: 0 2px 5px #000, 0 1px 1px #000;
+}
+
+/* Ocultar la etiqueta auxiliar para conservar el diseño limpio. */
+.mw-tournament-draft-card__open {
+display: none;
+}
 /* Bracket tradicional: una columna por ronda, de izquierda a derecha. */
 .mw-tournament-bracket { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(245px, 1fr); grid-template-columns: none; align-items: stretch; gap: 18px; overflow-x: auto; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--t-accent) #17171b; }
 .mw-tournament-bracket-round { display: flex; flex-direction: column; min-width: 0; }
@@ -695,5 +759,19 @@ body[data-page="tournament"][data-tournament-brand*="wcw"] { --t-accent: #9b79bd
   .mw-tournament-bracket-round__matches { justify-content: flex-start; }
   .mw-tournament-draft-card { aspect-ratio: 3 / 4; }
   .mw-tournament-draft-card strong { min-height: 48px; padding: 7px 4px 5px; font-size: clamp(.8rem, 3.7vw, 1rem); }
-  .mw-tournament-draft-card__open { font-size: .48rem; }
+ .mw-tournament-draft-card {
+  aspect-ratio: 3 / 4;
+}
+
+.mw-tournament-draft-card strong {
+  min-height: 0;
+  padding: 26px 5px 9px;
+  font-size: clamp(.78rem, 3.8vw, 1rem);
+}
+
+.mw-tournament-draft-card__open {
+  display: none;
+}
+   
+   .mw-tournament-draft-card__open { font-size: .48rem; }
 }
