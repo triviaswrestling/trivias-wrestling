@@ -1,2 +1,75 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Torneos y competencias"><title>Torneos | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/tournaments.css"><script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="tournaments"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Torneos</h1><p class="lead">Torneos y competencias</p></section><p class="notice">Cargando catálogo…</p></main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#05070b">
+  <meta name="description" content="Catálogo de torneos, temporadas y competencias de MI WRESTLING 2.0.">
+  <title>Torneos | MI WRESTLING 2.0</title>
 
+  <!-- Fuentes globales MI WRESTLING 2.0 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Base compartida: no reemplazar por CSS de navegación independiente -->
+  <link rel="stylesheet" href="css/base/style.css">
+  <link rel="stylesheet" href="css/base/wwe-2k26-theme.css">
+  <link rel="stylesheet" href="css/mi-wrestling.css">
+  <link rel="stylesheet" href="css/pages/tournaments.css">
+</head>
+<body data-page="tournaments">
+  <main class="site-main mw-tournaments" data-page-content>
+    <section class="mw-tournaments-hero">
+      <div class="mw-tournaments-hero__copy">
+        <span class="mw-tournaments-eyebrow">MI WRESTLING 2.0 · COMPETITION ARCHIVE</span>
+        <h1>TORNEOS</h1>
+        <p>Temporadas, caminos al campeonato y competencias históricas. Cada ficha se conecta con sus combates y eventos registrados.</p>
+      </div>
+      <div class="mw-tournaments-hero__emblem" aria-hidden="true"><span>MW</span><i>TOURNAMENTS</i></div>
+      <div class="mw-tournaments-hero__stats" id="mw-tournament-stats" aria-live="polite">
+        <div><strong>—</strong><span>TORNEOS</span></div>
+        <div><strong>—</strong><span>COMBATES</span></div>
+        <div><strong>—</strong><span>EVENTOS VINCULADOS</span></div>
+      </div>
+    </section>
+
+    <section class="mw-tournament-browser" aria-label="Catálogo de torneos">
+      <div class="mw-tournament-browser__heading">
+        <div><span class="mw-tournaments-eyebrow">ELIGE TU ARCHIVO</span><h2>UNIVERSO DE COMPETICIÓN</h2></div>
+        <span id="mw-tournament-result-count" class="mw-tournament-result-count">Cargando archivo…</span>
+      </div>
+
+      <div class="mw-tournament-filters" role="group" aria-label="Filtrar por marca o categoría" id="mw-tournament-filters">
+        <button type="button" class="is-active" data-filter="all" aria-pressed="true">TODOS</button>
+        <button type="button" data-filter="raw" aria-pressed="false">RAW</button>
+        <button type="button" data-filter="smackdown" aria-pressed="false">SMACKDOWN</button>
+        <button type="button" data-filter="nxt" aria-pressed="false">NXT + TAKEOVER</button>
+        <button type="button" data-filter="speed" aria-pressed="false">SPEED</button>
+        <button type="button" data-filter="specials" aria-pressed="false">ESPECIALES</button>
+        <button type="button" data-filter="aaa" aria-pressed="false">AAA</button>
+        <button type="button" data-filter="aew" aria-pressed="false">AEW</button>
+      </div>
+
+      <div class="mw-tournament-search-row">
+        <label class="mw-tournament-search" for="mw-tournament-search"><span aria-hidden="true">⌕</span><input id="mw-tournament-search" type="search" placeholder="Buscar torneo, temporada, marca o formato…" autocomplete="off"></label>
+        <label class="mw-tournament-sort" for="mw-tournament-sort"><span>ORDENAR</span><select id="mw-tournament-sort"><option value="newest">Más recientes</option><option value="oldest">Más antiguos</option><option value="name">Nombre A–Z</option><option value="matches">Más combates</option></select></label>
+      </div>
+
+      <div id="mw-tournament-catalog" class="mw-tournament-catalog" aria-live="polite">
+        <div class="mw-tournament-loading"><span class="mw-tournament-loader"></span><strong>CARGANDO TORNEOS</strong><small>Conectando temporadas, eventos y combates…</small></div>
+      </div>
+      <div id="mw-tournament-empty" class="mw-tournament-empty" hidden><strong>NO HAY TORNEOS PARA ESTE FILTRO</strong><p>Esta categoría todavía no tiene torneos registrados en los JSON actuales.</p><button type="button" id="mw-tournament-reset">VER TODOS LOS TORNEOS</button></div>
+      <p class="mw-tournament-footnote">El catálogo solo publica torneos con datos registrados. Las plantillas vacías se conservan en la base, pero no se muestran como competencias reales.</p>
+    </section>
+  </main>
+
+  <footer class="footer">MI WRESTLING 2.0 · ARCHIVO DE COMPETICIÓN</footer>
+
+  <!-- Scripts compartidos obligatorios + lógica exclusiva del catálogo -->
+  <script src="js/mi-wrestling.js" defer></script>
+  <script src="js/sound-effects.js" defer></script>
+  <script src="js/theme-rotation.js" defer></script>
+  <script src="js/pages/tournaments.js" defer></script>
+</body>
+</html>
