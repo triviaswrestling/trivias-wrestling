@@ -1,2 +1,165 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Tipos y condiciones de combate"><title>Estipulaciones | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/stipulations.css"><script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="stipulations"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Estipulaciones</h1><p class="lead">Tipos y condiciones de combate</p></section><p class="notice">Cargando catálogo…</p></main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+    >
+    <meta name="theme-color" content="#050507">
+    <meta
+        name="description"
+        content="Explorá las estipulaciones, modalidades y reglas especiales de MI WRESTLING 2.0."
+    >
+
+    <title>Estipulaciones | MI WRESTLING 2.0</title>
+
+    <!-- Fuentes compartidas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Sistema global de MI WRESTLING -->
+    <link rel="stylesheet" href="css/mi-wrestling.css">
+
+    <!-- Estilos exclusivos de estipulaciones -->
+    <link rel="stylesheet" href="css/pages/stipulations.css">
+
+    <!-- Lógica de la sección -->
+    <script src="js/pages/stipulations.js" defer></script>
+
+    <!-- Sistema global y efectos de sonido -->
+    <script src="js/mi-wrestling.js" defer></script>
+    <script src="js/sound-effects.js" defer></script>
+</head>
+
+<body data-page="stipulations">
+    <main class="site-main mw-stipulations-page">
+
+        <header class="stip-hero">
+            <div class="stip-hero-art" aria-hidden="true"></div>
+
+            <div class="stip-hero-content">
+                <div class="stip-eyebrow">
+                    <span class="stip-eyebrow-line"></span>
+                    <span>MI WRESTLING 2.0</span>
+                    <span class="stip-eyebrow-divider">/</span>
+                    <span class="stip-eyebrow-muted">MATCH RULES ARCHIVE</span>
+                </div>
+
+                <h1 class="stip-title">
+                    <span>STIPULATIONS</span>
+                </h1>
+
+                <p class="stip-description">
+                    CADA COMBATE TIENE SUS REGLAS.
+                    <span>
+                        Explorá las modalidades, descubrí sus condiciones
+                        y consultá las reglas oficiales de cada enfrentamiento.
+                    </span>
+                </p>
+
+                <div class="stip-hero-bottom">
+                    <span>COMBAT SYSTEM</span>
+                    <span class="stip-hero-bottom-line"></span>
+                    <span data-stip-total>PREPARANDO ARCHIVO</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="stip-browser" aria-label="Catálogo de estipulaciones">
+            <div class="stip-browser-heading">
+                <div>
+                    <span class="stip-kicker">SELECT MATCH TYPE</span>
+                    <h2>EXPLORAR COMBATES</h2>
+                    <p>
+                        Elegí una categoría para desplegar sus estipulaciones.
+                    </p>
+                </div>
+
+                <div class="stip-counter">
+                    <strong data-stip-count>00</strong>
+                    <span>MODALIDADES</span>
+                </div>
+            </div>
+
+            <div
+                class="stip-category-grid"
+                id="stip-category-grid"
+                aria-label="Categorías"
+            >
+                <p class="stip-loading">CARGANDO CATEGORÍAS…</p>
+            </div>
+
+            <section
+                class="stip-drawer"
+                id="stip-drawer"
+                aria-hidden="true"
+                aria-labelledby="stip-drawer-title"
+            >
+                <div class="stip-drawer-head">
+                    <div>
+                        <span class="stip-kicker" data-drawer-kicker>
+                            MATCH CATEGORY
+                        </span>
+                        <h2 id="stip-drawer-title">ESTIPULACIONES</h2>
+                        <p data-drawer-description>
+                            Seleccioná una modalidad para consultar sus reglas.
+                        </p>
+                    </div>
+
+                    <button
+                        class="stip-close"
+                        id="stip-close"
+                        type="button"
+                        aria-label="Cerrar categoría"
+                    >
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div
+                    class="stip-option-grid"
+                    id="stip-option-grid"
+                    aria-label="Estipulaciones de la categoría"
+                ></div>
+
+                <div class="stip-detail" id="stip-detail" hidden>
+                    <div class="stip-detail-top">
+                        <div>
+                            <span class="stip-kicker">OFFICIAL MATCH RULES</span>
+                            <h3 id="stip-detail-title"></h3>
+                        </div>
+
+                        <span class="stip-detail-number" id="stip-detail-number">
+                            01
+                        </span>
+                    </div>
+
+                    <div class="stip-detail-rule" id="stip-detail-rule"></div>
+                </div>
+            </section>
+        </section>
+
+        <section class="stip-bottom-note">
+            <span class="stip-bottom-symbol" aria-hidden="true">✦</span>
+            <div>
+                <h2>CONOCÉ LAS REGLAS. DOMINÁ EL COMBATE.</h2>
+                <p>
+                    Las condiciones específicas de cada modalidad determinan
+                    cómo se disputa y cómo se define el resultado.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        MI WRESTLING 2.0 · MATCH RULES ARCHIVE
+    </footer>
+</body>
+</html>
