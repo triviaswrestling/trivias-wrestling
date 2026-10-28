@@ -1,2 +1,85 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Títulos y reinados"><title>Campeonatos | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/championships.css"><script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="championships"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Campeonatos</h1><p class="lead">Títulos y reinados</p></section><p class="notice">Cargando catálogo…</p></main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#050609">
+    <meta name="description" content="Catálogo de campeonatos, historial de reinados y récords de MI WRESTLING 2.0.">
+    <title>Championships | MI WRESTLING 2.0</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Base compartida de MI WRESTLING: no reemplazar por navegación independiente. -->
+    <link rel="stylesheet" href="css/mi-wrestling.css">
+    <link rel="stylesheet" href="css/pages/championships.css">
+
+    <script src="js/sound-effects.js" defer></script>
+    <script src="js/mi-wrestling.js" defer></script>
+    <script src="js/pages/championships.js" defer></script>
+</head>
+<body data-page="championships">
+    <main class="site-main mw-championships-page">
+        <header class="mw-champ-hero">
+            <div class="mw-champ-hero__eyebrow"><span></span> MI WRESTLING 2.0 <i>/</i> TITLE ARCHIVE</div>
+            <p class="mw-champ-hero__edition">THE GOLD STANDARD</p>
+            <h1>CHAMPIONSHIPS</h1>
+            <p class="mw-champ-hero__lead">Cada título tiene una historia. Cada reinado deja una marca.</p>
+            <div class="mw-champ-hero__rule"><span></span><b>HISTORY · RECORDS · LEGACY</b><span></span></div>
+        </header>
+
+        <nav class="mw-champ-tabs" aria-label="Secciones de campeonatos" data-champ-tabs>
+            <button type="button" class="is-active" data-view="catalog" aria-selected="true"><span>01</span> CATÁLOGO</button>
+            <button type="button" data-view="records" aria-selected="false"><span>02</span> RÉCORDS</button>
+            <button type="button" data-view="crowns" aria-selected="false"><span>03</span> TRIPLE CROWN / GRAND SLAM</button>
+        </nav>
+
+        <section class="mw-champ-view is-active" data-champ-view="catalog" aria-label="Catálogo de campeonatos">
+            <div class="mw-champ-section-heading">
+                <div><p>CHOOSE YOUR TITLE</p><h2>ARCHIVO DE CAMPEONATOS</h2></div>
+                <span data-champ-count>PREPARANDO ARCHIVO…</span>
+            </div>
+            <div class="mw-champ-filterbar">
+                <label class="mw-champ-search"><span aria-hidden="true">⌕</span><input type="search" data-champ-search placeholder="Buscar campeonato…" autocomplete="off" aria-label="Buscar campeonato"></label>
+                <div class="mw-champ-filter-buttons" role="group" aria-label="Filtrar por categoría" data-champ-filters>
+                    <button type="button" class="is-active" data-filter="all">TODOS</button>
+                    <button type="button" data-filter="world">MUNDIALES</button>
+                    <button type="button" data-filter="midcard">MIDCARD</button>
+                    <button type="button" data-filter="tag">PAREJAS</button>
+                    <button type="button" data-filter="other">OTROS</button>
+                </div>
+            </div>
+            <div class="mw-champ-catalog-grid" data-champ-catalog aria-live="polite"><p class="mw-champ-loading">CARGANDO CAMPEONATOS…</p></div>
+            <p class="mw-champ-footnote">Los cinturones gráficos identifican cada título. Los datos oficiales del campeón y sus reinados provienen del archivo JSON.</p>
+        </section>
+
+        <section class="mw-champ-view" data-champ-view="detail" aria-label="Historial del campeonato" hidden>
+            <button type="button" class="mw-champ-back" data-back-catalog>← VOLVER AL CATÁLOGO</button>
+            <div data-champ-detail><p class="mw-champ-loading">CARGANDO HISTORIAL…</p></div>
+        </section>
+
+        <section class="mw-champ-view" data-champ-view="records" aria-label="Récords de campeonatos" hidden>
+            <div class="mw-champ-section-heading"><div><p>THE NUMBERS NEVER LIE</p><h2>RÉCORDS DE CAMPEONATO</h2></div><span>DATOS CALCULADOS</span></div>
+            <p class="mw-champ-intro">Reinados y duraciones calculados desde el historial disponible. Los reinados actuales usan la fecha de hoy para estimar su duración; si el dato original es aproximado, se indica como tal.</p>
+            <div class="mw-champ-record-grid" data-champ-records><p class="mw-champ-loading">CALCULANDO RÉCORDS…</p></div>
+        </section>
+
+        <section class="mw-champ-view" data-champ-view="crowns" aria-label="Triple Crown y Grand Slam" hidden>
+            <div class="mw-champ-section-heading"><div><p>THE ELITE OF THE ELITE</p><h2>TRIPLE CROWN &amp; GRAND SLAM</h2></div><span>5 TÍTULOS CLAVE</span></div>
+            <div class="mw-crown-explainer-grid">
+                <article><span class="mw-crown-emblem">III</span><div><h3>TRIPLE CROWN</h3><p>Ganar al menos un campeonato mundial, uno midcard y el World Tag Team Championship.</p></div></article>
+                <article><span class="mw-crown-emblem">V</span><div><h3>GRAND SLAM</h3><p>Completar los cinco campeonatos clave: WWE, World Heavyweight, Intercontinental, United States y World Tag Team.</p></div></article>
+            </div>
+            <div class="mw-crown-subheading"><div><p>HISTORY MADE</p><h2>CAMPEONES RECONOCIDOS</h2></div></div>
+            <div class="mw-crown-list" data-crown-achieved><p class="mw-champ-loading">CRUZANDO HISTORIA DE REINADOS…</p></div>
+            <div class="mw-crown-subheading"><div><p>ONE TITLE AWAY… OR MORE</p><h2>ASPIRANTES A COMPLETAR LA DISTINCIÓN</h2></div></div>
+            <div class="mw-crown-list" data-crown-potential></div>
+            <p class="mw-champ-footnote">La distinción solo se asigna cuando los reinados permiten verificar la combinación. Los campeonatos de parejas se atribuyen a los integrantes vinculados al equipo en los datos de MI WRESTLING; los equipos sin integrantes identificables no se adjudican automáticamente a una persona.</p>
+        </section>
+
+        <div class="mw-champ-error" data-champ-error role="alert" hidden></div>
+    </main>
+    <footer class="footer">MI WRESTLING 2.0 · CHAMPIONSHIP ARCHIVE</footer>
+</body>
+</html>
