@@ -1,345 +1,561 @@
 
-/* =========================================================
+/* ============================================================
    MI WRESTLING 2.0 — RULES
-   WWE 2K26 / CHROME EFFECTS
-   ========================================================= */
+   WWE 2K25 / WWE 2K26 — EPIC CHROME CARD INTERFACE
+   Reemplazo completo de css/pages/rules.css
+   ============================================================ */
 
 .rules-page {
-    --rules-bg: #080b12;
-    --rules-panel: #0e131d;
-    --rules-panel-light: #141c29;
-    --rules-border: rgba(155, 183, 220, .19);
-    --rules-muted: #9ba9bb;
-    --rules-text: #f1f5fb;
-    --rules-blue: #39baff;
-    --rules-cyan: #8de5ff;
+    --r-black: #050608;
+    --r-dark: #090b10;
+    --r-panel: #101217;
+    --r-panel-2: #171a20;
+    --r-silver: #d7d9df;
+    --r-white: #f7f8fb;
+    --r-steel: #858b97;
+    --r-muted: #9b9da5;
+    --r-line: rgba(220, 224, 235, .17);
+    --r-chrome: linear-gradient(
+        120deg,
+        #545861 0%,
+        #f8f9fc 13%,
+        #9298a4 24%,
+        #ffffff 35%,
+        #737986 47%,
+        #e9ebf1 57%,
+        #686e79 70%,
+        #dfe2e9 82%,
+        #515660 100%
+    );
+    --r-holo: linear-gradient(
+        115deg,
+        #8f8d9e 0%,
+        #f1e5ed 12%,
+        #b3c5d8 23%,
+        #fff3dc 35%,
+        #9bafc5 47%,
+        #e6d6e8 60%,
+        #fafafa 71%,
+        #8e9cac 84%,
+        #e2d9e9 100%
+    );
 
-    width: min(1180px, 100%);
+    width: min(1200px, 100%);
     margin-inline: auto;
-    padding: 24px 18px 60px;
-    color: var(--rules-text);
+    padding: 24px 18px 64px;
+    color: var(--r-white);
     font-family: 'Inter', sans-serif;
+    isolation: isolate;
 }
 
-/* HERO */
+.rules-page *,
+.rules-page *::before,
+.rules-page *::after {
+    box-sizing: border-box;
+}
+
+.rules-page a {
+    overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   CHROME TEXT
+   ============================================================ */
+
+.rules-title,
+.rules-document-title,
+.rules-browser-heading h2,
+.rules-contact h2,
+.rules-tab-copy strong {
+    color: transparent;
+    background-image: var(--r-chrome);
+    background-size: 220% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rules-title,
+.rules-document-title,
+.rules-browser-heading h2,
+.rules-contact h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   HERO — EPIC CARD / METAL PLATE
+   ============================================================ */
 
 .rules-hero {
     position: relative;
     isolation: isolate;
-    overflow: hidden;
-    min-height: 250px;
     display: flex;
     align-items: center;
-    padding: clamp(26px, 6vw, 64px);
-    margin-bottom: 26px;
-    border: 1px solid rgba(168, 207, 255, .26);
-    border-radius: 4px;
+    min-height: 310px;
+    margin-bottom: 34px;
+    padding: clamp(27px, 6vw, 68px);
+    overflow: hidden;
+    border: 1px solid #626670;
+    border-radius: 3px;
+
     background:
-        linear-gradient(115deg, rgba(8, 15, 28, .98), rgba(12, 24, 42, .92)),
-        var(--rules-bg);
+        linear-gradient(
+            120deg,
+            transparent 0 26%,
+            rgba(255, 255, 255, .025) 26.2% 26.8%,
+            transparent 27% 57%,
+            rgba(255, 255, 255, .045) 57.2% 57.6%,
+            transparent 58%
+        ),
+        radial-gradient(
+            ellipse at 80% 0%,
+            rgba(190, 195, 207, .14),
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 10% 100%,
+            rgba(105, 111, 126, .12),
+            transparent 42%
+        ),
+        linear-gradient(
+            135deg,
+            #22252b 0%,
+            #101116 23%,
+            #060709 52%,
+            #191b21 75%,
+            #08090c 100%
+        );
+
     box-shadow:
-        inset 0 1px rgba(255, 255, 255, .09),
-        0 12px 34px rgba(0, 0, 0, .2);
+        inset 0 1px 0 rgba(255, 255, 255, .32),
+        inset 0 -1px 0 rgba(0, 0, 0, .95),
+        0 18px 45px rgba(0, 0, 0, .42);
 }
 
 .rules-hero::before {
     content: "";
     position: absolute;
     z-index: -1;
-    top: -90%;
-    right: -12%;
-    width: 65%;
-    height: 260%;
-    transform: rotate(24deg);
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(55, 167, 255, .08),
-        rgba(186, 229, 255, .2),
-        rgba(55, 167, 255, .04),
-        transparent
-    );
+    inset: 0;
     pointer-events: none;
+    opacity: .7;
+    background:
+        repeating-linear-gradient(
+            112deg,
+            transparent 0 34px,
+            rgba(255, 255, 255, .018) 35px,
+            transparent 36px 70px
+        ),
+        linear-gradient(
+            116deg,
+            transparent 0 46%,
+            rgba(255, 255, 255, .035) 46.2%,
+            rgba(255, 255, 255, .13) 46.5%,
+            rgba(255, 255, 255, .025) 47.2%,
+            transparent 49%
+        );
 }
 
 .rules-hero::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #2379ff 15%,
-        #9ceaff 50%,
-        #2379ff 85%,
-        transparent
-    );
+    inset: 5px;
+    z-index: -1;
+    border: 1px solid rgba(255, 255, 255, .075);
+    pointer-events: none;
 }
 
 .rules-hero-inner {
     width: 100%;
+    position: relative;
 }
 
 .rules-eyebrow,
 .rules-section-kicker {
-    display: block;
-    color: var(--rules-cyan);
-    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #c2c5cd;
+    font-size: 9px;
     font-weight: 800;
-    letter-spacing: 2.1px;
-    line-height: 1.6;
+    letter-spacing: 2.5px;
+    line-height: 1.7;
+    text-transform: uppercase;
+}
+
+.rules-eyebrow::before,
+.rules-section-kicker::before {
+    content: "";
+    display: inline-block;
+    width: 19px;
+    height: 2px;
+    flex: 0 0 19px;
+    background: var(--r-chrome);
 }
 
 .rules-title {
-    margin: 9px 0 5px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(64px, 13vw, 112px);
-    font-weight: 900;
-    font-style: italic;
-    letter-spacing: -2px;
-    line-height: .92;
-    text-transform: uppercase;
-    text-shadow: 0 3px 0 rgba(0, 0, 0, .35);
+    position: relative;
+    width: fit-content;
+    margin: 14px 0 12px;
+    font-size: clamp(76px, 14vw, 140px);
+    letter-spacing: -3px;
+    line-height: .78;
+    background-image: var(--r-chrome);
+    background-size: 100% 100%;
+    filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .8));
 }
 
 .rules-title span {
-    color: var(--rules-blue);
-    text-shadow: 0 0 22px rgba(57, 186, 255, .4);
+    color: #fff;
+    background: var(--r-holo);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(235, 231, 255, .2));
 }
 
 .rules-subtitle {
-    max-width: 520px;
-    margin: 18px 0 25px;
-    color: #c3cedc;
-    font-size: 13px;
-    line-height: 1.8;
+    max-width: 510px;
+    margin: 23px 0;
+    color: #b9bbc3;
+    font-size: 12px;
+    line-height: 1.9;
 }
 
 .rules-hero-line {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #a7b6c9;
+    color: #aaaeb8;
     font-size: 9px;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.7px;
 }
 
 .rules-line {
-    flex: 1;
-    max-width: 150px;
+    width: 120px;
+    max-width: 25%;
     height: 1px;
-    background: linear-gradient(90deg, var(--rules-blue), transparent);
+    background: linear-gradient(90deg, #fff, #777b85, transparent);
 }
 
-/* SELECTOR */
+/* Corner details inspired by game cards */
+
+.rules-hero-inner::after {
+    content: "MW / 26";
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: rgba(255, 255, 255, .19);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(18px, 4vw, 35px);
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 1px;
+    writing-mode: vertical-rl;
+}
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
 
 .rules-browser {
     min-width: 0;
 }
 
 .rules-browser-heading {
-    margin: 0 0 18px;
+    position: relative;
+    padding: 0 0 19px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--r-line);
 }
 
 .rules-browser-heading h2,
 .rules-contact h2 {
-    margin: 5px 0;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(28px, 5vw, 39px);
-    font-weight: 900;
-    font-style: italic;
-    line-height: 1.05;
-    text-transform: uppercase;
+    margin: 8px 0 4px;
+    font-size: clamp(31px, 5.8vw, 47px);
+    line-height: .98;
+    letter-spacing: .2px;
 }
 
 .rules-browser-heading p,
 .rules-contact p {
-    margin: 8px 0 0;
-    color: var(--rules-muted);
+    margin: 10px 0 0;
+    color: var(--r-muted);
     font-size: 12px;
     line-height: 1.8;
 }
 
+/* ============================================================
+   DOCUMENT SELECTOR — GAME MODE PANELS
+   ============================================================ */
+
 .rules-tabs {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 19px;
 }
 
 .rules-tab {
     position: relative;
+    isolation: isolate;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     min-width: 0;
-    min-height: 82px;
-    padding: 15px;
+    min-height: 94px;
+    padding: 17px 18px;
     overflow: hidden;
-    color: var(--rules-text);
+
+    color: #fff;
     text-align: left;
-    font: inherit;
-    background: linear-gradient(135deg, #121a27, #0b1019);
-    border: 1px solid var(--rules-border);
-    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(255, 255, 255, .06),
+            transparent 38%
+        ),
+        linear-gradient(145deg, #202229, #0a0b0f 60%, #17191f);
+
+    border: 1px solid #4b4e56;
+    border-radius: 2px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .13),
+        inset 0 -1px 0 rgba(0, 0, 0, .8),
+        0 7px 18px rgba(0, 0, 0, .22);
+
     cursor: pointer;
-    transition:
-        border-color .18s ease,
-        background-color .18s ease,
-        transform .18s ease;
+    transition: border-color .16s ease, filter .16s ease, transform .16s ease;
 }
 
 .rules-tab::before {
     content: "";
     position: absolute;
-    inset: 0 auto 0 0;
+    z-index: -1;
+    inset: 0;
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 53%,
+            rgba(255, 255, 255, .055) 53.2%,
+            rgba(255, 255, 255, .01) 67%,
+            transparent 68%
+        );
+    pointer-events: none;
+}
+
+.rules-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 3px;
-    background: #536579;
-    transition: background .18s ease;
+    background: linear-gradient(#656a75, #c7cbd4, #444750);
 }
 
 .rules-tab:hover {
-    border-color: rgba(91, 190, 255, .6);
-    background: linear-gradient(135deg, #17263a, #0d1521);
+    border-color: #a3a7b1;
+    filter: brightness(1.12);
 }
 
 .rules-tab:active {
-    transform: scale(.99);
+    transform: scale(.992);
 }
 
 .rules-tab.is-active {
-    border-color: rgba(75, 188, 255, .75);
+    border-color: #d5d7df;
     background:
-        linear-gradient(115deg, rgba(28, 90, 139, .24), transparent 75%),
-        linear-gradient(135deg, #142131, #0b111a);
-    box-shadow: inset 0 0 0 1px rgba(81, 190, 255, .08);
+        linear-gradient(
+            115deg,
+            rgba(255, 255, 255, .13),
+            transparent 40%
+        ),
+        linear-gradient(145deg, #292c34, #101116 63%, #24262d);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .3),
+        inset 0 0 0 1px rgba(255, 255, 255, .035),
+        0 0 0 1px rgba(255, 255, 255, .035),
+        0 9px 25px rgba(0, 0, 0, .32);
 }
 
-.rules-tab.is-active::before {
-    background: linear-gradient(#b4efff, #278bff);
-    box-shadow: 0 0 12px rgba(57, 186, 255, .5);
+.rules-tab.is-active::after {
+    background: var(--r-holo);
+    box-shadow: 0 0 12px rgba(255, 255, 255, .24);
 }
 
 .rules-tab-number {
-    color: #7a91ab;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 48px;
+    flex: 0 0 40px;
+    color: #b3b6bf;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 27px;
-    font-weight: 800;
+    font-size: 34px;
     font-style: italic;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(145deg, #30333b, #111217);
+    border: 1px solid rgba(255, 255, 255, .12);
+    text-shadow: 0 2px 3px #000;
 }
 
 .rules-tab.is-active .rules-tab-number {
-    color: var(--rules-cyan);
+    color: transparent;
+    background-image: var(--r-holo);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-color: rgba(255, 255, 255, .28);
 }
 
 .rules-tab-copy {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     min-width: 0;
 }
 
 .rules-tab-copy strong {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(17px, 3vw, 23px);
-    font-weight: 800;
+    font-size: clamp(17px, 2.7vw, 24px);
     line-height: 1;
+    letter-spacing: .2px;
+    background-size: 100% 100%;
 }
 
 .rules-tab-copy small {
-    color: #9aaabe;
+    color: #9c9fa9;
     font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
     line-height: 1.5;
 }
 
 .rules-tab-arrow {
-    color: #8297ad;
+    align-self: flex-start;
+    color: #888c96;
     font-size: 19px;
 }
 
 .rules-tab.is-active .rules-tab-arrow {
-    color: var(--rules-cyan);
+    color: #f3f3f6;
 }
 
 .rules-tab:focus-visible,
 .rules-accordion summary:focus-visible,
 .rules-whatsapp:focus-visible {
-    outline: 2px solid var(--rules-cyan);
+    outline: 2px solid #e8eaf0;
     outline-offset: 3px;
 }
 
-/* DOCUMENT */
+/* ============================================================
+   DOCUMENT FRAME — METALLIC BORDER
+   ============================================================ */
 
 .rules-document {
+    position: relative;
     min-width: 0;
-    padding: clamp(17px, 4vw, 34px);
-    border: 1px solid var(--rules-border);
-    border-radius: 3px;
+    padding: clamp(17px, 4vw, 35px);
+    overflow: hidden;
+
     background:
-        linear-gradient(145deg, rgba(21, 31, 46, .65), transparent 45%),
-        var(--rules-bg);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, .16);
+        linear-gradient(135deg, rgba(255, 255, 255, .028), transparent 27%),
+        linear-gradient(180deg, #101116, #08090c 60%, #0d0e13);
+
+    border: 1px solid #454851;
+    border-radius: 2px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .1),
+        inset 0 -1px 0 rgba(0, 0, 0, .9),
+        0 17px 40px rgba(0, 0, 0, .25);
+}
+
+.rules-document::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, .75),
+        rgba(255, 255, 255, .12),
+        transparent
+    );
+    pointer-events: none;
 }
 
 .rules-document-header {
-    padding-bottom: 20px;
+    position: relative;
+    padding: 0 0 22px;
     margin-bottom: 22px;
-    border-bottom: 1px solid var(--rules-border);
+    border-bottom: 1px solid var(--r-line);
 }
 
 .rules-document-label {
-    color: var(--rules-cyan);
+    color: #b5b8c2;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 2px;
-}
-
-.rules-document-title {
-    margin: 8px 0;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(35px, 7vw, 57px);
-    font-weight: 900;
-    font-style: italic;
-    line-height: 1;
     text-transform: uppercase;
 }
 
+.rules-document-title {
+    margin: 10px 0;
+    font-size: clamp(39px, 8vw, 66px);
+    line-height: .95;
+    letter-spacing: -.5px;
+    filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .6));
+}
+
 .rules-document-intro {
-    max-width: 760px;
-    margin: 10px 0 0;
-    color: #b6c3d4;
+    max-width: 750px;
+    margin: 12px 0 0;
+    color: #b1b3bc;
     font-size: 12px;
     line-height: 1.9;
 }
 
 .rules-loading {
-    padding: 30px 0;
-    color: var(--rules-cyan);
-    font-size: 11px;
+    padding: 25px 0;
+    color: #d3d5db;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
 }
 
-/* BOTONES DESPLEGABLES */
+/* ============================================================
+   ACCORDIONS — CHROME STRIPS
+   ============================================================ */
 
 .rules-accordion {
+    position: relative;
     margin: 10px 0;
     overflow: hidden;
-    border: 1px solid var(--rules-border);
-    border-radius: 3px;
-    background: rgba(255, 255, 255, .018);
+    background:
+        linear-gradient(110deg, rgba(255, 255, 255, .035), transparent 35%),
+        #0c0d11;
+    border: 1px solid #30333a;
+    border-radius: 2px;
+    transition: border-color .16s ease;
 }
 
 .rules-accordion[open] {
-    border-color: rgba(78, 176, 255, .35);
-    background: rgba(34, 95, 145, .045);
+    border-color: #626670;
+    background:
+        linear-gradient(130deg, rgba(255, 255, 255, .045), transparent 36%),
+        #0b0c10;
 }
 
 .rules-accordion summary {
@@ -347,13 +563,14 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    min-height: 57px;
-    padding: 14px 16px;
-    color: #edf5ff;
+    min-height: 61px;
+    padding: 13px 16px;
+    color: #f0f1f4;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 800;
     line-height: 1.2;
+    text-transform: uppercase;
     list-style: none;
     cursor: pointer;
 }
@@ -362,42 +579,70 @@
     display: none;
 }
 
+.rules-accordion summary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        110deg,
+        rgba(255, 255, 255, .045),
+        transparent 36%,
+        rgba(255, 255, 255, .012)
+    );
+}
+
 .rules-accordion summary::after {
     content: "+";
-    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    flex: 0 0 27px;
     margin-left: auto;
-    color: var(--rules-cyan);
+    color: #dfe1e7;
     font-family: 'Inter', sans-serif;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 400;
+    border: 1px solid #555963;
+    background: linear-gradient(145deg, #24262d, #0c0d11);
 }
 
 .rules-accordion[open] summary::after {
     content: "−";
+    color: #fff;
+    border-color: #a8abb4;
+    background: linear-gradient(145deg, #41444c, #15161b);
 }
 
 .rules-accordion summary:hover {
-    background: rgba(64, 153, 255, .06);
+    background-color: rgba(255, 255, 255, .035);
 }
 
 .rules-accordion-number {
+    position: relative;
     display: inline-grid;
-    flex: 0 0 30px;
-    width: 30px;
-    height: 30px;
     place-items: center;
-    color: var(--rules-cyan);
+    width: 31px;
+    height: 32px;
+    flex: 0 0 31px;
+    color: transparent;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 17px;
-    background: #132338;
-    border: 1px solid rgba(104, 196, 255, .25);
+    font-size: 20px;
+    font-weight: 900;
+    font-style: italic;
+    background-image: var(--r-chrome);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 1px solid #494c55;
 }
 
 .rules-accordion-body {
-    padding: 0 17px 21px;
-    color: #c3cedb;
+    padding: 2px 19px 22px;
+    color: #c0c1c8;
     font-size: 12px;
-    line-height: 1.9;
+    line-height: 1.95;
     overflow-wrap: anywhere;
 }
 
@@ -406,21 +651,28 @@
 }
 
 .rules-accordion-body h3 {
-    margin: 23px 0 9px;
-    color: #f1f6ff;
+    padding-bottom: 7px;
+    margin: 25px 0 9px;
+    color: transparent;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 23px;
-    font-weight: 800;
-    line-height: 1.25;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.15;
     text-transform: uppercase;
+    background-image: var(--r-chrome);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, .11);
 }
 
 .rules-accordion-body h4 {
-    margin: 19px 0 7px;
-    color: var(--rules-cyan);
-    font-size: 11px;
+    margin: 20px 0 7px;
+    color: #e0e2e8;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: .6px;
+    letter-spacing: 1.2px;
+    line-height: 1.6;
     text-transform: uppercase;
 }
 
@@ -435,32 +687,61 @@
     margin: 7px 0;
 }
 
-.rules-accordion-body strong {
-    color: #fff;
+.rules-accordion-body li::marker {
+    color: #bfc3cc;
+}
+
+.rules-accordion-body strong,
+.rules-accordion-body b {
+    color: #f3f4f7;
     font-weight: 800;
 }
 
-.rules-accordion-body a {
-    color: var(--rules-cyan);
-    text-decoration: underline;
-    text-decoration-color: rgba(141, 229, 255, .45);
+.rules-accordion-body a,
+.rules-manual-end a {
+    color: #f0f1f5;
+    text-decoration-color: #8c909b;
+    text-decoration-thickness: 1px;
     text-underline-offset: 3px;
 }
 
-.rules-accordion-body a:hover {
+.rules-accordion-body a:hover,
+.rules-manual-end a:hover {
     color: #fff;
+    text-decoration-color: #fff;
 }
 
+.rules-accordion-body code {
+    padding: 3px 6px;
+    color: #f0f1f5;
+    background: #17191f;
+    border: 1px solid #393c45;
+    font-family: monospace;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   CALLOUTS — STEEL WARNING PLATES
+   ============================================================ */
+
 .rules-callout {
+    position: relative;
     padding: 13px 15px;
-    margin: 15px 0;
-    border-left: 3px solid var(--rules-blue);
-    background: rgba(54, 143, 255, .075);
+    margin: 16px 0;
+    background:
+        linear-gradient(100deg, rgba(255, 255, 255, .07), transparent 70%),
+        #17191f;
+    border: 1px solid #454852;
+    border-left: 3px solid #c7c9d0;
 }
 
 .rules-callout.warning {
-    border-left-color: #ffbd5b;
-    background: rgba(255, 189, 91, .065);
+    background:
+        linear-gradient(100deg, rgba(196, 165, 100, .09), transparent 72%),
+        #17150f;
+    border-color: #514735;
+    border-left-color: #d3b36d;
 }
 
 .rules-callout p:first-child {
@@ -471,178 +752,344 @@
     margin-bottom: 0;
 }
 
+/* ============================================================
+   SCORE CARDS — MINI METALLIC CARDS
+   ============================================================ */
+
 .rules-score-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
-    margin: 17px 0;
+    gap: 10px;
+    margin: 18px 0;
 }
 
 .rules-score {
-    padding: 17px 10px;
+    position: relative;
+    isolation: isolate;
+    padding: 19px 10px 17px;
+    overflow: hidden;
     text-align: center;
-    border: 1px solid var(--rules-border);
-    background: linear-gradient(145deg, #172437, #0c121c);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, .09), transparent 42%),
+        linear-gradient(145deg, #24262c, #101115 65%, #1a1c22);
+    border: 1px solid #575b65;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .16),
+        0 5px 12px rgba(0, 0, 0, .2);
+}
+
+.rules-score::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0 36%,
+        rgba(255, 255, 255, .08) 36.3%,
+        transparent 54%
+    );
 }
 
 .rules-score strong {
     display: block;
-    color: var(--rules-cyan);
+    color: transparent;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 37px;
+    font-size: 43px;
     font-weight: 900;
+    font-style: italic;
     line-height: 1;
+    background-image: var(--r-chrome);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .rules-score span {
     display: block;
-    margin-top: 8px;
-    color: #b7c4d4;
+    margin-top: 9px;
+    color: #b8bbc4;
     font-size: 9px;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
+/* ============================================================
+   STEP CARDS
+   ============================================================ */
 
 .rules-step-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 9px;
     padding: 0 !important;
+    margin: 16px 0 !important;
     list-style: none;
 }
 
 .rules-step-list li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 13px;
+    gap: 12px;
+    padding: 14px;
     margin: 0 !important;
-    border: 1px solid var(--rules-border);
-    background: rgba(255, 255, 255, .025);
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, .04), transparent 70%),
+        #111318;
+    border: 1px solid #33363e;
 }
 
-.rules-step-list li strong {
-    flex: 0 0 auto;
-    color: var(--rules-cyan);
+.rules-step-list li > strong {
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 33px;
+    flex: 0 0 29px;
+    color: transparent;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px;
+    font-size: 27px;
+    font-weight: 900;
+    font-style: italic;
     line-height: 1;
+    background-image: var(--r-chrome);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-right: 1px solid #555963;
 }
+
+.rules-step-list li > span {
+    min-width: 0;
+    color: #c3c5cc;
+    font-size: 11px;
+    line-height: 1.85;
+}
+
+.rules-step-list li b {
+    color: #f2f3f6;
+}
+
+/* ============================================================
+   EXAMPLE / PENALTY CARDS
+   ============================================================ */
 
 .rules-quote {
     display: block;
-    padding: 10px 13px;
+    padding: 11px 13px;
     margin: 10px 0;
-    color: #e8f6ff;
-    background: #080e17;
-    border: 1px solid rgba(155, 183, 220, .15);
+    color: #e9eaf0;
+    background:
+        linear-gradient(100deg, rgba(255, 255, 255, .045), transparent 75%),
+        #08090c;
+    border: 1px solid #393c44;
+    border-left: 2px solid #a8abb4;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
+    line-height: 1.8;
     overflow-wrap: anywhere;
 }
 
 .rules-penalty {
-    padding: 15px;
+    position: relative;
+    padding: 16px;
     margin: 12px 0;
-    border: 1px solid rgba(255, 115, 115, .24);
-    background: rgba(126, 35, 43, .1);
+    background:
+        linear-gradient(110deg, rgba(255, 255, 255, .035), transparent 70%),
+        #101115;
+    border: 1px solid #45434a;
+    border-left: 3px solid #9c9da5;
 }
 
 .rules-penalty-title {
     display: block;
-    margin-bottom: 7px;
-    color: #ffb0b0;
+    margin-bottom: 8px;
+    color: #f0f0f4;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 23px;
-    font-weight: 800;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic;
     text-transform: uppercase;
 }
 
+.rules-penalty p:last-child,
+.rules-penalty ul:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   END OF DOCUMENT
+   ============================================================ */
+
 .rules-manual-end {
-    padding: 19px;
-    margin-top: 20px;
-    border: 1px solid rgba(100, 194, 255, .24);
-    background: linear-gradient(110deg, rgba(39, 117, 190, .14), transparent);
+    position: relative;
+    padding: clamp(18px, 4vw, 27px);
+    margin-top: 24px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255, 255, 255, .07),
+            transparent 45%
+        ),
+        linear-gradient(135deg, #1b1d23, #0c0d11 68%, #191b21);
+    border: 1px solid #555963;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13);
+}
+
+.rules-manual-end::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 75px;
+    height: 3px;
+    background: var(--r-holo);
 }
 
 .rules-manual-end h3 {
     margin-top: 0;
 }
 
-/* CTA */
+.rules-manual-end p {
+    color: #bfc1c9;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.rules-manual-end a {
+    display: inline-block;
+    margin-top: 7px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* ============================================================
+   BOTTOM CTA — PREMIUM EDITION PLATE
+   ============================================================ */
 
 .rules-contact {
     position: relative;
+    isolation: isolate;
+    margin-top: 30px;
+    padding: clamp(25px, 5vw, 43px);
     overflow: hidden;
-    margin-top: 28px;
-    padding: clamp(23px, 5vw, 38px);
-    border: 1px solid rgba(111, 191, 255, .3);
-    border-radius: 3px;
     background:
-        linear-gradient(110deg, rgba(28, 95, 158, .19), transparent 70%),
-        #0b1019;
+        linear-gradient(
+            115deg,
+            transparent 0 43%,
+            rgba(255, 255, 255, .035) 43.2%,
+            transparent 66%
+        ),
+        radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, .09), transparent 52%),
+        linear-gradient(135deg, #202229, #0a0b0f 52%, #181a20);
+    border: 1px solid #555963;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .18),
+        0 15px 35px rgba(0, 0, 0, .25);
+}
+
+.rules-contact::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 6px;
+    border: 1px solid rgba(255, 255, 255, .065);
+    pointer-events: none;
 }
 
 .rules-contact h2 {
-    margin-top: 9px;
+    margin-top: 11px;
+    font-size: clamp(35px, 7vw, 56px);
 }
 
 .rules-contact p {
-    max-width: 540px;
+    max-width: 550px;
+    color: #b8bbc4;
 }
 
 .rules-whatsapp {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
-    min-height: 46px;
-    padding: 0 19px;
-    margin-top: 19px;
-    color: #06101b;
-    background: linear-gradient(110deg, #c7f1ff, #4bbcff 55%, #8bcaff);
-    border: 1px solid #c8f1ff;
+    gap: 20px;
+    min-height: 47px;
+    padding: 0 20px;
+    margin-top: 20px;
+
+    color: #111216;
+    background: var(--r-chrome);
+    background-size: 200% 100%;
+    border: 1px solid #d9dbe2;
     border-radius: 2px;
+
     font-size: 10px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-decoration: none;
-    transition: filter .18s ease, transform .18s ease;
+    text-transform: uppercase;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .85),
+        0 4px 12px rgba(0, 0, 0, .3);
+
+    transition: filter .16s ease, transform .16s ease;
 }
 
 .rules-whatsapp:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.13);
 }
 
 .rules-whatsapp:active {
-    transform: scale(.98);
+    transform: scale(.985);
 }
 
-.rules-page + .footer,
+.rules-whatsapp span {
+    font-size: 17px;
+}
+
+/* ============================================================
+   GLOBAL FOOTER ADJUSTMENT — ONLY RULES PAGE
+   ============================================================ */
+
 .rules-page ~ .footer {
-    color: #8998aa;
+    color: #92949d;
 }
 
-/* MOBILE */
+/* ============================================================
+   MOBILE
+   ============================================================ */
 
 @media (max-width: 600px) {
     .rules-page {
-        padding: 15px 12px 40px;
+        padding: 14px 11px 42px;
     }
 
     .rules-hero {
-        min-height: 220px;
-        padding: 27px 20px;
-        margin-bottom: 23px;
+        min-height: 240px;
+        padding: 29px 19px;
+        margin-bottom: 27px;
     }
 
     .rules-title {
-        font-size: clamp(62px, 17vw, 88px);
+        font-size: clamp(69px, 19vw, 105px);
+        letter-spacing: -2px;
     }
 
     .rules-subtitle {
-        font-size: 12px;
+        max-width: 90%;
+        margin: 20px 0;
+        font-size: 11px;
+    }
+
+    .rules-hero-inner::after {
+        font-size: 17px;
+    }
+
+    .rules-eyebrow,
+    .rules-section-kicker {
+        font-size: 8px;
+        letter-spacing: 1.7px;
     }
 
     .rules-tabs {
@@ -651,8 +1098,15 @@
     }
 
     .rules-tab {
-        min-height: 73px;
-        padding: 12px 14px;
+        min-height: 77px;
+        padding: 12px 13px;
+    }
+
+    .rules-tab-number {
+        width: 35px;
+        height: 42px;
+        flex-basis: 35px;
+        font-size: 29px;
     }
 
     .rules-tab-copy strong {
@@ -660,21 +1114,46 @@
     }
 
     .rules-document {
-        padding: 16px 12px;
+        padding: 16px 11px;
     }
 
     .rules-document-title {
-        font-size: 42px;
+        font-size: clamp(39px, 11vw, 52px);
+    }
+
+    .rules-document-intro {
+        font-size: 11px;
     }
 
     .rules-accordion summary {
-        padding: 13px 11px;
+        min-height: 57px;
+        gap: 9px;
+        padding: 12px 10px;
         font-size: 19px;
     }
 
+    .rules-accordion-number {
+        width: 27px;
+        height: 29px;
+        flex-basis: 27px;
+        font-size: 18px;
+    }
+
+    .rules-accordion summary::after {
+        width: 24px;
+        height: 24px;
+        flex-basis: 24px;
+        font-size: 16px;
+    }
+
     .rules-accordion-body {
-        padding: 0 12px 17px;
-        font-size: 12px;
+        padding: 0 11px 17px;
+        font-size: 11.5px;
+        line-height: 1.9;
+    }
+
+    .rules-accordion-body h3 {
+        font-size: 24px;
     }
 
     .rules-score-grid {
@@ -682,11 +1161,11 @@
     }
 
     .rules-score {
-        padding: 14px 5px;
+        padding: 15px 4px;
     }
 
     .rules-score strong {
-        font-size: 31px;
+        font-size: 35px;
     }
 
     .rules-score span {
@@ -696,18 +1175,37 @@
 
     .rules-step-list {
         grid-template-columns: 1fr;
+        gap: 7px;
     }
 
-    .rules-hero::before {
-        right: -35%;
+    .rules-step-list li {
+        padding: 12px 10px;
+    }
+
+    .rules-callout,
+    .rules-penalty {
+        padding: 12px;
+    }
+
+    .rules-contact {
+        padding: 23px 17px;
+    }
+
+    .rules-contact h2 {
+        font-size: 39px;
+    }
+
+    .rules-whatsapp {
         width: 100%;
+        gap: 12px;
+        padding-inline: 10px;
+        font-size: 9px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .rules-tab,
-    .rules-whatsapp,
-    .rules-tab::before {
+    .rules-whatsapp {
         transition: none;
     }
 }
