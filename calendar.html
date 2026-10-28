@@ -1,2 +1,662 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Agenda de eventos"><title>Calendario | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/calendar.css"><script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="calendar"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Calendario</h1><p class="lead">Agenda de eventos</p></section><p class="notice">Cargando catálogo…</p></main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
+/* =========================================================
+MI WRESTLING 2.0 · TOURNAMENT DETAIL
+Broadcast deportivo / compatible con móvil
+========================================================= */
 
+body[data-page="tournament"] .page-hero{--page-accent:var(--accent)}
+body[data-page="tournament"] .site-main{width:min(1600px,100%);margin-inline:auto}
+body[data-page="tournament"] .mw-event-back{display:inline-flex;align-items:center;min-height:38px;margin:4px 0 16px;padding:8px 12px;border-left:3px solid var(--accent,#d4af37);background:#101116;color:#e8eaf0;text-decoration:none;font-size:.72rem;font-weight:900;letter-spacing:.08em}
+body[data-page="tournament"] .mw-event-back:hover{background:#1a1c24;color:#fff}
+
+/* Hero */
+.mw-tournament-hero{position:relative;isolation:isolate;overflow:hidden;margin:0 0 22px;padding:clamp(24px,4vw,54px);border:1px solid #343844;border-radius:3px;background:linear-gradient(112deg,#171a22 0%,#090a0e 48%,#151018 100%);box-shadow:inset 0 1px rgba(255,255,255,.07)}
+.mw-tournament-hero:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(112deg,transparent 0 34%,rgba(255,255,255,.045) 34.2% 34.6%,transparent 34.8% 62%,rgba(255,255,255,.035) 62.2% 62.6%,transparent 62.8%),linear-gradient(90deg,rgba(218,39,57,.12),transparent 43%,rgba(40,117,230,.12));pointer-events:none}
+.mw-tournament-hero:after{content:"";position:absolute;z-index:-1;right:3%;bottom:-34%;width:34%;height:150%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.035),transparent);transform:skewX(-18deg);pointer-events:none}
+.mw-tournament-hero h1{max-width:1000px;margin:7px 0 10px;font-size:clamp(2.1rem,6vw,5rem);line-height:.98;font-weight:900;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere;text-shadow:0 3px 0 #050505,0 8px 20px #0009}
+.mw-tournament-hero .eyebrow{color:var(--accent,#e4c76b);font-size:.7rem;font-weight:900;letter-spacing:.18em}
+.mw-tournament-hero .lead{max-width:720px;color:#c1c5ce;font-size:clamp(.82rem,1.5vw,1rem);line-height:1.5}
+.mw-tournament-hero .mw-event-detail-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.mw-tournament-hero .mw-event-detail-meta span{padding:7px 10px;border:1px solid #373b46;background:#08090d;color:#e6e8ed;font-size:.68rem;font-weight:800}
+
+/* Common panels */
+.mw-tournament-panel{position:relative;min-width:0;margin:22px 0;padding:clamp(13px,2vw,24px);border:1px solid #30343e;border-radius:3px;background:linear-gradient(145deg,#12141a 0%,#090a0d 72%);box-shadow:0 6px 18px #0003,inset 0 1px #ffffff08}
+.mw-tournament-panel__heading{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:0 0 16px;padding:0 0 13px;border-bottom:1px solid #343741}
+.mw-tournament-panel__heading h2{margin:4px 0 0;color:#f6f6f7;font-size:clamp(1.2rem,2.7vw,1.85rem);line-height:1.05;font-weight:900;letter-spacing:.015em;text-transform:uppercase}
+.mw-tournament-panel__heading>span,.mw-tournament-panel__heading>p{color:#aeb3bf;font-size:.75rem;font-weight:700}
+.mw-tournament-panel__heading>p{max-width:690px;margin:8px 0 0;line-height:1.5;font-weight:500}
+.mw-event-kicker{display:inline-block;color:#d7bd69;font-size:.64rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.mw-tournament-note{margin:11px 0 0;padding-left:10px;border-left:2px solid #9c8549;color:#aeb3bf;font-size:.72rem;line-height:1.5}
+
+/* Catalog / filters */
+.mw-tournament-catalog-tools,.mw-event-year-filter{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0;padding:14px;border:1px solid #30343e;background:#101116;border-radius:3px}
+.mw-tournament-catalog-tools label,.mw-event-year-filter label{color:#c4c7cf;font-size:.68rem;font-weight:900;letter-spacing:.1em}
+.mw-tournament-catalog-tools select,.mw-tournament-catalog-tools input,.mw-event-year-filter select{min-height:42px;max-width:100%;padding:9px 12px;border:1px solid #3a3e49;border-radius:2px;background:#090a0e;color:#f5f5f6;font:inherit}
+.mw-tournament-catalog-tools input{flex:1;min-width:180px}
+.mw-tournament-catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 32px}
+.mw-tournament-catalog-card{position:relative;display:flex;flex-direction:column;gap:9px;min-width:0;overflow:hidden;padding:17px;border:1px solid #343844;border-radius:3px;background:linear-gradient(145deg,#1a1c23,#090a0d 74%);color:inherit;text-decoration:none;transition:border-color .16s,transform .16s}
+.mw-tournament-catalog-card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#555,#e1c66d,#555)}
+.mw-tournament-catalog-card:hover{border-color:var(--accent,#d4af37);transform:translateY(-2px)}
+.mw-tournament-catalog-card>span{margin-top:3px;color:var(--accent,#e4c76b);font-size:.66rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.mw-tournament-catalog-card strong{font-size:1.03rem;line-height:1.25;overflow-wrap:anywhere}
+.mw-tournament-catalog-card small{color:#aeb3bf;line-height:1.4}
+.mw-tournament-catalog-card b{margin-top:auto;font-size:.7rem;letter-spacing:.07em}
+
+/* Draft roster */
+.mw-tournament-draft-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.mw-tournament-draft-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #343844;border-radius:2px;background:#0a0b0f;color:inherit;text-decoration:none;transition:border-color .16s,transform .16s}
+.mw-tournament-draft-card:hover{border-color:#d4af37;transform:translateY(-2px)}
+.mw-tournament-draft-card img,.mw-tournament-draft-placeholder{display:flex;width:100%;aspect-ratio:3/4;align-items:center;justify-content:center;object-fit:cover;object-position:center 20%;background:linear-gradient(145deg,#303542,#090a0e);color:#f6f6f6;font-size:1.4rem;font-weight:900}
+.mw-tournament-draft-card strong{min-height:40px;padding:9px 7px;background:linear-gradient(180deg,#191b21,#0b0c10);font-size:.78rem;line-height:1.18;text-align:center;overflow-wrap:anywhere}
+
+/* Standings table: gold leader / red last place */
+.mw-tournament-table-wrap{max-width:100%;overflow:auto;border:1px solid #383b43;border-radius:2px;overscroll-behavior-x:contain;scrollbar-color:#777 #111;scrollbar-width:thin}
+.mw-tournament-table{width:100%;border-collapse:separate;border-spacing:0;background:#0a0b0e;font-size:.78rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mw-tournament-table th,.mw-tournament-table td{padding:11px 10px;text-align:center;border-right:1px solid #272a31;border-bottom:1px solid #292c34}
+.mw-tournament-table thead th{position:sticky;top:0;z-index:3;background:linear-gradient(#30323a,#17181e);color:#f6f6f7;font-size:.68rem;font-weight:900;letter-spacing:.06em}
+.mw-tournament-table thead button{padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:900;cursor:pointer}
+.mw-tournament-table tbody td{background:#0d0e12;color:#e1e3e8}
+.mw-tournament-table tbody tr:nth-child(even) td{background:#111217}
+.mw-tournament-table tbody td:first-child{width:42px;font-weight:900}
+.mw-tournament-table tbody td:nth-child(2){min-width:145px;text-align:left;font-weight:900}
+.mw-tournament-table tbody td:nth-child(2) a{color:inherit;text-decoration:none}
+.mw-tournament-table tbody td:nth-child(2) a:hover{text-decoration:underline;text-underline-offset:3px}
+.mw-tournament-table tbody tr:hover td{filter:brightness(1.12)}
+.mw-tournament-table tbody tr:first-child td{background:linear-gradient(90deg,#9d7419,#d4ac43 50%,#876014)!important;color:#fff5cb!important;border-color:#e9ca70}
+.mw-tournament-table tbody tr:first-child td:first-child{background:linear-gradient(145deg,#ffe9a0,#b47b15)!important;color:#211704!important;box-shadow:inset 0 0 0 1px #fff0b2}
+.mw-tournament-table tbody tr:last-child:not(:first-child) td{background:linear-gradient(90deg,#7e1728,#b72b40 50%,#651321)!important;color:#ffe1e5!important;border-color:#d84a5d}
+.mw-tournament-table tbody tr:last-child:not(:first-child) td:first-child{background:linear-gradient(145deg,#ff7182,#94182b)!important;color:#fff!important;box-shadow:inset 0 0 0 1px #ff9aa7}
+.mw-tournament-table .is-positive{color:#76e6b0!important;font-weight:900}.mw-tournament-table .is-negative{color:#ff8998!important;font-weight:900}
+
+/* Matrix: sticky participant rail, square portrait, full names, horizontal scroll */
+.mw-tournament-panel--matrix{border-color:#383a43;background:linear-gradient(145deg,#12141a,#08090c 78%)}
+.mw-tournament-panel--matrix .mw-tournament-panel__heading{border-bottom-color:#42444b}
+.mw-tournament-matrix-wrap{width:100%;max-width:100%;max-height:min(72vh,760px);overflow:auto;border:1px solid #383b44;border-radius:2px;background:#08090c;overscroll-behavior:contain;scrollbar-color:#858995 #111;scrollbar-width:thin}
+.mw-tournament-matrix{width:max-content;min-width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;background:#090a0d;font-size:.72rem}
+.mw-tournament-matrix th,.mw-tournament-matrix td{width:78px;min-width:78px;max-width:78px;height:58px;padding:4px;text-align:center;border-right:1px solid #292c34;border-bottom:1px solid #292c34}
+.mw-tournament-matrix thead th{position:sticky;top:0;z-index:3;height:76px;vertical-align:bottom;background:linear-gradient(#30323a,#15161b);color:#f5f5f6;white-space:normal}
+.mw-tournament-matrix thead th span{display:block;padding:7px 2px;font-size:.67rem;line-height:1.12;font-weight:900;white-space:normal;overflow-wrap:anywhere;word-break:normal;text-transform:none;letter-spacing:0}
+.mw-tournament-matrix .matrix-corner{position:sticky;left:0;z-index:6;width:220px;min-width:220px;max-width:220px;text-align:left;vertical-align:middle;padding-left:13px;background:#252730;color:#e5cc78;font-size:.68rem;letter-spacing:.09em}
+.mw-tournament-matrix tbody th.matrix-row-name{position:sticky;left:0;z-index:2;display:table-cell;width:220px;min-width:220px;max-width:220px;height:54px;padding:6px 8px;text-align:left;vertical-align:middle;white-space:normal;background:linear-gradient(90deg,#191b22,#101116);color:#f6f6f7;box-shadow:2px 0 0 #0008}
+.matrix-row-name__seed{display:inline-flex;align-items:center;justify-content:center;width:24px;height:28px;flex:0 0 24px;margin-right:6px;vertical-align:middle;background:linear-gradient(145deg,#393c45,#1a1b20);border:1px solid #50535c;color:#e8e9ec;font-size:.61rem;font-weight:900}
+.matrix-row-name__portrait,.matrix-row-name__initials{display:inline-flex;width:36px;height:36px;min-width:36px;align-items:center;justify-content:center;margin-right:7px;vertical-align:middle;object-fit:cover;object-position:center 18%;border:1px solid #5b5e68;background:linear-gradient(145deg,#3a3d47,#0c0d11);color:#fff;font-size:.65rem;font-weight:900}
+.matrix-row-name__full-name{display:inline;max-width:none!important;vertical-align:middle;color:#f7f7f8;font-size:.76rem;line-height:1.18;font-weight:900;white-space:normal;overflow-wrap:anywhere;word-break:normal}
+.matrix-row-name__initials[hidden]{display:none!important}
+.mw-tournament-matrix thead th.matrix-zone-raw,.mw-tournament-matrix tbody th.matrix-zone-raw{box-shadow:inset 0 3px #ef4658}
+.mw-tournament-matrix thead th.matrix-zone-smackdown,.mw-tournament-matrix tbody th.matrix-zone-smackdown{box-shadow:inset 0 3px #428eff}
+.mw-tournament-matrix thead th.matrix-zone-nxt,.mw-tournament-matrix tbody th.matrix-zone-nxt{box-shadow:inset 0 3px #b5a0ef}
+.mw-tournament-matrix thead th.matrix-zone-aew,.mw-tournament-matrix tbody th.matrix-zone-aew{box-shadow:inset 0 3px #f0a45d}
+.mw-tournament-matrix thead th.matrix-zone-championship,.mw-tournament-matrix tbody th.matrix-zone-championship{box-shadow:inset 0 3px #e4c76b}
+.matrix-self,.matrix-empty{background:#0c0d11;color:#555b67}
+.matrix-empty span{display:block;padding:8px;color:#666b76}
+.matrix-cell{display:flex;width:100%;min-height:48px;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px 2px;border:1px solid transparent;border-radius:1px;color:#fff;font-size:.8rem;font-weight:900;cursor:pointer;transition:filter .15s}
+.matrix-cell:hover{filter:brightness(1.18)}
+.matrix-cell small{font-size:.61rem;font-weight:800;opacity:.95;font-variant-numeric:tabular-nums}
+.matrix-win{background:linear-gradient(145deg,#185b46,#10382e);border-color:#2d896d}.matrix-loss{background:linear-gradient(145deg,#6c202e,#35131c);border-color:#a53d50}.matrix-draw{background:linear-gradient(145deg,#5a4a1d,#302711);border-color:#927832}
+.mw-matrix-legend{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 12px}
+.mw-matrix-legend__item{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border:1px solid #343741;background:#111217;color:#e6e8ed;font-size:.66rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.mw-matrix-legend__item i{display:block;width:9px;height:9px;background:var(--matrix-zone,#8d929d)}
+.matrix-zone-raw,.matrix-zone-red-league{--matrix-zone:#ed515c}.matrix-zone-smackdown,.matrix-zone-blue-league{--matrix-zone:#4c9eff}.matrix-zone-nxt{--matrix-zone:#c4a2ff}.matrix-zone-aew{--matrix-zone:#f0a45d}.matrix-zone-championship{--matrix-zone:#e4c76b}
+.mw-tournament-matrix-detail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;color:#b6bbc5;font-size:.8rem}
+
+/* Results / matchups: horizontal fight bar, score on both sides, VS in centre */
+.mw-tournament-results-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mw-tournament-score-card{min-width:0;overflow:hidden;border:1px solid #3b3e47;border-radius:2px;background:linear-gradient(145deg,#1a1c23,#090a0d 76%);box-shadow:inset 0 1px #ffffff08}
+.mw-tournament-title-ribbon{display:block;padding:7px 10px;border-bottom:1px solid #9e813c;background:linear-gradient(90deg,#8b6717,#e2c365 45%,#8b6717);color:#211805;text-decoration:none;font-size:.67rem;font-weight:900;letter-spacing:.04em;text-align:center;text-transform:uppercase;overflow-wrap:anywhere}
+.mw-matchup-bar{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;min-height:78px;isolation:isolate;background:linear-gradient(90deg,#16243a 0%,#111319 47%,#2a151c 100%)}
+.mw-matchup-side{position:relative;display:flex;align-items:center;gap:7px;min-width:0;padding:10px 12px;color:#e8ebf2}
+.mw-matchup-side.is-left{justify-content:flex-end;text-align:right;border-right:1px solid #ffffff14;padding-right:25px}
+.mw-matchup-side.is-right{justify-content:flex-start;text-align:left;padding-left:25px}
+.mw-matchup-name{min-width:0;max-width:100%;color:#f5f5f6;font-size:.75rem;line-height:1.12;font-weight:900;overflow-wrap:anywhere;text-transform:uppercase;letter-spacing:.01em}
+.mw-matchup-portrait,.mw-matchup-initials{display:flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:49px;object-fit:cover;object-position:center 18%;border:1px solid #5a606b;background:linear-gradient(145deg,#343946,#0b0c10);color:#fff;font-size:.72rem;font-weight:900}
+.mw-matchup-initials{height:40px}.mw-matchup-initials[hidden]{display:none!important}
+.mw-matchup-score{flex:0 0 auto;min-width:25px;padding:4px 2px;color:#fff;text-align:center;font-size:1.1rem;font-weight:900;font-variant-numeric:tabular-nums}
+.mw-matchup-side.is-winner{background:linear-gradient(180deg,#1d4938a8,#10251da8)}
+.mw-matchup-side.is-winner .mw-matchup-score{color:#9cf3c9}
+.mw-matchup-vs{position:absolute;z-index:4;left:50%;top:50%;display:flex;align-items:center;justify-content:center;width:31px;height:31px;transform:translate(-50%,-50%) skew(-8deg);border:1px solid #888d98;background:linear-gradient(145deg,#383b45,#111217);box-shadow:0 2px 7px #000a;color:#fff;font-size:.59rem;font-weight:900;font-style:italic;letter-spacing:.04em}
+.mw-tournament-score-meta{padding:7px 10px;border-top:1px solid #ffffff10;background:#0b0c10;color:#a9afbb;font-size:.64rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+
+/* Bracket and phases */
+.mw-tournament-bracket{display:flex;align-items:stretch;gap:14px;overflow-x:auto;padding:2px 0 8px;overscroll-behavior-x:contain;scrollbar-color:#777 #111;scrollbar-width:thin}
+.mw-tournament-bracket-round{display:flex;flex:1 0 230px;flex-direction:column;gap:10px;min-width:230px}
+.mw-tournament-bracket-round h3{position:relative;margin:0;padding:11px 12px;background:linear-gradient(100deg,#292c35,#111217);border-left:4px solid var(--accent,#d4af37);color:#f5f5f6;font-size:.74rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+.mw-tournament-bracket-round h3:after{content:"";position:absolute;right:0;top:0;width:28%;height:100%;background:linear-gradient(100deg,transparent,#ffffff08);pointer-events:none}
+.mw-tournament-event-link{display:inline-block;margin:0 0 12px;color:var(--accent,#e4c76b);font-size:.78rem;font-weight:900;text-decoration:none}
+.mw-tournament-extra-match{margin:12px 0;padding:12px;border:1px solid #343844;border-left:3px solid var(--accent,#d4af37);background:#0c0d11}
+.mw-tournament-extra-match .mw-tournament-event-link{margin-bottom:8px}
+.mw-tournament-final-event{border-color:#4b4637}
+.mw-tournament-final-event .mw-tournament-panel__heading{border-bottom-color:#77643b}
+
+/* Brand color accents by tournament id */
+body[data-tournament^="friday-night-smackdown"] .mw-tournament-bracket-round h3{border-left-color:#1688ff}
+body[data-tournament^="wwe-nxt"] .mw-tournament-bracket-round h3{border-left-color:#c0c0c0}
+body[data-tournament^="wwe-speed"] .mw-tournament-bracket-round h3{border-left-color:#20c878}
+body[data-tournament^="tna"] .mw-tournament-bracket-round h3{border-left-color:#d90024}
+body[data-tournament^="aew"] .mw-tournament-bracket-round h3{border-left-color:#d4af37}
+body[data-tournament^="aaa"] .mw-tournament-bracket-round h3{border-left-color:#009b4d}
+body[data-tournament^="cmll"] .mw-tournament-bracket-round h3{border-left-color:#0057b8}
+
+/* Tablet / mobile */
+@media(max-width:900px){
+.mw-tournament-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mw-tournament-draft-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mw-tournament-results-list{grid-template-columns:1fr}
+.mw-tournament-table{font-size:.72rem}
+.mw-tournament-table th,.mw-tournament-table td{padding:9px 7px}
+}
+@media(max-width:620px){
+body[data-page="tournament"] .mw-event-back{margin:0 0 12px}
+.mw-tournament-hero{padding:23px 15px;margin-bottom:15px}
+.mw-tournament-hero h1{font-size:clamp(2rem,10vw,3.25rem)}
+.mw-tournament-hero .eyebrow{font-size:.61rem;letter-spacing:.12em}
+.mw-tournament-hero .mw-event-detail-meta{gap:5px}
+.mw-tournament-hero .mw-event-detail-meta span{padding:6px 7px;font-size:.61rem}
+.mw-tournament-panel{margin:15px 0;padding:12px}
+.mw-tournament-panel__heading{gap:8px;margin-bottom:12px;padding-bottom:10px}
+.mw-tournament-panel__heading h2{font-size:1.22rem}
+.mw-tournament-panel__heading>span{font-size:.62rem}
+.mw-tournament-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.mw-tournament-catalog-card{min-height:140px;padding:12px 10px}
+.mw-tournament-catalog-card strong{font-size:.85rem}
+.mw-tournament-catalog-card small{font-size:.68rem}
+.mw-tournament-draft-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mw-tournament-draft-card strong{min-height:0;padding:7px 3px;font-size:clamp(.56rem,2.5vw,.7rem);line-height:1.15}
+.mw-tournament-matrix-wrap{max-height:68vh}
+.mw-tournament-matrix th,.mw-tournament-matrix td{width:64px;min-width:64px;max-width:64px;padding:2px}
+.mw-tournament-matrix thead th{height:67px}
+.mw-tournament-matrix .matrix-corner,.mw-tournament-matrix tbody th.matrix-row-name{width:185px;min-width:185px;max-width:185px}
+.mw-tournament-matrix .matrix-corner{padding-left:8px;font-size:.61rem}
+.matrix-row-name__seed{width:20px;height:24px;flex-basis:20px;margin-right:4px;font-size:.56rem}
+.matrix-row-name__portrait,.matrix-row-name__initials{width:30px;height:30px;min-width:30px;margin-right:5px;font-size:.58rem}
+.matrix-row-name__full-name{font-size:.69rem;line-height:1.14}
+.mw-tournament-matrix thead th span{font-size:.6rem;line-height:1.1}
+.matrix-cell{min-height:43px;font-size:.72rem}
+.matrix-cell small{font-size:.53rem}
+.mw-tournament-matrix-detail{grid-template-columns:1fr;gap:7px}
+.mw-matchup-bar{min-height:67px}
+.mw-matchup-side{gap:4px;padding:8px 6px}
+.mw-matchup-side.is-left{padding-right:18px}
+.mw-matchup-side.is-right{padding-left:18px}
+.mw-matchup-name{font-size:clamp(.57rem,2.8vw,.68rem);line-height:1.1}
+.mw-matchup-portrait,.mw-matchup-initials{flex-basis:29px;width:29px;height:38px;font-size:.58rem}
+.mw-matchup-initials{height:29px}
+.mw-matchup-score{min-width:18px;padding:3px 1px;font-size:.92rem}
+.mw-matchup-vs{width:25px;height:25px;font-size:.51rem}
+.mw-tournament-score-meta{font-size:.59rem}
+.mw-tournament-bracket-round{flex-basis:82%;min-width:82%}
+.mw-tournament-extra-match{padding:8px}
+}
+@media(hover:none){.mw-tournament-catalog-card:hover,.mw-tournament-draft-card:hover,.matrix-cell:hover{transform:none;filter:none}}
+@media(prefers-reduced-motion:reduce){.mw-tournament-catalog-card,.mw-tournament-draft-card,.matrix-cell,.mw-tournament-draft-card img{transition:none!important}}
+
+/* =========================================================
+MI WRESTLING · COMPETITIVE BROADCAST SKIN
+Mantiene el motor de datos; solo refina presentación.
+========================================================= */
+body[data-page="tournament"]{--t-accent:#e31837;--t-accent-rgb:227,24,55;--t-metal:#f0f0f0;--t-panel:#0b0b0d;--t-line:#35353a;background-color:#050505}
+body[data-page="tournament"] .site-main{padding-inline:clamp(10px,3vw,28px)}
+body[data-page="tournament"] .mw-tournament-panel{border:0;border-radius:0;background:transparent;box-shadow:none;padding:0;margin:30px 0 42px}
+body[data-page="tournament"] .mw-tournament-panel__heading{position:relative;align-items:center;margin-bottom:20px;padding:0 0 12px;border-bottom:3px solid var(--t-accent);background:linear-gradient(90deg,rgba(var(--t-accent-rgb),.12),transparent 68%)}
+body[data-page="tournament"] .mw-tournament-panel__heading:after{content:"";position:absolute;left:0;bottom:-4px;width:clamp(58px,18vw,110px);height:4px;background:var(--t-accent);box-shadow:0 0 12px rgba(var(--t-accent-rgb),.6)}
+body[data-page="tournament"] .mw-tournament-panel__heading h2{font-family:"Barlow Condensed",Inter,sans-serif;font-size:clamp(1.25rem,4vw,1.8rem);letter-spacing:.1em;text-shadow:0 2px 8px #000;text-transform:uppercase}
+body[data-page="tournament"] .mw-event-kicker{color:var(--t-metal);letter-spacing:.15em}
+body[data-page="tournament"] .mw-tournament-note{margin-top:12px;padding:9px 12px;border-left:3px solid var(--t-accent);background:linear-gradient(90deg,rgba(var(--t-accent-rgb),.09),transparent);color:#bfc0c6}
+
+/* Arena texture: light-weight dots and radial light, like the supplied mobile reference. */
+body[data-page="tournament"] .site-main:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(var(--t-accent-rgb),.16),transparent 47%),radial-gradient(circle,rgba(var(--t-accent-rgb),.2) 0 1.2px,transparent 1.6px);background-size:auto,12px 12px;opacity:.55}
+body[data-page="tournament"] .mw-tournament-hero{border:1px solid #34343a;border-radius:2px;background:linear-gradient(120deg,#18181b,#070708 58%,rgba(var(--t-accent-rgb),.12));box-shadow:inset 0 -4px var(--t-accent),0 8px 24px #0008}
+body[data-page="tournament"] .mw-tournament-hero .eyebrow{color:var(--t-metal)}
+
+/* Standings: compact first view; difference columns reveal on demand. */
+.mw-table-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-5px 0 8px;flex-wrap:wrap}
+.mw-table-tools>span{color:#9b9ba3;font-size:.62rem;font-weight:900;letter-spacing:.13em}
+.mw-table-difference-toggle{display:flex;align-items:center;justify-content:center;gap:8px;min-height:38px;padding:8px 12px;border:1px solid #6c2633;border-radius:2px;background:linear-gradient(100deg,#260b11,#121214);color:#fff;font:800 .68rem Inter,sans-serif;letter-spacing:.07em;cursor:pointer;transition:background .18s,border-color .18s,box-shadow .18s}
+.mw-table-difference-toggle:hover,.mw-table-difference-toggle[aria-expanded="true"]{border-color:var(--t-accent);background:linear-gradient(100deg,rgba(var(--t-accent-rgb),.35),#121214);box-shadow:0 0 16px rgba(var(--t-accent-rgb),.24)}
+.mw-table-toggle-icon{display:grid;place-items:center;width:19px;height:19px;border:1px solid currentColor;font-size:1rem;line-height:1}
+.mw-table-toggle-arrow{font-size:1rem;transition:transform .18s}
+.mw-table-difference-toggle[aria-expanded="true"] .mw-table-toggle-arrow{transform:rotate(180deg)}
+.mw-tournament-table-wrap{overflow-x:auto;border:1px solid #3a3a3d;background:#09090a;overscroll-behavior-x:contain}
+.mw-tournament-table{width:100%;min-width:0;border-collapse:separate;border-spacing:0;background:#09090a;color:#f5f5f6;font-variant-numeric:tabular-nums}
+.mw-tournament-table thead th{height:43px;padding:7px 9px;background:linear-gradient(#29292c,#111113);border-bottom:2px solid var(--t-accent);color:#fff;text-align:center;white-space:nowrap}
+.mw-tournament-table thead th button{display:block;width:100%;padding:3px 0;border:0;background:none;color:inherit;font:900 .66rem Inter,sans-serif;letter-spacing:.06em;cursor:pointer}
+.mw-tournament-table tbody td{height:52px;padding:8px 10px;border-bottom:1px solid #28282b;text-align:center;font-size:.82rem}
+.mw-tournament-table tbody tr:last-child td{border-bottom:0}
+.mw-tournament-table .mw-standing-name{text-align:left;font-weight:900;min-width:115px}
+.mw-tournament-table .mw-standing-name a{display:block;color:#fff;text-decoration:none;line-height:1.16;overflow-wrap:anywhere}
+.mw-tournament-table .mw-standing-name a:hover{text-decoration:underline;text-decoration-color:var(--t-accent);text-underline-offset:3px}
+.mw-tournament-table .mw-standing-points{font-weight:900}
+.mw-tournament-table .is-difference-column{display:none}
+.mw-tournament-panel--standings.show-difference .mw-tournament-table .is-difference-column{display:table-cell}
+.mw-tournament-table tbody tr.is-leader{background:linear-gradient(100deg,#665000,#d4ad08 46%,#5b4600);color:#fffdf2;box-shadow:inset 4px 0 #ffe45b}
+.mw-tournament-table tbody tr.is-leader td{border-bottom-color:#b78f05}
+.mw-tournament-table tbody tr.is-last{background:linear-gradient(100deg,#6d0718,#3a080f 75%);color:#fff;box-shadow:inset 4px 0 #ff183d}
+.mw-tournament-table tbody tr.is-last td{border-bottom-color:#8d1027}
+.mw-tournament-table tbody tr.is-leader:active,.mw-tournament-table tbody tr.is-leader:focus-within{background:linear-gradient(105deg,#a77d00,#ffe75d 38%,#c38f00 68%,#ffe05a);color:#211600;box-shadow:inset 0 0 0 2px #fff0a3,0 0 20px #ffd70099}
+.mw-tournament-table tbody tr.is-last:active,.mw-tournament-table tbody tr.is-last:focus-within{background:linear-gradient(105deg,#ff183d,#9d001d 48%,#ff334f);box-shadow:inset 0 0 0 2px #ff7185,0 0 18px #e3183788}
+.mw-tournament-table .is-positive{color:#74e6ad}.mw-tournament-table .is-negative{color:#ff8293}
+
+/* Matrix: high-detail participant rail and clear result tiles. */
+.mw-tournament-panel--matrix .mw-tournament-panel__heading>div>p{max-width:760px;margin:8px 0 0;color:#b7b8c0;font-size:.76rem;line-height:1.55}
+.mw-tournament-matrix-wrap{border:1px solid #38383d;background:#080809;overscroll-behavior-x:contain;scrollbar-color:var(--t-accent) #141416}
+.mw-tournament-matrix{border-spacing:0;background:#080809}
+.mw-tournament-matrix thead th{background:linear-gradient(#303034,#111113);border-right:1px solid #343438;border-bottom:2px solid var(--t-accent);height:76px}
+.mw-tournament-matrix thead th span{display:block;max-width:100%;white-space:normal;overflow-wrap:anywhere;line-height:1.12;font-size:.72rem}
+.mw-tournament-matrix .matrix-corner,.mw-tournament-matrix tbody th.matrix-row-name{background:linear-gradient(90deg,#1c1c1f,#0d0d0f);border-right:2px solid #4a252d;box-shadow:4px 0 8px #0006}
+.matrix-row-name{height:64px}
+.matrix-row-name__seed{display:grid;place-items:center;flex:0 0 25px;width:25px;height:28px;margin-right:7px;border:1px solid #45454b;background:#19191c;color:#c6c6cd;font-size:.62rem;font-weight:900}
+.matrix-row-name__portrait,.matrix-row-name__initials{width:36px;height:36px;min-width:36px;flex:0 0 36px;object-fit:cover;object-position:center 18%;border:1px solid #626269;background:linear-gradient(145deg,#35353a,#09090b);box-shadow:0 2px 5px #0008}
+.matrix-row-name__initials{display:grid;place-items:center;color:#fff;font-size:.62rem;font-weight:900}
+.matrix-row-name__full-name{display:block;min-width:0;white-space:normal;overflow-wrap:anywhere;color:#f6f6f8;font-size:.76rem;font-weight:900;line-height:1.15}
+.mw-tournament-matrix td{border-right:1px solid #28282c;border-bottom:1px solid #28282c}
+.matrix-cell{min-height:57px;border-radius:0;font-size:.84rem;transition:filter .14s,box-shadow .14s,transform .14s}
+.matrix-cell small{font-size:.62rem;letter-spacing:.02em}
+.matrix-cell.matrix-win{background:linear-gradient(145deg,#0e4a31,#06281b);border-color:#176b46}
+.matrix-cell.matrix-loss{background:linear-gradient(145deg,#5d0b19,#30070e);border-color:#8e172a}
+.matrix-cell.matrix-draw{background:linear-gradient(145deg,#4e3a0b,#251b07);border-color:#8e6d17}
+.matrix-cell:active{filter:brightness(1.55);box-shadow:inset 0 0 0 2px #fff7;transform:scale(.97)}
+.mw-tournament-matrix-detail{padding:12px;border:1px solid #37373c;border-top:2px solid var(--t-accent);background:linear-gradient(100deg,#18181b,#09090b);line-height:1.45}
+.mw-tournament-matrix-detail:empty{display:none}
+
+/* Results keep the original horizontal matchup logic, with a strong brand strip. */
+.mw-tournament-results-list{grid-template-columns:1fr;gap:0;border:1px solid #38383c;background:#080809}
+.mw-tournament-score-card{border:0;border-bottom:3px solid var(--t-accent);border-radius:0;background:linear-gradient(110deg,#242427,#0b0b0d 50%,#18181b);box-shadow:none}
+.mw-tournament-score-card:last-child{border-bottom:0}
+.mw-matchup-bar{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);min-height:76px;background:linear-gradient(90deg,rgba(var(--t-accent-rgb),.13),#0c0c0e 48%,rgba(var(--t-accent-rgb),.08))}
+.mw-matchup-side{gap:8px;padding:10px 12px}
+.mw-matchup-side.is-left{padding-right:12px;border-right:0}
+.mw-matchup-side.is-right{padding-left:12px}
+.mw-matchup-name{font-size:.8rem;line-height:1.12;text-transform:none}
+.mw-matchup-portrait,.mw-matchup-initials{flex-basis:34px;width:34px;height:43px;border-color:#595960}
+.mw-matchup-score{min-width:23px;font-size:1.12rem}
+.mw-matchup-vs{position:relative;left:auto;top:auto;transform:skew(-8deg);width:29px;height:29px;margin-inline:-4px;border-color:#696970;background:linear-gradient(#38383d,#101012);box-shadow:0 0 0 3px #0b0b0d;color:#fff}
+.mw-matchup-side.is-winner{background:linear-gradient(180deg,rgba(var(--t-accent-rgb),.22),rgba(var(--t-accent-rgb),.06))}
+.mw-matchup-side.is-winner .mw-matchup-score{color:#fff}
+.mw-tournament-title-ribbon{position:relative;padding:9px 12px;border:1px solid #ffe45a;border-bottom:3px solid #8f6900;background:linear-gradient(115deg,#765500,#d5a900 18%,#fff080 36%,#b88c00 49%,#fff1a0 63%,#d3a700 82%,#705000);color:#241800;text-shadow:0 1px 0 #fff5;box-shadow:inset 0 1px #fff9,0 0 13px #e6b90044;font-size:.7rem}
+.mw-tournament-title-ribbon:hover{filter:brightness(1.16)}
+.mw-tournament-score-meta{padding:6px 10px;border-top:1px solid #ffffff10;background:#09090b}
+
+/* Mobile bracket: stack rounds vertically like a proper results broadcast. */
+.mw-tournament-bracket{display:grid;grid-template-columns:1fr;gap:25px;overflow:visible;padding:0}
+.mw-tournament-bracket-round{min-width:0;width:100%;gap:12px}
+.mw-tournament-bracket-round h3{padding:12px 10px;border-left:0;border-bottom:3px solid var(--t-accent);background:transparent;color:var(--t-accent);text-align:center;font-size:.82rem;letter-spacing:.1em}
+.mw-tournament-bracket-round h3:after{display:none}
+.mw-tournament-bracket .mw-tournament-score-card{border:1px solid #3a3a3f;border-radius:7px;overflow:hidden;background:linear-gradient(145deg,#1c1c1f,#080809);box-shadow:0 4px 12px #0006}
+.mw-tournament-bracket .mw-matchup-bar{min-height:63px}
+.mw-tournament-bracket .mw-tournament-score-meta{display:none}
+
+/* Brand skin follows the tournament ID, not text inserted into the page. */
+body[data-tournament^="friday-night-smackdown"],body[data-tournament^="smackdown"],body[data-tournament-brand="smackdown"]{--t-accent:#1688ff;--t-accent-rgb:22,136,255;--t-metal:#83c1ff}
+body[data-tournament^="wwe-nxt"],body[data-tournament^="nxt"],body[data-tournament-brand="nxt"]{--t-accent:#c5c9d1;--t-accent-rgb:197,201,209;--t-metal:#f1f2f5}
+body[data-tournament^="wwe-speed"],body[data-tournament-brand="speed"]{--t-accent:#27d58a;--t-accent-rgb:39,213,138;--t-metal:#9df5ce}
+body[data-tournament^="tna"],body[data-tournament-brand="tna"]{--t-accent:#d90024;--t-accent-rgb:217,0,36;--t-metal:#ffd54b}
+body[data-tournament^="aew"],body[data-tournament-brand="aew"]{--t-accent:#e5e5e5;--t-accent-rgb:229,229,229;--t-metal:#fff}
+body[data-tournament^="aaa"],body[data-tournament-brand="aaa"]{--t-accent:#009b4d;--t-accent-rgb:0,155,77;--t-metal:#b5f0cd}
+body[data-tournament^="cmll"],body[data-tournament-brand="cmll"]{--t-accent:#1769d2;--t-accent-rgb:23,105,210;--t-metal:#e4c76b}
+
+@media(max-width:620px){
+body[data-page="tournament"] .site-main{padding-inline:10px}
+body[data-page="tournament"] .mw-tournament-panel{margin:26px 0 34px}
+.mw-table-tools{align-items:stretch;flex-direction:column}
+.mw-table-difference-toggle{width:100%;justify-content:space-between;min-height:42px}
+.mw-tournament-table thead th{height:38px;padding:5px 4px}
+.mw-tournament-table thead th button{font-size:.58rem;letter-spacing:0}
+.mw-tournament-table tbody td{height:56px;padding:7px 5px;font-size:.72rem}
+.mw-tournament-table .mw-standing-name{min-width:80px;max-width:104px}
+.mw-tournament-table .mw-standing-name a{font-size:.74rem;overflow-wrap:anywhere}
+.mw-tournament-panel--standings.show-difference .mw-tournament-table{min-width:520px}
+.mw-tournament-panel--standings.show-difference .mw-tournament-table .is-difference-column{display:table-cell}
+.mw-tournament-matrix-wrap{max-height:none;max-width:100%;overflow:auto}
+.mw-tournament-matrix .matrix-corner,.mw-tournament-matrix tbody th.matrix-row-name{width:178px;min-width:178px;max-width:178px;padding:6px}
+.matrix-row-name__portrait,.matrix-row-name__initials{width:31px;height:31px;min-width:31px;flex-basis:31px;margin-right:5px}
+.matrix-row-name__seed{width:19px;height:24px;min-width:19px;flex-basis:19px;margin-right:4px;font-size:.53rem}
+.matrix-row-name__full-name{font-size:.68rem;line-height:1.13}
+.mw-tournament-matrix thead th{height:72px}
+.mw-tournament-matrix thead th span{font-size:.61rem}
+.mw-tournament-matrix th,.mw-tournament-matrix td{width:63px;min-width:63px;max-width:63px}
+.matrix-cell{min-height:47px;font-size:.7rem}
+.matrix-cell small{font-size:.52rem}
+.mw-matchup-bar{min-height:65px}
+.mw-matchup-side{gap:4px;padding:7px 5px}
+.mw-matchup-side.is-left{padding-right:5px}
+.mw-matchup-side.is-right{padding-left:5px}
+.mw-matchup-name{font-size:clamp(.57rem,2.8vw,.7rem);overflow-wrap:anywhere}
+.mw-matchup-portrait,.mw-matchup-initials{flex-basis:27px;width:27px;height:35px;font-size:.55rem}
+.mw-matchup-initials{height:27px}
+.mw-matchup-score{min-width:16px;font-size:.88rem}
+.mw-matchup-vs{width:23px;height:23px;font-size:.48rem}
+.mw-tournament-title-ribbon{font-size:.62rem;padding:8px 6px}
+.mw-tournament-bracket{display:grid;grid-template-columns:minmax(0,1fr);overflow:visible;gap:23px}
+.mw-tournament-bracket-round{width:100%;min-width:0;flex:auto}
+.mw-tournament-bracket .mw-matchup-bar{min-height:59px}
+}
+@media(hover:none){.mw-tournament-table tbody tr.is-leader:active,.mw-tournament-table tbody tr.is-last:active{filter:brightness(1.12)}}
+@media(prefers-reduced-motion:reduce){.mw-table-difference-toggle,.mw-table-toggle-arrow,.matrix-cell{transition:none!important}}
+
+/* =========================================================
+MI WRESTLING 2.0 · WWE 2K BROADCAST FINISH
+Capa visual únicamente: no altera datos ni comportamiento JS.
+========================================================= */
+body[data-page="tournament"]{
+--t-accent:#e31837;--t-accent-rgb:227,24,55;--t-metal:#f6f6f7;
+--t-deep:#08090d;--t-surface:#111319;--t-edge:#353944;
+background:#050609;color:#f7f7fa;
+}
+body[data-page="tournament"] .site-main{width:min(1540px,100%);padding:clamp(10px,2.3vw,30px);}
+body[data-page="tournament"] .site-main:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% -8%,rgba(var(--t-accent-rgb),.22),transparent 53%),radial-gradient(circle,rgba(var(--t-accent-rgb),.14) 0 1px,transparent 1.65px);background-size:auto,13px 13px;opacity:.62}
+
+/* Hero: key art, slashes, metal edges */
+body[data-page="tournament"] .mw-tournament-hero{isolation:isolate;min-height:180px;margin:0 0 30px;padding:clamp(22px,4vw,52px);border:1px solid #454852;border-radius:2px;background:linear-gradient(108deg,#1b1d25 0%,#090a0f 48%,#171018 100%);box-shadow:inset 0 -4px var(--t-accent),inset 0 1px #ffffff1b,0 15px 32px #0009}
+body[data-page="tournament"] .mw-tournament-hero:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(112deg,transparent 0 24%,#ffffff08 24.2% 24.7%,transparent 25% 48%,rgba(var(--t-accent-rgb),.15) 48.2% 48.7%,transparent 49%),linear-gradient(120deg,transparent 0 66%,#ffffff09 66.2% 66.8%,transparent 67%);}
+body[data-page="tournament"] .mw-tournament-hero:after{content:"";position:absolute;z-index:-1;right:-7%;top:-40%;width:34%;height:190%;transform:skewX(-24deg);border-left:1px solid #ffffff16;border-right:1px solid rgba(var(--t-accent-rgb),.3);background:linear-gradient(90deg,transparent,#ffffff08,transparent);pointer-events:none}
+.mw-tournament-hero .eyebrow,.mw-event-kicker{color:var(--t-metal);font-family:"Barlow Condensed",Inter,sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.19em;text-transform:uppercase}
+.mw-tournament-hero h1{font-family:"Barlow Condensed",Impact,sans-serif;font-size:clamp(2.25rem,7vw,5.6rem);font-weight:900;line-height:.9;letter-spacing:.015em;text-shadow:0 2px #000,0 5px 0 #000,0 12px 24px #000b}
+.mw-tournament-hero .lead{max-width:760px;color:#c7c9d1;font-size:.9rem;line-height:1.55}
+.mw-tournament-hero .mw-event-detail-meta span{border:1px solid #484b55;background:linear-gradient(#1d2028,#090a0e);box-shadow:inset 0 1px #ffffff12;color:#f7f7f8;font-size:.68rem;letter-spacing:.04em}
+
+/* Section headers: broadcast package, not plain headings */
+body[data-page="tournament"] .mw-tournament-panel{position:relative;margin:34px 0 42px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;min-width:0}
+body[data-page="tournament"] .mw-tournament-panel__heading{position:relative;align-items:flex-end;margin:0 0 18px;padding:0 0 12px;border:0;border-bottom:2px solid var(--t-accent);background:linear-gradient(90deg,rgba(var(--t-accent-rgb),.13),transparent 78%)}
+body[data-page="tournament"] .mw-tournament-panel__heading:after{content:"";position:absolute;left:0;bottom:-3px;width:clamp(72px,19vw,150px);height:4px;background:linear-gradient(90deg,var(--t-accent),var(--t-metal));box-shadow:0 0 14px rgba(var(--t-accent-rgb),.5)}
+body[data-page="tournament"] .mw-tournament-panel__heading h2{font-family:"Barlow Condensed",Impact,sans-serif;font-size:clamp(1.45rem,4vw,2.15rem);font-weight:900;line-height:1;letter-spacing:.09em;text-shadow:0 2px 10px #000;text-transform:uppercase}
+body[data-page="tournament"] .mw-tournament-panel__heading>span{font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}
+body[data-page="tournament"] .mw-tournament-panel__heading>div>p{max-width:780px;margin:9px 0 0;color:#bfc2cb;font-size:.78rem;line-height:1.6}
+.mw-tournament-note{padding:10px 12px;border:1px solid #343740;border-left:3px solid var(--t-accent);background:linear-gradient(100deg,rgba(var(--t-accent-rgb),.1),#0b0c10 75%);color:#bfc2cb;font-size:.7rem;line-height:1.55}
+
+/* Draft cards: roster selection cards, not empty boxes */
+.mw-tournament-draft-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.mw-tournament-draft-card{position:relative;border:1px solid #3b3e48;border-radius:2px;background:linear-gradient(145deg,#242731,#090a0e 75%);box-shadow:inset 0 1px #ffffff10,0 7px 14px #0005;transition:border-color .16s,filter .16s,transform .16s}
+.mw-tournament-draft-card:before{content:"";height:3px;position:absolute;z-index:2;left:0;right:0;top:0;background:linear-gradient(90deg,transparent,var(--t-accent),var(--t-metal),var(--t-accent),transparent);opacity:.9}
+.mw-tournament-draft-card img,.mw-tournament-draft-placeholder{aspect-ratio:3/4;background:linear-gradient(140deg,#292d38,#08090d);object-position:center 18%;}
+.mw-tournament-draft-card strong{display:flex;align-items:center;justify-content:center;min-height:42px;padding:8px 5px;background:linear-gradient(#1a1c23,#08090c);border-top:1px solid #ffffff12;font-family:"Barlow Condensed",Inter,sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.015em}
+.mw-tournament-draft-card:hover,.mw-tournament-draft-card:focus-visible{border-color:var(--t-metal);filter:brightness(1.13);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(var(--t-accent-rgb),.35),0 10px 24px #0009}
+
+/* Standings: premium table with activated leader / last-place rows */
+.mw-table-tools{align-items:center;margin:0 0 10px}
+.mw-table-tools>span{font-family:"Barlow Condensed",Inter,sans-serif;color:#c7c8ce;font-size:.78rem;letter-spacing:.13em}
+.mw-table-difference-toggle{min-height:40px;border:1px solid #555965;border-radius:2px;background:linear-gradient(110deg,#20232b,#0b0c10);box-shadow:inset 0 1px #ffffff12;color:#fff;font-family:"Barlow Condensed",Inter,sans-serif;font-size:.82rem;letter-spacing:.09em;transition:background .16s,border-color .16s,box-shadow .16s}
+.mw-table-difference-toggle:hover,.mw-table-difference-toggle[aria-expanded="true"]{border-color:var(--t-metal);background:linear-gradient(105deg,rgba(var(--t-accent-rgb),.5),#111319 70%);box-shadow:0 0 0 1px rgba(var(--t-accent-rgb),.35),0 0 20px rgba(var(--t-accent-rgb),.2)}
+.mw-tournament-table-wrap{border:1px solid #41444d;border-radius:2px;box-shadow:0 8px 22px #0007}
+.mw-tournament-table thead th{height:43px;background:linear-gradient(180deg,#333640,#13151a 75%);border-bottom:2px solid var(--t-accent);font-family:"Barlow Condensed",Inter,sans-serif;font-size:.8rem;letter-spacing:.08em}
+.mw-tournament-table tbody td{height:49px;background:#0c0d11;border-bottom:1px solid #292c34;font-size:.8rem;transition:background .12s,color .12s,box-shadow .12s}
+.mw-tournament-table tbody tr:nth-child(even) td{background:#121319}
+.mw-tournament-table tbody tr.is-leader td{background:linear-gradient(100deg,#574300,#a57e00 47%,#4a3900)!important;border-color:#b89a2d;color:#fff8d5;box-shadow:inset 0 1px #ffe78c44,inset 0 -1px #0006}
+.mw-tournament-table tbody tr.is-leader td:first-child{background:linear-gradient(145deg,#ffe778,#9c7200)!important;color:#241900!important}
+.mw-tournament-table tbody tr.is-last td{background:linear-gradient(100deg,#650c1c,#360810 82%)!important;border-color:#761629;color:#ffe6e9}
+.mw-tournament-table tbody tr.is-last td:first-child{background:linear-gradient(145deg,#f43c59,#790b1e)!important;color:#fff}
+.mw-tournament-table tbody tr.is-leader:active td,.mw-tournament-table tbody tr.is-leader:focus-within td{background:linear-gradient(100deg,#9b7100,#ffe86a 48%,#b88900)!important;color:#201500!important;border-color:#fff0a0;box-shadow:inset 0 0 0 1px #fff7,0 0 17px #eacb4780}
+.mw-tournament-table tbody tr.is-last:active td,.mw-tournament-table tbody tr.is-last:focus-within td{background:linear-gradient(100deg,#fa2349,#7d071c 75%)!important;box-shadow:inset 0 0 0 1px #ff8194,0 0 16px rgba(var(--t-accent-rgb),.4)}
+.mw-tournament-table .mw-standing-name a{font-size:.84rem}
+
+/* Matrix: Continental Classic-inspired layout, detailed selected matchup */
+.mw-tournament-matrix-wrap{border:1px solid #454852;background:#07080b;box-shadow:0 8px 24px #0008;scrollbar-color:var(--t-accent) #111319}
+.mw-tournament-matrix{font-size:.75rem}
+.mw-tournament-matrix thead th{height:78px;background:linear-gradient(180deg,#343741,#111217);border-bottom:2px solid var(--t-accent)}
+.mw-tournament-matrix thead th span{font-family:"Barlow Condensed",Inter,sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.025em}
+.mw-tournament-matrix .matrix-corner{background:linear-gradient(120deg,#292c35,#101116);color:var(--t-metal);border-right:2px solid #535761}
+.mw-tournament-matrix tbody th.matrix-row-name{background:linear-gradient(100deg,#20232b,#0c0d11);border-right:2px solid #4a4d57;box-shadow:4px 0 9px #0009}
+.matrix-row-name__seed{border-color:#666a75;background:linear-gradient(#383b45,#15171d);box-shadow:inset 0 1px #ffffff20}
+.matrix-row-name__portrait,.matrix-row-name__initials{border:1px solid #737783;box-shadow:0 2px 7px #0009}
+.matrix-row-name__full-name{font-family:"Barlow Condensed",Inter,sans-serif;font-size:.88rem;letter-spacing:.015em}
+.matrix-cell{min-height:56px;border:1px solid #292c34!important;border-radius:1px;font-family:"Barlow Condensed",Inter,sans-serif;font-size:1rem;letter-spacing:.06em;box-shadow:inset 0 1px #ffffff12;transition:filter .14s,box-shadow .14s,transform .14s}
+.matrix-cell small{font-family:Inter,sans-serif;font-size:.59rem;letter-spacing:0;opacity:.88}
+.matrix-cell.matrix-win{background:linear-gradient(145deg,#126343,#073222);border-color:#25865e!important}
+.matrix-cell.matrix-loss{background:linear-gradient(145deg,#761426,#350811);border-color:#9d263b!important}
+.matrix-cell.matrix-draw{background:linear-gradient(145deg,#6a4c0b,#302107);border-color:#a27b22!important}
+.matrix-cell:active,.matrix-cell:focus-visible{position:relative;z-index:2;filter:brightness(1.55);box-shadow:inset 0 0 0 2px #ffffffb5,0 0 15px rgba(var(--t-accent-rgb),.42);transform:scale(.97)}
+.mw-tournament-matrix-detail{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;padding:14px;border:1px solid #454852;border-top:3px solid var(--t-accent);background:linear-gradient(110deg,#20232b,#0a0b0f 72%);box-shadow:inset 0 1px #ffffff12}
+.mw-tournament-matrix-detail:before{content:"CRUCE SELECCIONADO";grid-column:1/-1;color:var(--t-metal);font-family:"Barlow Condensed",Inter,sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.15em}
+.mw-matrix-legend__item{border-color:#424650;background:linear-gradient(#1e2027,#0b0c10);font-family:"Barlow Condensed",Inter,sans-serif;font-size:.75rem;letter-spacing:.08em}
+
+/* Match result cards: one clear score-bar, winner is highlighted, championship ribbon retained */
+.mw-tournament-results-list{grid-template-columns:1fr;gap:9px;border:0;background:transparent}
+.mw-tournament-score-card{position:relative;overflow:hidden;border:1px solid #41444d;border-radius:2px;background:linear-gradient(110deg,#191b22,#08090d 55%,#191016);box-shadow:inset 0 1px #ffffff12,0 5px 12px #0006}
+.mw-tournament-score-card:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(112deg,transparent 0 38%,#ffffff06 38.2% 38.8%,transparent 39% 70%,rgba(var(--t-accent-rgb),.05) 70.2% 70.8%,transparent 71%)}
+.mw-tournament-title-ribbon{position:relative;z-index:1;padding:9px 10px;border:1px solid #ffed9a;border-bottom:3px solid #8c6500;background:linear-gradient(110deg,#775600,#d4a900 19%,#fff19a 36%,#c39100 52%,#fff1a0 67%,#c79b00 83%,#684a00);box-shadow:inset 0 1px #fff9,0 0 15px #f4cf4050;color:#241800;font-family:"Barlow Condensed",Inter,sans-serif;font-size:.86rem;font-weight:900;letter-spacing:.06em;text-shadow:0 1px #fff7}
+.mw-matchup-bar{position:relative;z-index:1;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);min-height:75px;background:linear-gradient(90deg,rgba(var(--t-accent-rgb),.21),#101116 48%,rgba(var(--t-accent-rgb),.12))}
+.mw-matchup-side{gap:8px;padding:10px 12px}
+.mw-matchup-side.is-left{padding-right:18px}
+.mw-matchup-side.is-right{padding-left:18px}
+.mw-matchup-name{font-family:"Barlow Condensed",Inter,sans-serif;font-size:1rem;line-height:1.05;font-weight:800;letter-spacing:.02em;text-transform:none}
+.mw-matchup-portrait,.mw-matchup-initials{border-color:#656a76;background:linear-gradient(145deg,#3a3e49,#090a0d);box-shadow:0 2px 7px #0008}
+.mw-matchup-score{font-family:"Barlow Condensed",Inter,sans-serif;font-size:1.45rem;font-weight:900}
+.mw-matchup-side.is-winner{background:linear-gradient(180deg,rgba(var(--t-accent-rgb),.3),rgba(var(--t-accent-rgb),.08));box-shadow:inset 0 2px rgba(var(--t-accent-rgb),.7)}
+.mw-matchup-side.is-winner .mw-matchup-score{color:#fff;text-shadow:0 0 12px rgba(var(--t-accent-rgb),.65)}
+.mw-matchup-vs{border-color:#777c88;background:linear-gradient(145deg,#454954,#101116);box-shadow:0 0 0 3px #0b0c10,0 4px 10px #000a;font-family:"Barlow Condensed",Inter,sans-serif;font-size:.68rem}
+.mw-tournament-score-meta{position:relative;z-index:1;border-top:1px solid #ffffff14;background:#08090d;color:#bfc2cc;font-family:"Barlow Condensed",Inter,sans-serif;font-size:.75rem;letter-spacing:.09em}
+
+/* Knockout: mobile-first vertical rounds, no ugly side stripe */
+.mw-tournament-bracket{display:grid;grid-template-columns:minmax(0,1fr);gap:25px;overflow:visible;padding:0}
+.mw-tournament-bracket-round{width:100%;min-width:0;gap:10px}
+.mw-tournament-bracket-round h3{position:relative;margin:0 0 3px;padding:11px 8px;border:0;border-bottom:2px solid var(--t-accent);background:linear-gradient(90deg,rgba(var(--t-accent-rgb),.12),transparent);color:var(--t-metal);font-family:"Barlow Condensed",Inter,sans-serif;font-size:.95rem;font-weight:900;letter-spacing:.16em;text-align:center;text-transform:uppercase}
+.mw-tournament-bracket-round h3:after{content:"";position:absolute;bottom:-3px;left:calc(50% - 32px);width:64px;height:4px;background:var(--t-accent);box-shadow:0 0 12px rgba(var(--t-accent-rgb),.45)}
+.mw-tournament-bracket .mw-tournament-score-card{border:1px solid #424650;border-radius:5px;box-shadow:inset 0 1px #ffffff12,0 5px 14px #0008}
+.mw-tournament-bracket .mw-matchup-bar{min-height:66px}
+.mw-tournament-bracket .mw-tournament-score-meta{display:none}
+.mw-tournament-bonus .mw-tournament-extra-match{margin:10px 0;padding:10px;border:1px solid #373b45;border-left:2px solid var(--t-accent);background:linear-gradient(110deg,#171920,#08090d)}
+.mw-tournament-event-link{color:var(--t-metal);text-decoration:none;font-family:"Barlow Condensed",Inter,sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.mw-tournament-event-link:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--t-accent);text-underline-offset:4px}
+.mw-tournament-final-event{padding:16px!important;border:1px solid #454852!important;background:linear-gradient(140deg,#181b22,#090a0e)!important}
+
+/* Brand colorways: RAW red, SmackDown blue, NXT metallic silver /
+body[data-tournament^="friday-night-smackdown"],body[data-tournament^="smackdown"],body[data-tournament-brand="smackdown"]{--t-accent:#1688ff;--t-accent-rgb:22,136,255;--t-metal:#d9ebff}
+body[data-tournament^="wwe-nxt"],body[data-tournament^="nxt"],body[data-tournament-brand="nxt"]{--t-accent:#c5cbd5;--t-accent-rgb:197,203,213;--t-metal:#fff;--t-edge:#626975}
+body[data-tournament^="wwe-speed"],body[data-tournament-brand*="speed"]{--t-accent:#28d58a;--t-accent-rgb:40,213,138;--t-metal:#baf9dc}
+body[data-tournament^="aew"],body[data-tournament-brand="aew"]{--t-accent:#f0a45d;--t-accent-rgb:240,164,93;--t-metal:#fff0dc}
+body[data-tournament^="aaa"],body[data-tournament-brand="aaa"]{--t-accent:#08a95c;--t-accent-rgb:8,169,92;--t-metal:#d4ffe8}
+body[data-tournament^="campeonato"],body[data-tournament-brand*="championship"]{--t-accent:#e2bc45;--t-accent-rgb:226,188,69;--t-metal:#fff0a5}
+
+@media(max-width:700px){
+body[data-page="tournament"] .site-main{padding:10px 12px 30px}
+body[data-page="tournament"] .mw-tournament-hero{min-height:155px;margin-bottom:25px;padding:23px 17px}
+body[data-page="tournament"] .mw-tournament-panel{margin:29px 0 36px}
+body[data-page="tournament"] .mw-tournament-panel__heading{margin-bottom:14px;padding-bottom:10px}
+.mw-tournament-draft-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.mw-tournament-draft-card strong{min-height:38px;font-size:.82rem}
+.mw-table-tools{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.mw-table-difference-toggle{width:100%;min-height:43px;justify-content:space-between}
+.mw-tournament-table thead th{height:38px;padding:5px 4px;font-size:.68rem}
+.mw-tournament-table thead th button{font-size:.68rem}
+.mw-tournament-table tbody td{height:49px;padding:6px 5px;font-size:.7rem}
+.mw-tournament-table .mw-standing-name{min-width:88px;max-width:118px}
+.mw-tournament-table .mw-standing-name a{font-size:.75rem;line-height:1.1}
+.mw-tournament-panel--standings.show-difference .mw-tournament-table{min-width:530px}
+.mw-tournament-matrix-wrap{max-height:none;overflow:auto}
+.mw-tournament-matrix .matrix-corner,.mw-tournament-matrix tbody th.matrix-row-name{width:158px;min-width:158px;max-width:158px;padding:5px}
+.mw-tournament-matrix th,.mw-tournament-matrix td{width:65px;min-width:65px;max-width:65px}
+.mw-tournament-matrix thead th{height:68px}
+.mw-tournament-matrix thead th span{font-size:.7rem}
+.matrix-row-name__seed{width:20px;height:23px;min-width:20px;flex-basis:20px;margin-right:4px;font-size:.52rem}
+.matrix-row-name__portrait,.matrix-row-name__initials{width:29px;height:29px;min-width:29px;flex-basis:29px;margin-right:4px}
+.matrix-row-name__full-name{font-size:.75rem;line-height:1.1}
+.matrix-cell{min-height:46px;font-size:.9rem}
+.matrix-cell small{font-size:.53rem}
+.mw-tournament-matrix-detail{grid-template-columns:1fr;padding:11px;gap:7px}
+.mw-matchup-bar{min-height:65px}
+.mw-matchup-side{gap:4px;padding:7px 5px}
+.mw-matchup-side.is-left{padding-right:13px}
+.mw-matchup-side.is-right{padding-left:13px}
+.mw-matchup-name{font-size:clamp(.68rem,3.1vw,.86rem);line-height:1.05;overflow-wrap:anywhere}
+.mw-matchup-portrait,.mw-matchup-initials{flex-basis:28px;width:28px;height:36px;font-size:.57rem}
+.mw-matchup-initials{height:28px}
+.mw-matchup-score{min-width:17px;font-size:1.15rem}
+.mw-matchup-vs{width:24px;height:24px;font-size:.52rem}
+.mw-tournament-title-ribbon{padding:8px 6px;font-size:.76rem}
+.mw-tournament-bracket{grid-template-columns:minmax(0,1fr);gap:22px}
+.mw-tournament-bracket-round{min-width:0;width:100%;flex:auto}
+.mw-tournament-bracket .mw-matchup-bar{min-height:59px}
+}
+@media(max-width:380px){
+.mw-tournament-draft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mw-tournament-matrix .matrix-corner,.mw-tournament-matrix tbody th.matrix-row-name{width:142px;min-width:142px;max-width:142px}
+.mw-tournament-matrix th,.mw-tournament-matrix td{width:59px;min-width:59px;max-width:59px}
+.mw-matchup-name{font-size:.64rem}
+}
+@media(hover:none){.mw-tournament-draft-card:hover{transform:none}.mw-tournament-draft-card:active{filter:brightness(1.3);border-color:var(--t-metal)}.mw-tournament-table tbody tr.is-leader:active td{filter:brightness(1.15)}.matrix-cell:active{filter:brightness(1.55)}}
+@media(prefers-reduced-motion:reduce){.mw-tournament-draft-card,.mw-table-difference-toggle,.matrix-cell{transition:none!important}}
+
+Esre es el css, hay varios fallos, identificalos y arreglalos
+Este ws el js
+
+/* MI WRESTLING 2.0 | MOTOR MULTIFORMATO DE TORNEOS
+Compatible con liga, zonas, matriz, bracket, draft, fases mixtas y combates extra por títulos. */
+(async function(){
+"use strict";
+const main=document.querySelector("[data-tournament-main]")||document.querySelector("[data-page-content]");if(!main)return;
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&","<":"<",">":">",'"':""","'":"'"}[c]));
+const norm=v=>String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+const isNum=v=>v!==null&&v!==undefined&&v!==""&&Number.isFinite(Number(v));
+const get=async p=>{const r=await fetch(p);if(!r.ok)throw Error(No se pudo cargar ${p} (HTTP ${r.status}));return r.json()};
+const fmtDate=v=>{if(!v)return "Fecha no registrada";const d=new Date(v+"T00:00:00Z");return Number.isNaN(d.getTime())?String(v):new Intl.DateTimeFormat("es-AR",{day:"2-digit",month:"short",year:"numeric",timeZone:"UTC"}).format(d)};
+function catalogCard(t){return <a class="mw-tournament-catalog-card" href="tournament.html?id=${encodeURIComponent(t.id)}"><span>${esc(t.brand||'MI WRESTLING')}</span><strong>${esc(t.name||t.title||t.id)}</strong><small>${esc(t.year||'Año no definido')} · ${esc(t.formatLabel||String(t.format||'Formato flexible').replace(/_/g,' '))}</small><b>${(t.matchIds||[]).length} combates ↗</b></a>;}
+try{
+const [standard,outsiders,matches,wrestlers,personas,events,teams]=await Promise.all([
+get("data/tournaments/tournaments.json"),get("data/tournaments/outsider-tournaments.json").catch(()=>[]),get("data/matches/matches.json"),get("data/wrestlers/wrestlers.json"),get("data/personas/personas.json"),get("data/events/events.json"),get("data/teams/teams.json").catch(()=>[])
+]);
+const allTournaments=[...(standard||[]),...(outsiders||[])];
+const wrestlerByName=new Map((wrestlers||[]).map(w=>[norm(w.name),w]));
+const eventById=new Map((events||[]).map(e=>[String(e.id),e]));
+const matchById=new Map((matches||[]).map(m=>[String(m.id),m]));
+const params=new URLSearchParams(location.search),id=params.get("id");
+if(!id){
+const usable=allTournaments.filter(t=>t.hasData!==false&&!t.isTemplate&&(t.matchIds?.length||t.participantNames?.length||t.roster?.length));
+const years=[...new Set(usable.map(t=>t.year).filter(Boolean))].sort((a,b)=>b-a);
+main.innerHTML=<section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0 / TOURNAMENT ARCHIVE</div><h1>TORNEOS</h1><p class="lead">Temporadas y formatos conectados con sus eventos, resultados, zonas, matrices y finales.</p></section><div class="mw-tournament-catalog-tools"><label for="tournament-year">FILTRAR POR AÑO</label><select id="tournament-year"><option value="all">Todos los años</option>${years.map(y=><option value="${y}">${y}</option>).join("")}</select><input id="tournament-search" placeholder="Buscar torneo, marca o formato" aria-label="Buscar torneo"></div><div class="mw-tournament-catalog-grid" id="tournament-catalog-grid">${usable.map(t=>catalogCard(t)).join("")}</div>;
+const yr=main.querySelector("#tournament-year"),search=main.querySelector("#tournament-search"),grid=main.querySelector("#tournament-catalog-grid");
+const rerender=()=>{const y=yr.value,q=norm(search.value);grid.innerHTML=usable.filter(t=>(y==="all"||String(t.year)===y)&&norm([t.name,t.title,t.brand,t.format,t.id].join(" ")).includes(q)).map(t=>catalogCard(t)).join("")||'<div class="mw-event-empty">No hay torneos para ese filtro.</div>';};
+yr.addEventListener("change",rerender);search.addEventListener("input",rerender);return;
+}
+const tournament=allTournaments.find(t=>String(t.id)===String(id));
+if(!tournament){main.innerHTML=<section class="mw-event-empty"><h1>Torneo no encontrado</h1><p>No existe el ID <code>${esc(id)}</code>.</p><a href="tournaments.html">Volver a torneos</a></section>;return;}
+document.body.dataset.tournament=String(tournament.id||id);
+document.body.dataset.tournamentBrand=norm(tournament.brand||"").replace(/[^a-z0-9]+/g,"-");
+const rawRoster=tournament.draft?.participantNames?.length?tournament.draft.participantNames:(tournament.participantNames?.length?tournament.participantNames:(tournament.roster||[]));
+const wrestlerById=new Map((wrestlers||[]).map(w=>[String(w.id),w]));
+const names=[...new Set((rawRoster||[]).map(x=>{
+if(typeof x==="string")return x.trim();
+if(x&&typeof x==="object")return x.name||wrestlerById.get(String(x.wrestlerId||x.id||x.participantId))?.name||"";
+return wrestlerById.get(String(x))?.name||"";
+}).filter(Boolean))];
+if(!names.length&&Array.isArray(tournament.participantIds)){
+names.push(...tournament.participantIds.map(pid=>wrestlerById.get(String(pid))?.name||String(pid)).filter(Boolean));
+}
+const stages=(tournament.stages||tournament.structure?.stages||[]).slice().sort((a,b)=>(a.order||0)-(b.order||0));
+const idsFor=stage=>stage.matchIds||[];
+const matchForId=mid=>matchById.get(String(mid));
+const stageMatches=stage=>idsFor(stage).map(matchForId).filter(Boolean);
+const allIds=[...new Set([...(tournament.matchIds||[]),...stages.flatMap(idsFor),...(tournament.bonusChampionshipMatches||[])])];
+const own=allIds.map(matchForId).filter(Boolean);
+const belongs=m=>String(m.tournamentId||"")===String(id)||(m.tournamentIds||[]).map(String).includes(String(id));
+const matchesForTournament=[...new Map([...own,...matches.filter(belongs)].map(m=>[String(m.id),m])).values()];
+const linkMeta=m=>m.tournamentLinks?.[id]||{};
+const isTitle=m=>Boolean(m.isChampionshipMatch||m.championship||m.championshipId||linkMeta(m).matchRole==="championship-extra");
+const canCount=(m,stage)=>{
+const meta=linkMeta(m);if(isTitle(m)||meta.countsForStandings===false||(!m.tournamentLinks?.[id]&&m.countsForStandings===false))return false;
+if(stage&&stage.type&&stage.type!=="league"&&stage.type!=="round-robin"&&stage.type!=="zone"&&stage.type!=="group")return false;
+return true;
+};
+function sideData(match){
+if(Array.isArray(match.sides)&&match.sides.length){return match.sides.map((s,i)=>({key:String(s.id||s.teamId||s.name||side-${i+1}),name:s.name||s.label||Lado ${i+1},score:isNum(s.score)?Number(s.score):null,participants:s.participantIds||[],participantNames:s.participantNames||[]}));}
+const ps=(match.participants||[]).filter(p=>!p.role||p.role==="competitor");
+const keys=[...new Set(ps.map(p=>p.side||p.teamId||"").filter(Boolean))];
+if(keys.length>1){return keys.map((key,i)=>{const group=ps.filter(p=>(p.side||p.teamId||"")===key);const team=teams.find(t=>String(t.id)===String(group.find(p=>p.teamId)?.teamId));const first=group[0]||{};let score=first.sideScore??first.score;if(!isNum(score)&&Array.isArray(match.sideScores))score=match.sideScores[i];if(!isNum(score)&&Array.isArray(match.score))score=match.score[i];return {key:String(key),name:team?.name||first.teamName||first.sideLabel||Lado ${i+1},score:isNum(score)?Number(score):null,participants:group.map(p=>p.wrestlerId||p.name),participantNames:group.map(p=>personLabel(p))};});}
+if(ps.length===2){return ps.map((p,i)=>({key:String(p.wrestlerId||p.name||side-${i+1}),name:personLabel(p),score:isNum(p.score)?Number(p.score):Array.isArray(match.score)&&isNum(match.score[i])?Number(match.score[i]):null,participants:[p.wrestlerId||p.name],participantNames:[personLabel(p)]}));}
+return ps.map((p,i)=>({key:String(p.wrestlerId||p.name||side-${i+1}),name:personLabel(p),score:isNum(p.score)?Number(p.score):null,participants:[p.wrestlerId||p.name],participantNames:[personLabel(p)]}));
+}
+function personLabel(p){const w=wrestlers.find(x=>String(x.id)===String(p.wrestlerId));return w?.name||p.wrestlerName||p.name||p.wrestlerId||"Participante";}
+function scoreSides(m){const sides=sideData(m);return sides.length>=2&&sides.every(s=>s.score!==null&&Number.isFinite(s.score))?sides:null;}
+function normalizedRoster(input){return (input||[]).map(x=>typeof x==="string"?{id:x,name:x}:x).filter(x=>x&&x.name);}
+function standings(roster,usableMatches){
+const rows=new Map(normalizedRoster(roster).map(p=>[norm(p.name),{name:p.name,id:p.id||p.name,played:0,wins:0,draws:0,losses:0,points:0,for:0,against:0,difference:0}]));
+for(const m of usableMatches){const sides=scoreSides(m);if(!sides)continue;
+// Standings are for the participant roster; a team/trio can be a competitor in its own right.
+for(let i=0;i<sides.length;i++){
+const side=sides[i],opponents=sides.filter((_,j)=>j!==i);if(!opponents.length)continue;
+const sideNameExists=rows.has(norm(side.name));
+const names=sideNameExists?[side.name]:(side.participantNames||[]).filter(n=>rows.has(norm(n)));
+const oppScore=opponents.reduce((sum,s)=>sum+(s.score??0),0);
+for(const competitorName of names){const row=rows.get(norm(competitorName));if(!row)continue;row.played++;row.for+=side.score;row.against+=oppScore;
+if(side.score>oppScore){row.wins++;row.points+=Number(tournament.pointsSystem?.win??3);}else if(side.score<oppScore){row.losses++;row.points+=Number(tournament.pointsSystem?.loss??0);}else{row.draws++;row.points+=Number(tournament.pointsSystem?.draw??1);}}
+
+}
+
+}
+return [...rows.values()].map(r=>({...r,difference:r.for-r.against})).sort((a,b)=>b.points-a.points||b.difference-a.difference||b.wins-a.wins||a.name.localeCompare(b.name));
+}
+function eligibleForStage(stage){return stageMatches(stage).filter(m=>canCount(m,stage));}
+function matrix(roster,usableMatches){
+const list=normalizedRoster(roster),results=new Map();
+for(const m of usableMatches){const sides=scoreSides(m);if(!sides)continue;for(let i=0;i<sides.length;i++)for(let j=0;j<sides.length;j++){if(i===j)continue;const left=sides[i],right=sides[j];const leftNames=list.some(p=>norm(p.name)===norm(left.name))?[left.name]:(left.participantNames||[]).filter(n=>list.some(p=>norm(p.name)===norm(n)));const rightNames=list.some(p=>norm(p.name)===norm(right.name))?[right.name]:(right.participantNames||[]).filter(n=>list.some(p=>norm(p.name)===norm(n)));for(const an of leftNames)for(const bn of rightNames){const a=norm(an),b=norm(bn);if(a===b)continue;const key=${a}::${b};const item=results.get(key)||{for:0,against:0,w:0,d:0,l:0,ids:[]};item.for+=left.score;item.against+=right.score;if(left.score>right.score)item.w++;else if(left.score<right.score)item.l++;else item.d++;item.ids.push(m.id);results.set(key,item);}}}
+return {list,results};
+}
+function renderTable(roster,usableMatches,title){
+const rows=standings(roster,usableMatches);if(!rows.length)return <section class="mw-tournament-panel"><h3>${esc(title)}</h3><div class="mw-event-empty">Todavía no hay resultados suficientes para calcular la tabla.</div></section>;
+return <section class="mw-tournament-panel mw-tournament-panel--standings"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">CLASIFICACIÓN</span><h2>${esc(title)}</h2></div><span>Victoria +${Number(tournament.pointsSystem?.win??3)} · Empate +${Number(tournament.pointsSystem?.draw??1)} · Derrota +${Number(tournament.pointsSystem?.loss??0)}</span></div><div class="mw-table-tools"><span>POSICIONES ACTUALES</span><button type="button" class="mw-table-difference-toggle" aria-expanded="false"><span class="mw-table-toggle-icon">＋</span> DIFERENCIA DE RONDAS <span class="mw-table-toggle-arrow">⌄</span></button></div><div class="mw-tournament-table-wrap"><table class="mw-tournament-table"><thead><tr>${[['position','#',''],['name','LUCHADOR',''],['played','PJ',''],['wins','G',''],['draws','E',''],['losses','P',''],['points','PTS',''],['for','RF','diff'],['against','RC','diff'],['difference','DIF','diff']].map(([key,label,extra])=><th class="${extra==='diff'?'is-difference-column':''}"><button type="button" data-sort="${key}">${label}</button></th>).join('')}</tr></thead><tbody>${rows.map((r,i)=><tr data-row data-position="${i+1}" data-name="${esc(norm(r.name))}" data-played="${r.played}" data-wins="${r.wins}" data-draws="${r.draws}" data-losses="${r.losses}" data-points="${r.points}" data-for="${r.for}" data-against="${r.against}" data-difference="${r.difference}" class="${i===0?'is-leader':i===rows.length-1?'is-last':''}"><td>${i+1}</td><td class="mw-standing-name">${wrestlerLink(r.name)}</td><td>${r.played}</td><td>${r.wins}</td><td>${r.draws}</td><td>${r.losses}</td><td class="mw-standing-points"><strong>${r.points}</strong></td><td class="is-difference-column">${r.for}</td><td class="is-difference-column">${r.against}</td><td class="is-difference-column ${r.difference>0?'is-positive':r.difference<0?'is-negative':''}">${r.difference>0?'+':''}${r.difference}</td></tr>).join('')}</tbody></table></div><p class="mw-tournament-note">PJ: jugados · G: ganados · E: empatados · P: perdidos · PTS: puntos de clasificación. Abrí «Diferencia de rondas» para consultar rondas a favor, en contra y diferencia neta.</p></section>;
+}
+function renderMatrix(roster,usableMatches,title){
+const {list,results}=matrix(roster,usableMatches);if(!list.length)return '';
+const zoneEntries=tournament.zones&&typeof tournament.zones==='object'?Object.entries(tournament.zones):[];
+const zoneOf=name=>{const found=zoneEntries.find(([zone,people])=>(people||[]).some(p=>norm(typeof p==='string'?p:p?.name)===norm(name)));return found?.[0]||'';};
+const zoneClass=zone=>zone?matrix-zone-${slug(zone)}:'';
+const labelFor=(a,b)=>{
+if(norm(a.name)===norm(b.name))return '<td class="matrix-self" aria-label="Mismo participante">—</td>';
+const r=results.get(${norm(a.name)}::${norm(b.name)});
+if(!r)return '<td class="matrix-empty" aria-label="Sin enfrentamiento registrado"><span>·</span></td>';
+const outcome=r.ids.length===1?(r.w>r.l?'W':r.l>r.w?'L':'D'):${r.w}-${r.l}-${r.d};
+const cls=r.w>r.l?'matrix-win':r.l>r.w?'matrix-loss':'matrix-draw';
+const record=${r.w}V · ${r.d}E · ${r.l}D;
+return <td class="matrix-result-cell"><button type="button" class="matrix-cell ${cls}" data-matches="${esc(r.ids.join(','))}" title="${esc(record)} · Marcador acumulado ${r.for}-${r.against}" aria-label="${esc(a.name)} contra ${esc(b.name)}: ${esc(record)}">${outcome}<small>${r.for}–${r.against}</small></button></td>;
+};
+const zoneLegend=zoneEntries.length?<div class="mw-matrix-legend">${zoneEntries.map(([zone])=><span class="mw-matrix-legend__item ${zoneClass(zone)}"><i></i>${esc(zone)}</span>).join('')}</div>:'';
+return <section class="mw-tournament-panel mw-tournament-panel--matrix"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">HEAD-TO-HEAD</span><h2>${esc(title)}</h2><p>Cada cruce muestra el balance y el marcador registrado. Deslizá horizontalmente para recorrer todos los participantes.</p></div><span>${list.length} participantes</span></div>${zoneLegend}<div class="mw-tournament-matrix-wrap" role="region" aria-label="Matriz de enfrentamientos; deslizar horizontalmente" tabindex="0"><table class="mw-tournament-matrix"><thead><tr><th class="matrix-corner">PARTICIPANTE</th>${list.map(p=><th class="${zoneClass(zoneOf(p.name))}" title="${esc(p.name)}"><span>${esc(p.name)}</span></th>).join('')}</tr></thead><tbody>${list.map(a=>{const w=wrestlerByName.get(norm(a.name));const initials=esc(a.name.split(/\s+/).map(x=>x[0]).slice(0,2).join(''));return <tr><th class="matrix-row-name ${zoneClass(zoneOf(a.name))}"><span class="matrix-row-name__seed">${String(list.indexOf(a)+1).padStart(2,'0')}</span>${w?.image?<img class="matrix-row-name__portrait" src="${esc(w.image)}" alt="" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="matrix-row-name__initials" hidden>${initials}</span>:<span class="matrix-row-name__initials">${initials}</span>}<span class="matrix-row-name__full-name">${esc(a.name)}</span></th>${list.map(b=>labelFor(a,b)).join('')}</tr>;}).join('')}</tbody></table></div><div class="mw-tournament-matrix-detail" aria-live="polite">Elegí un cruce para consultar sus combates registrados.</div><p class="mw-tournament-note">V = victorias · E = empates · D = derrotas. Los colores indican el resultado del cruce; los guiones corresponden a cruces sin resultado cargado.</p></section>;
+}
+function shortName(name){const parts=String(name).split(/\s+/);return parts.length>1?${parts[0]} ${parts[parts.length-1]}:name;}
+function wrestlerLink(name){const w=wrestlerByName.get(norm(name));return <a href="superstar.html?id=${encodeURIComponent(w?.id||slug(name))}">${esc(name)}</a>;}
+function slug(name){return norm(name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+function draftHTML(){if(!names.length)return '<div class="mw-event-empty">No hay participantes confirmados en el draft.</div>';return <div class="mw-tournament-draft-grid">${names.map(name=>{const w=wrestlerByName.get(norm(name));const image=w?.image;const initials=esc(name.split(/\s+/).map(x=>x[0]).slice(0,2).join(''));return <a class="mw-tournament-draft-card" href="superstar.html?id=${encodeURIComponent(w?.id||slug(name))}">${image?<img src="${esc(image)}" alt="${esc(name)}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="mw-tournament-draft-placeholder" hidden>${initials}</span>:<span class="mw-tournament-draft-placeholder">${initials}</span>}<strong>${esc(name)}</strong></a>;}).join('')}</div>;}
+function renderBracket(stage,stageMatchesList){
+const clean=stageMatchesList;if(!clean.length)return '';
+const format=String(stage.format||tournament.final?.bracketFormat||tournament.bracketFormat||'').toUpperCase();
+let rounds=[];
+if(clean.length===7){rounds=[{title:'CUARTOS DE FINAL',matches:clean.slice(0,4)},{title:'SEMIFINALES',matches:clean.slice(4,6)},{title:'FINAL',matches:clean.slice(6,7)}];}
+else if(format.includes('BACKLASH'))rounds=[{title:'PLAY-IN',matches:clean.slice(0,2)},{title:'SEMIFINALES',matches:clean.slice(2,4)},{title:'FINAL — UNDISPUTED CHAMPIONSHIP',matches:clean.slice(4,5)}];
+else if(clean.length===6&&/chamber/i.test(String(stage.name||''))){rounds=[{title:'CUARTOS DE FINAL',matches:clean.slice(0,4)},{title:'SEMIFINALES',matches:clean.slice(4,6)}];}
+else if(format.includes('QUARTERS')||format.includes('CUARTER'))rounds=[{title:'CUARTOS DE FINAL',matches:clean.slice(0,4)},{title:'SEMIFINALES',matches:clean.slice(4,6)},{title:'FINAL',matches:clean.slice(6,7)}];
+else if(format.includes('SEMIFINALS_FINAL_CHAMPION')||format.includes('SEMIFINALS FINAL CHAMPION'))rounds=[{title:'SEMIFINALES',matches:clean.slice(0,2)},{title:'FINAL',matches:clean.slice(2,3)},{title:'DESAFÍO POR EL CAMPEONATO',matches:clean.slice(3)}];
+else if(format.includes('SEMIFINALS_FINAL'))rounds=[{title:'SEMIFINALES',matches:clean.slice(0,2)},{title:'FINAL',matches:clean.slice(2)}];
+else rounds=[{title:stage.name||'FASE ELIMINATORIA',matches:clean}];
+rounds=rounds.filter(r=>r.matches.length);
+return <section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">KNOCKOUT STAGE</span><h2>${esc(stage.name||stage.title||'Bracket')}</h2></div>${stage.eventId?<a href="event.html?id=${encodeURIComponent(stage.eventId)}">Ver evento final ↗</a>:''}</div><div class="mw-tournament-bracket">${rounds.map(r=><div class="mw-tournament-bracket-round"><h3>${esc(r.title)}</h3>${r.matches.map(m=>matchScoreCard(m)).join('')}</div>).join('')}</div></section>;
+}
+function matchScoreCard(m){const sides=sideData(m);const max=Math.max(...sides.map(s=>s.score??-Infinity));const sideHTML=(s,i)=>{const w=wrestlerByName.get(norm(s.name));const initials=esc(s.name.split(/\s+/).map(x=>x[0]).slice(0,2).join(''));return <div class="mw-matchup-side ${s.score===max?'is-winner':''} ${i===0?'is-left':'is-right'}">${i===0?<span class="mw-matchup-name">${esc(s.name)}</span>:''}${w?.image?<img class="mw-matchup-portrait" src="${esc(w.image)}" alt="" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="mw-matchup-initials" hidden>${initials}</span>:<span class="mw-matchup-initials">${initials}</span>}<strong class="mw-matchup-score">${s.score===null?'—':esc(s.score)}</strong>${i===1?<span class="mw-matchup-name">${esc(s.name)}</span>:''}</div>;};return <article class="mw-tournament-score-card">${(m.championship||m.championshipName||m.championshipId)?<a class="mw-tournament-title-ribbon" href="championship.html?id=${encodeURIComponent(m.championshipId||"")}">${esc(m.championship||m.championshipName||String(m.championshipId).replace(/-/g," "))} ↗</a>:''}<div class="mw-matchup-bar">${sides.slice(0,2).map(sideHTML).join('')}<span class="mw-matchup-vs" aria-label="contra">VS</span></div><div class="mw-tournament-score-meta">${esc(m.position||m.phaseId||m.date||'Resultado registrado')}</div></article>;}
+function stageResults(stage,stageMatchesList){const list=stageMatchesList.filter(m=>!isTitle(m));if(!list.length)return '';const linked=stage.eventId?eventById.get(stage.eventId):null;return <section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">${esc(stage.type||'RESULTADOS').toUpperCase()}</span><h2>${esc(stage.name||'Resultados')}</h2></div>${stage.date?<span>${esc(fmtDate(stage.date))}</span>:''}</div>${linked?<a class="mw-tournament-event-link" href="event.html?id=${encodeURIComponent(linked.id)}">${esc(linked.title||linked.name||linked.id)} · VER CARTELERA ↗</a>:''}<div class="mw-tournament-results-list">${list.map(matchScoreCard).join('')}</div></section>;}
+const titleMatches=matchesForTournament.filter(isTitle);
+const regularStages=stages.filter(s=>['league','round-robin','zone','group'].includes(String(s.type||'').toLowerCase()));
+const leagueMatches=[...new Set(regularStages.flatMap(s=>stageMatches(s)).filter((m)=>canCount(m,regularStages.find(s=>idsFor(s).includes(m.id)))))];
+const zoneEntries=tournament.zones&&typeof tournament.zones==='object'?Object.entries(tournament.zones):[];
+let standingsHTML='',matrixHTML='';
+if(zoneEntries.length){
+standingsHTML=zoneEntries.map(([zone,participants])=>{const stagesInZone=regularStages.filter(s=>String(s.zone||'').toLowerCase()===String(zone).toLowerCase()||String(s.name||'').toLowerCase().includes(String(zone).toLowerCase()));const ms=stagesInZone.flatMap(s=>stageMatches(s)).filter(m=>canCount(m,stagesInZone.find(s=>idsFor(s).includes(m.id))));return renderTable(participants,ms,Tabla · Zona ${zone});}).join('');
+matrixHTML=zoneEntries.map(([zone,participants])=>{const stagesInZone=regularStages.filter(s=>String(s.zone||'').toLowerCase()===String(zone).toLowerCase()||String(s.name||'').toLowerCase().includes(String(zone).toLowerCase()));const ms=stagesInZone.flatMap(s=>stageMatches(s)).filter(m=>canCount(m,stagesInZone.find(s=>idsFor(s).includes(m.id))));return renderMatrix(participants,ms,Matriz · Zona ${zone});}).join('');
+}else if(regularStages.length){
+standingsHTML=renderTable(names,leagueMatches,'Tabla general');matrixHTML=renderMatrix(names,leagueMatches,'Matriz de enfrentamientos');
+}
+let stageHTML='';
+if(String(tournament.format||'').toUpperCase()==='BRACKET'&&stages.length&&stages.every(s=>String(s.type||'').toLowerCase()==='bracket')){
+stageHTML=<section class=\"mw-tournament-panel\"><div class=\"mw-tournament-panel__heading\"><div><span class=\"mw-event-kicker\">KNOCKOUT ROAD</span><h2>Bracket de la Road</h2></div><span>${stages.length} ronda(s) / evento final</span></div><div class=\"mw-tournament-bracket\">${stages.map(stage=><div class="mw-tournament-bracket-round"><h3>${esc(stage.name||'Ronda')}</h3>${stageMatches(stage).map(matchScoreCard).join('')}</div>).join('')}</div></section>;
+}else{
+stageHTML=stages.map(stage=>{const ms=stageMatches(stage);const typ=String(stage.type||'').toLowerCase();if(typ==='bracket')return renderBracket(stage,ms)||stageResults(stage,ms);return stageResults(stage,ms);}).join('');
+}
+const extraHTML=titleMatches.length?<section class="mw-tournament-panel mw-tournament-bonus"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">BONUS TITLE BOUTS</span><h2>Combates extra por campeonatos</h2><p>Estos combates forman parte de la cartelera o de la Road, pero no suman puntos ni diferencia en la tabla.</p></div><span>${titleMatches.length} combate(s)</span></div>${titleMatches.map(m=>{const ev=eventById.get(m.eventId||m.linkedEventId);return <div class="mw-tournament-extra-match">${ev?<a href="event.html?id=${encodeURIComponent(ev.id)}" class="mw-tournament-event-link">${esc(ev.title||ev.name||ev.id)} ↗</a>:''}${matchScoreCard(m)}</div>;}).join('')}</section>:'';
+const finalLink=tournament.final?.eventId||tournament.final?.event||tournament.finalEvent;
+const finalEvent=finalLink?eventById.get(finalLink):null;
+const finalLinkHTML=finalLink?<section class="mw-tournament-panel mw-tournament-final-event"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">FINAL EVENT</span><h2>${esc(tournament.final?.bracketTitle||finalEvent?.title||finalEvent?.name||'Evento final')}</h2></div>${finalEvent?<a href="event.html?id=${encodeURIComponent(finalEvent.id)}">Abrir evento ↗</a>:<span>Referencia heredada: ${esc(finalLink)}</span>}</div>${finalEvent?<p>${esc(fmtDate(finalEvent.date))} · ${esc(finalEvent.title||finalEvent.name||finalEvent.id)}</p>:''}</section>:'';
+main.innerHTML=<a class="mw-event-back" href="tournaments.html">← VOLVER A TORNEOS</a><header class="page-hero mw-tournament-hero"><div class="eyebrow">MI WRESTLING 2.0 / ${esc(tournament.brand||'TOURNAMENT')} · ${esc(tournament.year||'ARCHIVO')}</div><h1>${esc(tournament.name||tournament.title||tournament.id)}</h1><p class="lead">${esc(tournament.formatLabel||String(tournament.format||'Formato flexible').replace(/_/g,' '))}${tournament.division? · ${esc(tournament.division)}:''}</p><div class="mw-event-detail-meta"><span>${names.length} participantes</span><span>${matchesForTournament.length} combates vinculados</span>${tournament.startDate?<span>${esc(fmtDate(tournament.startDate))}${tournament.endDate&&tournament.endDate!==tournament.startDate?' – '+esc(fmtDate(tournament.endDate)):''}</span>:''}</div></header><section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">ROSTER / DRAFT</span><h2>Participantes</h2></div><span>${names.length}</span></div>${draftHTML()}</section>${standingsHTML}${matrixHTML}<section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">ROAD & RESULTS</span><h2>Fases y resultados</h2></div><span>${stages.length} fase(s)</span></div>${stageHTML||'<div class="mw-event-empty">Este torneo todavía no tiene fases conectadas.</div>'}</section>${finalLinkHTML}${extraHTML};
+main.querySelectorAll('.mw-table-difference-toggle').forEach(btn=>btn.addEventListener('click',()=>{const panel=btn.closest('.mw-tournament-panel--standings');const open=btn.getAttribute('aria-expanded')!=='true';btn.setAttribute('aria-expanded',String(open));panel.classList.toggle('show-difference',open);btn.querySelector('.mw-table-toggle-icon').textContent=open?'−':'＋';}));
+// Table sorting is client-side and doesn't change saved data.
+main.querySelectorAll('[data-sort]').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.sort,tbody=btn.closest('table').querySelector('tbody');const rows=[...tbody.querySelectorAll('tr[data-row]')];const asc=btn.dataset.order!=='asc';btn.dataset.order=asc?'asc':'desc';rows.sort((a,b)=>{const av=a.dataset[key]??'',bv=b.dataset[key]??'';if(key==='name')return asc?av.localeCompare(bv):bv.localeCompare(av);return asc?Number(av)-Number(bv):Number(bv)-Number(av);});rows.forEach((r,i)=>{r.children[0].textContent=i+1;tbody.appendChild(r);});}));
+// Matrix cells open the corresponding match cards below the matrix.
+main.querySelectorAll('.matrix-cell').forEach(btn=>btn.addEventListener('click',()=>{const ids=btn.dataset.matches.split(',').filter(Boolean);const host=btn.closest('.mw-tournament-panel').querySelector('.mw-tournament-matrix-detail');const selected=ids.map(matchForId).filter(Boolean);host.innerHTML=selected.map(m=>window.MIW_MATCH_CARD?window.MIW_MATCH_CARD.render(m,{wrestlers,personas,events,teams}):matchScoreCard(m)).join('')||'No hay resultados para este cruce.';}));
+document.title=${tournament.name||tournament.title||tournament.id} | MI WRESTLING 2.0;
+}catch(error){main.innerHTML=<section class="mw-event-empty"><h1>No se pudo cargar el torneo</h1><p>${esc(error.message||error)}</p></section>;}
+})();
+
+Acordate, que sea funcional y 2k
