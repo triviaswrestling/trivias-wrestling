@@ -646,3 +646,54 @@ body[data-page="tournament"][data-tournament-brand*="wcw"] { --t-accent: #9b79bd
 @media (prefers-reduced-motion: reduce) {
   .mw-tournament-catalog-card, .mw-tournament-draft-card, .mw-table-difference-toggle, .matrix-cell, .mw-event-back { transition: none !important; }
 }
+
+/* FIXES 2.0 — imágenes de respaldo, resultados mobile, tarjetas y bracket clásico */
+/* La clase de fallback tiene display propio; el atributo hidden debe prevalecer. */
+.mw-tournament [hidden],
+.mw-tournament-main [hidden],
+.mw-tournament-draft-card [hidden],
+.mw-tournament-score-card [hidden],
+.mw-matchup-bar [hidden],
+.mw-image-fallback[hidden] { display: none !important; }
+
+/* En escritorio, la ficha completa mantiene proporción 3:4 y el nombre gana peso. */
+.mw-tournament-draft-card { aspect-ratio: 3 / 4; min-height: 0; }
+.mw-tournament-draft-card__image,
+.mw-tournament-draft-card .mw-image-fallback { flex: 1 1 auto; min-height: 0; height: auto; aspect-ratio: auto; object-fit: cover; object-position: center 18%; }
+.mw-tournament-draft-card strong { position: relative; z-index: 1; flex: 0 0 auto; min-height: 66px; padding: 11px 8px 8px; font-size: clamp(1rem, 1.55vw, 1.35rem); line-height: 1.02; text-wrap: balance; }
+.mw-tournament-draft-card__open { flex: 0 0 auto; padding: 0 5px 10px; font-size: .6rem; }
+
+/* Bracket tradicional: una columna por ronda, de izquierda a derecha. */
+.mw-tournament-bracket { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(245px, 1fr); grid-template-columns: none; align-items: stretch; gap: 18px; overflow-x: auto; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--t-accent) #17171b; }
+.mw-tournament-bracket-round { display: flex; flex-direction: column; min-width: 0; }
+.mw-tournament-bracket-round__matches { display: flex; flex: 1 1 auto; flex-direction: column; justify-content: space-around; gap: 16px; }
+.mw-tournament-bracket-round .mw-tournament-score-card { width: 100%; }
+
+@media (min-width: 1001px) {
+  .mw-tournament-draft-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .mw-tournament-draft-card strong { min-height: 72px; font-size: clamp(1.1rem, 1.4vw, 1.5rem); }
+  .mw-matchup-portrait, .mw-matchup-side .mw-image-fallback { width: 76px; height: 100px; flex: 0 0 76px; }
+  .mw-matchup-name { font-size: clamp(1.2rem, 1.65vw, 1.8rem); line-height: 1.02; overflow-wrap: break-word; }
+  .mw-matchup-role { font-size: .63rem; }
+  .mw-matchup-side { gap: 14px; }
+}
+
+@media (max-width: 700px) {
+  /* En móvil el resultado es nombre — marcador — nombre; sin retratos duplicando espacio. */
+  .mw-tournament-score-card .mw-matchup-portrait,
+  .mw-tournament-score-card .mw-matchup-side .mw-image-fallback { display: none !important; }
+  .mw-tournament-score-card .mw-matchup-bar { grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); min-height: 78px; }
+  .mw-tournament-score-card .mw-matchup-side { justify-content: center; padding: 8px 7px; gap: 0; }
+  .mw-tournament-score-card .mw-matchup-side.is-left { text-align: center; }
+  .mw-tournament-score-card .mw-matchup-side.is-right { text-align: center; }
+  .mw-tournament-score-card .mw-matchup-identity { flex: 1 1 100%; align-items: center; justify-content: center; gap: 4px; }
+  .mw-tournament-score-card .mw-matchup-role { font-size: .42rem; letter-spacing: .04em; }
+  .mw-tournament-score-card .mw-matchup-name { font-size: clamp(.78rem, 3.5vw, 1rem); line-height: 1.04; overflow-wrap: anywhere; }
+  .mw-tournament-score-card .mw-matchup-winner { position: absolute; top: 5px; right: 5px; width: 17px; height: 17px; flex-basis: 17px; }
+  .mw-tournament-score-card .mw-matchup-side.is-left .mw-matchup-winner { right: auto; left: 5px; }
+  .mw-tournament-bracket { grid-auto-columns: minmax(245px, 86vw); gap: 12px; }
+  .mw-tournament-bracket-round__matches { justify-content: flex-start; }
+  .mw-tournament-draft-card { aspect-ratio: 3 / 4; }
+  .mw-tournament-draft-card strong { min-height: 48px; padding: 7px 4px 5px; font-size: clamp(.8rem, 3.7vw, 1rem); }
+  .mw-tournament-draft-card__open { font-size: .48rem; }
+}
