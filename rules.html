@@ -1,105 +1,151 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
     >
-
     <meta name="theme-color" content="#05070b">
-
     <meta
         name="description"
-        content="Reglamento oficial de MI WRESTLING 2.0: normas de competición, horarios, puntuación y sanciones."
+        content="Reglamento oficial y manual de árbitros de MI WRESTLING 2.0."
     >
 
     <title>Reglas | MI WRESTLING 2.0</title>
 
-    <!-- Fuentes -->
+    <!-- Fuentes globales -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <!-- SISTEMA GLOBAL -->
+    <!-- Sistema global -->
     <link rel="stylesheet" href="css/mi-wrestling.css">
+
+    <!-- Estilos exclusivos de Rules -->
+    <link rel="stylesheet" href="css/pages/rules.css">
+
+    <!-- Sistema global de la web -->
     <script src="js/mi-wrestling.js" defer></script>
     <script src="js/sound-effects.js" defer></script>
 
-    <!-- CSS ESPECÍFICO DE REGLAS -->
-    <link rel="stylesheet" href="css/pages/rules.css">
-
-    <!-- JS ESPECÍFICO DE REGLAS -->
+    <!-- Funcionamiento de Rules -->
     <script src="js/pages/rules.js" defer></script>
 </head>
 
 <body data-page="rules">
 
-    <!-- El sistema global puede insertar aquí la navegación -->
+    <main class="site-main rules-page">
 
-    <main class="site-main mw-rules-page">
-
-        <!-- ENCABEZADO -->
-        <header class="mw-page-header rules-hero">
-            <div class="rules-hero-content">
-
-                <div class="rules-eyebrow">
-                    <span>MI WRESTLING 2.0</span>
-                    <span> / </span>
-                    <span>COMPETITION MANUAL</span>
-                </div>
+        <header class="rules-hero">
+            <div class="rules-hero-inner">
+                <span class="rules-eyebrow">
+                    MI WRESTLING 2.0 / COMPETITION SYSTEM
+                </span>
 
                 <h1 class="rules-title">
-                    REGLAMENTO
+                    REGLAS<span>.</span>
                 </h1>
 
-                <p class="rules-description">
-                    Las normas que rigen la competición.
-                    <span>
-                        Reglamento oficial y protocolos para árbitros.
-                    </span>
+                <p class="rules-subtitle">
+                    El reglamento oficial y los protocolos que rigen
+                    cada combate.
                 </p>
 
+                <div class="rules-hero-line">
+                    <span>OFFICIAL REGULATIONS</span>
+                    <span class="rules-line"></span>
+                    <span>2026</span>
+                </div>
             </div>
         </header>
 
-        <!-- SECCIONES DEL REGLAMENTO -->
-        <section
-            id="reglamento-oficial"
-            class="rules-section"
-        >
-            <h2>Reglamento Oficial</h2>
+        <!-- Selector de ventanas -->
+        <section class="rules-browser" aria-label="Seleccionar reglamento">
 
-            <div id="official-rules-content">
-                <p class="rules-loading">
-                    CARGANDO REGLAMENTO…
-                </p>
+            <div class="rules-browser-heading">
+                <span class="rules-section-kicker">DOCUMENTATION CENTER</span>
+                <h2>CENTRO DE REGLAMENTOS</h2>
+                <p>Seleccioná el documento que querés consultar.</p>
             </div>
+
+            <div
+                class="rules-tabs"
+                role="tablist"
+                aria-label="Documentos de reglas"
+            >
+                <button
+                    class="rules-tab is-active"
+                    id="rules-tab-competitors"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="rules-panel"
+                    data-rules-view="competitors"
+                >
+                    <span class="rules-tab-number">01</span>
+                    <span class="rules-tab-copy">
+                        <strong>COMPETIDORES</strong>
+                        <small>REGLAMENTO OFICIAL</small>
+                    </span>
+                    <span class="rules-tab-arrow" aria-hidden="true">↗</span>
+                </button>
+
+                <button
+                    class="rules-tab"
+                    id="rules-tab-referees"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="rules-panel"
+                    data-rules-view="referees"
+                >
+                    <span class="rules-tab-number">02</span>
+                    <span class="rules-tab-copy">
+                        <strong>ÁRBITROS</strong>
+                        <small>MANUAL DE ARBITRAJE</small>
+                    </span>
+                    <span class="rules-tab-arrow" aria-hidden="true">↗</span>
+                </button>
+            </div>
+
+            <div
+                class="rules-document"
+                id="rules-panel"
+                role="tabpanel"
+                aria-labelledby="rules-tab-competitors"
+                tabindex="0"
+            >
+                <div class="rules-loading">CARGANDO DOCUMENTO...</div>
+            </div>
+
         </section>
 
-        <section
-            id="manual-arbitros"
-            class="rules-section"
-        >
-            <h2>Manual de Árbitros</h2>
-
-            <div id="referee-manual-content">
-                <p class="rules-loading">
-                    CARGANDO MANUAL DE ÁRBITROS…
-                </p>
-            </div>
+        <section class="rules-contact">
+            <span class="rules-section-kicker">YOUR NEXT MOVE</span>
+            <h2>¿LISTO PARA COMPETIR?</h2>
+            <p>
+                Conocé las reglas, respetá el juego y demostrá
+                tus conocimientos dentro del ring.
+            </p>
+            <a
+                class="rules-whatsapp"
+                href="https://chat.whatsapp.com/D7vkfUKTujZ8nr6xlQj02C"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                UNIRSE AL TORNEO <span aria-hidden="true">↗</span>
+            </a>
         </section>
 
     </main>
 
-    <!-- PIE DE PÁGINA -->
     <footer class="footer">
-        MI WRESTLING 2.0 · REGLAMENTO OFICIAL
+        MI WRESTLING 2.0 · OFFICIAL REGULATIONS
     </footer>
 
 </body>
