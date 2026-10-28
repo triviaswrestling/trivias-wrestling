@@ -775,3 +775,63 @@ display: none;
    
    .mw-tournament-draft-card__open { font-size: .48rem; }
 }
+
+
+
+/* =========================================================
+   MI WRESTLING 2.0 — FIX MATRIX
+   1. Evitar imágenes e iniciales duplicadas.
+   2. Ocultar el número de posición del luchador.
+   3. Conservar retrato y nombre completo.
+   ========================================================= */
+
+/* FIX 1: hidden siempre debe prevalecer sobre display:flex/inline-flex */
+body[data-page="tournament"] .mw-tournament-matrix [hidden],
+body[data-page="tournament"] .mw-tournament-matrix .mw-image-fallback[hidden],
+body[data-page="tournament"] .mw-tournament-matrix img[hidden] {
+  display: none !important;
+}
+
+/* FIX 2: quitar el número (#08, #09, etc.) del lateral de la matrix */
+body[data-page="tournament"] .mw-tournament-matrix .matrix-row-name__seed {
+  display: none !important;
+}
+
+/* FIX 3: una sola imagen visible, con respaldo solo si falla */
+body[data-page="tournament"] .mw-tournament-matrix .matrix-row-name__portrait {
+  display: inline-flex;
+  width: 39px;
+  height: 39px;
+  min-width: 39px;
+  margin-right: 8px;
+  vertical-align: middle;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+/* Si la imagen falla, se muestran las iniciales en su lugar,
+   nunca al mismo tiempo que la imagen. */
+body[data-page="tournament"] .mw-tournament-matrix
+.matrix-row-name__portrait.mw-image-fallback:not([hidden]) {
+  display: inline-flex;
+}
+
+/* FIX 4: nombre completo junto al retrato */
+body[data-page="tournament"] .mw-tournament-matrix .matrix-row-name__full-name {
+  display: inline;
+  max-width: none;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  body[data-page="tournament"] .mw-tournament-matrix
+  .matrix-row-name__portrait {
+    width: 31px;
+    height: 31px;
+    min-width: 31px;
+    margin-right: 5px;
+  }
+}
