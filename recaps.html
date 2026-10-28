@@ -1,2 +1,110 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050507"><meta name="description" content="Resúmenes de eventos"><title>Recaps | MI WRESTLING 2.0</title><link rel="stylesheet" href="css/base/wwe2k26-theme.css"><link rel="stylesheet" href="css/base/style.css"><link rel="stylesheet" href="css/layout/nav.css"><link rel="stylesheet" href="css/pages/recaps.css"><script src="js/core/config.js" defer></script><script src="js/core/data-loader.js" defer></script><script src="js/core/entity-resolver.js" defer></script><script src="js/theme-rotation.js" defer></script><script src="js/core/page-renderer.js" defer></script></head><body data-page="recaps"><main class="site-main" data-page-content><section class="page-hero"><div class="eyebrow">MI WRESTLING 2.0</div><h1>Recaps</h1><p class="lead">Resúmenes de eventos</p></section><p class="notice">Cargando catálogo…</p></main><footer class="footer">MI WRESTLING 2.0 · Archivo de wrestling</footer><script src="js/core/navigation.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#050507">
+  <meta name="description" content="Legado de MI WRESTLING 2.0: récords, grandes logros, estadísticas, premios y momentos históricos.">
+  <title>Legado | MI WRESTLING 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base/style.css">
+  <link rel="stylesheet" href="css/base/wwe-2k26-theme.css">
+  <link rel="stylesheet" href="css/mi-wrestling.css">
+  <link rel="stylesheet" href="css/pages/legado.css">
+</head>
+<body data-page="legado">
+  <main class="site-main legado-page" data-page-content>
+    <header class="legacy-hero">
+      <div class="legacy-hero-noise" aria-hidden="true"></div>
+      <div class="legacy-hero-content">
+        <div class="legacy-eyebrow"><span class="legacy-line"></span> MI WRESTLING 2.0 <span class="legacy-slash">/</span> ARCHIVO HISTÓRICO</div>
+        <h1 class="legacy-title">LE<span>G</span>ADO</h1>
+        <p class="legacy-lead">LAS CIFRAS CUENTAN LA HISTORIA. LAS LEYENDAS LA HACEN.</p>
+        <p class="legacy-description">Récords, hazañas, premios y nombres que dejaron su marca. Todo conectado con los resultados y los datos de MI WRESTLING.</p>
+        <div class="legacy-hero-meta"><span>HISTORIAL VIVO</span><i></i><span>DATOS CONECTADOS</span><i></i><span>MI WRESTLING ARCHIVE</span></div>
+      </div>
+      <div class="legacy-hero-mark" aria-hidden="true">MW<span>2K</span></div>
+    </header>
 
+    <section class="legacy-stat-strip" aria-label="Resumen de la base de datos">
+      <article class="legacy-stat"><span>COMBATES REGISTRADOS</span><strong id="stat-matches">—</strong><small>en el archivo de resultados</small></article>
+      <article class="legacy-stat"><span>SUPERSTARS</span><strong id="stat-wrestlers">—</strong><small>perfiles conectados</small></article>
+      <article class="legacy-stat"><span>EVENTOS</span><strong id="stat-events">—</strong><small>shows y especiales</small></article>
+      <article class="legacy-stat"><span>CAMPEONATOS</span><strong id="stat-titles">—</strong><small>títulos en el sistema</small></article>
+    </section>
+
+    <nav class="legacy-tabs" aria-label="Categorías de Legado" role="tablist">
+      <button class="legacy-tab is-active" type="button" data-tab="overview" role="tab" aria-selected="true">Panorama</button>
+      <button class="legacy-tab" type="button" data-tab="superstars" role="tab" aria-selected="false">Superstars</button>
+      <button class="legacy-tab" type="button" data-tab="interpreters" role="tab" aria-selected="false">Intérpretes</button>
+      <button class="legacy-tab" type="button" data-tab="teams" role="tab" aria-selected="false">Equipos</button>
+      <button class="legacy-tab" type="button" data-tab="champions" role="tab" aria-selected="false">Campeonatos</button>
+      <button class="legacy-tab" type="button" data-tab="awards" role="tab" aria-selected="false">Premios</button>
+      <button class="legacy-tab" type="button" data-tab="moments" role="tab" aria-selected="false">Momentos</button>
+    </nav>
+
+    <div class="legacy-toolbar">
+      <label class="legacy-search"><span aria-hidden="true">⌕</span><input id="legacy-search" type="search" placeholder="Buscar luchador, intérprete, equipo…" autocomplete="off" aria-label="Buscar en Legado"></label>
+      <label class="legacy-select-label"><span>ORDENAR</span><select id="legacy-sort" aria-label="Ordenar resultados"><option value="wins">Más victorias</option><option value="rate">Mejor porcentaje</option><option value="matches">Más combates</option><option value="streak">Racha activa</option><option value="name">Nombre A–Z</option></select></label>
+    </div>
+
+    <section class="legacy-panel is-visible" data-panel="overview" role="tabpanel">
+      <div class="legacy-section-head"><div><span class="legacy-kicker">THE RECORD BOOK</span><h2>EL LIBRO DE LOS RÉCORDS</h2><p>Las cifras se calculan desde los combates disponibles. Los resultados sin ganador identificable no se inventan.</p></div><span class="legacy-section-index">01 / 07</span></div>
+      <div class="legacy-feature-grid" id="legacy-feature-grid"><div class="legacy-loading">Analizando el archivo…</div></div>
+      <div class="legacy-section-head legacy-subhead"><div><span class="legacy-kicker">ALL-TIME LEADERS</span><h2>LÍDERES HISTÓRICOS</h2></div><span class="legacy-live-tag">ACTUALIZADO DESDE DATOS</span></div>
+      <div id="overview-leaders" class="legacy-ranking-list"><div class="legacy-loading">Cargando estadísticas…</div></div>
+      <div class="legacy-section-head legacy-subhead"><div><span class="legacy-kicker">LEGACY CATEGORIES</span><h2>EXPLORAR EL LEGADO</h2></div></div>
+      <div class="legacy-category-grid">
+        <button class="legacy-category-card cat-blue" data-jump="superstars"><span class="legacy-card-symbol">01</span><strong>RÉCORDS INDIVIDUALES</strong><small>Victorias, derrotas, porcentaje, rachas y actividad.</small><b>EXPLORAR ↗</b></button>
+        <button class="legacy-category-card cat-violet" data-jump="interpreters"><span class="legacy-card-symbol">02</span><strong>EL FACTOR INTÉRPRETE</strong><small>Compará el rendimiento de cada intérprete registrado.</small><b>EXPLORAR ↗</b></button>
+        <button class="legacy-category-card cat-gold" data-jump="awards"><span class="legacy-card-symbol">03</span><strong>PREMIOS ANUALES</strong><small>Candidatos basados en los datos; ganadores por definir.</small><b>EXPLORAR ↗</b></button>
+        <button class="legacy-category-card cat-red" data-jump="champions"><span class="legacy-card-symbol">04</span><strong>DINASTÍAS Y TÍTULOS</strong><small>Reinados registrados, campeones y campeonatos.</small><b>EXPLORAR ↗</b></button>
+      </div>
+    </section>
+
+    <section class="legacy-panel" data-panel="superstars" role="tabpanel" hidden>
+      <div class="legacy-section-head"><div><span class="legacy-kicker">SUPERSTAR RECORDS</span><h2>RÉCORDS INDIVIDUALES</h2><p>Estadísticas de carrera calculadas a partir de los combates enlazados con cada superestrella.</p></div><span class="legacy-section-index">02 / 07</span></div>
+      <div class="legacy-filter-row"><label>MARCA<select id="filter-brand"><option value="all">Todas las marcas</option></select></label><label>ESTADO<select id="filter-status"><option value="all">Todos los estados</option><option value="active">Activos</option><option value="inactive">Alumni</option></select></label></div>
+      <div id="superstar-grid" class="legacy-entity-grid"><div class="legacy-loading">Cargando perfiles…</div></div>
+    </section>
+
+    <section class="legacy-panel" data-panel="interpreters" role="tabpanel" hidden>
+      <div class="legacy-section-head"><div><span class="legacy-kicker">PLAYER PERFORMANCE</span><h2>EL INTÉRPRETE DETRÁS DEL PERSONAJE</h2><p>Se muestran únicamente intérpretes identificados en los perfiles. No se atribuyen combates cuando el vínculo no está registrado.</p></div><span class="legacy-section-index">03 / 07</span></div>
+      <div id="interpreter-grid" class="legacy-entity-grid"><div class="legacy-loading">Buscando intérpretes registrados…</div></div>
+    </section>
+
+    <section class="legacy-panel" data-panel="teams" role="tabpanel" hidden>
+      <div class="legacy-section-head"><div><span class="legacy-kicker">TAG TEAMS & FACTIONS</span><h2>EQUIPOS Y FACciones</h2><p>Planteles y logros documentados. Las victorias de equipo solo se calculan cuando la participación permite atribuirlas con suficiente certeza.</p></div><span class="legacy-section-index">04 / 07</span></div>
+      <div id="team-grid" class="legacy-entity-grid"><div class="legacy-loading">Cargando equipos…</div></div>
+    </section>
+
+    <section class="legacy-panel" data-panel="champions" role="tabpanel" hidden>
+      <div class="legacy-section-head"><div><span class="legacy-kicker">CHAMPIONSHIP LEGACY</span><h2>DINASTÍAS Y REINADOS</h2><p>Reinados vinculados a la base de campeonatos. La duración aproximada se conserva como aproximada.</p></div><span class="legacy-section-index">05 / 07</span></div>
+      <div id="champion-highlights" class="legacy-feature-grid"></div>
+      <div id="reign-grid" class="legacy-entity-grid"></div>
+    </section>
+
+    <section class="legacy-panel" data-panel="awards" role="tabpanel" hidden>
+      <div class="legacy-section-head"><div><span class="legacy-kicker">MI WRESTLING AWARDS</span><h2>LOS PREMIOS DEL LEGADO</h2><p>Un espacio para los premios anuales, inspirado en los Slammy Awards. Las tarjetas muestran candidatos calculados; no se inventan ganadores ni votaciones.</p></div><span class="legacy-section-index">06 / 07</span></div>
+      <div class="legacy-awards-banner"><div><span>MI WRESTLING PRESENTS</span><strong>LEGACY<br>AWARDS</strong><small>RECONOCER. RECORDAR. CONSAGRAR.</small></div><div class="legacy-awards-trophy" aria-hidden="true">✦</div></div>
+      <div id="award-grid" class="legacy-award-grid"><div class="legacy-loading">Calculando candidatos…</div></div>
+      <p class="legacy-editorial-note"><strong>Importante:</strong> estos son candidatos estadísticos, no premios oficiales ya otorgados. Los ganadores podrán definirse en una futura edición por votación o selección editorial.</p>
+    </section>
+
+    <section class="legacy-panel" data-panel="moments" role="tabpanel" hidden>
+      <div class="legacy-section-head"><div><span class="legacy-kicker">MOMENTS THAT MATTER</span><h2>MOMENTOS HISTÓRICOS</h2><p>Combates y eventos destacados por sus datos disponibles. Es una selección estadística, no una afirmación subjetiva de que sean los mejores de todos los tiempos.</p></div><span class="legacy-section-index">07 / 07</span></div>
+      <div id="moment-grid" class="legacy-moment-grid"><div class="legacy-loading">Buscando combates destacados…</div></div>
+    </section>
+
+    <section id="legacy-detail" class="legacy-detail" hidden aria-live="polite"></section>
+    <div id="legacy-status" class="legacy-status" role="status" aria-live="polite">Conectando con los archivos de MI WRESTLING…</div>
+  </main>
+  <footer class="footer">MI WRESTLING 2.0 · LEGADO · LAS LEYENDAS SE CONSTRUYEN CON HECHOS</footer>
+  <script src="js/mi-wrestling.js" defer></script>
+  <script src="js/sound-effects.js" defer></script>
+  <script src="js/theme-rotation.js" defer></script>
+  <script src="js/pages/legado.js" defer></script>
+</body>
+</html>
