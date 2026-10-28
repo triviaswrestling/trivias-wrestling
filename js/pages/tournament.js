@@ -1,4 +1,3 @@
-
 /* MI WRESTLING 2.0 | MOTOR MULTIFORMATO DE TORNEOS
    Compatible con liga, zonas, matriz, bracket, draft, fases mixtas y combates extra por títulos. */
 (async function(){
@@ -29,7 +28,16 @@
   }
   const tournament=allTournaments.find(t=>String(t.id)===String(id));
   if(!tournament){main.innerHTML=`<section class="mw-event-empty"><h1>Torneo no encontrado</h1><p>No existe el ID <code>${esc(id)}</code>.</p><a href="tournaments.html">Volver a torneos</a></section>`;return;}
-  const names=(tournament.draft?.participantNames||tournament.participantNames||tournament.roster||[]).filter(x=>typeof x==="string"?x.trim():x&&x.name).map(x=>typeof x==="string"?x:x.name);
+  const rawRoster=tournament.draft?.participantNames?.length?tournament.draft.participantNames:(tournament.participantNames?.length?tournament.participantNames:(tournament.roster||[]));
+  const wrestlerById=new Map((wrestlers||[]).map(w=>[String(w.id),w]));
+  const names=[...new Set((rawRoster||[]).map(x=>{
+   if(typeof x==="string")return x.trim();
+   if(x&&typeof x==="object")return x.name||wrestlerById.get(String(x.wrestlerId||x.id||x.participantId))?.name||"";
+   return wrestlerById.get(String(x))?.name||"";
+  }).filter(Boolean))];
+  if(!names.length&&Array.isArray(tournament.participantIds)){
+   names.push(...tournament.participantIds.map(pid=>wrestlerById.get(String(pid))?.name||String(pid)).filter(Boolean));
+  }
   const stages=(tournament.stages||tournament.structure?.stages||[]).slice().sort((a,b)=>(a.order||0)-(b.order||0));
   const idsFor=stage=>stage.matchIds||[];
   const matchForId=mid=>matchById.get(String(mid));
@@ -80,11 +88,24 @@
   }
   function renderTable(roster,usableMatches,title){
    const rows=standings(roster,usableMatches);if(!rows.length)return `<section class="mw-tournament-panel"><h3>${esc(title)}</h3><div class="mw-event-empty">Todavía no hay resultados suficientes para calcular la tabla.</div></section>`;
-   return `<section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">LEAGUE TABLE</span><h2>${esc(title)}</h2></div><span>Victoria +3 · Empate +1 · Derrota 0</span></div><div class="mw-tournament-table-wrap"><table class="mw-tournament-table"><thead><tr>${[['position','#'],['name','Participante'],['played','PJ'],['wins','G'],['draws','E'],['losses','P'],['points','PTS'],['for','RF'],['against','RC'],['difference','DIF']].map(([key,label])=>`<th><button type="button" data-sort="${key}">${label}</button></th>`).join('')}</tr></thead><tbody>${rows.map((r,i)=>`<tr data-row data-position="${i+1}" data-name="${esc(norm(r.name))}" data-played="${r.played}" data-wins="${r.wins}" data-draws="${r.draws}" data-losses="${r.losses}" data-points="${r.points}" data-for="${r.for}" data-against="${r.against}" data-difference="${r.difference}"><td>${i+1}</td><td>${wrestlerLink(r.name)}</td><td>${r.played}</td><td>${r.wins}</td><td>${r.draws}</td><td>${r.losses}</td><td><strong>${r.points}</strong></td><td>${r.for}</td><td>${r.against}</td><td class="${r.difference>0?'is-positive':r.difference<0?'is-negative':''}">${r.difference>0?'+':''}${r.difference}</td></tr>`).join('')}</tbody></table></div><p class="mw-tournament-note">RF/RC = rondas a favor/en contra. DIF acumula la diferencia de rondas de toda la fase; los combates por títulos quedan fuera de la tabla.</p></section>`;
+   return `<section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">LEAGUE TABLE</span><h2>${esc(title)}</h2></div><span>Victoria +${Number(tournament.pointsSystem?.win??3)} · Empate +${Number(tournament.pointsSystem?.draw??1)} · Derrota +${Number(tournament.pointsSystem?.loss??0)}</span></div><div class="mw-tournament-table-wrap"><table class="mw-tournament-table"><thead><tr>${[['position','#'],['name','Participante'],['played','PJ'],['wins','G'],['draws','E'],['losses','P'],['points','PTS'],['for','RF'],['against','RC'],['difference','DIF']].map(([key,label])=>`<th><button type="button" data-sort="${key}">${label}</button></th>`).join('')}</tr></thead><tbody>${rows.map((r,i)=>`<tr data-row data-position="${i+1}" data-name="${esc(norm(r.name))}" data-played="${r.played}" data-wins="${r.wins}" data-draws="${r.draws}" data-losses="${r.losses}" data-points="${r.points}" data-for="${r.for}" data-against="${r.against}" data-difference="${r.difference}"><td>${i+1}</td><td>${wrestlerLink(r.name)}</td><td>${r.played}</td><td>${r.wins}</td><td>${r.draws}</td><td>${r.losses}</td><td><strong>${r.points}</strong></td><td>${r.for}</td><td>${r.against}</td><td class="${r.difference>0?'is-positive':r.difference<0?'is-negative':''}">${r.difference>0?'+':''}${r.difference}</td></tr>`).join('')}</tbody></table></div><p class="mw-tournament-note">RF/RC = rondas a favor/en contra. DIF = RF − RC, la diferencia neta de puntos/rondas de toda la fase; los combates por títulos quedan fuera de la tabla.</p></section>`;
   }
   function renderMatrix(roster,usableMatches,title){
    const {list,results}=matrix(roster,usableMatches);if(!list.length)return '';
-   return `<section class="mw-tournament-panel"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">HEAD-TO-HEAD</span><h2>${esc(title)}</h2></div><span>Tocá una celda para ver los combates</span></div><div class="mw-tournament-matrix-wrap"><table class="mw-tournament-matrix"><thead><tr><th>VS</th>${list.map(p=>`<th title="${esc(p.name)}">${esc(shortName(p.name))}</th>`).join('')}</tr></thead><tbody>${list.map(a=>`<tr><th>${esc(a.name)}</th>${list.map(b=>{if(norm(a.name)===norm(b.name))return '<td class="matrix-self">—</td>';const r=results.get(`${norm(a.name)}::${norm(b.name)}`);if(!r)return '<td class="matrix-empty">·</td>';const outcome=r.ids.length===1?(r.w>r.l?'W':r.l>r.w?'L':'D'):`${r.w}-${r.l}-${r.d}`;const cls=r.w>r.l?'matrix-win':r.l>r.w?'matrix-loss':'matrix-draw';return `<td><button type="button" class="matrix-cell ${cls}" data-matches="${esc(r.ids.join(','))}" title="${r.w} victorias · ${r.d} empates · ${r.l} derrotas">${outcome}<small>${r.for}-${r.against}</small></button></td>`;}).join('')}</tr>`).join('')}</tbody></table></div><div class="mw-tournament-matrix-detail" aria-live="polite">Elegí un cruce para abrir sus resultados.</div></section>`;
+   const zoneEntries=tournament.zones&&typeof tournament.zones==='object'?Object.entries(tournament.zones):[];
+   const zoneOf=name=>{const found=zoneEntries.find(([zone,people])=>(people||[]).some(p=>norm(typeof p==='string'?p:p?.name)===norm(name)));return found?.[0]||'';};
+   const zoneClass=zone=>zone?`matrix-zone-${slug(zone)}`:'';
+   const labelFor=(a,b)=>{
+    if(norm(a.name)===norm(b.name))return '<td class="matrix-self" aria-label="Mismo participante">—</td>';
+    const r=results.get(`${norm(a.name)}::${norm(b.name)}`);
+    if(!r)return '<td class="matrix-empty" aria-label="Sin enfrentamiento registrado"><span>·</span></td>';
+    const outcome=r.ids.length===1?(r.w>r.l?'W':r.l>r.w?'L':'D'):`${r.w}-${r.l}-${r.d}`;
+    const cls=r.w>r.l?'matrix-win':r.l>r.w?'matrix-loss':'matrix-draw';
+    const record=`${r.w}V · ${r.d}E · ${r.l}D`;
+    return `<td class="matrix-result-cell"><button type="button" class="matrix-cell ${cls}" data-matches="${esc(r.ids.join(','))}" title="${esc(record)} · Marcador acumulado ${r.for}-${r.against}" aria-label="${esc(a.name)} contra ${esc(b.name)}: ${esc(record)}">${outcome}<small>${r.for}–${r.against}</small></button></td>`;
+   };
+   const zoneLegend=zoneEntries.length?`<div class="mw-matrix-legend">${zoneEntries.map(([zone])=>`<span class="mw-matrix-legend__item ${zoneClass(zone)}"><i></i>${esc(zone)}</span>`).join('')}</div>`:'';
+   return `<section class="mw-tournament-panel mw-tournament-panel--matrix"><div class="mw-tournament-panel__heading"><div><span class="mw-event-kicker">CONTINENTAL CLASSIC · HEAD-TO-HEAD</span><h2>${esc(title)}</h2><p>Estilo round-robin: cada cruce muestra el balance y el marcador registrado. Deslizá horizontalmente para recorrer todos los participantes.</p></div><span>${list.length} participantes</span></div>${zoneLegend}<div class="mw-tournament-matrix-wrap" role="region" aria-label="Matriz de enfrentamientos; deslizar horizontalmente" tabindex="0"><table class="mw-tournament-matrix"><thead><tr><th class="matrix-corner">PARTICIPANTE</th>${list.map(p=>`<th class="${zoneClass(zoneOf(p.name))}" title="${esc(p.name)}"><span>${esc(shortName(p.name))}</span></th>`).join('')}</tr></thead><tbody>${list.map(a=>`<tr><th class="matrix-row-name ${zoneClass(zoneOf(a.name))}"><span class="matrix-row-name__seed">${String(list.indexOf(a)+1).padStart(2,'0')}</span><span>${esc(a.name)}</span></th>${list.map(b=>labelFor(a,b)).join('')}</tr>`).join('')}</tbody></table></div><div class="mw-tournament-matrix-detail" aria-live="polite">Elegí un cruce para consultar sus combates registrados.</div><p class="mw-tournament-note">V = victorias · E = empates · D = derrotas. Los colores indican el resultado del cruce; los guiones corresponden a cruces sin resultado cargado.</p></section>`;
   }
   function shortName(name){const parts=String(name).split(/\s+/);return parts.length>1?`${parts[0]} ${parts[parts.length-1]}`:name;}
   function wrestlerLink(name){const w=wrestlerByName.get(norm(name));return `<a href="superstar.html?id=${encodeURIComponent(w?.id||slug(name))}">${esc(name)}</a>`;}
