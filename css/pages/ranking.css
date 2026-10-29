@@ -1,3 +1,36 @@
-
-/* MI WRESTLING 2.0 | ESTILOS DE RANKING */
-body[data-page="ranking"] .page-hero{--page-accent:var(--accent)}
+/* MI WRESTLING 2.0 — POWER RANKING / NU METAL
+   Carbón, acero gastado, rojo de amplificador y verde ácido. Sin azul/celeste. */
+body[data-page="ranking"]{--pr-red:#e3263e;--pr-acid:#b6ff3b;--pr-metal:#b9b9b9;background:#080808;color:#eee;font-family:Inter,Arial,sans-serif}
+body[data-page="ranking"] .page-hero{position:relative;overflow:hidden;padding:clamp(26px,5vw,64px) clamp(16px,4vw,42px);background:linear-gradient(115deg,#171717 0%,#080808 55%,#211014 100%);border-bottom:2px solid var(--pr-red)}
+body[data-page="ranking"] .page-hero:after{content:"";position:absolute;right:-5%;top:0;width:40%;height:100%;background:repeating-linear-gradient(135deg,transparent 0 17px,rgba(227,38,62,.12) 18px 20px);pointer-events:none}
+body[data-page="ranking"] .eyebrow{color:var(--pr-acid);font:800 12px Inter,sans-serif;letter-spacing:.2em}
+body[data-page="ranking"] .page-hero h1{font:900 clamp(38px,8vw,78px)/.92 "Barlow Condensed",Impact,sans-serif;text-transform:uppercase;letter-spacing:.015em;margin:12px 0;color:#f4f4f4;text-shadow:3px 3px 0 #4a1119}
+body[data-page="ranking"] .lead{color:#aaa;max-width:700px}
+.pr-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.45fr);gap:9px 12px;padding:16px clamp(12px,3vw,28px);background:#111;border-bottom:1px solid #333}
+.pr-controls label{align-self:end;font-size:10px;letter-spacing:.15em;color:#aaa;font-weight:800}
+.pr-controls input,.pr-controls select{width:100%;min-width:0;box-sizing:border-box;background:#080808;color:#eee;border:1px solid #444;border-left:3px solid var(--pr-red);padding:12px;border-radius:2px;font:600 14px Inter,sans-serif}
+.pr-method{grid-column:1/-1;display:grid;gap:4px;border-left:3px solid var(--pr-acid);padding:10px 12px;background:linear-gradient(90deg,#1a2011,#101010);font-size:12px;color:#ddd}
+.pr-method b{color:var(--pr-acid);font:900 15px "Barlow Condensed",sans-serif;letter-spacing:.12em}
+.pr-method small,.pr-footnote{color:#888;line-height:1.5}
+.pr-board{padding:0 clamp(8px,2vw,20px) 28px}
+.pr-board-head,.pr-row{display:grid;grid-template-columns:46px minmax(130px,1.8fr) minmax(74px,.7fr) 48px minmax(68px,.7fr) minmax(68px,.7fr);align-items:center;gap:9px}
+.pr-board-head{padding:12px 8px;color:#888;font-size:9px;font-weight:800;letter-spacing:.1em;border-bottom:1px solid #444}
+.pr-row{min-height:72px;padding:8px;border-bottom:1px solid #292929;text-decoration:none;color:#eee;background:linear-gradient(90deg,rgba(255,255,255,.025),transparent);transition:background .15s,border-color .15s}
+.pr-row:hover,.pr-row:focus-visible{background:linear-gradient(90deg,rgba(227,38,62,.16),rgba(182,255,59,.035));border-bottom-color:var(--pr-red);outline:none}
+.pr-position{font:900 22px "Barlow Condensed",Impact,sans-serif;color:#888}
+.pr-row:nth-child(1) .pr-position,.pr-row:nth-child(2) .pr-position,.pr-row:nth-child(3) .pr-position{color:var(--pr-acid)}
+.pr-star{display:flex;align-items:center;gap:10px;min-width:0}
+.pr-star img{width:43px;height:54px;object-fit:cover;object-position:top;border:1px solid #444;background:#171717}
+.pr-star span{min-width:0;display:grid;gap:4px}
+.pr-star b{font:800 clamp(14px,2vw,18px)/1.05 "Barlow Condensed",Impact,sans-serif;overflow-wrap:anywhere;text-transform:uppercase}
+.pr-star small,.pr-avg small,.pr-record small{display:block;color:#888;font-size:9px;letter-spacing:.04em;margin-top:3px}
+.pr-power b{font:900 20px "Barlow Condensed",Impact,sans-serif;color:var(--pr-acid)}
+.pr-power i,.pr-superstar-attribute i{display:block;height:4px;background:#333;margin-top:5px;overflow:hidden}
+.pr-power u,.pr-superstar-attribute u{display:block;height:100%;background:linear-gradient(90deg,var(--pr-red),var(--pr-acid));text-decoration:none}
+.pr-ovr{font:800 18px "Barlow Condensed",Impact,sans-serif;color:#ddd}
+.pr-avg,.pr-record{font-size:13px;font-weight:700}
+.pr-avg small,.pr-record small{font-weight:500}
+.pr-row.is-inactive .pr-star img{filter:grayscale(.8);opacity:.7}
+.pr-footnote{font-size:11px;padding:14px 4px}
+.pr-empty{padding:30px;text-align:center;color:#aaa}
+@media(max-width:620px){.pr-controls{grid-template-columns:1fr}.pr-controls label{margin-top:5px}.pr-method{grid-column:auto}.pr-board-head,.pr-row{grid-template-columns:32px minmax(0,1fr) 55px 36px;gap:7px}.pr-board-head span:nth-child(5),.pr-board-head span:nth-child(6),.pr-row .pr-avg,.pr-row .pr-record{display:none}.pr-star img{width:38px;height:49px}.pr-star{gap:7px}.pr-star small{font-size:8px}.pr-position{font-size:19px}.pr-power b{font-size:18px}.pr-board-head{font-size:8px}}
