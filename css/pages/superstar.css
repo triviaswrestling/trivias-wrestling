@@ -1,3 +1,19 @@
-
-/* MI WRESTLING 2.0 | ESTILOS DE SUPERSTAR */
-body[data-page="superstar"] .page-hero{--page-accent:var(--accent)}
+/* MI WRESTLING 2.0 — SUPERSTAR / NU METAL DETAIL */
+body[data-page="superstar"]{--mw-superstar-red:#e3263e;--mw-superstar-acid:#b6ff3b;background:#080808;color:#eee}
+body[data-page="superstar"] .mw-superstar-hero{background:linear-gradient(120deg,#191919,#090909 62%,#241014);border-bottom:2px solid var(--mw-superstar-red)}
+body[data-page="superstar"] .mw-superstar-hero h1{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em}
+.mw-superstar-performance-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}
+.mw-superstar-performance-grid article{min-width:0;padding:15px 12px;background:linear-gradient(145deg,#1b1b1b,#101010);border:1px solid #363636;border-top:3px solid #e3263e}
+.mw-superstar-performance-grid strong{display:block;color:#b6ff3b;font:900 clamp(23px,4vw,36px)/1 "Barlow Condensed",Impact,sans-serif}
+.mw-superstar-performance-grid span{display:block;margin-top:8px;color:#aaa;font-size:9px;line-height:1.35;font-weight:800;letter-spacing:.08em}
+.mw-superstar-score-chart{height:140px;display:flex;align-items:flex-end;gap:5px;padding:14px 8px 0;border-bottom:1px solid #444;background:repeating-linear-gradient(to bottom,#111 0 34px,#222 35px 36px)}
+.mw-superstar-score-chart span{position:relative;flex:1;min-width:5px;max-width:42px;background:linear-gradient(to top,#e3263e,#b6ff3b);border:1px solid #222;border-bottom:0}
+.mw-superstar-score-chart span b{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-size:9px;color:#ccc}
+.mw-superstar-attribute-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mw-superstar-attribute{padding:11px;background:#111;border:1px solid #303030}
+.mw-superstar-attribute>div{display:flex;justify-content:space-between;gap:8px;font-size:12px;text-transform:uppercase}
+.mw-superstar-attribute>div span{color:#aaa;overflow-wrap:anywhere}
+.mw-superstar-attribute>div b{color:#eee;font-family:"Barlow Condensed",Impact,sans-serif;font-size:17px}
+.mw-superstar-attribute i{margin-top:9px}
+.mw-superstar-attribute u{background:linear-gradient(90deg,#e3263e,#b6ff3b)}
+@media(max-width:600px){.mw-superstar-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mw-superstar-attribute-grid{grid-template-columns:1fr}.mw-superstar-score-chart{height:110px;gap:3px}}
