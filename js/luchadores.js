@@ -2,18 +2,20 @@
 /* =========================================================================
    TRIVIAS WRESTLING
    LUCHADORES.JS
-   Centro de datos y funcionamiento del catálogo.
 
-   RESPONSABILIDADES:
+   CENTRO DE DATOS Y CATÁLOGO.
+
+   Responsabilidades:
    - Base de datos de luchadores.
    - Historial de renders.
    - Alter egos.
    - Clasificación automática.
+   - Consultas.
    - Búsqueda y filtros.
    - Catálogo de Roster y Alumni.
-   - Conexión con wrestler-card.js.
+   - Conexión con MIWrestlerCards.
 
-   wrestler-card.js conserva el diseño de las tarjetas y los modales.
+   El diseño gráfico pertenece a wrestler-card.js.
    ========================================================================= */
 
 
@@ -22,27 +24,34 @@
    ========================================================================= */
 
 const CONFIG = {
+
   fallbackImage: "images/renders/Vacante.webp",
+
   selectors: {
+
     catalog: "[data-wrestlers-catalog]",
+
     search: "[data-wrestlers-search]",
+
     category: "[data-roster-filter]",
+
     brand: "[data-brand-filter]",
+
     count: "[data-wrestler-count]"
+
   }
+
 };
 
 
 /* =========================================================================
-   2. BASE DE DATOS DE LUCHADORES
+   2. BASE DE DATOS
 
-   ID: identificador permanente.
-   BRAND: marca o situación actual dentro de Trivias Wrestling.
+   IMPORTANTE:
+   Los registros de abajo son los ejemplos que ya definimos.
+   Agregá el resto de tus luchadores dentro de este mismo array.
 
-   timeline: renders normales según período.
-   alteregos: presentaciones especiales según período.
-
-   Las fechas utilizan DD/MM/YYYY.
+   No duplicar una persona por cada alter ego.
    ========================================================================= */
 
 export const wrestlers = [
@@ -52,10 +61,15 @@ export const wrestlers = [
      ----------------------------------------------------------------------- */
 
   {
+
     id: "cody-rhodes",
+
     name: "Cody Rhodes",
+
     nickname: "The American Nightmare",
+
     stable: "",
+
     brand: "RAW",
 
     timeline: [
@@ -84,6 +98,7 @@ export const wrestlers = [
       }
 
     ]
+
   },
 
 
@@ -92,10 +107,15 @@ export const wrestlers = [
      ----------------------------------------------------------------------- */
 
   {
+
     id: "tommaso-ciampa",
+
     name: "Tommaso Ciampa",
+
     nickname: "",
+
     stable: "",
+
     brand: "Alumni",
 
     timeline: [
@@ -124,6 +144,7 @@ export const wrestlers = [
       }
 
     ]
+
   }
 
 ];
@@ -144,6 +165,21 @@ function normalize(value) {
 }
 
 
+function getToday() {
+
+  const today = new Date();
+
+  const day = String(today.getDate()).padStart(2, "0");
+
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+
+  const year = today.getFullYear();
+
+  return `${day}/${month}/${year}`;
+
+}
+
+
 function escapeHTML(value) {
 
   return String(value ?? "")
@@ -156,25 +192,12 @@ function escapeHTML(value) {
 }
 
 
-function getToday() {
-
-  const today = new Date();
-
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-
-  return `${day}/${month}/${year}`;
-
-}
-
-
 /* =========================================================================
-   4. SISTEMA DE FECHAS
+   4. FECHAS
 
-   Formato obligatorio: DD/MM/YYYY.
-   Los períodos incluyen el día inicial y el final.
-   to: null significa que continúa vigente.
+   Formato oficial: DD/MM/YYYY.
+   Los períodos incluyen el primer y el último día.
+   to: null significa que el período continúa vigente.
    ========================================================================= */
 
 export function parseDate(value) {
@@ -200,7 +223,9 @@ export function parseDate(value) {
   if (!match) return null;
 
   const day = Number(match[1]);
+
   const month = Number(match[2]);
+
   const year = Number(match[3]);
 
   const date = new Date(year, month - 1, day);
@@ -221,6 +246,7 @@ export function parseDate(value) {
 export function isDateBetween(date, from, to = null) {
 
   const current = parseDate(date);
+
   const start = parseDate(from);
 
   const end = to === null
@@ -240,7 +266,7 @@ export function isDateBetween(date, from, to = null) {
 
 
 /* =========================================================================
-   5. CLASIFICACIÓN AUTOMÁTICA
+   5. CLASIFICACIÓN
 
    RAW / SmackDown = Main Roster
    NXT / AAA       = Segunda Liga
@@ -437,11 +463,9 @@ export function getWrestlerTimeline(identifier) {
    9. RESOLUCIÓN DEL RENDER
 
    Prioridad:
-   1. Alter ego de la fecha.
-   2. Render normal de la fecha.
+   1. Alter ego correspondiente a la fecha.
+   2. Render normal correspondiente a la fecha.
    3. Vacante.
-
-   Un período sin render definido utiliza Vacante.
    ========================================================================= */
 
 export function getWrestlerRender(
@@ -453,13 +477,19 @@ export function getWrestlerRender(
 
   if (!wrestler) return CONFIG.fallbackImage;
 
-  const alterego = getAlteregoByDate(wrestler.id, date);
+  const alterego = getAlteregoByDate(
+    wrestler.id,
+    date
+  );
 
   if (alterego?.image) {
     return alterego.image;
   }
 
-  const timeline = getTimelineRender(wrestler.id, date);
+  const timeline = getTimelineRender(
+    wrestler.id,
+    date
+  );
 
   if (timeline?.image) {
     return timeline.image;
@@ -472,16 +502,18 @@ export function getWrestlerRender(
 
 export function getCurrentRender(identifier) {
 
-  return getWrestlerRender(identifier, getToday());
+  return getWrestlerRender(
+    identifier,
+    getToday()
+  );
 
 }
 
 
 /* =========================================================================
-   10. PRESENTACIÓN PARA LAS TARJETAS
+   10. PRESENTACIÓN DEL LUCHADOR
 
-   El componente recibe los datos ya resueltos.
-   No necesita calcular fechas ni buscar alter egos.
+   Prepara la información que recibe wrestler-card.js.
    ========================================================================= */
 
 export function getWrestlerPresentation(
@@ -493,8 +525,15 @@ export function getWrestlerPresentation(
 
   if (!wrestler) return null;
 
-  const alterego = getAlteregoByDate(wrestler.id, date);
-  const timeline = getTimelineRender(wrestler.id, date);
+  const alterego = getAlteregoByDate(
+    wrestler.id,
+    date
+  );
+
+  const timeline = getTimelineRender(
+    wrestler.id,
+    date
+  );
 
   return {
 
@@ -557,7 +596,7 @@ export function searchWrestlers(query) {
 
 
 /* =========================================================================
-   12. FILTROS DEL CATÁLOGO
+   12. FILTROS
    ========================================================================= */
 
 export function filterWrestlers(options = {}) {
@@ -571,7 +610,8 @@ export function filterWrestlers(options = {}) {
 
   let result = [...wrestlers];
 
-  // La página Alumni siempre queda limitada a Alumni.
+
+  // Alumni siempre muestra únicamente brand: Alumni.
 
   if (source === "alumni") {
 
@@ -587,6 +627,7 @@ export function filterWrestlers(options = {}) {
 
   }
 
+
   if (brand) {
 
     result = result.filter(wrestler =>
@@ -594,6 +635,7 @@ export function filterWrestlers(options = {}) {
     );
 
   }
+
 
   if (search) {
 
@@ -669,24 +711,28 @@ function validatePeriod(period, label, errors) {
 
 function validatePeriodOverlaps(periods, label, errors) {
 
-  const validPeriods = periods
-    .map(period => ({
-      ...period,
-      start: parseDate(period.from),
-      end: period.to === null
-        ? Infinity
-        : parseDate(period.to)
-    }))
-    .filter(period =>
-      period.start !== null &&
-      period.end !== null
-    );
+  const validPeriods = periods.map(period => ({
+
+    ...period,
+
+    start: parseDate(period.from),
+
+    end: period.to === null
+      ? Infinity
+      : parseDate(period.to)
+
+  })).filter(period =>
+    period.start !== null &&
+    period.end !== null
+  );
+
 
   for (let i = 0; i < validPeriods.length; i++) {
 
     for (let j = i + 1; j < validPeriods.length; j++) {
 
       const first = validPeriods[i];
+
       const second = validPeriods[j];
 
       if (
@@ -695,7 +741,7 @@ function validatePeriodOverlaps(periods, label, errors) {
       ) {
 
         errors.push(
-          `${label}: existen períodos superpuestos (${first.from} y ${second.from}).`
+          `${label}: períodos superpuestos (${first.from} y ${second.from}).`
         );
 
       }
@@ -748,6 +794,7 @@ export function validateWrestler(wrestler) {
 
   }
 
+
   wrestler.timeline.forEach((period, index) => {
 
     validatePeriod(
@@ -757,6 +804,7 @@ export function validateWrestler(wrestler) {
     );
 
   });
+
 
   wrestler.alteregos.forEach((period, index) => {
 
@@ -772,9 +820,10 @@ export function validateWrestler(wrestler) {
 
   });
 
-  // Se validan por separado:
-  // un alter ego puede superponerse con el render normal,
-  // porque tiene prioridad sobre él.
+
+  // Se revisan por separado:
+  // los alter egos pueden coincidir con el timeline normal.
+  // El alter ego tiene prioridad al resolver el render.
 
   validatePeriodOverlaps(
     wrestler.timeline,
@@ -788,6 +837,7 @@ export function validateWrestler(wrestler) {
     errors
   );
 
+
   return {
     valid: errors.length === 0,
     errors
@@ -799,6 +849,7 @@ export function validateWrestler(wrestler) {
 export function validateRoster() {
 
   const errors = [];
+
   const ids = new Set();
 
   wrestlers.forEach(wrestler => {
@@ -817,6 +868,7 @@ export function validateRoster() {
 
   });
 
+
   return {
 
     valid: errors.length === 0,
@@ -833,57 +885,21 @@ export function validateRoster() {
 /* =========================================================================
    14. CONEXIÓN CON WRESTLER-CARD.JS
 
-   Compatibilidad con el componente anterior:
-   window.MIWrestlerCards
-
-   También acepta exports de módulo si se adapta el componente en el futuro.
-
-   No hace falta cargar wrestler-card.js desde el HTML.
+   wrestler-card.js es un script clásico.
+   Sus funciones se encuentran en window.MIWrestlerCards.
    ========================================================================= */
 
 let wrestlerCards = null;
 
 
-async function loadWrestlerCards() {
+function loadWrestlerCards() {
 
-  try {
+  const component = window.MIWrestlerCards;
 
-    const module = await import(
-      "./components/wrestler-card.js"
-    );
-
-    wrestlerCards = {
-
-      card:
-        module.card ||
-        module.renderCard ||
-        window.MIWrestlerCards?.card,
-
-      openModal:
-        module.openModal ||
-        window.MIWrestlerCards?.openModal,
-
-      closeModal:
-        module.closeModal ||
-        window.MIWrestlerCards?.closeModal
-
-    };
-
-    if (typeof wrestlerCards.card !== "function") {
-
-      throw new Error(
-        "wrestler-card.js no ofrece una función card()."
-      );
-
-    }
-
-    return true;
-
-  } catch (error) {
+  if (!component) {
 
     console.error(
-      "[Trivias Wrestling] No se pudo cargar wrestler-card.js:",
-      error
+      "[Trivias Wrestling] No se encontró MIWrestlerCards. Revisá el orden de los scripts."
     );
 
     wrestlerCards = null;
@@ -892,19 +908,53 @@ async function loadWrestlerCards() {
 
   }
 
+
+  wrestlerCards = {
+
+    card: component.card,
+
+    openModal: component.openModal,
+
+    closeModal: component.closeModal
+
+  };
+
+
+  if (
+    typeof wrestlerCards.card !== "function" ||
+    typeof wrestlerCards.openModal !== "function"
+  ) {
+
+    console.error(
+      "[Trivias Wrestling] El componente no tiene las funciones necesarias."
+    );
+
+    wrestlerCards = null;
+
+    return false;
+
+  }
+
+
+  console.info(
+    "[Trivias Wrestling] Wrestler Card conectado correctamente."
+  );
+
+  return true;
+
 }
 
 
 /* =========================================================================
    15. TARJETA DE RESPALDO
 
-   Se utiliza solamente si el componente visual no carga.
-   Permite comprobar que la base de datos y el catálogo funcionan.
+   Si el componente visual no carga, el catálogo no queda vacío.
    ========================================================================= */
 
 function fallbackCard(wrestler, presentation) {
 
   return `
+
     <button
       class="mw-wrestler-card"
       type="button"
@@ -912,20 +962,22 @@ function fallbackCard(wrestler, presentation) {
     >
 
       <img
+        class="mw-wrestler-card__image"
         src="${escapeHTML(presentation.image)}"
         alt="${escapeHTML(presentation.displayName)}"
         loading="lazy"
       >
 
-      <span>
+      <span class="mw-wrestler-card__name">
         ${escapeHTML(presentation.displayName)}
       </span>
 
-      <small>
+      <span class="mw-wrestler-card__brand">
         ${escapeHTML(wrestler.brand)}
-      </small>
+      </span>
 
     </button>
+
   `;
 
 }
@@ -942,17 +994,21 @@ export function renderWrestlersCatalog(
 
   if (!container) return;
 
+
   if (!Array.isArray(list) || list.length === 0) {
 
     container.innerHTML = `
+
       <div class="mw-empty-state">
         NO SE ENCONTRARON SUPERSTRELLAS.
       </div>
+
     `;
 
     return;
 
   }
+
 
   container.innerHTML = list.map(wrestler => {
 
@@ -962,34 +1018,30 @@ export function renderWrestlersCatalog(
 
     if (!presentation) return "";
 
-    // Compatibilidad con el componente visual anterior.
-    // Se agrega la imagen resuelta sin modificar la base de datos.
 
     const cardData = {
 
       ...wrestler,
 
-      name: presentation.displayName,
-
       image: presentation.image,
+
+      displayName: presentation.displayName,
 
       presentation
 
     };
 
+
     if (typeof wrestlerCards?.card === "function") {
 
       try {
 
-        return wrestlerCards.card(
-          cardData,
-          presentation
-        );
+        return wrestlerCards.card(cardData);
 
       } catch (error) {
 
         console.error(
-          `Error creando tarjeta de ${wrestler.name}:`,
+          `[Trivias Wrestling] Error creando tarjeta de ${wrestler.name}:`,
           error
         );
 
@@ -997,7 +1049,11 @@ export function renderWrestlersCatalog(
 
     }
 
-    return fallbackCard(wrestler, presentation);
+
+    return fallbackCard(
+      wrestler,
+      presentation
+    );
 
   }).join("");
 
@@ -1024,12 +1080,6 @@ function updateWrestlerCount(total) {
 
 /* =========================================================================
    18. INICIALIZACIÓN DEL CATÁLOGO
-
-   roster.html:
-   muestra todas las categorías y permite filtrarlas.
-
-   alumni.html:
-   muestra únicamente brand: Alumni.
    ========================================================================= */
 
 export function initWrestlersCatalog() {
@@ -1038,7 +1088,16 @@ export function initWrestlersCatalog() {
     CONFIG.selectors.catalog
   );
 
-  if (!catalog) return;
+  if (!catalog) {
+
+    console.warn(
+      "[Trivias Wrestling] No se encontró el contenedor del catálogo."
+    );
+
+    return;
+
+  }
+
 
   const searchInput = document.querySelector(
     CONFIG.selectors.search
@@ -1052,6 +1111,7 @@ export function initWrestlersCatalog() {
     CONFIG.selectors.brand
   );
 
+
   const page = normalize(
     document.body.dataset.page
   );
@@ -1059,19 +1119,25 @@ export function initWrestlersCatalog() {
   const isAlumniPage = page === "alumni";
 
 
-  // En Alumni no se utiliza el filtro de marca:
-  // actualmente brand representa la situación actual,
-  // no el historial de marcas anteriores.
+  // En Alumni no se filtra por marca actual.
+  // El catálogo muestra solamente brand: Alumni.
 
   if (isAlumniPage && brandFilter) {
+
     brandFilter.disabled = true;
+
     brandFilter.hidden = true;
 
-    const label = document.querySelector(
-      `label[for="${brandFilter.id}"]`
-    );
+    const label = brandFilter.id
+      ? document.querySelector(
+          `label[for="${brandFilter.id}"]`
+        )
+      : null;
 
-    if (label) label.hidden = true;
+    if (label) {
+      label.hidden = true;
+    }
+
   }
 
 
@@ -1095,27 +1161,37 @@ export function initWrestlersCatalog() {
 
     });
 
+
     renderWrestlersCatalog(
       catalog,
       filtered
     );
 
-    updateWrestlerCount(filtered.length);
+
+    updateWrestlerCount(
+      filtered.length
+    );
 
   }
 
 
-  // Eventos de filtros.
+  // Búsqueda.
 
   searchInput?.addEventListener(
     "input",
     updateCatalog
   );
 
+
+  // Filtro de categoría.
+
   categoryFilter?.addEventListener(
     "change",
     updateCatalog
   );
+
+
+  // Filtro de marca.
 
   brandFilter?.addEventListener(
     "change",
@@ -1123,7 +1199,7 @@ export function initWrestlersCatalog() {
   );
 
 
-  // Un único evento para abrir las fichas.
+  // Apertura de ficha mediante delegación de eventos.
 
   catalog.addEventListener("click", event => {
 
@@ -1131,7 +1207,8 @@ export function initWrestlersCatalog() {
       "[data-wrestler-open]"
     );
 
-    if (!target) return;
+    if (!target || !catalog.contains(target)) return;
+
 
     const identifier = target.dataset.wrestlerOpen;
 
@@ -1139,33 +1216,32 @@ export function initWrestlersCatalog() {
 
     if (!wrestler) return;
 
+
     const presentation = getWrestlerPresentation(
       wrestler.id
     );
 
+
     if (typeof wrestlerCards?.openModal === "function") {
 
-      const cardData = {
+      const modalData = {
 
         ...wrestler,
 
-        name: presentation.displayName,
-
         image: presentation.image,
+
+        displayName: presentation.displayName,
 
         presentation
 
       };
 
-      wrestlerCards.openModal(
-        cardData,
-        presentation
-      );
+      wrestlerCards.openModal(modalData);
 
     } else {
 
       console.warn(
-        "[Trivias Wrestling] El modal no está disponible."
+        "[Trivias Wrestling] No está disponible el modal."
       );
 
     }
@@ -1179,16 +1255,18 @@ export function initWrestlersCatalog() {
 
 
 /* =========================================================================
-   19. INICIO DEL SISTEMA
+   19. INICIO
    ========================================================================= */
 
-async function startWrestlersModule() {
+function startWrestlersModule() {
 
   console.info(
     "[Trivias Wrestling] Iniciando base de luchadores..."
   );
 
+
   const validation = validateRoster();
+
 
   if (!validation.valid) {
 
@@ -1205,9 +1283,11 @@ async function startWrestlersModule() {
 
   }
 
-  await loadWrestlerCards();
+
+  loadWrestlerCards();
 
   initWrestlersCatalog();
+
 
   console.info(
     "[Trivias Wrestling] Catálogo inicializado."
