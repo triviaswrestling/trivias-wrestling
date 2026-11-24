@@ -1,75 +1,86 @@
 
-/* =========================================================
+/* ==========================================================
    TRIVIAS WRESTLING — ROSTER
-   Diseño 2.0 · Iluminación · Acero · Negro
-   Imágenes 3:4 · 5 PC · 4 tablet · 3 móvil
-   ========================================================= */
+   WWE 2K / SMACKDOWN VS RAW INSPIRED
+   Presentación, filtros, catálogo y tarjetas.
+   El modal conserva su diseño original.
+   ========================================================== */
 
 :root {
-  --roster-bg: #05070b;
-  --roster-panel: #0b1018;
-  --roster-white: #f3f5f8;
-  --roster-silver: #aeb8c7;
-  --roster-muted: #778397;
-  --roster-line: rgba(190,205,225,.18);
-  --roster-glow: rgba(155,185,225,.13);
-  --roster-display: "Barlow Condensed", Impact, sans-serif;
-  --roster-body: "Inter", Arial, sans-serif;
+  --mw-ink: #050609;
+  --mw-panel: #0c111a;
+  --mw-panel-light: #121a27;
+  --mw-line: #283447;
+  --mw-white: #f4f6fa;
+  --mw-silver: #b9c4d4;
+  --mw-muted: #8491a5;
+  --mw-blue: #55aaff;
+  --mw-display: "Barlow Condensed", Impact, sans-serif;
+  --mw-body: "Inter", Arial, sans-serif;
 }
-
-/* BASE */
 
 .mw-roster-page {
-  width: 100%;
   min-height: 70vh;
-  padding: 0 0 80px;
-  color: var(--roster-white);
-  font-family: var(--roster-body);
+  padding-bottom: 75px;
+  color: var(--mw-white);
+  font-family: var(--mw-body);
 }
 
-.mw-roster-page * {
-  box-sizing: border-box;
-}
-
-.mw-roster-page h1,
-.mw-roster-page h2,
-.mw-roster-page h3,
-.mw-roster-page strong,
-.mw-roster-page label,
-.mw-roster-page button,
-.mw-roster-page select,
-.mw-roster-page input {
-  font-family: var(--roster-display);
-}
-
-/* HERO */
+/* ==========================================================
+   HERO — ROSTER
+   Sin panel. Solo iluminación, profundidad y tipografía.
+   ========================================================== */
 
 .roster-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  width: min(100% - 32px, 1320px);
-  margin: clamp(28px,5vw,65px) auto 34px;
-  padding: clamp(35px,6vw,72px) clamp(18px,4vw,42px) 28px;
+  width: min(100% - 48px, 1180px);
+  max-width: 1180px;
+  margin: 0 auto 34px;
+  padding: clamp(42px, 7vw, 82px) clamp(16px, 4vw, 42px) 30px;
+  border: 0;
+  border-radius: 0;
   background:
-    radial-gradient(ellipse at 78% 25%,rgba(145,170,205,.15),transparent 48%),
-    radial-gradient(ellipse at 10% 100%,rgba(95,115,145,.09),transparent 45%),
-    linear-gradient(115deg,#080b11,#111824 55%,#070a10);
-  border: 1px solid rgba(190,205,225,.13);
-  border-radius: 3px;
+    radial-gradient(
+      ellipse at 76% 35%,
+      rgba(76, 139, 214, .20),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 12% 100%,
+      rgba(120, 151, 190, .10),
+      transparent 43%
+    ),
+    linear-gradient(
+      115deg,
+      #050609 0%,
+      #0b111d 52%,
+      #050609 100%
+    );
+  text-align: left;
+  box-shadow: none;
 }
 
 .roster-hero::before {
   content: "";
   position: absolute;
   z-index: -1;
-  top: -60%;
-  right: 15%;
+  top: -55%;
+  right: 16%;
   width: 1px;
-  height: 220%;
+  height: 210%;
   transform: rotate(32deg);
-  background: linear-gradient(transparent,rgba(205,220,245,.04),rgba(205,220,245,.4),transparent);
-  box-shadow: 0 0 30px rgba(170,195,230,.13);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(120, 174, 238, .04) 20%,
+    rgba(120, 174, 238, .48) 48%,
+    rgba(120, 174, 238, .04) 76%,
+    transparent
+  );
+  box-shadow: 0 0 35px rgba(68, 139, 230, .20);
+  pointer-events: none;
 }
 
 .roster-hero::after {
@@ -79,265 +90,323 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg,transparent,#aebdd2,rgba(255,255,255,.25),transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(113, 169, 232, .75),
+    rgba(215, 231, 255, .28),
+    transparent
+  );
+  pointer-events: none;
 }
 
-.alumni-hero-content {
+.roster-hero .alumni-hero-content {
   position: relative;
   z-index: 1;
-  width: 100%;
   max-width: 1100px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-.alumni-eyebrow {
+.roster-hero .alumni-eyebrow {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 9px;
-  margin-bottom: 13px;
-  color: #c4cedc;
-  font: 800 10px var(--roster-body);
-  letter-spacing: 2px;
+  gap: 10px;
+  margin: 0 0 16px;
+  color: #a9c9ee;
+  font: 800 10px var(--mw-body);
+  letter-spacing: 2.3px;
 }
 
-.alumni-eyebrow-line {
-  width: 26px;
+.roster-hero .alumni-eyebrow-line {
+  width: 28px;
   height: 2px;
-  background: #dce3ed;
-  box-shadow: 0 0 10px rgba(220,230,245,.4);
+  flex: 0 0 28px;
+  background: #a9c9ee;
+  box-shadow: 0 0 12px rgba(104, 169, 239, .65);
 }
 
-.alumni-eyebrow-divider {
-  color: #596678;
+.roster-hero .alumni-eyebrow-divider {
+  color: #52647c;
 }
 
-.alumni-eyebrow-muted {
-  color: #8290a4;
+.roster-hero .alumni-eyebrow-muted {
+  color: #78879c;
 }
 
-.alumni-title {
+.roster-hero .alumni-title {
   margin: 0;
-  font: italic 900 clamp(64px,13vw,140px)/.86 var(--roster-display);
-  letter-spacing: -2px;
-  color: #fff;
-  text-shadow: 0 3px #8c9bad, 0 7px 24px rgba(160,185,220,.2);
+  padding: 0;
+  font: italic 900 clamp(76px, 15vw, 150px)/.82 var(--mw-display);
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  color: #f5f8ff;
+  text-shadow:
+    0 2px 0 #a5b3c7,
+    0 5px 0 rgba(42, 59, 82, .85),
+    0 15px 35px rgba(70, 139, 226, .20);
 }
 
-.alumni-title span {
+.roster-hero .alumni-title span {
   display: inline-block;
-  background: linear-gradient(180deg,#fff 10%,#dce3ed 55%,#8796aa 100%);
-  background-clip: text;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #dce7f5 43%,
+    #829ab9 100%
+  );
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.alumni-description {
+.roster-hero .alumni-description {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 620px;
-  margin: 22px 0 0;
-  color: #d1d8e2;
-  font: 800 11px/1.7 var(--roster-body);
+  gap: 9px;
+  max-width: 660px;
+  margin: 24px 0 0;
+  color: #a9c9ee;
+  font: 800 11px/1.7 var(--mw-body);
   letter-spacing: 1.5px;
 }
 
-.alumni-description span {
-  color: #b3bdcc;
-  font: 500 13px/1.8 var(--roster-body);
+.roster-hero .alumni-description span {
+  max-width: 570px;
+  color: #bac5d4;
+  font: 500 14px/1.8 var(--mw-body);
   letter-spacing: 0;
 }
 
-.alumni-hero-bottom {
+.roster-hero .alumni-hero-bottom {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 34px;
   padding-top: 16px;
-  border-top: 1px solid var(--roster-line);
+  border-top: 1px solid rgba(164, 190, 222, .16);
 }
 
-.alumni-edition,
-.alumni-edition-label {
-  font: 800 9px var(--roster-body);
-  letter-spacing: 1.4px;
+.roster-hero .alumni-edition,
+.roster-hero .alumni-edition-label {
+  font: 800 9px var(--mw-body);
+  letter-spacing: 1.5px;
 }
 
-.alumni-edition {
-  color: #e8edf4;
+.roster-hero .alumni-edition {
+  color: #eaf3ff;
 }
 
-.alumni-edition-line {
+.roster-hero .alumni-edition-line {
   width: 30px;
   height: 1px;
-  background: #8999ae;
+  background: rgba(125, 174, 232, .65);
 }
 
-.alumni-edition-label {
-  color: #78869a;
+.roster-hero .alumni-edition-label {
+  color: #78879c;
 }
 
-/* CAMPEONES */
+/* ==========================================================
+   CAMPEONES ACTUALES
+   ========================================================== */
 
 .mw-current-champions {
-  width: min(100% - 32px,1320px);
-  margin: 0 auto 30px;
+  width: min(100% - 48px, 1180px);
+  margin: 0 auto 28px;
+  padding: 0;
+  overflow: hidden;
 }
 
 .mw-champions-heading {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(205,215,230,.4);
+  margin-bottom: 14px;
 }
 
 .mw-champions-kicker {
-  color: #a8b4c5;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .15em;
+  flex: 0 0 auto;
+  color: #d9c17f;
+  font: 900 10px var(--mw-display);
+  letter-spacing: .17em;
   white-space: nowrap;
 }
 
 .mw-champions-heading h2 {
   margin: 0;
-  color: #f1f3f6;
-  font: 900 clamp(22px,3vw,32px)/1 var(--roster-display);
+  color: #f3f5f8;
+  font: 900 clamp(23px, 3vw, 34px)/.95 var(--mw-display);
+  letter-spacing: .015em;
+  white-space: nowrap;
 }
 
 .mw-champions-rule {
-  flex: 1;
   height: 1px;
-  background: linear-gradient(90deg,#8999ad,transparent);
+  flex: 1;
+  min-width: 12px;
+  background: linear-gradient(
+    90deg,
+    #bca66e,
+    rgba(188, 166, 110, .3),
+    transparent
+  );
 }
 
 .mw-champions-empty {
   margin: 0;
-  padding: 15px 18px;
-  color: #aab5c5;
-  font: 700 13px var(--roster-display);
-  letter-spacing: .1em;
-  background: linear-gradient(90deg,rgba(130,150,180,.09),transparent);
-  border-left: 2px solid #8999ad;
+  padding: 13px 16px;
+  border: 0;
+  border-top: 1px solid rgba(188, 166, 110, .35);
+  border-bottom: 1px solid rgba(188, 166, 110, .16);
+  background: linear-gradient(
+    90deg,
+    rgba(188, 166, 110, .08),
+    transparent 75%
+  );
+  color: #aab4c3;
+  font: 800 13px var(--mw-display);
+  letter-spacing: .12em;
 }
 
-/* EXPLORACIÓN Y FILTROS */
+/* ==========================================================
+   EXPLORAR SUPERSTRELLAS
+   Inspirado en el panel EXPLORAR POR MARCA de Alumni.
+   ========================================================== */
 
 .mw-brand-filter-panel {
   position: relative;
-  width: min(100% - 32px,1320px);
-  margin: 0 auto 35px;
-  padding: 17px 0 20px;
-  border-top: 1px solid var(--roster-line);
-  border-bottom: 1px solid var(--roster-line);
+  width: min(100% - 48px, 1180px);
+  margin: 0 auto 30px;
+  padding: 17px 15px 18px;
+  overflow: hidden;
+  border: 0;
+  border-top: 1px solid rgba(111, 154, 207, .23);
+  border-bottom: 1px solid rgba(111, 154, 207, .23);
   background:
-    radial-gradient(ellipse at 80% 30%,rgba(130,155,190,.09),transparent 55%);
+    radial-gradient(
+      ellipse at 90% 35%,
+      rgba(46, 105, 175, .17),
+      transparent 50%
+    ),
+    linear-gradient(
+      100deg,
+      #090e17,
+      #101a29 52%,
+      #080c13
+    );
+  box-shadow: inset 0 1px rgba(255,255,255,.035);
 }
 
 .mw-filter-panel-heading {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: end;
-  flex-wrap: wrap;
-  gap: 9px 14px;
+  gap: 4px 12px;
   margin-bottom: 14px;
 }
 
 .mw-filter-kicker {
-  display: block;
-  width: 100%;
-  color: #aebbd0;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .18em;
+  grid-column: 1 / -1;
+  color: #70cfff;
+  font: 900 10px var(--mw-display);
+  letter-spacing: .19em;
 }
 
 .mw-filter-panel-heading > strong {
-  color: #f3f5f8;
-  font-size: clamp(24px,4vw,34px);
-  font-weight: 900;
-  line-height: .95;
+  color: #f3f6fb;
+  font: 900 clamp(23px, 3.5vw, 32px)/.95 var(--mw-display);
+  letter-spacing: .025em;
 }
 
 .mw-filter-panel-heading .mw-catalog-count {
-  margin-left: auto;
-  color: #8997aa;
-  font-size: 11px;
-  letter-spacing: .13em;
+  color: #9caabe;
+  font: 900 11px var(--mw-display);
+  letter-spacing: .12em;
+  text-align: right;
 }
 
 .mw-roster-search {
-  margin-bottom: 12px;
+  width: 100%;
+  margin: 0 0 10px;
 }
 
 .mw-roster-search input {
+  display: block;
   width: 100%;
-  min-height: 43px;
+  min-width: 0;
+  min-height: 42px;
+  box-sizing: border-box;
   padding: 10px 13px;
-  border: 1px solid rgba(165,185,215,.25);
-  border-radius: 2px;
+  border: 1px solid #34445b;
+  border-radius: 0;
   outline: none;
-  background: linear-gradient(90deg,#111925,#080c13);
-  color: #f4f6fa;
-  font: 600 14px var(--roster-body);
-  transition: border-color .2s,box-shadow .2s;
+  background: rgba(3, 7, 13, .72);
+  color: #f2f5fa;
+  font: 600 13px var(--mw-body);
+  transition: border-color .18s, box-shadow .18s;
 }
 
 .mw-roster-search input::placeholder {
-  color: #8491a4;
-  font: 700 13px var(--roster-display);
-  letter-spacing: .07em;
+  color: #78869a;
+  font: 700 12px var(--mw-display);
+  letter-spacing: .08em;
 }
 
 .mw-roster-search input:focus {
-  border-color: #b8c7dc;
-  box-shadow: 0 0 15px rgba(160,185,220,.13);
+  border-color: #70b9f4;
+  box-shadow: 0 0 0 2px rgba(85, 170, 255, .12);
 }
 
 .mw-roster-filters {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
 }
 
 .mw-roster-filters label {
-  color: #b7c1d0;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .08em;
+  color: #b6c2d2;
+  font: 900 12px var(--mw-display);
+  letter-spacing: .09em;
 }
 
 .mw-roster-filters select {
   min-height: 36px;
   max-width: 100%;
-  padding: 5px 27px 5px 9px;
-  border: 1px solid rgba(165,185,215,.27);
-  border-radius: 2px;
+  padding: 7px 30px 7px 10px;
+  border: 1px solid #34445b;
+  border-radius: 0;
   outline: none;
-  background: #0c121c;
-  color: #edf1f6;
-  font-size: 13px;
-  font-weight: 700;
+  background-color: #0a101a;
+  color: #edf3fb;
+  font: 800 12px var(--mw-display);
+  letter-spacing: .035em;
+  cursor: pointer;
+}
+
+.mw-roster-filters select:focus {
+  border-color: #70b9f4;
+  box-shadow: 0 0 0 2px rgba(85, 170, 255, .12);
 }
 
 .mw-roster-filters select option {
-  background: #0b1018;
-  color: #fff;
+  background: #0b111b;
+  color: #f2f5fa;
 }
 
-/* SECCIONES DEL ROSTER */
+/* ==========================================================
+   DIVISIONES Y ENCABEZADOS
+   ========================================================== */
 
 .mw-roster-catalog-section {
-  width: min(100% - 32px,1320px);
+  width: min(100% - 48px, 1180px);
   margin: 0 auto;
 }
 
 .mw-roster-group {
   min-width: 0;
-  margin: 0 0 38px;
+  margin: 0 0 36px;
 }
 
 .mw-roster-group[hidden] {
@@ -346,68 +415,71 @@
 
 .mw-catalog-section-heading {
   display: flex;
-  align-items: end;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #aab5c5;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 15px;
+  padding: 0 0 10px;
+  border-bottom: 2px solid #aeb8c7;
+  background: linear-gradient(
+    90deg,
+    rgba(174, 184, 199, .09),
+    transparent 75%
+  );
 }
 
 .mw-catalog-section-heading .mw-filter-kicker {
-  color: #8795a9;
-  font-size: 10px;
+  display: block;
+  margin-bottom: 5px;
+  color: #929eaf;
+  font: 900 10px var(--mw-display);
+  letter-spacing: .17em;
 }
 
 .mw-catalog-section-heading h2 {
   margin: 0;
-  color: #f0f3f7;
-  font: 900 clamp(27px,4vw,39px)/.95 var(--roster-display);
-  letter-spacing: -.02em;
+  color: #f1f4f8;
+  font: 900 clamp(27px, 4vw, 39px)/.95 var(--mw-display);
+  letter-spacing: -.015em;
 }
 
 .mw-catalog-section-heading .mw-catalog-count {
-  margin-left: auto;
-  color: #9aa7b9;
-  font: 800 11px var(--roster-display);
-  letter-spacing: .12em;
+  flex: 0 0 auto;
+  padding-bottom: 3px;
+  color: #aab5c4;
+  font: 900 11px var(--mw-display);
+  letter-spacing: .1em;
+  text-align: right;
 }
 
-/* CUADRÍCULA: 5 PC / 4 TABLET / 3 MÓVIL */
+[data-roster-group="segunda"] .mw-catalog-section-heading {
+  border-bottom-color: #8e9aaa;
+}
+
+[data-roster-group="admin"] .mw-catalog-section-heading {
+  border-bottom-color: #6d9bc8;
+}
+
+/* ==========================================================
+   TARJETAS — MISMO FORMATO VISUAL QUE ALUMNI
+   ========================================================== */
 
 .roster-grid-container {
   display: grid;
-  grid-template-columns: repeat(5,minmax(0,1fr));
-  align-items: start;
-  gap: clamp(10px,1.4vw,17px);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(9px, 1.2vw, 16px);
   width: 100%;
   max-width: none;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
-.mw-catalog-loading,
-.mw-empty-state,
-.mw-catalog-error {
-  grid-column: 1/-1;
-  margin: 0;
-  padding: 20px 8px;
-  color: #aab6c7;
-  font: 800 13px var(--roster-display);
-  letter-spacing: .1em;
-  text-align: center;
-  border-bottom: 1px solid var(--roster-line);
-}
-
-.mw-catalog-error {
-  color: #ff7180;
-}
-
-/* TARJETAS 3:4 */
 
 .mw-wrestler-card {
-  --wrestler-accent: #aebed2;
-  --wrestler-glow: rgba(160,185,220,.22);
+  --wrestler-accent: #c4d0df;
+  --wrestler-glow: rgba(104, 151, 207, .24);
+
   position: relative;
   isolation: isolate;
   display: flex;
@@ -415,25 +487,38 @@
   justify-content: flex-end;
   width: 100%;
   min-width: 0;
-  aspect-ratio: 3 / 4;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 3 / 4.7;
+  box-sizing: border-box;
   overflow: hidden;
   padding: 0;
-  border: 1px solid rgba(180,200,230,.2);
+  border: 1px solid rgba(170, 184, 204, .30);
   border-radius: 2px;
-  background:
-    radial-gradient(ellipse at 50% 22%,#263448 0,#101722 43%,#05070b 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 96.5%, 94% 100%, 0 100%);
+  background: radial-gradient(
+    ellipse at 48% 22%,
+    #263247 0,
+    #101723 42%,
+    #05070b 100%
+  );
   color: #fff;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 10px 24px #0009;
-  transition: transform .2s,border-color .2s,box-shadow .2s;
+  box-shadow: 0 10px 25px rgba(0,0,0,.45);
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
 .mw-wrestler-card:hover,
 .mw-wrestler-card:focus-visible {
   transform: translateY(-4px);
   border-color: var(--wrestler-accent);
-  box-shadow: 0 13px 28px #000b,0 0 18px var(--wrestler-glow);
+  box-shadow:
+    0 15px 30px rgba(0,0,0,.62),
+    0 0 18px var(--wrestler-glow);
   outline: none;
 }
 
@@ -446,7 +531,7 @@
   object-fit: cover;
   object-position: center top;
   filter: saturate(1.06) contrast(1.04);
-  transition: transform .3s,filter .3s;
+  transition: transform .35s ease, filter .25s ease;
 }
 
 .mw-wrestler-card:hover .mw-wrestler-card__image {
@@ -464,22 +549,38 @@
   z-index: -1;
   inset: 0;
   background:
-    linear-gradient(180deg,transparent 35%,rgba(0,0,0,.18) 55%,rgba(0,0,0,.96) 100%),
-    linear-gradient(135deg,var(--wrestler-glow),transparent 55%);
+    linear-gradient(
+      180deg,
+      rgba(3,6,10,0) 25%,
+      rgba(5,7,10,.20) 43%,
+      rgba(5,7,10,.90) 74%,
+      #05070a 100%
+    ),
+    linear-gradient(
+      135deg,
+      var(--wrestler-glow),
+      transparent 45%
+    );
   pointer-events: none;
 }
 
 .mw-wrestler-card__sheen {
   position: absolute;
-  z-index: 1;
   top: -40%;
   left: -80%;
   width: 45%;
   height: 190%;
   transform: rotate(22deg);
-  background: linear-gradient(90deg,transparent,#ffffff12,#ffffff35,#ffffff08,transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.05),
+    rgba(255,255,255,.22),
+    rgba(255,255,255,.04),
+    transparent
+  );
   pointer-events: none;
-  transition: left .45s;
+  transition: left .45s ease;
 }
 
 .mw-wrestler-card:hover .mw-wrestler-card__sheen {
@@ -490,85 +591,130 @@
   position: absolute;
   top: 7px;
   right: 7px;
-  padding: 4px 7px;
+  padding: 4px 6px;
   border: 1px solid var(--wrestler-accent);
-  background: rgba(5,8,13,.88);
+  background: rgba(5,8,14,.88);
   color: var(--wrestler-accent);
-  font: 900 .75rem var(--roster-display);
+  font: 900 .72rem var(--mw-display);
+  letter-spacing: .04em;
   box-shadow: 0 0 12px var(--wrestler-glow);
 }
 
 .mw-wrestler-card__banner {
   position: relative;
   display: block;
-  margin: 0 0 4px;
-  padding: 7px 8px 8px;
-  background: linear-gradient(0deg,rgba(0,0,0,.98),rgba(0,0,0,.78) 70%,transparent);
-  border-top: 2px solid var(--card-brand-color,var(--wrestler-accent));
-  box-shadow: 0 -5px 14px rgba(0,0,0,.15);
+  margin: 0 -5px 5px;
+  padding: 7px 8px 8px 12px;
+  transform: skewY(-4deg);
+  border-top: 1px solid rgba(255,255,255,.85);
+  border-bottom: 2px solid #05070b;
+  background: var(
+    --wrestler-banner,
+    linear-gradient(105deg, var(--wrestler-accent), #f4f7fc, var(--wrestler-accent))
+  );
+  box-shadow: 0 4px 12px var(--wrestler-glow);
 }
 
 .mw-wrestler-card__banner-inner {
   display: block;
+  transform: skewY(4deg);
 }
 
 .mw-wrestler-card__subtitle {
   display: block;
-  overflow: hidden;
-  color: #d5dce7;
-  font: 800 clamp(.5rem,.75vw,.7rem)/1.1 var(--roster-display);
-  letter-spacing: .07em;
-  text-overflow: ellipsis;
+  color: #07101b;
+  font: 800 clamp(.52rem, .7vw, .7rem)/1.1 var(--mw-display);
+  letter-spacing: .09em;
   text-transform: uppercase;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mw-wrestler-card__name {
   display: block;
   margin-top: 3px;
-  overflow-wrap: anywhere;
-  color: #fff;
-  font: 900 clamp(.95rem,1.5vw,1.55rem)/.94 var(--roster-display);
-  letter-spacing: -.015em;
-  text-shadow: 0 2px 6px #000,0 0 12px #0009;
+  color: #05070b;
+  font: 900 clamp(.92rem, 1.5vw, 1.55rem)/.94 var(--mw-display);
+  letter-spacing: -.025em;
   text-transform: uppercase;
+  text-shadow: 0 1px rgba(255,255,255,.45);
+  overflow-wrap: anywhere;
 }
 
 .mw-wrestler-card__brand {
   display: none !important;
 }
 
-/* IDENTIDAD DE MARCAS */
+.mw-wrestler-card__view {
+  font-size: .56rem;
+  color: #aeb8c9;
+}
+
+/* Identidad de cada marca: solo acento, no cambia el diseño. */
 
 .mw-wrestler-card:has([data-brand="RAW"]),
 .mw-wrestler-card.brand-raw {
-  --card-brand-color: #ff2638;
-  --wrestler-accent: #ff3548;
-  --wrestler-glow: rgba(255,38,56,.22);
+  --wrestler-accent: #ff2638;
+  --wrestler-glow: rgba(255,38,56,.24);
 }
 
 .mw-wrestler-card:has([data-brand="SmackDown"]),
 .mw-wrestler-card.brand-smackdown {
-  --card-brand-color: #168cff;
-  --wrestler-accent: #379cff;
-  --wrestler-glow: rgba(22,140,255,.22);
+  --wrestler-accent: #168cff;
+  --wrestler-glow: rgba(22,140,255,.24);
 }
 
 .mw-wrestler-card:has([data-brand="NXT"]),
 .mw-wrestler-card.brand-nxt {
-  --card-brand-color: #c7ccd4;
   --wrestler-accent: #c7ccd4;
-  --wrestler-glow: rgba(210,220,235,.2);
+  --wrestler-glow: rgba(199,204,212,.20);
 }
 
 .mw-wrestler-card:has([data-brand="AAA"]),
 .mw-wrestler-card.brand-aaa {
-  --card-brand-color: #36c878;
-  --wrestler-accent: #36c878;
-  --wrestler-glow: rgba(54,200,120,.2);
+  --wrestler-accent: #4cce85;
+  --wrestler-glow: rgba(76,206,133,.22);
 }
 
-/* MODAL */
+/* Mensajes de catálogo */
+
+.mw-empty-state,
+.mw-catalog-loading,
+.mw-catalog-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 22px 12px;
+  border: 0;
+  border-top: 1px solid #263247;
+  border-bottom: 1px solid #263247;
+  background: linear-gradient(90deg, #0b111b, transparent);
+  color: #aab6c9;
+  font: 800 13px var(--mw-display);
+  letter-spacing: .1em;
+  text-align: center;
+}
+
+.mw-catalog-error {
+  color: #ff6e83;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================
+   MODAL — ESTILOS ORIGINALES
+   Conservados sin rediseño.
+   ========================================================== */
 
 .mw-modal-open {
   overflow: hidden;
@@ -580,88 +726,98 @@
 
 .mw-wrestler-modal {
   position: fixed;
-  z-index: 10000;
   inset: 0;
+  z-index: 10000;
   display: grid;
   place-items: center;
-  padding: 12px;
+  padding: clamp(8px, 2.5vw, 26px);
+  font-family: var(--mw-body);
   color: #f4f7fc;
-  font-family: var(--roster-body);
 }
 
 .mw-wrestler-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(2,4,8,.92);
+  background: rgba(2,4,8,.91);
 }
 
 .mw-wrestler-modal__dialog {
-  --wrestler-accent: #b8c7dc;
-  --wrestler-glow: rgba(160,185,220,.2);
+  --wrestler-accent: #22d8ff;
+  --wrestler-glow: rgba(34,216,255,.25);
+
   position: relative;
-  width: min(100%,850px);
-  max-height: 94dvh;
+  width: min(100%, 850px);
+  max-height: min(94dvh, 1100px);
   overflow: auto;
   overscroll-behavior: contain;
-  padding: clamp(14px,3vw,26px);
   background:
-    radial-gradient(ellipse at 100% 0%,rgba(150,180,220,.1),transparent 38%),
-    linear-gradient(145deg,#111925,#080c13 65%,#0b111a);
-  border: 1px solid rgba(180,200,230,.27);
-  border-top: 3px solid var(--wrestler-accent);
-  border-radius: 5px;
-  box-shadow: 0 25px 80px #000d,0 0 25px var(--wrestler-glow);
-  animation: roster-modal-in .2s ease-out;
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(34,216,255,.09),
+      transparent 36%
+    ),
+    linear-gradient(145deg,#0d131e,#080c13 58%,#0a101a);
+  border: 1px solid color-mix(in srgb,var(--wrestler-accent) 72%,#253047);
+  border-top: 4px solid var(--wrestler-accent);
+  border-radius: 20px;
+  box-shadow: 0 25px 80px #000d,0 0 28px var(--wrestler-glow);
+  padding: clamp(14px,3.2vw,26px);
+  scrollbar-color: #344258 #090d14;
+  animation: mw-modal-enter .22s ease-out;
 }
 
-@keyframes roster-modal-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes mw-modal-enter {
+  from { opacity: 0; transform: translateY(10px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .mw-wrestler-modal__close {
   position: sticky;
-  z-index: 3;
   top: 0;
   float: right;
-  width: 38px;
-  height: 38px;
-  margin: -3px -3px -38px 0;
-  border: 1px solid #526176;
-  border-radius: 2px;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  margin: -4px -4px -42px 0;
+  border: 1px solid #2c374a;
+  border-radius: 12px;
   background: #080d15;
   color: #f4f7fc;
-  font-size: 25px;
+  font-size: 1.8rem;
+  line-height: 1;
   cursor: pointer;
+  box-shadow: 0 4px 12px #0008;
 }
 
 .mw-wrestler-modal__close:hover {
-  border-color: #e2e9f3;
-  color: #fff;
+  border-color: var(--wrestler-accent);
+  color: var(--wrestler-accent);
 }
 
 .mw-modal-hero {
   display: grid;
   grid-template-columns: minmax(150px,255px) minmax(0,1fr);
+  gap: clamp(16px,3vw,28px);
   align-items: center;
-  gap: clamp(15px,3vw,28px);
-  padding: 0 35px 20px 0;
+  padding: 0 36px 20px 0;
 }
 
 .mw-modal-portrait-wrap {
   position: relative;
   min-height: 240px;
   aspect-ratio: 3 / 4;
+  border: 1px solid #2c3749;
+  border-radius: 15px;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 20%,#28374d,#080c13 72%);
-  border: 1px solid #354257;
+  box-shadow: inset 0 0 0 1px #ffffff08;
 }
 
 .mw-modal-portrait {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
+  position: absolute;
+  inset: 0;
   object-fit: cover;
   object-position: top center;
 }
@@ -672,14 +828,14 @@
 
 .mw-modal-brand-tag {
   position: absolute;
-  left: 9px;
-  bottom: 9px;
-  padding: 5px 9px;
-  border: 1px solid var(--wrestler-accent);
+  left: 10px;
+  bottom: 10px;
+  padding: 6px 10px;
   background: #060a11e8;
+  border: 1px solid var(--wrestler-accent);
   color: var(--wrestler-accent);
-  font: 900 12px var(--roster-display);
-  letter-spacing: .1em;
+  font: 900 .75rem var(--mw-display);
+  letter-spacing: .12em;
 }
 
 .mw-modal-identity {
@@ -688,26 +844,26 @@
 
 .mw-modal-nickname {
   margin: 0 0 8px;
-  color: #b9c8dc;
-  font: 900 clamp(.9rem,2vw,1.25rem)/1.2 var(--roster-display);
-  letter-spacing: .08em;
+  color: #f0c76a;
+  font: 900 clamp(.9rem,2vw,1.25rem)/1.2 var(--mw-display);
+  letter-spacing: .1em;
   text-transform: uppercase;
 }
 
 .mw-modal-identity h2 {
   margin: 0 0 14px;
-  color: #fff;
-  font: 900 clamp(2rem,5vw,3.25rem)/.94 var(--roster-display);
+  font: 900 clamp(2rem,5vw,3.25rem)/.94 var(--mw-display);
   letter-spacing: -.02em;
-  overflow-wrap: anywhere;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+  text-shadow: 0 5px 22px #0009;
 }
 
 .mw-interpreter-block {
   display: flex;
   align-items: flex-start;
-  flex-wrap: wrap;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .mw-interpreter-copy {
@@ -718,15 +874,17 @@
 }
 
 .mw-mini-label {
-  color: #8998ad;
-  font: 800 11px var(--roster-display);
+  display: block;
+  color: #8593aa;
+  font: 800 .73rem var(--mw-display);
   letter-spacing: .12em;
   text-transform: uppercase;
 }
 
 .mw-interpreter-copy > strong {
   color: var(--wrestler-accent);
-  font: 900 16px var(--roster-display);
+  font: 900 1rem var(--mw-display);
+  letter-spacing: .04em;
 }
 
 .mw-interpreter-details {
@@ -737,13 +895,15 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 6px 9px;
-  border: 1px solid #344258;
-  background: #111a28;
-  color: #c2ccda;
-  font: 800 11px var(--roster-display);
-  cursor: pointer;
   list-style: none;
+  cursor: pointer;
+  color: #aab8cc;
+  border: 1px solid #28364a;
+  border-radius: 8px;
+  background: #111a28;
+  padding: 6px 9px;
+  font: 800 .68rem var(--mw-display);
+  letter-spacing: .08em;
 }
 
 .mw-interpreter-details summary::-webkit-details-marker {
@@ -751,6 +911,7 @@
 }
 
 .mw-chevron {
+  font-size: 1rem;
   color: var(--wrestler-accent);
   transition: transform .15s;
 }
@@ -761,14 +922,15 @@
 
 .mw-interpreter-list {
   position: absolute;
-  z-index: 5;
   top: calc(100% + 6px);
   right: 0;
+  z-index: 5;
   width: min(270px,75vw);
   max-height: 240px;
   overflow: auto;
   padding: 6px;
-  border: 1px solid #344258;
+  border: 1px solid #334157;
+  border-radius: 10px;
   background: #0b111b;
   box-shadow: 0 15px 35px #000c;
 }
@@ -779,10 +941,10 @@
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-radius: 2px;
   color: #e7edf7;
-  font-size: 13px;
   text-decoration: none;
+  border-radius: 6px;
+  font-size: .82rem;
 }
 
 .mw-interpreter-option:hover,
@@ -792,63 +954,78 @@
 }
 
 .mw-interpreter-option__meta {
+  font: 800 .62rem var(--mw-display);
+  letter-spacing: .08em;
   color: #8d9bb1;
-  font: 800 10px var(--roster-display);
 }
 
-/* DATOS Y ATRIBUTOS DEL MODAL */
+.mw-interpreter-option.is-current .mw-interpreter-option__meta {
+  color: var(--wrestler-accent);
+}
 
-.mw-modal-panel,
-.mw-modal-mini-panel {
-  min-width: 0;
-  margin: 0 0 15px;
-  padding: clamp(13px,2.5vw,21px);
-  background: linear-gradient(145deg,rgba(25,36,52,.75),rgba(9,14,22,.85));
-  border-top: 1px solid rgba(180,200,230,.25);
-  border-bottom: 1px solid rgba(180,200,230,.12);
+.mw-modal-panel {
+  padding: clamp(14px,2.8vw,21px);
+  border: 1px solid #263246;
+  border-radius: 17px;
+  background: linear-gradient(145deg,#111925,#0d131d);
+  margin: 0 0 16px;
+  box-shadow: inset 0 1px #ffffff05;
 }
 
 .mw-panel-heading {
-  margin: 0 0 15px;
+  margin: 0 0 16px;
   color: var(--wrestler-accent);
-  font: 900 17px var(--roster-display);
-  letter-spacing: .13em;
+  font: 900 1.08rem var(--mw-display);
+  letter-spacing: .14em;
   text-transform: uppercase;
 }
 
 .mw-attribute {
-  margin-bottom: 13px;
+  margin: 0 0 13px;
+}
+
+.mw-attribute:last-of-type {
+  margin-bottom: 0;
 }
 
 .mw-attribute__line {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
   margin-bottom: 7px;
   color: #dce4f1;
-  font: 800 15px var(--roster-display);
+  font: 800 1rem var(--mw-display);
 }
 
 .mw-attribute__line strong {
+  font: 900 1.05rem var(--mw-display);
   color: var(--attribute-color,var(--wrestler-accent));
 }
 
-.mw-attribute:nth-of-type(2) { --attribute-color: #ff806d; }
-.mw-attribute:nth-of-type(3) { --attribute-color: #e9cf79; }
-.mw-attribute:nth-of-type(4) { --attribute-color: #65d6ac; }
+.mw-attribute:nth-of-type(2) { --attribute-color: #ff6e58; }
+.mw-attribute:nth-of-type(3) { --attribute-color: #f3d65b; }
+.mw-attribute:nth-of-type(4) { --attribute-color: #16e6a4; }
 
 .mw-attribute__track {
-  height: 8px;
+  height: 10px;
+  border-radius: 99px;
   overflow: hidden;
-  background: #263448;
+  background: #273448;
+  box-shadow: inset 0 2px 4px #0008;
 }
 
 .mw-attribute__track span {
   display: block;
   width: var(--attribute-value);
   height: 100%;
-  background: linear-gradient(90deg,#71839b,var(--attribute-color,var(--wrestler-accent)));
-  box-shadow: 0 0 12px var(--wrestler-glow);
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb,var(--attribute-color,var(--wrestler-accent)) 70%,#c20d36),
+    var(--attribute-color,var(--wrestler-accent))
+  );
+  box-shadow: 0 0 12px color-mix(in srgb,var(--attribute-color,var(--wrestler-accent)) 35%,transparent);
 }
 
 .mw-overall-row {
@@ -856,89 +1033,102 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--roster-line);
+  margin-top: 17px;
+  padding-top: 13px;
+  border-top: 1px solid #29364a;
   color: #9caac0;
-  font: 800 12px var(--roster-display);
+  font: 800 .78rem var(--mw-display);
   letter-spacing: .12em;
 }
 
-.mw-overall-row strong,
-.mw-modal-overall > strong {
+.mw-overall-row strong {
+  font: 900 1.9rem var(--mw-display);
   color: var(--wrestler-accent);
-  font: 900 32px var(--roster-display);
+  text-shadow: 0 0 18px var(--wrestler-glow);
 }
 
 .mw-data-pending {
-  margin: 0;
-  color: #8997aa;
-  font-size: 13px;
+  color: #8492a8;
+  font-size: .86rem;
   line-height: 1.5;
+  margin: 0;
 }
 
-.mw-modal-stat-grid,
-.mw-record-grid {
+.mw-modal-stat-grid {
   display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  gap: 12px;
-  margin-bottom: 15px;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.mw-modal-mini-panel {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid #263246;
+  border-radius: 16px;
+  background: #111824;
 }
 
 .mw-modal-mini-panel > strong {
   display: block;
   margin-top: 8px;
   color: #f4f7fc;
-  font: 800 18px var(--roster-display);
+  font: 800 1.1rem var(--mw-display);
   overflow-wrap: anywhere;
 }
 
 .mw-mini-label--sub {
-  margin-top: 15px;
+  margin-top: 16px;
 }
 
 .mw-modal-overall > strong {
-  display: block;
-  margin-top: 12px;
-  font-size: 42px;
+  font: 900 2.7rem/.95 var(--mw-display);
+  color: var(--wrestler-accent);
   text-shadow: 0 0 18px var(--wrestler-glow);
+  margin-top: 12px;
 }
 
 .mw-overall-note {
   display: block;
-  margin-top: 7px;
   color: #8390a6;
-  font-size: 11px;
+  font-size: .68rem;
+  margin-top: 8px;
 }
-
-/* RÉCORDES */
 
 .mw-record-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-  padding: 13px 15px;
-  border-left: 2px solid var(--wrestler-accent);
-  background: linear-gradient(100deg,rgba(140,165,200,.12),rgba(9,15,24,.8));
-  color: #f4f7fc;
+  gap: 13px;
+  margin: 0 0 12px;
+  padding: 15px 17px;
+  border: 1px solid color-mix(in srgb,var(--wrestler-accent) 48%,#263246);
+  border-radius: 14px;
   text-decoration: none;
-  transition: filter .2s,transform .2s;
+  color: #f4f7fc;
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb,var(--wrestler-accent) 13%,#101824),
+    #0c121b 72%
+  );
+  box-shadow: inset 0 1px #ffffff08;
+  transition: border-color .18s,transform .18s;
 }
 
 .mw-record-bar:hover {
-  filter: brightness(1.2);
-  transform: translateX(3px);
+  border-color: var(--wrestler-accent);
+  transform: translateY(-2px);
 }
 
 .mw-record-bar__icon {
   display: grid;
   place-items: center;
-  flex: 0 0 40px;
-  height: 40px;
-  border: 1px solid #344258;
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #080d15;
+  border: 1px solid #2a374b;
   color: var(--wrestler-accent);
-  font-size: 20px;
+  font-size: 1.4rem;
 }
 
 .mw-record-bar__copy {
@@ -950,45 +1140,64 @@
 }
 
 .mw-record-bar__copy strong {
-  font: 900 15px var(--roster-display);
-  letter-spacing: .08em;
+  font: 900 .95rem var(--mw-display);
+  letter-spacing: .1em;
 }
 
 .mw-record-bar__copy small {
   color: #8d9bb1;
-  font-size: 11px;
+  font-size: .72rem;
 }
 
 .mw-record-bar__arrow {
+  font-size: 1.4rem;
   color: var(--wrestler-accent);
-  font-size: 20px;
+}
+
+.mw-record-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .mw-record-tile {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  padding: 13px;
-  border-bottom: 1px solid #354257;
-  background: rgba(15,23,35,.7);
-  color: #f3f6fb;
+  padding: 15px;
+  border: 1px solid #273348;
+  border-radius: 13px;
+  background: #101722;
   text-decoration: none;
+  transition: border-color .18s;
+}
+
+.mw-record-tile:hover {
+  border-color: var(--wrestler-accent);
 }
 
 .mw-record-tile > strong {
-  font: 900 clamp(18px,3vw,25px) var(--roster-display);
+  color: #f3f6fb;
+  font: 900 clamp(1.1rem,3vw,1.55rem) var(--mw-display);
+  letter-spacing: .02em;
 }
 
 .mw-record-tile > small {
   color: #8290a6;
-  font-size: 11px;
+  font-size: .7rem;
 }
 
 .mw-modal-achievements ul {
   margin: 0;
   padding-left: 21px;
   color: #b8c3d3;
-  line-height: 1.8;
+  line-height: 1.85;
+}
+
+.mw-modal-achievements li {
+  padding-left: 4px;
+  margin: 3px 0;
 }
 
 .mw-modal-achievements li::marker {
@@ -997,68 +1206,78 @@
 
 .mw-modal-footer-meta {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  flex-wrap: wrap;
+  padding: 2px 2px 0;
 }
 
 .mw-modal-footer-meta span {
-  padding: 5px 8px;
-  border-bottom: 1px solid #45546a;
-  color: #aab8cc;
-  font: 700 11px var(--roster-display);
+  padding: 6px 9px;
+  border: 1px solid #273348;
+  border-radius: 999px;
+  color: #94a3b9;
+  background: #0b111a;
+  font: 700 .68rem var(--mw-display);
+  letter-spacing: .05em;
   text-transform: uppercase;
 }
 
-/* TABLET */
+/* ==========================================================
+   RESPONSIVE — MÓVIL
+   ========================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 760px) {
   .roster-grid-container {
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 11px;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 8px;
+  }
+
+  .mw-roster-group {
+    margin-bottom: 28px;
   }
 }
 
-/* MÓVIL */
-
 @media (max-width: 600px) {
   .roster-hero {
-    width: calc(100% - 28px);
-    margin: 24px auto 25px;
-    padding: 34px 16px 22px;
+    width: calc(100% - 32px);
+    margin-bottom: 25px;
+    padding: 36px 17px 22px;
   }
 
-  .alumni-eyebrow {
+  .roster-hero .alumni-eyebrow {
     gap: 7px;
     font-size: 8px;
-    letter-spacing: 1.3px;
+    letter-spacing: 1.5px;
   }
 
-  .alumni-eyebrow-line {
+  .roster-hero .alumni-eyebrow-line {
     width: 20px;
+    flex-basis: 20px;
   }
 
-  .alumni-title {
-    font-size: clamp(62px,17vw,96px);
+  .roster-hero .alumni-title {
+    font-size: clamp(68px,17vw,96px);
     letter-spacing: -1px;
   }
 
-  .alumni-description {
-    margin-top: 17px;
+  .roster-hero .alumni-description {
+    margin-top: 18px;
     font-size: 10px;
+    letter-spacing: 1px;
   }
 
-  .alumni-description span {
+  .roster-hero .alumni-description span {
     font-size: 12px;
     line-height: 1.7;
   }
 
-  .alumni-hero-bottom {
-    margin-top: 23px;
+  .roster-hero .alumni-hero-bottom {
+    margin-top: 24px;
     gap: 9px;
   }
 
-  .alumni-edition,
-  .alumni-edition-label {
+  .roster-hero .alumni-edition,
+  .roster-hero .alumni-edition-label {
     font-size: 8px;
     letter-spacing: 1px;
   }
@@ -1066,27 +1285,36 @@
   .mw-current-champions,
   .mw-brand-filter-panel,
   .mw-roster-catalog-section {
-    width: calc(100% - 28px);
+    width: calc(100% - 32px);
   }
 
   .mw-current-champions {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .mw-champions-heading {
     gap: 8px;
   }
 
-  .mw-champions-kicker {
-    font-size: 8px;
-  }
-
   .mw-champions-heading h2 {
     font-size: 22px;
   }
 
+  .mw-champions-kicker {
+    font-size: 8px;
+  }
+
+  .mw-brand-filter-panel {
+    margin-bottom: 24px;
+    padding: 14px 10px 15px;
+  }
+
+  .mw-filter-panel-heading {
+    gap: 7px;
+  }
+
   .mw-filter-panel-heading > strong {
-    font-size: 25px;
+    font-size: 23px;
   }
 
   .mw-filter-panel-heading .mw-catalog-count {
@@ -1094,7 +1322,7 @@
   }
 
   .mw-roster-filters {
-    gap: 7px;
+    gap: 6px;
   }
 
   .mw-roster-filters label {
@@ -1102,112 +1330,153 @@
   }
 
   .mw-roster-filters select {
-    min-height: 34px;
+    min-height: 35px;
     font-size: 11px;
-  }
-
-  .mw-roster-group {
-    margin-bottom: 29px;
   }
 
   .mw-catalog-section-heading {
     margin-bottom: 12px;
-    padding-bottom: 8px;
   }
 
   .mw-catalog-section-heading h2 {
     font-size: 29px;
   }
 
+  .mw-catalog-section-heading .mw-filter-kicker {
+    font-size: 9px;
+  }
+
   .mw-catalog-section-heading .mw-catalog-count {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .roster-grid-container {
     grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 7px;
+    gap: 8px;
   }
 
   .mw-wrestler-card {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 3 / 4.7;
   }
 
   .mw-wrestler-card__banner {
-    padding: 6px 5px 7px 7px;
-    margin-bottom: 3px;
-  }
-
-  .mw-wrestler-card__subtitle {
-    font-size: clamp(.43rem,1.9vw,.58rem);
-    letter-spacing: .035em;
+    padding: 6px 5px 7px 8px;
+    margin-bottom: 4px;
   }
 
   .mw-wrestler-card__name {
     font-size: clamp(.78rem,3.7vw,1.18rem);
-    line-height: .96;
+    line-height: .94;
+  }
+
+  .mw-wrestler-card__subtitle {
+    font-size: clamp(.43rem,1.9vw,.58rem);
+    letter-spacing: .04em;
+  }
+
+  .mw-wrestler-card__brand {
+    padding: 0 5px 6px;
+    font-size: .48rem;
+    letter-spacing: .03em;
+  }
+
+  .mw-wrestler-card__view {
+    font-size: .43rem;
   }
 
   .mw-wrestler-card__rank {
     top: 5px;
     right: 5px;
-    padding: 3px 5px;
-    font-size: .58rem;
+    padding: 3px 4px;
+    font-size: .57rem;
   }
+
+  /* Modal: medidas móviles originales */
 
   .mw-modal-hero {
     grid-template-columns: minmax(105px,35%) minmax(0,1fr);
-    gap: 13px;
+    gap: 16px;
     padding-right: 0;
-  }
-
-  .mw-modal-portrait-wrap {
-    min-height: 180px;
   }
 
   .mw-modal-identity {
     min-width: 0;
-    padding-left: 2px;
+    padding-left: 3px;
   }
 
   .mw-modal-identity h2 {
     font-size: clamp(1.5rem,6vw,2.15rem);
+    overflow-wrap: anywhere;
   }
 
   .mw-modal-nickname {
     font-size: .8rem;
+    letter-spacing: .06em;
     overflow-wrap: anywhere;
   }
 
+  .mw-interpreter-block {
+    gap: 6px;
+  }
+
+  .mw-interpreter-details summary {
+    padding: 5px 7px;
+    font-size: .6rem;
+  }
+
   .mw-wrestler-modal__dialog {
-    max-height: 96dvh;
     padding: 13px;
+    border-radius: 16px;
+    max-height: 96dvh;
   }
 
   .mw-wrestler-modal {
     padding: 7px;
   }
 
-  .mw-modal-panel,
+  .mw-modal-panel {
+    padding: 14px;
+    border-radius: 13px;
+  }
+
+  .mw-modal-stat-grid {
+    gap: 9px;
+  }
+
   .mw-modal-mini-panel {
     padding: 13px;
   }
 
-  .mw-modal-stat-grid,
   .mw-record-grid {
     gap: 8px;
   }
-}
 
-/* TELÉFONOS PEQUEÑOS */
+  .mw-record-tile {
+    padding: 12px;
+  }
+
+  .mw-record-tile > strong {
+    font-size: 1.1rem;
+  }
+
+  .mw-record-bar {
+    padding: 12px;
+    gap: 9px;
+  }
+
+  .mw-record-bar__copy strong {
+    font-size: .82rem;
+  }
+
+  .mw-record-bar__copy small {
+    font-size: .65rem;
+  }
+}
 
 @media (max-width: 360px) {
   .roster-grid-container {
     grid-template-columns: repeat(3,minmax(0,1fr));
     gap: 6px;
-  }
-
-  .mw-wrestler-card__name {
-    font-size: .78rem;
   }
 
   .mw-wrestler-card__view {
@@ -1216,26 +1485,41 @@
 
   .mw-modal-hero {
     grid-template-columns: minmax(0,32%) minmax(0,1fr);
-    gap: 11px;
+    gap: 13px;
+    padding-right: 0;
   }
 
   .mw-modal-portrait-wrap {
-    min-height: 170px;
+    width: 100%;
+    min-width: 0;
+    min-height: 180px;
   }
 
   .mw-modal-identity h2 {
-    font-size: 1.4rem;
+    font-size: 1.45rem;
   }
 }
 
-/* ACCESIBILIDAD */
+/* PC grande */
+
+@media (min-width: 1500px) {
+  .roster-grid-container {
+    gap: 18px;
+  }
+}
+
+/* Accesibilidad */
 
 @media (prefers-reduced-motion: reduce) {
+  .roster-hero,
+  .roster-hero::before,
+  .roster-hero::after,
   .mw-wrestler-card,
   .mw-wrestler-card__image,
   .mw-wrestler-card__sheen,
   .mw-wrestler-modal__dialog,
   .mw-record-bar,
+  .mw-record-tile,
   .mw-chevron {
     animation: none !important;
     transition: none !important;
