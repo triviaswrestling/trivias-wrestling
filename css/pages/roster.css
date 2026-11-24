@@ -1,220 +1,361 @@
 
 /* ==========================================================================
-   TRIVIAS WRESTLING — ROSTER 2026
-   Dirección visual: WWE 2K / WWE SuperCard
-   Negro · Acero · Plata · Blanco
-   Incluye: Roster, tarjetas, modal, Alumni y Récords
+   TRIVIAS WRESTLING — ROSTER
+   Diseño: WWE SuperCard / WWE 2K
+   Identidad: negro, acero, blanco e iluminación de marca.
+   Imágenes de luchadores: proporción 3:4.
    ========================================================================== */
 
-/* =========================================================
-   1. SISTEMA VISUAL
-   ========================================================= */
+
+/* ==========================================================================
+   01. BASE
+   ========================================================================== */
 
 :root {
-  --mw-cyan: #c4ccd7;
-  --mw-ink: #050608;
-  --mw-panel: #101318;
-  --mw-panel-light: #191e26;
-  --mw-line: #343b46;
-  --mw-muted: #929ba8;
-  --mw-white: #f4f5f7;
-  --mw-silver: #b9c1cc;
-  --mw-steel: #737e8d;
-  --mw-font-display: "Barlow Condensed", Impact, sans-serif;
-  --mw-font-body: "Inter", Arial, sans-serif;
+  --roster-bg: #07090d;
+  --roster-surface: #10141c;
+  --roster-white: #f3f5f8;
+  --roster-silver: #b8c1ce;
+  --roster-muted: #788394;
+  --roster-line: rgba(190, 204, 224, .16);
+  --roster-display: "Barlow Condensed", Impact, sans-serif;
+  --roster-body: "Inter", Arial, sans-serif;
 }
 
 .mw-roster-page {
   min-height: 70vh;
-  padding-bottom: 70px;
-  color: var(--mw-white);
-  background: var(--mw-ink);
+  padding: 0 0 80px;
+  color: var(--roster-white);
+  font-family: var(--roster-body);
 }
 
-/* =========================================================
-   2. CABECERA ROSTER — PRESENTACIÓN DE VIDEOJUEGO
-   ========================================================= */
+.mw-roster-page *,
+.mw-roster-page *::before,
+.mw-roster-page *::after {
+  box-sizing: border-box;
+}
 
-.mw-page-header {
+.mw-roster-page h1,
+.mw-roster-page h2,
+.mw-roster-page h3 {
+  font-family: var(--roster-display);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   02. HERO — PRESENTACIÓN CINEMATOGRÁFICA
+   ========================================================================== */
+
+.roster-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  max-width: 1320px;
-  margin: 24px auto 30px;
-  padding: clamp(34px, 6vw, 76px) clamp(18px, 4vw, 48px);
-  border: 1px solid #343b46;
+
+  width: min(100% - 32px, 1100px);
+  margin: 44px auto 38px;
+  padding: clamp(38px, 7vw, 76px) clamp(20px, 5vw, 48px) 28px;
+
   background:
-    linear-gradient(115deg, transparent 45%, #ffffff08 45.2%, transparent 45.6%),
-    radial-gradient(ellipse at 85% 20%, #8e9aaa20, transparent 42%),
-    linear-gradient(135deg, #1b2028 0%, #0c0f14 48%, #050608 100%);
-  box-shadow:
-    inset 0 1px #ffffff14,
-    inset 0 -2px #000,
-    0 16px 35px #0009;
+    radial-gradient(
+      ellipse at 83% 24%,
+      rgba(155, 180, 215, .13),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 5% 100%,
+      rgba(110, 130, 160, .09),
+      transparent 45%
+    ),
+    linear-gradient(
+      115deg,
+      #080b11 0%,
+      #101722 54%,
+      #080b10 100%
+    );
+
+  border: 1px solid rgba(170, 190, 220, .13);
+  border-radius: 3px;
+  text-align: left;
 }
 
-.mw-page-header::before {
+.roster-hero::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 0;
-  background:
-    linear-gradient(135deg, transparent 65%, #b9c1cc12 65.2%, transparent 65.5%),
-    repeating-linear-gradient(
-      115deg,
-      transparent 0,
-      transparent 28px,
-      #ffffff04 29px,
-      transparent 30px
-    );
+  top: -55%;
+  right: 14%;
+  width: 1px;
+  height: 210%;
+  transform: rotate(32deg);
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(190, 210, 240, .03) 20%,
+    rgba(190, 210, 240, .38) 48%,
+    rgba(190, 210, 240, .04) 75%,
+    transparent
+  );
+
+  box-shadow: 0 0 30px rgba(170, 195, 230, .12);
   pointer-events: none;
 }
 
-.mw-page-header::after {
+.roster-hero::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #f1f3f6, #747e8c 45%, #252b34 85%, transparent);
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(190, 205, 225, .65),
+    rgba(255, 255, 255, .12),
+    transparent
+  );
+
+  pointer-events: none;
 }
 
-.mw-page-header .eyebrow {
+.roster-hero .alumni-hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.roster-hero .alumni-eyebrow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
-  margin: 0 0 13px;
-  color: #c4ccd7;
-  font: 900 .75rem var(--mw-font-display);
-  letter-spacing: .24em;
-  text-transform: uppercase;
+  margin: 0 0 14px;
+
+  color: #c1ccdc;
+  font: 800 10px var(--roster-body);
+  letter-spacing: 2.3px;
 }
 
-.mw-page-header .eyebrow::before {
-  content: "";
-  width: 28px;
-  height: 3px;
-  background: #dce1e8;
-  box-shadow: 0 0 12px #c5ceda55;
+.roster-hero .alumni-eyebrow-line {
+  width: 27px;
+  height: 2px;
+  flex: 0 0 27px;
+  background: #d7e0ed;
+  box-shadow: 0 0 12px rgba(210, 225, 245, .35);
 }
 
-.mw-page-header .page-title {
+.roster-hero .alumni-eyebrow-divider {
+  color: #657184;
+}
+
+.roster-hero .alumni-eyebrow-muted {
+  color: #8491a4;
+}
+
+.roster-hero .alumni-title {
   margin: 0;
-  color: #f5f6f8;
-  font: 900 clamp(4rem, 12vw, 9rem)/.78 var(--mw-font-display);
-  font-style: italic;
-  letter-spacing: -.035em;
+  padding: 0;
+
+  font: italic 900 clamp(64px, 13vw, 132px)/.86 var(--roster-display);
+  letter-spacing: -2px;
   text-transform: uppercase;
-  text-shadow:
-    0 2px 0 #9da7b4,
-    0 5px 0 #343b46,
-    0 14px 25px #000;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #dce4ee 43%,
+    #8291a6 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  filter: drop-shadow(0 5px 0 rgba(30, 40, 55, .9))
+          drop-shadow(0 14px 25px rgba(150, 180, 220, .13));
 }
 
-.mw-page-header .lead {
-  max-width: 650px;
-  margin: 24px 0 0;
-  color: #c0c7d1;
-  font: 500 clamp(.85rem, 1.5vw, 1rem)/1.7 var(--mw-font-body);
+.roster-hero .alumni-description {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  max-width: 620px;
+  margin: 22px 0 0;
+
+  color: #dce4ee;
+  font: 800 11px/1.6 var(--roster-body);
+  letter-spacing: 1.5px;
 }
 
-.mw-page-header .lead::first-line {
-  color: #e5e8ed;
+.roster-hero .alumni-description span {
+  max-width: 560px;
+  color: #b4bfce;
+  font: 400 14px/1.8 var(--roster-body);
+  letter-spacing: .1px;
 }
 
-/* =========================================================
-   3. CAMPEONES ACTUALES
-   ========================================================= */
+.roster-hero .alumni-hero-bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 32px;
+  padding-top: 16px;
+
+  border-top: 1px solid rgba(190, 205, 225, .14);
+}
+
+.roster-hero .alumni-edition,
+.roster-hero .alumni-edition-label {
+  font: 800 9px var(--roster-body);
+  letter-spacing: 1.5px;
+}
+
+.roster-hero .alumni-edition {
+  color: #f0f3f8;
+}
+
+.roster-hero .alumni-edition-line {
+  width: 30px;
+  height: 1px;
+  background: rgba(190, 205, 225, .6);
+}
+
+.roster-hero .alumni-edition-label {
+  color: #8491a4;
+}
+
+
+/* ==========================================================================
+   03. CAMPEONES ACTUALES
+   ========================================================================== */
 
 .mw-current-champions {
-  max-width: 1320px;
-  margin: 0 auto 32px;
-  padding: 0 clamp(14px, 3vw, 34px);
-  overflow: hidden;
+  position: relative;
+  width: min(100% - 32px, 1100px);
+  margin: 0 auto 34px;
+  padding: 0;
 }
 
 .mw-champions-heading {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 15px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #414955;
+  margin: 0 0 17px;
 }
 
 .mw-champions-kicker {
-  color: #aeb7c3;
-  font: 900 .68rem var(--mw-font-display);
-  letter-spacing: .19em;
+  flex: 0 0 auto;
+  color: #c5ccd6;
+  font: 900 10px var(--roster-display);
+  letter-spacing: 2px;
   white-space: nowrap;
 }
 
 .mw-champions-heading h2 {
   margin: 0;
   color: #f5f6f8;
-  font: 900 clamp(1.4rem, 3vw, 2.2rem)/.9 var(--mw-font-display);
-  text-transform: uppercase;
+  font: 900 clamp(22px, 4vw, 34px)/.95 var(--roster-display);
   white-space: nowrap;
 }
 
 .mw-champions-rule {
+  height: 1px;
   flex: 1;
-  min-width: 10px;
-  height: 2px;
-  background: linear-gradient(90deg, #9ca6b3, transparent);
+  min-width: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 210, 225, .6),
+    transparent
+  );
+}
+
+.mw-champions-empty {
+  margin: 0;
+  padding: 13px 0;
+  border-top: 1px solid var(--roster-line);
+  border-bottom: 1px solid var(--roster-line);
+
+  color: #aab5c4;
+  font: 800 13px var(--roster-display);
+  letter-spacing: 1.5px;
 }
 
 .mw-champions-track {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
   gap: 12px;
 }
 
 .mw-champion-card {
-  --champion-accent: #c5ccd6;
+  --champion-accent: #d7c17e;
+
   position: relative;
   isolation: isolate;
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 112px;
-  padding: 11px 14px;
+
+  min-width: 0;
+  min-height: 104px;
+  padding: 10px 12px;
   overflow: hidden;
-  border: 1px solid #454d59;
-  border-left: 4px solid var(--champion-accent);
+
   background:
-    linear-gradient(110deg, #242a33, #11151b 58%, #080a0e);
-  color: #f4f5f7;
+    radial-gradient(
+      ellipse at 0% 50%,
+      color-mix(in srgb, var(--champion-accent) 13%, transparent),
+      transparent 65%
+    ),
+    linear-gradient(110deg, #151923, #090c12);
+
+  border-bottom: 1px solid color-mix(
+    in srgb,
+    var(--champion-accent) 50%,
+    transparent
+  );
+
+  color: white;
   text-decoration: none;
-  clip-path: polygon(0 0, 100% 0, 100% 88%, 95% 100%, 0 100%);
-  transition: transform .18s, border-color .18s;
+  transition: filter .2s ease, transform .2s ease;
 }
 
 .mw-champion-card:hover {
-  transform: translateY(-3px);
-  border-color: #dce2ea;
+  filter: brightness(1.2);
+  transform: translateY(-2px);
 }
 
 .mw-champion-card img {
-  width: 66px;
-  height: 86px;
-  flex: 0 0 66px;
+  width: 64px;
+  height: 84px;
+  flex: 0 0 64px;
+  align-self: flex-end;
   object-fit: cover;
   object-position: top center;
-  filter: drop-shadow(0 4px 5px #000);
+  filter: drop-shadow(0 3px 6px #000);
 }
 
 .mw-champion-card__crest {
   display: grid;
   place-items: center;
-  width: 58px;
-  height: 58px;
-  flex: 0 0 58px;
-  border: 1px solid #818b99;
-  border-radius: 50%;
-  background: radial-gradient(circle, #454e5a, #11151b 72%);
-  color: #e5e9ef;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--champion-accent) 65%,
+    transparent
+  );
+
+  color: var(--champion-accent);
+  background: radial-gradient(circle, #34303a, #0b0d12 75%);
   font-size: 1.8rem;
 }
 
@@ -227,330 +368,317 @@
 }
 
 .mw-champion-card__copy small {
-  color: #aeb8c5;
-  font: 900 .63rem var(--mw-font-display);
-  letter-spacing: .15em;
+  color: var(--champion-accent);
+  font: 900 10px var(--roster-display);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 .mw-champion-card__copy strong {
-  color: #fff;
-  font: 900 clamp(1.1rem, 2vw, 1.45rem)/.95 var(--mw-font-display);
+  color: #f5f6f8;
+  font: 900 21px/.95 var(--roster-display);
   text-transform: uppercase;
   overflow-wrap: anywhere;
 }
 
 .mw-champion-card__copy > span {
-  color: #9da7b5;
-  font: 700 .72rem var(--mw-font-display);
-  letter-spacing: .07em;
+  color: #a6b0be;
+  font: 700 11px var(--roster-display);
+  letter-spacing: .7px;
   text-transform: uppercase;
 }
 
 .mw-champion-card__arrow {
-  align-self: flex-start;
-  color: #c4ccd7;
+  color: var(--champion-accent);
   font-size: 1.2rem;
 }
 
-.mw-champion-card__shine {
-  position: absolute;
-  z-index: -1;
-  inset: -80% auto -80% -40%;
-  width: 22%;
-  transform: rotate(22deg);
-  background: linear-gradient(90deg, transparent, #ffffff18, transparent);
-  transition: left .35s;
-}
-
-.mw-champion-card:hover .mw-champion-card__shine {
-  left: 120%;
-}
-
 .mw-champions-empty {
-  margin: 0;
-  padding: 16px;
-  border: 1px solid #353d48;
-  background: #11151b;
-  color: #aab3c0;
-  font: 700 .8rem var(--mw-font-display);
-  letter-spacing: .08em;
+  background: linear-gradient(
+    90deg,
+    rgba(170, 185, 205, .04),
+    transparent
+  );
 }
 
-/* =========================================================
-   4. PANEL DE EXPLORACIÓN Y FILTROS
-   ========================================================= */
+
+/* ==========================================================================
+   04. EXPLORACIÓN Y FILTROS
+   ========================================================================== */
 
 .mw-brand-filter-panel {
   position: relative;
-  max-width: 1320px;
-  margin: 0 auto 30px;
-  padding: 20px clamp(14px, 3vw, 34px);
-  border: 1px solid #343c47;
-  border-left: 4px solid #aeb8c5;
+  width: min(100% - 32px, 1100px);
+  margin: 0 auto 34px;
+  padding: 16px 0 20px;
+
+  border-top: 1px solid var(--roster-line);
+  border-bottom: 1px solid var(--roster-line);
+
   background:
-    linear-gradient(120deg, #202630, #11151c 48%, #080a0e);
-  box-shadow:
-    inset 0 1px #ffffff12,
-    0 12px 25px #0007;
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(150, 175, 210, .08),
+      transparent 65%
+    );
 }
 
 .mw-filter-panel-heading {
   display: flex;
-  align-items: flex-end;
-  gap: 12px;
+  align-items: baseline;
   flex-wrap: wrap;
-  margin-bottom: 17px;
+  gap: 8px 14px;
+  margin-bottom: 15px;
 }
 
 .mw-filter-kicker {
+  display: block;
   width: 100%;
-  color: #aeb8c5;
-  font: 900 .7rem var(--mw-font-display);
-  letter-spacing: .22em;
-  text-transform: uppercase;
+  color: #aebed2;
+  font: 900 10px var(--roster-display);
+  letter-spacing: 2.5px;
 }
 
 .mw-filter-panel-heading > strong {
-  color: #f4f5f7;
-  font: 900 clamp(1.5rem, 3vw, 2.1rem)/.95 var(--mw-font-display);
-  text-transform: uppercase;
+  color: #f5f6f8;
+  font: 900 clamp(23px, 4vw, 32px)/1 var(--roster-display);
+  letter-spacing: .3px;
 }
 
-.mw-catalog-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0;
+.mw-filter-panel-heading .mw-catalog-count {
+  margin-left: auto;
+  color: #8794a7;
+  font: 800 12px var(--roster-display);
+  letter-spacing: 1.5px;
 }
 
-.mw-search-field,
-.mw-select-field {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 44px;
-  flex: 1 1 190px;
-  padding: 0 12px;
-  border: 1px solid #414a57;
-  background: linear-gradient(180deg, #1b212a, #0a0d12);
-  color: #c5ccd6;
-  box-shadow: inset 0 1px #ffffff0b;
+.mw-roster-search {
+  width: min(100%, 430px);
+  margin-bottom: 12px;
 }
 
-.mw-search-field:focus-within,
-.mw-select-field:focus-within {
-  border-color: #d0d7e0;
-  box-shadow: 0 0 0 1px #c3ccd733;
-}
-
-.mw-search-field input,
-.mw-select-field select {
+.mw-roster-search input {
+  display: block;
   width: 100%;
-  min-width: 0;
-  padding: 11px 0;
+  min-height: 43px;
+  padding: 10px 13px;
+
   border: 0;
-  outline: 0;
-  background: transparent;
-  color: #f4f5f7;
-  font: 600 .85rem var(--mw-font-body);
+  border-bottom: 1px solid rgba(190, 205, 225, .45);
+  border-radius: 0;
+  outline: none;
+
+  background: rgba(255, 255, 255, .035);
+  color: #f5f6f8;
+
+  font: 600 13px var(--roster-body);
+  transition: border-color .2s, background .2s;
 }
 
-.mw-search-field input::placeholder {
-  color: #8993a1;
+.mw-roster-search input::placeholder {
+  color: #8995a6;
+  font: 700 12px var(--roster-display);
+  letter-spacing: 1px;
 }
 
-.mw-select-field select option {
-  background: #11151c;
+.mw-roster-search input:focus {
+  border-color: #e0e7f1;
+  background: rgba(255, 255, 255, .065);
+}
+
+.mw-roster-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mw-roster-filters label {
+  color: #aeb9c8;
+  font: 900 12px var(--roster-display);
+  letter-spacing: 1px;
+}
+
+.mw-roster-filters select {
+  min-height: 36px;
+  max-width: 100%;
+  padding: 6px 28px 6px 10px;
+
+  border: 1px solid rgba(170, 190, 215, .23);
+  border-radius: 0;
+
+  background: #111722;
+  color: #e7ebf1;
+
+  font: 700 12px var(--roster-display);
+  letter-spacing: .5px;
+  outline: none;
+}
+
+.mw-roster-filters select:focus {
+  border-color: #d1dce9;
+}
+
+.mw-roster-filters select option {
+  background: #10141c;
   color: white;
 }
 
-.mw-catalog-count {
-  margin-left: auto;
-  color: #aeb8c5;
-  font: 900 .8rem var(--mw-font-display);
-  letter-spacing: .12em;
+
+/* ==========================================================================
+   05. DIVISIONES
+   ========================================================================== */
+
+.mw-roster-catalog-section {
+  width: min(100% - 32px, 1100px);
+  margin: 0 auto;
 }
 
-/* Filtros de marca */
+.mw-roster-group {
+  --division-accent: #d8e0eb;
 
-.mw-brand-filters {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 4px 1px 9px;
-  scrollbar-width: thin;
-  scrollbar-color: #596473 transparent;
-}
-
-.mw-brand-filter {
   position: relative;
-  flex: 0 0 auto;
-  min-height: 39px;
-  padding: 8px 16px;
-  border: 1px solid #444d59;
-  background: linear-gradient(180deg, #242b35, #10141a);
-  color: #b9c1cc;
-  font: 900 .82rem var(--mw-font-display);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  clip-path: polygon(0 0, 100% 0, 100% 82%, 92% 100%, 0 100%);
-  transition: .16s;
-}
-
-.mw-brand-filter:hover {
-  border-color: #d7dde5;
-  color: #fff;
-}
-
-.mw-brand-filter.is-active {
-  border-color: #e1e5eb;
-  background: linear-gradient(100deg, #e1e5eb, #8994a2);
-  color: #090b0f;
-  box-shadow: 0 0 14px #b9c4d322;
-}
-
-/* =========================================================
-   5. DIVISIONES DEL ROSTER
-   ========================================================= */
-
-.mw-roster-page > .roster-grid-container {
-  display: block;
-  width: 100%;
-}
-
-.mw-roster-division {
-  --division-accent: #dce2eb;
   min-width: 0;
-  margin: 0 0 38px;
+  margin: 0 0 46px;
 }
 
-.mw-roster-division--main {
-  --division-accent: #e6e9ee;
+.mw-roster-group[hidden] {
+  display: none !important;
 }
 
-.mw-roster-division--development {
-  --division-accent: #aeb8c5;
+.mw-roster-group[data-roster-group="segunda"] {
+  --division-accent: #aeb9c9;
 }
 
-.mw-roster-division--other {
-  --division-accent: #c4ccd7;
+.mw-roster-group[data-roster-group="admin"] {
+  --division-accent: #929eae;
 }
 
-.mw-roster-division__header {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 0 0 17px;
-  padding: 13px 15px 12px;
-  border: 1px solid #424a56;
-  border-left: 5px solid var(--division-accent);
-  background:
-    linear-gradient(100deg, #252c36, #11151c 62%, #080a0e);
-  box-shadow: inset 0 1px #ffffff12, 0 6px 16px #0006;
-}
-
-.mw-roster-division__heading {
-  min-width: 0;
-}
-
-.mw-roster-division__eyebrow {
-  display: block;
-  margin-bottom: 5px;
-  color: #aab4c1;
-  font: 900 .65rem var(--mw-font-display);
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-
-.mw-roster-division__title {
-  margin: 0;
-  color: #f5f6f8;
-  font: 900 clamp(2rem, 5vw, 3rem)/.9 var(--mw-font-display);
-  letter-spacing: -.02em;
-  text-transform: uppercase;
-  text-shadow: 0 3px 8px #000;
-}
-
-.mw-roster-division__subtitle {
-  margin: 6px 0 0;
-  color: var(--division-accent);
-  font: 800 .68rem var(--mw-font-display);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-.mw-roster-division__count {
-  flex: 0 0 auto;
-  color: #c0c7d1;
-  font: 900 .72rem var(--mw-font-display);
-  letter-spacing: .1em;
-  text-align: right;
-  text-transform: uppercase;
-}
-
-.mw-roster-division__grid {
+.mw-catalog-section-heading {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(9px, 1.2vw, 16px);
-  padding: 0;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 5px 12px;
+
+  margin: 0 0 18px;
+  padding: 0 0 12px;
+
+  border-bottom: 1px solid color-mix(
+    in srgb,
+    var(--division-accent) 48%,
+    transparent
+  );
 }
 
-.mw-roster-division--main .mw-roster-division__header {
-  border-left-color: #e7e9ed;
+.mw-catalog-section-heading .mw-filter-kicker {
+  grid-column: 1 / -1;
+  color: var(--division-accent);
+  font-size: 10px;
+  letter-spacing: 2.5px;
 }
 
-.mw-roster-division--development .mw-roster-division__header {
-  border-left-color: #aeb6c2;
+.mw-catalog-section-heading h2 {
+  margin: 0;
+  color: #f4f6f9;
+  font: 900 clamp(29px, 5vw, 43px)/.9 var(--roster-display);
+  letter-spacing: -.4px;
+  text-shadow: 0 4px 20px rgba(190, 205, 225, .09);
 }
 
-/* =========================================================
-   6. TARJETAS DE SUPERSTARS
-   ========================================================= */
+.mw-catalog-section-heading .mw-catalog-count {
+  color: #a2adbd;
+  font: 800 11px var(--roster-display);
+  letter-spacing: 1.3px;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   06. GRILLA DE SUPERSTRELLAS
+   ========================================================================== */
 
 .roster-grid-container {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(9px, 1.2vw, 16px);
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 clamp(14px, 3vw, 34px);
+  align-items: start;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
+.mw-catalog-loading,
+.mw-empty-state,
+.mw-catalog-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px 0;
+
+  border-bottom: 1px solid var(--roster-line);
+
+  color: #9eabba;
+  font: 800 13px var(--roster-display);
+  letter-spacing: 1.5px;
+}
+
+.mw-catalog-error {
+  color: #f17c89;
+}
+
+
+/* ==========================================================================
+   07. TARJETAS — RENDER 3:4
+   ========================================================================== */
+
 .mw-wrestler-card {
-  --wrestler-accent: #c4ccd7;
-  --wrestler-glow: #c4ccd733;
+  --wrestler-accent: #c5d0df;
+  --wrestler-glow: rgba(190, 210, 240, .18);
+
   position: relative;
   isolation: isolate;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+
+  width: 100%;
   min-width: 0;
   aspect-ratio: 3 / 4;
   padding: 0;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--wrestler-accent) 55%, #222831);
+
+  border: 1px solid rgba(180, 195, 215, .2);
   border-radius: 2px;
-  background: radial-gradient(ellipse at 50% 25%, #303946, #10151c 55%, #050608);
+
+  background:
+    radial-gradient(
+      ellipse at 50% 28%,
+      #283344 0%,
+      #111722 48%,
+      #06080c 100%
+    );
+
   color: white;
   text-align: left;
   cursor: pointer;
-  clip-path: polygon(0 0, 100% 0, 100% 96%, 94% 100%, 0 100%);
-  box-shadow: 0 10px 22px #0009, inset 0 0 0 1px #ffffff0a;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, .45),
+    inset 0 0 0 1px rgba(255, 255, 255, .035);
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
 .mw-wrestler-card:hover,
 .mw-wrestler-card:focus-visible {
   transform: translateY(-4px);
   border-color: var(--wrestler-accent);
-  box-shadow: 0 15px 28px #000b, 0 0 14px var(--wrestler-glow);
+  box-shadow:
+    0 13px 26px rgba(0, 0, 0, .65),
+    0 0 20px var(--wrestler-glow);
   outline: none;
 }
 
@@ -558,16 +686,22 @@
   position: absolute;
   z-index: -2;
   inset: 0;
+
+  display: block;
   width: 100%;
   height: 100%;
+
   object-fit: cover;
   object-position: center top;
-  filter: saturate(1.04) contrast(1.05);
-  transition: transform .3s;
+
+  filter: saturate(1.04) contrast(1.06);
+
+  transition: transform .3s ease, filter .3s ease;
 }
 
 .mw-wrestler-card:hover .mw-wrestler-card__image {
   transform: scale(1.035);
+  filter: saturate(1.12) contrast(1.08);
 }
 
 .mw-wrestler-card__image.is-missing {
@@ -579,146 +713,187 @@
   position: absolute;
   z-index: -1;
   inset: 0;
+
   background:
-    linear-gradient(180deg, transparent 38%, #0005 56%, #000e 78%, #000 100%);
+    linear-gradient(
+      180deg,
+      transparent 34%,
+      rgba(0, 0, 0, .12) 48%,
+      rgba(0, 0, 0, .78) 76%,
+      #030406 100%
+    ),
+    linear-gradient(
+      135deg,
+      var(--wrestler-glow),
+      transparent 48%
+    );
+
   pointer-events: none;
 }
 
 .mw-wrestler-card__sheen {
   position: absolute;
-  top: -40%;
-  left: -80%;
-  width: 45%;
-  height: 190%;
+  z-index: 1;
+  top: -50%;
+  left: -100%;
+  width: 48%;
+  height: 200%;
+
   transform: rotate(22deg);
-  background: linear-gradient(90deg, transparent, #ffffff10, #ffffff35, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, .05),
+    rgba(255, 255, 255, .2),
+    transparent
+  );
+
   pointer-events: none;
-  transition: left .45s;
+  transition: left .5s ease;
 }
 
 .mw-wrestler-card:hover .mw-wrestler-card__sheen {
-  left: 145%;
+  left: 150%;
 }
 
 .mw-wrestler-card__rank {
   position: absolute;
   top: 8px;
   right: 8px;
+  z-index: 2;
+
   padding: 5px 7px;
+
   border: 1px solid var(--wrestler-accent);
-  background: #07090ddd;
+  background: rgba(5, 8, 13, .88);
+
   color: var(--wrestler-accent);
-  font: 900 .78rem var(--mw-font-display);
-  letter-spacing: .05em;
+  font: 900 12px var(--roster-display);
+  letter-spacing: .5px;
+
+  box-shadow: 0 0 13px var(--wrestler-glow);
 }
 
 .mw-wrestler-card__banner {
   position: relative;
+  z-index: 2;
   display: block;
-  margin: 0 -4px 5px;
-  padding: 7px 8px 9px;
-  border-top: 2px solid var(--card-brand-color, var(--wrestler-accent));
-  background: linear-gradient(0deg, #000 0%, #000e 68%, transparent 100%);
+
+  margin: 0;
+  padding: 9px 9px 7px;
+
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, .97),
+    rgba(0, 0, 0, .78) 65%,
+    transparent
+  );
+
+  border-top: 2px solid var(--wrestler-accent);
+  box-shadow: 0 -5px 16px rgba(0, 0, 0, .18);
+
+  transform: none;
 }
 
 .mw-wrestler-card__banner-inner {
   display: block;
+  transform: none;
 }
 
 .mw-wrestler-card__subtitle {
   display: block;
-  color: #d5dbe3;
-  font: 800 clamp(.52rem, .8vw, .72rem)/1.1 var(--mw-font-display);
-  letter-spacing: .08em;
+  margin-bottom: 3px;
+
+  color: var(--wrestler-accent);
+  font: 800 clamp(8px, .8vw, 11px)/1.1 var(--roster-display);
+  letter-spacing: .8px;
   text-transform: uppercase;
+
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .mw-wrestler-card__name {
   display: block;
-  margin-top: 4px;
+  margin: 0;
+
   color: #fff;
-  font: 900 clamp(1rem, 1.7vw, 1.8rem)/.95 var(--mw-font-display);
-  letter-spacing: -.015em;
+  font: 900 clamp(15px, 1.8vw, 23px)/.95 var(--roster-display);
+  letter-spacing: -.2px;
   text-transform: uppercase;
+
   text-shadow: 0 2px 5px #000;
   overflow-wrap: anywhere;
 }
 
 .mw-wrestler-card__brand {
+  position: relative;
+  z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 7px;
+  gap: 5px;
+
   padding: 0 9px 9px;
-  color: #c0c7d1;
-  font: 800 .68rem var(--mw-font-display);
-  letter-spacing: .09em;
+
+  background: #030406;
+  color: #aeb8c7;
+
+  font: 800 10px var(--roster-display);
+  letter-spacing: .8px;
   text-transform: uppercase;
 }
 
 .mw-wrestler-card__brand > span:first-child {
-  color: var(--card-brand-color, var(--wrestler-accent));
+  color: var(--wrestler-accent);
 }
 
 .mw-wrestler-card__view {
-  color: #aeb7c4;
-  font-size: .58rem;
+  color: #aeb8c7;
+  font-size: 9px;
 }
+
+
+/* ==========================================================================
+   08. IDENTIDAD POR MARCA
+   ========================================================================== */
 
 .mw-wrestler-card:has([data-brand="RAW"]),
 .mw-wrestler-card.brand-raw {
-  --card-brand-color: #ef3340;
+  --wrestler-accent: #f04450;
+  --wrestler-glow: rgba(240, 45, 60, .24);
 }
 
 .mw-wrestler-card:has([data-brand="SmackDown"]),
 .mw-wrestler-card.brand-smackdown {
-  --card-brand-color: #398ce8;
+  --wrestler-accent: #438fe9;
+  --wrestler-glow: rgba(55, 130, 235, .24);
 }
 
 .mw-wrestler-card:has([data-brand="NXT"]),
 .mw-wrestler-card.brand-nxt {
-  --card-brand-color: #c4ccd7;
+  --wrestler-accent: #d1d5dc;
+  --wrestler-glow: rgba(205, 215, 230, .2);
 }
 
 .mw-wrestler-card:has([data-brand="AAA"]),
 .mw-wrestler-card.brand-aaa {
-  --card-brand-color: #4ba879;
+  --wrestler-accent: #55d58b;
+  --wrestler-glow: rgba(65, 210, 130, .2);
 }
 
-.mw-empty-state,
-.mw-catalog-loading,
-.mw-catalog-error {
-  grid-column: 1 / -1;
-  padding: 25px;
-  border: 1px solid #343c47;
-  background: #10141a;
-  color: #aeb8c5;
-  font: 800 .9rem var(--mw-font-display);
-  letter-spacing: .1em;
-  text-align: center;
+.mw-wrestler-card:has([data-brand="ADMIN"]),
+.mw-wrestler-card.brand-admin {
+  --wrestler-accent: #c4b4e8;
+  --wrestler-glow: rgba(170, 140, 220, .2);
 }
 
-.mw-catalog-error {
-  color: #ef747e;
-}
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* =========================================================
-   7. MODAL DE SUPERSTARS
-   ========================================================= */
+/* ==========================================================================
+   09. MODAL DE SUPERSTRELLA
+   ========================================================================== */
 
 .mw-modal-open {
   overflow: hidden;
@@ -730,84 +905,111 @@
 
 .mw-wrestler-modal {
   position: fixed;
-  inset: 0;
   z-index: 10000;
+  inset: 0;
+
   display: grid;
   place-items: center;
-  padding: clamp(8px, 2.5vw, 26px);
-  color: #f4f5f7;
-  font-family: var(--mw-font-body);
+
+  padding: 12px;
+
+  color: #f4f6fa;
+  font-family: var(--roster-body);
 }
 
 .mw-wrestler-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: #020305ed;
+  background: rgba(2, 4, 8, .91);
 }
 
 .mw-wrestler-modal__dialog {
-  --wrestler-accent: #c4ccd7;
-  --wrestler-glow: #c4ccd733;
+  --wrestler-accent: #c4d0e0;
+  --wrestler-glow: rgba(170, 195, 230, .15);
+
   position: relative;
   width: min(100%, 850px);
-  max-height: min(94dvh, 1100px);
-  padding: clamp(14px, 3.2vw, 26px);
+  max-height: 94dvh;
   overflow: auto;
   overscroll-behavior: contain;
-  border: 1px solid #515b69;
-  border-top: 4px solid var(--wrestler-accent);
-  border-radius: 5px;
+
+  padding: clamp(15px, 3vw, 26px);
+
   background:
-    radial-gradient(ellipse at 100% 0%, #aeb8c512, transparent 36%),
-    linear-gradient(145deg, #1a2029, #090c11 58%, #111720);
-  box-shadow: 0 25px 80px #000e, 0 0 25px var(--wrestler-glow);
-  scrollbar-color: #596473 #090d14;
-  animation: mw-modal-enter .22s ease-out;
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(170, 195, 230, .12),
+      transparent 40%
+    ),
+    linear-gradient(145deg, #131a25, #080c13 65%, #0d121b);
+
+  border: 1px solid rgba(175, 195, 220, .28);
+  border-top: 3px solid var(--wrestler-accent);
+
+  box-shadow:
+    0 25px 80px #000d,
+    0 0 30px var(--wrestler-glow);
+
+  scrollbar-color: #465368 #090d14;
+  animation: roster-modal-enter .2s ease-out;
 }
 
-@keyframes mw-modal-enter {
-  from { opacity: 0; transform: translateY(10px) scale(.99); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes roster-modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mw-wrestler-modal__close {
   position: sticky;
   top: 0;
-  z-index: 3;
   float: right;
-  width: 42px;
-  height: 42px;
-  margin: -4px -4px -42px 0;
-  border: 1px solid #515b69;
-  border-radius: 3px;
-  background: #080b10;
-  color: #f4f5f7;
-  font-size: 1.8rem;
+  z-index: 5;
+
+  width: 40px;
+  height: 40px;
+  margin: -5px -5px -40px 0;
+
+  border: 1px solid #465165;
+  border-radius: 0;
+
+  background: #080c13;
+  color: #fff;
+
+  font-size: 26px;
   line-height: 1;
   cursor: pointer;
 }
 
 .mw-wrestler-modal__close:hover {
-  border-color: #e2e6eb;
-  color: white;
+  border-color: var(--wrestler-accent);
+  color: var(--wrestler-accent);
 }
 
 .mw-modal-hero {
   display: grid;
   grid-template-columns: minmax(150px, 255px) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(16px, 3vw, 28px);
-  padding: 0 36px 20px 0;
+  gap: 22px;
+
+  padding: 0 35px 22px 0;
 }
 
 .mw-modal-portrait-wrap {
   position: relative;
+  min-width: 0;
   min-height: 240px;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  border: 1px solid #515b69;
-  background: radial-gradient(ellipse at 50% 20%, #394453, #080c13 72%);
-  box-shadow: inset 0 0 0 1px #ffffff08;
+
+  background: radial-gradient(ellipse at 50% 20%, #344155, #080c13 75%);
+  border: 1px solid rgba(180, 200, 225, .25);
 }
 
 .mw-modal-portrait {
@@ -825,14 +1027,17 @@
 
 .mw-modal-brand-tag {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  padding: 6px 10px;
+  left: 9px;
+  bottom: 9px;
+
+  padding: 6px 9px;
+
   border: 1px solid var(--wrestler-accent);
-  background: #060a11e8;
+  background: rgba(4, 7, 12, .92);
+
   color: var(--wrestler-accent);
-  font: 900 .75rem var(--mw-font-display);
-  letter-spacing: .12em;
+  font: 900 12px var(--roster-display);
+  letter-spacing: 1px;
 }
 
 .mw-modal-identity {
@@ -841,26 +1046,26 @@
 
 .mw-modal-nickname {
   margin: 0 0 8px;
-  color: #c5ccd6;
-  font: 900 clamp(.9rem, 2vw, 1.25rem)/1.2 var(--mw-font-display);
-  letter-spacing: .1em;
+  color: var(--wrestler-accent);
+  font: 900 clamp(14px, 2vw, 19px)/1.2 var(--roster-display);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 .mw-modal-identity h2 {
-  margin: 0 0 14px;
-  color: #f5f6f8;
-  font: 900 clamp(2rem, 5vw, 3.25rem)/.94 var(--mw-font-display);
+  margin: 0 0 15px;
+  color: #f7f8fa;
+  font: 900 clamp(30px, 5vw, 52px)/.94 var(--roster-display);
   text-transform: uppercase;
   overflow-wrap: anywhere;
-  text-shadow: 0 5px 22px #0009;
+  text-shadow: 0 5px 20px #0009;
 }
 
 .mw-interpreter-block {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 9px;
 }
 
 .mw-interpreter-copy {
@@ -871,17 +1076,15 @@
 }
 
 .mw-mini-label {
-  display: block;
-  color: #929eae;
-  font: 800 .73rem var(--mw-font-display);
-  letter-spacing: .12em;
+  color: #8997aa;
+  font: 800 11px var(--roster-display);
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
 .mw-interpreter-copy > strong {
   color: var(--wrestler-accent);
-  font: 900 1rem var(--mw-font-display);
-  letter-spacing: .04em;
+  font: 900 16px var(--roster-display);
 }
 
 .mw-interpreter-details {
@@ -892,12 +1095,15 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 6px 9px;
-  border: 1px solid #3b4654;
-  background: #111720;
-  color: #c0c9d5;
-  font: 800 .68rem var(--mw-font-display);
-  letter-spacing: .08em;
+
+  padding: 7px 9px;
+
+  border: 1px solid #354256;
+  background: #121a27;
+  color: #b9c5d5;
+
+  font: 800 11px var(--roster-display);
+  letter-spacing: .7px;
   list-style: none;
   cursor: pointer;
 }
@@ -919,12 +1125,15 @@
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
-  z-index: 5;
+  z-index: 10;
+
   width: min(270px, 75vw);
   max-height: 240px;
-  padding: 6px;
   overflow: auto;
-  border: 1px solid #465262;
+
+  padding: 6px;
+
+  border: 1px solid #3a485d;
   background: #0b111b;
   box-shadow: 0 15px 35px #000c;
 }
@@ -933,50 +1142,55 @@
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+
   padding: 10px;
-  border-radius: 3px;
+
   color: #e7edf7;
-  font-size: .82rem;
   text-decoration: none;
+  font-size: 12px;
 }
 
 .mw-interpreter-option:hover,
 .mw-interpreter-option.is-current {
-  background: #202833;
+  background: #1a2636;
   color: var(--wrestler-accent);
 }
 
 .mw-interpreter-option__meta {
-  color: #8d9bb1;
-  font: 800 .62rem var(--mw-font-display);
-  letter-spacing: .08em;
+  color: #8795a9;
+  font: 800 10px var(--roster-display);
 }
 
-.mw-interpreter-option.is-current .mw-interpreter-option__meta {
-  color: var(--wrestler-accent);
-}
 
-/* Paneles y estadísticas */
+/* ==========================================================================
+   10. ESTADÍSTICAS Y ATRIBUTOS DEL MODAL
+   ========================================================================== */
 
 .mw-modal-panel {
   margin: 0 0 16px;
   padding: clamp(14px, 2.8vw, 21px);
-  border: 1px solid #394451;
-  background: linear-gradient(145deg, #1a2029, #0d1219);
-  box-shadow: inset 0 1px #ffffff08;
+
+  border-top: 1px solid rgba(180, 200, 225, .22);
+  border-bottom: 1px solid rgba(180, 200, 225, .12);
+
+  background: linear-gradient(
+    110deg,
+    rgba(150, 175, 210, .07),
+    rgba(10, 15, 23, .3)
+  );
 }
 
 .mw-panel-heading {
   margin: 0 0 16px;
   color: var(--wrestler-accent);
-  font: 900 1.08rem var(--mw-font-display);
-  letter-spacing: .14em;
+  font: 900 18px var(--roster-display);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 .mw-attribute {
-  margin: 0 0 13px;
+  margin: 0 0 14px;
 }
 
 .mw-attribute:last-of-type {
@@ -986,35 +1200,51 @@
 .mw-attribute__line {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   margin-bottom: 7px;
-  color: #dce4f1;
-  font: 800 1rem var(--mw-font-display);
+
+  color: #dce4ef;
+  font: 800 15px var(--roster-display);
 }
 
 .mw-attribute__line strong {
   color: var(--attribute-color, var(--wrestler-accent));
-  font: 900 1.05rem var(--mw-font-display);
 }
 
-.mw-attribute:nth-of-type(2) { --attribute-color: #d7dce4; }
-.mw-attribute:nth-of-type(3) { --attribute-color: #aeb8c5; }
-.mw-attribute:nth-of-type(4) { --attribute-color: #8b99aa; }
+.mw-attribute:nth-of-type(2) {
+  --attribute-color: #e97878;
+}
+
+.mw-attribute:nth-of-type(3) {
+  --attribute-color: #d9c47c;
+}
+
+.mw-attribute:nth-of-type(4) {
+  --attribute-color: #72d4aa;
+}
 
 .mw-attribute__track {
-  height: 9px;
+  height: 8px;
   overflow: hidden;
-  background: #303946;
-  box-shadow: inset 0 2px 4px #0008;
+  background: #293343;
 }
 
 .mw-attribute__track span {
   display: block;
   width: var(--attribute-value);
   height: 100%;
-  background: linear-gradient(90deg, #737e8d, var(--attribute-color, var(--wrestler-accent)));
-  box-shadow: 0 0 10px #b9c4d333;
+
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--attribute-color, var(--wrestler-accent)) 65%, #536071),
+    var(--attribute-color, var(--wrestler-accent))
+  );
+
+  box-shadow: 0 0 12px color-mix(
+    in srgb,
+    var(--attribute-color, var(--wrestler-accent)) 35%,
+    transparent
+  );
 }
 
 .mw-overall-row {
@@ -1022,95 +1252,107 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+
   margin-top: 17px;
   padding-top: 13px;
-  border-top: 1px solid #394451;
-  color: #9caac0;
-  font: 800 .78rem var(--mw-font-display);
-  letter-spacing: .12em;
+
+  border-top: 1px solid var(--roster-line);
+
+  color: #aab7c8;
+  font: 800 12px var(--roster-display);
+  letter-spacing: 1.3px;
 }
 
 .mw-overall-row strong {
   color: var(--wrestler-accent);
-  font: 900 1.9rem var(--mw-font-display);
+  font: 900 32px var(--roster-display);
+  text-shadow: 0 0 18px var(--wrestler-glow);
 }
 
 .mw-data-pending {
   margin: 0;
-  color: #8492a8;
-  font-size: .86rem;
+  color: #8d9aae;
+  font-size: 13px;
   line-height: 1.5;
 }
 
 .mw-modal-stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 12px;
   margin-bottom: 16px;
 }
 
 .mw-modal-mini-panel {
   min-width: 0;
-  padding: 17px;
-  border: 1px solid #394451;
-  background: #151b23;
+  padding: 15px;
+
+  border-bottom: 1px solid var(--roster-line);
+  background: rgba(150, 175, 210, .045);
 }
 
 .mw-modal-mini-panel > strong {
   display: block;
   margin-top: 8px;
-  color: #f4f7fc;
-  font: 800 1.1rem var(--mw-font-display);
+  color: #f4f6fa;
+  font: 900 20px var(--roster-display);
   overflow-wrap: anywhere;
 }
 
 .mw-mini-label--sub {
-  margin-top: 16px;
+  margin-top: 15px;
 }
 
 .mw-modal-overall > strong {
-  margin-top: 12px;
+  margin-top: 10px;
   color: var(--wrestler-accent);
-  font: 900 2.7rem/.95 var(--mw-font-display);
+  font: 900 42px/.95 var(--roster-display);
 }
 
 .mw-overall-note {
   display: block;
   margin-top: 8px;
-  color: #8390a6;
-  font-size: .68rem;
+  color: #8794a7;
+  font-size: 11px;
 }
 
-/* Récords dentro del modal */
+
+/* ==========================================================================
+   11. RÉCORDS Y LOGROS
+   ========================================================================== */
 
 .mw-record-bar {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
+
   margin: 0 0 12px;
-  padding: 15px 17px;
-  border: 1px solid #414b59;
-  border-left: 3px solid var(--wrestler-accent);
-  background: linear-gradient(100deg, #252d37, #0c121b 72%);
-  color: #f4f7fc;
+  padding: 12px 0;
+
+  border-top: 1px solid var(--roster-line);
+  border-bottom: 1px solid var(--roster-line);
+
+  color: #f3f5f8;
   text-decoration: none;
-  transition: border-color .18s, transform .18s;
+
+  transition: color .18s, border-color .18s;
 }
 
 .mw-record-bar:hover {
   border-color: var(--wrestler-accent);
-  transform: translateY(-2px);
+  color: var(--wrestler-accent);
 }
 
 .mw-record-bar__icon {
   display: grid;
   place-items: center;
-  flex: 0 0 42px;
-  height: 42px;
-  border: 1px solid #465262;
-  background: #080d15;
+  flex: 0 0 38px;
+  height: 38px;
+
+  border: 1px solid rgba(175, 195, 220, .25);
+  background: #111722;
   color: var(--wrestler-accent);
-  font-size: 1.4rem;
+  font-size: 20px;
 }
 
 .mw-record-bar__copy {
@@ -1122,34 +1364,37 @@
 }
 
 .mw-record-bar__copy strong {
-  font: 900 .95rem var(--mw-font-display);
-  letter-spacing: .1em;
+  font: 900 16px var(--roster-display);
+  letter-spacing: 1px;
 }
 
 .mw-record-bar__copy small {
-  color: #8d9bb1;
-  font-size: .72rem;
+  color: #8996a9;
+  font-size: 11px;
 }
 
 .mw-record-bar__arrow {
   color: var(--wrestler-accent);
-  font-size: 1.4rem;
+  font-size: 20px;
 }
 
 .mw-record-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 16px;
 }
 
 .mw-record-tile {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  padding: 15px;
-  border: 1px solid #394451;
-  background: #141a22;
+  gap: 6px;
+
+  padding: 13px;
+
+  border-bottom: 1px solid var(--roster-line);
+  background: rgba(150, 175, 210, .045);
+
   text-decoration: none;
   transition: border-color .18s;
 }
@@ -1159,20 +1404,20 @@
 }
 
 .mw-record-tile > strong {
-  color: #f3f6fb;
-  font: 900 clamp(1.1rem, 3vw, 1.55rem) var(--mw-font-display);
+  color: #f3f6fa;
+  font: 900 clamp(19px, 3vw, 25px) var(--roster-display);
 }
 
 .mw-record-tile > small {
-  color: #8290a6;
-  font-size: .7rem;
+  color: #8794a7;
+  font-size: 11px;
 }
 
 .mw-modal-achievements ul {
   margin: 0;
-  padding-left: 21px;
+  padding-left: 20px;
   color: #b8c3d3;
-  line-height: 1.85;
+  line-height: 1.8;
 }
 
 .mw-modal-achievements li {
@@ -1186,446 +1431,229 @@
 
 .mw-modal-footer-meta {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  padding: 2px 2px 0;
+  gap: 7px;
 }
 
 .mw-modal-footer-meta span {
   padding: 6px 9px;
-  border: 1px solid #394451;
-  background: #0b111a;
-  color: #aab5c3;
-  font: 700 .68rem var(--mw-font-display);
-  letter-spacing: .05em;
+
+  border-bottom: 1px solid rgba(175, 195, 220, .25);
+
+  color: #aab6c7;
+  background: rgba(150, 175, 210, .045);
+
+  font: 700 11px var(--roster-display);
+  letter-spacing: .5px;
   text-transform: uppercase;
 }
 
-/* Barra de campeón dentro del modal */
 
-.mw-modal-champion-bar {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 16px;
-  padding: 11px 15px;
-  overflow: hidden;
-  border: 1px solid #626d7b;
-  border-left: 4px solid #d5dce5;
-  background: linear-gradient(100deg, #303945, #171d26 52%, #0c111a);
-}
-
-.mw-modal-champion-bar__crest {
-  display: grid;
-  place-items: center;
-  width: 39px;
-  height: 39px;
-  flex: 0 0 39px;
-  border: 1px solid #8793a2;
-  border-radius: 50%;
-  background: radial-gradient(circle, #566170, #151a21 74%);
-  color: #e5e9ef;
-  font-size: 1.4rem;
-}
-
-.mw-modal-champion-bar__copy {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.mw-modal-champion-bar__copy small {
-  color: #c0c9d5;
-  font: 900 .64rem var(--mw-font-display);
-  letter-spacing: .16em;
-}
-
-.mw-modal-champion-bar__copy strong {
-  color: #fff;
-  font: 900 clamp(.95rem, 2vw, 1.2rem)/1.1 var(--mw-font-display);
-  text-transform: uppercase;
-  overflow-wrap: anywhere;
-}
-
-.mw-modal-champion-bar__shine {
-  position: absolute;
-  z-index: -1;
-  top: -100%;
-  right: -10%;
-  width: 35%;
-  height: 300%;
-  transform: rotate(22deg);
-  background: linear-gradient(90deg, transparent, #fff2, transparent);
-  pointer-events: none;
-}
-
-/* =========================================================
-   8. ALUMNI — CONSERVA SU IDENTIDAD, AHORA MONOCROMÁTICA
-   ========================================================= */
-
-.alumni-hero {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  margin: 0 auto 34px;
-  padding: clamp(38px, 7vw, 82px) 20px 30px;
-  overflow: hidden;
-  box-sizing: border-box;
-  border: 1px solid #343c47;
-  border-radius: 3px;
-  background:
-    radial-gradient(ellipse at 78% 30%, #aeb8c51c, transparent 48%),
-    radial-gradient(ellipse at 8% 100%, #6e7c8c18, transparent 42%),
-    linear-gradient(115deg, #05070b, #171d26 52%, #05070b);
-  text-align: left;
-}
-
-.alumni-hero::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: -55%;
-  right: 12%;
-  width: 1px;
-  height: 210%;
-  transform: rotate(32deg);
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    #aeb8c504 20%,
-    #c5ceda55 48%,
-    #aeb8c508 75%,
-    transparent
-  );
-  box-shadow: 0 0 32px #aeb8c522;
-  pointer-events: none;
-}
-
-.alumni-hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #c4ccd7, #657181, transparent);
-  pointer-events: none;
-}
-
-.alumni-hero-content {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.alumni-eyebrow {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 13px;
-  color: #c0c8d3;
-  font: 800 10px var(--mw-font-body);
-  letter-spacing: 2.5px;
-}
-
-.alumni-eyebrow-line {
-  width: 27px;
-  height: 2px;
-  flex: 0 0 27px;
-  background: #c5ccd6;
-}
-
-.alumni-eyebrow-divider {
-  color: #657181;
-}
-
-.alumni-eyebrow-muted {
-  color: #8993a1;
-}
-
-.alumni-title {
-  margin: 0;
-  padding: 0;
-  color: #f5f8ff;
-  font: italic 900 clamp(64px, 13vw, 142px)/.86 var(--mw-font-display);
-  letter-spacing: -2px;
-  text-transform: uppercase;
-  text-shadow: 0 2px 0 #9ba9bd, 0 5px 0 #1f2936, 0 14px 36px #0009;
-}
-
-.alumni-title span {
-  display: inline-block;
-  background: linear-gradient(180deg, #fff, #d7dfe9 42%, #8391a4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.alumni-description {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 620px;
-  margin: 22px 0 0;
-  color: #c0c8d3;
-  font: 800 11px/1.7 var(--mw-font-body);
-  letter-spacing: 1.6px;
-}
-
-.alumni-description span {
-  max-width: 520px;
-  color: #b5c0d1;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: .1px;
-  line-height: 1.8;
-}
-
-.alumni-hero-bottom {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 32px;
-  padding-top: 16px;
-  border-top: 1px solid #c5ccd622;
-}
-
-.alumni-edition,
-.alumni-edition-label {
-  font: 800 9px var(--mw-font-body);
-  letter-spacing: 1.5px;
-}
-
-.alumni-edition {
-  color: #eaf3ff;
-}
-
-.alumni-edition-line {
-  width: 30px;
-  height: 1px;
-  background: #aeb8c577;
-}
-
-.alumni-edition-label {
-  color: #8993a1;
-}
-
-/* =========================================================
-   9. PÁGINAS DE RÉCORDS
-   ========================================================= */
-
-.mw-record-page {
-  max-width: 1120px;
-  min-height: 70vh;
-  margin: 0 auto;
-  padding: clamp(24px, 5vw, 60px) 16px 80px;
-}
-
-.mw-record-hero {
-  padding: 0 0 24px;
-}
-
-.mw-record-eyebrow {
-  color: #c0c8d3;
-  font: 900 .8rem var(--mw-font-display);
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-
-.mw-record-hero h1 {
-  margin: 8px 0;
-  color: #f5f6f8;
-  font: 900 clamp(2.7rem, 8vw, 5.5rem)/.92 var(--mw-font-display);
-  text-transform: uppercase;
-}
-
-.mw-record-hero p:last-child {
-  color: #aab6c8;
-  line-height: 1.6;
-}
-
-.mw-record-stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.mw-record-stat {
-  padding: clamp(18px, 3vw, 28px);
-  border: 1px solid #394451;
-  border-top: 3px solid #778391;
-  background: linear-gradient(145deg, #1a2029, #090e16);
-}
-
-.mw-record-stat.is-current {
-  border-top-color: #d3dbe5;
-  box-shadow: 0 0 20px #b9c4d31a;
-}
-
-.mw-record-stat span {
-  display: block;
-  color: #aab4c1;
-  font: 900 .85rem var(--mw-font-display);
-  letter-spacing: .14em;
-}
-
-.mw-record-stat strong {
-  display: block;
-  margin: 10px 0;
-  color: #e2e7ed;
-  font: 900 clamp(2rem, 6vw, 3.6rem)/1 var(--mw-font-display);
-}
-
-.mw-record-stat small {
-  color: #8794a8;
-}
-
-.mw-record-note {
-  margin-top: 18px;
-  padding: 20px;
-  border: 1px solid #394451;
-  background: #0d131d;
-  color: #aeb9ca;
-  line-height: 1.65;
-}
-
-.mw-record-note h2 {
-  margin: 0 0 8px;
-  color: #f2f5fb;
-  font: 900 1.4rem var(--mw-font-display);
-  text-transform: uppercase;
-}
-
-.mw-record-note p {
-  margin: 0;
-}
-
-.mw-record-back {
-  display: inline-flex;
-  margin-top: 18px;
-  padding: 12px 16px;
-  border: 1px solid #aeb8c5;
-  color: #d9e0e9;
-  font: 900 .85rem var(--mw-font-display);
-  letter-spacing: .1em;
-  text-decoration: none;
-}
-
-.mw-record-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 8px;
-}
-
-.mw-record-links a {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 14px;
-  border: 1px solid #394451;
-  background: #141a22;
-  color: #eaf0f8;
-  text-decoration: none;
-}
-
-.mw-record-links a:hover {
-  border-color: #c4ccd7;
-  color: white;
-}
-
-/* =========================================================
-   10. ALUMNI — CUADRÍCULA
-   ========================================================= */
-
-[data-wrestlers-catalog="alumni"] .roster-grid-container {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 14px;
-  width: 100%;
-  padding-inline: 14px;
-  box-sizing: border-box;
-}
-
-[data-wrestlers-catalog="alumni"] .mw-wrestler-card {
-  width: 100%;
-  min-width: 0;
-  max-width: none;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  box-sizing: border-box;
-}
-
-[data-wrestlers-catalog="alumni"] .mw-wrestler-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* =========================================================
-   11. RESPONSIVE — TABLET Y MÓVIL
-   ========================================================= */
+/* ==========================================================================
+   12. RESPONSIVE — TABLET
+   ========================================================================== */
 
 @media (max-width: 900px) {
-  .roster-grid-container,
-  .mw-roster-division__grid {
+  .roster-grid-container {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
   }
 
-  [data-wrestlers-catalog="alumni"] .roster-grid-container {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .mw-roster-catalog-section {
+    width: min(100% - 28px, 1100px);
   }
 }
 
-@media (max-width: 650px) {
-  .mw-page-header {
-    margin: 14px 12px 24px;
-    padding: 34px 18px 26px;
+
+/* ==========================================================================
+   13. RESPONSIVE — MOBILE
+   ========================================================================== */
+
+@media (max-width: 560px) {
+  .mw-roster-page {
+    padding-bottom: 55px;
   }
 
-  .mw-page-header .page-title {
-    font-size: clamp(4rem, 17vw, 6rem);
+  .roster-hero {
+    width: calc(100% - 32px);
+    margin: 28px auto 28px;
+    padding: 35px 17px 22px;
+  }
+
+  .roster-hero .alumni-eyebrow {
+    gap: 7px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .roster-hero .alumni-eyebrow-line {
+    width: 20px;
+    flex-basis: 20px;
+  }
+
+  .roster-hero .alumni-title {
+    font-size: clamp(62px, 17vw, 96px);
+    letter-spacing: -1px;
+  }
+
+  .roster-hero .alumni-description {
+    margin-top: 18px;
+    font-size: 10px;
+  }
+
+  .roster-hero .alumni-description span {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .roster-hero .alumni-hero-bottom {
+    margin-top: 24px;
+    gap: 9px;
+  }
+
+  .roster-hero .alumni-edition,
+  .roster-hero .alumni-edition-label {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .mw-current-champions,
+  .mw-brand-filter-panel {
+    width: calc(100% - 28px);
   }
 
   .mw-current-champions {
-    padding-inline: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 27px;
   }
 
   .mw-champions-heading {
-    gap: 8px;
-  }
-
-  .mw-champions-heading h2 {
-    font-size: 1.35rem;
+    gap: 7px;
   }
 
   .mw-champions-kicker {
-    font-size: .56rem;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .mw-champions-heading h2 {
+    font-size: clamp(20px, 5vw, 27px);
+  }
+
+  .mw-brand-filter-panel {
+    margin-bottom: 29px;
+    padding: 14px 0 17px;
+  }
+
+  .mw-filter-panel-heading {
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .mw-filter-panel-heading > strong {
+    font-size: 25px;
+  }
+
+  .mw-filter-panel-heading .mw-catalog-count {
+    font-size: 10px;
+  }
+
+  .mw-roster-search {
+    width: 100%;
+  }
+
+  .mw-roster-search input {
+    min-height: 40px;
+  }
+
+  .mw-roster-filters {
+    gap: 6px;
+  }
+
+  .mw-roster-filters label {
+    font-size: 11px;
+  }
+
+  .mw-roster-filters select {
+    min-height: 34px;
+    padding: 5px 23px 5px 7px;
+    font-size: 11px;
+  }
+
+  .mw-roster-catalog-section {
+    width: calc(100% - 28px);
+  }
+
+  .mw-roster-group {
+    margin-bottom: 35px;
+  }
+
+  .mw-catalog-section-heading {
+    margin-bottom: 13px;
+    padding-bottom: 10px;
+  }
+
+  .mw-catalog-section-heading h2 {
+    font-size: clamp(28px, 7vw, 37px);
+  }
+
+  .mw-catalog-section-heading .mw-catalog-count {
+    font-size: 10px;
+  }
+
+  .roster-grid-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mw-wrestler-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .mw-wrestler-card__rank {
+    top: 5px;
+    right: 5px;
+    padding: 4px 5px;
+    font-size: 10px;
+  }
+
+  .mw-wrestler-card__banner {
+    padding: 7px 6px 5px;
+  }
+
+  .mw-wrestler-card__subtitle {
+    font-size: clamp(7px, 1.8vw, 9px);
+    letter-spacing: .3px;
+  }
+
+  .mw-wrestler-card__name {
+    font-size: clamp(12px, 3.7vw, 16px);
+  }
+
+  .mw-wrestler-card__brand {
+    padding: 0 6px 6px;
+    font-size: 8px;
+    letter-spacing: .3px;
+  }
+
+  .mw-wrestler-card__view {
+    font-size: 7px;
   }
 
   .mw-champions-track {
     grid-template-columns: 1fr 1fr;
-    gap: 7px;
+    gap: 8px;
   }
 
   .mw-champion-card {
-    min-height: 86px;
+    min-height: 83px;
     padding: 7px;
     gap: 7px;
   }
 
   .mw-champion-card img {
-    width: 42px;
-    height: 64px;
-    flex-basis: 42px;
+    width: 43px;
+    height: 65px;
+    flex-basis: 43px;
   }
 
   .mw-champion-card__crest {
@@ -1636,105 +1664,14 @@
   }
 
   .mw-champion-card__copy small {
-    font-size: .48rem;
-    letter-spacing: .07em;
-  }
-
-  .mw-champion-card__copy strong {
-    font-size: .9rem;
-  }
-
-  .mw-champion-card__copy > span {
-    font-size: .54rem;
-  }
-
-  .mw-brand-filter-panel {
-    margin: 0 10px 22px;
-    padding: 15px 12px;
-  }
-
-  .mw-filter-panel-heading > strong {
-    font-size: 1.5rem;
-  }
-
-  .mw-catalog-toolbar {
-    gap: 7px;
-  }
-
-  .mw-search-field,
-  .mw-select-field {
-    flex-basis: 100%;
-    min-height: 41px;
-  }
-
-  .mw-brand-filter {
-    min-height: 35px;
-    padding: 7px 12px;
-    font-size: .75rem;
-  }
-
-  .roster-grid-container,
-  .mw-roster-division__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 7px;
-    padding-inline: 10px;
-  }
-
-  .mw-wrestler-card {
-    aspect-ratio: 3 / 4.3;
-  }
-
-  .mw-wrestler-card__banner {
-    padding: 6px 5px 7px 8px;
-    margin-bottom: 4px;
-  }
-
-  .mw-wrestler-card__name {
-    font-size: clamp(.8rem, 3.8vw, 1.2rem);
-    line-height: .96;
-  }
-
-  .mw-wrestler-card__subtitle {
-    font-size: clamp(.43rem, 1.9vw, .58rem);
-    letter-spacing: .04em;
-  }
-
-  .mw-wrestler-card__brand {
-    padding: 0 5px 6px;
-    font-size: .49rem;
-    letter-spacing: .03em;
-    gap: 3px;
-  }
-
-  .mw-wrestler-card__view {
-    font-size: .43rem;
-  }
-
-  .mw-wrestler-card__rank {
-    top: 5px;
-    right: 5px;
-    padding: 3px 4px;
-    font-size: .57rem;
-  }
-
-  .mw-roster-division {
-    margin-bottom: 27px;
-  }
-
-  .mw-roster-division__header {
-    margin: 0 10px 12px;
-    padding: 10px;
-  }
-
-  .mw-roster-division__title {
-    font-size: clamp(1.8rem, 7vw, 2.5rem);
-  }
-
-  .mw-roster-division__eyebrow {
     font-size: 8px;
   }
 
-  .mw-roster-division__count {
+  .mw-champion-card__copy strong {
+    font-size: 16px;
+  }
+
+  .mw-champion-card__copy > span {
     font-size: 9px;
   }
 
@@ -1744,24 +1681,22 @@
     padding-right: 0;
   }
 
+  .mw-modal-portrait-wrap {
+    min-height: 180px;
+  }
+
   .mw-modal-identity {
     min-width: 0;
-    padding-left: 3px;
+    padding-left: 2px;
   }
 
   .mw-modal-identity h2 {
-    font-size: clamp(1.5rem, 6vw, 2.15rem);
-    overflow-wrap: anywhere;
+    font-size: clamp(24px, 6vw, 34px);
   }
 
   .mw-modal-nickname {
-    font-size: .8rem;
-    letter-spacing: .06em;
+    font-size: 13px;
     overflow-wrap: anywhere;
-  }
-
-  .mw-modal-portrait-wrap {
-    min-height: 180px;
   }
 
   .mw-wrestler-modal__dialog {
@@ -1774,15 +1709,15 @@
   }
 
   .mw-modal-panel {
-    padding: 14px;
+    padding: 13px;
   }
 
   .mw-modal-stat-grid {
-    gap: 9px;
+    gap: 8px;
   }
 
   .mw-modal-mini-panel {
-    padding: 13px;
+    padding: 11px;
   }
 
   .mw-record-grid {
@@ -1790,113 +1725,36 @@
   }
 
   .mw-record-tile {
-    padding: 12px;
-  }
-
-  .mw-record-tile > strong {
-    font-size: 1.1rem;
+    padding: 10px;
   }
 
   .mw-record-bar {
-    padding: 12px;
     gap: 9px;
-  }
-
-  .mw-record-bar__copy strong {
-    font-size: .82rem;
-  }
-
-  .mw-record-bar__copy small {
-    font-size: .65rem;
-  }
-
-  .mw-modal-champion-bar {
-    margin-bottom: 12px;
-    padding: 9px;
-    gap: 9px;
-  }
-
-  .mw-modal-champion-bar__crest {
-    width: 32px;
-    height: 32px;
-    flex-basis: 32px;
-    font-size: 1.1rem;
-  }
-
-  .mw-modal-champion-bar__copy small {
-    font-size: .52rem;
-    letter-spacing: .1em;
-  }
-
-  .mw-modal-champion-bar__copy strong {
-    font-size: .9rem;
-  }
-
-  .mw-record-page {
-    padding-inline: 12px;
-  }
-
-  .mw-record-stat-grid {
-    gap: 9px;
-  }
-
-  [data-wrestlers-catalog="alumni"] .roster-grid-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    padding-inline: 10px;
-  }
-
-  .alumni-hero {
-    margin-bottom: 25px;
-    padding: 36px 17px 22px;
-  }
-
-  .alumni-eyebrow {
-    gap: 7px;
-    font-size: 8px;
-    letter-spacing: 1.5px;
-  }
-
-  .alumni-eyebrow-line {
-    width: 20px;
-    flex-basis: 20px;
-  }
-
-  .alumni-title {
-    font-size: clamp(62px, 17vw, 96px);
-    letter-spacing: -1px;
-  }
-
-  .alumni-description {
-    margin-top: 18px;
-    font-size: 10px;
-    letter-spacing: 1px;
-  }
-
-  .alumni-description span {
-    font-size: 12px;
-    line-height: 1.7;
-  }
-
-  .alumni-hero-bottom {
-    margin-top: 24px;
-    gap: 9px;
-  }
-
-  .alumni-edition,
-  .alumni-edition-label {
-    font-size: 8px;
-    letter-spacing: 1px;
   }
 }
 
+
+/* ==========================================================================
+   14. TELÉFONOS PEQUEÑOS
+   ========================================================================== */
+
 @media (max-width: 360px) {
-  .roster-grid-container,
-  .mw-roster-division__grid,
-  [data-wrestlers-catalog="alumni"] .roster-grid-container {
+  .roster-grid-container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
-    padding-inline: 8px;
+  }
+
+  .mw-wrestler-card__banner {
+    padding: 6px 4px 5px;
+  }
+
+  .mw-wrestler-card__name {
+    font-size: 12px;
+  }
+
+  .mw-wrestler-card__brand {
+    padding: 0 4px 5px;
+    font-size: 7px;
   }
 
   .mw-wrestler-card__view {
@@ -1907,46 +1765,34 @@
     grid-template-columns: 1fr;
   }
 
-  .mw-roster-division__eyebrow {
-    font-size: 8px;
-  }
-
-  .mw-roster-division__count {
-    font-size: 9px;
-  }
-
   .mw-modal-hero {
     grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
-    gap: 13px;
+    gap: 10px;
   }
 
   .mw-modal-portrait-wrap {
-    width: 100%;
-    min-width: 0;
-    min-height: 180px;
+    min-height: 160px;
   }
 
   .mw-modal-identity h2 {
-    font-size: 1.45rem;
+    font-size: 23px;
   }
 }
 
-/* =========================================================
-   12. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
-   ========================================================= */
+
+/* ==========================================================================
+   15. ACCESIBILIDAD
+   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   .mw-wrestler-card,
   .mw-wrestler-card__image,
   .mw-wrestler-card__sheen,
+  .mw-champion-card,
   .mw-wrestler-modal__dialog,
   .mw-record-bar,
-  .mw-record-tile,
-  .mw-chevron,
-  .mw-champion-card,
-  .mw-champion-card__shine,
-  .mw-brand-filter {
-    transition: none !important;
+  .mw-record-tile {
     animation: none !important;
+    transition: none !important;
   }
 }
