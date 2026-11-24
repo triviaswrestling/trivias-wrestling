@@ -1,169 +1,168 @@
-CSS
-:root{--mw-accent:#e3263e;--mw-ink:#080b12;--mw-panel:#101723;--mw-line:#263247;--mw-muted:#9aa6bb;--mw-font-display:"Barlow Condensed",Impact,sans-serif;--mw-font-body:Inter,Arial,sans-serif}
-.mw-roster-page{min-height:70vh;padding-bottom:clamp(48px,7vw,100px)}
-.mw-page-header{max-width:1320px;margin:0 auto;padding:clamp(30px,5vw,68px) clamp(16px,3vw,34px) 20px}
-.mw-page-header .eyebrow{color:var(--theme-accent,var(--mw-accent));font:800 .8rem var(--mw-font-display);letter-spacing:.22em;text-transform:uppercase;margin:0 0 8px}
-.mw-page-header .page-title{font:900 clamp(3rem,8vw,6rem)/.88 var(--mw-font-display);letter-spacing:-.035em;text-transform:uppercase;margin:0;text-shadow:0 5px 25px var(--theme-glow,rgba(227,38,62,.18))}
-.mw-page-header .lead{max-width:720px;color:#aeb8c9;font-size:.95rem;line-height:1.65;margin:18px 0 0}
-.mw-catalog-toolbar{max-width:1320px;margin:0 auto 22px;padding:0 clamp(16px,3vw,34px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.mw-search-field,.mw-select-field{min-height:46px;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#141b28,#090d15);border:1px solid #2b374b;box-shadow:inset 0 1px rgba(255,255,255,.05);padding:0 14px;color:var(--mw-accent);flex:1 1 220px}
-.mw-search-field input,.mw-select-field select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:#f5f7fb;font:600 .9rem var(--mw-font-body);padding:12px 0}
-.mw-select-field select option{background:#0b1019;color:white}
-.mw-catalog-count{font:800 .8rem var(--mw-font-display);letter-spacing:.12em;color:#9eabc0;margin-left:auto}
-.roster-grid-container{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:clamp(12px,2vw,22px);padding:0 clamp(16px,3vw,34px);max-width:1320px;margin:0 auto}
-.mw-wrestler-card{--wrestler-accent:var(--mw-accent);--wrestler-glow:rgba(227,38,62,.25);position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;aspect-ratio:3/4.15;overflow:hidden;padding:0;border:1px solid color-mix(in srgb,var(--wrestler-accent) 48%,#202a3c);border-radius:4px;background:radial-gradient(ellipse at 48% 22%,#263247 0,#101723 42%,#05070b 100%);color:white;text-align:left;cursor:pointer;box-shadow:0 14px 32px #0009,inset 0 0 0 1px #ffffff08;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-.mw-wrestler-card:hover,.mw-wrestler-card:focus-visible{transform:translateY(-5px);border-color:var(--wrestler-accent);box-shadow:0 18px 36px #000b,0 0 22px var(--wrestler-glow);outline:none}
-.mw-wrestler-card__image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:-2;filter:saturate(1.06) contrast(1.04);transition:transform .35s ease,filter .25s ease}
-.mw-wrestler-card:hover .mw-wrestler-card__image{transform:scale(1.035);filter:saturate(1.14) contrast(1.06)}
+:root{--mw-accent:#e3263e;--mw-ink:#08090c;--mw-panel:#111318;--mw-line:#30343b;--mw-muted:#a6aab2;--mw-font-display:"Barlow Condensed",Impact,sans-serif;--mw-font-body:Inter,Arial,sans-serif}
+.mw-roster-page{min-height:70vh;padding-bottom:70px}
+.mw-page-header{max-width:1320px;margin:auto;padding:clamp(30px,5vw,68px) clamp(12px,3vw,30px) 20px}
+.mw-page-header .eyebrow,.mw-record-eyebrow{color:var(--mw-accent);font:800 .8rem var(--mw-font-display);letter-spacing:.2em;text-transform:uppercase}
+.mw-page-header .page-title,.mw-record-hero h1{margin:0;font:900 clamp(3rem,8vw,6rem)/.9 var(--mw-font-display);text-transform:uppercase;text-shadow:0 5px 24px #e3263e22}
+.mw-page-header .lead{max-width:720px;color:#aeb3bc;font-size:.95rem;line-height:1.6}
+.mw-catalog-toolbar{max-width:1320px;margin:0 auto 20px;padding:0 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mw-search-field,.mw-select-field{min-height:44px;display:flex;align-items:center;gap:10px;padding:0 13px;flex:1 1 220px;background:#101216;border:1px solid #343941;color:#e3263e}
+.mw-search-field input,.mw-select-field select{width:100%;min-width:0;padding:11px 0;border:0;outline:0;background:transparent;color:#fff;font:600 .9rem var(--mw-font-body)}
+.mw-select-field select option{background:#101216;color:#fff}
+.mw-catalog-count{margin-left:auto;color:#a6aab2;font:800 .8rem var(--mw-font-display);letter-spacing:.12em}
+.roster-grid-container{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:1320px;margin:auto;padding:0 16px}
+.mw-roster-page>.roster-grid-container{display:block;width:100%}
+.mw-roster-division{--division-accent:#d5d8dd;min-width:0;margin:0 0 34px}
+.mw-roster-division--main{--division-accent:#e5e6e8}
+.mw-roster-division--development{--division-accent:#aeb4bd}
+.mw-roster-division--other{--division-accent:#aeb4bd}
+.mw-roster-division__header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 0 15px;padding:0 0 10px;border-bottom:2px solid var(--division-accent)}
+.mw-roster-division__heading{min-width:0}
+.mw-roster-division__eyebrow{display:block;margin-bottom:5px;color:#9298a1;font-size:10px;font-weight:800;letter-spacing:.16em}
+.mw-roster-division__title{margin:0;color:#f1f2f4;font:900 clamp(27px,5vw,42px)/.95 var(--mw-font-display);letter-spacing:-.02em}
+.mw-roster-division__subtitle{margin:6px 0 0;color:var(--division-accent);font-size:11px;font-weight:800;letter-spacing:.12em}
+.mw-roster-division__count{flex:0 0 auto;color:#aab0b9;font-size:10px;font-weight:800}
+.mw-roster-division__grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.mw-champions-division{margin:0 0 24px}
+.mw-champions-division__header{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid #9c8046}
+.mw-champions-division__header h3{margin:0;color:#e6ce91;font:900 22px var(--mw-font-display)}
+.mw-champions-division__header span{color:#b8b0a0;font-size:10px;font-weight:800}
+.mw-brand-filter-panel{max-width:1320px;margin:0 auto 20px;padding:15px clamp(12px,3vw,30px);border-block:1px solid #292d33;background:linear-gradient(100deg,#0b0d10,#15171b,#090a0c)}
+.mw-filter-panel-heading{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.mw-filter-panel-heading>strong{color:#f4f4f5;font:900 clamp(1.1rem,2vw,1.5rem) var(--mw-font-display);letter-spacing:.06em}
+.mw-filter-kicker{width:100%;color:#e3263e;font:900 .68rem var(--mw-font-display);letter-spacing:.2em}
+.mw-brand-filters{display:flex;flex-wrap:wrap;gap:7px;padding:3px 0 7px}
+.mw-brand-filter{min-height:38px;min-width:76px;padding:8px 15px;border:1px solid #42474f;border-radius:2px;background:linear-gradient(#191c21,#090a0c);color:#b9bec6;font:900 .82rem var(--mw-font-display);letter-spacing:.09em;cursor:pointer;transition:.15s}
+.mw-brand-filter:hover{border-color:#e3263e;color:#fff}
+.mw-brand-filter.is-active{border-color:#f05a68;background:linear-gradient(#e3263e,#991729);color:#fff;box-shadow:0 3px 12px #e3263e33}
+.mw-letter-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:12px 0;border-block:1px solid #292d33}
+.mw-letter-filter{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;padding:0;border:1px solid #555b64;border-radius:50%;background:linear-gradient(145deg,#191c21,#08090b);color:#c5c8ce;font:800 .72rem var(--mw-font-display);cursor:pointer;transition:.15s}
+.mw-letter-filter:hover,.mw-letter-filter.is-active{border-color:#e3263e;background:#e3263e;color:#fff}
+.mw-letter-filter:focus-visible,.mw-brand-filter:focus-visible{outline:2px solid #eee;outline-offset:2px}
+.mw-current-champions{max-width:1320px;margin:0 auto 25px;padding:20px 16px 0;overflow:hidden}
+.mw-champions-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.mw-champions-kicker{color:#e2c26c;font:900 .68rem var(--mw-font-display);letter-spacing:.2em}
+.mw-champions-heading h2{margin:0;color:#f5f5f5;font:900 clamp(1.35rem,3vw,2.1rem) var(--mw-font-display)}
+.mw-champions-rule{height:1px;flex:1;background:linear-gradient(90deg,#b99848,#574b31,transparent)}
+.mw-champions-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.mw-champion-card{--champion-accent:#d9b95e;position:relative;display:flex;align-items:center;gap:12px;min-height:108px;padding:10px 13px;overflow:hidden;border:1px solid #6c5930;border-left:3px solid var(--champion-accent);background:linear-gradient(115deg,#201b11,#10141d 48%,#080b11);color:#f4f6fa;text-decoration:none;transition:.18s}
+.mw-champion-card:hover{transform:translateY(-3px);border-color:#f0d37d}
+.mw-champion-card img{width:66px;height:84px;flex:0 0 66px;object-fit:cover;object-position:top}
+.mw-champion-card__crest{display:grid;place-items:center;width:58px;height:58px;flex:0 0 58px;border:1px solid #a98d45;border-radius:50%;color:#e8ce7c;background:#292112;font-size:2rem}
+.mw-champion-card__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.mw-champion-card__copy small{color:#d7bc70;font:900 .62rem var(--mw-font-display);letter-spacing:.12em}
+.mw-champion-card__copy strong{font:900 1.3rem/.95 var(--mw-font-display);text-transform:uppercase}
+.mw-champion-card__copy>span{color:#aeb8c8;font:700 .72rem var(--mw-font-display);text-transform:uppercase}
+.mw-champions-empty{padding:14px;border:1px solid #493d24;color:#aeb5bf;background:#111}
+.mw-wrestler-card{--wrestler-accent:#e3263e;--wrestler-glow:#e3263e33;position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;aspect-ratio:3/4;overflow:hidden;padding:0;border:1px solid #343941;border-radius:2px;background:#090a0c;color:#fff;text-align:left;cursor:pointer;box-shadow:0 8px 20px #0009;transition:transform .18s,border-color .18s}
+.mw-wrestler-card:hover,.mw-wrestler-card:focus-visible{transform:translateY(-3px);border-color:var(--wrestler-accent);outline:none}
+.mw-wrestler-card__image{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center top}
 .mw-wrestler-card__image.is-missing{display:none}
-.mw-wrestler-card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(145deg,transparent 0 17%,rgba(227,38,62,.8) 17.2%,transparent 17.8% 27%,rgba(227,38,62,.35) 27.2%,transparent 27.8%),linear-gradient(180deg,transparent 48%,rgba(0,0,0,.15) 65%,#050609 100%)}
-.mw-wrestler-card::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(135deg,transparent 0 65%,rgba(255,255,255,.035) 65.2%,transparent 66%)}
-.mw-wrestler-card__info{position:relative;z-index:1;width:100%;padding:12px 9px 13px;text-align:center;background:linear-gradient(180deg,rgba(9,11,15,.94),#080a0e);border-top:1px solid #ffffff24}
-.mw-wrestler-card__name{display:block;color:#f0f1f4;font:900 clamp(.9rem,1.3vw,1.1rem)/1.05 var(--mw-font-display);letter-spacing:.045em;text-transform:uppercase;text-shadow:0 2px 8px #000}
-.mw-wrestler-card__meta{display:block;margin-top:5px;color:#aeb6c2;font:700 .62rem/1.25 var(--mw-font-body);letter-spacing:.08em;text-transform:uppercase}
-.mw-wrestler-card__stats{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px;background:#11151c;border-top:1px solid #343b46;color:#d8dce3;font:800 .65rem var(--mw-font-display);letter-spacing:.06em;text-transform:uppercase}
-.mw-wrestler-card__stats strong{color:#fff;font-weight:900}
-.mw-wrestler-card__view{color:#858e9b;font-size:.56rem}
-.mw-wrestler-card__banner{position:relative;z-index:1;width:100%;padding:7px 9px;border-top:1px solid #ffffff55;border-bottom:2px solid #050609;background:var(--wrestler-banner,linear-gradient(105deg,#191c22,#555d68 52%,#17191e));box-shadow:0 4px 12px #0009;color:#f2f3f5!important;font:900 .68rem var(--mw-font-display);letter-spacing:.12em;text-align:center;text-transform:uppercase;text-shadow:0 1px 3px #000}
-.mw-wrestler-card__record{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 9px;background:#080a0e;color:#c2c8d1;font:700 .62rem var(--mw-font-display);letter-spacing:.06em;text-transform:uppercase}
-.mw-wrestler-card__record strong{color:#fff}
-.mw-wrestler-card__view{color:#858e9b;font-size:.56rem}
-.mw-wrestler-card__tag{position:absolute;top:9px;left:9px;z-index:2;padding:5px 8px;border:1px solid #343943;background:linear-gradient(110deg,#15181e,#0b0d11);color:#aab2bd;font:800 .58rem var(--mw-font-display);letter-spacing:.1em;text-transform:uppercase}
-.mw-wrestler-card__tag--champion{border-color:#b99b51;color:#e5c66f}
-.mw-wrestler-card__tag--alumni{border-color:#555d68;color:#c2c8d1}
-.mw-wrestler-card__tag--authority{border-color:#e3263e;color:#f1a0a9}
-.mw-wrestler-card.is-champion{border-color:#9f854a}
-.mw-wrestler-card.is-champion .mw-wrestler-card__name{color:#e5c66f}
-.mw-wrestler-card.is-authority{border-color:#7b303a}
-.mw-wrestler-card.is-alumni{filter:saturate(.75)}
-.mw-wrestler-card.is-alumni:hover{filter:saturate(1)}
-.mw-wrestler-card:focus-visible{outline:2px solid #e3263e;outline-offset:3px}
-.mw-catalog-section{max-width:1320px;margin:clamp(34px,5vw,64px) auto 0;padding:0 clamp(16px,3vw,34px)}
-.mw-catalog-section-heading{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 22px;padding:0 0 13px;border-bottom:1px solid #252b34;text-align:center}
-.mw-catalog-section-heading::before,.mw-catalog-section-heading::after{content:"";height:2px;flex:1;max-width:180px;background:linear-gradient(90deg,transparent,#e3263e)}
-.mw-catalog-section-heading::after{transform:scaleX(-1)}
-.mw-catalog-section-heading h2,.mw-catalog-section-heading h3{display:inline-flex;align-items:center;justify-content:center;margin:0;padding:9px 20px;background:linear-gradient(180deg,#20242b,#090b0f);border:1px solid #3a414c;border-left:3px solid #e3263e;border-right:3px solid #e3263e;color:#fff;font:900 .95rem var(--mw-font-display);letter-spacing:.15em;text-transform:uppercase}
-.mw-roster-division{margin-top:clamp(34px,5vw,60px)}
-.mw-roster-division__heading{display:flex;align-items:center;gap:12px;margin:0 0 18px;padding:0 0 10px;border-bottom:1px solid #303641}
-.mw-roster-division__heading h2{margin:0;color:#f2f3f5;font:900 clamp(1.35rem,2.4vw,2rem) var(--mw-font-display);letter-spacing:.08em;text-transform:uppercase}
-.mw-roster-division__heading span{color:#929ba8;font:700 .7rem var(--mw-font-body);letter-spacing:.12em;text-transform:uppercase}
-.mw-roster-division__heading::after{content:"";height:2px;flex:1;background:linear-gradient(90deg,#e3263e,transparent)}
-.mw-brand-filter-panel{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:0 auto 22px;padding:12px;background:linear-gradient(180deg,#151922,#090b10);border:1px solid #292f39;box-shadow:0 10px 24px #0005}
-.mw-brand-filter{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:94px;min-height:38px;padding:8px 16px;border:1px solid #424955;background:linear-gradient(180deg,#252a32,#101318);color:#cbd0d8;font:900 .76rem var(--mw-font-display);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .2s}
-.mw-brand-filter:hover{transform:translateY(-2px);border-color:#e3263e;color:#fff}
-.mw-brand-filter.is-active,.mw-brand-filter[aria-pressed="true"]{background:linear-gradient(180deg,#b82034,#64101e);border-color:#e3263e;color:#fff;box-shadow:0 0 15px rgba(227,38,62,.2)}
-.mw-brand-filter--raw.is-active{background:linear-gradient(180deg,#b82034,#64101e)}
-.mw-brand-filter--smackdown.is-active{background:linear-gradient(180deg,#303946,#151a22);border-color:#9da9b8}
-.mw-brand-filter--nxt.is-active{background:linear-gradient(180deg,#777,#30343a);border-color:#b9bec6}
-.mw-brand-filter--aaa.is-active{background:linear-gradient(180deg,#28553b,#14291d);border-color:#6c9a78}
-.mw-brand-filter--all.is-active{background:linear-gradient(180deg,#b82034,#64101e)}
-.mw-brand-filter:focus-visible{outline:2px solid #e3263e;outline-offset:3px}
-.mw-roster-search{display:flex;align-items:center;gap:10px;max-width:440px;min-height:44px;margin:0 0 16px auto;padding:0 14px;border:1px solid #343b46;background:linear-gradient(180deg,#171b22,#080a0e);color:#e3263e;box-shadow:0 8px 20px #0005}
-.mw-roster-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#fff;font:600 .85rem var(--mw-font-body)}
-.mw-roster-search input::placeholder{color:#818b99}
-.mw-roster-filters{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:7px;margin:0 0 20px}
-.mw-roster-filters button{min-width:32px;height:32px;padding:0 8px;border:1px solid #363d47;border-radius:50%;background:#10141b;color:#aeb6c2;font:800 .65rem var(--mw-font-display);cursor:pointer;transition:all .18s ease}
-.mw-roster-filters button:hover,.mw-roster-filters button.active,.mw-roster-filters button[aria-pressed="true"]{border-color:#e3263e;background:#8f1929;color:#fff;box-shadow:0 0 10px #e3263e44}
-.mw-roster-filters button:focus-visible{outline:2px solid #e3263e;outline-offset:2px}
-.mw-current-champions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),220px));justify-content:center;gap:14px;margin:0 auto;padding:0 clamp(16px,3vw,34px);max-width:1320px}
-.mw-current-champions .mw-wrestler-card{aspect-ratio:3/4.15}
-.mw-authority-section{margin:clamp(26px,4vw,48px) auto 0}
-.mw-authority-section .roster-grid-container{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),220px));justify-content:center}
-.mw-champions-section{margin-top:clamp(32px,5vw,56px)}
-.mw-champions-section .roster-grid-container{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),220px));justify-content:center}
-.mw-roster-division--main{--division-accent:#e3263e}
-.mw-roster-division--second{--division-accent:#aeb4bd}
-.mw-roster-division .mw-roster-division__heading::after{background:linear-gradient(90deg,var(--division-accent,#e3263e),transparent)}
-.mw-roster-division .mw-brand-filter-panel{border-top:2px solid var(--division-accent,#e3263e)}
-.mw-roster-division .mw-wrestler-card{--wrestler-accent:var(--division-accent,#e3263e)}
-.mw-roster-division--second .mw-wrestler-card{--wrestler-glow:rgba(180,185,195,.2)}
-.mw-alumni-hero{position:relative;isolation:isolate;overflow:hidden;margin:0 auto 30px;padding:clamp(34px,6vw,74px) 20px;text-align:center;background:radial-gradient(ellipse at 50% 0,#252a33,#0a0c11 65%);border-bottom:1px solid #343b46}
-.mw-alumni-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,transparent 0 18%,rgba(227,38,62,.28) 18.2%,transparent 18.8% 82%,rgba(227,38,62,.22) 82.2%,transparent 82.8%)}
-.mw-alumni-hero h1{margin:0;color:#fff;font:900 clamp(2.5rem,7vw,5rem)/.95 var(--mw-font-display);letter-spacing:.04em;text-transform:uppercase}
-.mw-alumni-hero p{max-width:650px;margin:14px auto 0;color:#aeb6c2;font:500 .9rem/1.6 var(--mw-font-body)}
-.mw-alumni-hero .eyebrow{margin-bottom:8px;color:#e3263e;font:800 .75rem var(--mw-font-display);letter-spacing:.2em;text-transform:uppercase}
-.mw-alumni-card{filter:saturate(.75)}
-.mw-alumni-card:hover{filter:saturate(1)}
-.mw-modal,.mw-wrestler-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.88)}
-.mw-modal[hidden],.mw-wrestler-modal[hidden]{display:none}
-.mw-modal__panel,.mw-wrestler-modal__panel{position:relative;width:min(100%,920px);max-height:min(90vh,900px);overflow:auto;background:linear-gradient(145deg,#171c25,#080a0e 70%);border:1px solid #3b424d;box-shadow:0 25px 80px #000d;color:#fff}
-.mw-modal__close,.mw-wrestler-modal__close{position:absolute;top:12px;right:12px;z-index:5;width:40px;height:40px;border:1px solid #555d68;background:#10141b;color:#fff;font-size:1.4rem;cursor:pointer}
-.mw-modal__close:hover,.mw-wrestler-modal__close:hover{background:#9f1b2d;border-color:#e3263e}
-.mw-modal__body,.mw-wrestler-modal__body{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:24px;padding:28px}
-.mw-modal__portrait,.mw-wrestler-modal__portrait{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;background:#10141b;border:1px solid #353c47}
-.mw-modal__content,.mw-wrestler-modal__content{min-width:0}
-.mw-modal__eyebrow,.mw-wrestler-modal__eyebrow{color:#e3263e;font:800 .72rem var(--mw-font-display);letter-spacing:.18em;text-transform:uppercase}
-.mw-modal__title,.mw-wrestler-modal__title{margin:8px 0 12px;color:#fff;font:900 clamp(1.8rem,4vw,3rem)/.95 var(--mw-font-display);text-transform:uppercase}
-.mw-modal__description,.mw-wrestler-modal__description{color:#b5bdc9;font:500 .9rem/1.65 var(--mw-font-body)}
-.mw-modal__stats,.mw-wrestler-modal__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:20px 0}
-.mw-modal__stat,.mw-wrestler-modal__stat{padding:12px 8px;background:#111720;border:1px solid #303845;text-align:center}
-.mw-modal__stat strong,.mw-wrestler-modal__stat strong{display:block;color:#fff;font:900 1.2rem var(--mw-font-display)}
-.mw-modal__stat span,.mw-wrestler-modal__stat span{display:block;margin-top:4px;color:#9ba6b5;font:700 .6rem var(--mw-font-body);letter-spacing:.08em;text-transform:uppercase}
-.mw-modal__section,.mw-wrestler-modal__section{margin-top:20px;padding-top:14px;border-top:1px solid #303845}
-.mw-modal__section h3,.mw-wrestler-modal__section h3{margin:0 0 10px;color:#e3263e;font:900 .85rem var(--mw-font-display);letter-spacing:.12em;text-transform:uppercase}
-.mw-modal__list,.mw-wrestler-modal__list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.mw-modal__list li,.mw-wrestler-modal__list li{padding:9px 11px;background:#111720;border-left:2px solid #e3263e;color:#c5ccd6;font-size:.8rem}
-.mw-modal__link,.mw-wrestler-modal__link{color:#f0a1aa;text-decoration:none}
-.mw-modal__link:hover,.mw-wrestler-modal__link:hover{color:#fff;text-decoration:underline}
-.mw-records-section{max-width:1320px;margin:40px auto;padding:0 clamp(16px,3vw,34px)}
-.mw-records-section h2{margin:0 0 18px;color:#fff;font:900 1.5rem var(--mw-font-display);letter-spacing:.1em;text-transform:uppercase}
-.mw-records-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.mw-record-card{padding:16px;background:linear-gradient(145deg,#171c25,#090b10);border:1px solid #343b46;color:#fff}
-.mw-record-card h3{margin:0 0 8px;color:#e3263e;font:900 1rem var(--mw-font-display);text-transform:uppercase}
-.mw-record-card p{margin:0;color:#aeb6c2;font-size:.8rem;line-height:1.5}
-.mw-empty-state{grid-column:1/-1;padding:36px 16px;text-align:center;color:#929ba8;background:#10141b;border:1px dashed #343b46;font:800 .9rem var(--mw-font-display);letter-spacing:.08em;text-transform:uppercase}
-@media(min-width:1100px){
- .roster-grid-container{grid-template-columns:repeat(5,minmax(0,1fr))}
-}
-@media(min-width:700px) and (max-width:1099px){
- .roster-grid-container{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
-@media(max-width:699px){
- .mw-page-header{padding:28px 14px 16px}
- .mw-page-header .page-title{font-size:clamp(2.5rem,13vw,4rem)}
- .mw-page-header .lead{font-size:.82rem}
- .mw-catalog-toolbar{padding:0 12px;gap:8px}
- .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 10px}
- .mw-wrestler-card{aspect-ratio:3/4.15;border-radius:2px}
- .mw-wrestler-card__info{padding:8px 4px 9px}
- .mw-wrestler-card__name{font-size:clamp(.62rem,2.5vw,.82rem)}
- .mw-wrestler-card__meta{font-size:.48rem;letter-spacing:.03em}
- .mw-wrestler-card__stats{padding:5px 4px;font-size:.52rem}
- .mw-wrestler-card__banner{padding:5px 4px;font-size:.55rem}
- .mw-wrestler-card__record{padding:5px 4px;font-size:.48rem}
- .mw-wrestler-card__tag{top:5px;left:5px;padding:4px 5px;font-size:.46rem}
- .mw-catalog-section{padding:0 10px;margin-top:30px}
- .mw-catalog-section-heading{gap:8px;margin-bottom:16px}
- .mw-catalog-section-heading h2,.mw-catalog-section-heading h3{padding:8px 13px;font-size:.82rem}
- .mw-brand-filter-panel{gap:6px;padding:8px;margin-bottom:16px}
- .mw-brand-filter{min-width:70px;min-height:34px;padding:7px 10px;font-size:.68rem}
- .mw-roster-search{max-width:none;margin:0 0 12px}
- .mw-roster-filters{gap:5px;margin-bottom:16px}
- .mw-roster-filters button{min-width:27px;height:27px;padding:0 5px;font-size:.56rem}
- .mw-current-champions{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 10px}
- .mw-authority-section .roster-grid-container,.mw-champions-section .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr))}
- .mw-roster-division{margin-top:32px}
- .mw-roster-division__heading{margin-bottom:14px}
- .mw-roster-division__heading h2{font-size:1.3rem}
- .mw-modal,.mw-wrestler-modal{padding:10px}
- .mw-modal__panel,.mw-wrestler-modal__panel{max-height:94vh}
- .mw-modal__body,.mw-wrestler-modal__body{grid-template-columns:1fr;gap:16px;padding:16px}
- .mw-modal__portrait,.mw-wrestler-modal__portrait{max-width:210px;margin:0 auto}
- .mw-modal__title,.mw-wrestler-modal__title{text-align:center}
- .mw-modal__stats,.mw-wrestler-modal__stats{gap:5px}
- .mw-alumni-hero{padding:34px 14px}
- .mw-records-section{padding:0 12px}
- .mw-records-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-}
-@media(max-width:380px){
- .roster-grid-container{gap:6px;padding:0 7px}
- .mw-wrestler-card__name{font-size:.58rem}
- .mw-wrestler-card__meta{font-size:.43rem}
- .mw-wrestler-card__stats{font-size:.46rem}
- .mw-current-champions{gap:6px;padding:0 7px}
- .mw-brand-filter{min-width:62px;padding:6px 8px}
-}
-@media(hover:none){
- .mw-wrestler-card:hover{transform:none}
- .mw-wrestler-card:hover .mw-wrestler-card__image{transform:none}
-}
+.mw-wrestler-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 38%,#0003 55%,#000e 78%,#000 100%);pointer-events:none}
+.mw-wrestler-card__sheen{display:none}
+.mw-wrestler-card__rank{position:absolute;top:7px;right:7px;padding:4px 6px;border:1px solid var(--wrestler-accent);background:#08090cdd;color:var(--wrestler-accent);font:900 .72rem var(--mw-font-display)}
+.mw-wrestler-card__banner{position:relative;margin:0 -5px 5px;padding:7px 8px 8px 12px;background:linear-gradient(0deg,#000 0%,#000d 65%,#0002 100%);border:0;box-shadow:none;transform:none}
+.mw-wrestler-card__banner-inner{display:block}
+.mw-wrestler-card__subtitle{display:block;color:#fff;font:800 clamp(.52rem,.7vw,.7rem)/1.15 var(--mw-font-display);letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 4px #000;overflow-wrap:anywhere}
+.mw-wrestler-card__name{display:block;margin-top:3px;color:#fff;font:900 clamp(.92rem,1.5vw,1.55rem)/.95 var(--mw-font-display);letter-spacing:-.02em;text-transform:uppercase;text-shadow:0 2px 5px #000;overflow-wrap:anywhere}
+.mw-wrestler-card__brand{display:none!important}
+.mw-wrestler-card.brand-raw,.mw-wrestler-card:has([data-brand="RAW"]){--wrestler-accent:#e3263e}
+.mw-wrestler-card.brand-smackdown,.mw-wrestler-card:has([data-brand="SmackDown"]){--wrestler-accent:#168cff}
+.mw-wrestler-card.brand-nxt,.mw-wrestler-card:has([data-brand="NXT"]){--wrestler-accent:#c7ccd4}
+.mw-wrestler-card.brand-aaa,.mw-wrestler-card:has([data-brand="AAA"]){--wrestler-accent:#e3263e}
+.mw-empty-state,.mw-catalog-loading,.mw-catalog-error{grid-column:1/-1;padding:28px;border:1px solid #30343b;background:#0b0d10;color:#b5bac2;text-align:center;font:700 .9rem var(--mw-font-display)}
+.mw-catalog-error{color:#ff6e83}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.mw-wrestler-modal[hidden]{display:none!important}
+.mw-modal-open{overflow:hidden}
+.mw-wrestler-modal{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:10px;color:#f4f7fc;font-family:var(--mw-font-body)}
+.mw-wrestler-modal__backdrop{position:absolute;inset:0;background:#020408e8}
+.mw-wrestler-modal__dialog{--wrestler-accent:#e3263e;position:relative;width:min(100%,850px);max-height:94dvh;overflow:auto;padding:clamp(14px,3vw,26px);border:1px solid #414650;border-top:4px solid var(--wrestler-accent);border-radius:12px;background:linear-gradient(145deg,#15191f,#080a0e);box-shadow:0 25px 80px #000d}
+.mw-wrestler-modal__close{position:sticky;top:0;float:right;z-index:3;width:42px;height:42px;margin:-4px -4px -42px 0;border:1px solid #414650;border-radius:5px;background:#08090c;color:#fff;font-size:1.8rem;cursor:pointer}
+.mw-wrestler-modal__close:hover{border-color:var(--wrestler-accent);color:var(--wrestler-accent)}
+.mw-modal-hero{display:grid;grid-template-columns:minmax(150px,255px) minmax(0,1fr);gap:22px;align-items:center;padding:0 36px 20px 0}
+.mw-modal-portrait-wrap{position:relative;min-height:240px;aspect-ratio:3/4;overflow:hidden;border:1px solid #414650;background:#080a0e}
+.mw-modal-portrait{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.mw-modal-portrait.is-missing{display:none}
+.mw-modal-brand-tag{position:absolute;left:10px;bottom:10px;padding:6px 10px;border:1px solid var(--wrestler-accent);background:#060a11e8;color:var(--wrestler-accent);font:900 .75rem var(--mw-font-display)}
+.mw-modal-identity{min-width:0}
+.mw-modal-nickname{margin:0 0 8px;color:#e7c56e;font:900 1rem var(--mw-font-display);text-transform:uppercase}
+.mw-modal-identity h2{margin:0 0 14px;font:900 clamp(2rem,5vw,3.25rem)/.94 var(--mw-font-display);text-transform:uppercase;overflow-wrap:anywhere}
+.mw-interpreter-block{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.mw-interpreter-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.mw-mini-label{color:#9299a3;font:800 .73rem var(--mw-font-display);letter-spacing:.12em;text-transform:uppercase}
+.mw-interpreter-copy>strong{color:var(--wrestler-accent);font:900 1rem var(--mw-font-display)}
+.mw-interpreter-details{position:relative}
+.mw-interpreter-details summary{display:flex;gap:7px;cursor:pointer;color:#c4c8ce;border:1px solid #343941;background:#11151a;padding:6px 9px;font:800 .68rem var(--mw-font-display)}
+.mw-interpreter-details summary::-webkit-details-marker{display:none}
+.mw-chevron{color:var(--wrestler-accent)}
+.mw-interpreter-list{position:absolute;top:calc(100% + 6px);right:0;z-index:5;width:min(270px,75vw);max-height:240px;overflow:auto;padding:6px;border:1px solid #414650;background:#0b0d10}
+.mw-interpreter-option{display:grid;grid-template-columns:1fr auto auto;gap:10px;padding:10px;color:#e7edf7;text-decoration:none;font-size:.82rem}
+.mw-interpreter-option:hover,.mw-interpreter-option.is-current{background:#24282e;color:#fff}
+.mw-interpreter-option__meta{color:#9299a3;font-size:.62rem}
+.mw-modal-panel,.mw-modal-mini-panel{margin:0 0 15px;padding:16px;border:1px solid #30343b;background:#11151a}
+.mw-panel-heading{margin:0 0 15px;color:var(--wrestler-accent);font:900 1.08rem var(--mw-font-display);letter-spacing:.12em;text-transform:uppercase}
+.mw-attribute{margin:0 0 13px}
+.mw-attribute__line{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;color:#dce1e8;font:800 1rem var(--mw-font-display)}
+.mw-attribute__line strong{color:var(--attribute-color,var(--wrestler-accent))}
+.mw-attribute__track{height:9px;overflow:hidden;background:#30343b}
+.mw-attribute__track span{display:block;width:var(--attribute-value);height:100%;background:var(--attribute-color,var(--wrestler-accent))}
+.mw-overall-row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #343941;color:#aeb4bd;font:800 .8rem var(--mw-font-display)}
+.mw-overall-row strong{color:var(--wrestler-accent);font:900 1.9rem var(--mw-font-display)}
+.mw-data-pending{color:#9299a3;font-size:.86rem;line-height:1.5}
+.mw-modal-stat-grid,.mw-record-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
+.mw-modal-mini-panel>strong{display:block;margin-top:8px;color:#f4f7fc;font:800 1.1rem var(--mw-font-display)}
+.mw-modal-overall>strong{font:900 2.7rem var(--mw-font-display);color:var(--wrestler-accent)}
+.mw-overall-note{display:block;color:#9299a3;font-size:.68rem;margin-top:8px}
+.mw-record-bar,.mw-record-tile{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:14px;border:1px solid #343941;background:#11151a;color:#f4f7fc;text-decoration:none}
+.mw-record-bar:hover,.mw-record-tile:hover{border-color:var(--wrestler-accent)}
+.mw-record-bar__icon{display:grid;place-items:center;width:42px;height:42px;border:1px solid #343941;color:var(--wrestler-accent)}
+.mw-record-bar__copy,.mw-champion-card__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.mw-record-bar__copy strong{font:900 .95rem var(--mw-font-display)}
+.mw-record-bar__copy small,.mw-record-tile>small{color:#9299a3;font-size:.72rem}
+.mw-record-bar__arrow{color:var(--wrestler-accent)}
+.mw-record-tile{flex-direction:column;align-items:flex-start;gap:7px}
+.mw-record-tile>strong{font:900 1.4rem var(--mw-font-display)}
+.mw-modal-achievements ul{margin:0;padding-left:21px;color:#b8c3d3;line-height:1.85}
+.mw-modal-achievements li::marker{color:var(--wrestler-accent)}
+.mw-modal-footer-meta{display:flex;gap:8px;flex-wrap:wrap}
+.mw-modal-footer-meta span{padding:6px 9px;border:1px solid #343941;color:#aeb4bd;background:#0b0d10;font:700 .68rem var(--mw-font-display)}
+.mw-record-page{max-width:1120px;min-height:70vh;margin:auto;padding:30px 16px 80px}
+.mw-record-hero h1{margin:8px 0}
+.mw-record-hero p:last-child{color:#aab6c8;line-height:1.6}
+.mw-record-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mw-record-stat{padding:22px;border:1px solid #30343b;border-top:3px solid #555b64;background:#11151a}
+.mw-record-stat.is-current{border-top-color:#e3263e}
+.mw-record-stat span{display:block;color:#aeb4bd;font:900 .85rem var(--mw-font-display)}
+.mw-record-stat strong{display:block;margin:10px 0;color:#e3263e;font:900 3rem var(--mw-font-display)}
+.mw-record-stat small{color:#9299a3}
+.mw-record-note{margin-top:18px;padding:20px;border:1px solid #30343b;background:#0d1014;color:#aeb4bd;line-height:1.65}
+.mw-record-note h2{color:#f2f5fb;font:900 1.4rem var(--mw-font-display)}
+.mw-record-back{display:inline-flex;margin-top:18px;padding:12px 16px;border:1px solid #e3263e;color:#e3263e;text-decoration:none;font:900 .85rem var(--mw-font-display)}
+.mw-record-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.mw-record-links a{display:flex;justify-content:space-between;padding:12px 14px;background:#101216;border:1px solid #343941;color:#eaf0f8;text-decoration:none}
+.mw-record-links a:hover{border-color:#e3263e;color:#e3263e}
+.alumni-hero{position:relative;isolation:isolate;overflow:hidden;width:100%;margin:0 auto 30px;padding:clamp(38px,7vw,82px) 20px 30px;box-sizing:border-box;background:radial-gradient(ellipse at 78% 30%,#e3263e22,transparent 48%),linear-gradient(115deg,#05070b,#11151b 52%,#05070b);border:1px solid #e3263e33;text-align:left}
+.alumni-hero:before{content:"";position:absolute;z-index:-1;top:-55%;right:12%;width:1px;height:210%;transform:rotate(32deg);background:linear-gradient(transparent,#e3263e77,transparent);box-shadow:0 0 28px #e3263e22;pointer-events:none}
+.alumni-hero:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,#e3263e,#aeb4bd44,transparent)}
+.alumni-hero-content{position:relative;z-index:1;width:100%;max-width:1100px;margin:auto}
+.alumni-eyebrow{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:13px;color:#e3263e;font:800 10px Inter,sans-serif;letter-spacing:2.5px}
+.alumni-eyebrow-line{width:27px;height:2px;background:#e3263e;box-shadow:0 0 10px #e3263e77}
+.alumni-eyebrow-divider{color:#707782}
+.alumni-eyebrow-muted{color:#9299a3}
+.alumni-title{margin:0;font:italic 900 clamp(64px,13vw,142px)/.86 "Barlow Condensed",Impact,sans-serif;letter-spacing:-2px;text-transform:uppercase;color:#f5f8ff;text-shadow:0 2px #9ba9bd,0 5px #30343b,0 14px 36px #e3263e22}
+.alumni-title span{display:inline-block;background:linear-gradient(#fff,#e4e6e9 42%,#aeb4bd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.alumni-description{display:flex;flex-direction:column;gap:8px;max-width:620px;margin:22px 0 0;color:#e3263e;font:800 11px Inter,sans-serif;letter-spacing:1.6px;line-height:1.7}
+.alumni-description span{max-width:520px;color:#b5c0d1;font-size:13px;font-weight:500;letter-spacing:.1px;line-height:1.8}
+.alumni-hero-bottom{display:flex;align-items:center;gap:12px;margin-top:32px;padding-top:16px;border-top:1px solid #bec3ca2e}
+.alumni-edition,.alumni-edition-label{font:800 9px Inter,sans-serif;letter-spacing:1.5px}
+.alumni-edition{color:#eaf3ff}
+.alumni-edition-line{width:30px;height:1px;background:#e3263e88}
+.alumni-edition-label{color:#9299a3}
+[data-wrestlers-catalog="alumni"] .roster-grid-container{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:14px;width:100%;padding-inline:14px;box-sizing:border-box}
+[data-wrestlers-catalog="alumni"] .mw-wrestler-card{width:100%;min-width:0;max-width:none;height:auto;aspect-ratio:3/4.7;box-sizing:border-box}
+[data-wrestlers-catalog="alumni"] .mw-wrestler-card__image{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:760px){.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mw-roster-division{margin-bottom:27px}.mw-roster-division__header{margin-bottom:11px}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-inline:10px}}
+@media(max-width:560px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding-inline:10px}.mw-wrestler-card{aspect-ratio:3/4.7}.mw-wrestler-card__name{font-size:clamp(.82rem,3.7vw,1.18rem)}.mw-wrestler-card__subtitle{font-size:clamp(.43rem,1.9vw,.58rem)}.mw-brand-filter-panel{margin-bottom:16px;padding:13px 10px}.mw-brand-filter{min-height:34px;padding:7px 11px;font-size:.72rem}.mw-letter-filters{gap:5px;padding:10px 0}.mw-letter-filter{width:29px;height:29px;flex-basis:29px;font-size:.66rem}.mw-current-champions{padding:18px 10px 0;margin-bottom:18px}.mw-champions-track{grid-template-columns:1fr 1fr;gap:7px}.mw-champion-card{min-height:86px;padding:7px;gap:7px}.mw-champion-card img{width:42px;height:64px;flex-basis:42px}.mw-champion-card__crest{width:35px;height:35px;flex-basis:35px;font-size:1.25rem}.mw-champion-card__copy strong{font-size:.95rem}.mw-modal-hero{grid-template-columns:minmax(105px,35%) minmax(0,1fr);gap:13px;padding-right:0}.mw-modal-identity h2{font-size:clamp(1.5rem,6vw,2.15rem)}.mw-modal-portrait-wrap{min-height:180px}.mw-wrestler-modal__dialog{padding:13px;max-height:96dvh}.mw-modal-stat-grid,.mw-record-grid{gap:8px}.alumni-hero{margin-bottom:25px;padding:36px 17px 22px}.alumni-eyebrow{gap:7px;font-size:8px;letter-spacing:1.5px}.alumni-title{font-size:clamp(62px,17vw,96px);letter-spacing:-1px}.alumni-description{margin-top:18px;font-size:10px}.alumni-description span{font-size:12px}.alumni-hero-bottom{margin-top:24px;gap:9px}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
+@media(max-width:360px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mw-wrestler-card__view{display:none}.mw-modal-hero{grid-template-columns:minmax(0,32%) minmax(0,1fr);gap:13px}.mw-modal-portrait-wrap{min-height:180px}.mw-modal-identity h2{font-size:1.45rem}.mw-champions-track{grid-template-columns:1fr}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-inline:8px}}
+@media(prefers-reduced-motion:reduce){.mw-wrestler-card,.mw-wrestler-card__image,.mw-wrestler-modal__dialog,.mw-record-bar,.mw-record-tile{animation:none!important;transition:none!important}}
