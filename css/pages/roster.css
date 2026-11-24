@@ -1,597 +1,1951 @@
-:root{--mw-accent:#e3263e;--mw-ink:#08090c;--mw-panel:#111318;--mw-line:#30343b;--mw-muted:#a6aab2;--mw-font-display:"Barlow Condensed",Impact,sans-serif;--mw-font-body:Inter,Arial,sans-serif}
-.mw-roster-page{min-height:70vh;padding-bottom:70px}
-.mw-page-header{max-width:1320px;margin:auto;padding:clamp(30px,5vw,68px) clamp(12px,3vw,30px) 20px}
-.mw-page-header .eyebrow,.mw-record-eyebrow{color:var(--mw-accent);font:800 .8rem var(--mw-font-display);letter-spacing:.2em;text-transform:uppercase}
-.mw-page-header .page-title,.mw-record-hero h1{margin:0;font:900 clamp(3rem,8vw,6rem)/.9 var(--mw-font-display);text-transform:uppercase;text-shadow:0 5px 24px #e3263e22}
-.mw-page-header .lead{max-width:720px;color:#aeb3bc;font-size:.95rem;line-height:1.6}
-.mw-catalog-toolbar{max-width:1320px;margin:0 auto 20px;padding:0 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.mw-search-field,.mw-select-field{min-height:44px;display:flex;align-items:center;gap:10px;padding:0 13px;flex:1 1 220px;background:#101216;border:1px solid #343941;color:#e3263e}
-.mw-search-field input,.mw-select-field select{width:100%;min-width:0;padding:11px 0;border:0;outline:0;background:transparent;color:#fff;font:600 .9rem var(--mw-font-body)}
-.mw-select-field select option{background:#101216;color:#fff}
-.mw-catalog-count{margin-left:auto;color:#a6aab2;font:800 .8rem var(--mw-font-display);letter-spacing:.12em}
-.roster-grid-container{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:1320px;margin:auto;padding:0 16px}
-.mw-roster-page>.roster-grid-container{display:block;width:100%}
-.mw-roster-division{--division-accent:#d5d8dd;min-width:0;margin:0 0 34px}
-.mw-roster-division--main{--division-accent:#e5e6e8}
-.mw-roster-division--development{--division-accent:#aeb4bd}
-.mw-roster-division--other{--division-accent:#aeb4bd}
-.mw-roster-division__header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 0 15px;padding:0 0 10px;border-bottom:2px solid var(--division-accent)}
-.mw-roster-division__heading{min-width:0}
-.mw-roster-division__eyebrow{display:block;margin-bottom:5px;color:#9298a1;font-size:10px;font-weight:800;letter-spacing:.16em}
-.mw-roster-division__title{margin:0;color:#f1f2f4;font:900 clamp(27px,5vw,42px)/.95 var(--mw-font-display);letter-spacing:-.02em}
-.mw-roster-division__subtitle{margin:6px 0 0;color:var(--division-accent);font-size:11px;font-weight:800;letter-spacing:.12em}
-.mw-roster-division__count{flex:0 0 auto;color:#aab0b9;font-size:10px;font-weight:800}
-.mw-roster-division__grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.mw-champions-division{margin:0 0 24px}
-.mw-champions-division__header{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid #9c8046}
-.mw-champions-division__header h3{margin:0;color:#e6ce91;font:900 22px var(--mw-font-display)}
-.mw-champions-division__header span{color:#b8b0a0;font-size:10px;font-weight:800}
-.mw-brand-filter-panel{max-width:1320px;margin:0 auto 20px;padding:15px clamp(12px,3vw,30px);border-block:1px solid #292d33;background:linear-gradient(100deg,#0b0d10,#15171b,#090a0c)}
-.mw-filter-panel-heading{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.mw-filter-panel-heading>strong{color:#f4f4f5;font:900 clamp(1.1rem,2vw,1.5rem) var(--mw-font-display);letter-spacing:.06em}
-.mw-filter-kicker{width:100%;color:#e3263e;font:900 .68rem var(--mw-font-display);letter-spacing:.2em}
-.mw-brand-filters{display:flex;flex-wrap:wrap;gap:7px;padding:3px 0 7px}
-.mw-brand-filter{min-height:38px;min-width:76px;padding:8px 15px;border:1px solid #42474f;border-radius:2px;background:linear-gradient(#191c21,#090a0c);color:#b9bec6;font:900 .82rem var(--mw-font-display);letter-spacing:.09em;cursor:pointer;transition:.15s}
-.mw-brand-filter:hover{border-color:#e3263e;color:#fff}
-.mw-brand-filter.is-active{border-color:#f05a68;background:linear-gradient(#e3263e,#991729);color:#fff;box-shadow:0 3px 12px #e3263e33}
-.mw-letter-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:12px 0;border-block:1px solid #292d33}
-.mw-letter-filter{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;padding:0;border:1px solid #555b64;border-radius:50%;background:linear-gradient(145deg,#191c21,#08090b);color:#c5c8ce;font:800 .72rem var(--mw-font-display);cursor:pointer;transition:.15s}
-.mw-letter-filter:hover,.mw-letter-filter.is-active{border-color:#e3263e;background:#e3263e;color:#fff}
-.mw-letter-filter:focus-visible,.mw-brand-filter:focus-visible{outline:2px solid #eee;outline-offset:2px}
-.mw-current-champions{max-width:1320px;margin:0 auto 25px;padding:20px 16px 0;overflow:hidden}
-.mw-champions-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.mw-champions-kicker{color:#e2c26c;font:900 .68rem var(--mw-font-display);letter-spacing:.2em}
-.mw-champions-heading h2{margin:0;color:#f5f5f5;font:900 clamp(1.35rem,3vw,2.1rem) var(--mw-font-display)}
-.mw-champions-rule{height:1px;flex:1;background:linear-gradient(90deg,#b99848,#574b31,transparent)}
-.mw-champions-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.mw-champion-card{--champion-accent:#d9b95e;position:relative;display:flex;align-items:center;gap:12px;min-height:108px;padding:10px 13px;overflow:hidden;border:1px solid #6c5930;border-left:3px solid var(--champion-accent);background:linear-gradient(115deg,#201b11,#10141d 48%,#080b11);color:#f4f6fa;text-decoration:none;transition:.18s}
-.mw-champion-card:hover{transform:translateY(-3px);border-color:#f0d37d}
-.mw-champion-card img{width:66px;height:84px;flex:0 0 66px;object-fit:cover;object-position:top}
-.mw-champion-card__crest{display:grid;place-items:center;width:58px;height:58px;flex:0 0 58px;border:1px solid #a98d45;border-radius:50%;color:#e8ce7c;background:#292112;font-size:2rem}
-.mw-champion-card__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.mw-champion-card__copy small{color:#d7bc70;font:900 .62rem var(--mw-font-display);letter-spacing:.12em}
-.mw-champion-card__copy strong{font:900 1.3rem/.95 var(--mw-font-display);text-transform:uppercase}
-.mw-champion-card__copy>span{color:#aeb8c8;font:700 .72rem var(--mw-font-display);text-transform:uppercase}
-.mw-champions-empty{padding:14px;border:1px solid #493d24;color:#aeb5bf;background:#111}
-.mw-wrestler-card{--wrestler-accent:#e3263e;--wrestler-glow:#e3263e33;position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;aspect-ratio:3/4;overflow:hidden;padding:0;border:1px solid #343941;border-radius:2px;background:#090a0c;color:#fff;text-align:left;cursor:pointer;box-shadow:0 8px 20px #0009;transition:transform .18s,border-color .18s}
-.mw-wrestler-card:hover,.mw-wrestler-card:focus-visible{transform:translateY(-3px);border-color:var(--wrestler-accent);outline:none}
-.mw-wrestler-card__image{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center top}
-.mw-wrestler-card__image.is-missing{display:none}
-.mw-wrestler-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 38%,#0003 55%,#000e 78%,#000 100%);pointer-events:none}
-.mw-wrestler-card__sheen{display:none}
-.mw-wrestler-card__rank{position:absolute;top:7px;right:7px;padding:4px 6px;border:1px solid var(--wrestler-accent);background:#08090cdd;color:var(--wrestler-accent);font:900 .72rem var(--mw-font-display)}
-.mw-wrestler-card__banner{position:relative;margin:0 -5px 5px;padding:7px 8px 8px 12px;background:linear-gradient(0deg,#000 0%,#000d 65%,#0002 100%);border:0;box-shadow:none;transform:none}
-.mw-wrestler-card__banner-inner{display:block}
-.mw-wrestler-card__subtitle{display:block;color:#fff;font:800 clamp(.52rem,.7vw,.7rem)/1.15 var(--mw-font-display);letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 4px #000;overflow-wrap:anywhere}
-.mw-wrestler-card__name{display:block;margin-top:3px;color:#fff;font:900 clamp(.92rem,1.5vw,1.55rem)/.95 var(--mw-font-display);letter-spacing:-.02em;text-transform:uppercase;text-shadow:0 2px 5px #000;overflow-wrap:anywhere}
-.mw-wrestler-card__brand{display:none!important}
-.mw-wrestler-card.brand-raw,.mw-wrestler-card:has([data-brand="RAW"]){--wrestler-accent:#e3263e}
-.mw-wrestler-card.brand-smackdown,.mw-wrestler-card:has([data-brand="SmackDown"]){--wrestler-accent:#168cff}
-.mw-wrestler-card.brand-nxt,.mw-wrestler-card:has([data-brand="NXT"]){--wrestler-accent:#c7ccd4}
-.mw-wrestler-card.brand-aaa,.mw-wrestler-card:has([data-brand="AAA"]){--wrestler-accent:#e3263e}
-.mw-empty-state,.mw-catalog-loading,.mw-catalog-error{grid-column:1/-1;padding:28px;border:1px solid #30343b;background:#0b0d10;color:#b5bac2;text-align:center;font:700 .9rem var(--mw-font-display)}
-.mw-catalog-error{color:#ff6e83}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.mw-wrestler-modal[hidden]{display:none!important}
-.mw-modal-open{overflow:hidden}
-.mw-wrestler-modal{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:10px;color:#f4f7fc;font-family:var(--mw-font-body)}
-.mw-wrestler-modal__backdrop{position:absolute;inset:0;background:#020408e8}
-.mw-wrestler-modal__dialog{--wrestler-accent:#e3263e;position:relative;width:min(100%,850px);max-height:94dvh;overflow:auto;padding:clamp(14px,3vw,26px);border:1px solid #414650;border-top:4px solid var(--wrestler-accent);border-radius:12px;background:linear-gradient(145deg,#15191f,#080a0e);box-shadow:0 25px 80px #000d}
-.mw-wrestler-modal__close{position:sticky;top:0;float:right;z-index:3;width:42px;height:42px;margin:-4px -4px -42px 0;border:1px solid #414650;border-radius:5px;background:#08090c;color:#fff;font-size:1.8rem;cursor:pointer}
-.mw-wrestler-modal__close:hover{border-color:var(--wrestler-accent);color:var(--wrestler-accent)}
-.mw-modal-hero{display:grid;grid-template-columns:minmax(150px,255px) minmax(0,1fr);gap:22px;align-items:center;padding:0 36px 20px 0}
-.mw-modal-portrait-wrap{position:relative;min-height:240px;aspect-ratio:3/4;overflow:hidden;border:1px solid #414650;background:#080a0e}
-.mw-modal-portrait{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
-.mw-modal-portrait.is-missing{display:none}
-.mw-modal-brand-tag{position:absolute;left:10px;bottom:10px;padding:6px 10px;border:1px solid var(--wrestler-accent);background:#060a11e8;color:var(--wrestler-accent);font:900 .75rem var(--mw-font-display)}
-.mw-modal-identity{min-width:0}
-.mw-modal-nickname{margin:0 0 8px;color:#e7c56e;font:900 1rem var(--mw-font-display);text-transform:uppercase}
-.mw-modal-identity h2{margin:0 0 14px;font:900 clamp(2rem,5vw,3.25rem)/.94 var(--mw-font-display);text-transform:uppercase;overflow-wrap:anywhere}
-.mw-interpreter-block{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
-.mw-interpreter-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
-.mw-mini-label{color:#9299a3;font:800 .73rem var(--mw-font-display);letter-spacing:.12em;text-transform:uppercase}
-.mw-interpreter-copy>strong{color:var(--wrestler-accent);font:900 1rem var(--mw-font-display)}
-.mw-interpreter-details{position:relative}
-.mw-interpreter-details summary{display:flex;gap:7px;cursor:pointer;color:#c4c8ce;border:1px solid #343941;background:#11151a;padding:6px 9px;font:800 .68rem var(--mw-font-display)}
-.mw-interpreter-details summary::-webkit-details-marker{display:none}
-.mw-chevron{color:var(--wrestler-accent)}
-.mw-interpreter-list{position:absolute;top:calc(100% + 6px);right:0;z-index:5;width:min(270px,75vw);max-height:240px;overflow:auto;padding:6px;border:1px solid #414650;background:#0b0d10}
-.mw-interpreter-option{display:grid;grid-template-columns:1fr auto auto;gap:10px;padding:10px;color:#e7edf7;text-decoration:none;font-size:.82rem}
-.mw-interpreter-option:hover,.mw-interpreter-option.is-current{background:#24282e;color:#fff}
-.mw-interpreter-option__meta{color:#9299a3;font-size:.62rem}
-.mw-modal-panel,.mw-modal-mini-panel{margin:0 0 15px;padding:16px;border:1px solid #30343b;background:#11151a}
-.mw-panel-heading{margin:0 0 15px;color:var(--wrestler-accent);font:900 1.08rem var(--mw-font-display);letter-spacing:.12em;text-transform:uppercase}
-.mw-attribute{margin:0 0 13px}
-.mw-attribute__line{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;color:#dce1e8;font:800 1rem var(--mw-font-display)}
-.mw-attribute__line strong{color:var(--attribute-color,var(--wrestler-accent))}
-.mw-attribute__track{height:9px;overflow:hidden;background:#30343b}
-.mw-attribute__track span{display:block;width:var(--attribute-value);height:100%;background:var(--attribute-color,var(--wrestler-accent))}
-.mw-overall-row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #343941;color:#aeb4bd;font:800 .8rem var(--mw-font-display)}
-.mw-overall-row strong{color:var(--wrestler-accent);font:900 1.9rem var(--mw-font-display)}
-.mw-data-pending{color:#9299a3;font-size:.86rem;line-height:1.5}
-.mw-modal-stat-grid,.mw-record-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
-.mw-modal-mini-panel>strong{display:block;margin-top:8px;color:#f4f7fc;font:800 1.1rem var(--mw-font-display)}
-.mw-modal-overall>strong{font:900 2.7rem var(--mw-font-display);color:var(--wrestler-accent)}
-.mw-overall-note{display:block;color:#9299a3;font-size:.68rem;margin-top:8px}
-.mw-record-bar,.mw-record-tile{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:14px;border:1px solid #343941;background:#11151a;color:#f4f7fc;text-decoration:none}
-.mw-record-bar:hover,.mw-record-tile:hover{border-color:var(--wrestler-accent)}
-.mw-record-bar__icon{display:grid;place-items:center;width:42px;height:42px;border:1px solid #343941;color:var(--wrestler-accent)}
-.mw-record-bar__copy,.mw-champion-card__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.mw-record-bar__copy strong{font:900 .95rem var(--mw-font-display)}
-.mw-record-bar__copy small,.mw-record-tile>small{color:#9299a3;font-size:.72rem}
-.mw-record-bar__arrow{color:var(--wrestler-accent)}
-.mw-record-tile{flex-direction:column;align-items:flex-start;gap:7px}
-.mw-record-tile>strong{font:900 1.4rem var(--mw-font-display)}
-.mw-modal-achievements ul{margin:0;padding-left:21px;color:#b8c3d3;line-height:1.85}
-.mw-modal-achievements li::marker{color:var(--wrestler-accent)}
-.mw-modal-footer-meta{display:flex;gap:8px;flex-wrap:wrap}
-.mw-modal-footer-meta span{padding:6px 9px;border:1px solid #343941;color:#aeb4bd;background:#0b0d10;font:700 .68rem var(--mw-font-display)}
-.mw-record-page{max-width:1120px;min-height:70vh;margin:auto;padding:30px 16px 80px}
-.mw-record-hero h1{margin:8px 0}
-.mw-record-hero p:last-child{color:#aab6c8;line-height:1.6}
-.mw-record-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.mw-record-stat{padding:22px;border:1px solid #30343b;border-top:3px solid #555b64;background:#11151a}
-.mw-record-stat.is-current{border-top-color:#e3263e}
-.mw-record-stat span{display:block;color:#aeb4bd;font:900 .85rem var(--mw-font-display)}
-.mw-record-stat strong{display:block;margin:10px 0;color:#e3263e;font:900 3rem var(--mw-font-display)}
-.mw-record-stat small{color:#9299a3}
-.mw-record-note{margin-top:18px;padding:20px;border:1px solid #30343b;background:#0d1014;color:#aeb4bd;line-height:1.65}
-.mw-record-note h2{color:#f2f5fb;font:900 1.4rem var(--mw-font-display)}
-.mw-record-back{display:inline-flex;margin-top:18px;padding:12px 16px;border:1px solid #e3263e;color:#e3263e;text-decoration:none;font:900 .85rem var(--mw-font-display)}
-.mw-record-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
-.mw-record-links a{display:flex;justify-content:space-between;padding:12px 14px;background:#101216;border:1px solid #343941;color:#eaf0f8;text-decoration:none}
-.mw-record-links a:hover{border-color:#e3263e;color:#e3263e}
-.alumni-hero{position:relative;isolation:isolate;overflow:hidden;width:100%;margin:0 auto 30px;padding:clamp(38px,7vw,82px) 20px 30px;box-sizing:border-box;background:radial-gradient(ellipse at 78% 30%,#e3263e22,transparent 48%),linear-gradient(115deg,#05070b,#11151b 52%,#05070b);border:1px solid #e3263e33;text-align:left}
-.alumni-hero:before{content:"";position:absolute;z-index:-1;top:-55%;right:12%;width:1px;height:210%;transform:rotate(32deg);background:linear-gradient(transparent,#e3263e77,transparent);box-shadow:0 0 28px #e3263e22;pointer-events:none}
-.alumni-hero:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,#e3263e,#aeb4bd44,transparent)}
-.alumni-hero-content{position:relative;z-index:1;width:100%;max-width:1100px;margin:auto}
-.alumni-eyebrow{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:13px;color:#e3263e;font:800 10px Inter,sans-serif;letter-spacing:2.5px}
-.alumni-eyebrow-line{width:27px;height:2px;background:#e3263e;box-shadow:0 0 10px #e3263e77}
-.alumni-eyebrow-divider{color:#707782}
-.alumni-eyebrow-muted{color:#9299a3}
-.alumni-title{margin:0;font:italic 900 clamp(64px,13vw,142px)/.86 "Barlow Condensed",Impact,sans-serif;letter-spacing:-2px;text-transform:uppercase;color:#f5f8ff;text-shadow:0 2px #9ba9bd,0 5px #30343b,0 14px 36px #e3263e22}
-.alumni-title span{display:inline-block;background:linear-gradient(#fff,#e4e6e9 42%,#aeb4bd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.alumni-description{display:flex;flex-direction:column;gap:8px;max-width:620px;margin:22px 0 0;color:#e3263e;font:800 11px Inter,sans-serif;letter-spacing:1.6px;line-height:1.7}
-.alumni-description span{max-width:520px;color:#b5c0d1;font-size:13px;font-weight:500;letter-spacing:.1px;line-height:1.8}
-.alumni-hero-bottom{display:flex;align-items:center;gap:12px;margin-top:32px;padding-top:16px;border-top:1px solid #bec3ca2e}
-.alumni-edition,.alumni-edition-label{font:800 9px Inter,sans-serif;letter-spacing:1.5px}
-.alumni-edition{color:#eaf3ff}
-.alumni-edition-line{width:30px;height:1px;background:#e3263e88}
-.alumni-edition-label{color:#9299a3}
-[data-wrestlers-catalog="alumni"] .roster-grid-container{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:14px;width:100%;padding-inline:14px;box-sizing:border-box}
-[data-wrestlers-catalog="alumni"] .mw-wrestler-card{width:100%;min-width:0;max-width:none;height:auto;aspect-ratio:3/4.7;box-sizing:border-box}
-[data-wrestlers-catalog="alumni"] .mw-wrestler-card__image{width:100%;height:100%;object-fit:cover}
-@media(max-width:900px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:760px){.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mw-roster-division{margin-bottom:27px}.mw-roster-division__header{margin-bottom:11px}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-inline:10px}}
-@media(max-width:560px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding-inline:10px}.mw-wrestler-card{aspect-ratio:3/4.7}.mw-wrestler-card__name{font-size:clamp(.82rem,3.7vw,1.18rem)}.mw-wrestler-card__subtitle{font-size:clamp(.43rem,1.9vw,.58rem)}.mw-brand-filter-panel{margin-bottom:16px;padding:13px 10px}.mw-brand-filter{min-height:34px;padding:7px 11px;font-size:.72rem}.mw-letter-filters{gap:5px;padding:10px 0}.mw-letter-filter{width:29px;height:29px;flex-basis:29px;font-size:.66rem}.mw-current-champions{padding:18px 10px 0;margin-bottom:18px}.mw-champions-track{grid-template-columns:1fr 1fr;gap:7px}.mw-champion-card{min-height:86px;padding:7px;gap:7px}.mw-champion-card img{width:42px;height:64px;flex-basis:42px}.mw-champion-card__crest{width:35px;height:35px;flex-basis:35px;font-size:1.25rem}.mw-champion-card__copy strong{font-size:.95rem}.mw-modal-hero{grid-template-columns:minmax(105px,35%) minmax(0,1fr);gap:13px;padding-right:0}.mw-modal-identity h2{font-size:clamp(1.5rem,6vw,2.15rem)}.mw-modal-portrait-wrap{min-height:180px}.mw-wrestler-modal__dialog{padding:13px;max-height:96dvh}.mw-modal-stat-grid,.mw-record-grid{gap:8px}.alumni-hero{margin-bottom:25px;padding:36px 17px 22px}.alumni-eyebrow{gap:7px;font-size:8px;letter-spacing:1.5px}.alumni-title{font-size:clamp(62px,17vw,96px);letter-spacing:-1px}.alumni-description{margin-top:18px;font-size:10px}.alumni-description span{font-size:12px}.alumni-hero-bottom{margin-top:24px;gap:9px}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
-@media(max-width:360px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mw-wrestler-card__view{display:none}.mw-modal-hero{grid-template-columns:minmax(0,32%) minmax(0,1fr);gap:13px}.mw-modal-portrait-wrap{min-height:180px}.mw-modal-identity h2{font-size:1.45rem}.mw-champions-track{grid-template-columns:1fr}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-inline:8px}}
-@media(prefers-reduced-motion:reduce){.mw-wrestler-card,.mw-wrestler-card__image,.mw-wrestler-modal__dialog,.mw-record-bar,.mw-record-tile{animation:none!important;transition:none!important}}
+/* ============================================================
+   TRIVIAS WRESTLING — ROSTER
+   Catálogo, filtros, campeones, divisiones, cards y modal.
+   ============================================================ */
 
-/* ==========================================================
-   TRIVIAS WRESTLING — ROSTER / PRESENTACIÓN Y EXPLORACIÓN
-   Solo encabezado, campeones, buscador, filtros y divisiones.
-   Cards y modal: INTACTOS.
-   ========================================================== */
-
-.mw-roster-page{
-  --roster-red:#e3263e;
-  --roster-black:#08090c;
-  --roster-panel:#111318;
-  --roster-line:#30343b;
-  --roster-muted:#a4a9b1;
-  background:#08090c;
-  color:#f4f4f5;
-  padding-bottom:55px;
+:root {
+    --mw-ink: #080b12;
+    --mw-panel: #101723;
+    --mw-line: #263247;
+    --mw-muted: #9aa6bb;
+    --mw-red: #e3263e;
+    --mw-gold: #e5c66f;
+    --mw-font-display: "Barlow Condensed", Impact, sans-serif;
+    --mw-font-body: Inter, Arial, sans-serif;
 }
 
-/* ENCABEZADO */
+/* ============================================================
+   ESTRUCTURA GENERAL
+   ============================================================ */
 
-.mw-roster-page .roster-hero{
-  position:relative;
-  isolation:isolate;
-  display:flex;
-  align-items:center;
-  min-height:230px;
-  max-width:none;
-  margin:0 0 28px;
-  padding:45px clamp(18px,5vw,65px);
-  overflow:hidden;
-  border:0;
-  border-bottom:2px solid #292d33;
-  border-radius:0;
-  background:
-    radial-gradient(ellipse at 75% 45%,#e3263e20,transparent 48%),
-    linear-gradient(125deg,#050608,#15171b 55%,#08090c);
-  text-align:left;
+.mw-roster-page {
+    min-height: 70vh;
+    padding-bottom: clamp(48px, 7vw, 100px);
 }
 
-.roster-hero::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset:-60% 10%;
-  width:2px;
-  transform:rotate(38deg);
-  background:linear-gradient(transparent,#e3263e,#e3263e55,transparent);
-  box-shadow:0 0 25px #e3263e55;
+.mw-page-header {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: clamp(30px, 5vw, 68px) clamp(16px, 3vw, 34px) 20px;
 }
 
-.roster-hero::after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset:0;
-  opacity:.28;
-  background:
-    linear-gradient(135deg,transparent 48%,#e3263e 49%,transparent 50%) 0 0/180px 180px,
-    linear-gradient(45deg,transparent 48%,#e3263e 49%,transparent 50%) 100% 0/180px 180px;
-  pointer-events:none;
+.mw-page-header .eyebrow {
+    color: var(--theme-accent, var(--mw-red));
+    font: 800 .8rem var(--mw-font-display);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
 }
 
-.roster-hero .alumni-hero-content{
-  max-width:1150px;
+.mw-page-header .page-title {
+    font: 900 clamp(3rem, 8vw, 6rem)/.88 var(--mw-font-display);
+    letter-spacing: -.035em;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 5px 25px var(--theme-glow, rgba(227,38,62,.2));
 }
 
-.roster-hero .alumni-eyebrow{
-  color:#e3263e;
+.mw-page-header .lead {
+    max-width: 720px;
+    color: #aeb8c9;
+    font-size: .95rem;
+    line-height: 1.65;
+    margin: 18px 0 0;
 }
 
-.roster-hero .alumni-eyebrow-line{
-  background:#e3263e;
-  box-shadow:0 0 10px #e3263e66;
+.mw-catalog-toolbar {
+    max-width: 1320px;
+    margin: 0 auto 22px;
+    padding: 0 clamp(16px, 3vw, 34px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-.roster-hero .alumni-eyebrow-divider{
-  color:#666b73;
+.mw-search-field,
+.mw-select-field {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(180deg, #141b28, #090d15);
+    border: 1px solid #2b374b;
+    box-shadow: inset 0 1px rgba(255,255,255,.05);
+    padding: 0 14px;
+    color: var(--mw-red);
+    flex: 1 1 220px;
 }
 
-.roster-hero .alumni-eyebrow-muted{
-  color:#9298a1;
+.mw-search-field input,
+.mw-select-field select {
+    min-width: 0;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #f5f7fb;
+    font: 600 .9rem var(--mw-font-body);
+    padding: 12px 0;
 }
 
-.roster-hero .alumni-title{
-  color:#f5f5f5;
-  text-shadow:0 3px #555,0 8px 24px #000;
+.mw-select-field select option {
+    background: #0b1019;
+    color: white;
 }
 
-.roster-hero .alumni-title span{
-  background:linear-gradient(180deg,#fff 0%,#dedfe2 48%,#858a92 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
+.mw-catalog-count {
+    font: 800 .8rem var(--mw-font-display);
+    letter-spacing: .12em;
+    color: #9eabc0;
+    margin-left: auto;
 }
 
-.roster-hero .alumni-description{
-  color:#e3263e;
+/* ============================================================
+   GRILLA Y TARJETAS
+   ============================================================ */
+
+.roster-grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(9px, 1.2vw, 16px);
+    padding: 0 clamp(16px, 3vw, 34px);
+    max-width: 1320px;
+    margin: 0 auto;
 }
 
-.roster-hero .alumni-description span{
-  color:#b5bac2;
+.mw-wrestler-card {
+    --wrestler-accent: var(--mw-red);
+    --wrestler-glow: rgba(227,38,62,.3);
+
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-width: 0;
+    aspect-ratio: 3 / 4.7;
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--wrestler-accent) 48%, #202a3c);
+    border-radius: 2px;
+    clip-path: polygon(0 0, 100% 0, 100% 96.5%, 94% 100%, 0 100%);
+    background: radial-gradient(ellipse at 48% 22%, #263247 0, #101723 42%, #05070b 100%);
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 14px 32px #0009, inset 0 0 0 1px #ffffff08;
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
 }
 
-.roster-hero .alumni-hero-bottom{
-  border-color:#ffffff20;
+.mw-wrestler-card:hover,
+.mw-wrestler-card:focus-visible {
+    transform: translateY(-5px);
+    border-color: var(--wrestler-accent);
+    box-shadow: 0 18px 36px #000b, 0 0 22px var(--wrestler-glow);
+    outline: none;
 }
 
-.roster-hero .alumni-edition-line{
-  background:#e3263e;
+.mw-wrestler-card__image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: saturate(1.06) contrast(1.04);
+    transition: transform .35s ease, filter .25s ease;
 }
 
-.roster-hero .alumni-edition-label{
-  color:#9298a1;
+.mw-wrestler-card:hover .mw-wrestler-card__image {
+    transform: scale(1.035);
+    filter: saturate(1.14) contrast(1.06);
 }
 
-/* CAMPEONES ACTUALES */
-
-.mw-current-champions{
-  max-width:1320px;
-  margin:0 auto 30px;
-  padding:8px clamp(12px,3vw,30px) 20px;
+.mw-wrestler-card__image.is-missing {
+    display: none;
 }
 
-.mw-champions-heading{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:16px;
-  padding-bottom:11px;
-  border-bottom:1px solid #353940;
+.mw-wrestler-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        #03060a00 25%,
+        #05070a26 43%,
+        #05070ae8 74%,
+        #05070afc 100%
+    );
+    pointer-events: none;
 }
 
-.mw-champions-kicker{
-  color:#d8b96d;
-  font-size:.68rem;
-  font-weight:900;
-  letter-spacing:.16em;
-  white-space:nowrap;
+.mw-wrestler-card__sheen {
+    position: absolute;
+    top: -40%;
+    left: -80%;
+    width: 45%;
+    height: 190%;
+    transform: rotate(22deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffffff0c,
+        #ffffff35,
+        #ffffff08,
+        transparent
+    );
+    pointer-events: none;
+    transition: left .45s ease;
 }
 
-.mw-champions-heading h2{
-  margin:0;
-  color:#f3f3f4;
-  font-size:clamp(1.3rem,3vw,2rem);
-  font-weight:900;
-  letter-spacing:.04em;
+.mw-wrestler-card:hover .mw-wrestler-card__sheen {
+    left: 145%;
 }
 
-.mw-champions-rule{
-  height:1px;
-  flex:1;
-  background:linear-gradient(90deg,#a78a4c,transparent);
+.mw-wrestler-card__rank {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    padding: 4px 6px;
+    border: 1px solid var(--wrestler-accent);
+    background: #070b12df;
+    color: var(--wrestler-accent);
+    font: 900 .72rem var(--mw-font-display);
+    letter-spacing: .04em;
+    box-shadow: 0 0 18px var(--wrestler-glow);
 }
 
-.mw-champions-empty{
-  margin:0;
-  padding:12px 15px;
-  border:1px solid #4b402b;
-  background:linear-gradient(100deg,#19160f,#101115);
-  color:#b7a77e;
-  font-size:.75rem;
-  font-weight:800;
-  letter-spacing:.08em;
+.mw-wrestler-card__banner {
+    position: relative;
+    display: block;
+    margin: 0 -5px 4px;
+    padding: 6px 5px 9px 8px;
+    background: linear-gradient(
+        0deg,
+        rgb(0 0 0 / 98%) 0%,
+        rgb(0 0 0 / 88%) 58%,
+        rgb(0 0 0 / 12%) 100%
+    );
+    border: 0;
+    box-shadow: none;
+    transform: none;
 }
 
-/* PANEL DE EXPLORACIÓN */
-
-.mw-brand-filter-panel{
-  max-width:1320px;
-  margin:0 auto 25px;
-  padding:18px clamp(12px,3vw,30px);
-  border-block:1px solid #30343b;
-  border-radius:0;
-  background:linear-gradient(110deg,#101216,#17191e 50%,#0b0c0f);
-  box-shadow:none;
+.mw-wrestler-card__banner-inner {
+    display: block;
 }
 
-.mw-filter-panel-heading{
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:8px 14px;
-  margin-bottom:15px;
+.mw-wrestler-card__subtitle {
+    display: block;
+    color: #fff;
+    font: 800 clamp(.52rem, 2vw, .72rem)/1.15 var(--mw-font-display);
+    letter-spacing: .045em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 4px #000;
+    overflow-wrap: anywhere;
 }
 
-.mw-filter-kicker{
-  display:block;
-  width:100%;
-  color:#e3263e;
-  font-size:.68rem;
-  font-weight:900;
-  letter-spacing:.19em;
+.mw-wrestler-card__name {
+    display: block;
+    margin-top: 3px;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    font: 900 clamp(.92rem, 1.5vw, 1.55rem)/.94 var(--mw-font-display);
+    letter-spacing: -.025em;
+    text-transform: uppercase;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 2px 5px #000, 0 0 12px rgb(0 0 0 / 45%);
+    overflow-wrap: anywhere;
 }
 
-.mw-filter-panel-heading>strong{
-  color:#f2f2f3;
-  font-size:clamp(1.25rem,3vw,1.8rem);
-  font-weight:900;
-  letter-spacing:.025em;
+.mw-wrestler-card__brand {
+    display: none !important;
 }
 
-.mw-filter-panel-heading .mw-catalog-count{
-  margin-left:auto;
-  color:#858b94;
-  font-size:.68rem;
+.mw-wrestler-card__view {
+    font-size: .56rem;
+    color: #aeb8c9;
 }
 
-/* BUSCADOR */
+/* Identidad de marcas */
 
-.mw-roster-search{
-  width:min(100%,420px);
-  margin:0 0 15px auto;
+.mw-wrestler-card:has([data-brand="RAW"]),
+.mw-wrestler-card.brand-raw {
+    --card-brand-color: #ff2638;
 }
 
-.mw-roster-search input{
-  width:100%;
-  min-height:43px;
-  box-sizing:border-box;
-  padding:0 16px;
-  border:1px solid #41464e;
-  border-radius:30px;
-  outline:none;
-  background:#050608;
-  color:#fff;
-  font:700 .78rem "Barlow Condensed",sans-serif;
-  letter-spacing:.08em;
-  transition:border-color .18s,box-shadow .18s;
+.mw-wrestler-card:has([data-brand="SmackDown"]),
+.mw-wrestler-card.brand-smackdown {
+    --card-brand-color: #168cff;
 }
 
-.mw-roster-search input::placeholder{
-  color:#858b94;
+.mw-wrestler-card:has([data-brand="NXT"]),
+.mw-wrestler-card.brand-nxt {
+    --card-brand-color: #c7ccd4;
 }
 
-.mw-roster-search input:focus{
-  border-color:#e3263e;
-  box-shadow:0 0 0 2px #e3263e22;
+.mw-wrestler-card:has([data-brand="AAA"]),
+.mw-wrestler-card.brand-aaa {
+    --card-brand-color: #f04444;
 }
 
-/* FILTROS DE CATEGORÍA Y MARCA */
-
-.mw-roster-filters{
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:8px;
+.mw-wrestler-card:has([data-brand="RAW"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-raw .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="SmackDown"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-smackdown .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="NXT"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-nxt .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="AAA"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-aaa .mw-wrestler-card__banner {
+    border-top: 2px solid var(--card-brand-color);
 }
 
-.mw-roster-filters label{
-  color:#9298a1;
-  font-size:.7rem;
-  font-weight:900;
-  letter-spacing:.1em;
+/* Estados */
+
+.mw-empty-state,
+.mw-catalog-loading,
+.mw-catalog-error {
+    grid-column: 1 / -1;
+    color: #aab6c9;
+    padding: 28px;
+    border: 1px solid #263247;
+    background: #0b111b;
+    font: 700 .9rem var(--mw-font-display);
+    letter-spacing: .1em;
+    text-align: center;
 }
 
-.mw-roster-filters select{
-  min-width:150px;
-  min-height:38px;
-  padding:0 32px 0 12px;
-  border:1px solid #454a52;
-  border-radius:2px;
-  outline:none;
-  appearance:auto;
-  background:#090a0d;
-  color:#f1f1f2;
-  font:800 .78rem "Barlow Condensed",sans-serif;
-  letter-spacing:.06em;
-  cursor:pointer;
+.mw-catalog-error {
+    color: #ff6e83;
 }
 
-.mw-roster-filters select:focus{
-  border-color:#e3263e;
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
 }
 
-.mw-roster-filters select option{
-  background:#101216;
-  color:#fff;
+/* ============================================================
+   FILTROS Y PANEL DE MARCAS
+   ============================================================ */
+
+.mw-brand-filter-panel {
+    max-width: 1320px;
+    margin: 0 auto 22px;
+    padding: 16px clamp(12px, 3vw, 34px);
+    border-top: 1px solid #273247;
+    border-bottom: 1px solid #273247;
+    background: linear-gradient(100deg, #0b1019, #101a29 50%, #080c13);
+    box-shadow: inset 0 1px #ffffff08;
 }
 
-/* DIVISIONES */
-
-.mw-roster-catalog-section{
-  max-width:1320px;
-  margin:0 auto;
-  padding:0 clamp(10px,2vw,20px);
+.mw-filter-panel-heading {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
 }
 
-.mw-roster-group{
-  margin:0 0 35px;
+.mw-filter-panel-heading > strong {
+    color: #f4f7fb;
+    font: 900 clamp(1.1rem, 2vw, 1.5rem)/1 var(--mw-font-display);
+    letter-spacing: .06em;
 }
 
-.mw-roster-group[hidden]{
-  display:none!important;
+.mw-filter-kicker {
+    width: 100%;
+    color: var(--theme-accent, var(--mw-red));
+    font: 900 .68rem var(--mw-font-display);
+    letter-spacing: .2em;
 }
 
-.mw-catalog-section-heading{
-  display:flex;
-  align-items:flex-end;
-  flex-wrap:wrap;
-  gap:5px 12px;
-  margin:0 0 15px;
-  padding:0 0 10px;
-  border-bottom:2px solid #e3263e;
+.mw-brand-filters {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding: 3px 1px 8px;
+    scrollbar-width: thin;
+    scrollbar-color: #344258 transparent;
 }
 
-.mw-catalog-section-heading .mw-filter-kicker{
-  width:100%;
-  margin:0;
-  color:#e3263e;
-  font-size:.65rem;
+.mw-brand-filter {
+    position: relative;
+    flex: 0 0 auto;
+    min-height: 39px;
+    padding: 8px 15px;
+    border: 1px solid #303c50;
+    background: linear-gradient(180deg, #151d2a, #090d14);
+    color: #aab6c8;
+    font: 900 .82rem var(--mw-font-display);
+    letter-spacing: .09em;
+    cursor: pointer;
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 92% 100%, 0 100%);
+    transition: color .16s, border-color .16s, background .16s, transform .16s;
 }
 
-.mw-catalog-section-heading h2{
-  margin:0;
-  color:#f2f2f3;
-  font-size:clamp(1.65rem,4vw,2.5rem);
-  font-weight:900;
-  line-height:.95;
-  letter-spacing:.015em;
-  text-transform:uppercase;
+.mw-brand-filter:hover {
+    color: #fff;
+    border-color: var(--theme-accent, var(--mw-red));
+    transform: translateY(-1px);
 }
 
-.mw-catalog-section-heading .mw-catalog-count{
-  margin-left:auto;
-  color:#9da2aa;
-  font-size:.7rem;
-  font-weight:800;
+.mw-brand-filter.is-active {
+    color: #fff;
+    border-color: var(--theme-accent, var(--mw-red));
+    background: linear-gradient(100deg, var(--theme-accent, var(--mw-red)), #8e1829);
+    box-shadow: 0 0 16px var(--theme-glow, rgba(227,38,62,.16));
 }
 
-/* SEGUNDA LIGA */
+/* ============================================================
+   CAMPEONES
+   ============================================================ */
 
-[data-roster-group="segunda"] .mw-catalog-section-heading{
-  border-bottom-color:#9299a3;
+.mw-current-champions {
+    max-width: 1320px;
+    margin: 0 auto 25px;
+    padding: clamp(18px, 3vw, 30px) clamp(12px, 3vw, 34px) 0;
+    overflow: hidden;
 }
 
-[data-roster-group="segunda"] .mw-catalog-section-heading .mw-filter-kicker{
-  color:#b6bbc3;
+.mw-champions-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
 }
 
-/* ADMINISTRACIÓN */
-
-[data-roster-group="admin"] .mw-catalog-section-heading{
-  border-bottom-color:#777d86;
+.mw-champions-kicker {
+    color: #e2c26c;
+    font: 900 .68rem var(--mw-font-display);
+    letter-spacing: .2em;
+    white-space: nowrap;
 }
 
-[data-roster-group="admin"] .mw-catalog-section-heading .mw-filter-kicker{
-  color:#aeb4bd;
+.mw-champions-heading h2 {
+    margin: 0;
+    color: #f5f6fa;
+    font: 900 clamp(1.35rem, 3vw, 2.1rem)/.9 var(--mw-font-display);
+    letter-spacing: .02em;
+    white-space: nowrap;
 }
 
-/* TABLET Y MÓVIL */
-
-@media(max-width:700px){
-  .mw-roster-page .roster-hero{
-    min-height:190px;
-    padding:35px 18px;
-    margin-bottom:22px;
-  }
-
-  .mw-current-champions{
-    padding-inline:10px;
-    margin-bottom:22px;
-  }
-
-  .mw-champions-heading{
-    gap:8px;
-  }
-
-  .mw-champions-heading h2{
-    font-size:1.3rem;
-  }
-
-  .mw-champions-kicker{
-    font-size:.55rem;
-  }
-
-  .mw-brand-filter-panel{
-    margin-bottom:20px;
-    padding:15px 11px;
-  }
-
-  .mw-filter-panel-heading>strong{
-    font-size:1.25rem;
-  }
-
-  .mw-roster-search{
-    width:100%;
-  }
-
-  .mw-roster-filters{
-    display:grid;
-    grid-template-columns:auto minmax(0,1fr);
-    gap:8px;
-  }
-
-  .mw-roster-filters select{
-    width:100%;
-    min-width:0;
-  }
-
-  .mw-roster-catalog-section{
-    padding-inline:9px;
-  }
-
-  .mw-roster-group{
-    margin-bottom:27px;
-  }
-
-  .mw-catalog-section-heading{
-    margin-bottom:11px;
-  }
+.mw-champions-rule {
+    height: 1px;
+    flex: 1;
+    min-width: 12px;
+    background: linear-gradient(90deg, #b99848, #574b31, transparent);
+    box-shadow: 0 0 9px #c9a74a44;
 }
 
-@media(max-width:380px){
-  .roster-hero .alumni-eyebrow{
-    font-size:7px;
-    letter-spacing:1px;
-  }
+.mw-champions-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+    gap: 10px;
+}
 
-  .mw-champions-heading h2{
-    font-size:1.12rem;
-  }
+.mw-champion-card {
+    --champion-accent: #d9b95e;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 108px;
+    padding: 10px 13px;
+    overflow: hidden;
+    border: 1px solid #6c5930;
+    border-left: 3px solid var(--champion-accent);
+    background: linear-gradient(115deg, #201b11, #10141d 48%, #080b11);
+    color: #f4f6fa;
+    text-decoration: none;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 95% 100%, 0 100%);
+    transition: transform .18s, border-color .18s, filter .18s;
+}
 
-  .mw-catalog-section-heading h2{
-    font-size:1.55rem;
-  }
+.mw-champion-card:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.13);
+    border-color: #f0d37d;
+}
 
-  .mw-catalog-section-heading .mw-catalog-count{
-    font-size:.6rem;
-  }
+.mw-champion-card img {
+    width: 66px;
+    height: 84px;
+    object-fit: cover;
+    object-position: top center;
+    align-self: flex-end;
+    flex: 0 0 66px;
+    filter: drop-shadow(0 3px 5px #000);
+}
+
+.mw-champion-card__crest {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    border: 1px solid #a98d45;
+    border-radius: 50%;
+    color: #e8ce7c;
+    background: radial-gradient(circle, #534322, #15120b 72%);
+    font-size: 2rem;
+    box-shadow: 0 0 18px #d5ad4b2c;
+}
+
+.mw-champion-card__copy {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mw-champion-card__copy small {
+    color: #d7bc70;
+    font: 900 .62rem var(--mw-font-display);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+.mw-champion-card__copy strong {
+    font: 900 clamp(1.1rem, 2vw, 1.45rem)/.95 var(--mw-font-display);
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.mw-champion-card__copy > span {
+    color: #aeb8c8;
+    font: 700 .72rem var(--mw-font-display);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.mw-champion-card__arrow {
+    align-self: flex-start;
+    color: #d9bd69;
+    font-size: 1.2rem;
+}
+
+.mw-champion-card__shine {
+    position: absolute;
+    z-index: -1;
+    inset: -80% auto -80% -40%;
+    width: 22%;
+    transform: rotate(22deg);
+    background: linear-gradient(90deg, transparent, #ffffff0d, #ffffff27, transparent);
+    transition: left .35s;
+}
+
+.mw-champion-card:hover .mw-champion-card__shine {
+    left: 120%;
+}
+
+.mw-champions-empty {
+    margin: 0;
+    padding: 14px 16px;
+    border: 1px solid #493d24;
+    background: linear-gradient(90deg, #17140e, #0b1018);
+    color: #9da9bb;
+    font: 700 .8rem var(--mw-font-display);
+    letter-spacing: .07em;
+}
+
+/* Campeón dentro del modal */
+
+.mw-modal-champion-bar {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    margin: 0 0 16px;
+    padding: 11px 15px;
+    border: 1px solid #a98c42;
+    border-left: 4px solid #f2d16e;
+    background: linear-gradient(100deg, #302611, #17140e 52%, #0c111a);
+    box-shadow: inset 0 1px #fff2, 0 6px 20px #d7ad3b0d;
+}
+
+.mw-modal-champion-bar__crest {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    flex: 0 0 39px;
+    border: 1px solid #c9a84e;
+    border-radius: 50%;
+    color: #f3d77b;
+    background: radial-gradient(circle, #6a5424, #15120b 74%);
+    font-size: 1.4rem;
+}
+
+.mw-modal-champion-bar__copy {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mw-modal-champion-bar__copy small {
+    color: #e3c36d;
+    font: 900 .64rem var(--mw-font-display);
+    letter-spacing: .16em;
+}
+
+.mw-modal-champion-bar__copy strong {
+    color: #fff4cf;
+    font: 900 clamp(.95rem, 2vw, 1.2rem)/1.1 var(--mw-font-display);
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.mw-modal-champion-bar__shine {
+    position: absolute;
+    z-index: -1;
+    right: -10%;
+    top: -100%;
+    width: 35%;
+    height: 300%;
+    transform: rotate(22deg);
+    background: linear-gradient(90deg, transparent, #fff1, transparent);
+    pointer-events: none;
+}
+
+/* ============================================================
+   MODAL — ESTRUCTURA ORIGINAL CONSERVADA
+   ============================================================ */
+
+.mw-modal-open {
+    overflow: hidden;
+}
+
+.mw-wrestler-modal[hidden] {
+    display: none !important;
+}
+
+.mw-wrestler-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    padding: clamp(8px, 2.5vw, 26px);
+    font-family: var(--mw-font-body);
+    color: #f4f7fc;
+}
+
+.mw-wrestler-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2,4,8,.91);
+}
+
+.mw-wrestler-modal__dialog {
+    --wrestler-accent: var(--mw-red);
+    --wrestler-glow: rgba(227,38,62,.25);
+    position: relative;
+    width: min(100%, 850px);
+    max-height: min(94dvh, 1100px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    background:
+        radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--wrestler-accent) 9%, transparent), transparent 36%),
+        linear-gradient(145deg, #0d131e, #080c13 58%, #0a101a);
+    border: 1px solid color-mix(in srgb, var(--wrestler-accent) 72%, #253047);
+    border-top: 4px solid var(--wrestler-accent);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px #000d, 0 0 28px var(--wrestler-glow);
+    padding: clamp(14px, 3.2vw, 26px);
+    scrollbar-color: #344258 #090d14;
+    animation: mw-modal-enter .22s ease-out;
+}
+
+@keyframes mw-modal-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.mw-wrestler-modal__close {
+    position: sticky;
+    top: 0;
+    float: right;
+    z-index: 3;
+    width: 42px;
+    height: 42px;
+    margin: -4px -4px -42px 0;
+    border: 1px solid #2c374a;
+    border-radius: 12px;
+    background: #080d15;
+    color: #f4f7fc;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 12px #0008;
+}
+
+.mw-wrestler-modal__close:hover {
+    border-color: var(--wrestler-accent);
+    color: var(--wrestler-accent);
+}
+
+.mw-modal-hero {
+    display: grid;
+    grid-template-columns: minmax(150px, 255px) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 28px);
+    align-items: center;
+    padding: 0 36px 20px 0;
+}
+
+.mw-modal-portrait-wrap {
+    position: relative;
+    min-height: 240px;
+    aspect-ratio: 3 / 4;
+    border: 1px solid #2c3749;
+    border-radius: 15px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 20%, #28374d, #080c13 72%);
+    box-shadow: inset 0 0 0 1px #ffffff08;
+}
+
+.mw-modal-portrait {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.mw-modal-portrait.is-missing {
+    display: none;
+}
+
+.mw-modal-brand-tag {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 10px;
+    background: #060a11e8;
+    border: 1px solid var(--wrestler-accent);
+    color: var(--wrestler-accent);
+    font: 900 .75rem var(--mw-font-display);
+    letter-spacing: .12em;
+}
+
+.mw-modal-identity {
+    min-width: 0;
+}
+
+.mw-modal-nickname {
+    margin: 0 0 8px;
+    color: #f0c76a;
+    font: 900 clamp(.9rem, 2vw, 1.25rem)/1.2 var(--mw-font-display);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.mw-modal-identity h2 {
+    margin: 0 0 14px;
+    font: 900 clamp(2rem, 5vw, 3.25rem)/.94 var(--mw-font-display);
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    text-shadow: 0 5px 22px #0009;
+}
+
+/* Intérpretes */
+
+.mw-interpreter-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mw-interpreter-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.mw-mini-label {
+    display: block;
+    color: #8593aa;
+    font: 800 .73rem var(--mw-font-display);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.mw-interpreter-copy > strong {
+    color: var(--wrestler-accent);
+    font: 900 1rem var(--mw-font-display);
+    letter-spacing: .04em;
+}
+
+.mw-interpreter-details {
+    position: relative;
+}
+
+.mw-interpreter-details summary {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    list-style: none;
+    cursor: pointer;
+    color: #aab8cc;
+    border: 1px solid #28364a;
+    border-radius: 8px;
+    background: #111a28;
+    padding: 6px 9px;
+    font: 800 .68rem var(--mw-font-display);
+    letter-spacing: .08em;
+}
+
+.mw-interpreter-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.mw-chevron {
+    font-size: 1rem;
+    color: var(--wrestler-accent);
+    transition: transform .15s;
+}
+
+.mw-interpreter-details[open] .mw-chevron {
+    transform: rotate(180deg);
+}
+
+.mw-interpreter-list {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 5;
+    width: min(270px, 75vw);
+    max-height: 240px;
+    overflow: auto;
+    padding: 6px;
+    border: 1px solid #334157;
+    border-radius: 10px;
+    background: #0b111b;
+    box-shadow: 0 15px 35px #000c;
+}
+
+.mw-interpreter-option {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: #e7edf7;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: .82rem;
+}
+
+.mw-interpreter-option:hover,
+.mw-interpreter-option.is-current {
+    background: #172334;
+    color: var(--wrestler-accent);
+}
+
+.mw-interpreter-option__meta {
+    font: 800 .62rem var(--mw-font-display);
+    letter-spacing: .08em;
+    color: #8d9bb1;
+}
+
+.mw-interpreter-option.is-current .mw-interpreter-option__meta {
+    color: var(--wrestler-accent);
+}
+
+/* Paneles de atributos */
+
+.mw-modal-panel {
+    padding: clamp(14px, 2.8vw, 21px);
+    border: 1px solid #263246;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #111925, #0d131d);
+    margin: 0 0 16px;
+    box-shadow: inset 0 1px #ffffff05;
+}
+
+.mw-panel-heading {
+    margin: 0 0 16px;
+    color: var(--wrestler-accent);
+    font: 900 1.08rem var(--mw-font-display);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.mw-attribute {
+    margin: 0 0 13px;
+}
+
+.mw-attribute:last-of-type {
+    margin-bottom: 0;
+}
+
+.mw-attribute__line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+    color: #dce4f1;
+    font: 800 1rem var(--mw-font-display);
+}
+
+.mw-attribute__line strong {
+    font: 900 1.05rem var(--mw-font-display);
+    color: var(--attribute-color, var(--wrestler-accent));
+}
+
+.mw-attribute:nth-of-type(2) {
+    --attribute-color: #ff6e58;
+}
+
+.mw-attribute:nth-of-type(3) {
+    --attribute-color: #f3d65b;
+}
+
+.mw-attribute:nth-of-type(4) {
+    --attribute-color: #16e6a4;
+}
+
+.mw-attribute__track {
+    height: 10px;
+    border-radius: 99px;
+    overflow: hidden;
+    background: #273448;
+    box-shadow: inset 0 2px 4px #0008;
+}
+
+.mw-attribute__track span {
+    display: block;
+    width: var(--attribute-value);
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--attribute-color, var(--wrestler-accent)) 70%, #c20d36),
+        var(--attribute-color, var(--wrestler-accent))
+    );
+    box-shadow: 0 0 12px color-mix(in srgb, var(--attribute-color, var(--wrestler-accent)) 35%, transparent);
+}
+
+.mw-overall-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 17px;
+    padding-top: 13px;
+    border-top: 1px solid #29364a;
+    color: #9caac0;
+    font: 800 .78rem var(--mw-font-display);
+    letter-spacing: .12em;
+}
+
+.mw-overall-row strong {
+    font: 900 1.9rem var(--mw-font-display);
+    color: var(--wrestler-accent);
+    text-shadow: 0 0 18px var(--wrestler-glow);
+}
+
+.mw-data-pending {
+    color: #8492a8;
+    font-size: .86rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Estadísticas */
+
+.mw-modal-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.mw-modal-mini-panel {
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid #263246;
+    border-radius: 16px;
+    background: #111824;
+}
+
+.mw-modal-mini-panel > strong {
+    display: block;
+    margin-top: 8px;
+    color: #f4f7fc;
+    font: 800 1.1rem var(--mw-font-display);
+    overflow-wrap: anywhere;
+}
+
+.mw-mini-label--sub {
+    margin-top: 16px;
+}
+
+.mw-modal-overall > strong {
+    font: 900 2.7rem/.95 var(--mw-font-display);
+    color: var(--wrestler-accent);
+    text-shadow: 0 0 18px var(--wrestler-glow);
+    margin-top: 12px;
+}
+
+.mw-overall-note {
+    display: block;
+    color: #8390a6;
+    font-size: .68rem;
+    margin-top: 8px;
+}
+
+/* Récords */
+
+.mw-record-bar {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 0 0 12px;
+    padding: 15px 17px;
+    border: 1px solid color-mix(in srgb, var(--wrestler-accent) 48%, #263246);
+    border-radius: 14px;
+    text-decoration: none;
+    color: #f4f7fc;
+    background: linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--wrestler-accent) 13%, #101824),
+        #0c121b 72%
+    );
+    box-shadow: inset 0 1px #ffffff08;
+    transition: border-color .18s, transform .18s;
+}
+
+.mw-record-bar:hover {
+    border-color: var(--wrestler-accent);
+    transform: translateY(-2px);
+}
+
+.mw-record-bar__icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #080d15;
+    border: 1px solid #2a374b;
+    color: var(--wrestler-accent);
+    font-size: 1.4rem;
+}
+
+.mw-record-bar__copy {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mw-record-bar__copy strong {
+    font: 900 .95rem var(--mw-font-display);
+    letter-spacing: .1em;
+}
+
+.mw-record-bar__copy small {
+    color: #8d9bb1;
+    font-size: .72rem;
+}
+
+.mw-record-bar__arrow {
+    font-size: 1.4rem;
+    color: var(--wrestler-accent);
+}
+
+.mw-record-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.mw-record-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 15px;
+    border: 1px solid #273348;
+    border-radius: 13px;
+    background: #101722;
+    text-decoration: none;
+    transition: border-color .18s;
+}
+
+.mw-record-tile:hover {
+    border-color: var(--wrestler-accent);
+}
+
+.mw-record-tile > strong {
+    color: #f3f6fb;
+    font: 900 clamp(1.1rem, 3vw, 1.55rem) var(--mw-font-display);
+    letter-spacing: .02em;
+}
+
+.mw-record-tile > small {
+    color: #8290a6;
+    font-size: .7rem;
+}
+
+.mw-modal-achievements ul {
+    margin: 0;
+    padding-left: 21px;
+    color: #b8c3d3;
+    line-height: 1.85;
+}
+
+.mw-modal-achievements li {
+    padding-left: 4px;
+    margin: 3px 0;
+}
+
+.mw-modal-achievements li::marker {
+    color: var(--wrestler-accent);
+}
+
+.mw-modal-footer-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 2px 2px 0;
+}
+
+.mw-modal-footer-meta span {
+    padding: 6px 9px;
+    border: 1px solid #273348;
+    border-radius: 999px;
+    color: #94a3b9;
+    background: #0b111a;
+    font: 700 .68rem var(--mw-font-display);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   PÁGINAS DE RÉCORDS
+   ============================================================ */
+
+.mw-record-page {
+    max-width: 1120px;
+    min-height: 70vh;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 60px) 16px 80px;
+}
+
+.mw-record-hero {
+    padding: 0 0 24px;
+}
+
+.mw-record-eyebrow {
+    font: 900 .8rem var(--mw-font-display);
+    letter-spacing: .2em;
+    color: var(--theme-accent, var(--mw-red));
+    text-transform: uppercase;
+}
+
+.mw-record-hero h1 {
+    font: 900 clamp(2.7rem, 8vw, 5.5rem)/.92 var(--mw-font-display);
+    text-transform: uppercase;
+    margin: 8px 0;
+}
+
+.mw-record-hero p:last-child {
+    color: #aab6c8;
+    line-height: 1.6;
+}
+
+.mw-record-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.mw-record-stat {
+    padding: clamp(18px, 3vw, 28px);
+    border: 1px solid #28364a;
+    border-top: 3px solid #38465b;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #121a27, #090e16);
+}
+
+.mw-record-stat.is-current {
+    border-top-color: var(--theme-accent, var(--mw-red));
+    box-shadow: 0 0 22px var(--theme-glow, rgba(227,38,62,.12));
+}
+
+.mw-record-stat span {
+    display: block;
+    color: #8e9bb0;
+    font: 900 .85rem var(--mw-font-display);
+    letter-spacing: .14em;
+}
+
+.mw-record-stat strong {
+    display: block;
+    margin: 10px 0;
+    font: 900 clamp(2rem, 6vw, 3.6rem)/1 var(--mw-font-display);
+    color: var(--theme-accent, var(--mw-red));
+}
+
+.mw-record-stat small {
+    color: #8794a8;
+}
+
+.mw-record-note {
+    margin-top: 18px;
+    padding: 20px;
+    border: 1px solid #28364a;
+    border-radius: 14px;
+    background: #0d131d;
+    color: #aeb9ca;
+    line-height: 1.65;
+}
+
+.mw-record-note h2 {
+    font: 900 1.4rem var(--mw-font-display);
+    color: #f2f5fb;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.mw-record-note p {
+    margin: 0;
+}
+
+.mw-record-back {
+    display: inline-flex;
+    margin-top: 18px;
+    padding: 12px 16px;
+    border: 1px solid var(--theme-accent, var(--mw-red));
+    color: var(--theme-accent, var(--mw-red));
+    text-decoration: none;
+    font: 900 .85rem var(--mw-font-display);
+    letter-spacing: .1em;
+}
+
+.mw-record-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+}
+
+.mw-record-links a {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #101722;
+    border: 1px solid #28364a;
+    color: #eaf0f8;
+    text-decoration: none;
+}
+
+.mw-record-links a:hover {
+    border-color: var(--theme-accent, var(--mw-red));
+    color: var(--theme-accent, var(--mw-red));
+}
+
+/* ============================================================
+   DIVISIONES DEL ROSTER
+   ============================================================ */
+
+.mw-roster-page > .roster-grid-container {
+    display: block;
+    width: 100%;
+}
+
+.mw-roster-division {
+    --division-accent: #dce2eb;
+    margin: 0 0 34px;
+    min-width: 0;
+}
+
+.mw-roster-division--main {
+    --division-accent: #e7e9ed;
+}
+
+.mw-roster-division--development {
+    --division-accent: #c7cdd6;
+}
+
+.mw-roster-division--other {
+    --division-accent: #e3263e;
+}
+
+.mw-roster-division__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 16px;
+    padding: 0 0 11px;
+    border-bottom: 2px solid var(--division-accent);
+}
+
+.mw-roster-division__heading {
+    min-width: 0;
+}
+
+.mw-roster-division__eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #9099a8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.mw-roster-division__title {
+    margin: 0;
+    color: #f0f1f3;
+    font-family: var(--mw-font-display);
+    font-size: clamp(27px, 5vw, 42px);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -.025em;
+}
+
+.mw-roster-division__subtitle {
+    margin: 6px 0 0;
+    color: var(--division-accent);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.mw-roster-division__count {
+    flex: 0 0 auto;
+    color: #aab1bc;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: right;
+}
+
+.mw-roster-division__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    padding: 0;
+}
+
+.mw-roster-division--main .mw-roster-division__header {
+    border-bottom-color: #e7e9ed;
+}
+
+.mw-roster-division--development .mw-roster-division__header {
+    border-bottom-color: #aeb6c2;
+}
+
+.mw-roster-division--development .mw-roster-division__title {
+    color: #d6dbe3;
+}
+
+.mw-champions-division {
+    margin: 0 0 22px;
+}
+
+.mw-champions-division__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(217,180,91,.55);
+}
+
+.mw-champions-division__header h3 {
+    margin: 0;
+    color: #f0d99a;
+    font-family: var(--mw-font-display);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.mw-champions-division__header span {
+    color: #b8b0a0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+/* ============================================================
+   ALUMNI — HERO CINEMATOGRÁFICO
+   ============================================================ */
+
+.alumni-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto 34px;
+    padding: clamp(38px, 7vw, 82px) 20px 30px;
+    box-sizing: border-box;
+    background:
+        radial-gradient(ellipse at 78% 30%, rgba(227,38,62,.12), transparent 48%),
+        radial-gradient(ellipse at 8% 100%, rgba(180,190,205,.08), transparent 42%),
+        linear-gradient(115deg, #05070b 0%, #090e18 52%, #05070b 100%);
+    border: 1px solid rgba(180,190,205,.16);
+    border-radius: 4px;
+    text-align: left;
+}
+
+.alumni-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -55%;
+    right: 12%;
+    width: 1px;
+    height: 210%;
+    transform: rotate(32deg);
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(227,38,62,.02) 20%,
+        rgba(227,38,62,.35) 48%,
+        rgba(227,38,62,.05) 75%,
+        transparent
+    );
+    box-shadow: 0 0 32px rgba(227,38,62,.12);
+    pointer-events: none;
+}
+
+.alumni-hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(227,38,62,.65), rgba(190,190,195,.2), transparent);
+    pointer-events: none;
+}
+
+.alumni-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.alumni-eyebrow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 13px;
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: #c5cbd4;
+}
+
+.alumni-eyebrow-line {
+    display: inline-block;
+    width: 27px;
+    height: 2px;
+    flex: 0 0 27px;
+    background: var(--mw-red);
+    box-shadow: 0 0 10px rgba(227,38,62,.35);
+}
+
+.alumni-eyebrow-divider {
+    color: #52647c;
+}
+
+.alumni-eyebrow-muted {
+    color: #758399;
+}
+
+.alumni-title {
+    margin: 0;
+    padding: 0;
+    font-family: var(--mw-font-display);
+    font-size: clamp(64px, 13vw, 142px);
+    font-weight: 900;
+    font-style: italic;
+    line-height: .86;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: #f5f8ff;
+    text-shadow: 0 2px 0 #9ba9bd, 0 5px 0 rgba(31,53,82,.8), 0 14px 36px rgba(0,0,0,.3);
+}
+
+.alumni-title span {
+    display: inline-block;
+    background: linear-gradient(180deg, #fff 0%, #e4edfa 42%, #91a9ca 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.alumni-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 620px;
+    margin: 22px 0 0;
+    font-family: Inter, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    line-height: 1.7;
+    color: #c2c8d1;
+}
+
+.alumni-description span {
+    max-width: 520px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .1px;
+    line-height: 1.8;
+    color: #b5c0d1;
+}
+
+.alumni-hero-bottom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(153,184,224,.14);
+}
+
+.alumni-edition,
+.alumni-edition-label {
+    font-family: Inter, sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.alumni-edition {
+    color: #eaf3ff;
+}
+
+.alumni-edition-line {
+    width: 30px;
+    height: 1px;
+    background: rgba(180,190,205,.55);
+}
+
+.alumni-edition-label {
+    color: #73849d;
+}
+
+/* ============================================================
+   ALUMNI — TARJETAS UNIFORMES
+   ============================================================ */
+
+[data-wrestlers-catalog="alumni"] .roster-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    padding-inline: 14px;
+    box-sizing: border-box;
+}
+
+[data-wrestlers-catalog="alumni"] .mw-wrestler-card {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 3 / 4.7;
+    box-sizing: border-box;
+}
+
+[data-wrestlers-catalog="alumni"] .mw-wrestler-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (min-width: 1500px) {
+    .roster-grid-container {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 900px) {
+    .roster-grid-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .mw-roster-division__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .mw-roster-division {
+        margin-bottom: 27px;
+    }
+
+    .mw-roster-division__header {
+        margin-bottom: 11px;
+    }
+
+    [data-wrestlers-catalog="alumni"] .roster-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        padding-inline: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .alumni-hero {
+        margin-bottom: 25px;
+        padding: 36px 17px 22px;
+    }
+
+    .alumni-eyebrow {
+        gap: 7px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .alumni-eyebrow-line {
+        width: 20px;
+        flex-basis: 20px;
+    }
+
+    .alumni-title {
+        font-size: clamp(62px, 17vw, 96px);
+        letter-spacing: -1px;
+    }
+
+    .alumni-description {
+        margin-top: 18px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .alumni-description span {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .alumni-hero-bottom {
+        margin-top: 24px;
+        gap: 9px;
+    }
+
+    .alumni-edition,
+    .alumni-edition-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 560px) {
+    .roster-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+        padding-inline: 10px;
+    }
+
+    .mw-wrestler-card {
+        aspect-ratio: 3 / 4.7;
+    }
+
+    .mw-wrestler-card__name {
+        font-size: clamp(.82rem, 3.7vw, 1.18rem);
+        line-height: .96;
+    }
+
+    .mw-wrestler-card__banner {
+        padding: 6px 5px 7px 8px;
+    }
+
+    .mw-wrestler-card__subtitle {
+        font-size: clamp(.43rem, 1.9vw, .58rem);
+        letter-spacing: .04em;
+    }
+
+    .mw-brand-filter-panel {
+        margin-bottom: 16px;
+        padding: 13px 10px;
+    }
+
+    .mw-filter-panel-heading {
+        gap: 8px;
+    }
+
+    .mw-filter-panel-heading > strong {
+        font-size: 1.1rem;
+    }
+
+    .mw-brand-filter {
+        min-height: 35px;
+        padding: 7px 11px;
+        font-size: .75rem;
+    }
+
+    .mw-current-champions {
+        padding: 18px 10px 0;
+        margin-bottom: 18px;
+    }
+
+    .mw-champions-heading {
+        gap: 8px;
+    }
+
+    .mw-champions-heading h2 {
+        font-size: 1.35rem;
+    }
+
+    .mw-champions-kicker {
+        font-size: .58rem;
+    }
+
+    .mw-champions-track {
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+    }
+
+    .mw-champion-card {
+        min-height: 86px;
+        padding: 7px;
+        gap: 7px;
+    }
+
+    .mw-champion-card img {
+        width: 42px;
+        height: 64px;
+        flex-basis: 42px;
+    }
+
+    .mw-champion-card__crest {
+        width: 35px;
+        height: 35px;
+        flex-basis: 35px;
+        font-size: 1.25rem;
+    }
+
+    .mw-champion-card__copy small {
+        font-size: .49rem;
+        letter-spacing: .08em;
+    }
+
+    .mw-champion-card__copy strong {
+        font-size: .95rem;
+    }
+
+    .mw-champion-card__copy > span {
+        font-size: .57rem;
+    }
+
+    .mw-champion-card__arrow {
+        font-size: .9rem;
+    }
+
+    .mw-modal-champion-bar {
+        margin-bottom: 12px;
+        padding: 9px;
+        gap: 9px;
+    }
+
+    .mw-modal-champion-bar__crest {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+        font-size: 1.1rem;
+    }
+
+    .mw-modal-champion-bar__copy small {
+        font-size: .52rem;
+        letter-spacing: .1em;
+    }
+
+    .mw-modal-champion-bar__copy strong {
+        font-size: .9rem;
+    }
+
+    /* Modal móvil: separación entre retrato y texto */
+    .mw-modal-hero {
+        grid-template-columns: minmax(105px, 35%) minmax(0, 1fr);
+        gap: 16px;
+        padding-right: 0;
+    }
+
+    .mw-modal-identity {
+        min-width: 0;
+        padding-left: 3px;
+    }
+
+    .mw-modal-identity h2 {
+        font-size: clamp(1.5rem, 6vw, 2.15rem);
+        overflow-wrap: anywhere;
+    }
+
+    .mw-modal-nickname {
+        overflow-wrap: anywhere;
+    }
+
+    .mw-interpreter-block {
+        gap: 6px;
+    }
+
+    .mw-interpreter-details summary {
+        padding: 5px 7px;
+        font-size: .6rem;
+    }
+
+    .mw-wrestler-modal__dialog {
+        padding: 13px;
+        border-radius: 16px;
+        max-height: 96dvh;
+    }
+
+    .mw-wrestler-modal {
+        padding: 7px;
+    }
+
+    .mw-modal-panel {
+        padding: 14px;
+        border-radius: 13px;
+    }
+
+    .mw-modal-stat-grid {
+        gap: 9px;
+    }
+
+    .mw-modal-mini-panel {
+        padding: 13px;
+    }
+
+    .mw-record-grid {
+        gap: 8px;
+    }
+
+    .mw-record-tile {
+        padding: 12px;
+    }
+
+    .mw-record-tile > strong {
+        font-size: 1.1rem;
+    }
+
+    .mw-record-bar {
+        padding: 12px;
+        gap: 9px;
+    }
+
+    .mw-record-bar__copy strong {
+        font-size: .82rem;
+    }
+
+    .mw-record-bar__copy small {
+        font-size: .65rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .roster-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .mw-wrestler-card__view {
+        display: none;
+    }
+
+    .mw-champions-track {
+        grid-template-columns: 1fr;
+    }
+
+    .mw-roster-division__grid {
+        gap: 6px;
+    }
+
+    .mw-roster-division__eyebrow {
+        font-size: 8px;
+    }
+
+    .mw-roster-division__count {
+        font-size: 9px;
+    }
+
+    [data-wrestlers-catalog="alumni"] .roster-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        padding-inline: 8px;
+    }
+
+    .mw-modal-hero {
+        grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
+        gap: 13px;
+        padding-right: 0;
+    }
+
+    .mw-modal-portrait-wrap {
+        width: 100%;
+        min-width: 0;
+        min-height: 180px;
+    }
+
+    .mw-modal-identity h2 {
+        font-size: 1.45rem;
+    }
+}
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .mw-wrestler-card,
+    .mw-wrestler-card__image,
+    .mw-wrestler-card__sheen,
+    .mw-wrestler-modal__dialog,
+    .mw-record-bar,
+    .mw-record-tile,
+    .mw-chevron,
+    .mw-champion-card,
+    .mw-champion-card__shine,
+    .alumni-hero,
+    .alumni-hero::before,
+    .alumni-hero::after {
+        transition: none !important;
+        animation: none !important;
+    }
 }
