@@ -55,6 +55,11 @@
     .mw-roster-page .mw-champions-kicker {
       font-family: "Barlow Condensed", sans-serif;
     }
+
+    /* Ocultar bloques sin resultados */
+    .mw-roster-group[hidden] {
+      display: none !important;
+    }
   </style>
 
   <!-- SCRIPTS -->
@@ -175,7 +180,7 @@
       </div>
 
 
-      <!-- CATEGORÍAS -->
+      <!-- FILTROS -->
       <div class="mw-roster-filters">
 
         <label for="roster-category">
@@ -189,8 +194,6 @@
           <option value="">TODAS LAS CATEGORÍAS</option>
           <option value="Main Roster">MAIN ROSTER</option>
           <option value="Segunda Liga">SEGUNDA LIGA</option>
-          <option value="Alumni">ALUMNI</option>
-          <option value="HOF">HALL OF FAME</option>
           <option value="ADMIN">ADMINISTRACIÓN</option>
         </select>
 
@@ -208,8 +211,6 @@
           <option value="SmackDown">SMACKDOWN</option>
           <option value="NXT">NXT</option>
           <option value="AAA">AAA</option>
-          <option value="Alumni">ALUMNI</option>
-          <option value="HOF">HALL OF FAME</option>
           <option value="ADMIN">ADMIN</option>
         </select>
 
@@ -224,36 +225,121 @@
       aria-label="Catálogo de superestrellas"
     >
 
-      <div class="mw-catalog-section-heading">
-
-        <span class="mw-filter-kicker">
-          OFFICIAL SUPERSTAR ARCHIVE
-        </span>
-
-        <h2>SUPERSTARS</h2>
-
-        <span
-          class="mw-catalog-count"
-          data-wrestler-count
-        >
-          CARGANDO...
-        </span>
-
-      </div>
-
-
-      <!-- ÚNICO CONTENEDOR MODIFICADO POR luchadores.js -->
-      <div
-        class="roster-grid-container"
-        data-wrestlers-catalog
-        aria-live="polite"
+      <!-- MAIN ROSTER -->
+      <section
+        class="mw-roster-group"
+        data-roster-group="main-roster"
+        aria-label="Main Roster"
       >
 
-        <p class="mw-catalog-loading">
-          CARGANDO ARCHIVO DE SUPERSTRELLAS...
-        </p>
+        <div class="mw-catalog-section-heading">
 
-      </div>
+          <span class="mw-filter-kicker">
+            RAW / SMACKDOWN
+          </span>
+
+          <h2>MAIN ROSTER</h2>
+
+          <span
+            class="mw-catalog-count"
+            data-wrestler-count="main-roster"
+          >
+            CARGANDO...
+          </span>
+
+        </div>
+
+        <div
+          class="roster-grid-container"
+          data-wrestlers-catalog="main-roster"
+          aria-live="polite"
+        >
+
+          <p class="mw-catalog-loading">
+            CARGANDO MAIN ROSTER...
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- SEGUNDA LIGA -->
+      <section
+        class="mw-roster-group"
+        data-roster-group="segunda"
+        aria-label="Segunda Liga"
+      >
+
+        <div class="mw-catalog-section-heading">
+
+          <span class="mw-filter-kicker">
+            NXT / AAA
+          </span>
+
+          <h2>SEGUNDA LIGA</h2>
+
+          <span
+            class="mw-catalog-count"
+            data-wrestler-count="segunda"
+          >
+            CARGANDO...
+          </span>
+
+        </div>
+
+        <div
+          class="roster-grid-container"
+          data-wrestlers-catalog="segunda"
+          aria-live="polite"
+        >
+
+          <p class="mw-catalog-loading">
+            CARGANDO SEGUNDA LIGA...
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- ADMINISTRACIÓN -->
+      <section
+        class="mw-roster-group"
+        data-roster-group="admin"
+        aria-label="Administración"
+      >
+
+        <div class="mw-catalog-section-heading">
+
+          <span class="mw-filter-kicker">
+            OFFICIAL STAFF
+          </span>
+
+          <h2>ADMINISTRACIÓN</h2>
+
+          <span
+            class="mw-catalog-count"
+            data-wrestler-count="admin"
+          >
+            CARGANDO...
+          </span>
+
+        </div>
+
+        <div
+          class="roster-grid-container"
+          data-wrestlers-catalog="admin"
+          aria-live="polite"
+        >
+
+          <p class="mw-catalog-loading">
+            CARGANDO ADMINISTRACIÓN...
+          </p>
+
+        </div>
+
+      </section>
 
     </section>
 
