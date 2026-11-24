@@ -60,91 +60,54 @@ export const wrestlers = [
      CODY RHODES
      ----------------------------------------------------------------------- */
 
-  {
-
-    id: "cody-rhodes",
-
+  { id: "cody-rhodes",
     name: "Cody Rhodes",
-
     nickname: "The American Nightmare",
-
     stable: "",
-
     brand: "RAW",
-
     timeline: [
-
-      {
-        from: "01/01/2023",
+      { from: "01/01/2023",
         to: "31/12/2023",
         image: "images/renders/cody-rhodes-2023.webp"
       },
-
-      {
-        from: "01/01/2026",
+      { from: "01/01/2026",
         to: null,
         image: "images/renders/cody-rhodes-actual.webp"
       }
-
     ],
-
     alteregos: [
-
-      {
-        name: "Undashing Cody Rhodes",
+      { name: "Undashing Cody Rhodes",
         from: "10/02/2025",
         to: "08/08/2025",
         image: "images/renders/cody-undashing.webp"
       }
-
     ]
-
   },
-
-
   /* -----------------------------------------------------------------------
      TOMMASO CIAMPA
      ----------------------------------------------------------------------- */
-
-  {
-
-    id: "tommaso-ciampa",
-
+  { id: "Tommaso Ciampa",
     name: "Tommaso Ciampa",
-
     nickname: "",
-
     stable: "",
-
     brand: "Alumni",
-
     timeline: [
-
-      {
-        from: "07/02/2024",
+      { from: "07/02/2024",
         to: "27/06/2025",
         image: "images/renders/tommaso-ciampa.webp"
       },
-
-      {
-        from: "19/08/2025",
+      { from: "19/08/2025",
         to: null,
         image: "images/renders/tommaso-ciampa.webp"
-      }
-
-    ],
+      } ],
 
     alteregos: [
-
-      {
-        name: "The Riddler",
+      { name: "The Riddler",
         from: "28/06/2025",
         to: "18/08/2025",
         image: "images/renders/the-riddler.webp"
-      }
-
-    ]
-
+      }] 
+  
   }
 
 ];
