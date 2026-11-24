@@ -19,53 +19,60 @@
 
   <title>Roster | Trivias Wrestling</title>
 
-  <!-- Tipografía única -->
+  <!-- TIPOGRAFÍAS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Estilos principales -->
+  <!-- ESTILOS PRINCIPALES -->
   <link rel="stylesheet" href="css/mi-wrestling.css">
   <link rel="stylesheet" href="css/pages/roster-pages.css">
 
-  <!-- Tipografía uniforme en toda la página -->
+  <!-- TIPOGRAFÍA Y JERARQUÍA -->
   <style>
     .mw-roster-page,
-    .mw-roster-page *,
-    .mw-roster-page *::before,
-    .mw-roster-page *::after,
-    .footer,
-    .footer * {
-      font-family: "Barlow Condensed", sans-serif !important;
+    .footer {
+      font-family: "Inter", sans-serif;
     }
 
-    .mw-roster-page input,
+    .mw-roster-page h1,
+    .mw-roster-page h2,
+    .mw-roster-page h3,
+    .mw-roster-page strong,
+    .mw-roster-page label,
+    .mw-roster-page button,
     .mw-roster-page select,
-    .mw-roster-page button {
-      font-family: "Barlow Condensed", sans-serif !important;
+    .mw-roster-page input,
+    .mw-roster-page .alumni-eyebrow,
+    .mw-roster-page .alumni-edition,
+    .mw-roster-page .alumni-edition-label,
+    .mw-roster-page .mw-filter-kicker,
+    .mw-roster-page .mw-catalog-count,
+    .mw-roster-page .mw-champions-kicker {
+      font-family: "Barlow Condensed", sans-serif;
     }
   </style>
 
-  <!-- Scripts -->
+  <!-- SCRIPTS -->
   <script src="js/mi-wrestling.js" defer></script>
+  <script src="js/components/wrestler-card.js" defer></script>
   <script type="module" src="js/luchadores.js"></script>
 
 </head>
-
 
 <body data-page="roster">
 
   <main class="site-main mw-roster-page">
 
-    <!-- =====================================================
-         ENCABEZADO
-         ===================================================== -->
+    <!-- ENCABEZADO -->
     <header class="mw-page-header alumni-hero roster-hero">
+
       <div class="alumni-hero-content">
+
         <div class="alumni-eyebrow">
           <span class="alumni-eyebrow-line"></span>
           <span>TRIVIAS WRESTLING</span>
@@ -105,10 +112,7 @@
     </header>
 
 
-    <!-- =====================================================
-         CAMPEONES ACTUALES
-         ===================================================== -->
-
+    <!-- CAMPEONES ACTUALES -->
     <section
       class="mw-current-champions"
       data-current-champions
@@ -116,12 +120,17 @@
     >
 
       <div class="mw-champions-heading">
+
         <span class="mw-champions-kicker">
           THE GOLD STANDARD
         </span>
+
         <h2>CAMPEONES ACTUALES</h2>
+
         <span class="mw-champions-rule"></span>
+
       </div>
+
       <p class="mw-champions-empty">
         INFORMACIÓN DE CAMPEONATOS
       </p>
@@ -129,10 +138,7 @@
     </section>
 
 
-    <!-- =====================================================
-         PANEL DE EXPLORACIÓN
-         ===================================================== -->
-
+    <!-- PANEL DE EXPLORACIÓN -->
     <section
       class="mw-brand-filter-panel"
       aria-label="Explorar superestrellas"
@@ -156,7 +162,6 @@
 
 
       <!-- BÚSQUEDA -->
-
       <div class="mw-roster-search">
 
         <input
@@ -171,7 +176,6 @@
 
 
       <!-- CATEGORÍAS -->
-
       <div class="mw-roster-filters">
 
         <label for="roster-category">
@@ -214,10 +218,7 @@
     </section>
 
 
-    <!-- =====================================================
-         CATÁLOGO
-         ===================================================== -->
-
+    <!-- CATÁLOGO -->
     <section
       class="mw-roster-catalog-section"
       aria-label="Catálogo de superestrellas"
@@ -241,11 +242,7 @@
       </div>
 
 
-      <!--
-        IMPORTANTE:
-        Este es el único contenedor que luchadores.js modifica.
-      -->
-
+      <!-- ÚNICO CONTENEDOR MODIFICADO POR luchadores.js -->
       <div
         class="roster-grid-container"
         data-wrestlers-catalog
@@ -263,12 +260,10 @@
   </main>
 
 
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
-
+  <!-- FOOTER -->
   <footer class="footer">
     TRIVIAS WRESTLING · SUPERSTAR ARCHIVE
   </footer>
+
 </body>
 </html>
