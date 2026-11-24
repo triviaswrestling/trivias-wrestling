@@ -166,3 +166,432 @@
 @media(max-width:560px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding-inline:10px}.mw-wrestler-card{aspect-ratio:3/4.7}.mw-wrestler-card__name{font-size:clamp(.82rem,3.7vw,1.18rem)}.mw-wrestler-card__subtitle{font-size:clamp(.43rem,1.9vw,.58rem)}.mw-brand-filter-panel{margin-bottom:16px;padding:13px 10px}.mw-brand-filter{min-height:34px;padding:7px 11px;font-size:.72rem}.mw-letter-filters{gap:5px;padding:10px 0}.mw-letter-filter{width:29px;height:29px;flex-basis:29px;font-size:.66rem}.mw-current-champions{padding:18px 10px 0;margin-bottom:18px}.mw-champions-track{grid-template-columns:1fr 1fr;gap:7px}.mw-champion-card{min-height:86px;padding:7px;gap:7px}.mw-champion-card img{width:42px;height:64px;flex-basis:42px}.mw-champion-card__crest{width:35px;height:35px;flex-basis:35px;font-size:1.25rem}.mw-champion-card__copy strong{font-size:.95rem}.mw-modal-hero{grid-template-columns:minmax(105px,35%) minmax(0,1fr);gap:13px;padding-right:0}.mw-modal-identity h2{font-size:clamp(1.5rem,6vw,2.15rem)}.mw-modal-portrait-wrap{min-height:180px}.mw-wrestler-modal__dialog{padding:13px;max-height:96dvh}.mw-modal-stat-grid,.mw-record-grid{gap:8px}.alumni-hero{margin-bottom:25px;padding:36px 17px 22px}.alumni-eyebrow{gap:7px;font-size:8px;letter-spacing:1.5px}.alumni-title{font-size:clamp(62px,17vw,96px);letter-spacing:-1px}.alumni-description{margin-top:18px;font-size:10px}.alumni-description span{font-size:12px}.alumni-hero-bottom{margin-top:24px;gap:9px}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
 @media(max-width:360px){.roster-grid-container,.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mw-wrestler-card__view{display:none}.mw-modal-hero{grid-template-columns:minmax(0,32%) minmax(0,1fr);gap:13px}.mw-modal-portrait-wrap{min-height:180px}.mw-modal-identity h2{font-size:1.45rem}.mw-champions-track{grid-template-columns:1fr}[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-inline:8px}}
 @media(prefers-reduced-motion:reduce){.mw-wrestler-card,.mw-wrestler-card__image,.mw-wrestler-modal__dialog,.mw-record-bar,.mw-record-tile{animation:none!important;transition:none!important}}
+
+/* ==========================================================
+   TRIVIAS WRESTLING — ROSTER / PRESENTACIÓN Y EXPLORACIÓN
+   Solo encabezado, campeones, buscador, filtros y divisiones.
+   Cards y modal: INTACTOS.
+   ========================================================== */
+
+.mw-roster-page{
+  --roster-red:#e3263e;
+  --roster-black:#08090c;
+  --roster-panel:#111318;
+  --roster-line:#30343b;
+  --roster-muted:#a4a9b1;
+  background:#08090c;
+  color:#f4f4f5;
+  padding-bottom:55px;
+}
+
+/* ENCABEZADO */
+
+.mw-roster-page .roster-hero{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:center;
+  min-height:230px;
+  max-width:none;
+  margin:0 0 28px;
+  padding:45px clamp(18px,5vw,65px);
+  overflow:hidden;
+  border:0;
+  border-bottom:2px solid #292d33;
+  border-radius:0;
+  background:
+    radial-gradient(ellipse at 75% 45%,#e3263e20,transparent 48%),
+    linear-gradient(125deg,#050608,#15171b 55%,#08090c);
+  text-align:left;
+}
+
+.roster-hero::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-60% 10%;
+  width:2px;
+  transform:rotate(38deg);
+  background:linear-gradient(transparent,#e3263e,#e3263e55,transparent);
+  box-shadow:0 0 25px #e3263e55;
+}
+
+.roster-hero::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  opacity:.28;
+  background:
+    linear-gradient(135deg,transparent 48%,#e3263e 49%,transparent 50%) 0 0/180px 180px,
+    linear-gradient(45deg,transparent 48%,#e3263e 49%,transparent 50%) 100% 0/180px 180px;
+  pointer-events:none;
+}
+
+.roster-hero .alumni-hero-content{
+  max-width:1150px;
+}
+
+.roster-hero .alumni-eyebrow{
+  color:#e3263e;
+}
+
+.roster-hero .alumni-eyebrow-line{
+  background:#e3263e;
+  box-shadow:0 0 10px #e3263e66;
+}
+
+.roster-hero .alumni-eyebrow-divider{
+  color:#666b73;
+}
+
+.roster-hero .alumni-eyebrow-muted{
+  color:#9298a1;
+}
+
+.roster-hero .alumni-title{
+  color:#f5f5f5;
+  text-shadow:0 3px #555,0 8px 24px #000;
+}
+
+.roster-hero .alumni-title span{
+  background:linear-gradient(180deg,#fff 0%,#dedfe2 48%,#858a92 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.roster-hero .alumni-description{
+  color:#e3263e;
+}
+
+.roster-hero .alumni-description span{
+  color:#b5bac2;
+}
+
+.roster-hero .alumni-hero-bottom{
+  border-color:#ffffff20;
+}
+
+.roster-hero .alumni-edition-line{
+  background:#e3263e;
+}
+
+.roster-hero .alumni-edition-label{
+  color:#9298a1;
+}
+
+/* CAMPEONES ACTUALES */
+
+.mw-current-champions{
+  max-width:1320px;
+  margin:0 auto 30px;
+  padding:8px clamp(12px,3vw,30px) 20px;
+}
+
+.mw-champions-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+  padding-bottom:11px;
+  border-bottom:1px solid #353940;
+}
+
+.mw-champions-kicker{
+  color:#d8b96d;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  white-space:nowrap;
+}
+
+.mw-champions-heading h2{
+  margin:0;
+  color:#f3f3f4;
+  font-size:clamp(1.3rem,3vw,2rem);
+  font-weight:900;
+  letter-spacing:.04em;
+}
+
+.mw-champions-rule{
+  height:1px;
+  flex:1;
+  background:linear-gradient(90deg,#a78a4c,transparent);
+}
+
+.mw-champions-empty{
+  margin:0;
+  padding:12px 15px;
+  border:1px solid #4b402b;
+  background:linear-gradient(100deg,#19160f,#101115);
+  color:#b7a77e;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+/* PANEL DE EXPLORACIÓN */
+
+.mw-brand-filter-panel{
+  max-width:1320px;
+  margin:0 auto 25px;
+  padding:18px clamp(12px,3vw,30px);
+  border-block:1px solid #30343b;
+  border-radius:0;
+  background:linear-gradient(110deg,#101216,#17191e 50%,#0b0c0f);
+  box-shadow:none;
+}
+
+.mw-filter-panel-heading{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 14px;
+  margin-bottom:15px;
+}
+
+.mw-filter-kicker{
+  display:block;
+  width:100%;
+  color:#e3263e;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.19em;
+}
+
+.mw-filter-panel-heading>strong{
+  color:#f2f2f3;
+  font-size:clamp(1.25rem,3vw,1.8rem);
+  font-weight:900;
+  letter-spacing:.025em;
+}
+
+.mw-filter-panel-heading .mw-catalog-count{
+  margin-left:auto;
+  color:#858b94;
+  font-size:.68rem;
+}
+
+/* BUSCADOR */
+
+.mw-roster-search{
+  width:min(100%,420px);
+  margin:0 0 15px auto;
+}
+
+.mw-roster-search input{
+  width:100%;
+  min-height:43px;
+  box-sizing:border-box;
+  padding:0 16px;
+  border:1px solid #41464e;
+  border-radius:30px;
+  outline:none;
+  background:#050608;
+  color:#fff;
+  font:700 .78rem "Barlow Condensed",sans-serif;
+  letter-spacing:.08em;
+  transition:border-color .18s,box-shadow .18s;
+}
+
+.mw-roster-search input::placeholder{
+  color:#858b94;
+}
+
+.mw-roster-search input:focus{
+  border-color:#e3263e;
+  box-shadow:0 0 0 2px #e3263e22;
+}
+
+/* FILTROS DE CATEGORÍA Y MARCA */
+
+.mw-roster-filters{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.mw-roster-filters label{
+  color:#9298a1;
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+
+.mw-roster-filters select{
+  min-width:150px;
+  min-height:38px;
+  padding:0 32px 0 12px;
+  border:1px solid #454a52;
+  border-radius:2px;
+  outline:none;
+  appearance:auto;
+  background:#090a0d;
+  color:#f1f1f2;
+  font:800 .78rem "Barlow Condensed",sans-serif;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+
+.mw-roster-filters select:focus{
+  border-color:#e3263e;
+}
+
+.mw-roster-filters select option{
+  background:#101216;
+  color:#fff;
+}
+
+/* DIVISIONES */
+
+.mw-roster-catalog-section{
+  max-width:1320px;
+  margin:0 auto;
+  padding:0 clamp(10px,2vw,20px);
+}
+
+.mw-roster-group{
+  margin:0 0 35px;
+}
+
+.mw-roster-group[hidden]{
+  display:none!important;
+}
+
+.mw-catalog-section-heading{
+  display:flex;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:5px 12px;
+  margin:0 0 15px;
+  padding:0 0 10px;
+  border-bottom:2px solid #e3263e;
+}
+
+.mw-catalog-section-heading .mw-filter-kicker{
+  width:100%;
+  margin:0;
+  color:#e3263e;
+  font-size:.65rem;
+}
+
+.mw-catalog-section-heading h2{
+  margin:0;
+  color:#f2f2f3;
+  font-size:clamp(1.65rem,4vw,2.5rem);
+  font-weight:900;
+  line-height:.95;
+  letter-spacing:.015em;
+  text-transform:uppercase;
+}
+
+.mw-catalog-section-heading .mw-catalog-count{
+  margin-left:auto;
+  color:#9da2aa;
+  font-size:.7rem;
+  font-weight:800;
+}
+
+/* SEGUNDA LIGA */
+
+[data-roster-group="segunda"] .mw-catalog-section-heading{
+  border-bottom-color:#9299a3;
+}
+
+[data-roster-group="segunda"] .mw-catalog-section-heading .mw-filter-kicker{
+  color:#b6bbc3;
+}
+
+/* ADMINISTRACIÓN */
+
+[data-roster-group="admin"] .mw-catalog-section-heading{
+  border-bottom-color:#777d86;
+}
+
+[data-roster-group="admin"] .mw-catalog-section-heading .mw-filter-kicker{
+  color:#aeb4bd;
+}
+
+/* TABLET Y MÓVIL */
+
+@media(max-width:700px){
+  .mw-roster-page .roster-hero{
+    min-height:190px;
+    padding:35px 18px;
+    margin-bottom:22px;
+  }
+
+  .mw-current-champions{
+    padding-inline:10px;
+    margin-bottom:22px;
+  }
+
+  .mw-champions-heading{
+    gap:8px;
+  }
+
+  .mw-champions-heading h2{
+    font-size:1.3rem;
+  }
+
+  .mw-champions-kicker{
+    font-size:.55rem;
+  }
+
+  .mw-brand-filter-panel{
+    margin-bottom:20px;
+    padding:15px 11px;
+  }
+
+  .mw-filter-panel-heading>strong{
+    font-size:1.25rem;
+  }
+
+  .mw-roster-search{
+    width:100%;
+  }
+
+  .mw-roster-filters{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    gap:8px;
+  }
+
+  .mw-roster-filters select{
+    width:100%;
+    min-width:0;
+  }
+
+  .mw-roster-catalog-section{
+    padding-inline:9px;
+  }
+
+  .mw-roster-group{
+    margin-bottom:27px;
+  }
+
+  .mw-catalog-section-heading{
+    margin-bottom:11px;
+  }
+}
+
+@media(max-width:380px){
+  .roster-hero .alumni-eyebrow{
+    font-size:7px;
+    letter-spacing:1px;
+  }
+
+  .mw-champions-heading h2{
+    font-size:1.12rem;
+  }
+
+  .mw-catalog-section-heading h2{
+    font-size:1.55rem;
+  }
+
+  .mw-catalog-section-heading .mw-catalog-count{
+    font-size:.6rem;
+  }
+}
