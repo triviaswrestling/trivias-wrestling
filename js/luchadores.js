@@ -14,6 +14,7 @@ const CONFIG = {
     search: "[data-wrestlers-search]",
     category: "[data-roster-filter]",
     brand: "[data-brand-filter]",
+    letter: "[data-roster-letter]",
     count: "[data-wrestler-count]"
   }
 };
@@ -22,14 +23,12 @@ const CONFIG = {
 /* 2. BASE DE DATOS */
 
 export const wrestlers = [
-
   {
     id: "cody-rhodes",
     name: "Cody Rhodes",
     nickname: "The American Nightmare",
     stable: "",
     brand: "RAW",
-
     timeline: [
       {
         from: "01/01/2023",
@@ -42,7 +41,6 @@ export const wrestlers = [
         image: "images/renders/cody-rhodes-actual.webp"
       }
     ],
-
     alteregos: [
       {
         name: "Undashing Cody Rhodes",
@@ -52,14 +50,12 @@ export const wrestlers = [
       }
     ]
   },
-
   {
     id: "tommaso-ciampa",
     name: "Tommaso Ciampa",
     nickname: "",
     stable: "",
     brand: "Alumni",
-
     timeline: [
       {
         from: "07/02/2024",
@@ -72,7 +68,6 @@ export const wrestlers = [
         image: "images/renders/tommaso-ciampa.webp"
       }
     ],
-
     alteregos: [
       {
         name: "The Riddler",
@@ -82,7 +77,6 @@ export const wrestlers = [
       }
     ]
   }
-
 ];
 
 
@@ -177,7 +171,6 @@ export function getRosterCategory(wrestlerOrBrand) {
 
 export function getWrestlersByCategory(category) {
   const target = normalize(category);
-
   return wrestlers.filter(w =>
     normalize(getRosterCategory(w)) === target
   );
@@ -185,7 +178,6 @@ export function getWrestlersByCategory(category) {
 
 export function getWrestlersByBrand(brand) {
   const target = normalize(brand);
-
   return wrestlers.filter(w =>
     normalize(w.brand) === target
   );
@@ -258,8 +250,7 @@ export function getWrestlerTimeline(identifier) {
 }
 
 
-/* 9. RESOLUCIÓN DEL RENDER
-   Prioridad: alter ego > timeline > Vacante. */
+/* 9. RESOLUCIÓN DEL RENDER */
 
 export function getWrestlerRender(identifier, date = getToday()) {
   const wrestler = getWrestler(identifier);
@@ -502,7 +493,6 @@ function loadWrestlerCards() {
   }
 
   wrestlerCards = component;
-
   console.info("[Trivias Wrestling] Wrestler Card conectado.");
   return true;
 }
@@ -512,17 +502,12 @@ function loadWrestlerCards() {
 
 function fallbackCard(wrestler, presentation) {
   return `
-    <button
-      class="mw-wrestler-card"
-      type="button"
-      data-wrestler-open="${escapeHTML(wrestler.id)}"
-    >
-      <img
-        class="mw-wrestler-card__image"
+    <button class="mw-wrestler-card" type="button"
+      data-wrestler-open="${escapeHTML(wrestler.id)}">
+      <img class="mw-wrestler-card__image"
         src="${escapeHTML(presentation.image)}"
         alt="${escapeHTML(presentation.displayName)}"
-        loading="lazy"
-      >
+        loading="lazy">
       <span class="mw-wrestler-card__name">
         ${escapeHTML(presentation.displayName)}
       </span>
@@ -580,7 +565,6 @@ export function renderWrestlersCatalog(container, list = wrestlers) {
 function updateWrestlerCounts() {
   document.querySelectorAll(CONFIG.selectors.count).forEach(element => {
     const group = element.dataset.wrestlerCount;
-
     let list = wrestlers;
 
     if (group === "main-roster") list = getMainRoster();
@@ -607,33 +591,44 @@ export function initWrestlersCatalog() {
   const searchInput = document.querySelector(CONFIG.selectors.search);
   const categoryFilter = document.querySelector(CONFIG.selectors.category);
   const brandFilter = document.querySelector(CONFIG.selectors.brand);
+  const letterButtons = document.querySelectorAll(CONFIG.selectors.letter);
 
-  const page = document.body.dataset.page;
-  const source = page === "alumni" ? "alumni" : "roster";
+  let activeLetter = "";
 
   function updateCatalogs() {
-    const filtered = filterWrestlers({
-      source,
+    let filtered = filterWrestlers({
+      source: document.body.dataset.page === "alumni" ? "alumni" : "roster",
       search: searchInput?.value || "",
       category: categoryFilter?.value || "",
       brand: brandFilter?.value || ""
     });
 
+    if (activeLetter) {
+      filtered = filtered.filter(w =>
+        normalize(w.name).startsWith(activeLetter)
+      );
+    }
+
     containers.forEach(container => {
       const group = container.dataset.wrestlersCatalog;
-
       let list = filtered;
 
       if (group === "main-roster") {
-        list = filtered.filter(w => getRosterCategory(w) === "Main Roster");
+        list = filtered.filter(w =>
+          getRosterCategory(w) === "Main Roster"
+        );
       }
 
       if (group === "segunda") {
-        list = filtered.filter(w => getRosterCategory(w) === "Segunda Liga");
+        list = filtered.filter(w =>
+          getRosterCategory(w) === "Segunda Liga"
+        );
       }
 
       if (group === "admin") {
-        list = filtered.filter(w => getRosterCategory(w) === "ADMIN");
+        list = filtered.filter(w =>
+          getRosterCategory(w) === "ADMIN"
+        );
       }
 
       if (group === "alumni") {
@@ -643,12 +638,15 @@ export function initWrestlersCatalog() {
       }
 
       if (group === "hof") {
-        list = filtered.filter(w => getRosterCategory(w) === "HOF");
+        list = filtered.filter(w =>
+          getRosterCategory(w) === "HOF"
+        );
       }
 
       renderWrestlersCatalog(container, list);
 
       const wrapper = container.closest("[data-roster-group]");
+
       if (wrapper) wrapper.hidden = list.length === 0;
       else container.hidden = list.length === 0;
     });
@@ -656,11 +654,24 @@ export function initWrestlersCatalog() {
     updateWrestlerCounts();
   }
 
+  letterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      activeLetter = normalize(button.dataset.rosterLetter);
+
+      letterButtons.forEach(item => {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+
+      updateCatalogs();
+    });
+  });
+
   searchInput?.addEventListener("input", updateCatalogs);
   categoryFilter?.addEventListener("change", updateCatalogs);
   brandFilter?.addEventListener("change", updateCatalogs);
 
-  // Apertura de modal para tarjetas de respaldo.
   document.addEventListener("click", event => {
     const trigger = event.target.closest("[data-wrestler-open]");
     if (!trigger || !wrestlerCards?.openModal) return;
