@@ -344,3 +344,178 @@
 .mw-modal-portrait-wrap{width:100%;min-width:0;min-height:180px}
 .mw-modal-identity h2{font-size:1.45rem}
 }
+/* =========================================================
+   TRIVIAS WRESTLING — STEEL / BLACK
+   REEMPLAZO GLOBAL DE CYAN Y AZULES
+========================================================= */
+
+:root{
+  --mw-cyan:#c5cbd4;
+  --mw-ink:#05070a;
+  --mw-panel:#101319;
+  --mw-line:#343b45;
+  --mw-muted:#a3aab4;
+  --mw-steel:#c5cbd4;
+  --mw-silver:#e5e8ed;
+  --mw-metal:#858e9b;
+  --mw-black:#05070a;
+}
+
+/* ACENTO GENERAL */
+.mw-roster-page,
+.mw-record-page{
+  --theme-accent:#c5cbd4;
+  --theme-glow:rgba(190,200,214,.16);
+}
+
+/* ENCABEZADO */
+.mw-page-header .eyebrow,
+.mw-record-eyebrow{
+  color:#c5cbd4;
+}
+
+.mw-page-header .page-title{
+  text-shadow:0 5px 24px rgba(190,200,214,.13);
+}
+
+/* BUSCADOR Y SELECTORES */
+.mw-search-field,
+.mw-select-field{
+  color:#c5cbd4;
+  border-color:#343b45;
+  background:linear-gradient(180deg,#171b21,#080a0e);
+}
+
+.mw-search-field:focus-within,
+.mw-select-field:focus-within{
+  border-color:#c5cbd4;
+  box-shadow:0 0 13px rgba(190,200,214,.12);
+}
+
+/* FILTROS DE MARCA */
+.mw-brand-filter{
+  border-color:#424a55;
+  background:linear-gradient(180deg,#1b2027,#090b0f);
+  color:#aeb5bf;
+}
+
+.mw-brand-filter:hover{
+  color:#fff;
+  border-color:#c5cbd4;
+}
+
+.mw-brand-filter.is-active{
+  color:#080a0d;
+  border-color:#e5e8ed;
+  background:linear-gradient(110deg,#858e9b,#f0f2f5 48%,#aeb6c1);
+  box-shadow:0 0 15px rgba(210,218,230,.16);
+}
+
+/* CARDS — ACENTO PREDETERMINADO */
+.mw-wrestler-card{
+  --wrestler-accent:#c5cbd4;
+  --wrestler-glow:rgba(190,200,214,.22);
+}
+
+/* MODAL — ACENTO PREDETERMINADO */
+.mw-wrestler-modal__dialog{
+  --wrestler-accent:#c5cbd4;
+  --wrestler-glow:rgba(190,200,214,.18);
+}
+
+/* ALUMNI — FUERA AZULES */
+.alumni-hero{
+  background:
+    radial-gradient(ellipse at 78% 30%,rgba(190,200,214,.13),transparent 48%),
+    radial-gradient(ellipse at 8% 100%,rgba(110,120,135,.10),transparent 42%),
+    linear-gradient(115deg,#05070a 0%,#11151c 52%,#05070a 100%);
+  border-color:rgba(190,200,214,.20);
+}
+
+.alumni-hero::before{
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(190,200,214,.02) 20%,
+    rgba(190,200,214,.38) 48%,
+    rgba(190,200,214,.05) 75%,
+    transparent
+  );
+  box-shadow:0 0 32px rgba(190,200,214,.12);
+}
+
+.alumni-hero::after{
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(190,200,214,.65),
+    rgba(240,243,248,.22),
+    transparent
+  );
+}
+
+.alumni-eyebrow{color:#c5cbd4}
+.alumni-eyebrow-line{
+  background:#aeb6c1;
+  box-shadow:0 0 10px rgba(190,200,214,.35);
+}
+.alumni-eyebrow-divider{color:#59616c}
+.alumni-eyebrow-muted{color:#89929e}
+
+.alumni-title{
+  text-shadow:
+    0 2px 0 #9ba4b1,
+    0 5px 0 rgba(30,36,45,.8),
+    0 14px 36px rgba(190,200,214,.12);
+}
+
+.alumni-title span{
+  background:linear-gradient(180deg,#fff 0%,#dce1e8 42%,#8993a1 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.alumni-description{color:#c5cbd4}
+.alumni-description span{color:#b5bdc9}
+
+.alumni-hero-bottom{
+  border-top-color:rgba(190,200,214,.18);
+}
+
+.alumni-edition-line{background:rgba(190,200,214,.55)}
+.alumni-edition-label{color:#89929e}
+
+/* DIVISIONES */
+.mw-roster-division--other{
+  --division-accent:#aeb6c1;
+}
+
+/* RÉCORDS */
+.mw-record-stat.is-current{
+  border-top-color:#c5cbd4;
+  box-shadow:0 0 22px rgba(190,200,214,.10);
+}
+
+.mw-record-back{
+  border-color:#aeb6c1;
+  color:#dce1e8;
+}
+
+.mw-record-links a:hover{
+  border-color:#c5cbd4;
+  color:#e5e8ed;
+}
+
+/* ESTADOS Y DETALLES METÁLICOS */
+.mw-wrestler-card__rank{
+  color:var(--wrestler-accent);
+}
+
+.mw-modal-brand-tag{
+  color:var(--wrestler-accent);
+}
+
+.mw-modal-identity .mw-interpreter-copy>strong{
+  color:var(--wrestler-accent);
+}
