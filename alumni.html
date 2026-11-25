@@ -1,148 +1,180 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#05070b">
+  <meta name="description" content="Archivo de leyendas y antiguas superestrellas de Trivias Wrestling.">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
-    >
+  <title>Alumni | Trivias Wrestling</title>
 
-    <meta name="theme-color" content="#05070b">
+  <!-- FUENTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <meta
-        name="description"
-        content="Archivo de leyendas, superestrellas retiradas y antiguos luchadores de MI WRESTLING 2.0."
-    >
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="css/mi-wrestling.css">
+  <link rel="stylesheet" href="css/pages/roster-pages.css">
 
-    <title>Alumni | MI WRESTLING 2.0</title>
-
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Compatibilidad con la arquitectura anterior -->
-    <link rel="stylesheet" href="css/mi-wrestling.css">
-
-    <!-- Estilos específicos de roster y alumni -->
-    <link rel="stylesheet" href="css/pages/roster-pages.css">
-
-    <!-- DATOS Y SISTEMA ANTERIOR DE LUCHADORES -->
-    <script src="js/wrestlers.js" defer></script>
-
-    <!-- COMPONENTES Y CATÁLOGO NUEVO -->
-    <script src="js/components/wrestler-card.js" defer></script>
-    <script src="js/pages/wrestlers-catalog.js" defer></script>
-
-    <!-- SISTEMA GLOBAL ANTERIOR -->
-    <script src="js/mi-wrestling.js" defer></script>
-<script src="js/sound-effects.js" defer></script>
+  <!-- SISTEMA -->
+  <script src="js/mi-wrestling.js" defer></script>
+  <script src="js/components/wrestler-card.js" defer></script>
+  <script type="module" src="js/luchadores.js"></script>
+  <script src="js/sound-effects.js" defer></script>
 </head>
 
-<body
-    data-page="alumni"
-    data-wrestler-status="inactive"
-    data-wrestlers-catalog="alumni"
->
+<body data-page="alumni">
 
-    <!-- El sistema global puede insertar aquí la navegación -->
+  <main class="site-main mw-roster-page">
 
-    <main class="site-main mw-roster-page">
-
-        <!-- ENCABEZADO -->
-        
-<header class="mw-page-header alumni-hero">
-    <div class="alumni-hero-content">
+    <!-- ENCABEZADO -->
+    <header class="mw-page-header alumni-hero">
+      <div class="alumni-hero-content">
 
         <div class="alumni-eyebrow">
-            <span class="alumni-eyebrow-line"></span>
-            <span>HALL OF LEGENDS</span>
-            <span class="alumni-eyebrow-divider">/</span>
-            <span class="alumni-eyebrow-muted">LEGACY ARCHIVE</span>
+          <span class="alumni-eyebrow-line"></span>
+          <span>HALL OF LEGENDS</span>
+          <span class="alumni-eyebrow-divider">/</span>
+          <span class="alumni-eyebrow-muted">LEGACY ARCHIVE</span>
         </div>
 
         <h1 class="alumni-title">
-            <span>ALUMNI</span>
+          <span>ALUMNI</span>
         </h1>
 
         <p class="alumni-description">
-            LAS LEYENDAS NUNCA DESAPARECEN.
-            <span>
-                Un legado eterno. Superestrellas que dejaron su huella
-                en la historia del ring.
-            </span>
+          LAS LEYENDAS NUNCA DESAPARECEN.
+          <span>
+            Un legado eterno. Superestrellas que dejaron su huella
+            en la historia del ring.
+          </span>
         </p>
 
         <div class="alumni-hero-bottom">
-            <span class="alumni-edition">MI WRESTLING 2.0</span>
-            <span class="alumni-edition-line"></span>
-            <span class="alumni-edition-label">LEGACY COLLECTION</span>
+          <span class="alumni-edition">TRIVIAS WRESTLING</span>
+          <span class="alumni-edition-line"></span>
+          <span class="alumni-edition-label">LEGACY COLLECTION</span>
         </div>
 
-    </div>
-</header>
+      </div>
+    </header>
 
 
-       
+    <!-- FILTROS -->
+    <section class="mw-brand-filter-panel" aria-label="Explorar archivo">
 
-        <!-- FILTROS POR MARCA -->
-        <section
-            class="mw-brand-filter-panel"
-            aria-label="Filtrar por marca"
-        >
-            <div class="mw-filter-panel-heading">
-                <span class="mw-filter-kicker">SELECT BRAND</span>
+      <div class="mw-filter-panel-heading">
+        <span class="mw-filter-kicker">LEGACY ARCHIVE</span>
+        <strong>EXPLORAR LEYENDAS</strong>
+        <span class="mw-catalog-count" data-wrestler-count="alumni">
+          PREPARANDO ARCHIVO
+        </span>
+      </div>
 
-                <strong>EXPLORAR POR MARCA</strong>
+      <!-- CATEGORÍAS -->
+      <div class="mw-category-buttons" role="group" aria-label="Categorías">
 
-                <span
-                    class="mw-catalog-count"
-                    data-wrestler-count
-                >
-                    PREPARANDO LEYENDAS
-                </span>
-            </div>
+        <button class="mw-category-button is-active"
+          type="button" data-category-choice="Alumni" aria-pressed="true">
+          ALUMNI
+        </button>
 
-            <div
-                class="mw-brand-filters"
-                data-brand-filters
-                role="group"
-                aria-label="Marcas disponibles"
-            >
-                <span class="mw-catalog-loading">
-                    CARGANDO MARCAS…
-                </span>
-            </div>
-        </section>
+        <button class="mw-category-button"
+          type="button" data-category-choice="HOF" aria-pressed="false">
+          HALL OF FAME
+        </button>
 
-        
+      </div>
 
-        <!-- CATÁLOGO -->
-        <section
-            id="wrestler-grid"
-            class="mw-wrestler-grid roster-grid-container"
-            aria-label="Archivo de alumni"
-            aria-live="polite"
-        >
-            <p class="mw-catalog-loading">
-                CARGANDO ARCHIVO DE LEYENDAS…
-            </p>
-        </section>
+      <!-- SELECT DE COMPATIBILIDAD -->
+      <select class="mw-filter-compat" data-roster-filter aria-label="Categoría">
+        <option value="Alumni">Alumni</option>
+        <option value="HOF">HOF</option>
+      </select>
 
-    </main>
+      <!-- ALFABÉTICO -->
+      <div class="mw-alphabet-filter" role="group" aria-label="Filtro alfabético">
 
-    <!-- MODAL DEL SISTEMA ANTERIOR -->
-    <div
-        class="mw-modal-root"
-        id="mw-modal-root"
-    ></div>
+        <button class="mw-alphabet-button is-active"
+          type="button" data-roster-letter="" aria-pressed="true">A-Z</button>
 
-    <!-- PIE DE PÁGINA -->
-    <footer class="footer">
-        MI WRESTLING 2.0 · HALL OF LEGENDS
-    </footer>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="A" aria-pressed="false">A</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="B" aria-pressed="false">B</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="C" aria-pressed="false">C</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="D" aria-pressed="false">D</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="E" aria-pressed="false">E</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="F" aria-pressed="false">F</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="G" aria-pressed="false">G</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="H" aria-pressed="false">H</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="I" aria-pressed="false">I</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="J" aria-pressed="false">J</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="K" aria-pressed="false">K</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="L" aria-pressed="false">L</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="M" aria-pressed="false">M</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="N" aria-pressed="false">N</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="O" aria-pressed="false">O</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="P" aria-pressed="false">P</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="Q" aria-pressed="false">Q</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="R" aria-pressed="false">R</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="S" aria-pressed="false">S</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="T" aria-pressed="false">T</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="U" aria-pressed="false">U</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="V" aria-pressed="false">V</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="W" aria-pressed="false">W</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="X" aria-pressed="false">X</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="Y" aria-pressed="false">Y</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="Z" aria-pressed="false">Z</button>
+
+      </div>
+    </section>
+
+
+    <!-- CATÁLOGO -->
+    <section
+      id="wrestler-grid"
+      class="mw-wrestler-grid roster-grid-container"
+      data-wrestlers-catalog="alumni"
+      aria-label="Archivo de alumni"
+      aria-live="polite"
+    >
+      <p class="mw-catalog-loading">
+        CARGANDO ARCHIVO DE LEYENDAS…
+      </p>
+    </section>
+
+  </main>
+
+
+  <!-- MODAL -->
+  <div class="mw-modal-root" id="mw-modal-root"></div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    TRIVIAS WRESTLING · HALL OF LEGENDS
+  </footer>
+
+
+  <!-- CONEXIÓN DE CATEGORÍAS -->
+  <script>
+    const categoryButtons = document.querySelectorAll("[data-category-choice]");
+    const categorySelect = document.querySelector("[data-roster-filter]");
+
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        categorySelect.value = button.dataset.categoryChoice;
+        categorySelect.dispatchEvent(new Event("change", { bubbles: true }));
+
+        categoryButtons.forEach(item => {
+          const active = item === button;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
