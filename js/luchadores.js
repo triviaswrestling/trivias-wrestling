@@ -1,9 +1,11 @@
 
 /* =========================================================================
    TRIVIAS WRESTLING — LUCHADORES.JS
-   Base de datos, historial, alter egos, consultas y catálogos.
-   El diseño gráfico pertenece a wrestler-card.js.
+   Base de datos, historial, alter egos, intérpretes y catálogos.
+   Referencias mediante nombres canónicos.
    ========================================================================= */
+
+import { players } from "../data/jugadores.js";
 
 /* 1. CONFIGURACIÓN */
 
@@ -19,12 +21,11 @@ const CONFIG = {
   }
 };
 
-
 /* 2. BASE DE DATOS */
 
 export const wrestlers = [
   {
-    id: "cody-rhodes",
+    id: "Cody Rhodes",
     name: "Cody Rhodes",
     nickname: "The American Nightmare",
     stable: "",
@@ -51,7 +52,7 @@ export const wrestlers = [
     ]
   },
   {
-    id: "tommaso-ciampa",
+    id: "Tommaso Ciampa",
     name: "Tommaso Ciampa",
     nickname: "",
     stable: "",
@@ -78,7 +79,6 @@ export const wrestlers = [
     ]
   }
 ];
-
 
 /* 3. UTILIDADES */
 
@@ -108,8 +108,7 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 }
 
-
-/* 4. FECHAS — DD/MM/YYYY */
+/* 4. FECHAS */
 
 export function parseDate(value) {
   if (value instanceof Date) {
@@ -150,8 +149,7 @@ export function isDateBetween(date, from, to = null) {
   return current >= start && (end === null || current <= end);
 }
 
-
-/* 5. CLASIFICACIÓN AUTOMÁTICA */
+/* 5. CLASIFICACIÓN */
 
 export function getRosterCategory(wrestlerOrBrand) {
   const brand = normalize(
@@ -178,9 +176,7 @@ export function getWrestlersByCategory(category) {
 
 export function getWrestlersByBrand(brand) {
   const target = normalize(brand);
-  return wrestlers.filter(w =>
-    normalize(w.brand) === target
-  );
+  return wrestlers.filter(w => normalize(w.brand) === target);
 }
 
 export const getMainRoster = () => getWrestlersByCategory("Main Roster");
@@ -189,8 +185,7 @@ export const getAlumni = () => getWrestlersByCategory("Alumni");
 export const getHallOfFamers = () => getWrestlersByCategory("HOF");
 export const getAdministration = () => getWrestlersByCategory("ADMIN");
 
-
-/* 6. CONSULTAS */
+/* 6. CONSULTAS POR NOMBRE CANÓNICO */
 
 export function getWrestler(identifier) {
   if (identifier == null) return null;
@@ -198,23 +193,17 @@ export function getWrestler(identifier) {
   const target = normalize(identifier);
 
   return wrestlers.find(w =>
-    normalize(w.id) === target ||
     normalize(w.name) === target
   ) ?? null;
 }
 
 export function getWrestlerById(id) {
-  return wrestlers.find(w =>
-    normalize(w.id) === normalize(id)
-  ) ?? null;
+  return getWrestler(id);
 }
 
 export function getWrestlerByName(name) {
-  return wrestlers.find(w =>
-    normalize(w.name) === normalize(name)
-  ) ?? null;
+  return getWrestler(name);
 }
-
 
 /* 7. ALTER EGOS */
 
@@ -232,7 +221,6 @@ export function getWrestlerAlteregos(identifier) {
   return wrestler ? [...wrestler.alteregos] : [];
 }
 
-
 /* 8. HISTORIAL DE RENDERS */
 
 export function getTimelineRender(identifier, date = getToday()) {
@@ -249,17 +237,16 @@ export function getWrestlerTimeline(identifier) {
   return wrestler ? [...wrestler.timeline] : [];
 }
 
-
 /* 9. RESOLUCIÓN DEL RENDER */
 
 export function getWrestlerRender(identifier, date = getToday()) {
   const wrestler = getWrestler(identifier);
   if (!wrestler) return CONFIG.fallbackImage;
 
-  const alterego = getAlteregoByDate(wrestler.id, date);
+  const alterego = getAlteregoByDate(wrestler.name, date);
   if (alterego?.image) return alterego.image;
 
-  const timeline = getTimelineRender(wrestler.id, date);
+  const timeline = getTimelineRender(wrestler.name, date);
   if (timeline?.image) return timeline.image;
 
   return CONFIG.fallbackImage;
@@ -269,45 +256,99 @@ export function getCurrentRender(identifier) {
   return getWrestlerRender(identifier, getToday());
 }
 
-
 /* 10. PRESENTACIÓN */
 
 export function getWrestlerPresentation(identifier, date = getToday()) {
   const wrestler = getWrestler(identifier);
   if (!wrestler) return null;
 
-  const alterego = getAlteregoByDate(wrestler.id, date);
-  const timeline = getTimelineRender(wrestler.id, date);
+  const alterego = getAlteregoByDate(wrestler.name, date);
+  const timeline = getTimelineRender(wrestler.name, date);
 
   return {
-    id: wrestler.id,
+    id: wrestler.name,
     name: wrestler.name,
     displayName: alterego?.name || wrestler.name,
     nickname: wrestler.nickname,
     stable: wrestler.stable,
     brand: wrestler.brand,
     category: getRosterCategory(wrestler),
-    image: getWrestlerRender(wrestler.id, date),
+    image: getWrestlerRender(wrestler.name, date),
     alterego,
     timeline,
     date
   };
 }
 
+/* 11. INTÉRPRETES */
 
-/* 11. BÚSQUEDA */
+export function getWrestlerPlayers(identifier, date = getToday()) {
+  const wrestler = getWrestler(identifier);
+  if (!wrestler) return [];
+
+  return players.flatMap(player => {
+    const periods = (player.wrestlers || []).filter(period =>
+      normalize(period.id) === normalize(wrestler.name)
+    );
+
+    return periods.map(period => ({
+      id: player.id,
+      name: player.name,
+      country: player.country || "",
+      status: player.status || "",
+      from: period.from,
+      to: period.to,
+      current: isDateBetween(date, period.from, period.to),
+      recordUrl: `records.html?interpreter=${encodeURIComponent(player.id)}`
+    }));
+  }).sort((a, b) =>
+    (parseDate(a.from) ?? 0) - (parseDate(b.from) ?? 0)
+  );
+}
+
+export function getWrestlerInterpreterData(identifier, date = getToday()) {
+  const history = getWrestlerPlayers(identifier, date);
+  const current = history.find(entry => entry.current);
+
+  return {
+    interpreter: current?.id || null,
+    interpreterHistory: history
+  };
+}
+
+export function getPlayer(identifier) {
+  if (identifier == null) return null;
+
+  const target = normalize(identifier);
+
+  return players.find(player =>
+    normalize(player.id) === target ||
+    normalize(player.name) === target
+  ) ?? null;
+}
+
+export function getPlayerWrestlers(identifier) {
+  const player = getPlayer(identifier);
+  if (!player) return [];
+
+  return (player.wrestlers || []).map(period => ({
+    ...period,
+    wrestler: getWrestler(period.id)
+  }));
+}
+
+/* 12. BÚSQUEDA */
 
 export function searchWrestlers(query) {
   const target = normalize(query);
   if (!target) return [...wrestlers];
 
   return wrestlers.filter(w => [
-    w.id, w.name, w.nickname, w.stable, w.brand
+    w.name, w.nickname, w.stable, w.brand
   ].some(value => normalize(value).includes(target)));
 }
 
-
-/* 12. FILTROS */
+/* 13. FILTROS */
 
 export function filterWrestlers(options = {}) {
   const {
@@ -348,15 +389,14 @@ export function filterWrestlers(options = {}) {
     const target = normalize(search);
 
     result = result.filter(w => [
-      w.id, w.name, w.nickname, w.stable, w.brand
+      w.name, w.nickname, w.stable, w.brand
     ].some(value => normalize(value).includes(target)));
   }
 
   return result;
 }
 
-
-/* 13. VALIDACIÓN */
+/* 14. VALIDACIÓN */
 
 function validatePeriod(period, label, errors) {
   if (!period || typeof period !== "object") {
@@ -409,7 +449,6 @@ export function validateWrestler(wrestler) {
     return { valid: false, errors: ["El luchador no es válido."] };
   }
 
-  if (!wrestler.id) errors.push("Falta el ID.");
   if (!wrestler.name) errors.push("Falta el nombre.");
 
   if (!Array.isArray(wrestler.timeline)) {
@@ -436,32 +475,48 @@ export function validateWrestler(wrestler) {
     if (!p?.name) errors.push(`${wrestler.name}: alter ego sin nombre.`);
   });
 
-  validatePeriodOverlaps(
-    wrestler.timeline,
-    `${wrestler.name} timeline`,
-    errors
-  );
-
-  validatePeriodOverlaps(
-    wrestler.alteregos,
-    `${wrestler.name} alteregos`,
-    errors
-  );
+  validatePeriodOverlaps(wrestler.timeline, `${wrestler.name} timeline`, errors);
+  validatePeriodOverlaps(wrestler.alteregos, `${wrestler.name} alteregos`, errors);
 
   return { valid: errors.length === 0, errors };
 }
 
 export function validateRoster() {
   const errors = [];
-  const ids = new Set();
+  const names = new Set();
 
   wrestlers.forEach(w => {
-    const id = normalize(w.id);
+    const name = normalize(w.name);
 
-    if (ids.has(id)) errors.push(`ID duplicado: ${w.id}`);
-    ids.add(id);
+    if (names.has(name)) errors.push(`Nombre duplicado: ${w.name}`);
+    names.add(name);
 
     errors.push(...validateWrestler(w).errors);
+  });
+
+  players.forEach(player => {
+    if (!player.id || !player.name) {
+      errors.push("Intérprete sin ID o nombre.");
+    }
+
+    (player.wrestlers || []).forEach(period => {
+      if (!period.id || !parseDate(period.from)) {
+        errors.push(`${player.name}: historial inválido.`);
+      }
+
+      if (period.to !== null && !parseDate(period.to)) {
+        errors.push(`${player.name}: fecha final inválida.`);
+      }
+
+      if (
+        period.to !== null &&
+        parseDate(period.from) !== null &&
+        parseDate(period.to) !== null &&
+        parseDate(period.to) < parseDate(period.from)
+      ) {
+        errors.push(`${player.name}: período invertido.`);
+      }
+    });
   });
 
   return {
@@ -471,8 +526,7 @@ export function validateRoster() {
   };
 }
 
-
-/* 14. CONEXIÓN CON WRESTLER-CARD.JS */
+/* 15. CONEXIÓN VISUAL */
 
 let wrestlerCards = null;
 
@@ -484,10 +538,7 @@ function loadWrestlerCards() {
     typeof component.card !== "function" ||
     typeof component.openModal !== "function"
   ) {
-    console.error(
-      "[Trivias Wrestling] MIWrestlerCards no está disponible o está incompleto."
-    );
-
+    console.error("[Trivias Wrestling] Wrestler Card no disponible.");
     wrestlerCards = null;
     return false;
   }
@@ -497,13 +548,12 @@ function loadWrestlerCards() {
   return true;
 }
 
-
-/* 15. TARJETA DE RESPALDO */
+/* 16. TARJETA DE RESPALDO */
 
 function fallbackCard(wrestler, presentation) {
   return `
     <button class="mw-wrestler-card" type="button"
-      data-wrestler-open="${escapeHTML(wrestler.id)}">
+      data-wrestler-open="${escapeHTML(wrestler.name)}">
       <img class="mw-wrestler-card__image"
         src="${escapeHTML(presentation.image)}"
         alt="${escapeHTML(presentation.displayName)}"
@@ -518,8 +568,7 @@ function fallbackCard(wrestler, presentation) {
   `;
 }
 
-
-/* 16. RENDERIZADO */
+/* 17. RENDERIZADO */
 
 export function renderWrestlersCatalog(container, list = wrestlers) {
   if (!container) return;
@@ -534,7 +583,7 @@ export function renderWrestlersCatalog(container, list = wrestlers) {
   }
 
   container.innerHTML = list.map(w => {
-    const presentation = getWrestlerPresentation(w.id);
+    const presentation = getWrestlerPresentation(w.name);
     if (!presentation) return "";
 
     const cardData = {
@@ -559,8 +608,7 @@ export function renderWrestlersCatalog(container, list = wrestlers) {
   }).join("");
 }
 
-
-/* 17. CONTADORES */
+/* 18. CONTADORES */
 
 function updateWrestlerCounts() {
   document.querySelectorAll(CONFIG.selectors.count).forEach(element => {
@@ -577,8 +625,7 @@ function updateWrestlerCounts() {
   });
 }
 
-
-/* 18. INICIALIZACIÓN DE CATÁLOGOS */
+/* 19. INICIALIZACIÓN */
 
 export function initWrestlersCatalog() {
   const containers = document.querySelectorAll(CONFIG.selectors.catalog);
@@ -614,21 +661,15 @@ export function initWrestlersCatalog() {
       let list = filtered;
 
       if (group === "main-roster") {
-        list = filtered.filter(w =>
-          getRosterCategory(w) === "Main Roster"
-        );
+        list = filtered.filter(w => getRosterCategory(w) === "Main Roster");
       }
 
       if (group === "segunda") {
-        list = filtered.filter(w =>
-          getRosterCategory(w) === "Segunda Liga"
-        );
+        list = filtered.filter(w => getRosterCategory(w) === "Segunda Liga");
       }
 
       if (group === "admin") {
-        list = filtered.filter(w =>
-          getRosterCategory(w) === "ADMIN"
-        );
+        list = filtered.filter(w => getRosterCategory(w) === "ADMIN");
       }
 
       if (group === "alumni") {
@@ -638,15 +679,12 @@ export function initWrestlersCatalog() {
       }
 
       if (group === "hof") {
-        list = filtered.filter(w =>
-          getRosterCategory(w) === "HOF"
-        );
+        list = filtered.filter(w => getRosterCategory(w) === "HOF");
       }
 
       renderWrestlersCatalog(container, list);
 
       const wrapper = container.closest("[data-roster-group]");
-
       if (wrapper) wrapper.hidden = list.length === 0;
       else container.hidden = list.length === 0;
     });
@@ -679,23 +717,25 @@ export function initWrestlersCatalog() {
     const wrestler = getWrestler(trigger.dataset.wrestlerOpen);
     if (!wrestler) return;
 
-    wrestlerCards.openModal(wrestler);
+    const presentation = getWrestlerPresentation(wrestler.name);
+
+    wrestlerCards.openModal({
+      ...wrestler,
+      ...presentation,
+      ...getWrestlerInterpreterData(wrestler.name)
+    });
   });
 
   updateCatalogs();
 }
 
-
-/* 19. ARRANQUE DEL MÓDULO */
+/* 20. ARRANQUE */
 
 function startWrestlersModule() {
   const validation = validateRoster();
 
   if (!validation.valid) {
-    console.warn(
-      "[Trivias Wrestling] Revisar datos:",
-      validation.errors
-    );
+    console.warn("[Trivias Wrestling] Revisar datos:", validation.errors);
   }
 
   loadWrestlerCards();
