@@ -37,6 +37,12 @@ export const wrestlers = [
   alteregos: []
 },
 
+{ id: "Axiom", name: "Axiom", nickname: "The Spanish Superstar", stable: "",
+  brand: "Smackdown",
+  timeline: [ { from: "", to: null,image: "images/renders/axiom-actual.webp"}
+  ],
+  alteregos: []},
+
   { id: "Cody Rhodes",
     name: "Cody Rhodes",
     nickname: "The American Nightmare",
