@@ -54,9 +54,10 @@ export const wrestlers = [
       image: "images/renders/chad-gable-actual.webp"}],
   alteregos:[{ name: "OG Grande Americano", from: "26/10/2025", to: "23/09/2026", image: "images/renders/og-grande-americano.webp"}]
 },
-{ id: "CM Punk", name: "CM Punk", nickname: "The Best in the World",
+{id: "CM Punk", name: "CM Punk", nickname: "The Best in the World",
   stable: "", brand: "NXT", timeline: [
-    {from: "", to: null, image: "images/renders/cm-punk-actual.webp"} ],
+    {from: "", to: null, image: "images/renders/cm-punk-actual.webp"},
+    {from: "", to: null, nickname: "Chicago Made", image: "images/renders/cm-punk-chicago-made.webp"} ],
   alteregos: []
 },
 
