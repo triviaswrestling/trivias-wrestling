@@ -1,528 +1,1620 @@
-:root{--mw-cyan:#e3263e;--mw-ink:#080b12;--mw-panel:#101723;--mw-line:#263247;--mw-muted:#9aa6bb;--mw-font-display:"Barlow Condensed",Impact,sans-serif;--mw-font-body:Inter,Arial,sans-serif}
-
-/* BASE */
-.mw-roster-page{min-height:70vh;padding-bottom:clamp(48px,7vw,100px)}
-.mw-page-header{max-width:1320px;margin:auto;padding:clamp(30px,5vw,68px) clamp(16px,3vw,34px) 20px}
-.mw-page-header .eyebrow,.mw-record-eyebrow{color:var(--theme-accent,var(--mw-cyan));font:800 .8rem var(--mw-font-display);letter-spacing:.22em;text-transform:uppercase;margin:0 0 8px}
-.mw-page-header .page-title{font:900 clamp(3rem,8vw,6rem)/.88 var(--mw-font-display);letter-spacing:-.035em;text-transform:uppercase;margin:0;text-shadow:0 5px 25px var(--theme-glow,rgba(227,38,62,.2))}
-.mw-page-header .lead{max-width:720px;color:#aeb8c9;font-size:.95rem;line-height:1.65;margin:18px 0 0}
-.mw-catalog-toolbar{max-width:1320px;margin:0 auto 22px;padding:0 clamp(16px,3vw,34px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.mw-search-field,.mw-select-field{min-height:46px;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#141b28,#090d15);border:1px solid #2b374b;box-shadow:inset 0 1px #ffffff0d;padding:0 14px;color:var(--mw-cyan);flex:1 1 220px}
-.mw-search-field input,.mw-select-field select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:#f5f7fb;font:600 .9rem var(--mw-font-body);padding:12px 0}
-.mw-select-field select option{background:#0b1019;color:white}
-.mw-catalog-count{font:800 .8rem var(--mw-font-display);letter-spacing:.12em;color:#9eabc0;margin-left:auto}
-
-/* CARDS */
-.roster-grid-container{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(9px,1.2vw,16px);padding:0 clamp(16px,3vw,34px);max-width:1320px;margin:0 auto}
-.mw-wrestler-card{--wrestler-accent:var(--mw-cyan);--wrestler-glow:rgba(227,38,62,.3);position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;aspect-ratio:3/4.7;overflow:hidden;padding:0;border:1px solid color-mix(in srgb,var(--wrestler-accent) 48%,#202a3c);border-radius:2px;clip-path:polygon(0 0,100% 0,100% 96.5%,94% 100%,0 100%);background:radial-gradient(ellipse at 48% 22%,#263247 0,#101723 42%,#05070b 100%);color:white;text-align:left;cursor:pointer;box-shadow:0 14px 32px #0009,inset 0 0 0 1px #ffffff08;transition:transform .22s,border-color .22s,box-shadow .22s}
-.mw-wrestler-card:hover,.mw-wrestler-card:focus-visible{transform:translateY(-5px);border-color:var(--wrestler-accent);box-shadow:0 18px 36px #000b,0 0 22px var(--wrestler-glow);outline:none}
-.mw-wrestler-card__image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:-2;filter:saturate(1.06) contrast(1.04);transition:transform .35s,filter .25s}
-.mw-wrestler-card:hover .mw-wrestler-card__image{transform:scale(1.035);filter:saturate(1.14) contrast(1.06)}
-.mw-wrestler-card__image.is-missing{display:none}
-.mw-wrestler-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#03060a00 25%,#05070a26 43%,#05070ae8 74%,#05070afc 100%),linear-gradient(135deg,var(--wrestler-glow),transparent 45%);pointer-events:none}
-.mw-wrestler-card__sheen{position:absolute;top:-40%;left:-80%;width:45%;height:190%;transform:rotate(22deg);background:linear-gradient(90deg,transparent,#ffffff0c,#ffffff35,#ffffff08,transparent);pointer-events:none;transition:left .45s}
-.mw-wrestler-card:hover .mw-wrestler-card__sheen{left:145%}
-.mw-wrestler-card__rank{position:absolute;top:7px;right:7px;padding:4px 6px;border:1px solid var(--wrestler-accent);background:#070b12df;color:var(--wrestler-accent);font:900 .72rem var(--mw-font-display);letter-spacing:.04em;box-shadow:0 0 18px var(--wrestler-glow)}
-.mw-wrestler-card__banner{position:relative;display:block;margin:0 -5px 4px;padding:6px 5px 7px 8px;background:linear-gradient(0deg,#000 0%,#000e 58%,#0002 100%);border:0;box-shadow:none;transform:none}
-.mw-wrestler-card__banner-inner{display:block}
-.mw-wrestler-card__subtitle{display:block;color:#fff;font:800 clamp(.43rem,1.9vw,.58rem)/1.15 var(--mw-font-display);letter-spacing:.04em;text-transform:uppercase;text-shadow:0 1px 4px #000;overflow-wrap:anywhere}
-.mw-wrestler-card__name{display:block;margin-top:3px;color:#fff;-webkit-text-fill-color:#fff;font:900 clamp(.82rem,3.7vw,1.18rem)/.96 var(--mw-font-display);letter-spacing:.025em;text-transform:uppercase;text-shadow:0 2px 5px #000,0 0 12px #0007;overflow-wrap:anywhere;-webkit-text-stroke:0}
-.mw-wrestler-card__brand{display:none!important}
-.mw-wrestler-card:has([data-brand="RAW"]),.mw-wrestler-card.brand-raw{--card-brand-color:#ff2638}
-.mw-wrestler-card:has([data-brand="SmackDown"]),.mw-wrestler-card.brand-smackdown{--card-brand-color:#168cff}
-.mw-wrestler-card:has([data-brand="NXT"]),.mw-wrestler-card.brand-nxt{--card-brand-color:#c7ccd4}
-.mw-wrestler-card:has([data-brand="AAA"]),.mw-wrestler-card.brand-aaa{--card-brand-color:#f04444}
-.mw-wrestler-card:has([data-brand]) .mw-wrestler-card__banner,.mw-wrestler-card[class*="brand-"] .mw-wrestler-card__banner{border-top:2px solid var(--card-brand-color)}
-.mw-empty-state,.mw-catalog-loading,.mw-catalog-error{grid-column:1/-1;color:#aab6c9;padding:28px;border:1px solid #263247;background:#0b111b;font:700 .9rem var(--mw-font-display);letter-spacing:.1em;text-align:center}
-.mw-catalog-error{color:#ff6e83}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-/* FILTROS */
-.mw-brand-filter-panel{max-width:1320px;margin:0 auto 22px;padding:16px clamp(12px,3vw,34px);border-block:1px solid #273247;background:linear-gradient(100deg,#0b1019,#101a29 50%,#080c13);box-shadow:inset 0 1px #ffffff08}
-.mw-filter-panel-heading{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.mw-filter-panel-heading>strong{font:900 clamp(1.1rem,2vw,1.5rem)/1 var(--mw-font-display);letter-spacing:.06em;color:#f4f7fb}
-.mw-filter-kicker{width:100%;color:var(--theme-accent,var(--mw-cyan));font:900 .68rem var(--mw-font-display);letter-spacing:.2em}
-.mw-brand-filters{display:flex;gap:7px;overflow-x:auto;padding:3px 1px 8px;scrollbar-width:thin;scrollbar-color:#344258 transparent}
-.mw-brand-filter{position:relative;flex:0 0 auto;min-height:39px;padding:8px 15px;border:1px solid #303c50;background:linear-gradient(180deg,#151d2a,#090d14);color:#aab6c8;font:900 .82rem var(--mw-font-display);letter-spacing:.09em;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 82%,92% 100%,0 100%);transition:color .16s,border-color .16s,background .16s,transform .16s}
-.mw-brand-filter:hover{color:#fff;border-color:var(--theme-accent,var(--mw-cyan));transform:translateY(-1px)}
-.mw-brand-filter.is-active{color:#061018;border-color:var(--theme-accent,var(--mw-cyan));background:linear-gradient(100deg,var(--theme-accent,var(--mw-cyan)),#f1f5f9);box-shadow:0 0 16px var(--theme-glow,rgba(227,38,62,.16))}
-
-/* CAMPEONES */
-.mw-current-champions{max-width:1320px;margin:0 auto 25px;padding:clamp(18px,3vw,30px) clamp(12px,3vw,34px) 0;overflow:hidden}
-.mw-champions-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.mw-champions-kicker{color:#e2c26c;font:900 .68rem var(--mw-font-display);letter-spacing:.2em;white-space:nowrap}
-.mw-champions-heading h2{margin:0;color:#f5f6fa;font:900 clamp(1.35rem,3vw,2.1rem)/.9 var(--mw-font-display);letter-spacing:.02em;white-space:nowrap}
-.mw-champions-rule{height:1px;flex:1;min-width:12px;background:linear-gradient(90deg,#b99848,#574b31,transparent);box-shadow:0 0 9px #c9a74a44}
-.mw-champions-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:10px}
-.mw-champion-card{--champion-accent:#d9b95e;position:relative;isolation:isolate;display:flex;align-items:center;gap:12px;min-height:108px;padding:10px 13px;overflow:hidden;border:1px solid #6c5930;border-left:3px solid var(--champion-accent);background:linear-gradient(115deg,#201b11,#10141d 48%,#080b11);color:#f4f6fa;text-decoration:none;clip-path:polygon(0 0,100% 0,100% 88%,95% 100%,0 100%);transition:transform .18s,border-color .18s,filter .18s}
-.mw-champion-card:hover{transform:translateY(-3px);filter:brightness(1.13);border-color:#f0d37d}
-.mw-champion-card img{width:66px;height:84px;object-fit:cover;object-position:top center;align-self:flex-end;flex:0 0 66px;filter:drop-shadow(0 3px 5px #000)}
-.mw-champion-card__crest{display:grid;place-items:center;width:58px;height:58px;flex:0 0 58px;border:1px solid #a98d45;border-radius:50%;color:#e8ce7c;background:radial-gradient(circle,#534322,#15120b 72%);font-size:2rem;box-shadow:0 0 18px #d5ad4b2c}
-.mw-champion-card__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.mw-champion-card__copy small{color:#d7bc70;font:900 .62rem var(--mw-font-display);letter-spacing:.15em;text-transform:uppercase}
-.mw-champion-card__copy strong{font:900 clamp(1.1rem,2vw,1.45rem)/.95 var(--mw-font-display);text-transform:uppercase;overflow-wrap:anywhere}
-.mw-champion-card__copy>span{color:#aeb8c8;font:700 .72rem var(--mw-font-display);letter-spacing:.06em;text-transform:uppercase}
-.mw-champion-card__arrow{align-self:flex-start;color:#d9bd69;font-size:1.2rem}
-.mw-champion-card__shine{position:absolute;z-index:-1;inset:-80% auto -80% -40%;width:22%;transform:rotate(22deg);background:linear-gradient(90deg,transparent,#ffffff0d,#ffffff27,transparent);transition:left .35s}
-.mw-champion-card:hover .mw-champion-card__shine{left:120%}
-.mw-champions-empty{margin:0;padding:14px 16px;border:1px solid #493d24;background:linear-gradient(90deg,#17140e,#0b1018);color:#9da9bb;font:700 .8rem var(--mw-font-display);letter-spacing:.07em}
-.mw-modal-champion-bar{position:relative;isolation:isolate;display:flex;align-items:center;gap:12px;overflow:hidden;margin:0 0 16px;padding:11px 15px;border:1px solid #a98c42;border-left:4px solid #f2d16e;background:linear-gradient(100deg,#302611,#17140e 52%,#0c111a);box-shadow:inset 0 1px #fff2,0 6px 20px #d7ad3b0d}
-.mw-modal-champion-bar__crest{display:grid;place-items:center;width:39px;height:39px;flex:0 0 39px;border:1px solid #c9a84e;border-radius:50%;color:#f3d77b;background:radial-gradient(circle,#6a5424,#15120b 74%);font-size:1.4rem}
-.mw-modal-champion-bar__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.mw-modal-champion-bar__copy small{color:#e3c36d;font:900 .64rem var(--mw-font-display);letter-spacing:.16em}
-.mw-modal-champion-bar__copy strong{color:#fff4cf;font:900 clamp(.95rem,2vw,1.2rem)/1.1 var(--mw-font-display);text-transform:uppercase;overflow-wrap:anywhere}
-.mw-modal-champion-bar__shine{position:absolute;z-index:-1;right:-10%;top:-100%;width:35%;height:300%;transform:rotate(22deg);background:linear-gradient(90deg,transparent,#fff1,transparent);pointer-events:none}
-
-/* MODAL */
-.mw-modal-open{overflow:hidden}
-.mw-wrestler-modal[hidden]{display:none!important}
-.mw-wrestler-modal{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:clamp(8px,2.5vw,26px);font-family:var(--mw-font-body);color:#f4f7fc}
-.mw-wrestler-modal__backdrop{position:absolute;inset:0;background:rgba(2,4,8,.91)}
-.mw-wrestler-modal__dialog{--wrestler-accent:var(--mw-cyan);--wrestler-glow:rgba(227,38,62,.25);position:relative;width:min(100%,850px);max-height:min(94dvh,1100px);overflow:auto;overscroll-behavior:contain;background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--wrestler-accent) 9%,transparent),transparent 36%),linear-gradient(145deg,#0d131e,#080c13 58%,#0a101a);border:1px solid color-mix(in srgb,var(--wrestler-accent) 72%,#253047);border-top:4px solid var(--wrestler-accent);border-radius:20px;box-shadow:0 25px 80px #000d,0 0 28px var(--wrestler-glow);padding:clamp(14px,3.2vw,26px);scrollbar-color:#344258 #090d14;animation:mw-modal-enter .22s ease-out}
-@keyframes mw-modal-enter{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
-.mw-wrestler-modal__close{position:sticky;top:0;float:right;z-index:3;width:42px;height:42px;margin:-4px -4px -42px 0;border:1px solid #2c374a;border-radius:12px;background:#080d15;color:#f4f7fc;font-size:1.8rem;line-height:1;cursor:pointer;box-shadow:0 4px 12px #0008}
-.mw-wrestler-modal__close:hover{border-color:var(--wrestler-accent);color:var(--wrestler-accent)}
-.mw-modal-hero{display:grid;grid-template-columns:minmax(150px,255px) minmax(0,1fr);gap:clamp(16px,3vw,28px);align-items:center;padding:0 36px 20px 0}
-.mw-modal-portrait-wrap{position:relative;min-height:240px;aspect-ratio:3/4;border:1px solid #2c3749;border-radius:15px;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#28374d,#080c13 72%);box-shadow:inset 0 0 0 1px #ffffff08}
-.mw-modal-portrait{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:top center}
-.mw-modal-portrait.is-missing{display:none}
-.mw-modal-brand-tag{position:absolute;left:10px;bottom:10px;padding:6px 10px;background:#060a11e8;border:1px solid var(--wrestler-accent);color:var(--wrestler-accent);font:900 .75rem var(--mw-font-display);letter-spacing:.12em}
-.mw-modal-identity{min-width:0;padding-left:3px}
-.mw-modal-nickname{margin:0 0 8px;color:#f0c76a;font:900 clamp(.9rem,2vw,1.25rem)/1.2 var(--mw-font-display);letter-spacing:.1em;text-transform:uppercase;overflow-wrap:anywhere}
-.mw-modal-identity h2{margin:0 0 14px;font:900 clamp(2rem,5vw,3.25rem)/.94 var(--mw-font-display);letter-spacing:-.02em;text-transform:uppercase;overflow-wrap:anywhere;text-shadow:0 5px 22px #0009}
-.mw-interpreter-block{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
-.mw-interpreter-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
-.mw-mini-label{display:block;color:#8593aa;font:800 .73rem var(--mw-font-display);letter-spacing:.12em;text-transform:uppercase}
-.mw-interpreter-copy>strong{color:var(--wrestler-accent);font:900 1rem var(--mw-font-display);letter-spacing:.04em}
-.mw-interpreter-details{position:relative}
-.mw-interpreter-details summary{display:flex;align-items:center;gap:7px;list-style:none;cursor:pointer;color:#aab8cc;border:1px solid #28364a;border-radius:8px;background:#111a28;padding:6px 9px;font:800 .68rem var(--mw-font-display);letter-spacing:.08em}
-.mw-interpreter-details summary::-webkit-details-marker{display:none}
-.mw-chevron{font-size:1rem;color:var(--wrestler-accent);transition:transform .15s}
-.mw-interpreter-details[open] .mw-chevron{transform:rotate(180deg)}
-.mw-interpreter-list{position:absolute;top:calc(100% + 6px);right:0;z-index:5;width:min(270px,75vw);max-height:240px;overflow:auto;padding:6px;border:1px solid #334157;border-radius:10px;background:#0b111b;box-shadow:0 15px 35px #000c}
-.mw-interpreter-option{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:10px;color:#e7edf7;text-decoration:none;border-radius:6px;font-size:.82rem}
-.mw-interpreter-option:hover,.mw-interpreter-option.is-current{background:#172334;color:var(--wrestler-accent)}
-.mw-interpreter-option__meta{font:800 .62rem var(--mw-font-display);letter-spacing:.08em;color:#8d9bb1}
-.mw-interpreter-option.is-current .mw-interpreter-option__meta{color:var(--wrestler-accent)}
-.mw-modal-panel{padding:clamp(14px,2.8vw,21px);border:1px solid #263246;border-radius:17px;background:linear-gradient(145deg,#111925,#0d131d);margin:0 0 16px;box-shadow:inset 0 1px #ffffff05}
-.mw-panel-heading{margin:0 0 16px;color:var(--wrestler-accent);font:900 1.08rem var(--mw-font-display);letter-spacing:.14em;text-transform:uppercase}
-.mw-attribute{margin:0 0 13px}
-.mw-attribute:last-of-type{margin-bottom:0}
-.mw-attribute__line{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:7px;color:#dce4f1;font:800 1rem var(--mw-font-display)}
-.mw-attribute__line strong{font:900 1.05rem var(--mw-font-display);color:var(--attribute-color,var(--wrestler-accent))}
-.mw-attribute:nth-of-type(2){--attribute-color:#ff6e58}
-.mw-attribute:nth-of-type(3){--attribute-color:#f3d65b}
-.mw-attribute:nth-of-type(4){--attribute-color:#16e6a4}
-.mw-attribute__track{height:10px;border-radius:99px;overflow:hidden;background:#273448;box-shadow:inset 0 2px 4px #0008}
-.mw-attribute__track span{display:block;width:var(--attribute-value);height:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--attribute-color,var(--wrestler-accent)) 70%,#c20d36),var(--attribute-color,var(--wrestler-accent)));box-shadow:0 0 12px color-mix(in srgb,var(--attribute-color,var(--wrestler-accent)) 35%,transparent)}
-.mw-overall-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:17px;padding-top:13px;border-top:1px solid #29364a;color:#9caac0;font:800 .78rem var(--mw-font-display);letter-spacing:.12em}
-.mw-overall-row strong{font:900 1.9rem var(--mw-font-display);color:var(--wrestler-accent);text-shadow:0 0 18px var(--wrestler-glow)}
-.mw-data-pending{color:#8492a8;font-size:.86rem;line-height:1.5;margin:0}
-.mw-modal-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
-.mw-modal-mini-panel{min-width:0;padding:17px;border:1px solid #263246;border-radius:16px;background:#111824}
-.mw-modal-mini-panel>strong{display:block;margin-top:8px;color:#f4f7fc;font:800 1.1rem var(--mw-font-display);overflow-wrap:anywhere}
-.mw-mini-label--sub{margin-top:16px}
-.mw-modal-overall>strong{font:900 2.7rem/.95 var(--mw-font-display);color:var(--wrestler-accent);text-shadow:0 0 18px var(--wrestler-glow);margin-top:12px}
-.mw-overall-note{display:block;color:#8390a6;font-size:.68rem;margin-top:8px}
-.mw-record-bar{display:flex;align-items:center;gap:13px;margin:0 0 12px;padding:15px 17px;border:1px solid color-mix(in srgb,var(--wrestler-accent) 48%,#263246);border-radius:14px;text-decoration:none;color:#f4f7fc;background:linear-gradient(100deg,color-mix(in srgb,var(--wrestler-accent) 13%,#101824),#0c121b 72%);box-shadow:inset 0 1px #ffffff08;transition:border-color .18s,transform .18s}
-.mw-record-bar:hover{border-color:var(--wrestler-accent);transform:translateY(-2px)}
-.mw-record-bar__icon{display:grid;place-items:center;flex:0 0 42px;height:42px;border-radius:10px;background:#080d15;border:1px solid #2a374b;color:var(--wrestler-accent);font-size:1.4rem}
-.mw-record-bar__copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.mw-record-bar__copy strong{font:900 .95rem var(--mw-font-display);letter-spacing:.1em}
-.mw-record-bar__copy small{color:#8d9bb1;font-size:.72rem}
-.mw-record-bar__arrow{font-size:1.4rem;color:var(--wrestler-accent)}
-.mw-record-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.mw-record-tile{display:flex;flex-direction:column;gap:7px;padding:15px;border:1px solid #273348;border-radius:13px;background:#101722;text-decoration:none;transition:border-color .18s}
-.mw-record-tile:hover{border-color:var(--wrestler-accent)}
-.mw-record-tile>strong{color:#f3f6fb;font:900 clamp(1.1rem,3vw,1.55rem) var(--mw-font-display);letter-spacing:.02em}
-.mw-record-tile>small{color:#8290a6;font-size:.7rem}
-.mw-modal-achievements ul{margin:0;padding-left:21px;color:#b8c3d3;line-height:1.85}
-.mw-modal-achievements li{padding-left:4px;margin:3px 0}
-.mw-modal-achievements li::marker{color:var(--wrestler-accent)}
-.mw-modal-footer-meta{display:flex;gap:8px;flex-wrap:wrap;padding:2px 2px 0}
-.mw-modal-footer-meta span{padding:6px 9px;border:1px solid #273348;border-radius:999px;color:#94a3b9;background:#0b111a;font:700 .68rem var(--mw-font-display);letter-spacing:.05em;text-transform:uppercase}
-
-/* RÉCORDS */
-.mw-record-page{max-width:1120px;min-height:70vh;margin:0 auto;padding:clamp(24px,5vw,60px) 16px 80px}
-.mw-record-hero{padding:0 0 24px}
-.mw-record-hero h1{font:900 clamp(2.7rem,8vw,5.5rem)/.92 var(--mw-font-display);text-transform:uppercase;margin:8px 0}
-.mw-record-hero p:last-child{color:#aab6c8;line-height:1.6}
-.mw-record-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.mw-record-stat{padding:clamp(18px,3vw,28px);border:1px solid #28364a;border-top:3px solid #38465b;border-radius:14px;background:linear-gradient(145deg,#121a27,#090e16)}
-.mw-record-stat.is-current{border-top-color:var(--theme-accent,var(--mw-cyan));box-shadow:0 0 22px var(--theme-glow,rgba(227,38,62,.12))}
-.mw-record-stat span{display:block;color:#8e9bb0;font:900 .85rem var(--mw-font-display);letter-spacing:.14em}
-.mw-record-stat strong{display:block;margin:10px 0;font:900 clamp(2rem,6vw,3.6rem)/1 var(--mw-font-display);color:var(--theme-accent,var(--mw-cyan))}
-.mw-record-stat small{color:#8794a8}
-.mw-record-note{margin-top:18px;padding:20px;border:1px solid #28364a;border-radius:14px;background:#0d131d;color:#aeb9ca;line-height:1.65}
-.mw-record-note h2{font:900 1.4rem var(--mw-font-display);color:#f2f5fb;margin:0 0 8px;text-transform:uppercase}
-.mw-record-note p{margin:0}
-.mw-record-back{display:inline-flex;margin-top:18px;padding:12px 16px;border:1px solid var(--theme-accent,var(--mw-cyan));color:var(--theme-accent,var(--mw-cyan));text-decoration:none;font:900 .85rem var(--mw-font-display);letter-spacing:.1em}
-.mw-record-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
-.mw-record-links a{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:#101722;border:1px solid #28364a;color:#eaf0f8;text-decoration:none}
-.mw-record-links a:hover{border-color:var(--theme-accent,var(--mw-cyan));color:var(--theme-accent,var(--mw-cyan))}
-
-/* DIVISIONES */
-.mw-roster-page>.roster-grid-container{display:block;width:100%}
-.mw-roster-division{--division-accent:#dce2eb;margin:0 0 34px;min-width:0}
-.mw-roster-division--main{--division-accent:#e7e9ed}
-.mw-roster-division--development{--division-accent:#c7cdd6}
-.mw-roster-division--other{--division-accent:#37d7ff}
-.mw-roster-division__header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 0 16px;padding:0 0 11px;border-bottom:2px solid var(--division-accent)}
-.mw-roster-division__heading{min-width:0}
-.mw-roster-division__eyebrow{display:block;margin-bottom:5px;color:#9099a8;font-size:10px;font-weight:800;letter-spacing:.16em}
-.mw-roster-division__title{margin:0;color:#f0f1f3;font:900 clamp(27px,5vw,42px)/.95 "Barlow Condensed",Impact,sans-serif;letter-spacing:-.025em}
-.mw-roster-division__subtitle{margin:6px 0 0;color:var(--division-accent);font-size:11px;font-weight:800;letter-spacing:.12em}
-.mw-roster-division__count{flex:0 0 auto;color:#aab1bc;font-size:10px;font-weight:800;text-align:right}
-.mw-roster-division__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:0}
-.mw-roster-division--main .mw-roster-division__header{border-bottom-color:#e7e9ed}
-.mw-roster-division--development .mw-roster-division__header{border-bottom-color:#aeb6c2}
-.mw-roster-division--development .mw-roster-division__title{color:#d6dbe3}
-.mw-champions-division{margin:0 0 22px}
-.mw-champions-division__header{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid #d9b45b8c}
-.mw-champions-division__header h3{margin:0;color:#f0d99a;font:900 22px var(--mw-font-display)}
-.mw-champions-division__header span{color:#b8b0a0;font-size:10px;font-weight:800;letter-spacing:.08em}
-
-/* ALUMNI */
-.alumni-hero{position:relative;isolation:isolate;overflow:hidden;width:100%;margin:0 auto 34px;padding:clamp(38px,7vw,82px) 20px 30px;box-sizing:border-box;background:radial-gradient(ellipse at 78% 30%,#e3263e20,transparent 48%),radial-gradient(ellipse at 8% 100%,#e3263e12,transparent 42%),linear-gradient(115deg,#05070b,#090e18 52%,#05070b);border:1px solid #e3263e29;border-radius:4px;text-align:left}
-.alumni-hero::before{content:"";position:absolute;z-index:-1;top:-55%;right:12%;width:1px;height:210%;transform:rotate(32deg);background:linear-gradient(to bottom,transparent,#e3263e05 20%,#e3263e73 48%,#e3263e0d 75%,transparent);box-shadow:0 0 32px #e3263e26;pointer-events:none}
-.alumni-hero::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,#e3263ebf,#e5c66f40,transparent);pointer-events:none}
-.alumni-hero-content{position:relative;z-index:1;width:100%;max-width:1100px;margin:0 auto}
-.alumni-eyebrow{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:13px;font:800 10px "Inter",sans-serif;letter-spacing:2.5px;color:#e5c66f}
-.alumni-eyebrow-line{display:inline-block;width:27px;height:2px;flex:0 0 27px;background:#e3263e;box-shadow:0 0 10px #e3263e80}
-.alumni-eyebrow-divider{color:#52647c}
-.alumni-eyebrow-muted{color:#758399}
-.alumni-title{margin:0;padding:0;font:italic 900 clamp(64px,13vw,142px)/.86 "Barlow Condensed",Impact,sans-serif;letter-spacing:-2px;text-transform:uppercase;color:#f5f8ff;text-shadow:0 2px #9ba9bd,0 5px #1f3552cc,0 14px 36px #e3263e2e}
-.alumni-title span{display:inline-block;background:linear-gradient(180deg,#fff,#e4edfa 42%,#91a9ca);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.alumni-description{display:flex;flex-direction:column;gap:8px;max-width:620px;margin:22px 0 0;font:800 11px/1.7 "Inter",sans-serif;letter-spacing:1.6px;color:#e5c66f}
-.alumni-description span{max-width:520px;font-size:13px;font-weight:500;letter-spacing:.1px;line-height:1.8;color:#b5c0d1}
-.alumni-hero-bottom{display:flex;align-items:center;gap:12px;margin-top:32px;padding-top:16px;border-top:1px solid #99b8e024}
-.alumni-edition,.alumni-edition-label{font:800 9px "Inter",sans-serif;letter-spacing:1.5px}
-.alumni-edition{color:#eaf3ff}
-.alumni-edition-line{width:30px;height:1px;background:#e3263e8c}
-.alumni-edition-label{color:#73849d}
-
-/* RESPONSIVE */
-@media(min-width:1500px){.roster-grid-container{gap:18px}}
-@media(max-width:900px){.roster-grid-container{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:760px){
-.mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.mw-roster-division{margin-bottom:27px}
-.mw-roster-division__header{margin-bottom:11px}
-[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-inline:10px}
-}
-@media(max-width:600px){
-.alumni-hero{margin-bottom:25px;padding:36px 17px 22px}
-.alumni-eyebrow{gap:7px;font-size:8px;letter-spacing:1.5px}
-.alumni-eyebrow-line{width:20px;flex-basis:20px}
-.alumni-title{font-size:clamp(62px,17vw,96px);letter-spacing:-1px}
-.alumni-description{margin-top:18px;font-size:10px;letter-spacing:1px}
-.alumni-description span{font-size:12px;line-height:1.7}
-.alumni-hero-bottom{margin-top:24px;gap:9px}
-.alumni-edition,.alumni-edition-label{font-size:8px;letter-spacing:1px}
-}
-@media(max-width:560px){
-.roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding-inline:10px}
-.mw-wrestler-card{aspect-ratio:3/4.7}
-.mw-wrestler-card__banner{padding:6px 5px 7px 8px}
-.mw-wrestler-card__name{font-size:clamp(.82rem,3.7vw,1.18rem);line-height:.96}
-.mw-wrestler-card__subtitle{font-size:clamp(.43rem,1.9vw,.58rem);letter-spacing:.04em}
-.mw-wrestler-card__view{font-size:.43rem}
-.mw-wrestler-card__rank{top:5px;right:5px;padding:3px 4px;font-size:.57rem}
-.mw-brand-filter-panel{margin-bottom:16px;padding:13px 10px}
-.mw-filter-panel-heading{gap:8px}
-.mw-filter-panel-heading>strong{font-size:1.1rem}
-.mw-brand-filter{min-height:35px;padding:7px 11px;font-size:.75rem}
-.mw-current-champions{padding:18px 10px 0;margin-bottom:18px}
-.mw-champions-heading{gap:8px}
-.mw-champions-heading h2{font-size:1.35rem}
-.mw-champions-kicker{font-size:.58rem}
-.mw-champions-track{grid-template-columns:1fr 1fr;gap:7px}
-.mw-champion-card{min-height:86px;padding:7px;gap:7px}
-.mw-champion-card img{width:42px;height:64px;flex-basis:42px}
-.mw-champion-card__crest{width:35px;height:35px;flex-basis:35px;font-size:1.25rem}
-.mw-champion-card__copy small{font-size:.49rem;letter-spacing:.08em}
-.mw-champion-card__copy strong{font-size:.95rem}
-.mw-champion-card__copy>span{font-size:.57rem}
-.mw-champion-card__arrow{font-size:.9rem}
-.mw-modal-champion-bar{margin-bottom:12px;padding:9px;gap:9px}
-.mw-modal-champion-bar__crest{width:32px;height:32px;flex-basis:32px;font-size:1.1rem}
-.mw-modal-champion-bar__copy small{font-size:.52rem;letter-spacing:.1em}
-.mw-modal-champion-bar__copy strong{font-size:.9rem}
-.mw-modal-hero{grid-template-columns:minmax(0,32%) minmax(0,1fr);gap:13px;padding-right:0}
-.mw-modal-portrait-wrap{width:100%;min-width:0;min-height:180px}
-.mw-modal-identity h2{font-size:clamp(1.45rem,6vw,2.15rem)}
-.mw-interpreter-block{gap:6px}
-.mw-interpreter-details summary{padding:5px 7px;font-size:.6rem}
-.mw-wrestler-modal__dialog{padding:13px;border-radius:16px;max-height:96dvh}
-.mw-wrestler-modal{padding:7px}
-.mw-modal-panel{padding:14px;border-radius:13px}
-.mw-modal-stat-grid{gap:9px}
-.mw-modal-mini-panel{padding:13px}
-.mw-record-grid{gap:8px}
-.mw-record-tile{padding:12px}
-.mw-record-tile>strong{font-size:1.1rem}
-.mw-record-bar{padding:12px;gap:9px}
-.mw-record-bar__copy strong{font-size:.82rem}
-.mw-record-bar__copy small{font-size:.65rem}
-}
-@media(max-width:360px){
-.roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr))}
-.mw-wrestler-card__view{display:none}
-.mw-champions-track{grid-template-columns:1fr}
-.mw-roster-division__grid{gap:6px}
-.mw-roster-division__eyebrow{font-size:8px}
-.mw-roster-division__count{font-size:9px}
-.mw-modal-hero{grid-template-columns:minmax(0,32%) minmax(0,1fr);gap:13px;padding-right:0}
-.mw-modal-portrait-wrap{width:100%;min-height:180px}
-.mw-modal-identity h2{font-size:1.45rem}
-[data-wrestlers-catalog="alumni"] .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-inline:8px}
-}
-@media(prefers-reduced-motion:reduce){
-.mw-wrestler-card,.mw-wrestler-card__image,.mw-wrestler-card__sheen,.mw-wrestler-modal__dialog,.mw-record-bar,.mw-record-tile,.mw-chevron,.alumni-hero,.alumni-hero::before,.alumni-hero::after{transition:none!important;animation:none!important}
-}
-
-/* ALUMNI: GRILLA PROPIA */
-[data-wrestlers-catalog="alumni"] .roster-grid-container{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:14px;width:100%;padding-inline:14px;box-sizing:border-box}
-[data-wrestlers-catalog="alumni"] .mw-wrestler-card{width:100%;min-width:0;max-width:none;height:auto;aspect-ratio:3/4.7;box-sizing:border-box}
-[data-wrestlers-catalog="alumni"] .mw-wrestler-card__image{width:100%;height:100%;object-fit:cover}
 /* ==========================================================
-   TRIVIAS WRESTLING — SUPERSTAR COLLECTION / GOLD UI
+   TRIVIAS WRESTLING — ROSTER PAGES
+   WWE SUPERCARD / WWE CURRENT BRAND
    ========================================================== */
 
 :root{
-  --mw-cyan:#d9b65e;
-  --mw-gold:#d9b65e;
-  --mw-gold-light:#f4dfa0;
-  --mw-gold-dark:#8d6b2e;
-  --mw-gold-glow:rgba(217,182,94,.2);
+  --mw-gold:#d6b45c;
+  --mw-gold-light:#f2dda0;
+  --mw-gold-dark:#80612d;
+  --mw-ink:#08090c;
+  --mw-panel:#111318;
+  --mw-line:#292b31;
+  --mw-muted:#9aa0aa;
+  --mw-font-display:"Barlow Condensed",Impact,sans-serif;
+  --mw-font-body:Inter,Arial,sans-serif;
 }
+
+/* ==========================================================
+   BASE / GENERAL
+   ========================================================== */
 
 .mw-roster-page{
-  --theme-accent:var(--mw-gold);
-  --theme-glow:var(--mw-gold-glow);
-  --mw-cyan:var(--mw-gold);
+  min-height:70vh;
+  padding-bottom:clamp(48px,7vw,100px);
 }
 
-/* CABECERA: SUPERSTAR COLLECTION */
-
 .mw-page-header{
-  position:relative;
-  padding-top:clamp(35px,6vw,72px);
-  padding-bottom:26px;
+  max-width:1320px;
+  margin:0 auto;
+  padding:clamp(30px,5vw,68px) clamp(16px,3vw,34px) 22px;
 }
 
 .mw-page-header .eyebrow{
+  margin:0 0 9px;
   color:var(--mw-gold-light);
-  font-size:.76rem;
+  font:800 .78rem var(--mw-font-display);
   letter-spacing:.24em;
-  text-shadow:0 0 12px var(--mw-gold-glow);
+  text-transform:uppercase;
 }
 
 .mw-page-header .page-title{
-  color:#f5f1e7;
-  text-shadow:0 3px 0 #66512b,0 8px 25px #000;
+  margin:0;
+  color:#f5f5f5;
+  font:900 clamp(3rem,8vw,6rem)/.88 var(--mw-font-display);
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  text-shadow:0 3px 0 #51452d,0 9px 28px #000;
 }
 
 .mw-page-header .lead{
-  color:#aeb4c0;
+  max-width:720px;
+  margin:18px 0 0;
+  color:#aeb2ba;
+  font-size:.95rem;
+  line-height:1.65;
 }
 
-/* PANEL DE COLECCIÓN */
-
-.mw-brand-filter-panel{
-  position:relative;
-  border-top:1px solid #806a3d;
-  border-bottom:1px solid #806a3d;
-  background:
-    linear-gradient(110deg,#17150f,#10131a 48%,#17140d);
-  box-shadow:inset 0 1px #ffffff0b;
-}
-
-.mw-filter-panel-heading{
-  align-items:center;
-  margin-bottom:14px;
-}
-
-.mw-filter-panel-heading>strong{
-  color:#f1e5c4;
-  font-size:clamp(1.25rem,2.5vw,1.8rem);
-  letter-spacing:.09em;
-  text-shadow:0 2px 12px #d9b65e22;
-}
-
-.mw-filter-kicker{
-  color:var(--mw-gold-light);
-  font-size:.7rem;
-  letter-spacing:.22em;
-}
-
-/* BOTONES DE MARCA Y CATEGORÍA */
-
-.mw-brand-filters{
-  gap:7px;
-  padding:5px 1px 10px;
-  scrollbar-color:#806a3d transparent;
-}
-
-.mw-brand-filter{
-  min-height:39px;
-  border:1px solid #49402d;
-  background:linear-gradient(180deg,#1b1a17,#0a0d13);
-  color:#b9b4a8;
-  font-weight:900;
-  transition:background .18s,border-color .18s,color .18s,transform .18s;
-}
-
-.mw-brand-filter:hover{
-  color:#fff0c4;
-  border-color:var(--mw-gold);
-  background:linear-gradient(180deg,#302719,#15120c);
-}
-
-.mw-brand-filter.is-active{
-  color:#17130a;
-  border-color:#f1d58b;
-  background:linear-gradient(
-    110deg,
-    #8f6c2e,
-    #f5df9c 48%,
-    #bd984d
-  );
-  box-shadow:0 0 13px var(--mw-gold-glow),inset 0 1px #fff9;
-}
-
-/* BUSCADOR */
+/* ==========================================================
+   BUSCADOR / CONTROLES
+   ========================================================== */
 
 .mw-catalog-toolbar{
-  gap:10px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  max-width:1320px;
+  margin:0 auto 22px;
+  padding:0 clamp(16px,3vw,34px);
 }
 
 .mw-search-field,
 .mw-select-field{
-  border-color:#55472d;
-  background:linear-gradient(180deg,#191811,#090c12);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:1 1 220px;
+  min-height:46px;
+  padding:0 14px;
   color:var(--mw-gold-light);
+  background:linear-gradient(180deg,#191a1e,#090a0d);
+  border:1px solid #45403a;
   box-shadow:inset 0 1px #ffffff0a;
 }
 
 .mw-search-field:focus-within,
 .mw-select-field:focus-within{
   border-color:var(--mw-gold);
-  box-shadow:0 0 0 1px #d9b65e33,0 0 15px #d9b65e18;
+  box-shadow:0 0 0 1px #d6b45c33,0 0 14px #d6b45c18;
+}
+
+.mw-search-field input,
+.mw-select-field select{
+  width:100%;
+  min-width:0;
+  padding:12px 0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#f5f5f5;
+  font:600 .9rem var(--mw-font-body);
 }
 
 .mw-search-field input::placeholder{
-  color:#858174;
-}
-
-.mw-select-field select{
-  color:#eee7d7;
+  color:#85858a;
 }
 
 .mw-select-field select option{
-  background:#11110d;
-  color:#f5f1e7;
+  color:#f5f5f5;
+  background:#101115;
 }
 
 .mw-catalog-count{
+  margin-left:auto;
   color:var(--mw-gold-light);
+  font:800 .8rem var(--mw-font-display);
+  letter-spacing:.12em;
 }
 
-/* DETALLES DORADOS DE LA FICHA */
+.mw-empty-state,
+.mw-catalog-loading,
+.mw-catalog-error{
+  grid-column:1/-1;
+  padding:28px;
+  color:#aab0ba;
+  background:#0d0f13;
+  border:1px solid #292c33;
+  font:700 .9rem var(--mw-font-display);
+  letter-spacing:.1em;
+  text-align:center;
+}
 
-.mw-wrestler-card__rank,
+.mw-catalog-error{color:#d7b0a9}
+
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* ==========================================================
+   WRESTLING CARDS
+   Se conserva su presentación y sus identidades de marca.
+   ========================================================== */
+
+.roster-grid-container{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(9px,1.2vw,16px);
+  max-width:1320px;
+  margin:0 auto;
+  padding:0 clamp(16px,3vw,34px);
+}
+
+.mw-wrestler-card{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-width:0;
+  aspect-ratio:3/4.7;
+  overflow:hidden;
+  padding:0;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+  background:radial-gradient(ellipse at 48% 22%,#263247 0,#101723 42%,#05070b 100%);
+  border:1px solid #30343c;
+  border-radius:2px;
+  clip-path:polygon(0 0,100% 0,100% 96.5%,94% 100%,0 100%);
+  box-shadow:0 14px 32px #0009,inset 0 0 0 1px #ffffff08;
+  transition:transform .22s,border-color .22s,box-shadow .22s;
+}
+
+.mw-wrestler-card:hover,
+.mw-wrestler-card:focus-visible{
+  transform:translateY(-5px);
+  border-color:#b9a16a;
+  box-shadow:0 18px 36px #000b,0 0 18px #b9a16a22;
+  outline:none;
+}
+
+.mw-wrestler-card__image{
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  filter:saturate(1.06) contrast(1.04);
+  transition:transform .35s,filter .25s;
+}
+
+.mw-wrestler-card:hover .mw-wrestler-card__image{
+  transform:scale(1.035);
+  filter:saturate(1.14) contrast(1.06);
+}
+
+.mw-wrestler-card__image.is-missing{display:none}
+
+.mw-wrestler-card::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,#03060a00 25%,#05070a26 43%,#05070ae8 74%,#05070afc 100%);
+}
+
+.mw-wrestler-card__sheen{
+  position:absolute;
+  top:-40%;
+  left:-80%;
+  width:45%;
+  height:190%;
+  transform:rotate(22deg);
+  background:linear-gradient(90deg,transparent,#ffffff0c,#ffffff35,#ffffff08,transparent);
+  pointer-events:none;
+  transition:left .45s;
+}
+
+.mw-wrestler-card:hover .mw-wrestler-card__sheen{left:145%}
+
+.mw-wrestler-card__rank{
+  position:absolute;
+  top:7px;
+  right:7px;
+  padding:4px 6px;
+  color:#f0d99a;
+  background:#070b12df;
+  border:1px solid #b99b56;
+  font:900 .72rem var(--mw-font-display);
+  letter-spacing:.04em;
+}
+
+.mw-wrestler-card__banner{
+  position:relative;
+  display:block;
+  margin:0 -5px 4px;
+  padding:6px 5px 9px 8px;
+  background:linear-gradient(0deg,rgb(0 0 0 / 98%),rgb(0 0 0 / 88%) 58%,rgb(0 0 0 / 12%));
+  border:0;
+  box-shadow:none;
+  transform:none;
+}
+
+.mw-wrestler-card__banner-inner{
+  display:block;
+}
+
+.mw-wrestler-card__subtitle{
+  display:block;
+  color:#fff;
+  font:800 clamp(.52rem,2vw,.72rem)/1.15 var(--mw-font-display);
+  letter-spacing:.045em;
+  text-shadow:0 1px 4px #000;
+  overflow-wrap:anywhere;
+}
+
+.mw-wrestler-card__name{
+  display:block;
+  margin-top:3px;
+  color:#fff;
+  font:900 clamp(.92rem,1.5vw,1.55rem)/.94 var(--mw-font-display);
+  letter-spacing:.025em;
+  text-transform:uppercase;
+  text-shadow:0 2px 5px #000,0 0 12px #0007;
+  overflow-wrap:anywhere;
+}
+
+.mw-wrestler-card__brand{display:none!important}
+
+/* Identidad original de cada marca dentro de las tarjetas */
+
+.mw-wrestler-card:has([data-brand="RAW"]),
+.mw-wrestler-card.brand-raw{--card-brand-color:#ff2638}
+
+.mw-wrestler-card:has([data-brand="SmackDown"]),
+.mw-wrestler-card.brand-smackdown{--card-brand-color:#168cff}
+
+.mw-wrestler-card:has([data-brand="NXT"]),
+.mw-wrestler-card.brand-nxt{--card-brand-color:#c7ccd4}
+
+.mw-wrestler-card:has([data-brand="AAA"]),
+.mw-wrestler-card.brand-aaa{--card-brand-color:#f04444}
+
+.mw-wrestler-card:has([data-brand="RAW"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-raw .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="SmackDown"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-smackdown .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="NXT"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-nxt .mw-wrestler-card__banner,
+.mw-wrestler-card:has([data-brand="AAA"]) .mw-wrestler-card__banner,
+.mw-wrestler-card.brand-aaa .mw-wrestler-card__banner{
+  border-top:2px solid var(--card-brand-color);
+}
+
+/* ==========================================================
+   FILTROS / SUPERSTAR COLLECTION
+   ========================================================== */
+
+.mw-brand-filter-panel{
+  max-width:1320px;
+  margin:0 auto 22px;
+  padding:16px clamp(12px,3vw,34px);
+  background:linear-gradient(110deg,#171719,#101115 52%,#171612);
+  border-top:1px solid #51452e;
+  border-bottom:1px solid #51452e;
+  box-shadow:inset 0 1px #ffffff08;
+}
+
+.mw-filter-panel-heading{
+  display:flex;
+  align-items:end;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.mw-filter-panel-heading>strong{
+  color:#f0eee8;
+  font:900 clamp(1.1rem,2vw,1.5rem)/1 var(--mw-font-display);
+  letter-spacing:.08em;
+}
+
+.mw-filter-kicker{
+  width:100%;
+  color:var(--mw-gold-light);
+  font:900 .68rem var(--mw-font-display);
+  letter-spacing:.2em;
+}
+
+.mw-brand-filters{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:3px 1px 8px;
+  scrollbar-width:thin;
+  scrollbar-color:#806b42 transparent;
+}
+
+.mw-brand-filter{
+  position:relative;
+  flex:0 0 auto;
+  min-height:39px;
+  padding:8px 15px;
+  color:#b7b7b7;
+  background:linear-gradient(180deg,#1b1c20,#090a0d);
+  border:1px solid #414147;
+  clip-path:polygon(0 0,100% 0,100% 82%,92% 100%,0 100%);
+  font:900 .82rem var(--mw-font-display);
+  letter-spacing:.09em;
+  cursor:pointer;
+  transition:color .16s,border-color .16s,background .16s,transform .16s;
+}
+
+.mw-brand-filter:hover{
+  color:#fff;
+  border-color:var(--mw-gold);
+  transform:translateY(-1px);
+}
+
+.mw-brand-filter.is-active{
+  color:#17130b;
+  border-color:#f1d58b;
+  background:linear-gradient(110deg,#967334,#f0d58e 48%,#b28b43);
+  box-shadow:0 0 14px #d6b45c30,inset 0 1px #fff9;
+}
+
+/* ==========================================================
+   CAMPEONES
+   ========================================================== */
+
+.mw-current-champions{
+  max-width:1320px;
+  margin:0 auto 25px;
+  padding:clamp(18px,3vw,30px) clamp(12px,3vw,34px) 0;
+  overflow:hidden;
+}
+
+.mw-champions-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.mw-champions-kicker{
+  color:#e2c26c;
+  font:900 .68rem var(--mw-font-display);
+  letter-spacing:.2em;
+  white-space:nowrap;
+}
+
+.mw-champions-heading h2{
+  margin:0;
+  color:#f5f5f5;
+  font:900 clamp(1.35rem,3vw,2.1rem)/.9 var(--mw-font-display);
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+
+.mw-champions-rule{
+  flex:1;
+  min-width:12px;
+  height:1px;
+  background:linear-gradient(90deg,#b99848,#574b31,transparent);
+}
+
+.mw-champions-track{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));
+  gap:10px;
+}
+
+.mw-champion-card{
+  --champion-accent:#d9b95e;
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:108px;
+  padding:10px 13px;
+  overflow:hidden;
+  color:#f4f6fa;
+  text-decoration:none;
+  background:linear-gradient(115deg,#201b11,#10141d 48%,#080b11);
+  border:1px solid #6c5930;
+  border-left:3px solid var(--champion-accent);
+  clip-path:polygon(0 0,100% 0,100% 88%,95% 100%,0 100%);
+  transition:transform .18s,border-color .18s,filter .18s;
+}
+
+.mw-champion-card:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.13);
+  border-color:#f0d37d;
+}
+
+.mw-champion-card img{
+  flex:0 0 66px;
+  align-self:flex-end;
+  width:66px;
+  height:84px;
+  object-fit:cover;
+  object-position:top center;
+  filter:drop-shadow(0 3px 5px #000);
+}
+
+.mw-champion-card__crest{
+  display:grid;
+  place-items:center;
+  flex:0 0 58px;
+  width:58px;
+  height:58px;
+  color:#e8ce7c;
+  background:radial-gradient(circle,#534322,#15120b 72%);
+  border:1px solid #a98d45;
+  border-radius:50%;
+  font-size:2rem;
+  box-shadow:0 0 18px #d5ad4b2c;
+}
+
+.mw-champion-card__copy{
+  display:flex;
+  flex:1;
+  min-width:0;
+  flex-direction:column;
+  gap:3px;
+}
+
+.mw-champion-card__copy small{
+  color:#d7bc70;
+  font:900 .62rem var(--mw-font-display);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.mw-champion-card__copy strong{
+  font:900 clamp(1.1rem,2vw,1.45rem)/.95 var(--mw-font-display);
+  text-transform:uppercase;
+  overflow-wrap:anywhere;
+}
+
+.mw-champion-card__copy>span{
+  color:#aeb8c8;
+  font:700 .72rem var(--mw-font-display);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.mw-champion-card__arrow{
+  align-self:flex-start;
+  color:#d9bd69;
+  font-size:1.2rem;
+}
+
+.mw-champion-card__shine{
+  position:absolute;
+  z-index:-1;
+  inset:-80% auto -80% -40%;
+  width:22%;
+  transform:rotate(22deg);
+  background:linear-gradient(90deg,transparent,#ffffff0d,#ffffff27,transparent);
+  transition:left .35s;
+}
+
+.mw-champion-card:hover .mw-champion-card__shine{left:120%}
+
+.mw-champions-empty{
+  margin:0;
+  padding:14px 16px;
+  color:#9da9bb;
+  background:linear-gradient(90deg,#17140e,#0b1018);
+  border:1px solid #493d24;
+  font:700 .8rem var(--mw-font-display);
+  letter-spacing:.07em;
+}
+
+.mw-modal-champion-bar{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  overflow:hidden;
+  margin:0 0 16px;
+  padding:11px 15px;
+  background:linear-gradient(100deg,#302611,#17140e 52%,#0c111a);
+  border:1px solid #a98c42;
+  border-left:4px solid #f2d16e;
+  box-shadow:inset 0 1px #fff2,0 6px 20px #d7ad3b0d;
+}
+
+.mw-modal-champion-bar__crest{
+  display:grid;
+  place-items:center;
+  flex:0 0 39px;
+  width:39px;
+  height:39px;
+  color:#f3d77b;
+  background:radial-gradient(circle,#6a5424,#15120b 74%);
+  border:1px solid #c9a84e;
+  border-radius:50%;
+  font-size:1.4rem;
+}
+
+.mw-modal-champion-bar__copy{
+  display:flex;
+  flex:1;
+  min-width:0;
+  flex-direction:column;
+  gap:3px;
+}
+
+.mw-modal-champion-bar__copy small{
+  color:#e3c36d;
+  font:900 .64rem var(--mw-font-display);
+  letter-spacing:.16em;
+}
+
+.mw-modal-champion-bar__copy strong{
+  color:#fff4cf;
+  font:900 clamp(.95rem,2vw,1.2rem)/1.1 var(--mw-font-display);
+  text-transform:uppercase;
+  overflow-wrap:anywhere;
+}
+
+.mw-modal-champion-bar__shine{
+  position:absolute;
+  z-index:-1;
+  top:-100%;
+  right:-10%;
+  width:35%;
+  height:300%;
+  transform:rotate(22deg);
+  background:linear-gradient(90deg,transparent,#fff1,transparent);
+  pointer-events:none;
+}
+
+/* ==========================================================
+   MODAL / FICHA DE SUPERSTRELLA
+   ========================================================== */
+
+.mw-modal-open{overflow:hidden}
+.mw-wrestler-modal[hidden]{display:none!important}
+
+.mw-wrestler-modal{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:grid;
+  place-items:center;
+  padding:clamp(8px,2.5vw,26px);
+  color:#f4f7fc;
+  font-family:var(--mw-font-body);
+}
+
+.mw-wrestler-modal__backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(2,4,8,.91);
+}
+
+.mw-wrestler-modal__dialog{
+  position:relative;
+  width:min(100%,850px);
+  max-height:min(94dvh,1100px);
+  overflow:auto;
+  overscroll-behavior:contain;
+  padding:clamp(14px,3.2vw,26px);
+  background:radial-gradient(ellipse at 100% 0%,#d6b45c12,transparent 36%),linear-gradient(145deg,#151515,#090a0d 58%,#101014);
+  border:1px solid #655536;
+  border-top:4px solid var(--mw-gold);
+  border-radius:16px;
+  box-shadow:0 25px 80px #000d,0 0 24px #d6b45c18;
+  scrollbar-color:#5d5038 #090d14;
+  animation:mw-modal-enter .22s ease-out;
+}
+
+@keyframes mw-modal-enter{
+  from{opacity:0;transform:translateY(10px) scale(.99)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.mw-wrestler-modal__close{
+  position:sticky;
+  top:0;
+  float:right;
+  z-index:3;
+  width:42px;
+  height:42px;
+  margin:-4px -4px -42px 0;
+  color:#f4f7fc;
+  background:#080d15;
+  border:1px solid #393a3d;
+  border-radius:10px;
+  font-size:1.8rem;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:0 4px 12px #0008;
+}
+
+.mw-wrestler-modal__close:hover{
+  color:var(--mw-gold-light);
+  border-color:var(--mw-gold);
+}
+
+.mw-modal-hero{
+  display:grid;
+  grid-template-columns:minmax(150px,255px) minmax(0,1fr);
+  align-items:center;
+  gap:clamp(16px,3vw,28px);
+  padding:0 36px 20px 0;
+}
+
+.mw-modal-portrait-wrap{
+  position:relative;
+  min-height:240px;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  background:radial-gradient(ellipse at 50% 20%,#34302a,#080c13 72%);
+  border:1px solid #48423a;
+  border-radius:12px;
+  box-shadow:inset 0 0 0 1px #ffffff08;
+}
+
+.mw-modal-portrait{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+}
+
+.mw-modal-portrait.is-missing{display:none}
+
 .mw-modal-brand-tag{
-  border-color:var(--mw-gold);
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  padding:6px 10px;
+  color:var(--mw-gold-light);
+  background:#060a11e8;
+  border:1px solid var(--mw-gold);
+  font:900 .75rem var(--mw-font-display);
+  letter-spacing:.12em;
+}
+
+.mw-modal-identity{min-width:0}
+
+.mw-modal-nickname{
+  margin:0 0 8px;
+  color:var(--mw-gold-light);
+  font:900 clamp(.9rem,2vw,1.25rem)/1.2 var(--mw-font-display);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.mw-modal-identity h2{
+  margin:0 0 14px;
+  color:#f5f5f5;
+  font:900 clamp(2rem,5vw,3.25rem)/.94 var(--mw-font-display);
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  overflow-wrap:anywhere;
+  text-shadow:0 5px 22px #0009;
+}
+
+/* INTERPRETADORES */
+
+.mw-interpreter-block{
+  display:flex;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.mw-interpreter-copy{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  gap:4px;
+}
+
+.mw-mini-label{
+  display:block;
+  color:#9298a2;
+  font:800 .73rem var(--mw-font-display);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.mw-interpreter-copy>strong{
+  color:var(--mw-gold-light);
+  font:900 1rem var(--mw-font-display);
+  letter-spacing:.04em;
+}
+
+.mw-interpreter-details{position:relative}
+
+.mw-interpreter-details summary{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 9px;
+  color:#c1c3c8;
+  background:#17181c;
+  border:1px solid #393a3d;
+  border-radius:8px;
+  font:800 .68rem var(--mw-font-display);
+  letter-spacing:.08em;
+  list-style:none;
+  cursor:pointer;
+}
+
+.mw-interpreter-details summary::-webkit-details-marker{display:none}
+
+.mw-chevron{
+  color:var(--mw-gold-light);
+  font-size:1rem;
+  transition:transform .15s;
+}
+
+.mw-interpreter-details[open] .mw-chevron{transform:rotate(180deg)}
+
+.mw-interpreter-list{
+  position:absolute;
+  top:calc(100% + 6px);
+  right:0;
+  z-index:5;
+  width:min(270px,75vw);
+  max-height:240px;
+  overflow:auto;
+  padding:6px;
+  background:#0b111b;
+  border:1px solid #5c5039;
+  border-radius:10px;
+  box-shadow:0 15px 35px #000c;
+}
+
+.mw-interpreter-option{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  color:#e7edf7;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:.82rem;
+}
+
+.mw-interpreter-option:hover,
+.mw-interpreter-option.is-current{
+  color:var(--mw-gold-light);
+  background:#292318;
+}
+
+.mw-interpreter-option__meta{
+  color:#8d9bb1;
+  font:800 .62rem var(--mw-font-display);
+  letter-spacing:.08em;
+}
+
+.mw-interpreter-option.is-current .mw-interpreter-option__meta{
   color:var(--mw-gold-light);
 }
 
-.mw-record-bar:hover,
-.mw-record-tile:hover{
-  border-color:var(--mw-gold);
+/* ESTADÍSTICAS */
+
+.mw-modal-panel{
+  margin:0 0 16px;
+  padding:clamp(14px,2.8vw,21px);
+  background:linear-gradient(145deg,#17181c,#0d0e12);
+  border:1px solid #303136;
+  border-radius:13px;
+  box-shadow:inset 0 1px #ffffff05;
 }
 
-.mw-record-bar__icon,
+.mw-panel-heading{
+  margin:0 0 16px;
+  color:var(--mw-gold-light);
+  font:900 1.08rem var(--mw-font-display);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.mw-attribute{margin:0 0 13px}
+.mw-attribute:last-of-type{margin-bottom:0}
+
+.mw-attribute__line{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:7px;
+  color:#dce4f1;
+  font:800 1rem var(--mw-font-display);
+}
+
+.mw-attribute__line strong{
+  color:var(--mw-gold-light);
+  font:900 1.05rem var(--mw-font-display);
+}
+
+.mw-attribute__track{
+  height:10px;
+  overflow:hidden;
+  background:#303137;
+  border-radius:99px;
+  box-shadow:inset 0 2px 4px #0008;
+}
+
+.mw-attribute__track span{
+  display:block;
+  width:var(--attribute-value);
+  height:100%;
+  background:linear-gradient(90deg,#8c6c32,#f0d58e);
+  border-radius:inherit;
+  box-shadow:0 0 12px #d6b45c44;
+}
+
+.mw-overall-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:17px;
+  padding-top:13px;
+  color:#a8aab0;
+  border-top:1px solid #393a3e;
+  font:800 .78rem var(--mw-font-display);
+  letter-spacing:.12em;
+}
+
+.mw-overall-row strong{
+  color:var(--mw-gold-light);
+  font:900 1.9rem var(--mw-font-display);
+  text-shadow:0 0 18px #d6b45c33;
+}
+
+.mw-data-pending{
+  margin:0;
+  color:#9298a2;
+  font-size:.86rem;
+  line-height:1.5;
+}
+
+/* ESTADÍSTICAS SECUNDARIAS */
+
+.mw-modal-stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.mw-modal-mini-panel{
+  min-width:0;
+  padding:17px;
+  background:#15161a;
+  border:1px solid #303136;
+  border-radius:13px;
+}
+
+.mw-modal-mini-panel>strong{
+  display:block;
+  margin-top:8px;
+  color:#f4f7fc;
+  font:800 1.1rem var(--mw-font-display);
+  overflow-wrap:anywhere;
+}
+
+.mw-mini-label--sub{margin-top:16px}
+
+.mw-modal-overall>strong{
+  margin-top:12px;
+  color:var(--mw-gold-light);
+  font:900 2.7rem/.95 var(--mw-font-display);
+  text-shadow:0 0 18px #d6b45c33;
+}
+
+.mw-overall-note{
+  display:block;
+  margin-top:8px;
+  color:#9298a2;
+  font-size:.68rem;
+}
+
+/* RÉCORDS */
+
+.mw-record-bar{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin:0 0 12px;
+  padding:15px 17px;
+  color:#f4f7fc;
+  text-decoration:none;
+  background:linear-gradient(100deg,#211d14,#0c121b 72%);
+  border:1px solid #6a5836;
+  border-radius:12px;
+  box-shadow:inset 0 1px #ffffff08;
+  transition:border-color .18s,transform .18s;
+}
+
+.mw-record-bar:hover{
+  border-color:var(--mw-gold);
+  transform:translateY(-2px);
+}
+
+.mw-record-bar__icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 42px;
+  height:42px;
+  color:var(--mw-gold-light);
+  background:#111216;
+  border:1px solid #57492e;
+  border-radius:10px;
+  font-size:1.4rem;
+}
+
+.mw-record-bar__copy{
+  display:flex;
+  flex:1;
+  min-width:0;
+  flex-direction:column;
+  gap:3px;
+}
+
+.mw-record-bar__copy strong{
+  font:900 .95rem var(--mw-font-display);
+  letter-spacing:.1em;
+}
+
+.mw-record-bar__copy small{
+  color:#9298a2;
+  font-size:.72rem;
+}
+
 .mw-record-bar__arrow{
   color:var(--mw-gold-light);
+  font-size:1.4rem;
 }
 
-.mw-panel-heading,
-.mw-overall-row strong,
-.mw-modal-overall>strong{
+.mw-record-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.mw-record-tile{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  padding:15px;
+  background:#141519;
+  border:1px solid #303136;
+  border-radius:11px;
+  text-decoration:none;
+  transition:border-color .18s;
+}
+
+.mw-record-tile:hover{border-color:var(--mw-gold)}
+
+.mw-record-tile>strong{
+  color:#f3f6fb;
+  font:900 clamp(1.1rem,3vw,1.55rem) var(--mw-font-display);
+}
+
+.mw-record-tile>small{
+  color:#9298a2;
+  font-size:.7rem;
+}
+
+.mw-modal-achievements ul{
+  margin:0;
+  padding-left:21px;
+  color:#b8c3d3;
+  line-height:1.85;
+}
+
+.mw-modal-achievements li{
+  padding-left:4px;
+  margin:3px 0;
+}
+
+.mw-modal-achievements li::marker{color:var(--mw-gold)}
+
+.mw-modal-footer-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:2px 2px 0;
+}
+
+.mw-modal-footer-meta span{
+  padding:6px 9px;
+  color:#a9a9a9;
+  background:#101115;
+  border:1px solid #343438;
+  border-radius:999px;
+  font:700 .68rem var(--mw-font-display);
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+/* ==========================================================
+   PÁGINAS DE RÉCORDS
+   ========================================================== */
+
+.mw-record-page{
+  max-width:1120px;
+  min-height:70vh;
+  margin:0 auto;
+  padding:clamp(24px,5vw,60px) 16px 80px;
+}
+
+.mw-record-hero{padding:0 0 24px}
+
+.mw-record-eyebrow{
   color:var(--mw-gold-light);
+  font:900 .8rem var(--mw-font-display);
+  letter-spacing:.2em;
+  text-transform:uppercase;
 }
 
-.mw-record-eyebrow,
-.mw-record-stat.is-current strong,
-.mw-record-back{
+.mw-record-hero h1{
+  margin:8px 0;
+  color:#f4f4f4;
+  font:900 clamp(2.7rem,8vw,5.5rem)/.92 var(--mw-font-display);
+  text-transform:uppercase;
+}
+
+.mw-record-hero p:last-child{
+  color:#aab6c8;
+  line-height:1.6;
+}
+
+.mw-record-stat-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.mw-record-stat{
+  padding:clamp(18px,3vw,28px);
+  background:linear-gradient(145deg,#17181c,#090a0d);
+  border:1px solid #343438;
+  border-top:3px solid #514a3b;
+  border-radius:12px;
+}
+
+.mw-record-stat.is-current{
+  border-top-color:var(--mw-gold);
+  box-shadow:0 0 18px #d6b45c18;
+}
+
+.mw-record-stat span{
+  display:block;
+  color:#9b9da3;
+  font:900 .85rem var(--mw-font-display);
+  letter-spacing:.14em;
+}
+
+.mw-record-stat strong{
+  display:block;
+  margin:10px 0;
   color:var(--mw-gold-light);
+  font:900 clamp(2rem,6vw,3.6rem)/1 var(--mw-font-display);
 }
 
+.mw-record-stat small{color:#9298a2}
+
+.mw-record-note{
+  margin-top:18px;
+  padding:20px;
+  color:#b4bac4;
+  background:#111216;
+  border:1px solid #303136;
+  border-radius:12px;
+  line-height:1.65;
+}
+
+.mw-record-note h2{
+  margin:0 0 8px;
+  color:#f2f5fb;
+  font:900 1.4rem var(--mw-font-display);
+  text-transform:uppercase;
+}
+
+.mw-record-note p{margin:0}
+
 .mw-record-back{
-  border-color:var(--mw-gold);
+  display:inline-flex;
+  margin-top:18px;
+  padding:12px 16px;
+  color:var(--mw-gold-light);
+  border:1px solid var(--mw-gold);
+  text-decoration:none;
+  font:900 .85rem var(--mw-font-display);
+  letter-spacing:.1em;
+}
+
+.mw-record-links{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:8px;
+}
+
+.mw-record-links a{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  color:#eaf0f8;
+  background:#141519;
+  border:1px solid #303136;
+  text-decoration:none;
 }
 
 .mw-record-links a:hover{
-  border-color:var(--mw-gold);
   color:var(--mw-gold-light);
+  border-color:var(--mw-gold);
 }
 
-/* DIVISIONES: SIN CYAN */
+/* ==========================================================
+   ALUMNI — HERO
+   ========================================================== */
 
-.mw-roster-division--other{
-  --division-accent:#c7cdd6;
+.alumni-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  width:100%;
+  margin:0 auto 34px;
+  padding:clamp(38px,7vw,82px) 20px 30px;
+  box-sizing:border-box;
+  background:
+    radial-gradient(ellipse at 78% 30%,#d6b45c1c,transparent 48%),
+    radial-gradient(ellipse at 8% 100%,#a9853c16,transparent 42%),
+    linear-gradient(115deg,#05070b,#11100d 52%,#05070b);
+  border:1px solid #806b422e;
+  border-radius:4px;
+  text-align:left;
 }
 
-/* MÓVIL */
+.alumni-hero::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:-55%;
+  right:12%;
+  width:1px;
+  height:210%;
+  transform:rotate(32deg);
+  background:linear-gradient(to bottom,transparent,#d6b45c05 20%,#d6b45c70 48%,#d6b45c08 75%,transparent);
+  box-shadow:0 0 32px #d6b45c22;
+  pointer-events:none;
+}
+
+.alumni-hero::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#d6b45c99,#f2dda044,transparent);
+  pointer-events:none;
+}
+
+.alumni-hero-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.alumni-eyebrow{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:13px;
+  color:var(--mw-gold-light);
+  font:800 10px Inter,sans-serif;
+  letter-spacing:2.5px;
+}
+
+.alumni-eyebrow-line{
+  display:inline-block;
+  flex:0 0 27px;
+  width:27px;
+  height:2px;
+  background:var(--mw-gold);
+  box-shadow:0 0 10px #d6b45c66;
+}
+
+.alumni-eyebrow-divider{color:#62563d}
+.alumni-eyebrow-muted{color:#858078}
+
+.alumni-title{
+  margin:0;
+  padding:0;
+  color:#f5f5f5;
+  font:italic 900 clamp(64px,13vw,142px)/.86 "Barlow Condensed",Impact,sans-serif;
+  letter-spacing:-2px;
+  text-transform:uppercase;
+  text-shadow:0 2px 0 #9b8b68,0 5px 0 #332b1e,0 14px 36px #0008;
+}
+
+.alumni-title span{
+  display:inline-block;
+  background:linear-gradient(180deg,#fff,#eee3c8 42%,#a58c59);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.alumni-description{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  max-width:620px;
+  margin:22px 0 0;
+  color:var(--mw-gold-light);
+  font:800 11px/1.7 Inter,sans-serif;
+  letter-spacing:1.6px;
+}
+
+.alumni-description span{
+  max-width:520px;
+  color:#b5c0d1;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.1px;
+  line-height:1.8;
+}
+
+.alumni-hero-bottom{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:32px;
+  padding-top:16px;
+  border-top:1px solid #d6b45c24;
+}
+
+.alumni-edition,
+.alumni-edition-label{
+  font:800 9px Inter,sans-serif;
+  letter-spacing:1.5px;
+}
+
+.alumni-edition{color:#f0e6d0}
+
+.alumni-edition-line{
+  width:30px;
+  height:1px;
+  background:#d6b45c88;
+}
+
+.alumni-edition-label{color:#89816f}
+
+/* ==========================================================
+   DIVISIONES
+   ========================================================== */
+
+.mw-roster-page>.roster-grid-container{
+  display:block;
+  width:100%;
+}
+
+.mw-roster-division{
+  --division-accent:#dce2eb;
+  min-width:0;
+  margin:0 0 34px;
+}
+
+.mw-roster-division--main{--division-accent:#e7e9ed}
+.mw-roster-division--development{--division-accent:#c7cdd6}
+.mw-roster-division--other{--division-accent:#b7b9bf}
+
+.mw-roster-division__header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin:0 0 16px;
+  padding:0 0 11px;
+  border-bottom:2px solid var(--division-accent);
+}
+
+.mw-roster-division__heading{min-width:0}
+
+.mw-roster-division__eyebrow{
+  display:block;
+  margin-bottom:5px;
+  color:#9099a8;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+
+.mw-roster-division__title{
+  margin:0;
+  color:#f0f1f3;
+  font:900 clamp(27px,5vw,42px)/.95 "Barlow Condensed",Impact,sans-serif;
+  letter-spacing:-.025em;
+}
+
+.mw-roster-division__subtitle{
+  margin:6px 0 0;
+  color:var(--division-accent);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.mw-roster-division__count{
+  flex:0 0 auto;
+  color:#aab1bc;
+  font-size:10px;
+  font-weight:800;
+  text-align:right;
+}
+
+.mw-roster-division__grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  padding:0;
+}
+
+.mw-roster-division--main .mw-roster-division__header{border-bottom-color:#e7e9ed}
+.mw-roster-division--development .mw-roster-division__header{border-bottom-color:#aeb6c2}
+.mw-roster-division--development .mw-roster-division__title{color:#d6dbe3}
+
+.mw-champions-division{margin:0 0 22px}
+
+.mw-champions-division__header{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+  padding-bottom:7px;
+  border-bottom:1px solid #d9b45b88;
+}
+
+.mw-champions-division__header h3{
+  margin:0;
+  color:#f0d99a;
+  font:900 22px "Barlow Condensed",Impact,sans-serif;
+}
+
+.mw-champions-division__header span{
+  color:#b8b0a0;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+/* ==========================================================
+   ALUMNI GRID
+   ========================================================== */
+
+[data-wrestlers-catalog="alumni"] .roster-grid-container{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:stretch;
+  gap:14px;
+  width:100%;
+  padding-inline:14px;
+  box-sizing:border-box;
+}
+
+[data-wrestlers-catalog="alumni"] .mw-wrestler-card{
+  width:100%;
+  min-width:0;
+  max-width:none;
+  height:auto;
+  aspect-ratio:3/4.7;
+  box-sizing:border-box;
+}
+
+[data-wrestlers-catalog="alumni"] .mw-wrestler-card__image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media(min-width:1500px){
+  .roster-grid-container{gap:18px}
+}
+
+@media(max-width:900px){
+  .roster-grid-container{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+@media(max-width:760px){
+  .mw-roster-division__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .mw-roster-division{margin-bottom:27px}
+  .mw-roster-division__header{margin-bottom:11px}
+  [data-wrestlers-catalog="alumni"] .roster-grid-container{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+    padding-inline:10px;
+  }
+}
+
+@media(max-width:600px){
+  .alumni-hero{margin-bottom:25px;padding:36px 17px 22px}
+  .alumni-eyebrow{gap:7px;font-size:8px;letter-spacing:1.5px}
+  .alumni-eyebrow-line{width:20px;flex-basis:20px}
+  .alumni-title{font-size:clamp(62px,17vw,96px);letter-spacing:-1px}
+  .alumni-description{margin-top:18px;font-size:10px;letter-spacing:1px}
+  .alumni-description span{font-size:12px;line-height:1.7}
+  .alumni-hero-bottom{margin-top:24px;gap:9px}
+  .alumni-edition,.alumni-edition-label{font-size:8px;letter-spacing:1px}
+}
 
 @media(max-width:560px){
-  .mw-page-header{
-    padding-top:34px;
-    padding-bottom:20px;
-  }
-
-  .mw-page-header .eyebrow{
-    font-size:.65rem;
-    letter-spacing:.17em;
-  }
-
-  .mw-page-header .page-title{
-    font-size:clamp(2.8rem,13vw,4.5rem);
-  }
-
-  .mw-brand-filter-panel{
-    padding:14px 10px;
-  }
-
-  .mw-filter-panel-heading{
+  .roster-grid-container{
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:7px;
-    margin-bottom:10px;
+    padding-inline:10px;
   }
 
-  .mw-filter-panel-heading>strong{
-    font-size:1.2rem;
+  .mw-wrestler-card{aspect-ratio:3/4.7}
+
+  .mw-wrestler-card__name{
+    font-size:clamp(.82rem,3.7vw,1.18rem);
+    line-height:.96;
   }
 
-  .mw-filter-kicker{
-    font-size:.62rem;
+  .mw-wrestler-card__banner{padding:6px 5px 7px 8px}
+
+  .mw-wrestler-card__subtitle{
+    font-size:clamp(.43rem,1.9vw,.58rem);
+    letter-spacing:.04em;
   }
 
-  .mw-brand-filters{
-    gap:6px;
+  .mw-brand-filter-panel{margin-bottom:16px;padding:13px 10px}
+  .mw-filter-panel-heading{gap:8px}
+  .mw-filter-panel-heading>strong{font-size:1.1rem}
+  .mw-brand-filter{min-height:35px;padding:7px 11px;font-size:.75rem}
+
+  .mw-current-champions{
+    padding:18px 10px 0;
+    margin-bottom:18px;
   }
 
-  .mw-brand-filter{
-    min-height:36px;
-    padding:7px 12px;
-    font-size:.76rem;
+  .mw-champions-heading{gap:8px}
+  .mw-champions-heading h2{font-size:1.35rem}
+  .mw-champions-kicker{font-size:.58rem}
+  .mw-champions-track{grid-template-columns:1fr 1fr;gap:7px}
+  .mw-champion-card{min-height:86px;padding:7px;gap:7px}
+  .mw-champion-card img{width:42px;height:64px;flex-basis:42px}
+  .mw-champion-card__crest{width:35px;height:35px;flex-basis:35px;font-size:1.25rem}
+  .mw-champion-card__copy small{font-size:.49rem;letter-spacing:.08em}
+  .mw-champion-card__copy strong{font-size:.95rem}
+  .mw-champion-card__copy>span{font-size:.57rem}
+  .mw-champion-card__arrow{font-size:.9rem}
+
+  .mw-modal-champion-bar{margin-bottom:12px;padding:9px;gap:9px}
+  .mw-modal-champion-bar__crest{width:32px;height:32px;flex-basis:32px;font-size:1.1rem}
+  .mw-modal-champion-bar__copy small{font-size:.52rem;letter-spacing:.1em}
+  .mw-modal-champion-bar__copy strong{font-size:.9rem}
+
+  .mw-modal-hero{
+    grid-template-columns:minmax(105px,35%) minmax(0,1fr);
+    gap:16px;
+    padding-right:0;
   }
 
-  .mw-catalog-toolbar{
+  .mw-modal-identity{min-width:0;padding-left:3px}
+
+  .mw-modal-identity h2{
+    font-size:clamp(1.5rem,6vw,2.15rem);
+    overflow-wrap:anywhere;
+  }
+
+  .mw-modal-nickname{overflow-wrap:anywhere}
+  .mw-modal-portrait-wrap{min-height:180px}
+  .mw-interpreter-block{gap:6px}
+  .mw-interpreter-details summary{padding:5px 7px;font-size:.6rem}
+  .mw-wrestler-modal__dialog{padding:13px;border-radius:14px;max-height:96dvh}
+  .mw-wrestler-modal{padding:7px}
+  .mw-modal-panel{padding:14px;border-radius:12px}
+  .mw-modal-stat-grid{gap:9px}
+  .mw-modal-mini-panel{padding:13px}
+  .mw-record-grid{gap:8px}
+  .mw-record-tile{padding:12px}
+  .mw-record-tile>strong{font-size:1.1rem}
+  .mw-record-bar{padding:12px;gap:9px}
+  .mw-record-bar__copy strong{font-size:.82rem}
+  .mw-record-bar__copy small{font-size:.65rem}
+
+  [data-wrestlers-catalog="alumni"] .roster-grid-container{
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:8px;
+    padding-inline:10px;
+  }
+}
+
+@media(max-width:360px){
+  .roster-grid-container{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .mw-wrestler-card__view{display:none}
+  .mw-champions-track{grid-template-columns:1fr}
+
+  .mw-roster-division__grid{gap:6px}
+  .mw-roster-division__eyebrow{font-size:8px}
+  .mw-roster-division__count{font-size:9px}
+
+  .mw-modal-hero{
+    grid-template-columns:minmax(0,32%) minmax(0,1fr);
+    gap:13px;
+    padding-right:0;
   }
 
-  .mw-search-field,
-  .mw-select-field{
-    min-height:43px;
+  .mw-modal-portrait-wrap{
+    width:100%;
+    min-width:0;
+    min-height:180px;
+  }
+
+  .mw-modal-identity h2{font-size:1.45rem}
+
+  [data-wrestlers-catalog="alumni"] .roster-grid-container{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+    padding-inline:8px;
+  }
+}
+
+/* ==========================================================
+   ACCESIBILIDAD
+   ========================================================== */
+
+@media(prefers-reduced-motion:reduce){
+  .mw-wrestler-card,
+  .mw-wrestler-card__image,
+  .mw-wrestler-card__sheen,
+  .mw-wrestler-modal__dialog,
+  .mw-record-bar,
+  .mw-record-tile,
+  .mw-chevron,
+  .mw-champion-card,
+  .mw-champion-card__shine{
+    transition:none!important;
+    animation:none!important;
+  }
+
+  .alumni-hero,
+  .alumni-hero::before,
+  .alumni-hero::after{
+    animation:none!important;
+    transition:none!important;
   }
 }
