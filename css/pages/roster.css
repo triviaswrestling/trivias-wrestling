@@ -519,3 +519,28 @@
 .mw-modal-identity .mw-interpreter-copy>strong{
   color:var(--wrestler-accent);
 }
+
+
+
+
+
+
+/* FILTROS DE MARCA — PLATINO */
+.mw-brand-filter{
+  border-color:#59616c;
+  background:linear-gradient(180deg,#171b21,#080a0e);
+  color:#aeb5bf;
+}
+
+.mw-brand-filter:hover{
+  color:#fff;
+  border-color:#c5ccd5;
+  background:linear-gradient(180deg,#252b33,#101319);
+}
+
+.mw-brand-filter.is-active{
+  color:#080a0e;
+  border-color:#f0f2f5;
+  background:linear-gradient(110deg,#858e9a,#e8ebef 48%,#aeb6c1);
+  box-shadow:0 0 14px #c5ccd522;
+}
