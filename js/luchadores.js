@@ -56,6 +56,10 @@ export const wrestlers = [
   alteregos: []
 },
 
+{id: "El Grande Americano",name: "El Grande Americano",nickname: "",
+  stable: "",brand: "AAA", timeline:[
+    {from: "", to: null, image: "images/renders/el-grande-americano-actual.webp"}],
+  alteregos: [] },
    
   {id: "Tommaso Ciampa", name: "Tommaso Ciampa", nickname: "",
     stable: "", brand: "Alumni",
