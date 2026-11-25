@@ -526,34 +526,21 @@
 
 
 
-/* FILTROS DE MARCA — PLATINO */
-.mw-brand-button{
-  border:1px solid #737d8b;
-  background:linear-gradient(180deg,#20252d,#090b0f);
-  color:#c5cbd4;
-  box-shadow:inset 0 1px rgba(255,255,255,.12);
-}
 
+/* MARCAS — ACTIVO PLATINO */
 .mw-brand-button:hover,
 .mw-brand-button.is-active{
-  border-color:#f1f3f6;
-  background:linear-gradient(110deg,#7d8795,#c5cbd4 35%,#f4f5f7 55%,#8d97a5);
-  color:#080a0d;
-  box-shadow:inset 0 1px rgba(255,255,255,.7),0 0 12px rgba(210,218,230,.18);
+  border-color:#f1f3f6 !important;
+  background:linear-gradient(110deg,#7d8795,#c5cbd4 35%,#f4f5f7 55%,#8d97a5) !important;
+  color:#080a0d !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.7),0 0 12px rgba(210,218,230,.18) !important;
 }
 
-/* FILTRO ALFABÉTICO — PLATINO */
-.mw-alphabet-button{
-  border:1px solid #68717e;
-  background:linear-gradient(145deg,#252b34,#090b0f);
-  color:#c5cbd4;
-  box-shadow:inset 0 1px rgba(255,255,255,.1);
-}
-
+/* LETRAS — ACTIVO PLATINO */
 .mw-alphabet-button:hover,
 .mw-alphabet-button.is-active{
-  border-color:#f1f3f6;
-  background:linear-gradient(145deg,#7d8795,#c5cbd4 45%,#f4f5f7 65%,#8d97a5);
-  color:#080a0d;
-  box-shadow:inset 0 1px rgba(255,255,255,.7),0 0 10px rgba(210,218,230,.18);
+  border-color:#f1f3f6 !important;
+  background:linear-gradient(145deg,#7d8795,#c5cbd4 45%,#f4f5f7 65%,#8d97a5) !important;
+  color:#080a0d !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.7),0 0 10px rgba(210,218,230,.18) !important;
 }
