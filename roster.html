@@ -38,7 +38,6 @@
       display: none !important;
     }
 
-    /* Selects internos: compatibilidad con luchadores.js */
     .mw-filter-compat {
       display: none !important;
     }
@@ -154,8 +153,6 @@
 
   <main class="site-main mw-roster-page">
 
-    <!-- ENCABEZADO -->
-
     <header class="mw-page-header alumni-hero roster-hero">
       <div class="alumni-hero-content">
 
@@ -207,7 +204,7 @@
 
     <section class="mw-brand-filter-panel" aria-label="Filtros del roster">
 
-      <!-- CATEGORÍAS: PRIMERO -->
+      <!-- CATEGORÍAS -->
 
       <div class="mw-category-buttons" role="group" aria-label="Filtrar por categoría">
 
@@ -230,7 +227,7 @@
       </div>
 
 
-      <!-- MARCAS: SEGUNDO -->
+      <!-- MARCAS -->
 
       <div class="mw-brand-buttons" role="group" aria-label="Filtrar por marca">
 
@@ -257,7 +254,7 @@
       </div>
 
 
-      <!-- SELECTS OCULTOS PARA LUCHADORES.JS -->
+      <!-- SELECTS INTERNOS -->
 
       <select class="mw-filter-compat" id="roster-category" data-roster-filter aria-hidden="true" tabindex="-1">
         <option value="">TODAS LAS CATEGORÍAS</option>
@@ -276,37 +273,37 @@
       </select>
 
 
-      <!-- ALFABÉTICO: TERCERO -->
+      <!-- ALFABÉTICO -->
 
       <div class="mw-alphabet-filter" role="group" aria-label="Filtrar por letra inicial">
 
-        <button class="mw-alphabet-button is-active" type="button" data-roster-letter="">ALL</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="A">A</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="B">B</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="C">C</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="D">D</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="E">E</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="F">F</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="G">G</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="H">H</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="I">I</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="J">J</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="K">K</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="L">L</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="M">M</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="N">N</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="O">O</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="P">P</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="Q">Q</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="R">R</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="S">S</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="T">T</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="U">U</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="V">V</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="W">W</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="X">X</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="Y">Y</button>
-        <button class="mw-alphabet-button" type="button" data-roster-letter="Z">Z</button>
+        <button class="mw-alphabet-button is-active" type="button" data-roster-letter="" aria-pressed="true">ALL</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="A" aria-pressed="false">A</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="B" aria-pressed="false">B</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="C" aria-pressed="false">C</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="D" aria-pressed="false">D</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="E" aria-pressed="false">E</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="F" aria-pressed="false">F</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="G" aria-pressed="false">G</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="H" aria-pressed="false">H</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="I" aria-pressed="false">I</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="J" aria-pressed="false">J</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="K" aria-pressed="false">K</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="L" aria-pressed="false">L</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="M" aria-pressed="false">M</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="N" aria-pressed="false">N</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="O" aria-pressed="false">O</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="P" aria-pressed="false">P</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="Q" aria-pressed="false">Q</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="R" aria-pressed="false">R</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="S" aria-pressed="false">S</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="T" aria-pressed="false">T</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="U" aria-pressed="false">U</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="V" aria-pressed="false">V</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="W" aria-pressed="false">W</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="X" aria-pressed="false">X</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="Y" aria-pressed="false">Y</button>
+        <button class="mw-alphabet-button" type="button" data-roster-letter="Z" aria-pressed="false">Z</button>
 
       </div>
 
@@ -316,8 +313,6 @@
     <!-- CATÁLOGO -->
 
     <section class="mw-roster-catalog-section" aria-label="Catálogo de superestrellas">
-
-      <!-- MAIN ROSTER -->
 
       <section class="mw-roster-group" data-roster-group="main-roster" aria-label="Main Roster">
 
@@ -334,8 +329,6 @@
       </section>
 
 
-      <!-- SEGUNDA LIGA -->
-
       <section class="mw-roster-group" data-roster-group="segunda" aria-label="Segunda Liga">
 
         <div class="mw-catalog-section-heading">
@@ -350,8 +343,6 @@
 
       </section>
 
-
-      <!-- ADMINISTRACIÓN -->
 
       <section class="mw-roster-group" data-roster-group="admin" aria-label="Administración">
 
@@ -377,10 +368,13 @@
   </footer>
 
 
-  <!-- CONEXIÓN DE LOS BOTONES CON LOS FILTROS -->
+  <!-- CONEXIÓN DE LOS BOTONES -->
 
   <script>
     (() => {
+
+      // CATEGORÍAS
+
       const categorySelect = document.querySelector("[data-roster-filter]");
       const categoryButtons = document.querySelectorAll("[data-category-choice]");
 
@@ -399,6 +393,9 @@
         });
       });
 
+
+      // MARCAS
+
       const brandSelect = document.querySelector("[data-brand-filter]");
       const brandButtons = document.querySelectorAll("[data-brand-choice]");
 
@@ -416,6 +413,24 @@
           });
         });
       });
+
+
+      // ALFABÉTICO
+
+      const alphabetButtons = document.querySelectorAll("[data-roster-letter]");
+
+      alphabetButtons.forEach(button => {
+        button.addEventListener("click", () => {
+
+          alphabetButtons.forEach(item => {
+            const active = item === button;
+            item.classList.toggle("is-active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+
+        });
+      });
+
     })();
   </script>
 
