@@ -24,53 +24,56 @@ const CONFIG = {
 /* 2. BASE DE DATOS */
 
 export const wrestlers = [
-  {
-    id: "Cody Rhodes",
+{ id: "Adam Cole",
+  name: "Adam Cole",
+  nickname: "The Panama City Playboy",
+  stable: "",
+  brand: "Alumni",
+  timeline: [{
+      from: "", to: null,
+      image: "images/renders/adam-cole-actual.webp"
+    }
+  ],
+  alteregos: []
+},
+
+  { id: "Cody Rhodes",
     name: "Cody Rhodes",
     nickname: "The American Nightmare",
     stable: "",
     brand: "RAW",
     timeline: [
-      {
-        from: "01/01/2023",
-        to: "31/12/2023",
+      { from: "1/01/2023",
+        to: "9/2/2025",
         image: "images/renders/cody-rhodes-2023.webp"
       },
-      {
-        from: "01/01/2026",
+      { from: "01/01/2026",
         to: null,
         image: "images/renders/cody-rhodes-actual.webp"
       }
     ],
-    alteregos: [
-      {
-        name: "Undashing Cody Rhodes",
-        from: "10/02/2025",
-        to: "08/08/2025",
-        image: "images/renders/cody-undashing.webp"
+    alteregos: [ { name: "Undashing Cody Rhodes",
+                   from: "10/02/2025", to: "08/08/2025",
+                   image: "images/renders/cody-undashing.webp"
       }
     ]
   },
-  {
-    id: "Tommaso Ciampa",
+
+   
+  { id: "Tommaso Ciampa",
     name: "Tommaso Ciampa",
     nickname: "",
     stable: "",
     brand: "Alumni",
-    timeline: [
-      {
-        from: "07/02/2024",
-        to: "27/06/2025",
+    timeline: [{ from: "07/02/2024", to: "27/06/2025",
         image: "images/renders/tommaso-ciampa.webp"
       },
-      {
-        from: "19/08/2025",
-        to: null,
+      { from: "19/08/2025",to: null,
         image: "images/renders/tommaso-ciampa.webp"
       }
     ],
-    alteregos: [
-      {
+   
+    alteregos:[{
         name: "The Riddler",
         from: "28/06/2025",
         to: "18/08/2025",
