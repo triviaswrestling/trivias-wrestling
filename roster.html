@@ -4,28 +4,15 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
   <meta name="theme-color" content="#08090d">
-
-  <meta
-    name="description"
-    content="Roster de Trivias Wrestling. Descubrí las superestrellas, sus presentaciones y sus historiales."
-  >
+  <meta name="description" content="Roster de Trivias Wrestling. Descubrí las superestrellas, sus presentaciones y sus historiales.">
 
   <title>Roster | Trivias Wrestling</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/mi-wrestling.css">
   <link rel="stylesheet" href="css/pages/roster.css">
@@ -51,47 +38,53 @@
       display: none !important;
     }
 
-    /* Compatibilidad con luchadores.js */
+    /* Selects internos: compatibilidad con luchadores.js */
     .mw-filter-compat {
       display: none !important;
     }
 
-    /* Botones de marca */
+    /* FILTROS: PLATINO */
+
+    .mw-category-buttons,
     .mw-brand-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin: 0 0 16px;
+      margin: 0 0 13px;
     }
 
+    .mw-category-button,
     .mw-brand-button {
-      min-width: 76px;
       min-height: 37px;
       padding: 7px 15px;
-      border: 1px solid #454950;
+      border: 1px solid #626873;
       border-radius: 2px;
-      background: linear-gradient(#191c21, #090a0c);
-      color: #c5c8ce;
+      background: linear-gradient(180deg, #292d34, #111318);
+      color: #cbd0d8;
       font-size: 13px;
       font-weight: 900;
-      letter-spacing: .08em;
+      letter-spacing: .07em;
       cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
     }
 
+    .mw-category-button:hover,
+    .mw-category-button.is-active,
     .mw-brand-button:hover,
     .mw-brand-button.is-active {
-      border-color: #e3263e;
-      background: linear-gradient(#e3263e, #991729);
-      color: #fff;
+      border-color: #e0e3e8;
+      background: linear-gradient(180deg, #d9dde3, #9299a3);
+      color: #101216;
     }
 
-    /* Botones alfabéticos */
+    /* ALFABÉTICO */
+
     .mw-alphabet-filter {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 6px;
-      margin-top: 16px;
+      margin-top: 5px;
       padding: 13px 0;
       border-top: 1px solid #30343b;
     }
@@ -102,22 +95,24 @@
       width: 34px;
       height: 34px;
       padding: 0;
-      border: 1px solid #555b64;
+      border: 1px solid #626873;
       border-radius: 50%;
-      background: linear-gradient(145deg, #191c21, #08090b);
-      color: #c5c8ce;
+      background: linear-gradient(145deg, #292d34, #101216);
+      color: #cbd0d8;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
     }
 
     .mw-alphabet-button:hover,
     .mw-alphabet-button.is-active {
-      border-color: #e3263e;
-      background: #e3263e;
-      color: #fff;
+      border-color: #e0e3e8;
+      background: linear-gradient(145deg, #d9dde3, #9299a3);
+      color: #101216;
     }
 
+    .mw-category-button:focus-visible,
     .mw-brand-button:focus-visible,
     .mw-alphabet-button:focus-visible {
       outline: 2px solid #fff;
@@ -125,6 +120,18 @@
     }
 
     @media(max-width: 560px) {
+      .mw-category-buttons,
+      .mw-brand-buttons {
+        gap: 5px;
+      }
+
+      .mw-category-button,
+      .mw-brand-button {
+        min-height: 34px;
+        padding: 6px 11px;
+        font-size: 12px;
+      }
+
       .mw-alphabet-filter {
         gap: 5px;
       }
@@ -134,12 +141,6 @@
         height: 29px;
         font-size: 11px;
       }
-
-      .mw-brand-button {
-        min-width: 65px;
-        min-height: 34px;
-        padding: 6px 11px;
-      }
     }
   </style>
 
@@ -147,7 +148,6 @@
   <script src="js/components/wrestler-card.js" defer></script>
   <script type="module" src="js/luchadores.js"></script>
   <script src="js/sound-effects.js" defer></script>
-
 </head>
 
 <body data-page="roster">
@@ -157,16 +157,13 @@
     <!-- ENCABEZADO -->
 
     <header class="mw-page-header alumni-hero roster-hero">
-
       <div class="alumni-hero-content">
 
         <div class="alumni-eyebrow">
           <span class="alumni-eyebrow-line"></span>
           <span>TRIVIAS WRESTLING</span>
           <span class="alumni-eyebrow-divider">/</span>
-          <span class="alumni-eyebrow-muted">
-            SUPERSTAR DATABASE
-          </span>
+          <span class="alumni-eyebrow-muted">SUPERSTAR DATABASE</span>
         </div>
 
         <h1 class="alumni-title">
@@ -184,23 +181,16 @@
         <div class="alumni-hero-bottom">
           <span class="alumni-edition">TRIVIAS WRESTLING</span>
           <span class="alumni-edition-line"></span>
-          <span class="alumni-edition-label">
-            SUPERSTAR COLLECTION
-          </span>
+          <span class="alumni-edition-label">SUPERSTAR COLLECTION</span>
         </div>
 
       </div>
-
     </header>
 
 
-    <!-- AUTHORITY Y CAMPEONES SE GENERAN / CONSERVAN EN SUS SECCIONES -->
+    <!-- CAMPEONES ACTUALES -->
 
-    <section
-      class="mw-current-champions"
-      data-current-champions
-      aria-label="Campeones actuales"
-    >
+    <section class="mw-current-champions" data-current-champions aria-label="Campeones actuales">
 
       <div class="mw-champions-heading">
         <span class="mw-champions-kicker">THE GOLD STANDARD</span>
@@ -208,130 +198,75 @@
         <span class="mw-champions-rule"></span>
       </div>
 
-      <p class="mw-champions-empty">
-        INFORMACIÓN DE CAMPEONATOS
-      </p>
+      <p class="mw-champions-empty">INFORMACIÓN DE CAMPEONATOS</p>
 
     </section>
 
 
-    <!-- EXPLORACIÓN -->
+    <!-- FILTROS -->
 
-    <section
-      class="mw-brand-filter-panel"
-      aria-label="Explorar superestrellas"
-    >
+    <section class="mw-brand-filter-panel" aria-label="Filtros del roster">
 
-      <div class="mw-filter-panel-heading">
+      <!-- CATEGORÍAS: PRIMERO -->
 
-        <span class="mw-filter-kicker">
-          SUPERSTAR COLLECTION
-        </span>
+      <div class="mw-category-buttons" role="group" aria-label="Filtrar por categoría">
 
-        <strong>EXPLORAR SUPERSTRELLAS</strong>
+        <button class="mw-category-button is-active" type="button" data-category-choice="" aria-pressed="true">
+          TODAS LAS CATEGORÍAS
+        </button>
 
-        <span class="mw-catalog-count">
-          WRESTLER DATABASE
-        </span>
+        <button class="mw-category-button" type="button" data-category-choice="Main Roster" aria-pressed="false">
+          MAIN ROSTER
+        </button>
 
-      </div>
+        <button class="mw-category-button" type="button" data-category-choice="Segunda Liga" aria-pressed="false">
+          SEGUNDA LIGA
+        </button>
 
-
-      <!-- BUSCADOR -->
-
-      <div class="mw-roster-search">
-
-        <input
-          type="search"
-          data-wrestlers-search
-          placeholder="BUSCAR SUPERESTRELLA..."
-          aria-label="Buscar superestrella"
-          autocomplete="off"
-        >
+        <button class="mw-category-button" type="button" data-category-choice="ADMIN" aria-pressed="false">
+          ADMINISTRACIÓN
+        </button>
 
       </div>
 
 
-      <!-- FILTRO DE MARCAS -->
+      <!-- MARCAS: SEGUNDO -->
 
-      <div class="mw-brand-filter-area">
+      <div class="mw-brand-buttons" role="group" aria-label="Filtrar por marca">
 
-        <label>MARCA</label>
+        <button class="mw-brand-button is-active" type="button" data-brand-choice="" aria-pressed="true">
+          TODAS
+        </button>
 
-        <div
-          class="mw-brand-buttons"
-          role="group"
-          aria-label="Filtrar por marca"
-        >
+        <button class="mw-brand-button" type="button" data-brand-choice="RAW" aria-pressed="false">
+          RAW
+        </button>
 
-          <button
-            class="mw-brand-button is-active"
-            type="button"
-            data-brand-choice=""
-            aria-pressed="true"
-          >TODAS</button>
+        <button class="mw-brand-button" type="button" data-brand-choice="SmackDown" aria-pressed="false">
+          SMACKDOWN
+        </button>
 
-          <button
-            class="mw-brand-button"
-            type="button"
-            data-brand-choice="RAW"
-            aria-pressed="false"
-          >RAW</button>
+        <button class="mw-brand-button" type="button" data-brand-choice="NXT" aria-pressed="false">
+          NXT
+        </button>
 
-          <button
-            class="mw-brand-button"
-            type="button"
-            data-brand-choice="SmackDown"
-            aria-pressed="false"
-          >SMACKDOWN</button>
-
-          <button
-            class="mw-brand-button"
-            type="button"
-            data-brand-choice="NXT"
-            aria-pressed="false"
-          >NXT</button>
-
-          <button
-            class="mw-brand-button"
-            type="button"
-            data-brand-choice="AAA"
-            aria-pressed="false"
-          >AAA</button>
-
-        </div>
+        <button class="mw-brand-button" type="button" data-brand-choice="AAA" aria-pressed="false">
+          AAA
+        </button>
 
       </div>
 
 
-      <!-- CATEGORÍA ORIGINAL -->
+      <!-- SELECTS OCULTOS PARA LUCHADORES.JS -->
 
-      <div class="mw-roster-filters">
+      <select class="mw-filter-compat" id="roster-category" data-roster-filter aria-hidden="true" tabindex="-1">
+        <option value="">TODAS LAS CATEGORÍAS</option>
+        <option value="Main Roster">MAIN ROSTER</option>
+        <option value="Segunda Liga">SEGUNDA LIGA</option>
+        <option value="ADMIN">ADMINISTRACIÓN</option>
+      </select>
 
-        <label for="roster-category">CATEGORÍA</label>
-
-        <select
-          id="roster-category"
-          data-roster-filter
-        >
-          <option value="">TODAS LAS CATEGORÍAS</option>
-          <option value="Main Roster">MAIN ROSTER</option>
-          <option value="Segunda Liga">SEGUNDA LIGA</option>
-          <option value="ADMIN">ADMINISTRACIÓN</option>
-        </select>
-
-      </div>
-
-
-      <!-- SELECT DE MARCA COMPATIBLE CON LUCHADORES.JS -->
-
-      <select
-        class="mw-filter-compat"
-        id="roster-brand"
-        data-brand-filter
-        aria-hidden="true"
-        tabindex="-1"
-      >
+      <select class="mw-filter-compat" id="roster-brand" data-brand-filter aria-hidden="true" tabindex="-1">
         <option value="">TODAS LAS MARCAS</option>
         <option value="RAW">RAW</option>
         <option value="SmackDown">SMACKDOWN</option>
@@ -341,16 +276,11 @@
       </select>
 
 
-      <!-- FILTRO ALFABÉTICO -->
+      <!-- ALFABÉTICO: TERCERO -->
 
-      <div
-        class="mw-alphabet-filter"
-        role="group"
-        aria-label="Filtrar por letra inicial"
-      >
+      <div class="mw-alphabet-filter" role="group" aria-label="Filtrar por letra inicial">
 
         <button class="mw-alphabet-button is-active" type="button" data-roster-letter="">ALL</button>
-
         <button class="mw-alphabet-button" type="button" data-roster-letter="A">A</button>
         <button class="mw-alphabet-button" type="button" data-roster-letter="B">B</button>
         <button class="mw-alphabet-button" type="button" data-roster-letter="C">C</button>
@@ -385,42 +315,20 @@
 
     <!-- CATÁLOGO -->
 
-    <section
-      class="mw-roster-catalog-section"
-      aria-label="Catálogo de superestrellas"
-    >
+    <section class="mw-roster-catalog-section" aria-label="Catálogo de superestrellas">
 
       <!-- MAIN ROSTER -->
 
-      <section
-        class="mw-roster-group"
-        data-roster-group="main-roster"
-        aria-label="Main Roster"
-      >
+      <section class="mw-roster-group" data-roster-group="main-roster" aria-label="Main Roster">
 
         <div class="mw-catalog-section-heading">
-
           <span class="mw-filter-kicker">RAW / SMACKDOWN</span>
-
           <h2>MAIN ROSTER</h2>
-
-          <span
-            class="mw-catalog-count"
-            data-wrestler-count="main-roster"
-          >CARGANDO...</span>
-
+          <span class="mw-catalog-count" data-wrestler-count="main-roster">CARGANDO...</span>
         </div>
 
-        <div
-          class="roster-grid-container"
-          data-wrestlers-catalog="main-roster"
-          aria-live="polite"
-        >
-
-          <p class="mw-catalog-loading">
-            CARGANDO MAIN ROSTER...
-          </p>
-
+        <div class="roster-grid-container" data-wrestlers-catalog="main-roster" aria-live="polite">
+          <p class="mw-catalog-loading">CARGANDO MAIN ROSTER...</p>
         </div>
 
       </section>
@@ -428,35 +336,16 @@
 
       <!-- SEGUNDA LIGA -->
 
-      <section
-        class="mw-roster-group"
-        data-roster-group="segunda"
-        aria-label="Segunda Liga"
-      >
+      <section class="mw-roster-group" data-roster-group="segunda" aria-label="Segunda Liga">
 
         <div class="mw-catalog-section-heading">
-
           <span class="mw-filter-kicker">NXT / AAA</span>
-
           <h2>SEGUNDA LIGA</h2>
-
-          <span
-            class="mw-catalog-count"
-            data-wrestler-count="segunda"
-          >CARGANDO...</span>
-
+          <span class="mw-catalog-count" data-wrestler-count="segunda">CARGANDO...</span>
         </div>
 
-        <div
-          class="roster-grid-container"
-          data-wrestlers-catalog="segunda"
-          aria-live="polite"
-        >
-
-          <p class="mw-catalog-loading">
-            CARGANDO SEGUNDA LIGA...
-          </p>
-
+        <div class="roster-grid-container" data-wrestlers-catalog="segunda" aria-live="polite">
+          <p class="mw-catalog-loading">CARGANDO SEGUNDA LIGA...</p>
         </div>
 
       </section>
@@ -464,35 +353,16 @@
 
       <!-- ADMINISTRACIÓN -->
 
-      <section
-        class="mw-roster-group"
-        data-roster-group="admin"
-        aria-label="Administración"
-      >
+      <section class="mw-roster-group" data-roster-group="admin" aria-label="Administración">
 
         <div class="mw-catalog-section-heading">
-
           <span class="mw-filter-kicker">OFFICIAL STAFF</span>
-
           <h2>ADMINISTRACIÓN</h2>
-
-          <span
-            class="mw-catalog-count"
-            data-wrestler-count="admin"
-          >CARGANDO...</span>
-
+          <span class="mw-catalog-count" data-wrestler-count="admin">CARGANDO...</span>
         </div>
 
-        <div
-          class="roster-grid-container"
-          data-wrestlers-catalog="admin"
-          aria-live="polite"
-        >
-
-          <p class="mw-catalog-loading">
-            CARGANDO ADMINISTRACIÓN...
-          </p>
-
+        <div class="roster-grid-container" data-wrestlers-catalog="admin" aria-live="polite">
+          <p class="mw-catalog-loading">CARGANDO ADMINISTRACIÓN...</p>
         </div>
 
       </section>
@@ -507,10 +377,28 @@
   </footer>
 
 
-  <!-- CONEXIÓN DE BOTONES CON LOS FILTROS EXISTENTES -->
+  <!-- CONEXIÓN DE LOS BOTONES CON LOS FILTROS -->
 
   <script>
     (() => {
+      const categorySelect = document.querySelector("[data-roster-filter]");
+      const categoryButtons = document.querySelectorAll("[data-category-choice]");
+
+      categoryButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          if (!categorySelect) return;
+
+          categorySelect.value = button.dataset.categoryChoice;
+          categorySelect.dispatchEvent(new Event("change", { bubbles: true }));
+
+          categoryButtons.forEach(item => {
+            const active = item === button;
+            item.classList.toggle("is-active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+        });
+      });
+
       const brandSelect = document.querySelector("[data-brand-filter]");
       const brandButtons = document.querySelectorAll("[data-brand-choice]");
 
