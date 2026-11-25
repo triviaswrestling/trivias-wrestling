@@ -756,7 +756,6 @@
 
 .mw-interpreter-block {
   overflow: visible;
-  width: 100%;
   min-width: 0;
 }
 
@@ -765,17 +764,16 @@
   width: 100%;
 }
 
-.mw-interpreter-details > summary {
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .mw-interpreter-list {
   position: static;
   display: grid;
+  gap: 6px;
   width: 100%;
-  max-height: none;
-  overflow: visible;
+  max-height: 190px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
   box-sizing: border-box;
   margin-top: 8px;
   padding: 8px;
