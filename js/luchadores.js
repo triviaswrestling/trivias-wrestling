@@ -78,7 +78,15 @@ export const wrestlers = [
         image: "images/renders/the-riddler.webp"
       }
     ]
-  }
+  },
+
+{id: "Triple H",name: "Triple H",nickname: "The Game",
+ stable: "",brand: "ADMIN",timeline: [
+{from: "",to: null,image: "images/renders/triple-h-actual.webp"}
+  ],
+  alteregos: []
+},
+   
 ];
 
 /* 3. UTILIDADES */
