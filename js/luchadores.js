@@ -30,41 +30,33 @@ export const wrestlers = [
   from: "", to: null, image: "images/renders/adam-cole-actual.webp"}
   ],alteregos: []
 },
-
-{ id: "Axiom", name: "Axiom", nickname: "The Spanish Superstar", stable: "",
-  brand: "Smackdown",
-  timeline: [ { from: "", to: null,image: "images/renders/axiom-actual.webp"}
-  ],
-  alteregos: []},
-
-  { id: "Cody Rhodes", name: "Cody Rhodes", nickname: "The American Nightmare",
-    stable: "",brand: "RAW",
-    timeline: [
-      { from: "1/01/2023", to: "9/2/2025", image: "images/renders/cody-rhodes-2023.webp" },
-      { from: "01/01/2026", to: null, image: "images/renders/cody-rhodes-actual.webp" }
-    ],
-    alteregos: [ { name: "Undashing Cody Rhodes",from: "10/02/2025", to: "08/08/2025", image: "images/renders/cody-undashing.webp" }
-    ]
-  },
-
- { id: "Chad Gable", name: "Chad Gable", nickname: "Alpha Male",
-   stable: "",brand: "NXT",
-   timeline: [
+{ id: "Alberto Del Rio",name: "Alberto Del Rio",nickname: "The Essence of Excellence",
+  stable: "",brand: "NXT", timeline:[
+    {from: "", to: null, image: "images/renders/alberto-del-rio-actual.webp"}],
+  alteregos: [] 
+},
+{ id: "Axiom", name: "Axiom", nickname: "", stable: "",
+  brand: "Smackdown",timeline:[ 
+      { from: "", to: null,image: "images/renders/axiom-actual.webp"}],
+  alteregos: []
+},
+{ id: "Cody Rhodes", name: "Cody Rhodes", nickname: "The American Nightmare",
+  stable: "",brand: "RAW", timeline:[
+      { from: "1/01/2023", to: "9/2/2025", image: "images/renders/cody-rhodes-2023.webp"},
+      { from: "01/01/2026", to: null, image: "images/renders/cody-rhodes-actual.webp"}],
+    alteregos:[{ name: "Undashing Cody Rhodes",from: "10/02/2025", to: "08/08/2025", image: "images/renders/cody-undashing.webp"}]
+},
+{ id: "Chad Gable", name: "Chad Gable", nickname: "Alpha Male",
+  stable: "",brand: "NXT", timeline: [
     { from: "12/07/2023", to: "25/10/2025",
       image: "images/renders/chad-gable-2023.webp"},
     { from: "24/09/2026", to: null,
-      image: "images/renders/chad-gable-actual.webp"}
-  ],
-  alteregos: [
-    { name: "OG Grande Americano", from: "26/10/2025", to: "23/09/2026", image: "images/renders/og-grande-americano.webp"}
-  ]
+      image: "images/renders/chad-gable-actual.webp"}],
+  alteregos:[{ name: "OG Grande Americano", from: "26/10/2025", to: "23/09/2026", image: "images/renders/og-grande-americano.webp"}]
 },
-   
- {id: "CM Punk", name: "CM Punk", nickname: "The Best in the World",
-  stable: "", brand: "NXT",
-  timeline: [
-    {from: "", to: null, image: "images/renders/cm-punk-actual.webp"}
-  ],
+{ id: "CM Punk", name: "CM Punk", nickname: "The Best in the World",
+  stable: "", brand: "NXT", timeline: [
+    {from: "", to: null, image: "images/renders/cm-punk-actual.webp"} ],
   alteregos: []
 },
 
