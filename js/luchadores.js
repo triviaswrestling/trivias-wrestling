@@ -47,6 +47,18 @@ export const wrestlers = [
     ]
   },
 
+ { id: "Chad Gable", name: "Chad Gable", nickname: "Alpha Male",
+   stable: "",brand: "NXT",
+   timeline: [
+    { from: "12/07/2023", to: "25/10/2025",
+      image: "images/renders/chad-gable-2023.webp"},
+    { from: "24/09/2026", to: null,
+      image: "images/renders/chad-gable-actual.webp"}
+  ],
+  alteregos: [
+    { name: "OG Grande Americano", from: "26/10/2025", to: "23/09/2026", image: "images/renders/og-grande-americano.webp"}
+  ]
+},
    
  {id: "CM Punk", name: "CM Punk", nickname: "The Best in the World",
   stable: "", brand: "NXT",
